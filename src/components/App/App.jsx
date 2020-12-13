@@ -1,29 +1,21 @@
 import React from 'react'
-// SEMANTIC IMPORTS
-import { Grid, Header } from 'semantic-ui-react'
-// COMPONENTS
-import LogList from '../log-list/log-list'
-import PetInfo from '../pet-info/pet-info'
-// SCSS
+// IMPORT REACT DOM UTILITIES
+import { Router, Route, Switch } from 'react-router-dom'
+import history from '../../history'
+// IMPORT COMPONENTS
+import MainInfo from '../main-info/main-info'
+import NewUserForm from '../new-user-form/new-user-form'
+// IMPORT STYLES
 import './app.scss'
 
-function App() {
+const App = () => {
   return (
-    <Grid>
-      <Grid.Column width={16}>
-        <Header as={'h1'} textAlign={'center'} className="main-header">
-          Welcome to My Pets
-        </Header>
-      </Grid.Column>
-
-      <Grid.Column width={6} textAlign="center">
-        <PetInfo />
-      </Grid.Column>
-
-      <Grid.Column width={10} textAlign="center">
-        <LogList />
-      </Grid.Column>
-    </Grid>
+    <Router history={history}>
+      <Switch>
+        <Route exact path="/" component={MainInfo} />
+        <Route path="/new-user" component={NewUserForm} />
+      </Switch>
+    </Router>
   )
 }
 

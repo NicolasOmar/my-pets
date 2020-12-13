@@ -1,6 +1,6 @@
 {
   "name": "my-pets",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "private": false,
   "homepage": "https://nicolasomar.github.io/my-pets",
   "scripts": {
@@ -19,10 +19,10 @@
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.5.0",
     "dayjs": "^1.9.7",
-    "gh-pages": "^3.1.0",
     "node-sass": "^4.14.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.1",
@@ -67,7 +67,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "npm run deploy && npm run update-version"
+      "pre-push": "npm run update-version"
     }
   }
 }

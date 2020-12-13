@@ -1,0 +1,22 @@
+name: Deploy build
+
+on: [push]
+
+jobs:
+  run:
+    runs-on: ubuntu-latets
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Set up environment
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install dependences
+        run: npm i gh-pages
+
+      - name: Build and deploy app
+        run: npm run deploy
