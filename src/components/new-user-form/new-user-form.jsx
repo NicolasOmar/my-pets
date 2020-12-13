@@ -27,10 +27,6 @@ const NewUserForm = () => {
     <Grid centered>
       <Grid.Column width={8} className="form-column">
         <Segment>
-          <Header as={'h1'} textAlign={'center'} className="main-header">
-            Welcome to My Pets
-          </Header>
-
           <Form>
             <Form.Input
               label={'Name'}
@@ -68,7 +64,7 @@ const NewUserForm = () => {
               onChange={(evt) => onformChange(evt, 'repeatPass')}
             />
 
-            <Form.Button type={'submit'}>Register</Form.Button>
+            <Form.Button type={'submit'}>Create</Form.Button>
           </Form>
         </Segment>
       </Grid.Column>

@@ -1,21 +1,24 @@
 import React from 'react'
 // IMPORT REACT DOM UTILITIES
 import { Router, Route, Switch } from 'react-router-dom'
-import history from '../../history'
+import history from './history'
 // IMPORT COMPONENTS
+import Home from '../home/home'
 import MainInfo from '../main-info/main-info'
 import NewUserForm from '../new-user-form/new-user-form'
-// IMPORT STYLES
-import './app.scss'
 
 const App = () => {
   return (
-    <Router history={history}>
-      <Switch>
-        <Route exact path="/" component={MainInfo} />
-        <Route path="/new-user" component={NewUserForm} />
-      </Switch>
-    </Router>
+    <div>
+      <Router history={history}>
+        <Home />
+
+        <Switch>
+          <Route exact path="/pet-info" component={MainInfo} />
+          <Route exact path="/new-user" component={NewUserForm} />
+        </Switch>
+      </Router>
+    </div>
   )
 }
 
