@@ -1,34 +1,41 @@
 import React from 'react'
 // SEMANTIC IMPORTS
-import { Feed, Header } from 'semantic-ui-react'
+import { Comment, Header } from 'semantic-ui-react'
+import dayJs from 'dayjs'
 
-const TestArray = [
-  'Flora day #',
-  'Flora day #',
-  'Flora day #',
-  'Flora day #',
-  'Flora day #',
-  'Flora day #',
-  'Flora day #',
-  'Flora day #',
-  'Flora day #',
+const commentsArray = [
+  'Day N° ',
+  'Day N° ',
+  'Day N° ',
+  'Day N° ',
+  'Day N° ',
+  'Day N° ',
+  'Day N° ',
+  'Day N° ',
+  'Day N° ',
 ]
+const extraText = 'Another great day with our baby.'
 
 function LogList() {
   return (
-    <Feed size="large">
+    <Comment.Group size="large">
       <Header as="h4">Activities Log</Header>
 
-      {TestArray.map((item, i) => {
+      {commentsArray.map((item, i) => {
         return (
-          <Feed.Event key={i}>
-            <Feed.Content>
-              <Feed.Summary>{`${item}${i + 1}`}</Feed.Summary>
-            </Feed.Content>
-          </Feed.Event>
+          <Comment key={i}>
+            <Comment.Content>
+              <Comment.Metadata>
+                {dayJs()
+                  .subtract(i + 1, 'day')
+                  .format('DD/MM/YYYY')}
+              </Comment.Metadata>
+              <Comment.Text>{`${item}${commentsArray.length - i} - ${extraText}`}</Comment.Text>
+            </Comment.Content>
+          </Comment>
         )
       })}
-    </Feed>
+    </Comment.Group>
   )
 }
 
