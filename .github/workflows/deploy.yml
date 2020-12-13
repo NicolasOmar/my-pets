@@ -16,7 +16,7 @@ jobs:
           node-version: 12
 
       - name: Install dependences
-        run: npm i gh-pages
+        run: npm i react-scripts gh-pages
 
       - name: Build and deploy app
         run: npm run deploy
