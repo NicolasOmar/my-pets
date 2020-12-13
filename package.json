@@ -2,12 +2,12 @@
   "name": "my-pets",
   "version": "0.0.5",
   "private": false,
+  "homepage": "https://nicolasomar.github.io/my-pets",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "homepage": "https://nicolasomar.github.io/my-pets/",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "lint": "eslint --fix src",
