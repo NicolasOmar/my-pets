@@ -16,7 +16,7 @@ jobs:
           node-version: 12
 
       - name: Install dependences
-        run: npm install
+        run: npm run setup:ci
 
       - name: Build and deploy app
         run: npm run deploy

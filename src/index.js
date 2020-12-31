@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import 'semantic-ui-css/semantic.min.css';
-// IMPORT COMPONENTS
-import App from './components/app/app'
+// COMPONENTS
+import App from '../src/components/app/app'
 
 ReactDOM.render(
   <React.StrictMode>

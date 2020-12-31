@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 // SEMANTIC IMPORTS
-import { Form, Grid, Header, Segment } from 'semantic-ui-react'
+import { Form, Grid, Segment } from 'semantic-ui-react'
 
 const baseForm = {
   name: null,
