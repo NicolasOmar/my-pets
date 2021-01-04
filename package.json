@@ -1,17 +1,6 @@
 {
   "name": "my-pets",
-  "version": "0.0.9",
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "setup:ci": "npm i --only=prod && npm i gh-pages",
-    "deploy": "npm run build && gh-pages -d build",
-    "lint": "eslint --fix src",
-    "prettier": "prettier --write src",
-    "update-version": "node update-version.js"
-  },
+  "version": "0.0.10",
   "author": "Nicolás Omar González Passerino",
   "license": "MIT",
   "private": false,
@@ -22,6 +11,17 @@
   },
   "bugs": {
     "url": "https://github.com/NicolasOmar/my-pets/issues"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "setup:ci": "npm i --only=prod && npm i gh-pages",
+    "deploy": "npm run build && gh-pages -d build",
+    "lint": "eslint --fix src",
+    "prettier": "prettier --write src",
+    "update-version": "node update-version.js"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.6",
