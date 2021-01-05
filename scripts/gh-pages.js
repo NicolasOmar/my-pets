@@ -9,5 +9,5 @@ ghPages.publish(
     },
     message: 'Deploying new version'
   },
-  function(err) {}
+  (err) => { console.log(err) }
 );
