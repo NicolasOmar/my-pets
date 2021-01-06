@@ -17,8 +17,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "setup:ci": "npm i --only=prod && npm i gh-pages",
-    "deploy": "npm run build && node scripts/gh-pages",
     "lint": "eslint --fix src",
     "prettier": "prettier --write src",
     "update-version": "node scripts/update-version.js"
