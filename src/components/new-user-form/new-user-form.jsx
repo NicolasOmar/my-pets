@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-// SEMANTIC COMPONENTS
+import { useHistory } from 'react-router-dom'
+// SEMANTIC REACT
 import { Form, Grid, Segment } from 'semantic-ui-react'
+// CONSTANTS
+import ROUTES from '../../consts/app-routes'
+import API from '../../consts/api-routes'
 // HELPERS
 import { encryptPass } from '../../helpers/encrypt'
+import { setLoggedUser } from '../../helpers/local-storage'
 
 const baseForm = {
   name: null,
@@ -15,6 +20,7 @@ const baseForm = {
 }
 
 const NewUserForm = () => {
+  let history = useHistory()
   const [formObject, setFormObject] = useState({ ...baseForm })
   const [loading, setLoading] = useState(false)
 
@@ -24,25 +30,28 @@ const NewUserForm = () => {
       ...formObject,
       [prop]: value !== '' ? value : null,
     })
-    console.warn(formObject)
   }
 
   const onSubmitCreation = async () => {
     setLoading(true)
 
     try {
-      const { REACT_APP_API_URL } = process.env
       const payload = {
         name: formObject.name,
         lastName: formObject.lastName,
         email: formObject.email,
         password: encryptPass(formObject.password),
       }
-      const call = await axios.post(`${REACT_APP_API_URL}/users`, payload)
-      console.warn(call)
-      setLoading(false)
+      const { data } = await axios.post(API.NEW_USER, payload)
+
+      setLoggedUser({
+        token: data.token,
+        ...data.newUser,
+      })
+      history.push(ROUTES.HOME)
     } catch (e) {
       console.error(e)
+    } finally {
       setLoading(false)
     }
   }

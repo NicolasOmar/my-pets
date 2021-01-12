@@ -1,21 +1,25 @@
 import React from 'react'
-// IMPORT REACT DOM UTILITIES
-import { Router, Route, Switch } from 'react-router-dom'
+import { Router, Route, Switch, Redirect } from 'react-router-dom'
+// HISTORY
 import history from './history'
-// IMPORT COMPONENTS
-import Home from '../home/home'
+// CONSTANTS
+import ROUTES from '../../consts/app-routes'
+// COMPONENTS
 import MainInfo from '../main-info/main-info'
 import NewUserForm from '../new-user-form/new-user-form'
+import Login from '../login/login'
+import Home from '../home/home'
 
 const App = () => {
   return (
     <div>
       <Router history={history}>
-        <Home />
-
+        <Redirect exact from="/" to={ROUTES.LOGIN} />
         <Switch>
-          <Route exact path="/pet-info" component={MainInfo} />
-          <Route exact path="/new-user" component={NewUserForm} />
+          <Route exact path={ROUTES.LOGIN} component={Login} />
+          <Route exact path={ROUTES.HOME} component={Home} />
+          <Route exact path={ROUTES.PET_INFO} component={MainInfo} />
+          <Route exact path={ROUTES.NEW_USER} component={NewUserForm} />
         </Switch>
       </Router>
     </div>
