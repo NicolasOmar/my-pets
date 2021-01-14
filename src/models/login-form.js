@@ -10,8 +10,7 @@ export const loginFormBase = {
     type: 'password',
     value: null,
     valid: true
-  },
-  valid: true
+  }
 }
 
 export const loginFormHeader = {

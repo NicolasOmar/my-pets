@@ -1,0 +1,1 @@
+export const checkFormValidation = obj => Object.keys(obj).map(key => obj[key].valid).reduce((accumulator, current) => accumulator && current, true)

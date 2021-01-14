@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import * as CryptoJS from 'crypto-js'
+import { useHistory } from 'react-router-dom'
 // SEMANTIC REACT
 import { Form, Grid, Header, Segment, Message } from 'semantic-ui-react'
 // CONSTANTS
@@ -10,7 +9,9 @@ import ROUTES from '../../constants/app-routes'
 // MODELS
 import { loginFormBase, loginFormHeader } from '../../models/login-form'
 // HELPERS
+import { encryptPass } from '../../helpers/encrypt'
 import { setLoggedUser } from '../../helpers/local-storage'
+import { checkFormValidation } from '../../helpers/methods'
 
 const LoginForm = () => {
   let history = useHistory()
@@ -19,6 +20,11 @@ const LoginForm = () => {
   const [loading, setLoading] = useState(false)
   const [hasErrors, setHasErrors] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
+
+  useEffect(() => {
+    setHasErrors(!checkFormValidation(formObject))
+    return () => {}
+  }, [formObject])
 
   const onFormChange = (evt, prop) => {
     const { value } = evt.target
@@ -36,20 +42,15 @@ const LoginForm = () => {
   const sendTo = (route) => history.push(route)
 
   const onSubmitForm = async () => {
-    if (!formObject.email.valid || !formObject.password.valid) {
+    if (hasErrors) {
       return
     }
 
     setLoading(true)
-    setHasErrors(false)
 
-    const { REACT_APP_CRYPT_METH, REACT_APP_CRYPT_SECRET } = process.env
     const payload = {
       email: formObject.email.value,
-      password: CryptoJS[REACT_APP_CRYPT_METH].encrypt(
-        formObject.password.value,
-        REACT_APP_CRYPT_SECRET
-      ).toString(),
+      password: encryptPass(formObject.password.value),
     }
 
     try {
@@ -61,7 +62,6 @@ const LoginForm = () => {
       })
       sendTo(ROUTES.HOME)
     } catch (e) {
-      console.warn(e)
       setHasErrors(true)
       setErrorMsg(e.message)
     } finally {
@@ -79,13 +79,6 @@ const LoginForm = () => {
         valid,
       },
     })
-
-    if (valid) {
-      setHasErrors(false)
-    } else {
-      setHasErrors(true)
-      setErrorMsg('bad')
-    }
   }
 
   const renderErrorMsg = () => {

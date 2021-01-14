@@ -1,64 +1,91 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 // SEMANTIC REACT
-import { Form, Grid, Segment, Header } from 'semantic-ui-react'
+import { Form, Grid, Segment, Header, Message } from 'semantic-ui-react'
 // CONSTANTS
-import ROUTES from '../../constants/app-routes'
 import API from '../../constants/api-routes'
+import ROUTES from '../../constants/app-routes'
 // MODELS
-import { newUserFormHeader } from '../../models/new-user-form'
+import { newUserFormBase, newUserFormHeader } from '../../models/new-user-form'
 // HELPERS
 import { encryptPass } from '../../helpers/encrypt'
 import { setLoggedUser } from '../../helpers/local-storage'
-
-const baseForm = {
-  name: null,
-  lastName: null,
-  userName: null,
-  email: null,
-  password: null,
-  repeatPass: null,
-}
+import { checkFormValidation } from '../../helpers/methods'
 
 const NewUserForm = () => {
   let history = useHistory()
   const [header] = useState(newUserFormHeader)
-  const [formObject, setFormObject] = useState({ ...baseForm })
+  const [formObject, setFormObject] = useState({ ...newUserFormBase })
   const [loading, setLoading] = useState(false)
+  const [hasErrors, setHasErrors] = useState(false)
+  const [errorMsg, setErrorMsg] = useState('')
+
+  useEffect(() => {
+    setHasErrors(!checkFormValidation(formObject))
+  }, [formObject])
 
   const sendTo = (route) => history.push(route)
 
   const onFormChange = (evt, prop) => {
     const { value } = evt.target
+    const isValidValue = value !== ''
+
     setFormObject({
       ...formObject,
-      [prop]: value !== '' ? value : null,
+      [prop]: {
+        ...formObject[prop],
+        value: isValidValue ? value : null,
+      },
     })
   }
 
   const onSubmitCreation = async () => {
+    if (hasErrors) {
+      return
+    }
+
     setLoading(true)
 
     try {
       const payload = {
-        name: formObject.name,
-        lastName: formObject.lastName,
-        email: formObject.email,
-        password: encryptPass(formObject.password),
+        name: formObject.name.value,
+        lastName: formObject.lastName.value,
+        email: formObject.email.value,
+        password: encryptPass(formObject.password.value),
       }
       const { data } = await axios.post(API.NEW_USER, payload)
+
+      setLoading(false)
 
       setLoggedUser({
         token: data.token,
         ...data.newUser,
       })
+
       history.push(ROUTES.HOME)
     } catch (e) {
-      console.error(e)
+      setHasErrors(true)
+      setErrorMsg(e.message)
     } finally {
       setLoading(false)
     }
+  }
+
+  const checkValidation = (prop) => {
+    const valid = formObject[prop].value !== null
+
+    setFormObject({
+      ...formObject,
+      [prop]: {
+        ...formObject[prop],
+        valid,
+      },
+    })
+  }
+
+  const renderErrorMsg = () => {
+    return <Message error header="Oops" content={errorMsg} />
   }
 
   return (
@@ -70,35 +97,45 @@ const NewUserForm = () => {
       <Grid centered>
         <Grid.Column width={8} className="form-column">
           <Segment>
-            <Form onSubmit={() => onSubmitCreation()} loading={loading}>
+            <Form error={hasErrors} loading={loading} onSubmit={() => onSubmitCreation()}>
               <Form.Input
-                label={'Name'}
-                type={'text'}
-                onChange={(evt) => onFormChange(evt, 'name')}
+                label={formObject.name.label}
+                type={formObject.name.type}
+                onChange={(evt) => onFormChange(evt, formObject.name.control)}
+                onBlur={() => checkValidation(formObject.name.control)}
+                error={!formObject.name.valid}
               />
 
               <Form.Input
-                label={'Last Name'}
-                type={'text'}
-                onChange={(evt) => onFormChange(evt, 'lastName')}
+                label={formObject.lastName.label}
+                type={formObject.lastName.type}
+                onChange={(evt) => onFormChange(evt, formObject.lastName.control)}
+                onBlur={() => checkValidation(formObject.lastName.control)}
+                error={!formObject.lastName.valid}
               />
 
               <Form.Input
-                label={'Username'}
-                type={'text'}
-                onChange={(evt) => onFormChange(evt, 'userName')}
+                label={formObject.userName.label}
+                type={formObject.userName.type}
+                onChange={(evt) => onFormChange(evt, formObject.userName.control)}
+                onBlur={() => checkValidation(formObject.userName.control)}
+                error={!formObject.userName.valid}
               />
 
               <Form.Input
-                label={'Email'}
-                type={'mail'}
-                onChange={(evt) => onFormChange(evt, 'email')}
+                label={formObject.email.label}
+                type={formObject.email.type}
+                onChange={(evt) => onFormChange(evt, formObject.email.control)}
+                onBlur={() => checkValidation(formObject.email.control)}
+                error={!formObject.email.valid}
               />
 
               <Form.Input
-                label={'Password'}
-                type={'password'}
-                onChange={(evt) => onFormChange(evt, 'password')}
+                label={formObject.password.label}
+                type={formObject.password.type}
+                onChange={(evt) => onFormChange(evt, formObject.password.control)}
+                onBlur={() => checkValidation(formObject.password.control)}
+                error={!formObject.password.valid}
               />
 
               {/* <Form.Input
@@ -112,6 +149,8 @@ const NewUserForm = () => {
               <Form.Button type={'button'} basic color={'red'} onClick={() => sendTo(ROUTES.LOGIN)}>
                 Or you can log in with your account
               </Form.Button>
+
+              {hasErrors && renderErrorMsg()}
             </Form>
           </Segment>
         </Grid.Column>
