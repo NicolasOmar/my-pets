@@ -4,8 +4,8 @@ import axios from 'axios'
 // SEMANTIC REACT
 import { Dropdown, Header, Menu } from 'semantic-ui-react'
 // CONSTANTS
-import API from '../../consts/api-routes'
-import ROUTES from '../../consts/app-routes'
+import API from '../../constants/api-routes'
+import ROUTES from '../../constants/app-routes'
 // HELPERS
 import { getLoggedUser, logoutUser } from '../../helpers/local-storage'
 // STYLES
