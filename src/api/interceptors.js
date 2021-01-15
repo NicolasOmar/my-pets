@@ -12,10 +12,7 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   response => response,
-  error => {
-    console.warn(error)
-    return error
-  }
+  error => error.response?.data || { message: 'Something went wrong, please try it again later'}
 )
 
 export default axios

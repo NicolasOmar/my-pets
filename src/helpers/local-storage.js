@@ -10,6 +10,7 @@ export const clearAllStorage = () => localStorage.clear();
 
 export const setLoggedUser = (data) => setStorage(loggedUser, data)
 
-export const getLoggedUser = () => getStorage(loggedUser)
+// USER FOR USERS SESSION ONLY
+export const getLoggedUser = () => getStorage(loggedUser) || null
 
 export const logoutUser = () => clearStorage(loggedUser)

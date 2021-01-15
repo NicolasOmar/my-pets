@@ -51,23 +51,20 @@ const NewUserForm = () => {
       email: formObject.email.value,
       password: encryptPass(formObject.password.value),
     }
+    const { data, message } = await USERSAPI.CREATE(payload)
 
-    try {
-      const { data } = await USERSAPI.CREATE(payload)
+    setLoading(false)
 
-      setLoading(false)
-
+    if (data) {
       setLoggedUser({
         token: data.token,
         ...data.newUser,
       })
 
       history.push(ROUTES.HOME)
-    } catch (e) {
+    } else {
       setHasErrors(true)
-      setErrorMsg(e.message)
-    } finally {
-      setLoading(false)
+      setErrorMsg(message)
     }
   }
 

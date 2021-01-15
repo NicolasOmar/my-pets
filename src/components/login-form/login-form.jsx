@@ -50,21 +50,20 @@ const LoginForm = () => {
       email: formObject.email.value,
       password: encryptPass(formObject.password.value),
     }
+    const { data, message } = await USERSAPI.LOGIN(payload)
 
-    try {
-      const { data } = await USERSAPI.LOGIN(payload)
+    setLoading(false)
 
+    if (data) {
       setLoggedUser({
         token: data.token,
         ...data.userLogged,
       })
 
       history.push(ROUTES.HOME)
-    } catch (e) {
+    } else {
       setHasErrors(true)
-      setErrorMsg(e.message)
-    } finally {
-      setLoading(false)
+      setErrorMsg(message)
     }
   }
 
