@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import axios from 'axios'
 // SEMANTIC REACT
 import { Dropdown, Header, Menu } from 'semantic-ui-react'
+import axios from '../../api/interceptors'
 // CONSTANTS
 import API from '../../constants/api-routes'
 import ROUTES from '../../constants/app-routes'
@@ -20,8 +20,6 @@ const Home = () => {
   }
 
   const onLogout = async () => {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${user.token}`
-
     try {
       await axios.post(API.LOGOUT, {})
 
