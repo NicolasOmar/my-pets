@@ -5,7 +5,7 @@ axios.interceptors.request.use(
   request => {
     const userData = getLoggedUser()
 
-    userData && (request.headers.authorization = `Bearer ${userData.token}`)
+    userData && (request.headers['Authorization'] = `Bearer ${userData.token}`)
     return request
   }
 )
@@ -18,4 +18,4 @@ axios.interceptors.response.use(
   }
 )
 
-export default axios 
+export default axios

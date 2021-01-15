@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 // SEMANTIC REACT
 import { Form, Grid, Segment, Header, Message } from 'semantic-ui-react'
-// CONSTANTS
-import API from '../../constants/api-routes'
-import ROUTES from '../../constants/app-routes'
+// API
+import USERSAPI from '../../api/users.api'
 // MODELS
 import { newUserFormBase, newUserFormHeader } from '../../models/new-user-form'
+// CONSTANTS
+import ROUTES from '../../constants/app-routes'
 // HELPERS
 import { encryptPass } from '../../helpers/encrypt'
 import { setLoggedUser } from '../../helpers/local-storage'
@@ -24,8 +24,6 @@ const NewUserForm = () => {
   useEffect(() => {
     setHasErrors(!checkFormValidation(formObject))
   }, [formObject])
-
-  const sendTo = (route) => history.push(route)
 
   const onFormChange = (evt, prop) => {
     const { value } = evt.target
@@ -47,14 +45,15 @@ const NewUserForm = () => {
 
     setLoading(true)
 
+    const payload = {
+      name: formObject.name.value,
+      lastName: formObject.lastName.value,
+      email: formObject.email.value,
+      password: encryptPass(formObject.password.value),
+    }
+
     try {
-      const payload = {
-        name: formObject.name.value,
-        lastName: formObject.lastName.value,
-        email: formObject.email.value,
-        password: encryptPass(formObject.password.value),
-      }
-      const { data } = await axios.post(API.NEW_USER, payload)
+      const { data } = await USERSAPI.CREATE(payload)
 
       setLoading(false)
 
@@ -146,7 +145,12 @@ const NewUserForm = () => {
 
               <Form.Button type={'submit'}>Sign up</Form.Button>
 
-              <Form.Button type={'button'} basic color={'red'} onClick={() => sendTo(ROUTES.LOGIN)}>
+              <Form.Button
+                type={'button'}
+                basic
+                color={'red'}
+                onClick={() => history.push(ROUTES.LOGIN)}
+              >
                 Or you can log in with your account
               </Form.Button>
 

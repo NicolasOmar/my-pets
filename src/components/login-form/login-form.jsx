@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 // SEMANTIC REACT
 import { Form, Grid, Header, Segment, Message } from 'semantic-ui-react'
-// CONSTANTS
-import API from '../../constants/api-routes'
-import ROUTES from '../../constants/app-routes'
+// API
+import USERSAPI from '../../api/users.api'
 // MODELS
 import { loginFormBase, loginFormHeader } from '../../models/login-form'
+// CONSTANTS
+import ROUTES from '../../constants/app-routes'
 // HELPERS
 import { encryptPass } from '../../helpers/encrypt'
 import { setLoggedUser } from '../../helpers/local-storage'
@@ -39,8 +39,6 @@ const LoginForm = () => {
     })
   }
 
-  const sendTo = (route) => history.push(route)
-
   const onSubmitForm = async () => {
     if (hasErrors) {
       return
@@ -54,13 +52,14 @@ const LoginForm = () => {
     }
 
     try {
-      const response = await axios.post(API.LOGIN, payload)
+      const { data } = await USERSAPI.LOGIN(payload)
 
       setLoggedUser({
-        token: response.data.token,
-        ...response.data.userLogged,
+        token: data.token,
+        ...data.userLogged,
       })
-      sendTo(ROUTES.HOME)
+
+      history.push(ROUTES.HOME)
     } catch (e) {
       setHasErrors(true)
       setErrorMsg(e.message)
@@ -118,7 +117,7 @@ const LoginForm = () => {
                 type={'button'}
                 basic
                 color={'red'}
-                onClick={() => sendTo(ROUTES.NEW_USER)}
+                onClick={() => history.push(ROUTES.NEW_USER)}
               >
                 Or you can Sign up
               </Form.Button>
