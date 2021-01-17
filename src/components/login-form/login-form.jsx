@@ -10,11 +10,12 @@ import { loginFormBase, loginFormHeader } from '../../models/login-form'
 import ROUTES from '../../constants/app-routes'
 // HELPERS
 import { encryptPass } from '../../helpers/encrypt'
-import { setLoggedUser } from '../../helpers/local-storage'
+import { getLoggedUser, setLoggedUser } from '../../helpers/local-storage'
 import { checkFormValidation } from '../../helpers/methods'
 
 const LoginForm = () => {
   let history = useHistory()
+  const [loggedUser] = useState(getLoggedUser())
   const [header] = useState(loginFormHeader)
   const [formObject, setFormObject] = useState({ ...loginFormBase })
   const [loading, setLoading] = useState(false)
@@ -25,6 +26,11 @@ const LoginForm = () => {
     setHasErrors(!checkFormValidation(formObject))
     return () => {}
   }, [formObject])
+
+  useEffect(() => {
+    loggedUser && history.push(ROUTES.HOME)
+    return () => {}
+  }, [loggedUser, history])
 
   const onFormChange = (evt, prop) => {
     const { value } = evt.target

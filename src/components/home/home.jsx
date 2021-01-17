@@ -19,6 +19,8 @@ const Home = () => {
     subHeader: 'Welcome to our beautiful place',
   }
 
+  const onUpdateUser = () => history.push(ROUTES.UPDATE_USER)
+
   const onLogout = async () => {
     try {
       await USERSAPI.LOGOUT()
@@ -41,6 +43,7 @@ const Home = () => {
         <Menu.Menu position="right">
           <Dropdown item text={user.name.toUpperCase()}>
             <Dropdown.Menu>
+              <Dropdown.Item text="Update user" onClick={onUpdateUser} />
               <Dropdown.Item text="Logout" onClick={onLogout} />
             </Dropdown.Menu>
           </Dropdown>

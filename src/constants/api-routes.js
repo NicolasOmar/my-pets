@@ -2,7 +2,8 @@ const apiUrl = process.env.REACT_APP_API_URL;
 
 const API = {
   LOGIN: `${apiUrl}/users/login`,
-  NEW_USER: `${apiUrl}/users`,
+  ME: `${apiUrl}/users/me`,
+  NEW_USER: `${apiUrl}/users/me`,
   LOGOUT: `${apiUrl}/users/logout`,
 }
 

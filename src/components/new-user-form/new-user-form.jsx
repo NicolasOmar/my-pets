@@ -15,7 +15,7 @@ import { checkFormValidation } from '../../helpers/methods'
 
 const NewUserForm = () => {
   let history = useHistory()
-  const [header] = useState(newUserFormHeader)
+  const header = useState(newUserFormHeader)
   const [formObject, setFormObject] = useState({ ...newUserFormBase })
   const [loading, setLoading] = useState(false)
   const [hasErrors, setHasErrors] = useState(false)
