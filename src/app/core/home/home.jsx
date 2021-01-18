@@ -3,11 +3,11 @@ import { useHistory } from 'react-router-dom'
 // SEMANTIC REACT
 import { Dropdown, Header, Menu } from 'semantic-ui-react'
 // API
-import USERSAPI from '../../api/users.api'
+import USERSAPI from '../../../api/users.api'
 // CONSTANTS
-import ROUTES from '../../constants/app-routes'
+import ROUTES from '../../../constants/app-routes'
 // HELPERS
-import { getLoggedUser, logoutUser } from '../../helpers/local-storage'
+import { getLoggedUser, logoutUser } from '../../../helpers/local-storage'
 // STYLES
 import './home.scss'
 

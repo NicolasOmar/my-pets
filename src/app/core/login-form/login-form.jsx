@@ -3,15 +3,15 @@ import { useHistory } from 'react-router-dom'
 // SEMANTIC REACT
 import { Form, Grid, Header, Segment, Message } from 'semantic-ui-react'
 // API
-import USERSAPI from '../../api/users.api'
+import USERSAPI from '../../../api/users.api'
 // MODELS
-import { loginFormBase, loginFormHeader } from '../../models/login-form'
+import { loginFormBase, loginFormHeader } from '../../../models/login-form'
 // CONSTANTS
-import ROUTES from '../../constants/app-routes'
+import ROUTES from '../../../constants/app-routes'
 // HELPERS
-import { encryptPass } from '../../helpers/encrypt'
-import { getLoggedUser, setLoggedUser } from '../../helpers/local-storage'
-import { checkFormValidation } from '../../helpers/methods'
+import { encryptPass } from '../../../helpers/encrypt'
+import { getLoggedUser, setLoggedUser } from '../../../helpers/local-storage'
+import { checkFormValidation } from '../../../helpers/methods'
 
 const LoginForm = () => {
   let history = useHistory()

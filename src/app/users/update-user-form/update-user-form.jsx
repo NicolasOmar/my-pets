@@ -3,14 +3,14 @@ import { useHistory } from 'react-router-dom'
 // SEMANTIC REACT
 import { Form, Grid, Segment, Header, Message, Button } from 'semantic-ui-react'
 // API
-import USERSAPI from '../../api/users.api'
+import USERSAPI from '../../../api/users.api'
 // MODELS
-import { updateUserFormBase, updateUserFormHeader } from '../../models/update-user-form'
+import { updateUserFormBase, updateUserFormHeader } from '../../../models/update-user-form'
 // CONSTANTS
-import ROUTES from '../../constants/app-routes'
+import ROUTES from '../../../constants/app-routes'
 // HELPERS
-import { getLoggedUser, setLoggedUser } from '../../helpers/local-storage'
-import { checkFormValidation } from '../../helpers/methods'
+import { getLoggedUser, setLoggedUser } from '../../../helpers/local-storage'
+import { checkFormValidation } from '../../../helpers/methods'
 
 const UpdateUserForm = () => {
   let history = useHistory()

@@ -3,12 +3,12 @@ import { Router, Route, Switch, Redirect } from 'react-router-dom'
 // HISTORY
 import history from './history'
 // CONSTANTS
-import ROUTES from '../../constants/app-routes'
+import ROUTES from '../../../constants/app-routes'
 // COMPONENTS
 import Home from '../home/home'
-import LoginForm from '../login-form/login-form'
-import NewUserForm from '../new-user-form/new-user-form'
-import UpdateUserForm from '../update-user-form/update-user-form'
+import LoginForm from '../../core/login-form/login-form'
+import NewUserForm from '../../users/new-user-form/new-user-form'
+import UpdateUserForm from '../../users/update-user-form/update-user-form'
 
 const App = () => {
   return (
