@@ -23,6 +23,5 @@ export const updateUserFormBase = {
 }
 
 export const updateUserFormHeader = {
-  header: 'Update user information',
-  align: 'center'
+  title: 'Update user information',
 }

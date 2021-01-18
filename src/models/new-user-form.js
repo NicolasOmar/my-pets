@@ -44,6 +44,5 @@ export const newUserFormBase = {
 }
 
 export const newUserFormHeader = {
-  header: 'Sign up',
-  align: 'center'
+  title: 'Sign up'
 }

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 // SEMANTIC REACT
-import { Form, Grid, Segment, Header, Message, Button } from 'semantic-ui-react'
+import { Form, Segment, Message, Button } from 'semantic-ui-react'
+// COMPONENTS
+import GridLayout from '../../shared/grid-layout/grid-layout'
 // API
 import USERSAPI from '../../../api/users.api'
 // MODELS
@@ -86,49 +88,41 @@ const UpdateUserForm = () => {
   }
 
   return (
-    <div>
-      <Header as="h1" textAlign={header.align}>
-        {header.header}
-      </Header>
+    <GridLayout header={header}>
+      <Segment>
+        <Form error={hasErrors} loading={loading} onSubmit={() => onSubmitUpdate()}>
+          <Form.Input
+            label={formObject.name.label}
+            type={formObject.name.type}
+            defaultValue={user.name}
+            onChange={(evt) => onFormChange(evt, formObject.name.control)}
+            onBlur={() => checkValidation(formObject.name.control)}
+            error={!formObject.name.valid}
+          />
 
-      <Grid centered>
-        <Grid.Column width={8} className="form-column">
-          <Segment>
-            <Form error={hasErrors} loading={loading} onSubmit={() => onSubmitUpdate()}>
-              <Form.Input
-                label={formObject.name.label}
-                type={formObject.name.type}
-                defaultValue={user.name}
-                onChange={(evt) => onFormChange(evt, formObject.name.control)}
-                onBlur={() => checkValidation(formObject.name.control)}
-                error={!formObject.name.valid}
-              />
+          <Form.Input
+            label={formObject.lastName.label}
+            type={formObject.lastName.type}
+            defaultValue={user.lastName}
+            onChange={(evt) => onFormChange(evt, formObject.lastName.control)}
+            onBlur={() => checkValidation(formObject.lastName.control)}
+            error={!formObject.lastName.valid}
+          />
 
-              <Form.Input
-                label={formObject.lastName.label}
-                type={formObject.lastName.type}
-                defaultValue={user.lastName}
-                onChange={(evt) => onFormChange(evt, formObject.lastName.control)}
-                onBlur={() => checkValidation(formObject.lastName.control)}
-                error={!formObject.lastName.valid}
-              />
+          <Button.Group>
+            <Button positive type={'submit'}>
+              Save
+            </Button>
+            <Button.Or />
+            <Button error onClick={onCancel}>
+              Cancel
+            </Button>
+          </Button.Group>
 
-              <Button.Group>
-                <Button positive type={'submit'}>
-                  Save
-                </Button>
-                <Button.Or />
-                <Button error onClick={onCancel}>
-                  Cancel
-                </Button>
-              </Button.Group>
-
-              {hasErrors && renderErrorMsg()}
-            </Form>
-          </Segment>
-        </Grid.Column>
-      </Grid>
-    </div>
+          {hasErrors && renderErrorMsg()}
+        </Form>
+      </Segment>
+    </GridLayout>
   )
 }
 

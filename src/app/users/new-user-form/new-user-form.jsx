@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 // SEMANTIC REACT
-import { Form, Grid, Segment, Header, Message } from 'semantic-ui-react'
+import { Form, Segment, Message } from 'semantic-ui-react'
+// COMPONENTS
+import GridLayout from '../../shared/grid-layout/grid-layout'
 // API
 import USERSAPI from '../../../api/users.api'
 // MODELS
@@ -85,78 +87,70 @@ const NewUserForm = () => {
   }
 
   return (
-    <div>
-      <Header as="h1" textAlign={header.align}>
-        {header.header}
-      </Header>
+    <GridLayout header={header}>
+      <Segment>
+        <Form error={hasErrors} loading={loading} onSubmit={() => onSubmitCreation()}>
+          <Form.Input
+            label={formObject.name.label}
+            type={formObject.name.type}
+            onChange={(evt) => onFormChange(evt, formObject.name.control)}
+            onBlur={() => checkValidation(formObject.name.control)}
+            error={!formObject.name.valid}
+          />
 
-      <Grid centered>
-        <Grid.Column width={8} className="form-column">
-          <Segment>
-            <Form error={hasErrors} loading={loading} onSubmit={() => onSubmitCreation()}>
-              <Form.Input
-                label={formObject.name.label}
-                type={formObject.name.type}
-                onChange={(evt) => onFormChange(evt, formObject.name.control)}
-                onBlur={() => checkValidation(formObject.name.control)}
-                error={!formObject.name.valid}
-              />
+          <Form.Input
+            label={formObject.lastName.label}
+            type={formObject.lastName.type}
+            onChange={(evt) => onFormChange(evt, formObject.lastName.control)}
+            onBlur={() => checkValidation(formObject.lastName.control)}
+            error={!formObject.lastName.valid}
+          />
 
-              <Form.Input
-                label={formObject.lastName.label}
-                type={formObject.lastName.type}
-                onChange={(evt) => onFormChange(evt, formObject.lastName.control)}
-                onBlur={() => checkValidation(formObject.lastName.control)}
-                error={!formObject.lastName.valid}
-              />
+          <Form.Input
+            label={formObject.userName.label}
+            type={formObject.userName.type}
+            onChange={(evt) => onFormChange(evt, formObject.userName.control)}
+            onBlur={() => checkValidation(formObject.userName.control)}
+            error={!formObject.userName.valid}
+          />
 
-              <Form.Input
-                label={formObject.userName.label}
-                type={formObject.userName.type}
-                onChange={(evt) => onFormChange(evt, formObject.userName.control)}
-                onBlur={() => checkValidation(formObject.userName.control)}
-                error={!formObject.userName.valid}
-              />
+          <Form.Input
+            label={formObject.email.label}
+            type={formObject.email.type}
+            onChange={(evt) => onFormChange(evt, formObject.email.control)}
+            onBlur={() => checkValidation(formObject.email.control)}
+            error={!formObject.email.valid}
+          />
 
-              <Form.Input
-                label={formObject.email.label}
-                type={formObject.email.type}
-                onChange={(evt) => onFormChange(evt, formObject.email.control)}
-                onBlur={() => checkValidation(formObject.email.control)}
-                error={!formObject.email.valid}
-              />
+          <Form.Input
+            label={formObject.password.label}
+            type={formObject.password.type}
+            onChange={(evt) => onFormChange(evt, formObject.password.control)}
+            onBlur={() => checkValidation(formObject.password.control)}
+            error={!formObject.password.valid}
+          />
 
-              <Form.Input
-                label={formObject.password.label}
-                type={formObject.password.type}
-                onChange={(evt) => onFormChange(evt, formObject.password.control)}
-                onBlur={() => checkValidation(formObject.password.control)}
-                error={!formObject.password.valid}
-              />
+          {/* <Form.Input
+            label={'Repeat Password'}
+            type={'password'}
+            onChange={(evt) => onFormChange(evt, 'repeatPass')}
+          /> */}
 
-              {/* <Form.Input
-                label={'Repeat Password'}
-                type={'password'}
-                onChange={(evt) => onFormChange(evt, 'repeatPass')}
-              /> */}
+          <Form.Button type={'submit'}>Sign up</Form.Button>
 
-              <Form.Button type={'submit'}>Sign up</Form.Button>
+          <Form.Button
+            type={'button'}
+            basic
+            color={'red'}
+            onClick={() => history.push(ROUTES.LOGIN)}
+          >
+            Or you can log in with your account
+          </Form.Button>
 
-              <Form.Button
-                type={'button'}
-                basic
-                color={'red'}
-                onClick={() => history.push(ROUTES.LOGIN)}
-              >
-                Or you can log in with your account
-              </Form.Button>
-
-              {hasErrors && renderErrorMsg()}
-            </Form>
-          </Segment>
-        </Grid.Column>
-      </Grid>
-    </div>
+          {hasErrors && renderErrorMsg()}
+        </Form>
+      </Segment>
+    </GridLayout>
   )
 }
 

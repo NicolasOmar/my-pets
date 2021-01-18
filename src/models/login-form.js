@@ -14,7 +14,6 @@ export const loginFormBase = {
 }
 
 export const loginFormHeader = {
-  header: 'Welcome to My Pets',
-  subHeader: 'Log in',
-  align: 'center'
+  title: 'Welcome to My Pets',
+  subTitle: 'Log in'
 }
