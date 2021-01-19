@@ -3,23 +3,23 @@ export const updateUserFormBase = {
     label: 'Name',
     type: 'text',
     control: 'name',
-    value: null,
+    isRequired: true,
     valid: true
   },
   lastName: {
     label: 'Last Name',
     type: 'text',
     control: 'lastName',
-    value: null,
+    isRequired: true,
     valid: true
   },
-  userName: {
-    label: 'User Name',
-    type: 'text',
-    control: 'userName',
-    value: null,
-    valid: true
-  }
+  // userName: {
+  //   label: 'User Name',
+  //   type: 'text',
+  //   control: 'userName',
+  //   isRequired: true,
+  //   valid: true
+  // }
 }
 
 export const updateUserFormHeader = {

@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { Form, Segment, Message, Button } from 'semantic-ui-react'
 // COMPONENTS
 import GridLayout from '../../shared/grid-layout/grid-layout'
+import FormInput from '../../shared/form-input/form-input'
 // API
 import USERSAPI from '../../../api/users.api'
 // MODELS
@@ -12,20 +13,32 @@ import { updateUserFormBase, updateUserFormHeader } from '../../../configs/updat
 import ROUTES from '../../../constants/app-routes'
 // HELPERS
 import { getLoggedUser, setLoggedUser } from '../../../helpers/local-storage'
-import { checkFormValidation } from '../../../helpers/methods'
+import { checkEmptyValues, checkFormValidation } from '../../../helpers/methods'
 
 const UpdateUserForm = () => {
   let history = useHistory()
-  const [user] = useState(getLoggedUser())
-  const [header] = useState(updateUserFormHeader)
-  const [formObject, setFormObject] = useState({ ...updateUserFormBase })
-  const [loading, setLoading] = useState(false)
+  const [formObject, setFormObject] = useState(updateUserFormBase)
+  const [hasData, setHasData] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const [hasErrors, setHasErrors] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
 
   useEffect(() => {
-    setHasErrors(!checkFormValidation(formObject))
-    return () => {}
+    if (!hasData) {
+      const user = getLoggedUser()
+
+      Object.keys(user).forEach((key) => formObject[key] && (formObject[key].value = user[key]))
+      setFormObject({ ...formObject })
+      setHasData(true)
+    }
+  }, [hasData, formObject])
+
+  useEffect(() => {
+    const hasEmptyValues = checkEmptyValues(formObject)
+    const isValidForm = checkFormValidation(formObject)
+
+    setHasErrors(!isValidForm || !hasEmptyValues)
+    !isValidForm && setErrorMsg('The form needs to fill required fields')
   }, [formObject])
 
   const onFormChange = (evt, prop) => {
@@ -42,13 +55,13 @@ const UpdateUserForm = () => {
   }
 
   const checkValidation = (prop) => {
-    const valid = formObject[prop].value !== null
+    const { value, isRequired } = formObject[prop]
 
     setFormObject({
       ...formObject,
       [prop]: {
         ...formObject[prop],
-        valid,
+        valid: isRequired ? value && value !== '' : true,
       },
     })
   }
@@ -58,7 +71,7 @@ const UpdateUserForm = () => {
       return
     }
 
-    setLoading(true)
+    setIsLoading(true)
 
     const { name, lastName } = formObject
     const payload = {
@@ -67,9 +80,11 @@ const UpdateUserForm = () => {
     }
     const { data, message } = await USERSAPI.UPDATE(payload)
 
+    setIsLoading(false)
+
     if (data) {
       setLoggedUser({
-        ...user,
+        ...getLoggedUser(),
         ...payload,
       })
       onCancel()
@@ -77,49 +92,39 @@ const UpdateUserForm = () => {
       setHasErrors(true)
       setErrorMsg(message)
     }
-
-    setLoading(false)
   }
 
   const onCancel = () => history.push(ROUTES.HOME)
 
-  const renderErrorMsg = () => {
-    return <Message error header="Oops" content={errorMsg} />
-  }
+  const renderErrorMsg = () =>
+    hasErrors && errorMsg ? <Message error header="Oops" content={errorMsg} /> : null
 
   return (
-    <GridLayout header={header}>
+    <GridLayout header={updateUserFormHeader}>
       <Segment>
-        <Form error={hasErrors} loading={loading} onSubmit={() => onSubmitUpdate()}>
-          <Form.Input
-            label={formObject.name.label}
-            type={formObject.name.type}
-            defaultValue={user.name}
-            onChange={(evt) => onFormChange(evt, formObject.name.control)}
-            onBlur={() => checkValidation(formObject.name.control)}
-            error={!formObject.name.valid}
-          />
-
-          <Form.Input
-            label={formObject.lastName.label}
-            type={formObject.lastName.type}
-            defaultValue={user.lastName}
-            onChange={(evt) => onFormChange(evt, formObject.lastName.control)}
-            onBlur={() => checkValidation(formObject.lastName.control)}
-            error={!formObject.lastName.valid}
-          />
+        <Form error={hasErrors} loading={isLoading} onSubmit={onSubmitUpdate}>
+          {Object.keys(formObject).map((prop, i) => {
+            return (
+              <FormInput
+                key={`${prop}-${i}`}
+                config={{
+                  ...formObject[prop],
+                  onInputChange: onFormChange,
+                  onBlurChange: checkValidation,
+                }}
+              />
+            )
+          })}
 
           <Button.Group>
             <Button positive type={'submit'}>
               Save
             </Button>
             <Button.Or />
-            <Button error onClick={onCancel}>
-              Cancel
-            </Button>
+            <Button onClick={onCancel}>Cancel</Button>
           </Button.Group>
 
-          {hasErrors && renderErrorMsg()}
+          {renderErrorMsg()}
         </Form>
       </Segment>
     </GridLayout>

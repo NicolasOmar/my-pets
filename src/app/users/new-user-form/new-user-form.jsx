@@ -25,7 +25,7 @@ import { checkEmptyValues, checkFormValidation } from '../../../helpers/methods'
 const NewUserForm = () => {
   let history = useHistory()
   const [formObject, setFormObject] = useState({ ...newUserFormBase })
-  const [loading, setLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const [hasErrors, setHasErrors] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
 
@@ -50,12 +50,24 @@ const NewUserForm = () => {
     })
   }
 
+  const checkValidation = (prop) => {
+    const { value, isRequired } = formObject[prop]
+
+    setFormObject({
+      ...formObject,
+      [prop]: {
+        ...formObject[prop],
+        valid: isRequired ? value && value !== '' : true,
+      },
+    })
+  }
+
   const onSubmitCreation = async () => {
     if (hasErrors) {
       return
     }
 
-    setLoading(true)
+    setIsLoading(true)
 
     const payload = {
       name: formObject.name.value,
@@ -65,7 +77,7 @@ const NewUserForm = () => {
     }
     const { data, message } = await USERSAPI.CREATE(payload)
 
-    setLoading(false)
+    setIsLoading(false)
 
     if (data) {
       setLoggedUser({
@@ -80,18 +92,6 @@ const NewUserForm = () => {
     }
   }
 
-  const checkValidation = (prop) => {
-    const { value, isRequired } = formObject[prop]
-
-    setFormObject({
-      ...formObject,
-      [prop]: {
-        ...formObject[prop],
-        valid: isRequired ? value && value !== '' : true,
-      },
-    })
-  }
-
   const renderErrorMsg = () => {
     return hasErrors && errorMsg ? <Message error header="Oops" content={errorMsg} /> : null
   }
@@ -99,7 +99,7 @@ const NewUserForm = () => {
   return (
     <GridLayout header={newUserFormHeader}>
       <Segment>
-        <Form error={hasErrors} loading={loading} onSubmit={() => onSubmitCreation()}>
+        <Form error={hasErrors} loading={isLoading} onSubmit={onSubmitCreation}>
           {Object.keys(formObject).map((prop, i) => {
             return (
               <FormInput

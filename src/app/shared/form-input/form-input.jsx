@@ -7,7 +7,7 @@ const FormInput = ({ config }) => {
     <Form.Input
       label={config.label}
       type={config.type}
-      value={config.value || ''}
+      defaultValue={config.value || ''}
       required={config.isRequired || false}
       onChange={(evt) => config.onInputChange(evt, config.control)}
       onBlur={() => config.onBlurChange(config.control)}
