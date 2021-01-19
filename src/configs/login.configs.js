@@ -3,12 +3,14 @@ export const loginForm = {
     label: 'Email',
     type: 'email',
     control: 'email',
+    isRequired: true,
     valid: true
   },
   password: {
     label: 'Password',
     type: 'password',
     control: 'password',
+    isRequired: true,
     valid: true
   }
 }
@@ -18,14 +20,14 @@ export const loginFormHeader = {
   subTitle: 'Log in'
 }
 
-export const signUpButton = {
+export const loginButton = {
+  type: 'submit',
+  label: 'Log in'
+}
+
+export const goToSignUpButton = {
   type: 'button',
   isBasic: true,
   color: 'red',
   label: 'Or you can Sign up'
-}
-
-export const loginButton = {
-  type: 'submit',
-  label: 'Log in'
 }

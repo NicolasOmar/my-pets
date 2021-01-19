@@ -10,10 +10,10 @@ import FormButton from '../../shared/form-button/form-button'
 import USERSAPI from '../../../api/users.api'
 // MODELS
 import {
-  loginButton,
   loginForm,
   loginFormHeader,
-  signUpButton,
+  loginButton,
+  goToSignUpButton,
 } from '../../../configs/login.configs'
 // CONSTANTS
 import ROUTES from '../../../constants/app-routes'
@@ -84,14 +84,13 @@ const LoginForm = () => {
   }
 
   const checkValidation = (prop) => {
-    const { value } = formObject[prop]
-    const valid = value && value !== ''
+    const { value, isRequired } = formObject[prop]
 
     setFormObject({
       ...formObject,
       [prop]: {
         ...formObject[prop],
-        valid,
+        valid: isRequired ? value && value !== '' : true,
       },
     })
   }
@@ -107,7 +106,7 @@ const LoginForm = () => {
           {Object.keys(formObject).map((prop, i) => {
             return (
               <FormInput
-                key={`${prop}${i}`}
+                key={`${prop}-${i}`}
                 config={{
                   ...formObject[prop],
                   onInputChange,
@@ -120,7 +119,7 @@ const LoginForm = () => {
           <FormButton config={loginButton} />
           <FormButton
             config={{
-              ...signUpButton,
+              ...goToSignUpButton,
               onClick: () => history.push(ROUTES.NEW_USER),
             }}
           />

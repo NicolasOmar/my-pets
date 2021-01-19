@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes, { bool, func, string } from 'prop-types'
+import { shape, bool, func, string } from 'prop-types'
 import { Form } from 'semantic-ui-react'
 
 const FormInput = ({ config }) => {
@@ -8,8 +8,9 @@ const FormInput = ({ config }) => {
       label={config.label}
       type={config.type}
       value={config.value || ''}
+      required={config.isRequired || false}
       onChange={(evt) => config.onInputChange(evt, config.control)}
-      onBlur={() => config.onBlurChange(config.type)}
+      onBlur={() => config.onBlurChange(config.control)}
       error={!config.valid || false}
     />
   )
@@ -18,7 +19,7 @@ const FormInput = ({ config }) => {
 export default FormInput
 
 FormInput.propTypes = {
-  config: PropTypes.shape({
+  config: shape({
     label: string.isRequired,
     type: string.isRequired,
     control: string.isRequired,
