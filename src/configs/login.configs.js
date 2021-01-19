@@ -3,14 +3,12 @@ export const loginForm = {
     label: 'Email',
     type: 'email',
     control: 'email',
-    value: '',
     valid: true
   },
   password: {
     label: 'Password',
     type: 'password',
     control: 'password',
-    value: '',
     valid: true
   }
 }

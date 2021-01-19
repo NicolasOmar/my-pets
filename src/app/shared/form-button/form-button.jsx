@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes, { bool, func, oneOf, string } from 'prop-types'
+import { bool, func, oneOf, shape, string } from 'prop-types'
 import { Form } from 'semantic-ui-react'
 // ENUMS
 import { buttonTypeEnums, buttonColorEnums } from '../../../enums/buttons.enum'
@@ -9,7 +9,9 @@ const FormInput = ({ config }) => {
     <Form.Button
       type={config.type}
       basic={config.isBasic || false}
-      color={config.color}
+      color={config.color || 'grey'}
+      required={config.isRequired || false}
+      disabled={config.isDisabled || false}
       onClick={config.onClick}
     >
       {config.label}
@@ -20,11 +22,13 @@ const FormInput = ({ config }) => {
 export default FormInput
 
 FormInput.propTypes = {
-  config: PropTypes.shape({
-    type: oneOf(buttonTypeEnums),
+  config: shape({
+    type: oneOf(buttonTypeEnums).isRequired,
     isBasic: bool,
     color: oneOf(buttonColorEnums),
-    label: string.isRequired,
+    isRequired: bool,
+    isDisabled: bool,
     onClick: func,
+    label: string.isRequired,
   }),
 }

@@ -7,7 +7,7 @@ import GridLayout from '../../shared/grid-layout/grid-layout'
 // API
 import USERSAPI from '../../../api/users.api'
 // MODELS
-import { newUserFormBase, newUserFormHeader } from '../../../models/new-user-form'
+import { newUserFormBase, newUserFormHeader } from '../../../configs/new-user.configs'
 // CONSTANTS
 import ROUTES from '../../../constants/app-routes'
 // HELPERS

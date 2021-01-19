@@ -9,35 +9,43 @@ import FormButton from '../../shared/form-button/form-button'
 // API
 import USERSAPI from '../../../api/users.api'
 // MODELS
-import { loginButton, loginForm, loginFormHeader, signUpButton } from '../../../models/login-form'
+import {
+  loginButton,
+  loginForm,
+  loginFormHeader,
+  signUpButton,
+} from '../../../configs/login.configs'
 // CONSTANTS
 import ROUTES from '../../../constants/app-routes'
 // HELPERS
 import { encryptPass } from '../../../helpers/encrypt'
 import { getLoggedUser, setLoggedUser } from '../../../helpers/local-storage'
-import { checkFormValidation } from '../../../helpers/methods'
+import { checkEmptyValues, checkFormValidation } from '../../../helpers/methods'
 
 const LoginForm = () => {
   let history = useHistory()
-  const [loggedUser] = useState(getLoggedUser())
   const [formObject, setFormObject] = useState(loginForm)
-  const [loading, setLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const [hasErrors, setHasErrors] = useState(false)
-  const [errorMsg, setErrorMsg] = useState('')
+  const [errorMsg, setErrorMsg] = useState(null)
 
   useEffect(() => {
-    setHasErrors(!checkFormValidation(formObject))
+    getLoggedUser() && history.push(ROUTES.HOME)
+    return () => {}
+  }, [history])
+
+  useEffect(() => {
+    const hasEmptyValues = checkEmptyValues(formObject)
+    const isValidForm = checkFormValidation(formObject)
+
+    setHasErrors(!isValidForm || !hasEmptyValues)
+    !isValidForm && setErrorMsg('The form needs to fill required fields')
     return () => {}
   }, [formObject])
 
-  useEffect(() => {
-    loggedUser && history.push(ROUTES.HOME)
-    return () => {}
-  }, [loggedUser, history])
-
   const onInputChange = (evt, prop) => {
     const { value } = evt.target
-    const isValidValue = value !== ''
+    const isValidValue = value && value !== ''
 
     setFormObject({
       ...formObject,
@@ -52,8 +60,7 @@ const LoginForm = () => {
     if (hasErrors) {
       return
     }
-
-    setLoading(true)
+    setIsLoading(true)
 
     const payload = {
       email: formObject.email.value,
@@ -61,7 +68,7 @@ const LoginForm = () => {
     }
     const { data, message } = await USERSAPI.LOGIN(payload)
 
-    setLoading(false)
+    setIsLoading(false)
 
     if (data) {
       setLoggedUser({
@@ -77,7 +84,8 @@ const LoginForm = () => {
   }
 
   const checkValidation = (prop) => {
-    const valid = formObject[prop].value !== null
+    const { value } = formObject[prop]
+    const valid = value && value !== ''
 
     setFormObject({
       ...formObject,
@@ -89,13 +97,13 @@ const LoginForm = () => {
   }
 
   const renderErrorMsg = () => {
-    return <Message error header="Oops" content={errorMsg} />
+    return hasErrors && errorMsg ? <Message error header="Oops" content={errorMsg} /> : null
   }
 
   return (
     <GridLayout header={loginFormHeader}>
       <Segment>
-        <Form error={hasErrors} loading={loading} onSubmit={onSubmitLogin}>
+        <Form error={hasErrors} loading={isLoading} onSubmit={onSubmitLogin}>
           {Object.keys(formObject).map((prop, i) => {
             return (
               <FormInput
@@ -117,7 +125,7 @@ const LoginForm = () => {
             }}
           />
 
-          {hasErrors && renderErrorMsg()}
+          {renderErrorMsg()}
         </Form>
       </Segment>
     </GridLayout>
