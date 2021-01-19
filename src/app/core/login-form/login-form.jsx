@@ -4,10 +4,12 @@ import { useHistory } from 'react-router-dom'
 import { Form, Segment, Message } from 'semantic-ui-react'
 // COMPONENTS
 import GridLayout from '../../shared/grid-layout/grid-layout'
+import FormInput from '../../shared/form-input/form-input'
+import FormButton from '../../shared/form-button/form-button'
 // API
 import USERSAPI from '../../../api/users.api'
 // MODELS
-import { loginFormBase, loginFormHeader } from '../../../models/login-form'
+import { loginButton, loginForm, loginFormHeader, signUpButton } from '../../../models/login-form'
 // CONSTANTS
 import ROUTES from '../../../constants/app-routes'
 // HELPERS
@@ -18,8 +20,7 @@ import { checkFormValidation } from '../../../helpers/methods'
 const LoginForm = () => {
   let history = useHistory()
   const [loggedUser] = useState(getLoggedUser())
-  const [header] = useState(loginFormHeader)
-  const [formObject, setFormObject] = useState({ ...loginFormBase })
+  const [formObject, setFormObject] = useState(loginForm)
   const [loading, setLoading] = useState(false)
   const [hasErrors, setHasErrors] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
@@ -34,7 +35,7 @@ const LoginForm = () => {
     return () => {}
   }, [loggedUser, history])
 
-  const onFormChange = (evt, prop) => {
+  const onInputChange = (evt, prop) => {
     const { value } = evt.target
     const isValidValue = value !== ''
 
@@ -47,7 +48,7 @@ const LoginForm = () => {
     })
   }
 
-  const onSubmitForm = async () => {
+  const onSubmitLogin = async () => {
     if (hasErrors) {
       return
     }
@@ -92,35 +93,29 @@ const LoginForm = () => {
   }
 
   return (
-    <GridLayout header={header}>
+    <GridLayout header={loginFormHeader}>
       <Segment>
-        <Form error={hasErrors} loading={loading} onSubmit={() => onSubmitForm()}>
-          <Form.Input
-            label={formObject.email.label}
-            type={formObject.email.type}
-            onChange={(evt) => onFormChange(evt, formObject.email.type)}
-            onBlur={() => checkValidation(formObject.email.type)}
-            error={!formObject.email.valid}
+        <Form error={hasErrors} loading={loading} onSubmit={onSubmitLogin}>
+          {Object.keys(formObject).map((prop, i) => {
+            return (
+              <FormInput
+                key={`${prop}${i}`}
+                config={{
+                  ...formObject[prop],
+                  onInputChange,
+                  onBlurChange: checkValidation,
+                }}
+              />
+            )
+          })}
+
+          <FormButton config={loginButton} />
+          <FormButton
+            config={{
+              ...signUpButton,
+              onClick: () => history.push(ROUTES.NEW_USER),
+            }}
           />
-
-          <Form.Input
-            label={formObject.password.label}
-            type={formObject.password.type}
-            onChange={(evt) => onFormChange(evt, formObject.password.type)}
-            onBlur={() => checkValidation(formObject.password.type)}
-            error={!formObject.password.valid}
-          />
-
-          <Form.Button type={'submit'}>Log in</Form.Button>
-
-          <Form.Button
-            type={'button'}
-            basic
-            color={'red'}
-            onClick={() => history.push(ROUTES.NEW_USER)}
-          >
-            Or you can Sign up
-          </Form.Button>
 
           {hasErrors && renderErrorMsg()}
         </Form>
