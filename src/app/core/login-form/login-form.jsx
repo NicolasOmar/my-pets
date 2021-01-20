@@ -13,7 +13,7 @@ import {
   loginForm,
   loginFormHeader,
   loginButton,
-  goToSignUpButton,
+  goToSignUpButton
 } from '../../../configs/login.configs'
 // CONSTANTS
 import ROUTES from '../../../constants/app-routes'
@@ -51,8 +51,8 @@ const LoginForm = () => {
       ...formObject,
       [prop]: {
         ...formObject[prop],
-        value: isValidValue ? value : null,
-      },
+        value: isValidValue ? value : null
+      }
     })
   }
 
@@ -64,7 +64,7 @@ const LoginForm = () => {
 
     const payload = {
       email: formObject.email.value,
-      password: encryptPass(formObject.password.value),
+      password: encryptPass(formObject.password.value)
     }
     const { data, message } = await USERSAPI.LOGIN(payload)
 
@@ -73,7 +73,7 @@ const LoginForm = () => {
     if (data) {
       setLoggedUser({
         token: data.token,
-        ...data.userLogged,
+        ...data.userLogged
       })
 
       history.push(ROUTES.HOME)
@@ -83,15 +83,15 @@ const LoginForm = () => {
     }
   }
 
-  const checkValidation = (prop) => {
+  const checkValidation = prop => {
     const { value, isRequired } = formObject[prop]
 
     setFormObject({
       ...formObject,
       [prop]: {
         ...formObject[prop],
-        valid: isRequired ? value && value !== '' : true,
-      },
+        valid: isRequired ? value && value !== '' : true
+      }
     })
   }
 
@@ -110,7 +110,7 @@ const LoginForm = () => {
                 config={{
                   ...formObject[prop],
                   onInputChange,
-                  onBlurChange: checkValidation,
+                  onBlurChange: checkValidation
                 }}
               />
             )
@@ -120,7 +120,7 @@ const LoginForm = () => {
           <FormButton
             config={{
               ...goToSignUpButton,
-              onClick: () => history.push(ROUTES.NEW_USER),
+              onClick: () => history.push(ROUTES.NEW_USER)
             }}
           />
 

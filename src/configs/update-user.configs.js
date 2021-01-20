@@ -12,7 +12,7 @@ export const updateUserFormBase = {
     control: 'lastName',
     isRequired: true,
     valid: true
-  },
+  }
   // userName: {
   //   label: 'User Name',
   //   type: 'text',
@@ -23,5 +23,5 @@ export const updateUserFormBase = {
 }
 
 export const updateUserFormHeader = {
-  title: 'Update user information',
+  title: 'Update user information'
 }

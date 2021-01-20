@@ -16,7 +16,7 @@ const Home = () => {
   const [user] = useState(getLoggedUser())
   const homeText = {
     header: `HELLO ${user.name.toUpperCase()}`,
-    subHeader: 'Welcome to our beautiful place',
+    subHeader: 'Welcome to our beautiful place'
   }
 
   const onUpdateUser = () => history.push(ROUTES.UPDATE_USER)

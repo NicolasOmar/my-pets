@@ -33,7 +33,7 @@ export const newUserFormBase = {
     control: 'password',
     isRequired: true,
     valid: true
-  },
+  }
   // repeatPass: {
   //   label: 'Repeat Password',
   //   type: 'password',

@@ -9,7 +9,7 @@ const FormInput = ({ config }) => {
       type={config.type}
       defaultValue={config.value || ''}
       required={config.isRequired || false}
-      onChange={(evt) => config.onInputChange(evt, config.control)}
+      onChange={evt => config.onInputChange(evt, config.control)}
       onBlur={() => config.onBlurChange(config.control)}
       error={!config.valid || false}
     />
@@ -26,6 +26,6 @@ FormInput.propTypes = {
     value: string,
     onInputChange: func.isRequired,
     onBlurChange: func,
-    valid: bool,
-  }),
+    valid: bool
+  })
 }

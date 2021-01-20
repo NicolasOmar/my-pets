@@ -27,7 +27,7 @@ const UpdateUserForm = () => {
     if (!hasData) {
       const user = getLoggedUser()
 
-      Object.keys(user).forEach((key) => formObject[key] && (formObject[key].value = user[key]))
+      Object.keys(user).forEach(key => formObject[key] && (formObject[key].value = user[key]))
       setFormObject({ ...formObject })
       setHasData(true)
     }
@@ -49,20 +49,20 @@ const UpdateUserForm = () => {
       ...formObject,
       [prop]: {
         ...formObject[prop],
-        value: isValidValue ? value : null,
-      },
+        value: isValidValue ? value : null
+      }
     })
   }
 
-  const checkValidation = (prop) => {
+  const checkValidation = prop => {
     const { value, isRequired } = formObject[prop]
 
     setFormObject({
       ...formObject,
       [prop]: {
         ...formObject[prop],
-        valid: isRequired ? value && value !== '' : true,
-      },
+        valid: isRequired ? value && value !== '' : true
+      }
     })
   }
 
@@ -76,7 +76,7 @@ const UpdateUserForm = () => {
     const { name, lastName } = formObject
     const payload = {
       name: name.value,
-      lastName: lastName.value,
+      lastName: lastName.value
     }
     const { data, message } = await USERSAPI.UPDATE(payload)
 
@@ -85,7 +85,7 @@ const UpdateUserForm = () => {
     if (data) {
       setLoggedUser({
         ...getLoggedUser(),
-        ...payload,
+        ...payload
       })
       onCancel()
     } else {
@@ -110,7 +110,7 @@ const UpdateUserForm = () => {
                 config={{
                   ...formObject[prop],
                   onInputChange: onFormChange,
-                  onBlurChange: checkValidation,
+                  onBlurChange: checkValidation
                 }}
               />
             )

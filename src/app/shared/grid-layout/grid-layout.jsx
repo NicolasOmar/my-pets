@@ -6,7 +6,7 @@ const GridLayout = ({ header, width, children }) => {
   const baseConfig = {
     width: 8,
     as: 'h1',
-    textAlign: 'center',
+    textAlign: 'center'
   }
 
   const renderHeader = () => {
@@ -36,8 +36,8 @@ GridLayout.propTypes = {
     as: PropTypes.string,
     title: PropTypes.string.isRequired,
     subTitle: PropTypes.string,
-    textAlign: PropTypes.string,
+    textAlign: PropTypes.string
   }),
   width: PropTypes.number,
-  children: PropTypes.element,
+  children: PropTypes.element
 }

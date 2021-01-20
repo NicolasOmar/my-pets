@@ -1,7 +1,7 @@
 // INTERCEPTOR
 import axios from './interceptors'
 // CONSTANTS
-import API from "../constants/api-routes";
+import API from '../constants/api-routes'
 
 const USERSAPI = {
   LOGIN: async loginPayload => await axios.post(API.LOGIN, loginPayload),

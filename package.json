@@ -17,7 +17,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint --fix src",
+    "lint": "eslint --fix src/**/*.jsx",
     "prettier": "prettier --write src",
     "update-version": "node scripts/update-version.js"
   },
@@ -68,10 +68,10 @@
   },
   "lint-staged": {
     "src/**/*.jsx": [
-      "eslint --fix",
-      "prettier --write"
+      "prettier --write",
+      "eslint --fix"
     ],
-    "src/**/*.scss": [
+    "src/**/*.(js|scss)": [
       "prettier --write"
     ]
   },

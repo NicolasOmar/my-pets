@@ -29,6 +29,6 @@ FormInput.propTypes = {
     isRequired: bool,
     isDisabled: bool,
     onClick: func,
-    label: string.isRequired,
-  }),
+    label: string.isRequired
+  })
 }
