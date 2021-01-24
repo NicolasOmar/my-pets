@@ -4,7 +4,7 @@ import { Form } from 'semantic-ui-react'
 // ENUMS
 import { buttonTypeEnums, buttonColorEnums } from '../../../enums/buttons.enum'
 
-const FormInput = ({ config }) => {
+const FormButton = ({ config }) => {
   return (
     <Form.Button
       type={config.type}
@@ -19,9 +19,9 @@ const FormInput = ({ config }) => {
   )
 }
 
-export default FormInput
+export default FormButton
 
-FormInput.propTypes = {
+FormButton.propTypes = {
   config: shape({
     type: oneOf(buttonTypeEnums).isRequired,
     isBasic: bool,

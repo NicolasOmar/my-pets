@@ -16,6 +16,7 @@
     "start": "env-cmd -f ./env/local.env react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:ci": "npm test -- --env=jsdom --watchAll=false --collectCoverageFrom=**/*.jsx --coverage",
     "eject": "react-scripts eject",
     "lint": "eslint --fix src/**/*.jsx",
     "prettier": "prettier --write src",
@@ -78,7 +79,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "npm run update-version"
+      "pre-push": "npm test -- --env=jsdom && npm run update-version"
     }
   }
 }
