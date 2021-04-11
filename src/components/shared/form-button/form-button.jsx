@@ -4,18 +4,17 @@ import { bool, func, oneOf, shape, string } from 'prop-types'
 import { buttonTypeEnums, buttonColorEnums } from '../../../enums/buttons.enum'
 
 const FormButton = ({ config }) => {
+  const btnClass = `ui button ${config.color || 'grey'}`
+
   return (
-    // <Form.Button
-    //   type={config.type}
-    //   basic={config.isBasic || false}
-    //   color={config.color || 'grey'}
-    //   required={config.isRequired || false}
-    //   disabled={config.isDisabled || false}
-    //   onClick={config.onClick}
-    // >
-    //   {config.label}
-    // </Form.Button>
-    <div></div>
+    <button
+      type={config.type}
+      className={btnClass}
+      disabled={config.isDisabled || false}
+      onClick={config.onClick}
+    >
+      {config.label}
+    </button>
   )
 }
 

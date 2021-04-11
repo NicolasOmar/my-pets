@@ -24,7 +24,7 @@ const GridLayout = ({ header, width, children }) => {
       {/* {header && renderHeader()} */}
 
       <div className="ui grid centered">
-        <div className={widthClass}>Hello there</div>
+        <div className={widthClass}>{children}</div>
       </div>
     </div>
   )

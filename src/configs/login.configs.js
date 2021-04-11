@@ -27,7 +27,6 @@ export const loginButton = {
 
 export const goToSignUpButton = {
   type: 'button',
-  isBasic: true,
   color: 'red',
   label: 'Or you can Sign up'
 }

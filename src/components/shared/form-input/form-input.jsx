@@ -3,16 +3,18 @@ import { shape, bool, func, string } from 'prop-types'
 
 const FormInput = ({ config }) => {
   return (
-    // <Form.Input
-    //   label={config.label}
-    //   type={config.type}
-    //   defaultValue={config.value || ''}
-    //   required={config.isRequired || false}
-    //   onChange={evt => config.onInputChange(evt, config.control)}
-    //   onBlur={() => config.onBlurChange(config.control)}
-    //   error={!config.valid || false}
-    // />
-    <div></div>
+    <div className="field">
+      <label>{config.label}</label>
+      <input
+        type={config.type}
+        value={config.value || ''}
+        required={config.isRequired || false}
+        onChange={evt => config.onInputChange(evt, config.control)}
+        onBlur={() => config.onBlurChange(config.control)}
+        name="first-name"
+        placeholder="First Name"
+      />
+    </div>
   )
 }
 

@@ -19,6 +19,7 @@ import ROUTES from '../../../constants/app-routes'
 import { encryptPass } from '../../../helpers/encrypt'
 import { getLoggedUser, setLoggedUser } from '../../../helpers/local-storage'
 import { checkEmptyValues, checkFormValidation } from '../../../helpers/methods'
+import Form from '../../shared/form/form'
 
 const LoginForm = () => {
   let history = useHistory()
@@ -99,32 +100,16 @@ const LoginForm = () => {
 
   return (
     <GridLayout header={loginFormHeader}>
-      {/* <Segment>
-        <Form error={hasErrors} loading={isLoading} onSubmit={onSubmitLogin}>
-          {Object.keys(formObject).map((prop, i) => {
-            return (
-              <FormInput
-                key={`${prop}-${i}`}
-                config={{
-                  ...formObject[prop],
-                  onInputChange,
-                  onBlurChange: checkValidation
-                }}
-              />
-            )
-          })}
-
-          <FormButton config={loginButton} />
-          <FormButton
-            config={{
-              ...goToSignUpButton,
-              onClick: () => history.push(ROUTES.NEW_USER)
-            }}
-          />
-
-          {renderErrorMsg()}
-        </Form>
-      </Segment> */}
+      <Form
+        formObject={formObject}
+        formButtons={[
+          loginButton,
+          {
+            ...goToSignUpButton,
+            onClick: () => history.push(ROUTES.NEW_USER)
+          }
+        ]}
+      />
     </GridLayout>
   )
 }
