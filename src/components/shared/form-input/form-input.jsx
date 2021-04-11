@@ -12,7 +12,7 @@ const FormInput = ({ config }) => {
         onChange={evt => config.onInputChange(evt, config.control)}
         onBlur={() => config.onBlurChange(config.control)}
         name="first-name"
-        placeholder="First Name"
+        placeholder={config.label}
       />
     </div>
   )

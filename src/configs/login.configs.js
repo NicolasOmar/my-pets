@@ -3,14 +3,14 @@ export const loginForm = {
     label: 'Email',
     type: 'email',
     control: 'email',
-    isRequired: true,
+    isRequired: false,
     valid: true
   },
   password: {
     label: 'Password',
     type: 'password',
     control: 'password',
-    isRequired: true,
+    isRequired: false,
     valid: true
   }
 }
