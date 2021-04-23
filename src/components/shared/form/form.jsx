@@ -1,9 +1,11 @@
 import { bool, func, object } from 'prop-types'
 import React, { useState } from 'react'
 import './form.scss'
+// COMPONENTS
 import FormInput from '../../shared/form-input/form-input'
 import FormButton from '../form-button/form-button'
-import { sendObjValues } from '../../../helpers/methods'
+// HELPERS FUNCTIONS
+import { sendObjValues } from '../../../functions/methods'
 
 const Form = ({ isLoading, formObject, formButtons, onFormSubmit }) => {
   const [formControls, setFormControls] = useState(formObject)

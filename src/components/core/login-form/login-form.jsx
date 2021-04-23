@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useMutation } from '@apollo/client'
+// GRAPHQL CLIENT
+import { LOGIN } from '../../../graphql/mutations'
 // COMPONENTS
 import GridLayout from '../../shared/grid-layout/grid-layout'
 import Form from '../../shared/form/form'
-// GRAPHQL
-import { LOGIN } from '../../../graphql/mutations'
-// MODELS
+// CONFIG OBJECTS
 import {
   loginForm,
   loginFormHeader,
@@ -15,10 +15,10 @@ import {
 } from '../../../configs/login.configs.json'
 // CONSTANTS
 import ROUTES from '../../../constants/app-routes'
-// HELPERS
-import { encryptPass } from '../../../helpers/encrypt'
-import { getLoggedUser, setLoggedUser } from '../../../helpers/local-storage'
-// import { checkEmptyValues, checkFormValidation } from '../../../helpers/methods'
+// HELPER FUNCTIONS
+import { encryptPass } from '../../../functions/encrypt'
+import { getLoggedUser, setLoggedUser } from '../../../functions/local-storage'
+// import { checkEmptyValues, checkFormValidation } from '../../../functions/methods'
 
 const LoginForm = () => {
   let history = useHistory()

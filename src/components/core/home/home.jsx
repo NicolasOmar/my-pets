@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 // CONSTANTS
 import ROUTES from '../../../constants/app-routes'
-// HELPERS
-import { getLoggedUser, logoutUser } from '../../../helpers/local-storage'
+// HELPER FUNCTIONS
+import { getLoggedUser } from '../../../functions/local-storage'
 import Header from '../../shared/header/header'
 // STYLES
 import './home.scss'

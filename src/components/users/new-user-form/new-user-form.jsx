@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
+import { useMutation } from '@apollo/client'
+// GRAPHQL CLIENT
+import { CREATE_USER } from '../../../graphql/mutations'
 // COMPONENTS
 import GridLayout from '../../shared/grid-layout/grid-layout'
 import Form from '../../shared/form/form'
-// API
-import USERSAPI from '../../../api/users.api'
 // MODELS
 import {
   newUserFormBase,
@@ -14,12 +15,9 @@ import {
 } from '../../../configs/new-user.configs.json'
 // CONSTANTS
 import ROUTES from '../../../constants/app-routes'
-// HELPERS
-import { encryptPass } from '../../../helpers/encrypt'
-import { setLoggedUser } from '../../../helpers/local-storage'
-import { checkEmptyValues, checkFormValidation } from '../../../helpers/methods'
-import { useMutation } from '@apollo/client'
-import { CREATE_USER } from '../../../graphql/mutations'
+// HELPER FUNCTIONS
+import { encryptPass } from '../../../functions/encrypt'
+import { setLoggedUser } from '../../../functions/local-storage'
 
 const NewUserForm = () => {
   let history = useHistory()
@@ -58,40 +56,29 @@ const NewUserForm = () => {
   //   })
   // }
 
-  const onSubmitCreation = async formData => {
-    const payload = {
-      ...formData,
-      password: encryptPass(formData.password)
-    }
-    console.warn(payload)
-
-    createUser({
-      variables: {
-        ...payload
-      }
-    })
-      .then(data => console.warn(data))
-      .catch(error => console.error(error))
-    // const { data, message } = await USERSAPI.CREATE(payload)
-
-    // setIsLoading(false)
-
-    // if (data) {
-    //   setLoggedUser({
-    //     token: data.token,
-    //     ...data.newUser
-    //   })
-
-    //   history.push(ROUTES.HOME)
-    // } else {
-    //   setHasErrors(true)
-    //   setErrorMsg(message)
-    // }
-  }
-
   // const renderErrorMsg = () => {
   //   return hasErrors && errorMsg ? <Message error header="Oops" content={errorMsg} /> : null
   // }
+
+  const onSubmitCreation = async formData => {
+    const newUser = {
+      ...formData,
+      password: encryptPass(formData.password)
+    }
+    delete newUser.userName
+
+    createUser({
+      variables: {
+        newUser
+      }
+    })
+      .then(({ data }) => {
+        setLoggedUser(data.newUser)
+
+        history.push(ROUTES.HOME)
+      })
+      .catch(error => console.error(error))
+  }
 
   return (
     <GridLayout header={newUserFormHeader}>

@@ -8,7 +8,7 @@ import ROUTES from '../../../constants/app-routes'
 import Home from '../home/home'
 import LoginForm from '../../core/login-form/login-form'
 import NewUserForm from '../../users/new-user-form/new-user-form'
-import UpdateUserForm from '../../users/update-user-form/update-user-form'
+// import UpdateUserForm from '../../users/update-user-form/update-user-form'
 
 const App = () => {
   return (
