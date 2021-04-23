@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { columnWidth } from '../../../enums/buttons.enum'
+import { columnWidth } from '../../../enums/buttons.enum.json'
 
 const GridLayout = ({ header, width, children }) => {
   const baseConfig = {

@@ -16,10 +16,10 @@ const App = () => {
       <Router history={history}>
         <Redirect exact from={ROUTES.BASE} to={ROUTES.LOGIN} />
         <Switch>
+          <Route exact path={ROUTES.HOME} component={Home} />
           <Route exact path={ROUTES.LOGIN} component={LoginForm} />
           <Route exact path={ROUTES.NEW_USER} component={NewUserForm} />
-          {/* <Route exact path={ROUTES.HOME} component={Home} />
-          <Route exact path={ROUTES.UPDATE_USER} component={UpdateUserForm} /> */}
+          {/* <Route exact path={ROUTES.UPDATE_USER} component={UpdateUserForm} /> */}
         </Switch>
       </Router>
     </div>

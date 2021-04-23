@@ -1,7 +1,7 @@
 import React from 'react'
 import { bool, func, oneOf, shape, string } from 'prop-types'
 // ENUMS
-import { buttonTypeEnums, buttonColorEnums } from '../../../enums/buttons.enum'
+import { buttonTypeEnums, buttonColorEnums } from '../../../enums/buttons.enum.json'
 
 const FormButton = ({ config }) => {
   const btnClass = `ui button ${config.color || 'grey'}`

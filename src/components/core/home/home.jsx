@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-// API
-import USERSAPI from '../../../api/users.api'
 // CONSTANTS
 import ROUTES from '../../../constants/app-routes'
 // HELPERS
 import { getLoggedUser, logoutUser } from '../../../helpers/local-storage'
+import Header from '../../shared/header/header'
 // STYLES
 import './home.scss'
 
@@ -21,9 +20,7 @@ const Home = () => {
 
   const onLogout = async () => {
     try {
-      await USERSAPI.LOGOUT()
-
-      logoutUser()
+      // TODO: INTEGRATE GRAPH MUTATION FOR LOGOUT USER
       history.push(ROUTES.LOGIN)
     } catch (e) {
       console.warn('e', e)
@@ -31,28 +28,28 @@ const Home = () => {
   }
 
   return (
-    <div>
-      {/* <Menu>
-        <Menu.Item name="Test One" />
-        <Menu.Item name="Test Two" />
-        <Menu.Item name="Test Three" />
-        <Menu.Item name="Test Four" />
-
-        <Menu.Menu position="right">
-          <Dropdown item text={user.name.toUpperCase()}>
-            <Dropdown.Menu>
-              <Dropdown.Item text="Update user" onClick={onUpdateUser} />
-              <Dropdown.Item text="Logout" onClick={onLogout} />
-            </Dropdown.Menu>
-          </Dropdown>
-        </Menu.Menu>
-      </Menu>
-
-      <Header as="h1" textAlign="center">
-        {homeText.header}
-        <Header.Subheader>{homeText.subHeader}</Header.Subheader>
-      </Header> */}
-    </div>
+    <>
+      <div className="ui secondary pointing menu">
+        <a className="active item">Test One</a>
+        <a className="item">Test Two</a>
+        <a className="item">Test Three</a>
+        <div className="right menu">
+          <div className="ui simple dropdown item">
+            {user.name.toUpperCase()}
+            <i className="dropdown icon"></i>
+            <div className="menu">
+              <div className="item" onClick={onUpdateUser}>
+                Update User
+              </div>
+              <div className="item" onClick={onLogout}>
+                Logout
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Header {...homeText} />
+    </>
   )
 }
 
