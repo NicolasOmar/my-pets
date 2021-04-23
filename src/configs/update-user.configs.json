@@ -1,0 +1,22 @@
+{
+  "updateUserFormBase": {
+    "name": {
+      "label": "Name",
+      "type": "text",
+      "control": "name",
+      "isRequired": true,
+      "valid": true
+    },
+    "lastName": {
+      "label": "Last Name",
+      "type": "text",
+      "control": "lastName",
+      "isRequired": true,
+      "valid": true
+    }
+  },
+  "updateUserFormHeader": {
+    "title": "Update user information"
+  }
+  
+}
