@@ -12,7 +12,7 @@ import {
   loginFormHeader,
   loginButton,
   goToSignUpButton
-} from '../../../configs/login.configs'
+} from '../../../configs/login.configs.json'
 // CONSTANTS
 import ROUTES from '../../../constants/app-routes'
 // HELPERS
@@ -44,11 +44,11 @@ const LoginForm = () => {
   //   return hasErrors && errorMsg ? <Message error header="Oops" content={errorMsg} /> : null
   // }
 
-  const onSubmitLogin = async data => {
+  const onSubmitLogin = async formData => {
     login({
       variables: {
-        ...data,
-        password: encryptPass(data.password)
+        ...formData,
+        password: encryptPass(formData.password)
       }
     })
       .then(({ data }) => {

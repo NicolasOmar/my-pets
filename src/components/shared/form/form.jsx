@@ -12,7 +12,7 @@ const Form = ({ isLoading, formObject, formButtons, onFormSubmit }) => {
   const onInputChange = (evt, prop) => {
     const { value } = evt.target
     const isValidValue = value && value !== ''
-    console.log(value, prop, isValidValue)
+
     setFormControls({
       ...formControls,
       [prop]: {
@@ -20,7 +20,6 @@ const Form = ({ isLoading, formObject, formButtons, onFormSubmit }) => {
         value: isValidValue ? value : null
       }
     })
-    console.warn(formControls.email)
   }
 
   const onSubmit = evt => {

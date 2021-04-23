@@ -1,4 +1,5 @@
 const ROUTES = {
+  BASE: '/',
   LOGIN: '/login',
   HOME: '/home',
   PET_INFO: '/pet-info',
