@@ -8,7 +8,7 @@ import ROUTES from '../../../constants/app-routes'
 import Home from '../home/home'
 import LoginForm from '../../core/login-form/login-form'
 import NewUserForm from '../../users/new-user-form/new-user-form'
-// import UpdateUserForm from '../../users/update-user-form/update-user-form'
+import UpdateUserForm from '../../users/update-user-form/update-user-form'
 
 const App = () => {
   return (
@@ -19,7 +19,7 @@ const App = () => {
           <Route exact path={ROUTES.HOME} component={Home} />
           <Route exact path={ROUTES.LOGIN} component={LoginForm} />
           <Route exact path={ROUTES.NEW_USER} component={NewUserForm} />
-          {/* <Route exact path={ROUTES.UPDATE_USER} component={UpdateUserForm} /> */}
+          <Route exact path={ROUTES.UPDATE_USER} component={UpdateUserForm} />
         </Switch>
       </Router>
     </div>

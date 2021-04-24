@@ -1,33 +1,37 @@
 import React, { useEffect, useState } from 'react'
-// import { useHistory } from 'react-router-dom'
-// // COMPONENTS
-// import GridLayout from '../../shared/grid-layout/grid-layout'
-// import FormInput from '../../shared/form-input/form-input'
-// // MODELS
-// import { updateUserFormBase, updateUserFormHeader } from '../../../configs/update-user.configs'
-// // CONSTANTS
-// import ROUTES from '../../../constants/app-routes'
-// // HELPER FUNCTIONS
-// import { getLoggedUser, setLoggedUser } from '../../../functions/local-storage'
-// import { checkEmptyValues, checkFormValidation } from '../../../functions/methods'
+import { useHistory } from 'react-router-dom'
+// COMPONENTS
+import GridLayout from '../../shared/grid-layout/grid-layout'
+import FormInput from '../../shared/form-input/form-input'
+// MODELS
+import { updateUserFormBase, updateUserFormHeader } from '../../../configs/update-user.configs.json'
+// CONSTANTS
+import ROUTES from '../../../constants/app-routes'
+// HELPER FUNCTIONS
+import { getLoggedUser, setLoggedUser } from '../../../functions/local-storage'
+import { checkEmptyValues, checkFormValidation } from '../../../functions/methods'
+import Form from '../../shared/form/form'
+import { useMutation } from '@apollo/client'
+import { UPDATE_USER } from '../../../graphql/mutations'
 
 const UpdateUserForm = () => {
   // let history = useHistory()
-  // const [formObject, setFormObject] = useState(updateUserFormBase)
-  // const [hasData, setHasData] = useState(false)
+  const [formObject, setFormObject] = useState(updateUserFormBase)
+  const [hasData, setHasData] = useState(false)
+  const [updateUser, result] = useMutation(UPDATE_USER)
   // const [isLoading, setIsLoading] = useState(false)
   // const [hasErrors, setHasErrors] = useState(false)
   // const [errorMsg, setErrorMsg] = useState('')
 
-  // useEffect(() => {
-  //   if (!hasData) {
-  //     const user = getLoggedUser()
-
-  //     Object.keys(user).forEach(key => formObject[key] && (formObject[key].value = user[key]))
-  //     setFormObject({ ...formObject })
-  //     setHasData(true)
-  //   }
-  // }, [hasData, formObject])
+  useEffect(() => {
+    if (!hasData) {
+      const user = getLoggedUser()
+      Object.keys(user).forEach(key => formObject[key] && (formObject[key].value = user[key]))
+      setFormObject({ ...formObject })
+      console.error(user, formObject)
+      setHasData(true)
+    }
+  }, [hasData])
 
   // useEffect(() => {
   //   const hasEmptyValues = checkEmptyValues(formObject)
@@ -62,33 +66,40 @@ const UpdateUserForm = () => {
   //   })
   // }
 
-  // const onSubmitUpdate = async () => {
-  //   if (hasErrors) {
-  //     return
-  //   }
+  const onSubmitUpdate = async formData => {
+    console.log(formData)
+    // if (hasErrors) {
+    //   return
+    // }
 
-  //   setIsLoading(true)
+    updateUser({
+      variables: formData
+    })
+      .then(data => console.log(data))
+      .catch(error => console.error(error))
 
-  //   const { name, lastName } = formObject
-  //   const payload = {
-  //     name: name.value,
-  //     lastName: lastName.value
-  //   }
-  //   const { data, message } = await USERSAPI.UPDATE(payload)
+    // setIsLoading(true)
 
-  //   setIsLoading(false)
+    // const { name, lastName } = formObject
+    // const payload = {
+    //   name: name.value,
+    //   lastName: lastName.value
+    // }
+    // const { data, message } = await USERSAPI.UPDATE(payload)
 
-  //   if (data) {
-  //     setLoggedUser({
-  //       ...getLoggedUser(),
-  //       ...payload
-  //     })
-  //     onCancel()
-  //   } else {
-  //     setHasErrors(true)
-  //     setErrorMsg(message)
-  //   }
-  // }
+    // setIsLoading(false)
+
+    // if (data) {
+    //   setLoggedUser({
+    //     ...getLoggedUser(),
+    //     ...payload
+    //   })
+    //   onCancel()
+    // } else {
+    //   setHasErrors(true)
+    //   setErrorMsg(message)
+    // }
+  }
 
   // const onCancel = () => history.push(ROUTES.HOME)
 
@@ -96,35 +107,19 @@ const UpdateUserForm = () => {
   //   hasErrors && errorMsg ? <Message error header="Oops" content={errorMsg} /> : null
 
   return (
-    // <GridLayout header={updateUserFormHeader}>
-    //   <Segment>
-    //     <Form error={hasErrors} loading={isLoading} onSubmit={onSubmitUpdate}>
-    //       {Object.keys(formObject).map((prop, i) => {
-    //         return (
-    //           <FormInput
-    //             key={`${prop}-${i}`}
-    //             config={{
-    //               ...formObject[prop],
-    //               onInputChange: onFormChange,
-    //               onBlurChange: checkValidation
-    //             }}
-    //           />
-    //         )
-    //       })}
-
-    //       <Button.Group>
-    //         <Button positive type={'submit'}>
-    //           Save
-    //         </Button>
-    //         <Button.Or />
-    //         <Button onClick={onCancel}>Cancel</Button>
-    //       </Button.Group>
-
-    //       {renderErrorMsg()}
-    //     </Form>
-    //   </Segment>
-    // </GridLayout>
-    <div></div>
+    <GridLayout header={updateUserFormHeader}>
+      <Form
+        isLoading={false}
+        formObject={updateUserFormBase}
+        formButtons={[
+          {
+            type: 'submit',
+            label: 'Save'
+          }
+        ]}
+        onFormSubmit={data => onSubmitUpdate(data)}
+      />
+    </GridLayout>
   )
 }
 
