@@ -53,7 +53,6 @@ const LoginForm = () => {
     })
       .then(({ data }) => {
         setLoggedUser(data.loginUser)
-
         history.push(ROUTES.HOME)
       })
       .catch(error => console.error(error))
