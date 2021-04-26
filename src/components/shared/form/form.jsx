@@ -1,5 +1,5 @@
-import { bool, func, object } from 'prop-types'
 import React, { useState } from 'react'
+import { bool, func, object } from 'prop-types'
 import './form.scss'
 // COMPONENTS
 import FormInput from '../../shared/form-input/form-input'
