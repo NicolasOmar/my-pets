@@ -1,27 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { columnWidth } from '../../../enums/buttons.enum.json'
+import Title from '../title/title'
 
 const GridLayout = ({ header, width, children }) => {
   const baseConfig = {
     width: 8,
-    as: 'h1',
     textAlign: 'center'
   }
 
   const widthClass = `${columnWidth[width || baseConfig.width]} wide column`
-  // const renderHeader = () => {
-  //   return (
-  //     <Header as={header.as || baseConfig.as} textAlign={header.textAlign || baseConfig.textAlign}>
-  //       {header.title}
-  //       {header.subTitle && <Header.Subheader>{header.subTitle}</Header.Subheader>}
-  //     </Header>
-  //   )
-  // }
+  const renderHeader = () => {
+    return header ? <Title {...header} /> : null
+  }
 
   return (
     <div>
-      {/* {header && renderHeader()} */}
+      {renderHeader()}
 
       <div className="ui grid centered">
         <div className={widthClass}>{children}</div>

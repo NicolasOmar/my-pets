@@ -63,13 +63,13 @@ const LoginForm = () => {
       <Form
         isLoading={result.loading}
         formObject={loginForm}
-        formButtons={[
+        formButtons={{
           loginButton,
-          {
+          goToSignUpButton: {
             ...goToSignUpButton,
             onClick: () => history.push(ROUTES.NEW_USER)
           }
-        ]}
+        }}
         onFormSubmit={data => onSubmitLogin(data)}
       />
     </GridLayout>
