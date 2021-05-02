@@ -1,0 +1,51 @@
+{
+  "newUserFormBase": {
+    "name": {
+      "label": "Name",
+      "type": "text",
+      "control": "name",
+      "isRequired": true,
+      "valid": true
+    },
+    "lastName": {
+      "label": "Last Name",
+      "type": "text",
+      "control": "lastName",
+      "isRequired": true,
+      "valid": true
+    },
+    "userName": {
+      "label": "User Name",
+      "type": "text",
+      "control": "userName",
+      "isRequired": true,
+      "valid": true
+    },
+    "email": {
+      "label": "Email",
+      "type": "email",
+      "control": "email",
+      "isRequired": true,
+      "valid": true
+    },
+    "password": {
+      "label": "Password",
+      "type": "password",
+      "control": "password",
+      "isRequired": true,
+      "valid": true
+    }
+  },
+  "newUserFormHeader": {
+    "title": "Sign up"
+  },
+  "signUpButton": {
+    "type": "submit",
+    "label": "Sign up"
+  },
+  "goToLoginButton": {
+    "type": "button",
+    "color": "red",
+    "label": "Or you can log in with your account"
+  }
+}
