@@ -17,7 +17,8 @@
   },
   "loginFormHeader": {
     "title": "Welcome to My Pets",
-    "subTitle": "Log in"
+    "subTitle": "Log in",
+    "centered": true
   },
   "loginButton": {
     "type": "submit",

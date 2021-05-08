@@ -37,7 +37,8 @@
     }
   },
   "newUserFormHeader": {
-    "title": "Sign up"
+    "title": "Sign up",
+    "centered": true
   },
   "signUpButton": {
     "type": "submit",

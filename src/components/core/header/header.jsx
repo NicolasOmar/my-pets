@@ -34,9 +34,9 @@ const Header = ({ name }) => {
   return (
     <>
       <div className="ui secondary pointing menu">
-        <a className="active item">Test One</a>
+        {/* <a className="active item">Test One</a>
         <a className="item">Test Two</a>
-        <a className="item">Test Three</a>
+        <a className="item">Test Three</a> */}
 
         <div className="right menu">
           <div className="ui simple dropdown item">

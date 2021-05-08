@@ -8,7 +8,8 @@ const Home = () => {
   const [user] = useState(getLoggedUser())
   const homeText = {
     title: `HELLO ${user.name.toUpperCase()}`,
-    subTitle: 'Welcome to our beautiful place'
+    subTitle: 'Welcome to our beautiful place',
+    centered: true
   }
 
   return <Title {...homeText} />

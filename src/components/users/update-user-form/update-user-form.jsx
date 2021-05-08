@@ -17,18 +17,17 @@ import { mergeGraphObj } from '../../../functions/parsers'
 const UpdateUserForm = () => {
   let history = useHistory()
   const [formObject, setFormObject] = useState(updateUserFormBase)
-  const [updateUser, result] = useMutation(UPDATE_USER)
+  const [updateUser, { data, loading }] = useMutation(UPDATE_USER)
 
   useEffect(() => {
-    const user = result.data
-      ? mergeGraphObj(result.data.updateUser, getLoggedUser())
-      : getLoggedUser()
+    const user = data ? mergeGraphObj(data.updateUser, getLoggedUser()) : getLoggedUser()
 
-    result.data && setLoggedUser(user)
+    data && setLoggedUser(user)
 
     Object.keys(user).forEach(key => formObject[key] && (formObject[key].value = user[key]))
     setFormObject(() => ({ ...formObject }))
-  }, [result.data])
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data])
 
   const onSubmitUpdate = async formData => {
     updateUser({
@@ -44,7 +43,7 @@ const UpdateUserForm = () => {
   return (
     <GridLayout header={updateUserFormHeader}>
       <Form
-        isLoading={result.loading}
+        isLoading={loading}
         formObject={updateUserFormBase}
         formButtons={{
           saveButton: {

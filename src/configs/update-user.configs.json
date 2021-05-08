@@ -16,7 +16,8 @@
     }
   },
   "updateUserFormHeader": {
-    "title": "Update user information"
+    "title": "Update user information",
+    "centered": true
   }
   
 }

@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { columnWidth } from '../../../enums/buttons.enum.json'
+// COMPONENTS
 import Title from '../title/title'
+// ENUMS
+import { columnWidth } from '../../../enums/buttons.enum.json'
 
 const GridLayout = ({ header, width, children }) => {
   const baseConfig = {
@@ -16,10 +18,11 @@ const GridLayout = ({ header, width, children }) => {
 
   return (
     <div>
-      {renderHeader()}
-
       <div className="ui grid centered">
-        <div className={widthClass}>{children}</div>
+        <div className={widthClass}>
+          {renderHeader()}
+          {children}
+        </div>
       </div>
     </div>
   )
