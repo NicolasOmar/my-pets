@@ -4,6 +4,7 @@ Web page based on React for daily activity logging of family pets.
 ## What do I need?
 Before cloning this repo, I recommend installing the following software:
 - [Node](https://nodejs.org/en/download/) >=12.16.1 to install packages
+- [API Repo](https://github.com/NicolasOmar/my-pets-api) to work in a local environment
 
 ## Setup
 After cloning the repo, install the node packages in the project's root file.
@@ -22,6 +23,11 @@ npm start
 ## Branches and Environments
 Because I am using [Netlify](https://netlify.com/) to host the site, I am maintaining the `main` branch only.
 Therefore, the following [link](https://my-pets-prod.netlify.app) sends you to the last deployed version.
+
+## Find out more
+| [Project Status](https://trello.com/b/79XvwOYa/mypets) | [Node Repo](https://github.com/NicolasOmar/my-pets-api) |
+| :--- | :--- |
+| Trello board for project status & tracking | Node API repository
 
 ## License
 **MIT**
