@@ -21,14 +21,13 @@ import { setLoggedUser } from '../../../functions/local-storage'
 
 const NewUserForm = () => {
   let history = useHistory()
-  const [createUser, result] = useMutation(CREATE_USER)
+  const [createUser, { loading, error }] = useMutation(CREATE_USER)
 
   const onSubmitCreation = async formData => {
     const newUser = {
       ...formData,
       password: encryptPass(formData.password)
     }
-    delete newUser.userName
 
     createUser({
       variables: {
@@ -46,7 +45,7 @@ const NewUserForm = () => {
   return (
     <GridLayout header={newUserFormHeader}>
       <Form
-        isLoading={result.loading}
+        isLoading={loading}
         formObject={newUserFormBase}
         formButtons={{
           signUpButton,
@@ -56,6 +55,7 @@ const NewUserForm = () => {
           }
         }}
         onFormSubmit={data => onSubmitCreation(data)}
+        errors={error}
       />
     </GridLayout>
   )

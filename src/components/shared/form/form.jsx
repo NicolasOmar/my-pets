@@ -7,9 +7,9 @@ import FormButton from '../form-button/form-button'
 // HELPERS FUNCTIONS
 import { sendObjValues } from '../../../functions/methods'
 
-const Form = ({ isLoading, formObject, formButtons, onFormSubmit }) => {
+const Form = ({ isLoading, errors, formObject, formButtons, onFormSubmit }) => {
   const [formControls, setFormControls] = useState(formObject)
-  const formClass = `ui form ${isLoading || false}`
+  const formClass = `ui form ${isLoading ? 'loading' : ''} ${errors ? 'error' : ''}`
 
   const onInputChange = (evt, prop) => {
     const { value } = evt.target
@@ -42,34 +42,53 @@ const Form = ({ isLoading, formObject, formButtons, onFormSubmit }) => {
   //   })
   // }
 
+  const renderInputs = () =>
+    Object.keys(formControls).map((prop, i) => {
+      return (
+        <FormInput
+          key={`${prop}-${i}`}
+          config={{
+            ...formControls[prop],
+            onInputChange,
+            onBlurChange: () => {}
+          }}
+        />
+      )
+    })
+
+  const renderButtons = () =>
+    formButtons &&
+    Object.keys(formButtons).map((prop, i) => {
+      return (
+        <FormButton
+          key={`${prop}-${i}`}
+          config={{
+            ...formButtons[prop]
+            // onInputChange,
+            // onBlurChange: checkValidation
+          }}
+        />
+      )
+    })
+
+  const renderErrors = () =>
+    errors && (
+      <div className="ui error message">
+        <div className="header">New Errors</div>
+        <ul className="list">
+          {errors.graphQLErrors[0].message.split(',').map((error, i) => {
+            return <li key={`error-${i}`}>{error}</li>
+          })}
+        </ul>
+      </div>
+    )
+
   return (
     <div className="ui segment">
       <form className={formClass} onSubmit={onSubmit}>
-        {Object.keys(formControls).map((prop, i) => {
-          return (
-            <FormInput
-              key={`${prop}-${i}`}
-              config={{
-                ...formControls[prop],
-                onInputChange,
-                onBlurChange: () => {}
-              }}
-            />
-          )
-        })}
-        {formButtons &&
-          Object.keys(formButtons).map((prop, i) => {
-            return (
-              <FormButton
-                key={`${prop}-${i}`}
-                config={{
-                  ...formButtons[prop]
-                  // onInputChange,
-                  // onBlurChange: checkValidation
-                }}
-              />
-            )
-          })}
+        {renderInputs()}
+        {renderButtons()}
+        {renderErrors()}
       </form>
     </div>
   )
@@ -79,6 +98,7 @@ export default Form
 
 Form.propTypes = {
   isLoading: bool,
+  errors: object,
   formObject: object,
   formButtons: object,
   onFormSubmit: func

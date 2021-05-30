@@ -1,4 +1,4 @@
-# My Pets ![My Pets version](https://img.shields.io/github/package-json/v/nicolasomar/my-pets?color=success&label=%20&style=flat-square) ![My Pets Coverage (master branch)](https://img.shields.io/codecov/c/github/nicolasomar/my-pets?label=%20&logo=codecov&style=flat-square)
+# My Pets ![My Pets version](https://img.shields.io/github/package-json/v/nicolasomar/my-pets?color=success&label=%20&style=flat-square) ![My Pets Coverage](https://img.shields.io/codecov/c/github/nicolasomar/my-pets?label=%20&logo=codecov&style=flat-square)
 Web page based on React for daily activity logging of family pets.
 
 ## What do I need?
