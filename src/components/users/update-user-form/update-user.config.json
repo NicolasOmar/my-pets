@@ -5,14 +5,14 @@
       "type": "text",
       "control": "name",
       "isRequired": true,
-      "valid": true
+      "isValid": true
     },
     "lastName": {
       "label": "Last Name",
       "type": "text",
       "control": "lastName",
       "isRequired": true,
-      "valid": true
+      "isValid": true
     }
   },
   "updateUserFormHeader": {

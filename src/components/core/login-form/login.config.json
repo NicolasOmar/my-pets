@@ -5,14 +5,14 @@
       "type": "email",
       "control": "email",
       "isRequired": false,
-      "valid": true
+      "isValid": true
     },
     "password": {
       "label": "Password",
       "type": "password",
       "control": "password",
       "isRequired": false,
-      "valid": true
+      "isValid": true
     }
   },
   "loginFormHeader": {

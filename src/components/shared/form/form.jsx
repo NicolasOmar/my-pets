@@ -5,7 +5,8 @@ import './form.scss'
 import FormInput from '../../shared/form-input/form-input'
 import FormButton from '../form-button/form-button'
 // HELPERS FUNCTIONS
-import { sendObjValues } from '../../../functions/methods'
+import { isValidInput, sendObjValues } from '../../../functions/methods'
+import validators from '../../../functions/validators'
 
 const Form = ({ isLoading, errors, formObject, formButtons, onFormSubmit }) => {
   const [formControls, setFormControls] = useState(formObject)
@@ -13,13 +14,22 @@ const Form = ({ isLoading, errors, formObject, formButtons, onFormSubmit }) => {
 
   const onInputChange = (evt, prop) => {
     const { value } = evt.target
-    const isValidValue = value && value !== ''
 
     setFormControls({
       ...formControls,
       [prop]: {
         ...formControls[prop],
-        value: isValidValue ? value : null
+        value: validators.valueIsEmpty(value) ? null : value
+      }
+    })
+  }
+
+  const checkInputIsValid = prop => {
+    setFormControls({
+      ...formControls,
+      [prop]: {
+        ...formControls[prop],
+        isValid: isValidInput(formControls[prop])
       }
     })
   }
@@ -30,18 +40,6 @@ const Form = ({ isLoading, errors, formObject, formButtons, onFormSubmit }) => {
     onFormSubmit(sendObjValues(formControls))
   }
 
-  // const checkValidation = prop => {
-  //   const { value, isRequired } = formControls[prop]
-
-  //   setFormControls({
-  //     ...formControls,
-  //     [prop]: {
-  //       ...formControls[prop],
-  //       valid: isRequired ? value && value !== '' : true
-  //     }
-  //   })
-  // }
-
   const renderInputs = () =>
     Object.keys(formControls).map((prop, i) => {
       return (
@@ -50,7 +48,7 @@ const Form = ({ isLoading, errors, formObject, formButtons, onFormSubmit }) => {
           config={{
             ...formControls[prop],
             onInputChange,
-            onBlurChange: () => {}
+            onBlurChange: checkInputIsValid
           }}
         />
       )
@@ -99,7 +97,7 @@ export default Form
 Form.propTypes = {
   isLoading: bool,
   errors: object,
-  formObject: object,
+  formObject: object.isRequired,
   formButtons: object,
-  onFormSubmit: func
+  onFormSubmit: func.isRequired
 }

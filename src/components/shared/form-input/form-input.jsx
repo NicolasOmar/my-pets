@@ -2,8 +2,10 @@ import React from 'react'
 import { shape, bool, func, string } from 'prop-types'
 
 const FormInput = ({ config }) => {
+  const inputClass = `field ${config.isValid ? '' : 'error'}`
+
   return (
-    <div className="field">
+    <div className={inputClass}>
       <label>{config.label}</label>
       <input
         type={config.type}
@@ -28,6 +30,7 @@ FormInput.propTypes = {
     value: string,
     onInputChange: func.isRequired,
     onBlurChange: func,
-    valid: bool
+    isRequired: bool,
+    isValid: bool
   })
 }

@@ -7,7 +7,7 @@ import { UPDATE_USER } from '../../../graphql/mutations'
 import GridLayout from '../../shared/grid-layout/grid-layout'
 import Form from '../../shared/form/form'
 // MODELS
-import { updateUserFormBase, updateUserFormHeader } from '../../../configs/update-user.configs.json'
+import { updateUserFormBase, updateUserFormHeader } from './update-user.config.json'
 // CONSTANTS
 import ROUTES from '../../../constants/app-routes'
 // HELPER FUNCTIONS

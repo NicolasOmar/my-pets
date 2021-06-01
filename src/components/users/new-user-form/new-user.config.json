@@ -5,35 +5,35 @@
       "type": "text",
       "control": "name",
       "isRequired": true,
-      "valid": true
+      "isValid": true
     },
     "lastName": {
       "label": "Last Name",
       "type": "text",
       "control": "lastName",
       "isRequired": true,
-      "valid": true
+      "isValid": true
     },
     "userName": {
       "label": "User Name",
       "type": "text",
       "control": "userName",
       "isRequired": true,
-      "valid": true
+      "isValid": true
     },
     "email": {
       "label": "Email",
       "type": "email",
       "control": "email",
       "isRequired": true,
-      "valid": true
+      "isValid": true
     },
     "password": {
       "label": "Password",
       "type": "password",
       "control": "password",
       "isRequired": true,
-      "valid": true
+      "isValid": true
     }
   },
   "newUserFormHeader": {

@@ -7,12 +7,7 @@ import { LOGIN } from '../../../graphql/mutations'
 import GridLayout from '../../shared/grid-layout/grid-layout'
 import Form from '../../shared/form/form'
 // CONFIG OBJECTS
-import {
-  loginForm,
-  loginFormHeader,
-  loginButton,
-  goToSignUpButton
-} from '../../../configs/login.configs.json'
+import { loginForm, loginFormHeader, loginButton, goToSignUpButton } from './login.config.json'
 // CONSTANTS
 import ROUTES from '../../../constants/app-routes'
 // HELPER FUNCTIONS

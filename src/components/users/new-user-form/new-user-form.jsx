@@ -12,7 +12,7 @@ import {
   newUserFormHeader,
   signUpButton,
   goToLoginButton
-} from '../../../configs/new-user.configs.json'
+} from './new-user.config.json'
 // CONSTANTS
 import ROUTES from '../../../constants/app-routes'
 // HELPER FUNCTIONS
@@ -30,9 +30,7 @@ const NewUserForm = () => {
     }
 
     createUser({
-      variables: {
-        newUser
-      }
+      variables: { newUser }
     })
       .then(({ data }) => {
         setLoggedUser(data.newUser)
