@@ -34,6 +34,13 @@
       "control": "password",
       "isRequired": true,
       "isValid": true
+    },
+    "repeatPassword": {
+      "label": "Repeat Password",
+      "type": "password",
+      "control": "repeatPassword",
+      "isRequired": true,
+      "isValid": true
     }
   },
   "newUserFormHeader": {

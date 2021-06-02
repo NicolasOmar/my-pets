@@ -2,7 +2,7 @@ import validators from './validators'
 
 export const checkFormValidation = formObj =>
   Object.keys(formObj)
-    .map(key => formObj[key].isValid)
+    .map(prop => formObj[prop].isValid)
     .reduce((accumulator, current) => accumulator && current, true)
 
 export const isValidInput = inputObj => {
@@ -24,15 +24,17 @@ export const isValidInput = inputObj => {
 
 export const checkEmptyValues = formObj =>
   Object.keys(formObj)
-    .map(key => formObj[key].value)
+    .map(prop => formObj[prop].value)
     .reduce((accumulator, current) => accumulator && !!current && current !== '', true)
 
 export const sendObjValues = formControls =>
   Object.keys(formControls)
-    .map(key => {
-      return {
-        [key]: formControls[key].value
-      }
+    .map(prop => {
+      return (
+        formControls[prop] && {
+          [prop]: formControls[prop].value
+        }
+      )
     })
     .reduce((accumulator, current) => {
       return {

@@ -13,7 +13,7 @@ const FormInput = ({ config }) => {
         required={config.isRequired || false}
         onChange={evt => config.onInputChange(evt, config.control)}
         onBlur={() => config.onBlurChange(config.control)}
-        name="first-name"
+        name={config.label.toLowerCase().replace(' ', '-')}
         placeholder={config.label}
       />
     </div>

@@ -8,7 +8,7 @@ import FormButton from '../form-button/form-button'
 import { isValidInput, sendObjValues } from '../../../functions/methods'
 import validators from '../../../functions/validators'
 
-const Form = ({ isLoading, errors, formObject, formButtons, onFormSubmit }) => {
+const Form = ({ isLoading, errors, formObject, formButtons, onFormSubmit, onInputBlurChange }) => {
   const [formControls, setFormControls] = useState(formObject)
   const formClass = `ui form ${isLoading ? 'loading' : ''} ${errors ? 'error' : ''}`
 
@@ -25,19 +25,37 @@ const Form = ({ isLoading, errors, formObject, formButtons, onFormSubmit }) => {
   }
 
   const checkInputIsValid = prop => {
-    setFormControls({
-      ...formControls,
-      [prop]: {
-        ...formControls[prop],
-        isValid: isValidInput(formControls[prop])
-      }
-    })
+    if (onInputBlurChange) {
+      const customValidatedForm = onInputBlurChange(formControls)
+      const isValid = customValidatedForm[prop].isValid ? isValidInput(formControls[prop]) : false
+
+      setFormControls({
+        ...customValidatedForm,
+        [prop]: {
+          ...formControls[prop],
+          isValid
+        }
+      })
+    } else {
+      setFormControls({
+        ...formControls,
+        [prop]: {
+          ...formControls[prop],
+          isValid: isValidInput(formControls[prop])
+        }
+      })
+    }
   }
 
   const onSubmit = evt => {
     evt.preventDefault()
 
-    onFormSubmit(sendObjValues(formControls))
+    onFormSubmit(
+      sendObjValues({
+        ...formControls,
+        repeatPassword: undefined
+      })
+    )
   }
 
   const renderInputs = () =>
@@ -62,8 +80,6 @@ const Form = ({ isLoading, errors, formObject, formButtons, onFormSubmit }) => {
           key={`${prop}-${i}`}
           config={{
             ...formButtons[prop]
-            // onInputChange,
-            // onBlurChange: checkValidation
           }}
         />
       )
@@ -98,6 +114,7 @@ Form.propTypes = {
   isLoading: bool,
   errors: object,
   formObject: object.isRequired,
-  formButtons: object,
-  onFormSubmit: func.isRequired
+  formButtons: object.isRequired,
+  onFormSubmit: func.isRequired,
+  onInputBlurChange: func
 }

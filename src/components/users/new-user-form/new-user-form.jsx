@@ -40,10 +40,27 @@ const NewUserForm = () => {
       .catch(error => console.error(error))
   }
 
+  const onInputBlurChange = formData => {
+    const isValid = formData.password.value === formData.repeatPassword.value
+
+    return {
+      ...formData,
+      password: {
+        ...formData.password,
+        isValid
+      },
+      repeatPassword: {
+        ...formData.repeatPassword,
+        isValid
+      }
+    }
+  }
+
   return (
     <GridLayout header={newUserFormHeader}>
       <Form
         isLoading={loading}
+        errors={error}
         formObject={newUserFormBase}
         formButtons={{
           signUpButton,
@@ -53,7 +70,7 @@ const NewUserForm = () => {
           }
         }}
         onFormSubmit={data => onSubmitCreation(data)}
-        errors={error}
+        onInputBlurChange={onInputBlurChange}
       />
     </GridLayout>
   )
