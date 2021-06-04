@@ -1,11 +1,11 @@
 import validators from './validators'
 
-export const checkFormValidation = formObj =>
-  Object.keys(formObj)
-    .map(prop => formObj[prop].isValid)
-    .reduce((accumulator, current) => accumulator && current, true)
+export const isValidForm = form =>
+  Object.keys(form)
+    .map(input => form[input].isValid)
+    .reduce((formStatus, inputStatus) => formStatus && inputStatus, true)
 
-export const isValidInput = inputObj => {
+export const isValidInput = inputs => {
   const validations = [
     {
       prop: 'isRequired',
@@ -17,28 +17,23 @@ export const isValidInput = inputObj => {
     }
   ]
 
-  return !validations
-    .map(({ prop, fn }) => (inputObj[prop] === true ? validators[fn](inputObj.value) : false))
-    .reduce((previous, current) => previous || current, false)
+  return validations
+    .map(({ prop, fn }) => (inputs[prop] === true ? !validators[fn](inputs.value) : true))
+    .reduce((finalValidValue, nextValidValue) => finalValidValue && nextValidValue, true)
 }
 
-export const checkEmptyValues = formObj =>
-  Object.keys(formObj)
-    .map(prop => formObj[prop].value)
-    .reduce((accumulator, current) => accumulator && !!current && current !== '', true)
-
-export const sendObjValues = formControls =>
-  Object.keys(formControls)
-    .map(prop => {
+export const sendObjValues = form =>
+  Object.keys(form)
+    .map(input => {
       return (
-        formControls[prop] && {
-          [prop]: formControls[prop].value
+        form[input] && {
+          [input]: form[input].value
         }
       )
     })
-    .reduce((accumulator, current) => {
+    .reduce((parsedForm, inputWithValue) => {
       return {
-        ...accumulator,
-        ...current
+        ...parsedForm,
+        ...inputWithValue
       }
     }, {})

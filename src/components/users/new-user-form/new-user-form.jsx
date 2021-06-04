@@ -47,10 +47,12 @@ const NewUserForm = () => {
       ...formData,
       password: {
         ...formData.password,
+        hasCustomValidation: true,
         isValid
       },
       repeatPassword: {
         ...formData.repeatPassword,
+        hasCustomValidation: true,
         isValid
       }
     }
