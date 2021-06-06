@@ -1,6 +1,6 @@
 {
   "name": "my-pets",
-  "version": "0.0.32",
+  "version": "0.0.33",
   "author": "Nicolás Omar González Passerino",
   "license": "MIT",
   "private": false,
@@ -81,7 +81,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "npm run test:ci && npm run update-version"
+      "pre-push": "npm test && npm run update-version"
     }
   }
 }
