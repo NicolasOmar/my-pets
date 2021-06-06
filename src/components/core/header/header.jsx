@@ -1,11 +1,12 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { string } from 'prop-types'
+import { useDispatch } from 'react-redux'
 // GRAPHQL CLIENT
 import { useMutation } from '@apollo/client'
 import { LOGOUT } from '../../../graphql/mutations'
 // CONSTANTS
-import ROUTES from '../../../constants/app-routes'
+import { ROUTES } from '../../../constants/routes.json'
 // HELPER FUNCTIONS
 import { clearAllStorage } from '../../../functions/local-storage'
 // STYLES
@@ -14,17 +15,20 @@ import './header.scss'
 const Header = ({ name }) => {
   let history = useHistory()
   const [logout] = useMutation(LOGOUT)
+  const dispatch = useDispatch()
 
   const onUpdateUser = () => history.push(ROUTES.UPDATE_USER)
 
   const onLogout = async () => {
     try {
-      logout()
-        .then(() => {
-          clearAllStorage()
-          history.push(ROUTES.LOGIN)
+      logout().then(() => {
+        clearAllStorage()
+        dispatch({
+          type: 'LOGOUT',
+          payload: null
         })
-        .catch(error => console.error(error))
+        history.push(ROUTES.LOGIN)
+      })
       history.push(ROUTES.LOGIN)
     } catch (e) {
       console.warn('e', e)

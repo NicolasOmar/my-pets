@@ -1,5 +1,6 @@
 import React from 'react'
 import { Router, Route, Switch, Redirect } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 // HISTORY
 import history from './history'
 // COMPONENTS
@@ -9,17 +10,17 @@ import LoginForm from '../../core/login-form/login-form'
 import NewUserForm from '../../users/new-user-form/new-user-form'
 import UpdateUserForm from '../../users/update-user-form/update-user-form'
 // CONSTANTS
-import ROUTES from '../../../constants/app-routes'
-// HELPER FUNCTIONS
-import { getLoggedUser } from '../../../functions/local-storage'
+import { ROUTES } from '../../../constants/routes.json'
 
-const renderHeader = () => getLoggedUser() && <Header name={getLoggedUser().name} />
+const renderHeader = userState => userState && <Header name={userState.name} />
 
 const App = () => {
+  const userData = useSelector(({ userState }) => userState)
+
   return (
     <div>
       <Router history={history}>
-        {renderHeader()}
+        {renderHeader(userData)}
         <Redirect exact from={ROUTES.BASE} to={ROUTES.LOGIN} />
         <Switch>
           <Route exact path={ROUTES.HOME} component={Home} />

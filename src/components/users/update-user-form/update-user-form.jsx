@@ -9,7 +9,7 @@ import Form from '../../shared/form/form'
 // MODELS
 import { updateUserFormBase, updateUserFormHeader } from './update-user.config.json'
 // CONSTANTS
-import ROUTES from '../../../constants/app-routes'
+import { ROUTES } from '../../../constants/routes.json'
 // HELPER FUNCTIONS
 import { getLoggedUser, setLoggedUser } from '../../../functions/local-storage'
 import { mergeGraphObj } from '../../../functions/parsers'

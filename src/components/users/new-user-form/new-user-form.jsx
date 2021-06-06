@@ -14,7 +14,7 @@ import {
   goToLoginButton
 } from './new-user.config.json'
 // CONSTANTS
-import ROUTES from '../../../constants/app-routes'
+import { ROUTES } from '../../../constants/routes.json'
 // HELPER FUNCTIONS
 import { encryptPass } from '../../../functions/encrypt'
 import { setLoggedUser } from '../../../functions/local-storage'
