@@ -1,8 +1,10 @@
 import React from 'react'
 import { shape, bool, func, string } from 'prop-types'
+// FUNCTIONS
+import { parseInputClass } from '../../../functions/parsers'
 
 const FormInput = ({ config }) => {
-  const inputClass = `field ${config.isValid ? '' : 'error'}`
+  const inputClass = parseInputClass(config, 'field')
 
   return (
     <div className={inputClass}>

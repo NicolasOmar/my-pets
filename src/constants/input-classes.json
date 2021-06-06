@@ -1,0 +1,13 @@
+{
+  "field": [
+    {
+      "prop": "isRequired",
+      "setClass": "required"
+    },
+    {
+      "prop": "isValid",
+      "isFalse": true,
+      "setClass": "error"
+    }
+  ]
+}

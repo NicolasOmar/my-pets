@@ -13,31 +13,15 @@ import ROUTES from '../../../constants/app-routes'
 // HELPER FUNCTIONS
 import { encryptPass } from '../../../functions/encrypt'
 import { getLoggedUser, setLoggedUser } from '../../../functions/local-storage'
-// import { checkEmptyValues, checkFormValidation } from '../../../functions/methods'
 
 const LoginForm = () => {
   let history = useHistory()
-  const [login, result] = useMutation(LOGIN)
-  // const [hasErrors, setHasErrors] = useState(false)
-  // const [errorMsg, setErrorMsg] = useState(null)
+  const [login, { loading, error }] = useMutation(LOGIN)
 
   useEffect(() => {
     getLoggedUser() && history.push(ROUTES.HOME)
     return () => {}
   }, [history])
-
-  // useEffect(() => {
-  //   const hasEmptyValues = checkEmptyValues(formObject)
-  //   const isValidForm = checkFormValidation(formObject)
-
-  //   setHasErrors(!isValidForm || !hasEmptyValues)
-  //   !isValidForm && setErrorMsg('The form needs to fill required fields')
-  //   return () => {}
-  // }, [formObject])
-
-  // const renderErrorMsg = () => {
-  //   return hasErrors && errorMsg ? <Message error header="Oops" content={errorMsg} /> : null
-  // }
 
   const onSubmitLogin = async formData => {
     login({
@@ -56,7 +40,8 @@ const LoginForm = () => {
   return (
     <GridLayout header={loginFormHeader}>
       <Form
-        isLoading={result.loading}
+        isLoading={loading}
+        errors={error}
         formObject={loginForm}
         formButtons={{
           loginButton,
