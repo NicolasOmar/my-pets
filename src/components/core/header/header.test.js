@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 // REDUX
-import store from '../../../reducers'
+import store from '../../../redux/reducers'
 // COMPONENTS
 import Header from './header'
 

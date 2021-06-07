@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 // REDUCERS
-import reducers from './reducers'
+import reducers from './redux/reducers'
 // APOLLO CLIENT
 import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'

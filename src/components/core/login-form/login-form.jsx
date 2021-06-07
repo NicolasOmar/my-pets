@@ -7,11 +7,16 @@ import { LOGIN } from '../../../graphql/mutations'
 // COMPONENTS
 import GridLayout from '../../shared/grid-layout/grid-layout'
 import Form from '../../shared/form/form'
-// CONFIG OBJECTS
-import { loginForm, loginFormHeader, loginButton, goToSignUpButton } from './login.config.json'
+// FORM CONFIG
+import {
+  loginFormInputs,
+  loginFormHeader,
+  loginButton,
+  goToSignUpButton
+} from './login.config.json'
 // CONSTANTS
 import { ROUTES } from '../../../constants/routes.json'
-// HELPER FUNCTIONS
+// FUNCTIONS
 import { encryptPass } from '../../../functions/encrypt'
 import { getLoggedUser, setLoggedUser } from '../../../functions/local-storage'
 
@@ -48,7 +53,7 @@ const LoginForm = () => {
       <Form
         isLoading={loading}
         errors={error}
-        formObject={loginForm}
+        formObject={loginFormInputs}
         formButtons={{
           loginButton,
           goToSignUpButton: {

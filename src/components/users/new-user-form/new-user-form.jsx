@@ -6,16 +6,16 @@ import { CREATE_USER } from '../../../graphql/mutations'
 // COMPONENTS
 import GridLayout from '../../shared/grid-layout/grid-layout'
 import Form from '../../shared/form/form'
-// MODELS
+// FORM CONFIG
 import {
-  newUserFormBase,
+  newUserFormInputs,
   newUserFormHeader,
   signUpButton,
   goToLoginButton
 } from './new-user.config.json'
 // CONSTANTS
 import { ROUTES } from '../../../constants/routes.json'
-// HELPER FUNCTIONS
+// FUNCTIONS
 import { encryptPass } from '../../../functions/encrypt'
 import { setLoggedUser } from '../../../functions/local-storage'
 
@@ -63,7 +63,7 @@ const NewUserForm = () => {
       <Form
         isLoading={loading}
         errors={error}
-        formObject={newUserFormBase}
+        formObject={newUserFormInputs}
         formButtons={{
           signUpButton,
           goToLoginButton: {

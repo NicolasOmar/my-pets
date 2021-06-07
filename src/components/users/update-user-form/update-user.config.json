@@ -1,5 +1,5 @@
 {
-  "updateUserFormBase": {
+  "updateUserFormInputs": {
     "name": {
       "label": "Name",
       "type": "text",
@@ -18,6 +18,13 @@
   "updateUserFormHeader": {
     "title": "Update user information",
     "centered": true
+  },
+  "saveButton": {
+    "type": "submit",
+    "label": "Save"
+  },
+  "goBackButton": {
+    "type": "button",
+    "label": "Go Back"
   }
-  
 }

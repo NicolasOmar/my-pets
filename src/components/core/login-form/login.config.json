@@ -1,5 +1,5 @@
 {
-  "loginForm": {
+  "loginFormInputs": {
     "email": {
       "label": "Email",
       "type": "email",

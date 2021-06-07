@@ -7,7 +7,7 @@ import { useMutation } from '@apollo/client'
 import { LOGOUT } from '../../../graphql/mutations'
 // CONSTANTS
 import { ROUTES } from '../../../constants/routes.json'
-// HELPER FUNCTIONS
+// FUNCTIONS
 import { clearAllStorage } from '../../../functions/local-storage'
 // STYLES
 import './header.scss'
@@ -29,7 +29,6 @@ const Header = ({ name }) => {
         })
         history.push(ROUTES.LOGIN)
       })
-      history.push(ROUTES.LOGIN)
     } catch (e) {
       console.warn('e', e)
     }

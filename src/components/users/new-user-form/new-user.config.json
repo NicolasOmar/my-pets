@@ -1,5 +1,5 @@
 {
-  "newUserFormBase": {
+  "newUserFormInputs": {
     "name": {
       "label": "Name",
       "type": "text",
