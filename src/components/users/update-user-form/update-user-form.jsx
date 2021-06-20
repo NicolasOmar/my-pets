@@ -48,6 +48,7 @@ const UpdateUserForm = () => {
         isLoading={loading}
         errors={error}
         formObject={inputs}
+        buttonsGrouped={true}
         formButtons={{
           saveButton,
           goBackButton: {

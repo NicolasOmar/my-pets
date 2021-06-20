@@ -59,6 +59,7 @@ const UpdatePasswordForm = () => {
           updateButton,
           cancelButton
         }}
+        buttonsGrouped={true}
         onFormSubmit={formData => onSubmitUpdate(formData)}
         onInputBlurChange={onInputBlurChange}
       />

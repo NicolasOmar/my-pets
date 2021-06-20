@@ -67,6 +67,7 @@ const NewUserForm = () => {
             onClick: () => history.push(ROUTES.LOGIN)
           }
         }}
+        buttonsGrouped={true}
         onFormSubmit={data => onSubmitCreation(data)}
         onInputBlurChange={onInputBlurChange}
       />

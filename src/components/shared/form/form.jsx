@@ -4,13 +4,22 @@ import './form.scss'
 // COMPONENTS
 import FormInput from '../../shared/form-input/form-input'
 import FormButton from '../form-button/form-button'
+import ButtonGroup from '../button-group/button-group'
 // HELPERS FUNCTIONS
 import { isValidForm, isValidInput, sendObjValues } from '../../../functions/methods'
 import validators from '../../../functions/validators'
 // ENUMS
 import { buttonTypeEnums } from '../../../enums/buttons.enum.json'
 
-const Form = ({ isLoading, errors, formObject, formButtons, onFormSubmit, onInputBlurChange }) => {
+const Form = ({
+  isLoading,
+  errors,
+  formObject,
+  formButtons,
+  buttonsGrouped,
+  onFormSubmit,
+  onInputBlurChange
+}) => {
   const [formControls, setFormControls] = useState(formObject)
   const [disableSignUpButton, setDisableSignUpButton] = useState(true)
   const firstUpdate = useRef(true)
@@ -86,19 +95,22 @@ const Form = ({ isLoading, errors, formObject, formButtons, onFormSubmit, onInpu
     })
 
   const renderButtons = () =>
-    formButtons &&
-    Object.keys(formButtons).map((prop, i) => {
-      return (
-        <FormButton
-          key={`${prop}-${i}`}
-          config={
-            formButtons[prop].type === buttonTypeEnums[0]
-              ? { ...formButtons[prop] }
-              : { ...formButtons[prop], isDisabled: disableSignUpButton }
-          }
-        />
-      )
-    })
+    buttonsGrouped ? (
+      <ButtonGroup buttons={Object.keys(formButtons).map(prop => ({ ...formButtons[prop] }))} />
+    ) : (
+      Object.keys(formButtons).map((prop, i) => {
+        return (
+          <FormButton
+            key={`${prop}-${i}`}
+            config={
+              formButtons[prop].type === buttonTypeEnums[0]
+                ? { ...formButtons[prop] }
+                : { ...formButtons[prop], isDisabled: disableSignUpButton }
+            }
+          />
+        )
+      })
+    )
 
   const renderErrors = () =>
     errors && (
@@ -130,6 +142,7 @@ Form.propTypes = {
   errors: object,
   formObject: object.isRequired,
   formButtons: object.isRequired,
+  buttonsGrouped: bool,
   onFormSubmit: func.isRequired,
   onInputBlurChange: func
 }

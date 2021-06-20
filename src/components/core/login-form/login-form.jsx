@@ -56,6 +56,7 @@ const LoginForm = () => {
             onClick: () => history.push(ROUTES.NEW_USER)
           }
         }}
+        buttonsGrouped={true}
         onFormSubmit={data => onSubmitLogin(data)}
       />
     </GridLayout>
