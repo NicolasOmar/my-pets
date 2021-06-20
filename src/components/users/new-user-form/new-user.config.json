@@ -1,5 +1,5 @@
 {
-  "newUserFormInputs": {
+  "inputs": {
     "name": {
       "label": "Name",
       "type": "text",
@@ -35,15 +35,15 @@
       "isRequired": true,
       "isValid": true
     },
-    "repeatPassword": {
+    "repeatPass": {
       "label": "Repeat Password",
       "type": "password",
-      "control": "repeatPassword",
+      "control": "repeatPass",
       "isRequired": true,
       "isValid": true
     }
   },
-  "newUserFormHeader": {
+  "header": {
     "title": "Sign up",
     "centered": true
   },

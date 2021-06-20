@@ -19,6 +19,8 @@ const Header = ({ name }) => {
 
   const onUpdateUser = () => history.push(ROUTES.UPDATE_USER)
 
+  const onUpdatePass = () => history.push(ROUTES.UPDATE_PASS)
+
   const onLogout = async () => {
     try {
       logout().then(() => {
@@ -48,6 +50,9 @@ const Header = ({ name }) => {
             <div className="menu">
               <div className="item" onClick={onUpdateUser}>
                 Update User
+              </div>
+              <div className="item" onClick={onUpdatePass}>
+                Update Pass
               </div>
               <div className="item" onClick={onLogout}>
                 Logout

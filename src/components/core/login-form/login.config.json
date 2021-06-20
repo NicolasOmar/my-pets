@@ -1,5 +1,5 @@
 {
-  "loginFormInputs": {
+  "inputs": {
     "email": {
       "label": "Email",
       "type": "email",
@@ -15,7 +15,7 @@
       "isValid": true
     }
   },
-  "loginFormHeader": {
+  "header": {
     "title": "Welcome to My Pets",
     "subTitle": "Log in",
     "centered": true

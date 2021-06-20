@@ -8,12 +8,7 @@ import { LOGIN } from '../../../graphql/mutations'
 import GridLayout from '../../shared/grid-layout/grid-layout'
 import Form from '../../shared/form/form'
 // FORM CONFIG
-import {
-  loginFormInputs,
-  loginFormHeader,
-  loginButton,
-  goToSignUpButton
-} from './login.config.json'
+import { inputs, header, loginButton, goToSignUpButton } from './login.config.json'
 // CONSTANTS
 import { ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
@@ -49,11 +44,11 @@ const LoginForm = () => {
   }
 
   return (
-    <GridLayout header={loginFormHeader}>
+    <GridLayout header={header}>
       <Form
         isLoading={loading}
         errors={error}
-        formObject={loginFormInputs}
+        formObject={inputs}
         formButtons={{
           loginButton,
           goToSignUpButton: {

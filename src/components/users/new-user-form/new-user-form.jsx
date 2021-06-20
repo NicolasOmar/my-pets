@@ -7,12 +7,7 @@ import { CREATE_USER } from '../../../graphql/mutations'
 import GridLayout from '../../shared/grid-layout/grid-layout'
 import Form from '../../shared/form/form'
 // FORM CONFIG
-import {
-  newUserFormInputs,
-  newUserFormHeader,
-  signUpButton,
-  goToLoginButton
-} from './new-user.config.json'
+import { inputs, header, signUpButton, goToLoginButton } from './new-user.config.json'
 // CONSTANTS
 import { ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
@@ -26,6 +21,7 @@ const NewUserForm = () => {
   const onSubmitCreation = async formData => {
     const newUser = {
       ...formData,
+      repeatPass: undefined,
       password: encryptPass(formData.password)
     }
 
@@ -41,7 +37,7 @@ const NewUserForm = () => {
   }
 
   const onInputBlurChange = formData => {
-    const isValid = formData.password.value === formData.repeatPassword.value
+    const isValid = formData.password.value === formData.repeatPass.value
 
     return {
       ...formData,
@@ -50,8 +46,8 @@ const NewUserForm = () => {
         hasCustomValidation: true,
         isValid
       },
-      repeatPassword: {
-        ...formData.repeatPassword,
+      repeatPass: {
+        ...formData.repeatPass,
         hasCustomValidation: true,
         isValid
       }
@@ -59,11 +55,11 @@ const NewUserForm = () => {
   }
 
   return (
-    <GridLayout header={newUserFormHeader}>
+    <GridLayout header={header}>
       <Form
         isLoading={loading}
         errors={error}
-        formObject={newUserFormInputs}
+        formObject={inputs}
         formButtons={{
           signUpButton,
           goToLoginButton: {

@@ -68,13 +68,7 @@ const Form = ({ isLoading, errors, formObject, formButtons, onFormSubmit, onInpu
   const onSubmit = evt => {
     evt.preventDefault()
 
-    !disableSignUpButton &&
-      onFormSubmit(
-        sendObjValues({
-          ...formControls,
-          repeatPassword: undefined
-        })
-      )
+    !disableSignUpButton && onFormSubmit(sendObjValues({ ...formControls }))
   }
 
   const renderInputs = () =>

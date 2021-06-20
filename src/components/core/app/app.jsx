@@ -9,6 +9,7 @@ import Home from '../home/home'
 import LoginForm from '../../core/login-form/login-form'
 import NewUserForm from '../../users/new-user-form/new-user-form'
 import UpdateUserForm from '../../users/update-user-form/update-user-form'
+import UpdatePasswordForm from '../../users/update-password-form/update-password-form'
 // CONSTANTS
 import { ROUTES } from '../../../constants/routes.json'
 
@@ -18,7 +19,7 @@ const App = () => {
   const userData = useSelector(({ userState }) => userState)
 
   return (
-    <div>
+    <>
       <Router history={history}>
         {renderHeader(userData)}
         <Redirect exact from={ROUTES.BASE} to={ROUTES.LOGIN} />
@@ -27,9 +28,10 @@ const App = () => {
           <Route exact path={ROUTES.LOGIN} component={LoginForm} />
           <Route exact path={ROUTES.NEW_USER} component={NewUserForm} />
           <Route exact path={ROUTES.UPDATE_USER} component={UpdateUserForm} />
+          <Route exact path={ROUTES.UPDATE_PASS} component={UpdatePasswordForm} />
         </Switch>
       </Router>
-    </div>
+    </>
   )
 }
 

@@ -8,12 +8,7 @@ import { UPDATE_USER } from '../../../graphql/mutations'
 import GridLayout from '../../shared/grid-layout/grid-layout'
 import Form from '../../shared/form/form'
 // FORM CONFIG
-import {
-  updateUserFormInputs,
-  updateUserFormHeader,
-  saveButton,
-  goBackButton
-} from './update-user.config.json'
+import { inputs, header, saveButton, goBackButton } from './update-user.config.json'
 // CONSTANTS
 import { ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
@@ -22,7 +17,7 @@ import { mergeGraphObj } from '../../../functions/parsers'
 
 const UpdateUserForm = () => {
   let history = useHistory()
-  const [formObject, setFormObject] = useState(updateUserFormInputs)
+  const [formObject, setFormObject] = useState(inputs)
   const [updateUser, { data, loading, error }] = useMutation(UPDATE_USER)
   const dispatch = useDispatch()
 
@@ -48,11 +43,11 @@ const UpdateUserForm = () => {
   }
 
   return (
-    <GridLayout header={updateUserFormHeader}>
+    <GridLayout header={header}>
       <Form
         isLoading={loading}
         errors={error}
-        formObject={updateUserFormInputs}
+        formObject={inputs}
         formButtons={{
           saveButton,
           goBackButton: {

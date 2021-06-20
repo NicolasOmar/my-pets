@@ -1,5 +1,5 @@
 {
-  "updateUserFormInputs": {
+  "inputs": {
     "name": {
       "label": "Name",
       "type": "text",
@@ -15,7 +15,7 @@
       "isValid": true
     }
   },
-  "updateUserFormHeader": {
+  "header": {
     "title": "Update user information",
     "centered": true
   },
