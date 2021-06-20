@@ -1,5 +1,5 @@
 import React from 'react'
-import { shape, bool, func, string } from 'prop-types'
+import { shape, bool, func, string, number } from 'prop-types'
 // FUNCTIONS
 import { parseInputClass } from '../../../functions/parsers'
 
@@ -16,6 +16,8 @@ const FormInput = ({ config }) => {
         onChange={evt => config.onInputChange(evt, config.control)}
         onBlur={() => config.onBlurChange(config.control)}
         name={config.label.toLowerCase().replace(' ', '-')}
+        minLength={config.min || null}
+        maxLength={config.max || null}
         placeholder={config.label}
       />
     </div>
@@ -33,6 +35,8 @@ FormInput.propTypes = {
     onInputChange: func.isRequired,
     onBlurChange: func,
     isRequired: bool,
+    min: number,
+    max: number,
     isValid: bool
   })
 }

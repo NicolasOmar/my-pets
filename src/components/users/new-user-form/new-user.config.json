@@ -5,42 +5,44 @@
       "type": "text",
       "control": "name",
       "isRequired": true,
-      "isValid": true
+      "min": 3,
+      "max": 25
     },
     "lastName": {
       "label": "Last Name",
       "type": "text",
       "control": "lastName",
       "isRequired": true,
-      "isValid": true
+      "min": 3,
+      "max": 25
     },
     "userName": {
       "label": "User Name",
       "type": "text",
       "control": "userName",
       "isRequired": true,
-      "isValid": true
+      "min": 4,
+      "max": 10
     },
     "email": {
       "label": "Email",
       "type": "email",
       "control": "email",
-      "isRequired": true,
-      "isValid": true
+      "isRequired": true
     },
     "password": {
       "label": "Password",
       "type": "password",
       "control": "password",
       "isRequired": true,
-      "isValid": true
+      "min": 6
     },
     "repeatPass": {
       "label": "Repeat Password",
       "type": "password",
       "control": "repeatPass",
       "isRequired": true,
-      "isValid": true
+      "min": 6
     }
   },
   "header": {

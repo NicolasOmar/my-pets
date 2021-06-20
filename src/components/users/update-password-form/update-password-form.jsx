@@ -54,11 +54,8 @@ const UpdatePasswordForm = () => {
       <Form
         isLoading={false}
         errors={error}
-        formObject={inputs}
-        formButtons={{
-          updateButton,
-          cancelButton
-        }}
+        inputs={inputs}
+        formButtons={[updateButton, cancelButton]}
         buttonsGrouped={true}
         onFormSubmit={formData => onSubmitUpdate(formData)}
         onInputBlurChange={onInputBlurChange}

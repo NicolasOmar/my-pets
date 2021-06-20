@@ -48,14 +48,14 @@ const LoginForm = () => {
       <Form
         isLoading={loading}
         errors={error}
-        formObject={inputs}
-        formButtons={{
+        inputs={inputs}
+        formButtons={[
           loginButton,
-          goToSignUpButton: {
+          {
             ...goToSignUpButton,
             onClick: () => history.push(ROUTES.NEW_USER)
           }
-        }}
+        ]}
         buttonsGrouped={true}
         onFormSubmit={data => onSubmitLogin(data)}
       />

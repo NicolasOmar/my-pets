@@ -5,14 +5,16 @@
       "type": "text",
       "control": "name",
       "isRequired": true,
-      "isValid": true
+      "min": 3,
+      "max": 25
     },
     "lastName": {
       "label": "Last Name",
       "type": "text",
       "control": "lastName",
       "isRequired": true,
-      "isValid": true
+      "min": 3,
+      "max": 25
     }
   },
   "header": {

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { bool, func, object } from 'prop-types'
+import { array, bool, func, object } from 'prop-types'
 import './form.scss'
 // COMPONENTS
 import FormInput from '../../shared/form-input/form-input'
@@ -14,13 +14,13 @@ import { buttonTypeEnums } from '../../../enums/buttons.enum.json'
 const Form = ({
   isLoading,
   errors,
-  formObject,
+  inputs,
   formButtons,
   buttonsGrouped,
   onFormSubmit,
   onInputBlurChange
 }) => {
-  const [formControls, setFormControls] = useState(formObject)
+  const [formControls, setFormControls] = useState(inputs)
   const [disableSignUpButton, setDisableSignUpButton] = useState(true)
   const firstUpdate = useRef(true)
   const formClass = `ui form ${isLoading ? 'loading' : ''} ${errors ? 'error' : ''}`
@@ -96,17 +96,16 @@ const Form = ({
 
   const renderButtons = () =>
     buttonsGrouped ? (
-      <ButtonGroup buttons={Object.keys(formButtons).map(prop => ({ ...formButtons[prop] }))} />
+      <ButtonGroup buttons={formButtons.map(btn => ({ ...btn }))} />
     ) : (
-      Object.keys(formButtons).map((prop, i) => {
+      formButtons.map((btn, i) => {
         return (
           <FormButton
-            key={`${prop}-${i}`}
-            config={
-              formButtons[prop].type === buttonTypeEnums[0]
-                ? { ...formButtons[prop] }
-                : { ...formButtons[prop], isDisabled: disableSignUpButton }
-            }
+            key={`btn-${i}`}
+            config={{
+              ...btn,
+              isDisabled: btn.type === buttonTypeEnums[0] ? disableSignUpButton : false
+            }}
           />
         )
       })
@@ -140,8 +139,8 @@ export default Form
 Form.propTypes = {
   isLoading: bool,
   errors: object,
-  formObject: object.isRequired,
-  formButtons: object.isRequired,
+  inputs: object.isRequired,
+  formButtons: array.isRequired,
   buttonsGrouped: bool,
   onFormSubmit: func.isRequired,
   onInputBlurChange: func

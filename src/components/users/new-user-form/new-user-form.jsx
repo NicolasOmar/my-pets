@@ -59,14 +59,14 @@ const NewUserForm = () => {
       <Form
         isLoading={loading}
         errors={error}
-        formObject={inputs}
-        formButtons={{
+        inputs={inputs}
+        formButtons={[
           signUpButton,
-          goToLoginButton: {
+          {
             ...goToLoginButton,
             onClick: () => history.push(ROUTES.LOGIN)
           }
-        }}
+        ]}
         buttonsGrouped={true}
         onFormSubmit={data => onSubmitCreation(data)}
         onInputBlurChange={onInputBlurChange}

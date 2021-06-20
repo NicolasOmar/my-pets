@@ -47,15 +47,15 @@ const UpdateUserForm = () => {
       <Form
         isLoading={loading}
         errors={error}
-        formObject={inputs}
+        inputs={inputs}
         buttonsGrouped={true}
-        formButtons={{
+        formButtons={[
           saveButton,
-          goBackButton: {
+          {
             ...goBackButton,
             onClick: () => history.push(ROUTES.HOME)
           }
-        }}
+        ]}
         onFormSubmit={data => onSubmitUpdate(data)}
       />
     </GridLayout>

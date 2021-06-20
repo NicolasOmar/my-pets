@@ -4,15 +4,14 @@
       "label": "Email",
       "type": "email",
       "control": "email",
-      "isRequired": true,
-      "isValid": true
+      "isRequired": true
     },
     "password": {
       "label": "Password",
       "type": "password",
       "control": "password",
       "isRequired": true,
-      "isValid": true
+      "min": 6
     }
   },
   "header": {
