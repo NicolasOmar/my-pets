@@ -11,7 +11,7 @@
       "type": "password",
       "control": "password",
       "isRequired": true,
-      "min": 6
+      "minLength": 6
     }
   },
   "header": {

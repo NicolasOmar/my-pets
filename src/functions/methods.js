@@ -1,24 +1,16 @@
 import validators from './validators'
+import { validations } from '../constants/input-validations.json'
 
-export const isValidForm = form =>
+export const checkIsValidForm = form =>
   Object.keys(form)
-    .map(input => form[input].isValid)
+    .map(input => form[input].isValid || false)
     .reduce((formStatus, inputStatus) => formStatus && inputStatus, true)
 
-export const isValidInput = inputs => {
-  const validations = [
-    {
-      prop: 'isRequired',
-      fn: 'valueIsEmpty'
-    },
-    {
-      prop: 'noNumbers',
-      fn: 'valueHasNumbers'
-    }
-  ]
-
+export const checkIsValidInput = input => {
   return validations
-    .map(({ prop, fn }) => (inputs[prop] === true ? !validators[fn](inputs.value) : true))
+    .map(({ prop, fn }) =>
+      input[prop] !== undefined ? !validators[fn](input.value, input[prop]) : true
+    )
     .reduce((finalValidValue, nextValidValue) => finalValidValue && nextValidValue, true)
 }
 

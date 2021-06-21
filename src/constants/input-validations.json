@@ -1,0 +1,20 @@
+{
+  "validations": [
+    {
+      "prop": "isRequired",
+      "fn": "valueIsEmpty"
+    },
+    {
+      "prop": "noNumbers",
+      "fn": "valueHasNumbers"
+    },
+    {
+      "prop": "minLength",
+      "fn": "valueLengthIsUnder"
+    },
+    {
+      "prop": "maxLength",
+      "fn": "valueLengthIsAbove"
+    }
+  ]
+}

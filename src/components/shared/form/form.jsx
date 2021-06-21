@@ -6,7 +6,7 @@ import FormInput from '../../shared/form-input/form-input'
 import FormButton from '../form-button/form-button'
 import ButtonGroup from '../button-group/button-group'
 // HELPERS FUNCTIONS
-import { isValidForm, isValidInput, sendObjValues } from '../../../functions/methods'
+import { checkIsValidForm, checkIsValidInput, sendObjValues } from '../../../functions/methods'
 import validators from '../../../functions/validators'
 // ENUMS
 import { buttonTypeEnums } from '../../../enums/buttons.enum.json'
@@ -31,7 +31,7 @@ const Form = ({
       return
     }
 
-    setDisableSignUpButton(!isValidForm(formControls))
+    setDisableSignUpButton(!checkIsValidForm(formControls))
   }, [formControls])
 
   const onInputChange = (evt, prop) => {
@@ -57,8 +57,8 @@ const Form = ({
         [prop]: {
           ...validatedForm[prop],
           isValid: validatedForm[prop].hasCustomValidation
-            ? isValidInput(_formControls[prop]) && validatedForm[prop].isValid
-            : isValidInput(_formControls[prop])
+            ? checkIsValidInput(_formControls[prop]) && validatedForm[prop].isValid
+            : checkIsValidInput(_formControls[prop])
         }
       })
     } else {
@@ -66,7 +66,7 @@ const Form = ({
         ..._formControls,
         [prop]: {
           ..._formControls[prop],
-          isValid: isValidInput(_formControls[prop])
+          isValid: checkIsValidInput(_formControls[prop])
         }
       })
     }

@@ -16,8 +16,8 @@ const FormInput = ({ config }) => {
         onChange={evt => config.onInputChange(evt, config.control)}
         onBlur={() => config.onBlurChange(config.control)}
         name={config.label.toLowerCase().replace(' ', '-')}
-        minLength={config.min || null}
-        maxLength={config.max || null}
+        minLength={config.minLength || null}
+        maxLength={config.maxLength || null}
         placeholder={config.label}
       />
     </div>
@@ -35,8 +35,8 @@ FormInput.propTypes = {
     onInputChange: func.isRequired,
     onBlurChange: func,
     isRequired: bool,
-    min: number,
-    max: number,
+    minLength: number,
+    maxLength: number,
     isValid: bool
   })
 }
