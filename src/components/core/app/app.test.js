@@ -8,15 +8,17 @@ import store from '../../../redux/reducers'
 import App from './app'
 
 describe('[App]', () => {
-  test('renders App component without props', () => {
-    render(
-      <Provider store={createStore(store)}>
-        <MockedProvider mocks={[]} addTypefile={false}>
-          <App />
-        </MockedProvider>
-      </Provider>
-    )
-    const element = screen.getByText(/Welcome to My Pets/i)
-    expect(element).toBeInTheDocument()
+  describe('[HAPPY PATH]', () => {
+    test('Renders without props', () => {
+      render(
+        <Provider store={createStore(store)}>
+          <MockedProvider mocks={[]} addTypefile={false}>
+            <App />
+          </MockedProvider>
+        </Provider>
+      )
+      const element = screen.getByText(/Welcome to My Pets/i)
+      expect(element).toBeInTheDocument()
+    })
   })
 })

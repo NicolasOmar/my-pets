@@ -8,15 +8,17 @@ import store from '../../../redux/reducers'
 import LoginForm from './login-form'
 
 describe('[LoginForm]', () => {
-  test('Renders a "Login" Form without props', () => {
-    render(
-      <Provider store={createStore(store)}>
-        <MockedProvider mocks={[]} addTypename={false}>
-          <LoginForm />
-        </MockedProvider>
-      </Provider>
-    )
-    const element = screen.getByText('Password')
-    expect(element).toBeInTheDocument()
+  describe('[HAPPY PATH]', () => {
+    test('Renders without props', () => {
+      render(
+        <Provider store={createStore(store)}>
+          <MockedProvider mocks={[]} addTypename={false}>
+            <LoginForm />
+          </MockedProvider>
+        </Provider>
+      )
+      const element = screen.getByText('Password')
+      expect(element).toBeInTheDocument()
+    })
   })
 })

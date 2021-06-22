@@ -9,18 +9,22 @@ import UpdateUserForm from './update-user-form'
 // HELPER FUNCTIONS
 import { setLoggedUser } from '../../../functions/local-storage'
 
-test(`Renders a 'Update User' Form without props`, () => {
-  setLoggedUser({
-    name: 'Test',
-    lastName: 'Test'
+describe('[UpdateUserForm]', () => {
+  describe('[HAPPY PATH]', () => {
+    test(`Renders without props`, () => {
+      setLoggedUser({
+        name: 'Test',
+        lastName: 'Test'
+      })
+      render(
+        <Provider store={createStore(store)}>
+          <MockedProvider mocks={[]} addTypename={false}>
+            <UpdateUserForm />
+          </MockedProvider>
+        </Provider>
+      )
+      const element = screen.getByText('Name')
+      expect(element).toBeInTheDocument()
+    })
   })
-  render(
-    <Provider store={createStore(store)}>
-      <MockedProvider mocks={[]} addTypename={false}>
-        <UpdateUserForm />
-      </MockedProvider>
-    </Provider>
-  )
-  const element = screen.getByText('Name')
-  expect(element).toBeInTheDocument()
 })

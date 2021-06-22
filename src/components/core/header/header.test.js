@@ -8,15 +8,17 @@ import store from '../../../redux/reducers'
 import Header from './header'
 
 describe('[Header]', () => {
-  test('Render Header with a dummy "name" prop', () => {
-    render(
-      <Provider store={createStore(store)}>
-        <MockedProvider mocks={[]} addTypename={false}>
-          <Header name={'TEST'} />
-        </MockedProvider>
-      </Provider>
-    )
-    const element = screen.getByText('TEST')
-    expect(element).toBeInTheDocument()
+  describe('[HAPPY PATH]', () => {
+    test('Render with a dummy "name" prop', () => {
+      render(
+        <Provider store={createStore(store)}>
+          <MockedProvider mocks={[]} addTypename={false}>
+            <Header name={'TEST'} />
+          </MockedProvider>
+        </Provider>
+      )
+      const element = screen.getByText('TEST')
+      expect(element).toBeInTheDocument()
+    })
   })
 })
