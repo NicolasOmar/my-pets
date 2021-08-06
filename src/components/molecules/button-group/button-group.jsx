@@ -1,7 +1,7 @@
 import React from 'react'
 import { arrayOf, bool, func, oneOf, shape, string } from 'prop-types'
 // OTHER COMPONENTS
-import FormButton from '../form-button/form-button'
+import FormButton from '../../shared/form-button/form-button'
 // ENUMS
 import { buttonTypeEnums, buttonColorEnums } from '../../../enums/buttons.enum.json'
 

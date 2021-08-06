@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 import { LOGIN } from '../../../graphql/mutations'
 // COMPONENTS
 import GridLayout from '../../shared/grid-layout/grid-layout'
-import Form from '../../shared/form/form'
+import Form from '../form/form'
 // FORM CONFIG
 import { inputs, header, loginButton, goToSignUpButton } from './login.config.json'
 // CONSTANTS

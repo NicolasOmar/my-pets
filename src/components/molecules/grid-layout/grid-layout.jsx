@@ -10,7 +10,6 @@ const GridLayout = ({ header, width, children }) => {
     width: 8,
     textAlign: 'center'
   }
-
   const widthClass = `${columnWidth[width || baseConfig.width]} wide column`
   const renderHeader = () => {
     return header ? <Title {...header} /> : null

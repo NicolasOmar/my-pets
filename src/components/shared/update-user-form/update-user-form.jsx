@@ -6,7 +6,7 @@ import { useMutation } from '@apollo/client'
 import { UPDATE_USER } from '../../../graphql/mutations'
 // COMPONENTS
 import GridLayout from '../../shared/grid-layout/grid-layout'
-import Form from '../../shared/form/form'
+import Form from '../form/form'
 // FORM CONFIG
 import { inputs, header, saveButton, goBackButton } from './update-user.config.json'
 // CONSTANTS

@@ -4,14 +4,14 @@ import { useSelector } from 'react-redux'
 // HISTORY
 import history from './history'
 // COMPONENTS
-import Header from '../header/header'
-import Home from '../home/home'
-import LoginForm from '../../core/login-form/login-form'
-import NewUserForm from '../../users/new-user-form/new-user-form'
-import UpdateUserForm from '../../users/update-user-form/update-user-form'
-import UpdatePasswordForm from '../../users/update-password-form/update-password-form'
+import Header from '../core/header/header'
+import Home from '../core/home/home'
+import LoginForm from '../core/login-form/login-form'
+import NewUserForm from '../users/new-user-form/new-user-form'
+import UpdateUserForm from '../users/update-user-form/update-user-form'
+import UpdatePasswordForm from '../users/update-password-form/update-password-form'
 // CONSTANTS
-import { ROUTES } from '../../../constants/routes.json'
+import { ROUTES } from '../../constants/routes.json'
 
 const renderHeader = userState => userState && <Header name={userState.name} />
 
