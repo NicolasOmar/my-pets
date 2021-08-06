@@ -4,7 +4,7 @@ import Title from '../../elements/title/title'
 // HELPER FUNCTIONS
 import { getLoggedUser } from '../../../functions/local-storage'
 
-const Home = () => {
+const HomePage = () => {
   const [user] = useState(getLoggedUser())
   const homeText = {
     title: `HELLO ${user.name.toUpperCase()}`,
@@ -15,4 +15,4 @@ const Home = () => {
   return <Title {...homeText} />
 }
 
-export default Home
+export default HomePage

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 // COMPONENTS
-import Home from './home'
+import Home from '../../molecules/home/home'
 // HELPER FUNCTIONS
 import { setLoggedUser } from '../../../functions/local-storage'
 
