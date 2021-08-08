@@ -10,7 +10,7 @@ import reducers from './redux/reducers'
 import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 // COMPONENTS
-import App from './components/core/app/app'
+import App from './components/app/app'
 import { getLoggedUser } from './functions/local-storage'
 
 const httpLink = createHttpLink({

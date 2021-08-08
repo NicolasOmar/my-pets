@@ -1,6 +1,6 @@
 {
   "name": "my-pets",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Nicolás Omar González Passerino",
   "license": "MIT",
   "private": false,
@@ -30,7 +30,7 @@
     "crypto-js": "^4.0.0",
     "env-cmd": "^10.1.0",
     "graphql": "^15.5.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^6.0.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.4",

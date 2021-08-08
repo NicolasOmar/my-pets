@@ -9,6 +9,7 @@ export const mergeGraphObj = (graphObj, originalObj) => {
 }
 
 export const parseInputClass = (inputConfig, fieldName) => {
+  // console.warn(inputConfig)
   const mappedClasses = inputClasses[fieldName]
     .map(({ prop, isFalse, setClass }) =>
       isFalse
