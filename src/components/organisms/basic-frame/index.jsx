@@ -1,8 +1,8 @@
 import React from 'react'
 import { string, number, element, shape } from 'prop-types'
 // COMPONENTS
-import Title from '../../elements/title/title'
-import GridLayout from '../../molecules/grid-layout/grid-layout'
+import Title from '../../elements/title'
+import GridLayout from '../../molecules/grid-layout'
 
 const BasicFrame = ({ header, width, children }) => {
   const renderHeader = () => {

@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { array, bool, func, object } from 'prop-types'
-import './form.scss'
+import './index.scss'
 // COMPONENTS
-import FormInput from '../../molecules/form-input/form-input'
-import BasicButton from '../../elements/basic-button/basic-button'
-import ButtonGroup from '../../molecules/button-group/button-group'
+import FormInput from '../../molecules/form-input'
+import BasicButton from '../../elements/basic-button'
+import ButtonGroup from '../../molecules/button-group'
 // HELPERS FUNCTIONS
 import { checkIsValidForm, checkIsValidInput, sendObjValues } from '../../../functions/methods'
 import validators from '../../../functions/validators'

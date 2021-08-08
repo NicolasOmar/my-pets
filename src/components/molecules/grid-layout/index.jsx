@@ -1,5 +1,5 @@
 import React from 'react'
-import { number, element } from 'prop-types'
+import { number, element, array, oneOfType } from 'prop-types'
 // ENUMS
 import { columnWidth } from '../../../enums/buttons.enum.json'
 
@@ -11,7 +11,7 @@ const GridLayout = ({ width, children }) => {
   const widthClass = `${columnWidth[width || baseConfig.width]} wide column`
 
   return (
-    <div className="ui grid centered">
+    <div data-testid={'grid-test-layout'} className="ui grid centered">
       <div className={widthClass}>{children}</div>
     </div>
   )
@@ -21,5 +21,5 @@ export default GridLayout
 
 GridLayout.propTypes = {
   width: number,
-  children: element
+  children: oneOfType([element, array])
 }

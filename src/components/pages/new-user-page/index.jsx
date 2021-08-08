@@ -1,10 +1,10 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { useMutation } from '@apollo/client'
 // GRAPHQL CLIENT
+import { useMutation } from '@apollo/client'
 import { CREATE_USER } from '../../../graphql/mutations'
 // COMPONENTS
-import FormTemplate from '../../templates/form-template/form-template'
+import FormTemplate from '../../templates/form-template'
 // FORM CONFIG
 import { inputs, header, signUpButton, goToLoginButton } from './new-user.config.json'
 // CONSTANTS

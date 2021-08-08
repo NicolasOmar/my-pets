@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import BasicButton from './basic-button'
+import BasicButton from '.'
 
 describe('[BasicButton]', () => {
   describe('[HAPPY PATH]', () => {

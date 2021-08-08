@@ -1,6 +1,6 @@
 import React from 'react'
 import { bool, string } from 'prop-types'
-import './title.scss'
+import './index.scss'
 
 const Title = ({ title, subTitle, centered }) => {
   const titleClass = `ui ${centered ? 'center aligned' : ''} header`

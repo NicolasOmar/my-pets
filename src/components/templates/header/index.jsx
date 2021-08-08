@@ -6,13 +6,13 @@ import { useDispatch } from 'react-redux'
 import { useMutation } from '@apollo/client'
 import { LOGOUT } from '../../../graphql/mutations'
 // COMPONENTS
-import MenuDropdown from '../../molecules/menu-dropdown/menu-dropdown'
+import MenuDropdown from '../../molecules/menu-dropdown'
 // CONSTANTS
 import { ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
 import { clearAllStorage } from '../../../functions/local-storage'
 // STYLES
-import './header.scss'
+import './index.scss'
 
 const Header = ({ name }) => {
   let history = useHistory()

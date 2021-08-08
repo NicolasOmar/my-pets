@@ -1,9 +1,9 @@
 import React from 'react'
-import { useMutation } from '@apollo/client'
 // GRAPHQL CLIENT
+import { useMutation } from '@apollo/client'
 import { UPDATE_PASS } from '../../../graphql/mutations'
 // COMPONENTS
-import FormTemplate from '../../templates/form-template/form-template'
+import FormTemplate from '../../templates/form-template'
 // FORM CONFIG
 import { header, inputs, updateButton, cancelButton } from './update-password.config.json'
 // FUNCTIONS

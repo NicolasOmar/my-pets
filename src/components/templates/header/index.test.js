@@ -1,23 +1,23 @@
-import { render, screen } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
+import { render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 // REDUX
 import store from '../../../redux/reducers'
 // COMPONENTS
-import LoginPage from './login-page'
+import Header from '.'
 
-describe('[LoginPage]', () => {
+describe('[Header]', () => {
   describe('[HAPPY PATH]', () => {
-    test('Renders without props', () => {
+    test('Render with a dummy "name" prop', () => {
       render(
         <Provider store={createStore(store)}>
           <MockedProvider mocks={[]} addTypename={false}>
-            <LoginPage />
+            <Header name={'TEST'} />
           </MockedProvider>
         </Provider>
       )
-      const element = screen.getByText('Password')
+      const element = screen.getByText('TEST')
       expect(element).toBeInTheDocument()
     })
   })

@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import { useMutation } from '@apollo/client'
 import { useDispatch } from 'react-redux'
 // GRAPHQL CLIENT
+import { useMutation } from '@apollo/client'
 import { LOGIN } from '../../../graphql/mutations'
 // COMPONENTS
-import FormTemplate from '../../templates/form-template/form-template'
+import FormTemplate from '../../templates/form-template'
 // FORM CONFIG
 import { inputs, header, loginButton, goToSignUpButton } from './login.config.json'
 // CONSTANTS

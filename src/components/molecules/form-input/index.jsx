@@ -1,7 +1,7 @@
 import React from 'react'
 import { shape, bool, func, string, number } from 'prop-types'
 // COMPONENTS
-import BasicInput from '../../elements/basic-input/basic-input'
+import BasicInput from '../../elements/basic-input'
 // FUNCTIONS
 import { parseInputClass } from '../../../functions/parsers'
 

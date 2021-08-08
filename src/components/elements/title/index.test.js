@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import Title from './title'
+import Title from '.'
 
 describe('[Title]', () => {
   describe('[HAPPY PATH]', () => {
