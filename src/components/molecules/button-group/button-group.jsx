@@ -1,16 +1,16 @@
 import React from 'react'
 import { arrayOf, bool, func, oneOf, shape, string } from 'prop-types'
 // OTHER COMPONENTS
-import FormButton from '../../shared/form-button/form-button'
+import BasicButton from '../../elements/basic-button/basic-button'
 // ENUMS
 import { buttonTypeEnums, buttonColorEnums } from '../../../enums/buttons.enum.json'
 
 const ButtonGroup = ({ buttons, separator }) => {
   return (
     <div className="ui buttons">
-      <FormButton config={buttons[0]} />
+      <BasicButton config={buttons[0]} />
       <div className={separator || 'or'}></div>
-      <FormButton config={buttons[1]} />
+      <BasicButton config={buttons[1]} />
     </div>
   )
 }

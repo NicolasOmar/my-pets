@@ -3,8 +3,8 @@ import { useMutation } from '@apollo/client'
 // GRAPHQL CLIENT
 import { UPDATE_PASS } from '../../../graphql/mutations'
 // COMPONENTS
-import GridLayout from '../../shared/grid-layout/grid-layout'
-import Form from '../../shared/form/form'
+import BasicFrame from '../../organisms/basic-frame/basic-frame'
+import Form from '../../organisms/form/form'
 // FORM CONFIG
 import { header, inputs, updateButton, cancelButton } from './update-password.config.json'
 // FUNCTIONS
@@ -50,17 +50,22 @@ const UpdatePasswordForm = () => {
   }
 
   return (
-    <GridLayout header={header}>
-      <Form
-        isLoading={false}
-        errors={error}
-        inputs={inputs}
-        formButtons={[updateButton, cancelButton]}
-        buttonsGrouped={true}
-        onFormSubmit={formData => onSubmitUpdate(formData)}
-        onInputBlurChange={onInputBlurChange}
-      />
-    </GridLayout>
+    <BasicFrame
+      {...{
+        header,
+        children: (
+          <Form
+            isLoading={false}
+            errors={error}
+            inputs={inputs}
+            formButtons={[updateButton, cancelButton]}
+            buttonsGrouped={true}
+            onFormSubmit={formData => onSubmitUpdate(formData)}
+            onInputBlurChange={onInputBlurChange}
+          />
+        )
+      }}
+    />
   )
 }
 

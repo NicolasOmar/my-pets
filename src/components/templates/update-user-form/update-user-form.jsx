@@ -5,8 +5,8 @@ import { useDispatch } from 'react-redux'
 import { useMutation } from '@apollo/client'
 import { UPDATE_USER } from '../../../graphql/mutations'
 // COMPONENTS
-import GridLayout from '../../shared/grid-layout/grid-layout'
-import Form from '../form/form'
+import BasicFrame from '../../organisms/basic-frame/basic-frame'
+import Form from '../../organisms/form/form'
 // FORM CONFIG
 import { inputs, header, saveButton, goBackButton } from './update-user.config.json'
 // CONSTANTS
@@ -43,22 +43,27 @@ const UpdateUserForm = () => {
   }
 
   return (
-    <GridLayout header={header}>
-      <Form
-        isLoading={loading}
-        errors={error}
-        inputs={inputs}
-        buttonsGrouped={true}
-        formButtons={[
-          saveButton,
-          {
-            ...goBackButton,
-            onClick: () => history.push(ROUTES.HOME)
-          }
-        ]}
-        onFormSubmit={data => onSubmitUpdate(data)}
-      />
-    </GridLayout>
+    <BasicFrame
+      {...{
+        header,
+        children: (
+          <Form
+            isLoading={loading}
+            errors={error}
+            inputs={inputs}
+            buttonsGrouped={true}
+            formButtons={[
+              saveButton,
+              {
+                ...goBackButton,
+                onClick: () => history.push(ROUTES.HOME)
+              }
+            ]}
+            onFormSubmit={data => onSubmitUpdate(data)}
+          />
+        )
+      }}
+    />
   )
 }
 

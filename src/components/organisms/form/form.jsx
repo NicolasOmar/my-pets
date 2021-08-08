@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import { array, bool, func, object } from 'prop-types'
 import './form.scss'
 // COMPONENTS
-import FormInput from '../../shared/form-input/form-input'
-import FormButton from '../form-button/form-button'
-import ButtonGroup from '../button-group/button-group'
+import FormInput from '../../molecules/form-input/form-input'
+import BasicButton from '../../elements/basic-button/basic-button'
+import ButtonGroup from '../../molecules/button-group/button-group'
 // HELPERS FUNCTIONS
 import { checkIsValidForm, checkIsValidInput, sendObjValues } from '../../../functions/methods'
 import validators from '../../../functions/validators'
@@ -100,7 +100,7 @@ const Form = ({
     ) : (
       formButtons.map((btn, i) => {
         return (
-          <FormButton
+          <BasicButton
             key={`btn-${i}`}
             config={{
               ...btn,

@@ -1,14 +1,14 @@
 import { render, screen } from '@testing-library/react'
-import FormButton from './form-button'
+import BasicButton from './basic-button'
 
-describe('[FormButton]', () => {
+describe('[BasicButton]', () => {
   describe('[HAPPY PATH]', () => {
     test('Renders using required props only', () => {
       const props = {
         type: 'button',
         label: 'Test'
       }
-      render(<FormButton config={props} />)
+      render(<BasicButton config={props} />)
       const element = screen.getByText(props.label)
       expect(element).toBeInTheDocument()
     })

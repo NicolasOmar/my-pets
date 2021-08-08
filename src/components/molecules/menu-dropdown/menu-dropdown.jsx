@@ -1,7 +1,7 @@
 import React from 'react'
 import { arrayOf, shape, string, func } from 'prop-types'
 // ELEMENTS
-import MenuItem from '../../elements/menu-item'
+import MenuItem from '../../elements/menu-item/menu-item'
 
 const MenuDropdown = ({ menuLabel, options }) => (
   <div className="ui simple dropdown item">

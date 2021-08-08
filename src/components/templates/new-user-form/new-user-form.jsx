@@ -4,8 +4,8 @@ import { useMutation } from '@apollo/client'
 // GRAPHQL CLIENT
 import { CREATE_USER } from '../../../graphql/mutations'
 // COMPONENTS
-import GridLayout from '../../shared/grid-layout/grid-layout'
-import Form from '../form/form'
+import BasicFrame from '../../organisms/basic-frame/basic-frame'
+import Form from '../../organisms/form/form'
 // FORM CONFIG
 import { inputs, header, signUpButton, goToLoginButton } from './new-user.config.json'
 // CONSTANTS
@@ -55,23 +55,28 @@ const NewUserForm = () => {
   }
 
   return (
-    <GridLayout header={header}>
-      <Form
-        isLoading={loading}
-        errors={error}
-        inputs={inputs}
-        formButtons={[
-          signUpButton,
-          {
-            ...goToLoginButton,
-            onClick: () => history.push(ROUTES.LOGIN)
-          }
-        ]}
-        buttonsGrouped={true}
-        onFormSubmit={data => onSubmitCreation(data)}
-        onInputBlurChange={onInputBlurChange}
-      />
-    </GridLayout>
+    <BasicFrame
+      {...{
+        header,
+        children: (
+          <Form
+            isLoading={loading}
+            errors={error}
+            inputs={inputs}
+            formButtons={[
+              signUpButton,
+              {
+                ...goToLoginButton,
+                onClick: () => history.push(ROUTES.LOGIN)
+              }
+            ]}
+            buttonsGrouped={true}
+            onFormSubmit={data => onSubmitCreation(data)}
+            onInputBlurChange={onInputBlurChange}
+          />
+        )
+      }}
+    />
   )
 }
 

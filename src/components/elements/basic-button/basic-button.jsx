@@ -3,7 +3,7 @@ import { bool, func, oneOf, shape, string } from 'prop-types'
 // ENUMS
 import { buttonTypeEnums, buttonColorEnums } from '../../../enums/buttons.enum.json'
 
-const FormButton = ({ config }) => {
+const BasicButton = ({ config }) => {
   const btnClass = `ui button ${config.color || 'grey'}`
 
   return (
@@ -18,9 +18,9 @@ const FormButton = ({ config }) => {
   )
 }
 
-export default FormButton
+export default BasicButton
 
-FormButton.propTypes = {
+BasicButton.propTypes = {
   config: shape({
     type: oneOf(buttonTypeEnums).isRequired,
     isBasic: bool,

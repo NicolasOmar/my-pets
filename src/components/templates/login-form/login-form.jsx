@@ -5,8 +5,8 @@ import { useDispatch } from 'react-redux'
 // GRAPHQL CLIENT
 import { LOGIN } from '../../../graphql/mutations'
 // COMPONENTS
-import GridLayout from '../../shared/grid-layout/grid-layout'
-import Form from '../form/form'
+import BasicFrame from '../../organisms/basic-frame/basic-frame'
+import Form from '../../organisms/form/form'
 // FORM CONFIG
 import { inputs, header, loginButton, goToSignUpButton } from './login.config.json'
 // CONSTANTS
@@ -44,22 +44,27 @@ const LoginForm = () => {
   }
 
   return (
-    <GridLayout header={header}>
-      <Form
-        isLoading={loading}
-        errors={error}
-        inputs={inputs}
-        formButtons={[
-          loginButton,
-          {
-            ...goToSignUpButton,
-            onClick: () => history.push(ROUTES.NEW_USER)
-          }
-        ]}
-        buttonsGrouped={true}
-        onFormSubmit={data => onSubmitLogin(data)}
-      />
-    </GridLayout>
+    <BasicFrame
+      {...{
+        header,
+        children: (
+          <Form
+            isLoading={loading}
+            errors={error}
+            inputs={inputs}
+            formButtons={[
+              loginButton,
+              {
+                ...goToSignUpButton,
+                onClick: () => history.push(ROUTES.NEW_USER)
+              }
+            ]}
+            buttonsGrouped={true}
+            onFormSubmit={data => onSubmitLogin(data)}
+          />
+        )
+      }}
+    />
   )
 }
 
