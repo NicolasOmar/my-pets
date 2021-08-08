@@ -5,11 +5,11 @@ import { useSelector } from 'react-redux'
 import history from './history'
 // COMPONENTS
 import Header from '../templates/header/header'
-import Home from '../pages/home-page/home-page'
-import LoginForm from '../templates/login-form/login-form'
-import NewUserForm from '../templates/new-user-form/new-user-form'
-import UpdateUserForm from '../templates/update-user-form/update-user-form'
-import UpdatePasswordForm from '../templates/update-password-form/update-password-form'
+import HomePage from '../pages/home-page/home-page'
+import LoginPage from '../pages/login-page/login-page'
+import NewUserPage from '../pages/new-user-page/new-user-page'
+import UpdateUserPage from '../pages/update-user-page/update-user-page'
+import UpdatePasswordPage from '../pages/update-pass-page/update-pass-page'
 // CONSTANTS
 import { ROUTES } from '../../constants/routes.json'
 
@@ -24,11 +24,11 @@ const App = () => {
         {renderHeader(userData)}
         <Redirect exact from={ROUTES.BASE} to={ROUTES.LOGIN} />
         <Switch>
-          <Route exact path={ROUTES.HOME} component={Home} />
-          <Route exact path={ROUTES.LOGIN} component={LoginForm} />
-          <Route exact path={ROUTES.NEW_USER} component={NewUserForm} />
-          <Route exact path={ROUTES.UPDATE_USER} component={UpdateUserForm} />
-          <Route exact path={ROUTES.UPDATE_PASS} component={UpdatePasswordForm} />
+          <Route exact path={ROUTES.HOME} component={HomePage} />
+          <Route exact path={ROUTES.LOGIN} component={LoginPage} />
+          <Route exact path={ROUTES.NEW_USER} component={NewUserPage} />
+          <Route exact path={ROUTES.UPDATE_USER} component={UpdateUserPage} />
+          <Route exact path={ROUTES.UPDATE_PASS} component={UpdatePasswordPage} />
         </Switch>
       </Router>
     </>

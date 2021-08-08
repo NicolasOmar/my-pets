@@ -5,25 +5,19 @@ import { createStore } from 'redux'
 // REDUX
 import store from '../../../redux/reducers'
 // COMPONENTS
-import UpdateUserForm from './update-user-form'
-// HELPER FUNCTIONS
-import { setLoggedUser } from '../../../functions/local-storage'
+import LoginPage from './login-page'
 
-describe('[UpdateUserForm]', () => {
+describe('[LoginPage]', () => {
   describe('[HAPPY PATH]', () => {
-    test(`Renders without props`, () => {
-      setLoggedUser({
-        name: 'Test',
-        lastName: 'Test'
-      })
+    test('Renders without props', () => {
       render(
         <Provider store={createStore(store)}>
           <MockedProvider mocks={[]} addTypename={false}>
-            <UpdateUserForm />
+            <LoginPage />
           </MockedProvider>
         </Provider>
       )
-      const element = screen.getByText('Name')
+      const element = screen.getByText('Password')
       expect(element).toBeInTheDocument()
     })
   })

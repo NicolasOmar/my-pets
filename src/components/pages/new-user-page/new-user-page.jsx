@@ -4,8 +4,7 @@ import { useMutation } from '@apollo/client'
 // GRAPHQL CLIENT
 import { CREATE_USER } from '../../../graphql/mutations'
 // COMPONENTS
-import BasicFrame from '../../organisms/basic-frame/basic-frame'
-import Form from '../../organisms/form/form'
+import FormTemplate from '../../templates/form-template/form-template'
 // FORM CONFIG
 import { inputs, header, signUpButton, goToLoginButton } from './new-user.config.json'
 // CONSTANTS
@@ -14,7 +13,7 @@ import { ROUTES } from '../../../constants/routes.json'
 import { encryptPass } from '../../../functions/encrypt'
 import { setLoggedUser } from '../../../functions/local-storage'
 
-const NewUserForm = () => {
+const NewUserPage = () => {
   let history = useHistory()
   const [createUser, { loading, error }] = useMutation(CREATE_USER)
 
@@ -55,29 +54,23 @@ const NewUserForm = () => {
   }
 
   return (
-    <BasicFrame
-      {...{
-        header,
-        children: (
-          <Form
-            isLoading={loading}
-            errors={error}
-            inputs={inputs}
-            formButtons={[
-              signUpButton,
-              {
-                ...goToLoginButton,
-                onClick: () => history.push(ROUTES.LOGIN)
-              }
-            ]}
-            buttonsGrouped={true}
-            onFormSubmit={data => onSubmitCreation(data)}
-            onInputBlurChange={onInputBlurChange}
-          />
-        )
-      }}
+    <FormTemplate
+      header={header}
+      isLoading={loading}
+      errors={error}
+      inputs={inputs}
+      formButtons={[
+        signUpButton,
+        {
+          ...goToLoginButton,
+          onClick: () => history.push(ROUTES.LOGIN)
+        }
+      ]}
+      buttonsGrouped={true}
+      onFormSubmit={data => onSubmitCreation(data)}
+      onInputBlurChange={onInputBlurChange}
     />
   )
 }
 
-export default NewUserForm
+export default NewUserPage

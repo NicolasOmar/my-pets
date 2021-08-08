@@ -3,15 +3,14 @@ import { useMutation } from '@apollo/client'
 // GRAPHQL CLIENT
 import { UPDATE_PASS } from '../../../graphql/mutations'
 // COMPONENTS
-import BasicFrame from '../../organisms/basic-frame/basic-frame'
-import Form from '../../organisms/form/form'
+import FormTemplate from '../../templates/form-template/form-template'
 // FORM CONFIG
 import { header, inputs, updateButton, cancelButton } from './update-password.config.json'
 // FUNCTIONS
 import { encryptPass } from '../../../functions/encrypt'
 
-const UpdatePasswordForm = () => {
-  const [updatePass, { error }] = useMutation(UPDATE_PASS)
+const UpdatePassPage = () => {
+  const [updatePass, { loading, error }] = useMutation(UPDATE_PASS)
 
   const onSubmitUpdate = async formData => {
     const variables = {
@@ -50,23 +49,17 @@ const UpdatePasswordForm = () => {
   }
 
   return (
-    <BasicFrame
-      {...{
-        header,
-        children: (
-          <Form
-            isLoading={false}
-            errors={error}
-            inputs={inputs}
-            formButtons={[updateButton, cancelButton]}
-            buttonsGrouped={true}
-            onFormSubmit={formData => onSubmitUpdate(formData)}
-            onInputBlurChange={onInputBlurChange}
-          />
-        )
-      }}
+    <FormTemplate
+      header={header}
+      isLoading={loading}
+      errors={error}
+      inputs={inputs}
+      formButtons={[updateButton, cancelButton]}
+      buttonsGrouped={true}
+      onFormSubmit={formData => onSubmitUpdate(formData)}
+      onInputBlurChange={onInputBlurChange}
     />
   )
 }
 
-export default UpdatePasswordForm
+export default UpdatePassPage

@@ -5,8 +5,7 @@ import { useDispatch } from 'react-redux'
 // GRAPHQL CLIENT
 import { LOGIN } from '../../../graphql/mutations'
 // COMPONENTS
-import BasicFrame from '../../organisms/basic-frame/basic-frame'
-import Form from '../../organisms/form/form'
+import FormTemplate from '../../templates/form-template/form-template'
 // FORM CONFIG
 import { inputs, header, loginButton, goToSignUpButton } from './login.config.json'
 // CONSTANTS
@@ -15,7 +14,7 @@ import { ROUTES } from '../../../constants/routes.json'
 import { encryptPass } from '../../../functions/encrypt'
 import { getLoggedUser, setLoggedUser } from '../../../functions/local-storage'
 
-const LoginForm = () => {
+const LoginPage = () => {
   let history = useHistory()
   const [login, { loading, error }] = useMutation(LOGIN)
   const dispatch = useDispatch()
@@ -44,28 +43,22 @@ const LoginForm = () => {
   }
 
   return (
-    <BasicFrame
-      {...{
-        header,
-        children: (
-          <Form
-            isLoading={loading}
-            errors={error}
-            inputs={inputs}
-            formButtons={[
-              loginButton,
-              {
-                ...goToSignUpButton,
-                onClick: () => history.push(ROUTES.NEW_USER)
-              }
-            ]}
-            buttonsGrouped={true}
-            onFormSubmit={data => onSubmitLogin(data)}
-          />
-        )
-      }}
+    <FormTemplate
+      header={header}
+      isLoading={loading}
+      errors={error}
+      inputs={inputs}
+      formButtons={[
+        loginButton,
+        {
+          ...goToSignUpButton,
+          onClick: () => history.push(ROUTES.NEW_USER)
+        }
+      ]}
+      buttonsGrouped={true}
+      onFormSubmit={data => onSubmitLogin(data)}
     />
   )
 }
 
-export default LoginForm
+export default LoginPage
