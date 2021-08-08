@@ -85,7 +85,8 @@ const Form = ({
       return (
         <FormInput
           key={`${prop}-${i}`}
-          config={{
+          inputLabel={formControls[prop].label}
+          inputConfig={{
             ...formControls[prop],
             onInputChange,
             onBlurChange

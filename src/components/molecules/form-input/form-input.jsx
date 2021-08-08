@@ -6,12 +6,13 @@ import BasicInput from '../../elements/basic-input/basic-input'
 import { parseInputClass } from '../../../functions/parsers'
 
 const FormInput = ({ inputLabel, inputConfig }) => {
+  console.warn(inputConfig)
   const inputClass = parseInputClass(inputConfig, 'field')
 
   return (
     <div className={inputClass}>
       <label>{inputLabel}</label>
-      <BasicInput {...inputConfig} />
+      <BasicInput config={inputConfig} />
     </div>
   )
 }
