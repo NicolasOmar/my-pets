@@ -8,9 +8,9 @@ import { buttonTypeEnums, buttonColorEnums } from '../../../enums/buttons.enum.j
 const ButtonGroup = ({ buttons, separator }) => {
   return (
     <div className="ui buttons">
-      <BasicButton config={buttons[0]} />
+      <BasicButton {...buttons[0]} />
       <div className={separator || 'or'}></div>
-      <BasicButton config={buttons[1]} />
+      <BasicButton {...buttons[1]} />
     </div>
   )
 }

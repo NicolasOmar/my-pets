@@ -1,19 +1,14 @@
 import React from 'react'
-import { bool, func, oneOf, shape, string } from 'prop-types'
+import { bool, func, oneOf, string } from 'prop-types'
 // ENUMS
 import { buttonTypeEnums, buttonColorEnums } from '../../../enums/buttons.enum.json'
 
-const BasicButton = ({ config }) => {
-  const btnClass = `ui button ${config.color || 'grey'}`
+const BasicButton = ({ type, color, isDisabled, onClick, label }) => {
+  const btnClass = `ui button ${color || 'grey'}`
 
   return (
-    <button
-      type={config.type}
-      className={btnClass}
-      disabled={config.isDisabled || false}
-      onClick={config.onClick}
-    >
-      {config.label}
+    <button type={type} className={btnClass} disabled={isDisabled || false} onClick={onClick}>
+      {label}
     </button>
   )
 }
@@ -21,13 +16,9 @@ const BasicButton = ({ config }) => {
 export default BasicButton
 
 BasicButton.propTypes = {
-  config: shape({
-    type: oneOf(buttonTypeEnums).isRequired,
-    isBasic: bool,
-    color: oneOf(buttonColorEnums),
-    isRequired: bool,
-    isDisabled: bool,
-    onClick: func,
-    label: string.isRequired
-  })
+  type: oneOf(buttonTypeEnums).isRequired,
+  color: oneOf(buttonColorEnums),
+  isDisabled: bool,
+  onClick: func,
+  label: string.isRequired
 }

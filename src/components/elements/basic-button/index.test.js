@@ -8,7 +8,7 @@ describe('[BasicButton]', () => {
         type: 'button',
         label: 'Test'
       }
-      render(<BasicButton config={props} />)
+      render(<BasicButton {...props} />)
       const element = screen.getByText(props.label)
       expect(element).toBeInTheDocument()
     })

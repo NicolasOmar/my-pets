@@ -103,7 +103,7 @@ const Form = ({
         return (
           <BasicButton
             key={`btn-${i}`}
-            config={{
+            {...{
               ...btn,
               isDisabled: btn.type === buttonTypeEnums[0] ? disableSignUpButton : false
             }}
