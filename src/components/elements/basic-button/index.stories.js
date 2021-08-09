@@ -1,20 +1,38 @@
 import React from 'react'
 // COMPONENTS
 import BasicButton from '.'
+// ENUMS
+import { buttonTypeEnums, buttonColorEnums } from '../../../enums/buttons.enum.json'
 
 export default {
   title: 'MyPets/Elements/Basic Button',
-  component: BasicButton
+  component: BasicButton,
+  argTypes: {
+    type: {
+      options: buttonTypeEnums
+    },
+    color: {
+      options: buttonColorEnums
+    }
+  }
 }
 
 const Template = args => <BasicButton {...args} />
 
-export const BasicButtonStory = Template.bind({})
+export const NormalRed = Template.bind({})
 
-BasicButtonStory.storyName = 'Red'
-BasicButtonStory.args = {
+NormalRed.storyName = 'Normal Red'
+NormalRed.args = {
   type: 'submit',
   color: 'red',
   isDisabled: null,
-  label: 'First BasicButton Story'
+  label: 'Normal Red Button'
+}
+
+export const Disabled = Template.bind({})
+Disabled.storyName = 'Disabled Red'
+Disabled.args = {
+  ...NormalRed.args,
+  isDisabled: true,
+  label: 'Disabled Red Button'
 }
