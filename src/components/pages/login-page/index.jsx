@@ -9,7 +9,7 @@ import FormTemplate from '../../templates/form-template'
 // FORM CONFIG
 import { inputs, header, loginButton, goToSignUpButton } from './login.config.json'
 // CONSTANTS
-import { ROUTES } from '../../../constants/routes.json'
+import { APP_ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
 import { encryptPass } from '../../../functions/encrypt'
 import { getLoggedUser, setLoggedUser } from '../../../functions/local-storage'
@@ -20,7 +20,7 @@ const LoginPage = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    getLoggedUser() && history.push(ROUTES.HOME)
+    getLoggedUser() && history.push(APP_ROUTES.HOME)
     return () => {}
   }, [history])
 
@@ -37,7 +37,7 @@ const LoginPage = () => {
           type: 'LOGIN',
           payload: data.loginUser
         })
-        history.push(ROUTES.HOME)
+        history.push(APP_ROUTES.HOME)
       })
       .catch(error => console.error(error))
   }
@@ -52,7 +52,7 @@ const LoginPage = () => {
         loginButton,
         {
           ...goToSignUpButton,
-          onClick: () => history.push(ROUTES.NEW_USER)
+          onClick: () => history.push(APP_ROUTES.NEW_USER)
         }
       ]}
       buttonsGrouped={true}

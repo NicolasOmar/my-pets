@@ -71,8 +71,9 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "src/**/!(*reportWebVitals).(js|jsx)",
-      "!**/(*constants|*graphql)/**"
+      "src/components/**/*.(jsx)",
+      "src/functions/**/*.(js)",
+      "src/redux/**/*.(js)"
     ]
   },
   "lint-staged": {

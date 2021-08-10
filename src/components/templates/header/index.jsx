@@ -8,7 +8,7 @@ import { LOGOUT } from '../../../graphql/mutations'
 // COMPONENTS
 import MenuDropdown from '../../molecules/menu-dropdown'
 // CONSTANTS
-import { ROUTES } from '../../../constants/routes.json'
+import { APP_ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
 import { clearAllStorage } from '../../../functions/local-storage'
 // STYLES
@@ -27,7 +27,7 @@ const Header = ({ name }) => {
           type: 'LOGOUT',
           payload: null
         })
-        history.push(ROUTES.LOGIN)
+        history.push(APP_ROUTES.LOGIN)
       })
     } catch (e) {
       console.warn('e', e)
@@ -39,11 +39,11 @@ const Header = ({ name }) => {
     options: [
       {
         label: 'Update User',
-        onClick: () => history.push(ROUTES.UPDATE_USER)
+        onClick: () => history.push(APP_ROUTES.UPDATE_USER)
       },
       {
         label: 'Update Pass',
-        onClick: () => history.push(ROUTES.UPDATE_PASS)
+        onClick: () => history.push(APP_ROUTES.UPDATE_PASS)
       },
       {
         label: 'Logout',

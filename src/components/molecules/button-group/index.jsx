@@ -3,7 +3,7 @@ import { arrayOf, bool, func, oneOf, shape, string } from 'prop-types'
 // OTHER COMPONENTS
 import BasicButton from '../../elements/basic-button'
 // ENUMS
-import { buttonTypeEnums, buttonColorEnums } from '../../../enums/buttons.enum.json'
+import { buttonTypeEnums, buttonColorEnums } from '../../../enums/button.enums.json'
 
 const ButtonGroup = ({ buttons, separator }) => {
   return (

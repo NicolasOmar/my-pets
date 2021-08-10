@@ -8,7 +8,7 @@ import FormTemplate from '../../templates/form-template'
 // FORM CONFIG
 import { inputs, header, signUpButton, goToLoginButton } from './new-user.config.json'
 // CONSTANTS
-import { ROUTES } from '../../../constants/routes.json'
+import { APP_ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
 import { encryptPass } from '../../../functions/encrypt'
 import { setLoggedUser } from '../../../functions/local-storage'
@@ -30,7 +30,7 @@ const NewUserPage = () => {
       .then(({ data }) => {
         setLoggedUser(data.newUser)
 
-        history.push(ROUTES.HOME)
+        history.push(APP_ROUTES.HOME)
       })
       .catch(error => console.error(error))
   }
@@ -63,7 +63,7 @@ const NewUserPage = () => {
         signUpButton,
         {
           ...goToLoginButton,
-          onClick: () => history.push(ROUTES.LOGIN)
+          onClick: () => history.push(APP_ROUTES.LOGIN)
         }
       ]}
       buttonsGrouped={true}

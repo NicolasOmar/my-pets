@@ -9,7 +9,7 @@ import ButtonGroup from '../../molecules/button-group'
 import { checkIsValidForm, checkIsValidInput, sendObjValues } from '../../../functions/methods'
 import validators from '../../../functions/validators'
 // ENUMS
-import { buttonTypeEnums } from '../../../enums/buttons.enum.json'
+import { buttonTypeEnums } from '../../../enums/button.enums.json'
 
 const Form = ({
   isLoading,

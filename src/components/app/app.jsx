@@ -11,7 +11,7 @@ import NewUserPage from '../pages/new-user-page'
 import UpdateUserPage from '../pages/update-user-page'
 import UpdatePasswordPage from '../pages/update-pass-page'
 // CONSTANTS
-import { ROUTES } from '../../constants/routes.json'
+import { APP_ROUTES } from '../../constants/routes.json'
 
 const renderHeader = userState => userState && <Header name={userState.name} />
 
@@ -22,13 +22,13 @@ const App = () => {
     <>
       <Router history={history}>
         {renderHeader(userData)}
-        <Redirect exact from={ROUTES.BASE} to={ROUTES.LOGIN} />
+        <Redirect exact from={APP_ROUTES.BASE} to={APP_ROUTES.LOGIN} />
         <Switch>
-          <Route exact path={ROUTES.HOME} component={HomePage} />
-          <Route exact path={ROUTES.LOGIN} component={LoginPage} />
-          <Route exact path={ROUTES.NEW_USER} component={NewUserPage} />
-          <Route exact path={ROUTES.UPDATE_USER} component={UpdateUserPage} />
-          <Route exact path={ROUTES.UPDATE_PASS} component={UpdatePasswordPage} />
+          <Route exact path={APP_ROUTES.HOME} component={HomePage} />
+          <Route exact path={APP_ROUTES.LOGIN} component={LoginPage} />
+          <Route exact path={APP_ROUTES.NEW_USER} component={NewUserPage} />
+          <Route exact path={APP_ROUTES.UPDATE_USER} component={UpdateUserPage} />
+          <Route exact path={APP_ROUTES.UPDATE_PASS} component={UpdatePasswordPage} />
         </Switch>
       </Router>
     </>

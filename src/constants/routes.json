@@ -1,5 +1,5 @@
 {
-  "ROUTES": {
+  "APP_ROUTES": {
     "BASE": "/",
     "LOGIN": "/login",
     "HOME": "/home",
@@ -7,5 +7,8 @@
     "NEW_USER": "/new-user",
     "UPDATE_USER": "/update-user",
     "UPDATE_PASS": "/update-pass"
+  },
+  "STORYBOOK_ROUTES": {
+    "ELEMENTS": "MyPets/Elements"
   }
 }

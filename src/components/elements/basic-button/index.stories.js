@@ -1,11 +1,13 @@
 import React from 'react'
 // COMPONENTS
 import BasicButton from '.'
+// APP_ROUTES
+import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // ENUMS
-import { buttonTypeEnums, buttonColorEnums } from '../../../enums/buttons.enum.json'
+import { buttonTypeEnums, buttonColorEnums } from '../../../enums/button.enums.json'
 
 export default {
-  title: 'MyPets/Elements/Basic Button',
+  title: `${STORYBOOK_ROUTES.ELEMENTS}/Basic Button`,
   component: BasicButton,
   argTypes: {
     type: {
@@ -14,25 +16,22 @@ export default {
     color: {
       options: buttonColorEnums
     }
+  },
+  args: {
+    type: 'submit',
+    color: 'red',
+    label: 'Minimal config button'
   }
 }
 
 const Template = args => <BasicButton {...args} />
 
-export const NormalRed = Template.bind({})
-
-NormalRed.storyName = 'Normal Red'
-NormalRed.args = {
-  type: 'submit',
-  color: 'red',
-  isDisabled: null,
-  label: 'Normal Red Button'
-}
+export const Minimal = Template.bind({})
+Minimal.storyName = 'Minimal config'
 
 export const Disabled = Template.bind({})
-Disabled.storyName = 'Disabled Red'
+Disabled.storyName = 'Disabled'
 Disabled.args = {
-  ...NormalRed.args,
   isDisabled: true,
-  label: 'Disabled Red Button'
+  label: 'Disabled Button'
 }

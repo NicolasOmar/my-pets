@@ -1,10 +1,10 @@
 import React from 'react'
 import { bool, func, oneOf, string } from 'prop-types'
 // ENUMS
-import { buttonTypeEnums, buttonColorEnums } from '../../../enums/buttons.enum.json'
+import { buttonTypeEnums, buttonColorEnums } from '../../../enums/button.enums.json'
 
 const BasicButton = ({ type, color, isDisabled, onClick, label }) => {
-  const btnClass = `ui button ${color || 'grey'}`
+  const btnClass = `ui button ${color}`
 
   return (
     <button type={type} className={btnClass} disabled={isDisabled || false} onClick={onClick}>
@@ -17,7 +17,7 @@ export default BasicButton
 
 BasicButton.propTypes = {
   type: oneOf(buttonTypeEnums).isRequired,
-  color: oneOf(buttonColorEnums),
+  color: oneOf(buttonColorEnums).isRequired,
   isDisabled: bool,
   onClick: func,
   label: string.isRequired

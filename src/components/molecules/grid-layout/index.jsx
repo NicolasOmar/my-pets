@@ -1,7 +1,7 @@
 import React from 'react'
 import { number, element, array, oneOfType } from 'prop-types'
 // ENUMS
-import { columnWidth } from '../../../enums/buttons.enum.json'
+import { columnWidth } from '../../../enums/grid.enums.json'
 
 const GridLayout = ({ width, children }) => {
   const baseConfig = {
