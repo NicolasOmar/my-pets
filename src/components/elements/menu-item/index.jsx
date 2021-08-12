@@ -11,5 +11,5 @@ export default MenuItem
 
 MenuItem.propTypes = {
   label: string.isRequired,
-  onClick: func.isRequired
+  onClick: func
 }

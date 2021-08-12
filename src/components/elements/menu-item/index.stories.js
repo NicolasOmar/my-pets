@@ -1,0 +1,16 @@
+// APP_ROUTES
+import MenuItem from '.'
+import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
+
+export default {
+  title: `${STORYBOOK_ROUTES.ELEMENTS}/Menu Item`,
+  component: MenuItem,
+  args: {
+    label: 'Minimal config Menu Item'
+  }
+}
+
+const Template = args => <MenuItem {...args} />
+
+export const Minimal = Template.bind({})
+Minimal.storyName = 'Minimal config'

@@ -17,7 +17,7 @@ const Title = ({ title, subTitle, centered }) => {
 export default Title
 
 Title.propTypes = {
-  title: string,
+  title: string.isRequired,
   subTitle: string,
   centered: bool
 }

@@ -13,10 +13,12 @@ const BasicInput = ({
   isRequired,
   isDisabled,
   minLength,
-  maxLength
-}) => (
-  <div className="ui input">
+  maxLength,
+  styled = false
+}) => {
+  const renderInput = () => (
     <input
+      data-testid={`${control}-${type}`}
       type={type}
       value={value || ''}
       placeholder={placeHolder || null}
@@ -28,8 +30,16 @@ const BasicInput = ({
       minLength={minLength || null}
       maxLength={maxLength || null}
     />
-  </div>
-)
+  )
+
+  return styled ? (
+    <div data-testid={'styled-input'} className="ui input">
+      {renderInput()}
+    </div>
+  ) : (
+    renderInput()
+  )
+}
 
 export default BasicInput
 
@@ -43,5 +53,6 @@ BasicInput.propTypes = {
   isRequired: bool,
   isDisabled: bool,
   minLength: number,
-  maxLength: number
+  maxLength: number,
+  styled: bool
 }

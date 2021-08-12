@@ -1,17 +1,13 @@
 import { render, screen } from '@testing-library/react'
+// COMPONENT
 import Title from '.'
+// MOCKS
+import mocks from './index.mocks.json'
 
 describe('[Title]', () => {
-  describe('[HAPPY PATH]', () => {
-    test('Renders with required props only', () => {
-      const props = {
-        title: 'My',
-        subTitle: 'Test'
-      }
-
-      render(<Title {...props} />)
-      const element = screen.getByText(props.title)
-      expect(element).toBeInTheDocument()
-    })
+  test('Should render the component with required props only', () => {
+    render(<Title {...mocks.minimalConfig} />)
+    const element = screen.getByText(mocks.minimalConfig.title)
+    expect(element).toBeInTheDocument()
   })
 })

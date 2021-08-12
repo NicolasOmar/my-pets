@@ -4,7 +4,7 @@ import HomePage from '.'
 // HELPER FUNCTIONS
 import { setLoggedUser } from '../../../functions/local-storage'
 
-describe('[HomePage]', () => {
+describe.skip('[HomePage]', () => {
   describe('[HAPPY PATH]', () => {
     test('Renders with a dummy logged User', () => {
       setLoggedUser({ name: 'Test' })

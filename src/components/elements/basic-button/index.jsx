@@ -7,7 +7,13 @@ const BasicButton = ({ type, color, isDisabled, onClick, label }) => {
   const btnClass = `ui button ${color}`
 
   return (
-    <button type={type} className={btnClass} disabled={isDisabled || false} onClick={onClick}>
+    <button
+      data-testid={btnClass}
+      type={type}
+      className={btnClass}
+      disabled={isDisabled || false}
+      onClick={onClick}
+    >
       {label}
     </button>
   )

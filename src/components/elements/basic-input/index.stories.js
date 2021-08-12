@@ -2,6 +2,8 @@ import React from 'react'
 import BasicInput from '.'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
+// MOCKS
+import mocks from './index.mocks.json'
 // ENUMS
 import { inputTypeEnums } from '../../../enums/input.enums.json'
 
@@ -13,10 +15,7 @@ export default {
       options: inputTypeEnums
     }
   },
-  args: {
-    type: 'text',
-    control: 'basicInputControl'
-  }
+  args: mocks.minimalConfig
 }
 
 const Template = args => <BasicInput {...args} />
@@ -26,25 +25,20 @@ Minimal.storyName = 'Minimal config'
 
 export const Password = Template.bind({})
 Password.storyName = 'Password'
-Password.args = {
-  type: 'password'
-}
+Password.args = mocks.password
 
 export const WithPlaceholder = Template.bind({})
 WithPlaceholder.storyName = 'With Placeholder'
-WithPlaceholder.args = {
-  placeHolder: 'Hi!'
-}
+WithPlaceholder.args = mocks.placeholderOnly
 
 export const ValueAndPlaceholder = Template.bind({})
 ValueAndPlaceholder.storyName = 'Value & Placeholder'
-ValueAndPlaceholder.args = {
-  value: 'Hello!',
-  placeHolder: 'Nice to see you again'
-}
+ValueAndPlaceholder.args = mocks.valueAndPlaceholder
 
 export const Disabled = Template.bind({})
 Disabled.storyName = 'Disabled'
-Disabled.args = {
-  isDisabled: true
-}
+Disabled.args = mocks.disabled
+
+export const Styled = Template.bind({})
+Styled.storyName = 'Styled'
+Styled.args = mocks.styled

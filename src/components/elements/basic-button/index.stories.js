@@ -1,8 +1,10 @@
 import React from 'react'
-// COMPONENTS
-import BasicButton from '.'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
+// COMPONENTS
+import BasicButton from '.'
+// MOCKS
+import mocks from './index.mocks.json'
 // ENUMS
 import { buttonTypeEnums, buttonColorEnums } from '../../../enums/button.enums.json'
 
@@ -17,11 +19,7 @@ export default {
       options: buttonColorEnums
     }
   },
-  args: {
-    type: 'submit',
-    color: 'red',
-    label: 'Minimal config button'
-  }
+  args: mocks.minimalConfig
 }
 
 const Template = args => <BasicButton {...args} />
@@ -31,7 +29,4 @@ Minimal.storyName = 'Minimal config'
 
 export const Disabled = Template.bind({})
 Disabled.storyName = 'Disabled'
-Disabled.args = {
-  isDisabled: true,
-  label: 'Disabled Button'
-}
+Disabled.args = mocks.disabled
