@@ -23,7 +23,7 @@ export default BasicButton
 
 BasicButton.propTypes = {
   type: oneOf(buttonTypeEnums).isRequired,
-  color: oneOf(buttonColorEnums).isRequired,
+  color: oneOf(buttonColorEnums),
   isDisabled: bool,
   onClick: func,
   label: string.isRequired

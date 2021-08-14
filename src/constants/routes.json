@@ -9,6 +9,7 @@
     "UPDATE_PASS": "/update-pass"
   },
   "STORYBOOK_ROUTES": {
-    "ELEMENTS": "MyPets/Elements"
+    "ELEMENTS": "MyPets/Elements",
+    "MOLECULES": "MyPets/Molecules"
   }
 }

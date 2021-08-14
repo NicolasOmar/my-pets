@@ -1,4 +1,3 @@
-import React from 'react'
 import BasicInput from '.'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'

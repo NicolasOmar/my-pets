@@ -9,7 +9,7 @@ const ButtonGroup = ({ buttons, separator }) => {
   return (
     <div className="ui buttons">
       <BasicButton {...buttons[0]} />
-      <div className={separator || 'or'}></div>
+      <div className={'or'} data-text={separator || 'or'}></div>
       <BasicButton {...buttons[1]} />
     </div>
   )
@@ -21,9 +21,7 @@ ButtonGroup.propTypes = {
   buttons: arrayOf(
     shape({
       type: oneOf(buttonTypeEnums).isRequired,
-      isBasic: bool,
       color: oneOf(buttonColorEnums),
-      isRequired: bool,
       isDisabled: bool,
       onClick: func,
       label: string.isRequired

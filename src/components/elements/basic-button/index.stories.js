@@ -1,8 +1,6 @@
-import React from 'react'
+import BasicButton from '.'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
-// COMPONENTS
-import BasicButton from '.'
 // MOCKS
 import mocks from './index.mocks.json'
 // ENUMS
@@ -26,6 +24,10 @@ const Template = args => <BasicButton {...args} />
 
 export const Minimal = Template.bind({})
 Minimal.storyName = 'Minimal config'
+
+export const RedColored = Template.bind({})
+RedColored.storyName = 'Colored config'
+RedColored.args = mocks.colored
 
 export const Disabled = Template.bind({})
 Disabled.storyName = 'Disabled'
