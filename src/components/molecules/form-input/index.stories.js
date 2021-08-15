@@ -8,15 +8,6 @@ export default {
   title: `${STORYBOOK_ROUTES.MOLECULES}/Form Input`,
   component: FormInput,
   args: minimalConfig
-  // args: {
-  //   minimalConfig: {
-  //     ...minimalConfig,
-  //     inputConfig: {
-  //       ...minimalConfig.inputConfig,
-  //       onInputChange: (e, minimalConfig) => minimalConfig.inputConfig.value = e.target
-  //     }
-  //   }
-  // }
 }
 
 const Template = args => (

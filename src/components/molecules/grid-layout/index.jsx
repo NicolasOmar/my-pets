@@ -1,18 +1,16 @@
 import React from 'react'
-import { number, element, array, oneOfType } from 'prop-types'
+import { element, array, oneOfType, bool, oneOf } from 'prop-types'
 // ENUMS
-import { columnWidth } from '../../../enums/grid.enums.json'
+import { columnWidthEnums, colorEnums } from '../../../enums/styles.enums.json'
 
-const GridLayout = ({ width, children }) => {
-  const baseConfig = {
-    width: 8,
-    textAlign: 'center'
-  }
-  const widthClass = `${columnWidth[width || baseConfig.width]} wide column`
+const GridLayout = ({ width = 8, color, isCentered, children }) => {
+  const columnColor = color ? `${colorEnums.find(cEnum => cEnum === color)} ` ?? '' : ''
+  const widthClass = `${columnColor}${columnWidthEnums[width]} wide column`
+  const layoutClass = `ui grid${isCentered ? ' center aligned' : ''}`
 
   return (
-    <div data-testid={'grid-test-layout'} className="ui grid centered">
-      <div className={widthClass}>{children}</div>
+    <div data-testid={'grid-test-layout'} className={layoutClass}>
+      {children && <div className={widthClass}>{children}</div>}
     </div>
   )
 }
@@ -20,6 +18,8 @@ const GridLayout = ({ width, children }) => {
 export default GridLayout
 
 GridLayout.propTypes = {
-  width: number,
+  width: oneOf(Object.keys(columnWidthEnums).map(width => +width)),
+  color: oneOf(colorEnums),
+  isCentered: bool,
   children: oneOfType([element, array])
 }

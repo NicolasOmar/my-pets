@@ -1,0 +1,11 @@
+{
+  "buttonTypeEnums": [
+    "button",
+    "submit",
+    "reset"
+  ],
+  "inputTypeEnums": [
+    "text",
+    "password"
+  ]
+}

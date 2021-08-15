@@ -4,7 +4,7 @@ import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // MOCKS
 import mocks from './index.mocks.json'
 // ENUMS
-import { inputTypeEnums } from '../../../enums/input.enums.json'
+import { inputTypeEnums } from '../../../enums/type.enums.json'
 
 export default {
   title: `${STORYBOOK_ROUTES.ELEMENTS}/Basic Input`,

@@ -4,7 +4,8 @@ import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // MOCKS
 import mocks from './index.mocks.json'
 // ENUMS
-import { buttonTypeEnums, buttonColorEnums } from '../../../enums/button.enums.json'
+import { buttonTypeEnums } from '../../../enums/type.enums.json'
+import { colorEnums } from '../../../enums/styles.enums.json'
 
 export default {
   title: `${STORYBOOK_ROUTES.ELEMENTS}/Basic Button`,
@@ -14,7 +15,7 @@ export default {
       options: buttonTypeEnums
     },
     color: {
-      options: buttonColorEnums
+      options: colorEnums
     }
   },
   args: mocks.minimalConfig

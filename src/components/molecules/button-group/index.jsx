@@ -3,7 +3,8 @@ import { arrayOf, bool, func, oneOf, shape, string } from 'prop-types'
 // OTHER COMPONENTS
 import BasicButton from '../../elements/basic-button'
 // ENUMS
-import { buttonTypeEnums, buttonColorEnums } from '../../../enums/button.enums.json'
+import { buttonTypeEnums } from '../../../enums/type.enums.json'
+import { colorEnums } from '../../../enums/styles.enums.json'
 
 const ButtonGroup = ({ buttons, separator }) => {
   return (
@@ -21,7 +22,7 @@ ButtonGroup.propTypes = {
   buttons: arrayOf(
     shape({
       type: oneOf(buttonTypeEnums).isRequired,
-      color: oneOf(buttonColorEnums),
+      color: oneOf(colorEnums),
       isDisabled: bool,
       onClick: func,
       label: string.isRequired

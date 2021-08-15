@@ -23,7 +23,7 @@ MenuDropdown.propTypes = {
   options: arrayOf(
     shape({
       label: string.isRequired,
-      onClick: func.isRequired
+      onClick: func
     })
   )
 }
