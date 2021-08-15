@@ -9,19 +9,18 @@ export const mergeGraphObj = (graphObj, originalObj) => {
 }
 
 export const parseInputClass = (inputConfig, fieldName) => {
-  // console.warn(inputConfig)
   const mappedClasses = inputClasses[fieldName]
-    .map(({ prop, isFalse, setClass }) =>
-      isFalse
+    .map(({ prop, renderIfIsFalse, setClass }) =>
+      renderIfIsFalse
         ? inputConfig[prop] === false
           ? setClass
           : null
-        : inputConfig[prop]
+        : inputConfig[prop] === true
         ? setClass
         : null
     )
     .filter(className => className)
     .join(' ')
 
-  return fieldName.concat(' ', mappedClasses)
+  return mappedClasses !== '' ? fieldName.concat(' ', mappedClasses) : fieldName
 }

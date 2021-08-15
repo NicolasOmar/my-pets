@@ -6,7 +6,7 @@
     },
     {
       "prop": "isValid",
-      "isFalse": true,
+      "renderIfIsFalse": true,
       "setClass": "error"
     }
   ]
