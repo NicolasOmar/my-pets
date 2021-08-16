@@ -8,8 +8,14 @@ const Title = ({ title, subTitle, centered }) => {
 
   return (
     <>
-      <h1 className={titleClass}>{title}</h1>
-      {subTitle && <span className={subTitleClass}>{subTitle}</span>}
+      <h1 data-testid={'test-title'} className={titleClass}>
+        {title}
+      </h1>
+      {subTitle && (
+        <span data-testid={'sub-test-title'} className={subTitleClass}>
+          {subTitle}
+        </span>
+      )}
     </>
   )
 }

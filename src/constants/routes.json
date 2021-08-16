@@ -10,6 +10,7 @@
   },
   "STORYBOOK_ROUTES": {
     "ELEMENTS": "MyPets/Elements",
-    "MOLECULES": "MyPets/Molecules"
+    "MOLECULES": "MyPets/Molecules",
+    "ORGANISMS": "MyPets/Organisms"
   }
 }

@@ -40,7 +40,7 @@ export const Centered = Template.bind({})
 Centered.storyName = 'Centered'
 Centered.args = {
   ...Coloured.args,
-  isCentered: true
+  centerGrid: true
 }
 
 export const MinimalWidth = Template.bind({})
