@@ -1,0 +1,8 @@
+{
+  "minimalConfig": {
+    "menuLabel": "Menu",
+    "options": [{
+      "label": "Option N°1"
+    }]
+  }
+}
