@@ -1,25 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { array, bool, func, object } from 'prop-types'
-import './index.scss'
+import { arrayOf, bool, func, object, shape, string, oneOf } from 'prop-types'
+// STYLES
+// import './index.scss'
 // COMPONENTS
 import FormInput from '../../molecules/form-input'
-import BasicButton from '../../elements/basic-button'
 import ButtonGroup from '../../molecules/button-group'
 // HELPERS FUNCTIONS
 import { checkIsValidForm, checkIsValidInput, sendObjValues } from '../../../functions/methods'
 import validators from '../../../functions/validators'
 // ENUMS
 import { buttonTypeEnums } from '../../../enums/type.enums.json'
+import { colorEnums } from '../../../enums/styles.enums.json'
 
-const Form = ({
-  isLoading,
-  errors,
-  inputs,
-  formButtons,
-  buttonsGrouped,
-  onFormSubmit,
-  onInputBlurChange
-}) => {
+const Form = ({ isLoading, errors, inputs, formButtons, onFormSubmit, onInputBlurChange }) => {
   const [formControls, setFormControls] = useState(inputs)
   const [disableSignUpButton, setDisableSignUpButton] = useState(true)
   const firstUpdate = useRef(true)
@@ -75,9 +68,10 @@ const Form = ({
   const onBlurChange = input => checkInputIsValid(input)
 
   const onSubmit = evt => {
-    evt.preventDefault()
-
-    !disableSignUpButton && onFormSubmit(sendObjValues({ ...formControls }))
+    if (onFormSubmit) {
+      evt.preventDefault()
+      !disableSignUpButton && onFormSubmit(sendObjValues({ ...formControls }))
+    }
   }
 
   const renderInputs = () =>
@@ -96,21 +90,7 @@ const Form = ({
     })
 
   const renderButtons = () =>
-    buttonsGrouped ? (
-      <ButtonGroup buttons={formButtons.map(btn => ({ ...btn }))} />
-    ) : (
-      formButtons.map((btn, i) => {
-        return (
-          <BasicButton
-            key={`btn-${i}`}
-            {...{
-              ...btn,
-              isDisabled: btn.type === buttonTypeEnums[0] ? disableSignUpButton : false
-            }}
-          />
-        )
-      })
-    )
+    formButtons && <ButtonGroup buttons={formButtons.map(btn => ({ ...btn }))} />
 
   const renderErrors = () =>
     errors && (
@@ -126,7 +106,7 @@ const Form = ({
 
   return (
     <div className="ui segment">
-      <form className={formClass} onSubmit={onSubmit}>
+      <form data-testid="form" className={formClass} onSubmit={onSubmit}>
         {renderInputs()}
         {renderButtons()}
         {renderErrors()}
@@ -141,8 +121,15 @@ Form.propTypes = {
   isLoading: bool,
   errors: object,
   inputs: object.isRequired,
-  formButtons: array.isRequired,
-  buttonsGrouped: bool,
-  onFormSubmit: func.isRequired,
+  formButtons: arrayOf(
+    shape({
+      type: oneOf(buttonTypeEnums).isRequired,
+      color: oneOf(colorEnums),
+      isDisabled: bool,
+      onClick: func,
+      label: string.isRequired
+    })
+  ),
+  onFormSubmit: func,
   onInputBlurChange: func
 }

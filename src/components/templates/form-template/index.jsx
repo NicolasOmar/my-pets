@@ -29,7 +29,8 @@ const FormTemplate = ({
     <BasicFrame
       {...{
         header,
-        children: <Form {...formConfig} />
+        children: <Form {...formConfig} />,
+        centerGrid: true
       }}
     />
   )

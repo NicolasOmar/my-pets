@@ -1,0 +1,32 @@
+{
+  "minimalConfig": {
+    "inputs": {
+      "email": {
+        "label": "Email",
+        "type": "email",
+        "control": "email",
+        "isRequired": false
+      },
+      "password": {
+        "label": "Password",
+        "type": "password",
+        "control": "password",
+        "isRequired": false
+      }
+    }
+  },
+  "withButtons": {
+    "formButtons": [
+      {
+        "type": "submit",
+        "color": "green",
+        "label": "Log in"
+      },
+      {
+        "type": "button",
+        "color": "red",
+        "label": "Or you can Sign up"
+      }
+    ]
+  }
+}

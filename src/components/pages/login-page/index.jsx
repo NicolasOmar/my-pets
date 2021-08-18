@@ -7,7 +7,7 @@ import { LOGIN } from '../../../graphql/mutations'
 // COMPONENTS
 import FormTemplate from '../../templates/form-template'
 // FORM CONFIG
-import { inputs, header, loginButton, goToSignUpButton } from './login.config.json'
+import { inputs, header, loginButton, goToSignUpButton } from './index.config.json'
 // CONSTANTS
 import { APP_ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS

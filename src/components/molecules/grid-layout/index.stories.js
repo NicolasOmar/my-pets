@@ -29,9 +29,9 @@ WithComponent.args = {
   children: <Title title={'Test'} />
 }
 
-export const Coloured = Template.bind({})
-Coloured.storyName = 'Coloured'
-Coloured.args = {
+export const Colored = Template.bind({})
+Colored.storyName = 'Colored'
+Colored.args = {
   ...WithComponent.args,
   color: 'teal'
 }
@@ -39,7 +39,7 @@ Coloured.args = {
 export const Centered = Template.bind({})
 Centered.storyName = 'Centered'
 Centered.args = {
-  ...Coloured.args,
+  ...Colored.args,
   centerGrid: true
 }
 

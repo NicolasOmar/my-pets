@@ -27,9 +27,12 @@ export const Minimal = Template.bind({})
 Minimal.storyName = 'Minimal config'
 
 export const RedColored = Template.bind({})
-RedColored.storyName = 'Colored config'
+RedColored.storyName = 'Colored'
 RedColored.args = mocks.colored
 
 export const Disabled = Template.bind({})
 Disabled.storyName = 'Disabled'
-Disabled.args = mocks.disabled
+Disabled.args = {
+  ...RedColored.args,
+  ...mocks.disabled
+}

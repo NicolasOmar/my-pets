@@ -6,6 +6,7 @@
   ],
   "inputTypeEnums": [
     "text",
+    "email",
     "password"
   ]
 }
