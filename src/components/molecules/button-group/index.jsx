@@ -8,7 +8,7 @@ import { colorEnums } from '../../../enums/styles.enums.json'
 
 const ButtonGroup = ({ buttons, separator }) => {
   return (
-    <div className="ui buttons">
+    <div data-testid="button-group" className="ui buttons">
       <BasicButton {...buttons[0]} />
       <div className={'or'} data-text={separator || 'or'}></div>
       <BasicButton {...buttons[1]} />

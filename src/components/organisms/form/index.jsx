@@ -93,7 +93,7 @@ const Form = ({ isLoading, errors, inputs, formButtons, onFormSubmit, onInputBlu
 
   const renderErrors = () =>
     errors && (
-      <div className="ui error message">
+      <div data-testid="form-error" className="ui error message">
         <div className="header">New Errors</div>
         <ul className="list">
           {errors.graphQLErrors[0].message.split(',').map((error, i) => {
