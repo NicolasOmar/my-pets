@@ -1,13 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { arrayOf, bool, func, object, shape, string, oneOf } from 'prop-types'
-// STYLES
-// import './index.scss'
 // COMPONENTS
 import FormInput from '../../molecules/form-input'
 import ButtonGroup from '../../molecules/button-group'
-// HELPERS FUNCTIONS
+// HELPER FUNCTIONS
 import { checkIsValidForm, checkIsValidInput, sendObjValues } from '../../../functions/methods'
 import validators from '../../../functions/validators'
+import { parseInputClass } from '../../../functions/parsers'
 // ENUMS
 import { buttonTypeEnums } from '../../../enums/type.enums.json'
 import { colorEnums } from '../../../enums/styles.enums.json'
@@ -16,7 +15,7 @@ const Form = ({ isLoading, errors, inputs, formButtons, onFormSubmit, onInputBlu
   const [formControls, setFormControls] = useState(inputs)
   const [disableSignUpButton, setDisableSignUpButton] = useState(true)
   const firstUpdate = useRef(true)
-  const formClass = `ui form ${isLoading ? 'loading' : ''} ${errors ? 'error' : ''}`
+  const formClass = parseInputClass({ isLoading, errors }, 'ui form')
 
   useEffect(() => {
     if (firstUpdate.current) {

@@ -28,5 +28,14 @@
         "label": "Or you can Sign up"
       }
     ]
+  },
+  "withErrors": {
+    "errors": {
+      "graphQLErrors": [
+        {
+          "message": "This is a, test message"
+        }
+      ]
+    }
   }
 }
