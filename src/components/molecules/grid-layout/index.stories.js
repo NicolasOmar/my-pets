@@ -1,5 +1,5 @@
 import GridLayout from '.'
-import Title from '../../elements/title'
+import Title from '../../atoms/title'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // ENUMS

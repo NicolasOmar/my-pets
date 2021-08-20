@@ -5,9 +5,11 @@ import BasicInput from '.'
 import { minimalConfig, styled } from './index.mocks.json'
 
 describe('[BasicInput]', () => {
+  const minimalInputTestId = `${minimalConfig.control}-${minimalConfig.type}`
+
   test('Should render the component with required props only', () => {
     render(<BasicInput {...minimalConfig} />)
-    const minimalElement = screen.getByTestId(`${minimalConfig.control}-${minimalConfig.type}`)
+    const minimalElement = screen.getByTestId(minimalInputTestId)
     expect(minimalElement).toBeInTheDocument()
   })
 
@@ -25,7 +27,7 @@ describe('[BasicInput]', () => {
     }
 
     render(<BasicInput {...changeableInput} />)
-    const element = screen.getByTestId(`${minimalConfig.control}-${minimalConfig.type}`)
+    const element = screen.getByTestId(minimalInputTestId)
 
     fireEvent.blur(element)
     expect(changeableInput.onBlurChange).toHaveBeenCalled()

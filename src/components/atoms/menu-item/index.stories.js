@@ -3,7 +3,7 @@ import MenuItem from '.'
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 
 export default {
-  title: `${STORYBOOK_ROUTES.ELEMENTS}/Menu Item`,
+  title: `${STORYBOOK_ROUTES.ATMOS}/Menu Item`,
   component: MenuItem,
   args: {
     label: 'Minimal config Menu Item'

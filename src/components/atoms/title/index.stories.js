@@ -5,7 +5,7 @@ import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 import mocks from './index.mocks.json'
 
 export default {
-  title: `${STORYBOOK_ROUTES.ELEMENTS}/Title`,
+  title: `${STORYBOOK_ROUTES.ATMOS}/Title`,
   component: Title,
   args: mocks.minimalConfig
 }

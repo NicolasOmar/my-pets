@@ -22,7 +22,6 @@ const Form = ({ isLoading, errors, inputs, formButtons, onFormSubmit, onInputBlu
       firstUpdate.current = false
       return
     }
-
     setDisableSignUpButton(!checkIsValidForm(formControls))
   }, [formControls])
 

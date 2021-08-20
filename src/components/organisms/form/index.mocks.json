@@ -33,7 +33,7 @@
     "errors": {
       "graphQLErrors": [
         {
-          "message": "This is a, test message"
+          "message": "This is a test message, just the first idea of how to work it"
         }
       ]
     }

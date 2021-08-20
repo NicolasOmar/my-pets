@@ -9,7 +9,7 @@ const BasicButton = ({ type, color, isDisabled, onClick, label }) => {
 
   return (
     <button
-      data-testid={btnClass}
+      data-testid={`${type}-${btnClass.replace(' ', '-')}`}
       type={type}
       className={btnClass}
       disabled={isDisabled || false}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 // COMPONENTS
-import Title from '../../elements/title'
+import Title from '../../atoms/title'
 // HELPER FUNCTIONS
 import { getLoggedUser } from '../../../functions/local-storage'
 

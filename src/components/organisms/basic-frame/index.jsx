@@ -1,7 +1,7 @@
 import React from 'react'
 import { string, array, element, shape, bool, oneOf, oneOfType } from 'prop-types'
 // COMPONENTS
-import Title from '../../elements/title'
+import Title from '../../atoms/title'
 import GridLayout from '../../molecules/grid-layout'
 // ENUMS
 import { columnWidthEnums, colorEnums } from '../../../enums/styles.enums.json'

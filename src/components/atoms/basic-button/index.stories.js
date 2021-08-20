@@ -8,7 +8,7 @@ import { buttonTypeEnums } from '../../../enums/type.enums.json'
 import { colorEnums } from '../../../enums/styles.enums.json'
 
 export default {
-  title: `${STORYBOOK_ROUTES.ELEMENTS}/Basic Button`,
+  title: `${STORYBOOK_ROUTES.ATMOS}/Basic Button`,
   component: BasicButton,
   argTypes: {
     type: {
