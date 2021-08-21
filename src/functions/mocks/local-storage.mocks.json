@@ -1,0 +1,16 @@
+{
+  "mockedNames": [
+    "firstName",
+    "secondName",
+    "thirdName"
+  ],
+  "mockedData": [
+    "test data of first storage",
+    "test data of second storage",
+    "test data of third storage"
+  ],
+  "mockedUserData": {
+    "userName": "testName",
+    "name": "test"
+  }
+}

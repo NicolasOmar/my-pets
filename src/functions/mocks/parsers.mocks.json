@@ -1,0 +1,13 @@
+{
+  "testMock": {
+    "graphObj": {
+      "_typename": "typename",
+      "graphOne": null,
+      "graphTwo": null
+    },
+    "originalObj": {
+      "graphOne": "graphOne",
+      "graphTwo": "graphTwo"
+    }
+  }
+}
