@@ -5,16 +5,13 @@ import { useDispatch } from 'react-redux'
 // GRAPHQL CLIENT
 import { useMutation } from '@apollo/client'
 import { LOGOUT } from '../../../graphql/mutations'
-// COMPONENTS
-import MenuDropdown from '../../molecules/menu-dropdown'
 // CONSTANTS
 import { APP_ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
 import { clearAllStorage } from '../../../functions/local-storage'
-// STYLES
-import './index.scss'
+import Header from '../../organisms/header'
 
-const Header = ({ name }) => {
+const UserHeader = ({ name }) => {
   let history = useHistory()
   const [logout] = useMutation(LOGOUT)
   const dispatch = useDispatch()
@@ -34,7 +31,7 @@ const Header = ({ name }) => {
     }
   }
 
-  const data = {
+  const dropdownConfig = {
     menuLabel: name.toUpperCase(),
     options: [
       {
@@ -52,23 +49,11 @@ const Header = ({ name }) => {
     ]
   }
 
-  return (
-    <>
-      <div className="ui secondary pointing menu">
-        {/* <a className="active item">Test One</a>
-        <a className="item">Test Two</a>
-        <a className="item">Test Three</a> */}
-
-        <div className="right menu">
-          <MenuDropdown {...data} />
-        </div>
-      </div>
-    </>
-  )
+  return <Header {...{ dropdownConfig }} />
 }
 
-export default Header
+export default UserHeader
 
-Header.propTypes = {
+UserHeader.propTypes = {
   name: string.isRequired
 }

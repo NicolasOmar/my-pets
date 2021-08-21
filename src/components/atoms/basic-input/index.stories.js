@@ -7,7 +7,7 @@ import mocks from './index.mocks.json'
 import { inputTypeEnums } from '../../../enums/type.enums.json'
 
 export default {
-  title: `${STORYBOOK_ROUTES.ATMOS}/Basic Input`,
+  title: `${STORYBOOK_ROUTES.ATOMS}/Basic Input`,
   component: BasicInput,
   argTypes: {
     type: {

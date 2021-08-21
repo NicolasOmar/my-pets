@@ -1,6 +1,6 @@
 import React from 'react'
 import { arrayOf, shape, string, func } from 'prop-types'
-// ATMOS
+// ATOMS
 import MenuItem from '../../atoms/menu-item'
 
 const getTestId = index => (index ? `menu-option-${index}` : 'menu-dropdown')

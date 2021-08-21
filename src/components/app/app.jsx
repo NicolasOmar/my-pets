@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 // HISTORY
 import history from './history'
 // COMPONENTS
-import Header from '../templates/header'
+import UserHeader from '../templates/user-header'
 import HomePage from '../pages/home-page'
 import LoginPage from '../pages/login-page'
 import NewUserPage from '../pages/new-user-page'
@@ -13,7 +13,7 @@ import UpdatePasswordPage from '../pages/update-pass-page'
 // CONSTANTS
 import { APP_ROUTES } from '../../constants/routes.json'
 
-const renderHeader = userState => userState && <Header name={userState.name} />
+const renderHeader = userState => userState && <UserHeader name={userState.name} />
 
 const App = () => {
   const userData = useSelector(({ userState }) => userState)

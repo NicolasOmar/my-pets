@@ -1,0 +1,10 @@
+{
+  "minimalConfig": {
+    "dropdownConfig": {
+      "menuLabel": "Header menu",
+      "options": [{
+        "label": "Idea N°1"
+      }]
+    }
+  }
+}
