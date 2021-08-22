@@ -7,7 +7,7 @@ import store from '../../redux/reducers'
 // COMPONENTS
 import App from './app'
 
-describe('[App]', () => {
+describe.skip('[App]', () => {
   describe('[HAPPY PATH]', () => {
     test('Renders without props', () => {
       render(

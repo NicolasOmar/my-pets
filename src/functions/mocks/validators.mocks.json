@@ -1,0 +1,26 @@
+{
+  "mockValueIsEmpty": [
+    null,
+    "",
+    "test",
+    "0"
+  ],
+  "mockValueHasNumbers": [
+    "100",
+    "a100",
+    null,
+    "a"
+  ],
+  "mockValueLengthIsUnder": [
+    " ",
+    "idea",
+    "understanding",
+    "1000000"
+  ],
+  "mockValueLengthIsAbove": [
+    "1000000000",
+    "testing",
+    "result",
+    ""
+  ]
+}

@@ -6,7 +6,18 @@
     },
     {
       "prop": "isValid",
-      "isFalse": true,
+      "condition": "isFalse",
+      "setClass": "error"
+    }
+  ],
+  "ui form": [
+    {
+      "prop": "isLoading",
+      "setClass": "loading"
+    },
+    {
+      "prop": "errors",
+      "condition": "isNotNull",
       "setClass": "error"
     }
   ]

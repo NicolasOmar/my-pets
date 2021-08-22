@@ -7,7 +7,7 @@ import store from '../../../redux/reducers'
 // COMPONENTS
 import LoginPage from '.'
 
-describe('[LoginPage]', () => {
+describe.skip('[LoginPage]', () => {
   describe('[HAPPY PATH]', () => {
     test('Renders without props', () => {
       render(

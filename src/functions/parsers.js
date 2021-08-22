@@ -8,20 +8,21 @@ export const mergeGraphObj = (graphObj, originalObj) => {
   }
 }
 
+const renderIf = {
+  isFalse: (value, setClass) => setClassMethod(value === false, setClass),
+  isNotNull: (value, setClass) => setClassMethod(value !== null && value !== undefined, setClass),
+  default: (value, setClass) => setClassMethod(value === true, setClass)
+}
+
+const setClassMethod = (condition, setClass) => (condition ? setClass : null)
+
 export const parseInputClass = (inputConfig, fieldName) => {
-  // console.warn(inputConfig)
   const mappedClasses = inputClasses[fieldName]
-    .map(({ prop, isFalse, setClass }) =>
-      isFalse
-        ? inputConfig[prop] === false
-          ? setClass
-          : null
-        : inputConfig[prop]
-        ? setClass
-        : null
+    .map(({ prop, condition = 'default', setClass }) =>
+      renderIf[condition](inputConfig[prop], setClass)
     )
     .filter(className => className)
     .join(' ')
 
-  return fieldName.concat(' ', mappedClasses)
+  return mappedClasses !== '' ? fieldName.concat(' ', mappedClasses) : fieldName
 }

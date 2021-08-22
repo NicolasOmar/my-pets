@@ -1,0 +1,14 @@
+{
+  "minimalConfig": {
+    "type": "submit",
+    "label": "Minimal config button"
+  },
+  "colored": {
+    "color": "red",
+    "label": "Red button"
+  },
+  "disabled": {
+    "isDisabled": true,
+    "label": "Disabled button"
+  }
+}

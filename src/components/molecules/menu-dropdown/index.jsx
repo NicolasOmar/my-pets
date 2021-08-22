@@ -1,16 +1,18 @@
 import React from 'react'
 import { arrayOf, shape, string, func } from 'prop-types'
-// ELEMENTS
-import MenuItem from '../../elements/menu-item'
+// ATOMS
+import MenuItem from '../../atoms/menu-item'
+
+const getTestId = index => (index ? `menu-option-${index}` : 'menu-dropdown')
 
 const MenuDropdown = ({ menuLabel, options }) => (
-  <div className="ui simple dropdown item">
+  <div className="ui simple dropdown item" data-testid={getTestId()}>
     {menuLabel}
     <i className="dropdown icon"></i>
 
     <div className="menu">
       {options.map((option, i) => (
-        <MenuItem key={`option-${i}`} {...option} />
+        <MenuItem data-testid={`${getTestId(i)}`} key={`${getTestId(i)}`} {...option} />
       ))}
     </div>
   </div>
@@ -23,7 +25,7 @@ MenuDropdown.propTypes = {
   options: arrayOf(
     shape({
       label: string.isRequired,
-      onClick: func.isRequired
+      onClick: func
     })
-  )
+  ).isRequired
 }

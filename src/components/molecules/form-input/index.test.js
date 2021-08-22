@@ -1,21 +1,12 @@
 import { render, screen } from '@testing-library/react'
 import FormInput from '.'
+// MOCKS
+import { minimalConfig } from './index.mocks.json'
 
 describe('[FormInput]', () => {
-  describe('[HAPPY PATH]', () => {
-    test('Renders with required props only', () => {
-      const config = {
-        inputLabel: 'Test',
-        inputConfig: {
-          label: 'Test',
-          type: 'text',
-          control: 'test',
-          onInputChange: () => {}
-        }
-      }
-      render(<FormInput {...config} />)
-      const element = screen.getByText(config.inputLabel)
-      expect(element).toBeInTheDocument()
-    })
+  test('Should render the component with required props only', () => {
+    render(<FormInput {...minimalConfig} />)
+    const element = screen.getByText(minimalConfig.inputLabel)
+    expect(element).toBeInTheDocument()
   })
 })

@@ -1,17 +1,19 @@
 import React from 'react'
 import { shape, bool, func, string, number } from 'prop-types'
 // COMPONENTS
-import BasicInput from '../../elements/basic-input'
+import BasicInput from '../../atoms/basic-input'
 // FUNCTIONS
 import { parseInputClass } from '../../../functions/parsers'
 
-const FormInput = ({ inputLabel, inputConfig }) => {
-  const inputClass = parseInputClass(inputConfig, 'field')
+const renderInputLabel = inputLabel => inputLabel && <label>{inputLabel}</label>
+
+const FormInput = ({ inputLabel, inputConfig, isValid, isRequired }) => {
+  const formInputClass = parseInputClass({ isValid, isRequired }, 'field')
 
   return (
-    <div className={inputClass}>
-      <label>{inputLabel}</label>
-      <BasicInput config={inputConfig} />
+    <div className={formInputClass}>
+      {renderInputLabel(inputLabel)}
+      <BasicInput {...inputConfig} />
     </div>
   )
 }
@@ -21,16 +23,16 @@ export default FormInput
 FormInput.propTypes = {
   inputLabel: string,
   inputConfig: shape({
-    label: string.isRequired,
-    placeHolder: string,
     type: string.isRequired,
     control: string.isRequired,
     value: string,
-    onInputChange: func.isRequired,
+    placeHolder: string,
+    onInputChange: func,
     onBlurChange: func,
     isRequired: bool,
     minLength: number,
-    maxLength: number,
-    isValid: bool
-  })
+    maxLength: number
+  }),
+  isValid: bool,
+  isRequired: bool
 }

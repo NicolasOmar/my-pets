@@ -1,0 +1,22 @@
+{
+  "minimalConfig": {
+    "type": "text",
+    "control": "basicInputControl"
+  },
+  "password": {
+    "type": "password"
+  },
+  "placeholderOnly": {
+    "placeHolder": "Hi!"
+  },
+  "valueAndPlaceholder": {
+    "value": "Hello!",
+    "placeHolder": "Nice to see you again"
+  },
+  "disabled": {
+    "isDisabled": true
+  },
+  "styled": {
+    "styled": true
+  }
+}

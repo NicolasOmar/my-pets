@@ -7,9 +7,9 @@ import { UPDATE_USER } from '../../../graphql/mutations'
 // COMPONENTS
 import FormTemplate from '../../templates/form-template'
 // FORM CONFIG
-import { inputs, header, saveButton, goBackButton } from './update-user.config.json'
+import { inputs, header, saveButton, goBackButton } from './config.json'
 // CONSTANTS
-import { ROUTES } from '../../../constants/routes.json'
+import { APP_ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
 import { getLoggedUser, setLoggedUser } from '../../../functions/local-storage'
 import { mergeGraphObj } from '../../../functions/parsers'
@@ -37,7 +37,7 @@ const UpdateUserPage = () => {
     updateUser({
       variables: formData
     })
-      .then(() => history.push(ROUTES.HOME))
+      .then(() => history.push(APP_ROUTES.HOME))
       .catch(error => console.error(error))
   }
 
@@ -51,7 +51,7 @@ const UpdateUserPage = () => {
         saveButton,
         {
           ...goBackButton,
-          onClick: () => history.push(ROUTES.HOME)
+          onClick: () => history.push(APP_ROUTES.HOME)
         }
       ]}
       onFormSubmit={data => onSubmitUpdate(data)}

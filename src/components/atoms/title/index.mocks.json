@@ -1,0 +1,18 @@
+{
+  "minimalConfig": {
+    "title": "Minimal Title"
+  },
+  "titleWithSubTitle": {
+    "title": "Main title",
+    "subTitle": "Sub title"
+  },
+  "centeredTitle": {
+    "title": "Centered titlte",
+    "centered": true
+  },
+  "centerMainAndSubTitle": {
+    "title": "Centered main title",
+    "subTitle": "Centered sub title",
+    "centered": true
+  }
+}

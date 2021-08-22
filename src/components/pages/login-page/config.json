@@ -1,0 +1,31 @@
+{
+  "inputs": {
+    "email": {
+      "label": "Email",
+      "type": "email",
+      "control": "email",
+      "isRequired": true
+    },
+    "password": {
+      "label": "Password",
+      "type": "password",
+      "control": "password",
+      "isRequired": true,
+      "minLength": 6
+    }
+  },
+  "header": {
+    "title": "Welcome to My Pets",
+    "subTitle": "Log in",
+    "centered": true
+  },
+  "loginButton": {
+    "type": "submit",
+    "label": "Log in"
+  },
+  "goToSignUpButton": {
+    "type": "button",
+    "color": "red",
+    "label": "You can Sign up"
+  }
+}
