@@ -56,6 +56,6 @@
   "goToLoginButton": {
     "type": "button",
     "color": "red",
-    "label": "Or you can log in with your account"
+    "label": "You can log in with your account"
   }
 }

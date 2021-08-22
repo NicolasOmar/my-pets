@@ -5,7 +5,7 @@ import { UPDATE_PASS } from '../../../graphql/mutations'
 // COMPONENTS
 import FormTemplate from '../../templates/form-template'
 // FORM CONFIG
-import { header, inputs, updateButton, cancelButton } from './update-password.config.json'
+import { header, inputs, updateButton, cancelButton } from './config.json'
 // FUNCTIONS
 import { encryptPass } from '../../../functions/encrypt'
 

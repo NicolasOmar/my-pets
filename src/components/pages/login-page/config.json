@@ -26,6 +26,6 @@
   "goToSignUpButton": {
     "type": "button",
     "color": "red",
-    "label": "Or you can Sign up"
+    "label": "You can Sign up"
   }
 }

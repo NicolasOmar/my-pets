@@ -7,7 +7,7 @@ import { UPDATE_USER } from '../../../graphql/mutations'
 // COMPONENTS
 import FormTemplate from '../../templates/form-template'
 // FORM CONFIG
-import { inputs, header, saveButton, goBackButton } from './update-user.config.json'
+import { inputs, header, saveButton, goBackButton } from './config.json'
 // CONSTANTS
 import { APP_ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS

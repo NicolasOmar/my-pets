@@ -6,7 +6,7 @@ import { CREATE_USER } from '../../../graphql/mutations'
 // COMPONENTS
 import FormTemplate from '../../templates/form-template'
 // FORM CONFIG
-import { inputs, header, signUpButton, goToLoginButton } from './new-user.config.json'
+import { inputs, header, signUpButton, goToLoginButton } from './config.json'
 // CONSTANTS
 import { APP_ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
