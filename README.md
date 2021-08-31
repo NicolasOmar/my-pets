@@ -40,7 +40,7 @@ Because I am using [Netlify](https://netlify.com/) to host the site, I am mainta
 Therefore, the following [link](https://my-pets-prod.netlify.app) sends you to the last deployed version.
 
 ## Find out more
-| [Project Status](https://trello.com/b/79XvwOYa/mypets) | [Storybook site](https://my-pets-storybook.netlify.app/) | [Node Repo](https://github.com/NicolasOmar/my-pets-api) |
+| [Project Status](https://trello.com/b/LdEm74Tq/mypets) | [Storybook site](https://my-pets-storybook.netlify.app/) | [Node Repo](https://github.com/NicolasOmar/my-pets-api) |
 | :--- | :--- | :--- |
 | Trello board for project status tracking | Site dedicated to show and test all the created components | Node API repository
 
