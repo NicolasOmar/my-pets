@@ -9,14 +9,14 @@ describe('[BasicInput]', () => {
 
   test('Should render the component with required props only', () => {
     render(<BasicInput {...minimalConfig} />)
-    const minimalElement = screen.getByTestId(minimalInputTestId)
-    expect(minimalElement).toBeInTheDocument()
+    const minimalInput = screen.getByTestId(minimalInputTestId)
+    expect(minimalInput).toBeInTheDocument()
   })
 
   test('Should render the component with styles', () => {
     render(<BasicInput {...{ ...minimalConfig, ...styled }} />)
-    const styledElement = screen.getByTestId('styled-input')
-    expect(styledElement).toBeInTheDocument()
+    const styledInput = screen.getByTestId('styled-input')
+    expect(styledInput).toBeInTheDocument()
   })
 
   test('Should check that its methods have been called', () => {
@@ -27,13 +27,13 @@ describe('[BasicInput]', () => {
     }
 
     render(<BasicInput {...changeableInput} />)
-    const element = screen.getByTestId(minimalInputTestId)
+    const clickeableInput = screen.getByTestId(minimalInputTestId)
 
-    fireEvent.blur(element)
+    fireEvent.blur(clickeableInput)
     expect(changeableInput.onBlurChange).toHaveBeenCalled()
 
-    fireEvent.click(element)
-    fireEvent.change(element, { target: { value: 't' } })
+    fireEvent.click(clickeableInput)
+    fireEvent.change(clickeableInput, { target: { value: 't' } })
     expect(changeableInput.onInputChange).toHaveBeenCalled()
   })
 })

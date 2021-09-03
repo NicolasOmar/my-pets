@@ -12,24 +12,24 @@ const interactWithInput = (input, value) => {
 describe('[Form]', () => {
   test('Should render the component with required props only', () => {
     render(<Form {...minimalConfig} />)
-    const element = screen.getByTestId('form')
-    expect(element).toBeInTheDocument()
+    const minimalForm = screen.getByTestId('form')
+    expect(minimalForm).toBeInTheDocument()
   })
 
   test('Should render with the button group', () => {
     render(<Form {...{ ...minimalConfig, ...withButtons }} />)
-    const element = screen.getByTestId('button-group')
-    expect(element).toBeInTheDocument()
+    const btnGroupForm = screen.getByTestId('button-group')
+    expect(btnGroupForm).toBeInTheDocument()
   })
 
   test('Should render with errors', () => {
     render(<Form {...{ ...minimalConfig, ...withErrors }} />)
-    const errorBlockElm = screen.getByTestId('error-block')
-    expect(errorBlockElm).toBeInTheDocument()
+    const errorForm = screen.getByTestId('error-block')
+    expect(errorForm).toBeInTheDocument()
 
     withErrors.errors.graphQLErrors[0].message.split(', ').forEach((_, i) => {
-      const errorMsgElm = screen.getByTestId(`error-msg-${i}`)
-      expect(errorMsgElm).toBeInTheDocument()
+      const errorFormElm = screen.getByTestId(`error-msg-${i}`)
+      expect(errorFormElm).toBeInTheDocument()
     })
   })
 
