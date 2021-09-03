@@ -7,8 +7,8 @@ describe('[BasicButton]', () => {
 
   test('Should render the component with required props only', () => {
     render(<BasicButton {...minimalConfig} />)
-    const element = screen.getByTestId(btnTestId)
-    expect(element).toBeInTheDocument()
+    const basicBtn = screen.getByTestId(btnTestId)
+    expect(basicBtn).toBeInTheDocument()
   })
 
   test('Should check that it has been clicked', () => {
@@ -18,9 +18,9 @@ describe('[BasicButton]', () => {
     }
 
     render(<BasicButton {...clickeableBtn} />)
-    const element = screen.getByTestId(btnTestId)
+    const clickeableElm = screen.getByTestId(btnTestId)
 
-    fireEvent.click(element)
+    fireEvent.click(clickeableElm)
     expect(clickeableBtn.onClick).toHaveBeenCalled()
     expect(clickeableBtn.onClick).toHaveBeenCalledTimes(1)
   })
@@ -33,9 +33,9 @@ describe('[BasicButton]', () => {
     }
 
     render(<BasicButton {...notClickeableBtn} />)
-    const element = screen.getByTestId(btnTestId)
+    const disabledElm = screen.getByTestId(btnTestId)
 
-    fireEvent.click(element)
+    fireEvent.click(disabledElm)
     expect(notClickeableBtn.onClick).not.toHaveBeenCalled()
     expect(notClickeableBtn.onClick).toHaveBeenCalledTimes(0)
   })

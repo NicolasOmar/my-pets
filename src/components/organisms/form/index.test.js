@@ -12,20 +12,25 @@ const interactWithInput = (input, value) => {
 describe('[Form]', () => {
   test('Should render the component with required props only', () => {
     render(<Form {...minimalConfig} />)
-    const element = screen.getByTestId('form')
-    expect(element).toBeInTheDocument()
+    const minimalForm = screen.getByTestId('form')
+    expect(minimalForm).toBeInTheDocument()
   })
 
   test('Should render with the button group', () => {
     render(<Form {...{ ...minimalConfig, ...withButtons }} />)
-    const element = screen.getByTestId('button-group')
-    expect(element).toBeInTheDocument()
+    const btnGroupForm = screen.getByTestId('button-group')
+    expect(btnGroupForm).toBeInTheDocument()
   })
 
   test('Should render with errors', () => {
     render(<Form {...{ ...minimalConfig, ...withErrors }} />)
-    const element = screen.getByTestId('form-error')
-    expect(element).toBeInTheDocument()
+    const errorForm = screen.getByTestId('error-block')
+    expect(errorForm).toBeInTheDocument()
+
+    withErrors.errors.graphQLErrors[0].message.split(', ').forEach((_, i) => {
+      const errorFormElm = screen.getByTestId(`error-msg-${i}`)
+      expect(errorFormElm).toBeInTheDocument()
+    })
   })
 
   test('Should run "submit" form action by setting the correct input values', () => {

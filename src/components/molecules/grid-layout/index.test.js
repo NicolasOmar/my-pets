@@ -14,25 +14,25 @@ const mockOneChild = i => {
 describe('[GridLayout]', () => {
   test('Should render the component with required props only', () => {
     render(<GridLayout />)
-    const element = screen.getByTestId('grid-test-layout')
-    expect(element).toBeInTheDocument()
+    const minimalGridLayout = screen.getByTestId('grid-test-layout')
+    expect(minimalGridLayout).toBeInTheDocument()
   })
 
   test('Should render with "red" background color', () => {
     const redColor = 'red'
     render(<GridLayout color={redColor} children={mockOneChild()} />)
 
-    const element = screen.getByTestId('grid-test-layout')
-    expect(element).toBeInTheDocument()
-    expect(element.children[0].className).toEqual(expect.stringContaining(redColor))
+    const redGridLayout = screen.getByTestId('grid-test-layout')
+    expect(redGridLayout).toBeInTheDocument()
+    expect(redGridLayout.children[0].className).toEqual(expect.stringContaining(redColor))
   })
 
   test('Should render with "centerGrid" classes', () => {
     render(<GridLayout centerGrid={true} children={mockOneChild()} />)
 
-    const element = screen.getByTestId('grid-test-layout')
-    expect(element).toBeInTheDocument()
-    expect(element.className).toEqual(expect.stringContaining(centeredClasses))
+    const centeredGridLayout = screen.getByTestId('grid-test-layout')
+    expect(centeredGridLayout).toBeInTheDocument()
+    expect(centeredGridLayout.className).toEqual(expect.stringContaining(centeredClasses))
   })
 
   test('Should render with several children', () => {
@@ -40,13 +40,13 @@ describe('[GridLayout]', () => {
     const props = { centerGrid: true, children }
     render(<GridLayout {...props} />)
 
-    const element = screen.getByTestId('grid-test-layout')
-    expect(element).toBeInTheDocument()
-    expect(element.className).toEqual(expect.stringContaining(centeredClasses))
+    const gridWithChildren = screen.getByTestId('grid-test-layout')
+    expect(gridWithChildren).toBeInTheDocument()
+    expect(gridWithChildren.className).toEqual(expect.stringContaining(centeredClasses))
 
     children.forEach((_, i) => {
-      const element = screen.getByTestId(`test-div-${i}`)
-      expect(element).toBeInTheDocument()
+      const childElm = screen.getByTestId(`test-div-${i}`)
+      expect(childElm).toBeInTheDocument()
     })
   })
 })
