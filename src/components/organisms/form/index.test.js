@@ -24,8 +24,13 @@ describe('[Form]', () => {
 
   test('Should render with errors', () => {
     render(<Form {...{ ...minimalConfig, ...withErrors }} />)
-    const element = screen.getByTestId('form-error')
-    expect(element).toBeInTheDocument()
+    const errorBlockElm = screen.getByTestId('error-block')
+    expect(errorBlockElm).toBeInTheDocument()
+
+    withErrors.errors.graphQLErrors[0].message.split(', ').forEach((_, i) => {
+      const errorMsgElm = screen.getByTestId(`error-msg-${i}`)
+      expect(errorMsgElm).toBeInTheDocument()
+    })
   })
 
   test('Should run "submit" form action by setting the correct input values', () => {

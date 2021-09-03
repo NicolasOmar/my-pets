@@ -4,16 +4,22 @@ import { arrayOf, oneOf, oneOfType, string } from 'prop-types'
 import { messageTypes } from '../../../enums/type.enums.json'
 
 const MessageBlock = ({ header, msgType, errors }) => (
-  <div className={`ui ${msgType} message`}>
-    {header && <div className="header">{header}</div>}
+  <div data-testid={`${msgType}-block`} className={`ui ${msgType} message`}>
+    {header && (
+      <div data-testid={`${msgType}-header`} className="header">
+        {header}
+      </div>
+    )}
     {Array.isArray(errors) ? (
       <ul className="list">
         {errors?.map((errorMsg, i) => (
-          <li key={`${msgType}-msg-${i}`}>{errorMsg}</li>
+          <li data-testid={`${msgType}-msg-${i}`} key={`${msgType}-msg-${i}`}>
+            {errorMsg}
+          </li>
         ))}
       </ul>
     ) : (
-      errors && <p>{errors}</p>
+      errors && <p data-testid={`${msgType}-msg`}>{errors}</p>
     )}
   </div>
 )
