@@ -7,8 +7,14 @@ import { parseInputClass } from '../../../functions/parsers'
 
 const renderInputLabel = inputLabel => inputLabel && <label>{inputLabel}</label>
 
-const FormInput = ({ inputLabel, inputConfig, isValid, isRequired }) => {
-  const formInputClass = parseInputClass({ isValid, isRequired }, 'field')
+const FormInput = ({ inputLabel, inputConfig }) => {
+  const formInputClass = parseInputClass(
+    {
+      isValid: inputConfig.isValid,
+      isRequired: inputConfig.isRequired
+    },
+    'field'
+  )
 
   return (
     <div className={formInputClass}>
@@ -30,9 +36,8 @@ FormInput.propTypes = {
     onInputChange: func,
     onBlurChange: func,
     isRequired: bool,
+    isValid: bool,
     minLength: number,
     maxLength: number
-  }),
-  isValid: bool,
-  isRequired: bool
+  })
 }
