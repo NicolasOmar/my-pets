@@ -5,11 +5,11 @@ import { minimalConfig } from './index.mocks.json'
 const testButtons = mockConfig => {
   render(<ButtonGroup {...mockConfig} />)
   mockConfig.buttons.forEach(({ label, onClick }) => {
-    const element = screen.getByText(label)
-    expect(element).toBeInTheDocument()
+    const btnGroup = screen.getByText(label)
+    expect(btnGroup).toBeInTheDocument()
 
     if (onClick) {
-      fireEvent.click(element)
+      fireEvent.click(btnGroup)
       expect(onClick).toHaveBeenCalled()
       expect(onClick).toHaveBeenCalledTimes(1)
     }

@@ -3,6 +3,7 @@ import { arrayOf, bool, func, object, shape, string, oneOf } from 'prop-types'
 // COMPONENTS
 import FormInput from '../../molecules/form-input'
 import ButtonGroup from '../../molecules/button-group'
+import MessageBlock from '../../atoms/message-block'
 // HELPER FUNCTIONS
 import { checkIsValidForm, checkIsValidInput, sendObjValues } from '../../../functions/methods'
 import validators from '../../../functions/validators'
@@ -92,14 +93,11 @@ const Form = ({ isLoading, errors, inputs, formButtons, onFormSubmit, onInputBlu
 
   const renderErrors = () =>
     errors && (
-      <div data-testid="form-error" className="ui error message">
-        <div className="header">New Errors</div>
-        <ul className="list">
-          {errors.graphQLErrors[0].message.split(',').map((error, i) => {
-            return <li key={`error-${i}`}>{error}</li>
-          })}
-        </ul>
-      </div>
+      <MessageBlock
+        msgType={'error'}
+        header={'New Errors'}
+        errors={errors.graphQLErrors[0].message.split(',')}
+      />
     )
 
   return (

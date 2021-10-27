@@ -6,15 +6,15 @@ import { withHeader, headerTestIds } from './index.mocks.json'
 describe('[BasicFrame]', () => {
   test('Should render the component with required props only', () => {
     render(<BasicFrame />)
-    const element = screen.getByTestId('grid-test-layout')
-    expect(element).toBeInTheDocument()
+    const minimalBasicFrame = screen.getByTestId('grid-test-layout')
+    expect(minimalBasicFrame).toBeInTheDocument()
   })
 
   test('Should render with the included Header', () => {
     render(<BasicFrame {...withHeader} />)
     headerTestIds.forEach(testId => {
-      const element = screen.getByTestId(testId)
-      expect(element).toBeInTheDocument()
+      const basicFrameHeader = screen.getByTestId(testId)
+      expect(basicFrameHeader).toBeInTheDocument()
     })
   })
 })

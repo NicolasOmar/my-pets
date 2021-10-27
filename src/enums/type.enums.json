@@ -8,5 +8,10 @@
     "text",
     "email",
     "password"
+  ],
+  "messageTypes": [
+    "success",
+    "warning",
+    "error"
   ]
 }
