@@ -5,7 +5,7 @@ import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 import mocks from './index.mocks.json'
 // ENUMS
 import { buttonTypeEnums } from '../../../enums/type.enums.json'
-import { colorEnums } from '../../../enums/styles.enums.json'
+import { colorEnums, sizeEnums } from '../../../enums/styles.enums.json'
 
 export default {
   title: `${STORYBOOK_ROUTES.ATOMS}/Basic Button`,
@@ -16,6 +16,9 @@ export default {
     },
     color: {
       options: colorEnums
+    },
+    size: {
+      options: sizeEnums
     }
   },
   args: mocks.minimalConfig
@@ -26,13 +29,41 @@ const Template = args => <BasicButton {...args} />
 export const Minimal = Template.bind({})
 Minimal.storyName = 'Minimal config'
 
-export const RedColored = Template.bind({})
-RedColored.storyName = 'Colored'
-RedColored.args = mocks.colored
+export const Colored = Template.bind({})
+Colored.storyName = 'Colored'
+Colored.args = mocks.colored
+
+export const Loading = Template.bind({})
+Loading.storyName = 'Loading'
+Loading.args = {
+  ...Colored.args,
+  ...mocks.loading
+}
+
+export const Outlined = Template.bind({})
+Outlined.storyName = 'Outlined'
+Outlined.args = {
+  ...Colored.args,
+  ...mocks.outlined
+}
+
+export const Inverted = Template.bind({})
+Inverted.storyName = 'Inverted'
+Inverted.args = {
+  ...Colored.args,
+  ...mocks.inverted
+}
 
 export const Disabled = Template.bind({})
 Disabled.storyName = 'Disabled'
 Disabled.args = {
-  ...RedColored.args,
+  ...Colored.args,
   ...mocks.disabled
+}
+
+export const Large = Template.bind({})
+Large.storyName = 'Large'
+Large.args = {
+  ...Colored.args,
+  ...mocks.large
 }

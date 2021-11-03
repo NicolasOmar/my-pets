@@ -1,9 +1,19 @@
 {
-  "field": [
+  "button": [
     {
-      "prop": "isRequired",
-      "setClass": "required"
+      "prop": "isOutlined",
+      "setClass": "is-outlined"
     },
+    {
+      "prop": "isInverted",
+      "setClass": "is-inverted"
+    },
+    {
+      "prop": "isLoading",
+      "setClass": "is-loading"
+    }
+  ],
+  "field": [
     {
       "prop": "isValid",
       "condition": "isFalse",

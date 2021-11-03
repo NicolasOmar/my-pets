@@ -4,11 +4,26 @@
     "label": "Minimal config button"
   },
   "colored": {
-    "color": "red",
-    "label": "Red button"
+    "color": "is-danger",
+    "label": "Colored button"
+  },
+  "loading": {
+    "isLoading": true
+  },
+  "outlined": {
+    "isOutlined": true,
+    "label": "Outlined button"
+  },
+  "inverted": {
+    "isInverted": true,
+    "label": "Inverted button"
   },
   "disabled": {
     "isDisabled": true,
     "label": "Disabled button"
+  },
+  "large": {
+    "size": "is-large",
+    "label": "Large button"
   }
 }

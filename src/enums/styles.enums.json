@@ -1,18 +1,23 @@
 {
   "colorEnums": [
-    "red",
-    "orange",
-    "yellow",
-    "olive",
-    "green",
-    "teal",
-    "blue",
-    "violet",
-    "purple",
-    "pink",
-    "brown",
-    "grey",
-    "black"
+    "is-white",
+    "is-light",
+    "is-dark",
+    "is-black",
+    "is-text",
+    "is-ghost",
+    "is-info",
+    "is-success",
+    "is-warning",
+    "is-danger",
+    "is-primary",
+    "is-link"
+  ],
+  "sizeEnums": [
+    "is-small",
+    "is-normal",
+    "is-medium",
+    "is-large"
   ],
   "columnWidthEnums": {
     "1": "one",
