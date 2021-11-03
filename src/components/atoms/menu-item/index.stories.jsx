@@ -1,3 +1,4 @@
+import React from 'react'
 import MenuItem from '.'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'

@@ -1,3 +1,4 @@
+import React from 'react'
 import GridLayout from '.'
 import Title from '../../atoms/title'
 // APP_ROUTES

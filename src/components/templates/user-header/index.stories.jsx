@@ -1,3 +1,4 @@
+import React from 'react'
 import UserHeader from '.'
 import { MockedProvider } from '@apollo/client/testing'
 import { Provider } from 'react-redux'

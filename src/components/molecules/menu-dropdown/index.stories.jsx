@@ -1,16 +1,17 @@
-import Header from '.'
+import React from 'react'
+import MenuDropdown from '.'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
-// STORIES
+// MOCKS
 import { minimalConfig } from './index.mocks.json'
 
 export default {
-  title: `${STORYBOOK_ROUTES.ORGANISMS}/Header`,
-  component: Header,
+  title: `${STORYBOOK_ROUTES.MOLECULES}/Menu Dropdown`,
+  component: MenuDropdown,
   args: minimalConfig
 }
 
-const Template = args => <Header {...args} />
+const Template = args => <MenuDropdown {...args} />
 
 export const Minimal = Template.bind({})
 Minimal.storyName = 'Minimal config'
@@ -18,8 +19,6 @@ Minimal.storyName = 'Minimal config'
 export const ManyOptions = Template.bind({})
 ManyOptions.storyName = 'Many options'
 ManyOptions.args = {
-  dropdownConfig: {
-    ...minimalConfig.dropdownConfig,
-    options: new Array(5).fill(null).map((_, i) => ({ label: `Idea N°${++i}` }))
-  }
+  menuLabel: minimalConfig.menuLabel,
+  options: new Array(7).fill(null).map((_, i) => ({ label: `Option N°${++i}` }))
 }
