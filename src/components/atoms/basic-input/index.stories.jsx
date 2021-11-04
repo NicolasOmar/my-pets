@@ -6,6 +6,7 @@ import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 import mocks from './index.mocks.json'
 // ENUMS
 import { inputTypeEnums } from '../../../enums/type.enums.json'
+import { colorEnums, sizeEnums } from '../../../enums/styles.enums.json'
 
 export default {
   title: `${STORYBOOK_ROUTES.ATOMS}/Basic Input`,
@@ -13,6 +14,12 @@ export default {
   argTypes: {
     type: {
       options: inputTypeEnums
+    },
+    color: {
+      options: colorEnums
+    },
+    size: {
+      options: sizeEnums
     }
   },
   args: mocks.minimalConfig
@@ -27,6 +34,21 @@ export const Password = Template.bind({})
 Password.storyName = 'Password'
 Password.args = mocks.password
 
+export const Colored = Template.bind({})
+Colored.storyName = 'Colored'
+Colored.args = mocks.colored
+
+export const Large = Template.bind({})
+Large.storyName = 'Large'
+Large.args = mocks.large
+
+export const Rounded = Template.bind({})
+Rounded.storyName = 'Rounded'
+Rounded.args = {
+  ...Large.args,
+  ...mocks.rounded
+}
+
 export const WithPlaceholder = Template.bind({})
 WithPlaceholder.storyName = 'With Placeholder'
 WithPlaceholder.args = mocks.placeholderOnly
@@ -38,7 +60,3 @@ ValueAndPlaceholder.args = mocks.valueAndPlaceholder
 export const Disabled = Template.bind({})
 Disabled.storyName = 'Disabled'
 Disabled.args = mocks.disabled
-
-export const Styled = Template.bind({})
-Styled.storyName = 'Styled'
-Styled.args = mocks.styled

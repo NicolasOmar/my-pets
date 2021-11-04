@@ -3,6 +3,15 @@
     "type": "text",
     "control": "basicInputControl"
   },
+  "colored": {
+    "color": "is-danger"
+  },
+  "large": {
+    "size": "is-large"
+  },
+  "rounded": {
+    "isRounded": true
+  },
   "password": {
     "type": "password"
   },
@@ -15,8 +24,5 @@
   },
   "disabled": {
     "isDisabled": true
-  },
-  "styled": {
-    "styled": true
   }
 }

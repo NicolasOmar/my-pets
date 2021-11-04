@@ -3,12 +3,12 @@ import { shape, bool, func, string, number } from 'prop-types'
 // COMPONENTS
 import BasicInput from '../../atoms/basic-input'
 // FUNCTIONS
-import { parseInputClass } from '../../../functions/parsers'
+import { parseCssClasses } from '../../../functions/parsers'
 
 const renderInputLabel = inputLabel => inputLabel && <label>{inputLabel}</label>
 
 const FormInput = ({ inputLabel, inputConfig }) => {
-  const formInputClass = parseInputClass(
+  const formInputClass = parseCssClasses(
     {
       isValid: inputConfig.isValid,
       isRequired: inputConfig.isRequired

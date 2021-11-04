@@ -7,7 +7,7 @@ import MessageBlock from '../../atoms/message-block'
 // HELPER FUNCTIONS
 import { checkIsValidForm, checkIsValidInput, sendObjValues } from '../../../functions/methods'
 import validators from '../../../functions/validators'
-import { parseInputClass } from '../../../functions/parsers'
+import { parseCssClasses } from '../../../functions/parsers'
 // ENUMS
 import { buttonTypeEnums } from '../../../enums/type.enums.json'
 import { colorEnums } from '../../../enums/styles.enums.json'
@@ -16,7 +16,7 @@ const Form = ({ isLoading, errors, inputs, formButtons, onFormSubmit, onInputBlu
   const [formControls, setFormControls] = useState(inputs)
   const [disableSignUpButton, setDisableSignUpButton] = useState(true)
   const firstUpdate = useRef(true)
-  const formClass = parseInputClass({ isLoading, errors }, 'ui form')
+  const formClass = parseCssClasses({ isLoading, errors }, 'ui form')
 
   useEffect(() => {
     if (firstUpdate.current) {

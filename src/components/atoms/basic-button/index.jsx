@@ -3,7 +3,8 @@ import { bool, func, oneOf, string } from 'prop-types'
 // ENUMS
 import { buttonTypeEnums } from '../../../enums/type.enums.json'
 import { colorEnums, sizeEnums } from '../../../enums/styles.enums.json'
-import { parseInputClass } from '../../../functions/parsers'
+// FUNCTIONS
+import { parseCssClasses } from '../../../functions/parsers'
 
 const BasicButton = ({
   type,
@@ -16,10 +17,7 @@ const BasicButton = ({
   onClick,
   label
 }) => {
-  const btnClass = `${parseInputClass(
-    { isOutlined, isInverted, isLoading },
-    'button'
-  )} ${color} ${size}`
+  const btnClass = parseCssClasses({ isOutlined, isInverted, isLoading }, 'button', [color, size])
 
   return (
     <button

@@ -13,6 +13,12 @@
       "setClass": "is-loading"
     }
   ],
+  "input": [
+    {
+      "prop": "isRounded",
+      "setClass": "is-rounded"
+    }
+  ],
   "field": [
     {
       "prop": "isValid",
