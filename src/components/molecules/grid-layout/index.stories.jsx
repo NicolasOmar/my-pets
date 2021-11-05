@@ -4,7 +4,7 @@ import Title from '../../atoms/title'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // ENUMS
-import { columnWidthEnums, colorEnums } from '../../../enums/styles.enums.json'
+import { columnWidthEnums, colorEnums } from '../../../constants/bulma-styles.json'
 
 export default {
   title: `${STORYBOOK_ROUTES.MOLECULES}/Grid Layout`,

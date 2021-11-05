@@ -1,12 +1,12 @@
 import React from 'react'
 import BasicButton from '.'
 // APP_ROUTES
-import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
+import { STORYBOOK_ROUTES } from 'constants/routes.json'
 // MOCKS
 import mocks from './index.mocks.json'
 // ENUMS
-import { buttonTypeEnums } from '../../../enums/type.enums.json'
-import { colorEnums, sizeEnums } from '../../../enums/styles.enums.json'
+import { buttonTypeEnums } from 'enums/type.enums.json'
+import { colorEnums, sizeEnums } from 'constants/bulma-styles.json'
 
 export default {
   title: `${STORYBOOK_ROUTES.ATOMS}/Basic Button`,

@@ -4,7 +4,7 @@ import { string, array, element, shape, bool, oneOf, oneOfType } from 'prop-type
 import Title from '../../atoms/title'
 import GridLayout from '../../molecules/grid-layout'
 // ENUMS
-import { columnWidthEnums, colorEnums } from '../../../enums/styles.enums.json'
+import { columnWidthEnums, colorEnums } from '../../../constants/bulma-styles.json'
 
 const BasicFrame = ({ header, width = 8, color, centerGrid = false, children }) => {
   const renderHeader = () => (header ? <Title {...header} /> : null)

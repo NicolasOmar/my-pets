@@ -1,10 +1,10 @@
 import React from 'react'
 import { bool, func, oneOf, string } from 'prop-types'
 // ENUMS
-import { buttonTypeEnums } from '../../../enums/type.enums.json'
-import { colorEnums, sizeEnums } from '../../../enums/styles.enums.json'
+import { buttonTypeEnums } from 'enums/type.enums.json'
+import { colorEnums, sizeEnums } from 'constants/bulma-styles.json'
 // FUNCTIONS
-import { parseCssClasses } from '../../../functions/parsers'
+import { parseCssClasses } from 'functions/parsers'
 
 const BasicButton = ({
   type,

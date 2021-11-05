@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import BasicButton from '.'
+// MOCKS
 import { minimalConfig, disabled } from './index.mocks.json'
 
 describe('[BasicButton]', () => {

@@ -1,20 +1,30 @@
 import React from 'react'
-import { bool, string } from 'prop-types'
+import { oneOf, shape, string } from 'prop-types'
+import { fontSizes } from 'constants/bulma-styles.json'
 import './index.scss'
 
-const Title = ({ title, subTitle, centered }) => {
-  const titleClass = `ui ${centered ? 'center aligned' : ''} header`
-  const subTitleClass = centered ? 'subtitle-centered' : ''
+const Title = ({
+  title,
+  subTitle = null,
+  size = {
+    title: Object.keys(fontSizes)[4],
+    subTitle: Object.keys(fontSizes)[2]
+  }
+}) => {
+  const pClasses = {
+    title: `title ${fontSizes[size.title]}`,
+    subTitle: `subtitle ${fontSizes[size.subTitle]}`
+  }
 
   return (
     <>
-      <h1 data-testid={'test-title'} className={titleClass}>
+      <p data-testid={'test-title'} className={pClasses.title}>
         {title}
-      </h1>
+      </p>
       {subTitle && (
-        <span data-testid={'sub-test-title'} className={subTitleClass}>
+        <p data-testid={'sub-test-title'} className={pClasses.subTitle}>
           {subTitle}
-        </span>
+        </p>
       )}
     </>
   )
@@ -25,5 +35,8 @@ export default Title
 Title.propTypes = {
   title: string.isRequired,
   subTitle: string,
-  centered: bool
+  size: shape({
+    title: oneOf(Object.keys(fontSizes).map(size => +size)),
+    subTitle: oneOf(Object.keys(fontSizes).map(size => +size))
+  })
 }

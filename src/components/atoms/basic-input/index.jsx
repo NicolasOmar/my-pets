@@ -1,10 +1,10 @@
 import React from 'react'
 import { bool, func, string, number, oneOf } from 'prop-types'
 // ENUMS
-import { inputTypeEnums } from '../../../enums/type.enums.json'
-import { colorEnums, sizeEnums } from '../../../enums/styles.enums.json'
+import { inputTypeEnums } from 'enums/type.enums.json'
+import { colorEnums, sizeEnums } from 'constants/bulma-styles.json'
 // FUNCTIONS
-import { parseCssClasses } from '../../../functions/parsers'
+import { parseCssClasses } from 'functions/parsers'
 
 const BasicInput = ({
   type,

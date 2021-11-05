@@ -3,7 +3,7 @@ import { element, array, oneOfType, bool, oneOf } from 'prop-types'
 // STYLES
 import './index.scss'
 // ENUMS
-import { columnWidthEnums, colorEnums } from '../../../enums/styles.enums.json'
+import { columnWidthEnums, colorEnums } from '../../../constants/bulma-styles.json'
 
 const GridLayout = ({ width = 8, color, centerGrid, children }) => {
   const centerClass = centerGrid ? ' center aligned' : ''

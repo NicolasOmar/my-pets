@@ -4,15 +4,22 @@
   },
   "titleWithSubTitle": {
     "title": "Main title",
-    "subTitle": "Sub title"
+    "subTitle": "Subtitle"
   },
-  "centeredTitle": {
-    "title": "Centered titlte",
-    "centered": true
+  "bigSize": {
+    "title": "Big title",
+    "subTitle": "Big subtitle",
+    "size": {
+      "title": 1,
+      "subTitle": 1
+    }
   },
-  "centerMainAndSubTitle": {
-    "title": "Centered main title",
-    "subTitle": "Centered sub title",
-    "centered": true
+  "smallSize": {
+    "title": "Small title",
+    "subTitle": "Small subtitle",
+    "size": {
+      "title": 5,
+      "subTitle": 5
+    }
   }
 }

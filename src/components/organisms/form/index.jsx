@@ -10,7 +10,7 @@ import validators from '../../../functions/validators'
 import { parseCssClasses } from '../../../functions/parsers'
 // ENUMS
 import { buttonTypeEnums } from '../../../enums/type.enums.json'
-import { colorEnums } from '../../../enums/styles.enums.json'
+import { colorEnums } from '../../../constants/bulma-styles.json'
 
 const Form = ({ isLoading, errors, inputs, formButtons, onFormSubmit, onInputBlurChange }) => {
   const [formControls, setFormControls] = useState(inputs)

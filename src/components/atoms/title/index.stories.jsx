@@ -1,7 +1,7 @@
 import React from 'react'
 import Title from '.'
 // APP_ROUTES
-import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
+import { STORYBOOK_ROUTES } from 'constants/routes.json'
 // MOCKS
 import mocks from './index.mocks.json'
 
@@ -18,12 +18,15 @@ Minimal.storyName = 'Minimal config'
 
 export const MainAndSub = Template.bind({})
 MainAndSub.storyName = 'Main and Sub titles'
-MainAndSub.args = mocks.titleWithSubTitle
+MainAndSub.args = {
+  ...Minimal.args,
+  ...mocks.titleWithSubTitle
+}
 
-export const Centered = Template.bind({})
-Centered.storyName = 'Centered title'
-Centered.args = mocks.centeredTitle
+export const BigSize = Template.bind({})
+BigSize.storyName = 'Big Size'
+BigSize.args = mocks.bigSize
 
-export const AllCentered = Template.bind({})
-AllCentered.storyName = 'Centered Title and Subtitle'
-AllCentered.args = mocks.centerMainAndSubTitle
+export const SmallSize = Template.bind({})
+SmallSize.storyName = 'Small Size'
+SmallSize.args = mocks.smallSize

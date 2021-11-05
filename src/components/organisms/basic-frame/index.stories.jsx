@@ -6,7 +6,7 @@ import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // MOCKS
 import mocks from './index.mocks.json'
 // ENUMS
-import { columnWidthEnums, colorEnums } from '../../../enums/styles.enums.json'
+import { columnWidthEnums, colorEnums } from '../../../constants/bulma-styles.json'
 
 export default {
   title: `${STORYBOOK_ROUTES.ORGANISMS}/Basic Frame`,
