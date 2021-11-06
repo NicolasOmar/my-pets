@@ -9,8 +9,8 @@ import { parseCssClasses, parseObjKeys } from 'functions/parsers'
 const BasicInput = ({
   type,
   control,
-  value = null,
-  color = null,
+  value = '',
+  color = parseObjKeys(colors)[0],
   size = parseObjKeys(sizes)[0],
   isRounded = false,
   placeHolder = null,

@@ -4,17 +4,18 @@ import Title from '../../atoms/Title'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // ENUMS
-import { columnWidthEnums, colorEnums } from '../../../constants/bulma-styles.json'
+import { columnWidths, colors } from '../../../constants/bulma-styles.json'
+import { parseObjKeys } from 'functions/parsers'
 
 export default {
   title: `${STORYBOOK_ROUTES.MOLECULES}/Grid Layout`,
   component: GridLayout,
   argTypes: {
     width: {
-      options: Object.keys(columnWidthEnums).map(width => +width)
+      options: parseObjKeys(columnWidths)
     },
     color: {
-      options: colorEnums
+      options: parseObjKeys(colors)
     }
   }
 }
@@ -25,22 +26,25 @@ export const Minimal = Template.bind({})
 Minimal.storyName = 'Minimal config'
 
 export const WithComponent = Template.bind({})
-WithComponent.storyName = 'With "Title" component'
+WithComponent.storyName = 'With a "Title" component'
 WithComponent.args = {
   children: <Title title={'Test'} />
 }
 
-export const Colored = Template.bind({})
-Colored.storyName = 'Colored'
-Colored.args = {
-  ...WithComponent.args,
-  color: 'teal'
+export const WithSeveralComponent = Template.bind({})
+WithSeveralComponent.storyName = 'With 3 "Title" components'
+WithSeveralComponent.args = {
+  children: [
+    <Title key="test-1" title={'Test 1'} />,
+    <Title key="test-2" title={'Test 2'} />,
+    <Title key="test-3" title={'Test 3'} />
+  ]
 }
 
 export const Centered = Template.bind({})
 Centered.storyName = 'Centered'
 Centered.args = {
-  ...Colored.args,
+  ...WithSeveralComponent.args,
   centerGrid: true
 }
 
@@ -55,5 +59,5 @@ export const MaximunWidth = Template.bind({})
 MaximunWidth.storyName = 'Maximun Width'
 MaximunWidth.args = {
   ...Centered.args,
-  width: 16
+  width: 12
 }

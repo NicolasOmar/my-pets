@@ -11,19 +11,17 @@ export default {
   args: minimalConfig
 }
 
-const Template = args => (
-  <form className={'ui form'}>
-    <FormInput {...args} />
-  </form>
-)
+const Template = args => <FormInput {...args} />
 
 export const Minimal = Template.bind({})
 Minimal.storyName = 'Minimal config'
 
 export const Invalid = Template.bind({})
 Invalid.storyName = 'Invalid case'
-Invalid.args = { isValid: false }
-
-export const Required = Template.bind({})
-Required.storyName = 'Required case'
-Required.args = { isRequired: true }
+Invalid.args = {
+  ...minimalConfig,
+  inputConfig: {
+    ...minimalConfig.inputConfig,
+    isValid: false
+  }
+}

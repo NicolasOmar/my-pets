@@ -33,22 +33,18 @@
     "error": "is-danger",
     "info": "is-info"
   },
-  "columnWidthEnums": {
-    "1": "one",
-    "2": "two",
-    "3": "three",
-    "4": "four",
-    "5": "five",
-    "6": "six",
-    "7": "seven",
-    "8": "eight",
-    "9": "nine",
-    "10": "ten",
-    "11": "eleven",
-    "12": "twelve",
-    "13": "thirteen",
-    "14": "fourteen",
-    "15": "fifteen",
-    "16": "sixteen"
+  "columnWidths": {
+    "1": "is-1",
+    "2": "is-2",
+    "3": "is-3",
+    "4": "is-4",
+    "5": "is-5",
+    "6": "is-6",
+    "7": "is-7",
+    "8": "is-8",
+    "9": "is-9",
+    "10": "is-10",
+    "11": "is-11",
+    "12": "is-12"
   }
 }

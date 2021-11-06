@@ -1,28 +1,40 @@
 import React from 'react'
-import { element, array, oneOfType, bool, oneOf } from 'prop-types'
+import { element, array, oneOfType, oneOf, bool } from 'prop-types'
 // STYLES
 import './index.scss'
 // ENUMS
-import { columnWidthEnums } from '../../../constants/bulma-styles.json'
+import { columnWidths } from '../../../constants/bulma-styles.json'
+import { parseObjKeys } from 'functions/parsers'
 
-const GridLayout = ({ width = 8, centerGrid, children }) => {
-  const centerClass = centerGrid ? ' center aligned' : ''
-  const layoutClass = `ui grid${centerClass}`
-  const widthClass = `${columnWidthEnums[width]} wide column`
+const GridLayout = ({
+  width = parseObjKeys(columnWidths)[0],
+  centerGrid = false,
+  children = []
+}) => {
+  const renderChild = childNode => {
+    const renderedChild = <div className={`column ${columnWidths[width]}`}>{childNode}</div>
 
-  const renderChild = childNode => <div className={widthClass}>{childNode}</div>
+    return centerGrid ? (
+      <>
+        <div className="column" />
+        {renderedChild}
+        <div className="column" />
+      </>
+    ) : (
+      renderedChild
+    )
+  }
 
-  return (
-    <div data-testid={'grid-test-layout'} className={layoutClass}>
-      {Array.isArray(children)
-        ? children.filter(childNode => childNode).length > 1
-          ? children?.map((childNode, i) => (
-              <div key={`grid-test-row-${i}`} className="row">
-                {renderChild(childNode)}
-              </div>
-            ))
-          : renderChild(children)
-        : renderChild(children)}
+  console.error(children)
+  return Array.isArray(children) ? (
+    children.map((childNode, i) => (
+      <div data-testid={`grid-test-layout-${i}`} key={`grid-layout-${i}`} className="columns">
+        {renderChild(childNode)}
+      </div>
+    ))
+  ) : (
+    <div data-testid={`grid-test-layout`} className="columns">
+      {renderChild(children)}
     </div>
   )
 }
@@ -30,7 +42,7 @@ const GridLayout = ({ width = 8, centerGrid, children }) => {
 export default GridLayout
 
 GridLayout.propTypes = {
-  width: oneOf(Object.keys(columnWidthEnums).map(width => +width)),
+  width: oneOf(parseObjKeys(columnWidths)),
   centerGrid: bool,
   children: oneOfType([element, array])
 }
