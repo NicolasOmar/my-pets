@@ -1,7 +1,7 @@
 import React from 'react'
 import { shape, string, func, arrayOf } from 'prop-types'
 // COMPONENTS
-import MenuDropdown from '../../molecules/menu-dropdown'
+import MenuDropdown from '../../molecules/MenuDropdown'
 // STYLES
 import './index.scss'
 

@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { arrayOf, bool, func, object, shape, string, oneOf } from 'prop-types'
 // COMPONENTS
-import FormInput from '../../molecules/form-input'
-import ButtonGroup from '../../molecules/button-group'
-import MessageBlock from '../../atoms/message-block'
+import FormInput from '../../molecules/FormInput'
+import ButtonGroup from '../../molecules/ButtonGroup'
+import MessageBlock from '../../atoms/MessageBlock'
 // HELPER FUNCTIONS
 import { checkIsValidForm, checkIsValidInput, sendObjValues } from '../../../functions/methods'
 import validators from '../../../functions/validators'

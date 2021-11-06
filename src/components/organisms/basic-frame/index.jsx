@@ -1,8 +1,8 @@
 import React from 'react'
 import { string, array, element, shape, bool, oneOf, oneOfType } from 'prop-types'
 // COMPONENTS
-import Title from '../../atoms/title'
-import GridLayout from '../../molecules/grid-layout'
+import Title from '../../atoms/Title'
+import GridLayout from '../../molecules/GridLayout'
 // ENUMS
 import { columnWidthEnums, colorEnums } from '../../../constants/bulma-styles.json'
 

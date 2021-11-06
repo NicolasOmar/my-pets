@@ -11,7 +11,7 @@ const BasicInput = ({
   control,
   value = null,
   color = null,
-  size = sizes['medium'],
+  size = parseObjKeys(sizes)[0],
   isRounded = false,
   placeHolder = null,
   onInputChange = () => {},
@@ -21,7 +21,7 @@ const BasicInput = ({
   minLength = null,
   maxLength = null
 }) => {
-  const inputClass = parseCssClasses({ isRounded }, 'input', [color, size])
+  const inputClass = parseCssClasses({ isRounded }, 'input', [colors[color], sizes[size]])
   return (
     <input
       data-testid={`${control}-${type}`}

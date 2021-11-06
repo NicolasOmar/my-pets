@@ -11,7 +11,7 @@ export default {
   args: mocks.minimalConfig
 }
 
-const remockButtons = (prop, values, buttonArray = mocks.minimalConfig.buttons) => ({
+const mockButtons = (prop, values, buttonArray = mocks.minimalConfig.buttons) => ({
   buttons: buttonArray.map((button, i) => ({
     ...button,
     [prop]: values[i]
@@ -25,15 +25,15 @@ Minimal.storyName = 'Minimal config'
 
 export const Colored = Template.bind({})
 Colored.storyName = 'Colored buttons'
-Colored.args = remockButtons('color', ['green', 'red'])
+Colored.args = mockButtons('color', ['success', 'danger'])
 
 export const FirstDisabled = Template.bind({})
 FirstDisabled.storyName = 'First button disabled'
-FirstDisabled.args = remockButtons('isDisabled', [true, false], Colored.args.buttons)
+FirstDisabled.args = mockButtons('isDisabled', [true, false], Colored.args.buttons)
 
 export const BothDisabled = Template.bind({})
 BothDisabled.storyName = 'Both buttons disabled'
-BothDisabled.args = remockButtons('isDisabled', [true, true], Colored.args.buttons)
+BothDisabled.args = mockButtons('isDisabled', [true, true], Colored.args.buttons)
 
 export const AndSeparator = Template.bind({})
 AndSeparator.storyName = 'Other separator text'

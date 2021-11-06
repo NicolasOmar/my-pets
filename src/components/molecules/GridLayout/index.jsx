@@ -3,13 +3,12 @@ import { element, array, oneOfType, bool, oneOf } from 'prop-types'
 // STYLES
 import './index.scss'
 // ENUMS
-import { columnWidthEnums, colorEnums } from '../../../constants/bulma-styles.json'
+import { columnWidthEnums } from '../../../constants/bulma-styles.json'
 
-const GridLayout = ({ width = 8, color, centerGrid, children }) => {
+const GridLayout = ({ width = 8, centerGrid, children }) => {
   const centerClass = centerGrid ? ' center aligned' : ''
   const layoutClass = `ui grid${centerClass}`
-  const columnColor = color ? `${colorEnums.find(cEnum => cEnum === color)} ` ?? '' : ''
-  const widthClass = `${columnColor}${columnWidthEnums[width]} wide column`
+  const widthClass = `${columnWidthEnums[width]} wide column`
 
   const renderChild = childNode => <div className={widthClass}>{childNode}</div>
 
@@ -32,7 +31,6 @@ export default GridLayout
 
 GridLayout.propTypes = {
   width: oneOf(Object.keys(columnWidthEnums).map(width => +width)),
-  color: oneOf(colorEnums),
   centerGrid: bool,
   children: oneOfType([element, array])
 }

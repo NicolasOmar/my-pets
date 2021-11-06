@@ -8,8 +8,8 @@ import { parseCssClasses, parseObjKeys } from 'functions/parsers'
 
 const BasicButton = ({
   type,
-  color = colors['white'],
-  size = sizes['small'],
+  color = parseObjKeys(colors)[0],
+  size = parseObjKeys(sizes)[0],
   isOutlined = false,
   isInverted = false,
   isLoading = false,
@@ -17,7 +17,10 @@ const BasicButton = ({
   onClick,
   label
 }) => {
-  const btnClass = parseCssClasses({ isOutlined, isInverted, isLoading }, 'button', [color, size])
+  const btnClass = parseCssClasses({ isOutlined, isInverted, isLoading }, 'button', [
+    colors[color],
+    sizes[size]
+  ])
 
   return (
     <button

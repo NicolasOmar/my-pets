@@ -1,6 +1,6 @@
 import React from 'react'
 import BasicFrame from '.'
-import ButtonGroup from '../../molecules/button-group'
+import ButtonGroup from '../../molecules/ButtonGroup'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // MOCKS

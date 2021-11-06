@@ -1,9 +1,9 @@
 import React from 'react'
 import { shape, bool, func, string, number } from 'prop-types'
 // COMPONENTS
-import BasicInput from '../../atoms/basic-input'
+import BasicInput from 'components/atoms/BasicInput'
 // FUNCTIONS
-import { parseCssClasses } from '../../../functions/parsers'
+import { parseCssClasses } from 'functions/parsers'
 
 const renderInputLabel = inputLabel => inputLabel && <label>{inputLabel}</label>
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { arrayOf, shape, string, func } from 'prop-types'
 // ATOMS
-import MenuItem from '../../atoms/menu-item'
+import MenuItem from '../../atoms/MenuItem'
 
 const getTestId = index => (index ? `menu-option-${index}` : 'menu-dropdown')
 

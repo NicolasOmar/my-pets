@@ -1,6 +1,6 @@
 import React from 'react'
 import GridLayout from '.'
-import Title from '../../atoms/title'
+import Title from '../../atoms/Title'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // ENUMS
