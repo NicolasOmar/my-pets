@@ -37,3 +37,6 @@ export const parseCssClasses = (inputConfig = {}, fieldName, otherClasses = []) 
 
   return fieldName?.concat(' ', concatedClasses)
 }
+
+export const parseObjKeys = (_obj, asNumber = false) =>
+  Object.keys(_obj).map(_objValue => (asNumber ? +_objValue : _objValue))

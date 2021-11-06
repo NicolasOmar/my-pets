@@ -1,15 +1,15 @@
 import React from 'react'
 import { bool, func, oneOf, string } from 'prop-types'
-// ENUMS
-import { buttonTypeEnums } from 'enums/type.enums.json'
-import { colorEnums, sizeEnums } from 'constants/bulma-styles.json'
+// CONSTANTS
+import { buttonTypes } from 'constants/tag-types.json'
+import { colors, sizes } from 'constants/bulma-styles.json'
 // FUNCTIONS
-import { parseCssClasses } from 'functions/parsers'
+import { parseCssClasses, parseObjKeys } from 'functions/parsers'
 
 const BasicButton = ({
   type,
-  color = colorEnums[0],
-  size = sizeEnums[0],
+  color = colors['white'],
+  size = sizes['small'],
   isOutlined = false,
   isInverted = false,
   isLoading = false,
@@ -35,9 +35,9 @@ const BasicButton = ({
 export default BasicButton
 
 BasicButton.propTypes = {
-  type: oneOf(buttonTypeEnums).isRequired,
-  color: oneOf(colorEnums),
-  size: oneOf(sizeEnums),
+  type: oneOf(buttonTypes).isRequired,
+  color: oneOf(parseObjKeys(colors)),
+  size: oneOf(parseObjKeys(sizes)),
   isOutlined: bool,
   isInverted: bool,
   isLoading: bool,

@@ -2,24 +2,26 @@ import React from 'react'
 import BasicInput from '.'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from 'constants/routes.json'
+// CONSTANTS
+import { inputTypes } from 'constants/tag-types.json'
+import { colors, sizes } from 'constants/bulma-styles.json'
+// FUNCTIONS
+import { parseObjKeys } from 'functions/parsers'
 // MOCKS
 import mocks from './index.mocks.json'
-// ENUMS
-import { inputTypeEnums } from 'enums/type.enums.json'
-import { colorEnums, sizeEnums } from 'constants/bulma-styles.json'
 
 export default {
   title: `${STORYBOOK_ROUTES.ATOMS}/Basic Input`,
   component: BasicInput,
   argTypes: {
     type: {
-      options: inputTypeEnums
+      options: inputTypes
     },
     color: {
-      options: colorEnums
+      options: parseObjKeys(colors)
     },
     size: {
-      options: sizeEnums
+      options: parseObjKeys(sizes)
     }
   },
   args: mocks.minimalConfig

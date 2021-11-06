@@ -4,10 +4,10 @@
     "control": "basicInputControl"
   },
   "colored": {
-    "color": "is-danger"
+    "color": "danger"
   },
   "large": {
-    "size": "is-large"
+    "size": "large"
   },
   "rounded": {
     "isRounded": true

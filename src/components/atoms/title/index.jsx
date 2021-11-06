@@ -1,7 +1,9 @@
 import React from 'react'
 import { oneOf, shape, string } from 'prop-types'
+// CONSTANTS
 import { fontSizes } from 'constants/bulma-styles.json'
-import './index.scss'
+// FUNCTIONS
+import { parseObjKeys } from 'functions/parsers'
 
 const Title = ({
   title,
@@ -36,7 +38,7 @@ Title.propTypes = {
   title: string.isRequired,
   subTitle: string,
   size: shape({
-    title: oneOf(Object.keys(fontSizes).map(size => +size)),
-    subTitle: oneOf(Object.keys(fontSizes).map(size => +size))
+    title: oneOf(parseObjKeys(fontSizes, true)),
+    subTitle: oneOf(parseObjKeys(fontSizes, true))
   })
 }

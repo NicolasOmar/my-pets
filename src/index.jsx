@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import reportWebVitals from './reportWebVitals'
-// REDUX
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 // REDUCERS
@@ -11,6 +10,7 @@ import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@ap
 import { setContext } from '@apollo/client/link/context'
 // COMPONENTS
 import App from './components/app/app'
+// FUNCTIONS
 import { getLoggedUser } from './functions/local-storage'
 
 const httpLink = createHttpLink({

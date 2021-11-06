@@ -1,12 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
-    "paths": {
-      "constants": ["./constants/*"],
-      "enums": ["./enums/*"],
-      "funtcions": ["./funtcions/*"],
-      "graphql": ["./graphql/*"],
-      "redux": ["./redux/*"]
-    }
-  }
+    "baseUrl": "src"
+  },
+  "include": ["src"]
 }

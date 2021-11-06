@@ -1,24 +1,24 @@
 {
-  "colorEnums": [
-    "is-white",
-    "is-light",
-    "is-dark",
-    "is-black",
-    "is-text",
-    "is-ghost",
-    "is-info",
-    "is-success",
-    "is-warning",
-    "is-danger",
-    "is-primary",
-    "is-link"
-  ],
-  "sizeEnums": [
-    "is-small",
-    "is-normal",
-    "is-medium",
-    "is-large"
-  ],
+  "colors": {
+    "white": "is-white",
+    "light": "is-light",
+    "dark": "is-dark",
+    "black": "is-black",
+    "text": "is-text",
+    "ghost": "is-ghost",
+    "info": "is-info",
+    "success": "is-success",
+    "warning": "is-warning",
+    "danger": "is-danger",
+    "primary": "is-primary",
+    "link": "is-link"
+  },
+  "sizes": {
+    "small": "is-small",
+    "normal": "is-normal",
+    "medium": "is-medium",
+    "large": "is-large"
+  },
   "fontSizes": {
     "1": "is-1",
     "2": "is-2",
@@ -26,6 +26,12 @@
     "4": "is-4",
     "5": "is-5",
     "6": "is-6"
+  },
+  "notificationTypes": {
+    "success": "is-success",
+    "warning": "is-warning",
+    "error": "is-danger",
+    "info": "is-info"
   },
   "columnWidthEnums": {
     "1": "one",

@@ -2,24 +2,26 @@ import React from 'react'
 import BasicButton from '.'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from 'constants/routes.json'
+// CONSTANTS
+import { buttonTypes } from 'constants/tag-types.json'
+import { colors, sizes } from 'constants/bulma-styles.json'
+// FUNCTIONS
+import { parseObjKeys } from 'functions/parsers'
 // MOCKS
 import mocks from './index.mocks.json'
-// ENUMS
-import { buttonTypeEnums } from 'enums/type.enums.json'
-import { colorEnums, sizeEnums } from 'constants/bulma-styles.json'
 
 export default {
   title: `${STORYBOOK_ROUTES.ATOMS}/Basic Button`,
   component: BasicButton,
   argTypes: {
     type: {
-      options: buttonTypeEnums
+      options: buttonTypes
     },
     color: {
-      options: colorEnums
+      options: parseObjKeys(colors)
     },
     size: {
-      options: sizeEnums
+      options: parseObjKeys(sizes)
     }
   },
   args: mocks.minimalConfig

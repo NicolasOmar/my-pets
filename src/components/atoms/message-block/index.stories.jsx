@@ -3,16 +3,18 @@ import MessageBlock from '.'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // ENUMS
-import { messageTypes } from '../../../enums/type.enums.json'
+import { notificationTypes } from 'constants/bulma-styles.json'
 // MOCKS
 import { minimalConfig } from './index.mocks.json'
+// PARSER
+import { parseObjKeys } from 'functions/parsers'
 
 export default {
   title: `${STORYBOOK_ROUTES.ATOMS}/Message Block`,
   component: MessageBlock,
   argTypes: {
     msgType: {
-      options: messageTypes
+      options: parseObjKeys(notificationTypes)
     }
   },
   args: minimalConfig
@@ -32,14 +34,14 @@ Error.storyName = 'Error'
 Error.args = { msgType: 'error' }
 
 export const WithTitle = Template.bind({})
-WithTitle.storyName = 'With a title'
-WithTitle.args = { ...Error.args, header: 'Message header' }
+WithTitle.storyName = 'With a Title'
+WithTitle.args = { ...Error.args, headerText: 'Message header' }
 
 export const WithSeveralMessages = Template.bind({})
 WithSeveralMessages.storyName = 'With a message list'
 WithSeveralMessages.args = {
   ...WithTitle.args,
-  errors: Array(5)
+  messages: Array(5)
     .fill(null)
-    .map((_, i) => `${minimalConfig.errors} N°${++i}`)
+    .map((_, i) => `${minimalConfig.messages} N°${++i}`)
 }

@@ -1,25 +1,25 @@
 import React from 'react'
 import { bool, func, string, number, oneOf } from 'prop-types'
-// ENUMS
-import { inputTypeEnums } from 'enums/type.enums.json'
-import { colorEnums, sizeEnums } from 'constants/bulma-styles.json'
+// CONSTANTS
+import { inputTypes } from 'constants/tag-types.json'
+import { colors, sizes } from 'constants/bulma-styles.json'
 // FUNCTIONS
-import { parseCssClasses } from 'functions/parsers'
+import { parseCssClasses, parseObjKeys } from 'functions/parsers'
 
 const BasicInput = ({
   type,
   control,
   value = null,
   color = null,
-  size = sizeEnums[0],
+  size = sizes['medium'],
   isRounded = false,
-  placeHolder,
-  onInputChange,
-  onBlurChange,
-  isRequired,
-  isDisabled,
-  minLength,
-  maxLength
+  placeHolder = null,
+  onInputChange = () => {},
+  onBlurChange = () => {},
+  isRequired = false,
+  isDisabled = false,
+  minLength = null,
+  maxLength = null
 }) => {
   const inputClass = parseCssClasses({ isRounded }, 'input', [color, size])
   return (
@@ -28,14 +28,14 @@ const BasicInput = ({
       type={type}
       className={inputClass}
       value={value}
-      placeholder={placeHolder || null}
-      required={isRequired || false}
-      disabled={isDisabled || false}
+      placeholder={placeHolder}
+      required={isRequired}
+      disabled={isDisabled}
       onChange={evt => onInputChange(evt, control)}
       onBlur={() => onBlurChange(control)}
       name={control.toLowerCase().replace(' ', '-')}
-      minLength={minLength || null}
-      maxLength={maxLength || null}
+      minLength={minLength}
+      maxLength={maxLength}
     />
   )
 }
@@ -43,11 +43,11 @@ const BasicInput = ({
 export default BasicInput
 
 BasicInput.propTypes = {
-  type: oneOf(inputTypeEnums).isRequired,
+  type: oneOf(inputTypes).isRequired,
   control: string.isRequired,
   value: string,
-  color: oneOf(colorEnums),
-  size: oneOf(sizeEnums),
+  color: oneOf(parseObjKeys(colors)),
+  size: oneOf(parseObjKeys(sizes)),
   isRounded: bool,
   placeHolder: string,
   onInputChange: func,
