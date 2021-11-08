@@ -2,9 +2,9 @@ import React from 'react'
 import GridLayout from '.'
 import Title from '../../atoms/Title'
 // APP_ROUTES
-import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
+import { STORYBOOK_ROUTES } from 'constants/routes.json'
 // ENUMS
-import { columnWidths, colors } from '../../../constants/bulma-styles.json'
+import { columnSizes } from 'constants/bulma-styles.json'
 import { parseObjKeys } from 'functions/parsers'
 
 export default {
@@ -12,10 +12,7 @@ export default {
   component: GridLayout,
   argTypes: {
     width: {
-      options: parseObjKeys(columnWidths)
-    },
-    color: {
-      options: parseObjKeys(colors)
+      options: parseObjKeys(columnSizes)
     }
   }
 }

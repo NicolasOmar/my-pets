@@ -4,28 +4,37 @@ import { parseObjKeys } from 'functions/parsers'
 // ENUMS
 import { notificationTypes } from 'constants/bulma-styles.json'
 
-const MessageBlock = ({ headerText, msgType, messages }) => (
-  <section
-    data-testid={`${msgType}-notification`}
-    className={`notification ${notificationTypes[msgType]}`}
-  >
-    <section className="content">
-      {headerText && <h2 data-testid={`${msgType}-header`}>{headerText}</h2>}
-      {messages &&
-        (Array.isArray(messages) ? (
-          <ul>
-            {messages?.map((msg, i) => (
-              <li data-testid={`${msgType}-msg-${i}`} key={`${msgType}-msg-${i}`}>
-                {msg}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p data-testid={`${msgType}-msg`}>{messages}</p>
-        ))}
+const MessageBlock = ({ headerText = null, msgType, messages = [] }) => {
+  const renderMsgHeader = headerText =>
+    headerText && (
+      <section className="message-header">
+        <p data-testid={`${msgType}-message-header`}>{headerText}</p>
+      </section>
+    )
+
+  const renderMsgs = messages => (
+    <section className="message-body">
+      {Array.isArray(messages) ? (
+        <ul>
+          {messages.map((msg, i) => (
+            <li data-testid={`${msgType}-msg-${i}`} key={`${msgType}-msg-${i}`}>
+              {msg}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p data-testid={`${msgType}-msg`}>{messages}</p>
+      )}
     </section>
-  </section>
-)
+  )
+
+  return (
+    <article data-testid={`${msgType}-message`} className={`message ${notificationTypes[msgType]}`}>
+      {renderMsgHeader(headerText)}
+      {renderMsgs(messages)}
+    </article>
+  )
+}
 
 export default MessageBlock
 

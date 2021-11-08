@@ -33,7 +33,7 @@
     "error": "is-danger",
     "info": "is-info"
   },
-  "columnWidths": {
+  "columnSizes": {
     "1": "is-1",
     "2": "is-2",
     "3": "is-3",

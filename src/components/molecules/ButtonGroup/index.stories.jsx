@@ -34,10 +34,3 @@ FirstDisabled.args = mockButtons('isDisabled', [true, false], Colored.args.butto
 export const BothDisabled = Template.bind({})
 BothDisabled.storyName = 'Both buttons disabled'
 BothDisabled.args = mockButtons('isDisabled', [true, true], Colored.args.buttons)
-
-export const AndSeparator = Template.bind({})
-AndSeparator.storyName = 'Other separator text'
-AndSeparator.args = {
-  ...Colored.args,
-  separator: 'and'
-}

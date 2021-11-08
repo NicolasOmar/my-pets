@@ -1,39 +1,26 @@
 import React from 'react'
 import { element, array, oneOfType, oneOf, bool } from 'prop-types'
-// STYLES
-import './index.scss'
-// ENUMS
-import { columnWidths } from '../../../constants/bulma-styles.json'
+// CONSTANTS
+import { columnSizes } from 'constants/bulma-styles.json'
+// FUNCTIONS
 import { parseObjKeys } from 'functions/parsers'
 
 const GridLayout = ({
-  width = parseObjKeys(columnWidths)[0],
+  width = parseObjKeys(columnSizes)[0],
   centerGrid = false,
   children = []
 }) => {
-  const renderChild = childNode => {
-    const renderedChild = <div className={`column ${columnWidths[width]}`}>{childNode}</div>
+  const columnsStyle = centerGrid ? 'columns is-centered' : 'columns'
+  const renderChild = childNode => <div className={`column ${columnSizes[width]}`}>{childNode}</div>
 
-    return centerGrid ? (
-      <>
-        <div className="column" />
-        {renderedChild}
-        <div className="column" />
-      </>
-    ) : (
-      renderedChild
-    )
-  }
-
-  console.error(children)
   return Array.isArray(children) ? (
     children.map((childNode, i) => (
-      <div data-testid={`grid-test-layout-${i}`} key={`grid-layout-${i}`} className="columns">
+      <div data-testid={`grid-test-layout-${i}`} key={`grid-layout-${i}`} className={columnsStyle}>
         {renderChild(childNode)}
       </div>
     ))
   ) : (
-    <div data-testid={`grid-test-layout`} className="columns">
+    <div data-testid={`grid-test-layout`} className={columnsStyle}>
       {renderChild(children)}
     </div>
   )
@@ -42,7 +29,7 @@ const GridLayout = ({
 export default GridLayout
 
 GridLayout.propTypes = {
-  width: oneOf(parseObjKeys(columnWidths)),
+  width: oneOf(parseObjKeys(columnSizes)),
   centerGrid: bool,
   children: oneOfType([element, array])
 }
