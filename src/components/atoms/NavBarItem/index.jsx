@@ -10,7 +10,7 @@ const NavBarItem = ({
   const itemStyle = isLink && !children ? 'navbar-link' : 'navbar-item'
 
   return (
-    <div className={itemStyle} onClick={onClickItem}>
+    <div data-testid={`navbar-item`} className={itemStyle} onClick={onClickItem}>
       {children || itemLabel}
     </div>
   )

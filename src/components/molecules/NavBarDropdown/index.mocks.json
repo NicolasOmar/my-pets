@@ -1,0 +1,16 @@
+{
+  "minimalConfig": {
+    "label": "Minimal config dropdown"
+  },
+  "withOneItem": {
+    "label": "Dropdown with 1 item",
+    "options": [
+      {
+        "itemLabel": "Dropdown Option Item"
+      }
+    ]
+  },
+  "withSeveralItems": {
+    "label": "Dropdown with several items"
+  }
+}
