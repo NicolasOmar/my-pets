@@ -1,0 +1,15 @@
+{
+  "withHeader": {
+    "header": {
+      "title": "Basic Frame Header",
+      "subTitle": "With a subtitle"
+    }
+  },
+  "withButtons": {
+    "buttons": [
+      { "type": "button", "color": "success", "label": "First Button" },
+      { "type": "button", "color": "danger", "label": "Second Button" }
+    ]
+  },
+  "headerTestIds": ["test-title", "sub-test-title"]
+}

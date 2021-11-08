@@ -29,7 +29,7 @@ const GridLayout = ({
 export default GridLayout
 
 GridLayout.propTypes = {
-  width: oneOf(parseObjKeys(columnSizes)),
+  width: oneOf(parseObjKeys(columnSizes, true)),
   centerGrid: bool,
   children: oneOfType([element, array])
 }

@@ -30,13 +30,6 @@ DisabledButtons.args = {
   formButtons: WithButtons.args.formButtons.map(button => ({ ...button, isDisabled: true }))
 }
 
-export const IsLoading = Template.bind({})
-IsLoading.storyName = 'Loading'
-IsLoading.args = {
-  ...DisabledButtons.args,
-  isLoading: true
-}
-
 export const WithErrors = Template.bind({})
 WithErrors.storyName = 'With form errors'
 WithErrors.args = {

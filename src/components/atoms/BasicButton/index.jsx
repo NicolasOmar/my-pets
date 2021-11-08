@@ -14,7 +14,7 @@ const BasicButton = ({
   isInverted = false,
   isLoading = false,
   isDisabled = false,
-  onClick,
+  onClick = () => console.warn('onClick'),
   label
 }) => {
   const btnClass = parseCssClasses({ isOutlined, isInverted, isLoading }, 'button', [

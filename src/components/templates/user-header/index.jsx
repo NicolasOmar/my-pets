@@ -9,7 +9,7 @@ import { LOGOUT } from '../../../graphql/mutations'
 import { APP_ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
 import { clearAllStorage } from '../../../functions/local-storage'
-import Header from '../../organisms/header'
+import Header from '../../organisms/Header'
 
 const UserHeader = ({ name }) => {
   let history = useHistory()

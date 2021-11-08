@@ -19,12 +19,12 @@
     "formButtons": [
       {
         "type": "submit",
-        "color": "green",
+        "color": "success",
         "label": "Log in"
       },
       {
         "type": "button",
-        "color": "red",
+        "color": "danger",
         "label": "Or you can Sign up"
       }
     ]

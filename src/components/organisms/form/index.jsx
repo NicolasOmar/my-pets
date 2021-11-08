@@ -9,7 +9,7 @@ import { checkIsValidForm, checkIsValidInput, sendObjValues } from '../../../fun
 import validators from '../../../functions/validators'
 import { parseCssClasses } from '../../../functions/parsers'
 // ENUMS
-import { buttonTypeEnums } from '../../../enums/type.enums.json'
+import { buttonTypes } from '../../../constants/tag-types.json'
 import { colorEnums } from '../../../constants/bulma-styles.json'
 
 const Form = ({ isLoading, errors, inputs, formButtons, onFormSubmit, onInputBlurChange }) => {
@@ -95,8 +95,8 @@ const Form = ({ isLoading, errors, inputs, formButtons, onFormSubmit, onInputBlu
     errors && (
       <MessageBlock
         msgType={'error'}
-        header={'New Errors'}
-        errors={errors.graphQLErrors[0].message.split(',')}
+        headerText={'New Errors'}
+        messages={errors.graphQLErrors[0].message.split(',')}
       />
     )
 
@@ -119,7 +119,7 @@ Form.propTypes = {
   inputs: object.isRequired,
   formButtons: arrayOf(
     shape({
-      type: oneOf(buttonTypeEnums).isRequired,
+      type: oneOf(buttonTypes).isRequired,
       color: oneOf(colorEnums),
       isDisabled: bool,
       onClick: func,

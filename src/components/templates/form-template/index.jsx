@@ -1,8 +1,8 @@
 import { array, bool, func, object } from 'prop-types'
 import React from 'react'
 // COMPONENTS
-import BasicFrame from '../../organisms/basic-frame'
-import Form from '../../organisms/form'
+import BasicFrame from '../../organisms/BasicFrame'
+import Form from '../../organisms/Form'
 
 const FormTemplate = ({
   header,
