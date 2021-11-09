@@ -1,6 +1,6 @@
-import NavBarItem from 'components/atoms/NavBarItem'
-import { arrayOf, shape, string, bool, func, element, array, oneOfType } from 'prop-types'
 import React from 'react'
+import { arrayOf, shape, string, bool, func, element, array, oneOfType } from 'prop-types'
+import NavBarItem from 'components/atoms/NavBarItem'
 
 const NavBarDropdown = ({ label, options = [] }) => (
   <section data-testid={`navbar-dropdown`} className="navbar-item has-dropdown is-hoverable">
@@ -25,7 +25,7 @@ NavBarDropdown.propTypes = {
   label: string.isRequired,
   options: arrayOf(
     shape({
-      itemLabel: string.isRequired,
+      itemLabel: string,
       isLink: bool,
       onClickItem: func,
       children: oneOfType([element, array])

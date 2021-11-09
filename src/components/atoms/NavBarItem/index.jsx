@@ -2,7 +2,7 @@ import React from 'react'
 import { string, bool, func, element, array, oneOfType } from 'prop-types'
 
 const NavBarItem = ({
-  itemLabel,
+  itemLabel = null,
   isLink = false,
   onClickItem = () => console.warn(`onClick ${itemLabel}`),
   children = null
@@ -19,7 +19,7 @@ const NavBarItem = ({
 export default NavBarItem
 
 NavBarItem.propTypes = {
-  itemLabel: string.isRequired,
+  itemLabel: string,
   isLink: bool,
   onClickItem: func,
   children: oneOfType([element, array])
