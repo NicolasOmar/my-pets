@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { useMutation } from '@apollo/client'
 import { CREATE_USER } from '../../../graphql/mutations'
 // COMPONENTS
-import FormTemplate from '../../templates/form-template'
+import FormTemplate from '../../templates/FormTemplate'
 // FORM CONFIG
 import { inputs, header, signUpButton, goToLoginButton } from './config.json'
 // CONSTANTS

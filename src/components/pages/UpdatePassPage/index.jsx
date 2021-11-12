@@ -3,7 +3,7 @@ import React from 'react'
 import { useMutation } from '@apollo/client'
 import { UPDATE_PASS } from '../../../graphql/mutations'
 // COMPONENTS
-import FormTemplate from '../../templates/form-template'
+import FormTemplate from '../../templates/FormTemplate'
 // FORM CONFIG
 import { header, inputs, updateButton, cancelButton } from './config.json'
 // FUNCTIONS

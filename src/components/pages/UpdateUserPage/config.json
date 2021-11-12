@@ -23,10 +23,12 @@
   },
   "saveButton": {
     "type": "submit",
+    "color": "success",
     "label": "Save"
   },
   "goBackButton": {
     "type": "button",
+    "color": "danger",
     "label": "Go Back"
   }
 }

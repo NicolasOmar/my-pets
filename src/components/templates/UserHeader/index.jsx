@@ -9,7 +9,7 @@ import { LOGOUT } from '../../../graphql/mutations'
 import { APP_ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
 import { clearAllStorage } from '../../../functions/local-storage'
-import Header from '../../organisms/Header'
+import NavBar from '../../organisms/NavBar'
 
 const UserHeader = ({ name }) => {
   let history = useHistory()
@@ -32,24 +32,29 @@ const UserHeader = ({ name }) => {
   }
 
   const dropdownConfig = {
-    menuLabel: name.toUpperCase(),
-    options: [
+    end: [
       {
-        label: 'Update User',
-        onClick: () => history.push(APP_ROUTES.UPDATE_USER)
-      },
-      {
-        label: 'Update Pass',
-        onClick: () => history.push(APP_ROUTES.UPDATE_PASS)
-      },
-      {
-        label: 'Logout',
-        onClick: onLogout
+        type: 'dropdown',
+        label: name.toUpperCase(),
+        options: [
+          {
+            itemLabel: 'Update User',
+            onClickItem: () => history.push(APP_ROUTES.UPDATE_USER)
+          },
+          {
+            itemLabel: 'Update Pass',
+            onClickItem: () => history.push(APP_ROUTES.UPDATE_PASS)
+          },
+          {
+            itemLabel: 'Logout',
+            onClickItem: onLogout
+          }
+        ]
       }
     ]
   }
 
-  return <Header {...{ dropdownConfig }} />
+  return <NavBar {...dropdownConfig} />
 }
 
 export default UserHeader

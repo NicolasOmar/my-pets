@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { useMutation } from '@apollo/client'
 import { LOGIN } from '../../../graphql/mutations'
 // COMPONENTS
-import FormTemplate from '../../templates/form-template'
+import FormTemplate from '../../templates/FormTemplate'
 // FORM CONFIG
 import { inputs, header, loginButton, goToSignUpButton } from './config.json'
 // CONSTANTS

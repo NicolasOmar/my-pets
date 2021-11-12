@@ -10,7 +10,7 @@ import validators from '../../../functions/validators'
 import { parseCssClasses } from '../../../functions/parsers'
 // ENUMS
 import { buttonTypes } from '../../../constants/tag-types.json'
-import { colorEnums } from '../../../constants/bulma-styles.json'
+import { colors } from '../../../constants/bulma-styles.json'
 
 const Form = ({ isLoading, errors, inputs, formButtons, onFormSubmit, onInputBlurChange }) => {
   const [formControls, setFormControls] = useState(inputs)
@@ -120,7 +120,7 @@ Form.propTypes = {
   formButtons: arrayOf(
     shape({
       type: oneOf(buttonTypes).isRequired,
-      color: oneOf(colorEnums),
+      color: oneOf(colors),
       isDisabled: bool,
       onClick: func,
       label: string.isRequired

@@ -21,11 +21,12 @@
   },
   "loginButton": {
     "type": "submit",
+    "color": "success",
     "label": "Log in"
   },
   "goToSignUpButton": {
     "type": "button",
-    "color": "red",
+    "color": "danger",
     "label": "You can Sign up"
   }
 }

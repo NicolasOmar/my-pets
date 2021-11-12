@@ -27,7 +27,7 @@ const NavBar = ({ icon = null, start = null, end = null }) => {
   return (
     <nav className="navbar">
       {renderBrand(icon)}
-      {(start || icon) && (
+      {(start || end) && (
         <section className="navbar-menu">
           {renderSection('navbar-start', start)}
           {renderSection('navbar-end', end)}

@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import FormTemplate from '.'
 // CONFIG AS MOCK
-import LoginPageConfigMock from '../../pages/login-page/config.json'
+import LoginPageConfigMock from '../../pages/LoginPage/config.json'
 
 describe('[FormTemplate]', () => {
   test('Should render the component with required props only', () => {

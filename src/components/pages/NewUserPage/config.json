@@ -51,11 +51,12 @@
   },
   "signUpButton": {
     "type": "submit",
+    "color": "success",
     "label": "Sign up"
   },
   "goToLoginButton": {
     "type": "button",
-    "color": "red",
+    "color": "danger",
     "label": "You can log in with your account"
   }
 }

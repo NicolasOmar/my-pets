@@ -3,10 +3,10 @@ import FormTemplate from '.'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // CONFIG AS MOCK
-import LoginPageConfigMock from '../../pages/login-page/config.json'
-import NewUserPageConfigMock from '../../pages/new-user-page/config.json'
-import UpdateUserPageConfigMock from '../../pages/update-user-page/config.json'
-import UpdatePassPageConfigMock from '../../pages/new-user-page/config.json'
+import LoginPageConfigMock from '../../pages/LoginPage/config.json'
+import NewUserPageConfigMock from '../../pages/NewUserPage/config.json'
+import UpdateUserPageConfigMock from '../../pages/UpdateUserPage/config.json'
+import UpdatePassPageConfigMock from '../../pages/NewUserPage/config.json'
 
 export default {
   title: `${STORYBOOK_ROUTES.TEMPLATES}/Form Template`,

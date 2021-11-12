@@ -5,7 +5,7 @@ import { useHistory } from 'react-router'
 import { useMutation } from '@apollo/client'
 import { UPDATE_USER } from '../../../graphql/mutations'
 // COMPONENTS
-import FormTemplate from '../../templates/form-template'
+import FormTemplate from '../../templates/FormTemplate'
 // FORM CONFIG
 import { inputs, header, saveButton, goBackButton } from './config.json'
 // CONSTANTS
