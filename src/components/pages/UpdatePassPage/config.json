@@ -23,16 +23,17 @@
     }
   },
   "header": {
-    "title": "Update Password",
-    "centered": true
+    "titleText": "Update Password",
+    "isCentered": true
   },
   "updateButton": {
     "type": "submit",
+    "color": "success",
     "label": "Confirm Update"
   },
   "cancelButton": {
     "type": "button",
-    "color": "red",
+    "color": "danger",
     "label": "Cancel"
   }
 }

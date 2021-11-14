@@ -6,7 +6,7 @@ import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 import LoginPageConfigMock from '../../pages/LoginPage/config.json'
 import NewUserPageConfigMock from '../../pages/NewUserPage/config.json'
 import UpdateUserPageConfigMock from '../../pages/UpdateUserPage/config.json'
-import UpdatePassPageConfigMock from '../../pages/NewUserPage/config.json'
+import UpdatePassPageConfigMock from '../../pages/UpdatePassPage/config.json'
 
 export default {
   title: `${STORYBOOK_ROUTES.TEMPLATES}/Form Template`,
@@ -40,5 +40,5 @@ export const UpdatePassExample = Template.bind({})
 UpdatePassExample.storyName = 'Update Password'
 UpdatePassExample.args = {
   ...UpdatePassPageConfigMock,
-  formButtons: [UpdatePassPageConfigMock.signUpButton, UpdatePassPageConfigMock.goToLoginButton]
+  formButtons: [UpdatePassPageConfigMock.updateButton, UpdatePassPageConfigMock.cancelButton]
 }

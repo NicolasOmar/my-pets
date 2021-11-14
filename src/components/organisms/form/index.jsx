@@ -3,7 +3,7 @@ import { arrayOf, bool, func, object, shape, string, oneOf } from 'prop-types'
 // COMPONENTS
 import FormInput from '../../molecules/FormInput'
 import ButtonGroup from '../../molecules/ButtonGroup'
-import MessageBlock from '../../atoms/MessageBlock'
+import Message from '../../atoms/Message'
 // HELPER FUNCTIONS
 import { checkIsValidForm, checkIsValidInput, sendObjValues } from '../../../functions/methods'
 import validators from '../../../functions/validators'
@@ -12,11 +12,19 @@ import { parseCssClasses } from '../../../functions/parsers'
 import { buttonTypes } from '../../../constants/tag-types.json'
 import { colors } from '../../../constants/bulma-styles.json'
 
-const Form = ({ isLoading, errors, inputs, formButtons, onFormSubmit, onInputBlurChange }) => {
+const Form = ({
+  isLoading = false,
+  isBoxed = true,
+  errors = null,
+  inputs,
+  formButtons = [],
+  onFormSubmit = () => {},
+  onInputBlurChange = () => {}
+}) => {
   const [formControls, setFormControls] = useState(inputs)
   const [disableSignUpButton, setDisableSignUpButton] = useState(true)
   const firstUpdate = useRef(true)
-  const formClass = parseCssClasses({ isLoading, errors }, 'ui form')
+  const formClass = parseCssClasses({ isLoading, isBoxed, errors }, 'form')
 
   useEffect(() => {
     if (firstUpdate.current) {
@@ -93,7 +101,7 @@ const Form = ({ isLoading, errors, inputs, formButtons, onFormSubmit, onInputBlu
 
   const renderErrors = () =>
     errors && (
-      <MessageBlock
+      <Message
         msgType={'error'}
         headerText={'New Errors'}
         messages={errors.graphQLErrors[0].message.split(',')}
@@ -101,13 +109,11 @@ const Form = ({ isLoading, errors, inputs, formButtons, onFormSubmit, onInputBlu
     )
 
   return (
-    <div className="ui segment">
-      <form data-testid="form" className={formClass} onSubmit={onSubmit}>
-        {renderInputs()}
-        {renderButtons()}
-        {renderErrors()}
-      </form>
-    </div>
+    <form data-testid="form" className={formClass} onSubmit={onSubmit}>
+      {renderInputs()}
+      {renderButtons()}
+      {renderErrors()}
+    </form>
   )
 }
 
@@ -115,6 +121,7 @@ export default Form
 
 Form.propTypes = {
   isLoading: bool,
+  isBoxed: bool,
   errors: object,
   inputs: object.isRequired,
   formButtons: arrayOf(

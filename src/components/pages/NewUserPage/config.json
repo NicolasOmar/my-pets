@@ -46,8 +46,8 @@
     }
   },
   "header": {
-    "title": "Sign up",
-    "centered": true
+    "titleText": "Sign up",
+    "isCentered": true
   },
   "signUpButton": {
     "type": "submit",

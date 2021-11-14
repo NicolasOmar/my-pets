@@ -1,31 +1,30 @@
 import React from 'react'
-import { oneOf, shape, string } from 'prop-types'
+import { bool, oneOf, string } from 'prop-types'
 // CONSTANTS
 import { fontSizes } from 'constants/bulma-styles.json'
 // FUNCTIONS
-import { parseObjKeys } from 'functions/parsers'
+import { parseObjKeys, parseCssClasses } from 'functions/parsers'
 
 const Title = ({
-  title,
-  subTitle = null,
-  size = {
-    title: Object.keys(fontSizes)[4],
-    subTitle: Object.keys(fontSizes)[2]
-  }
+  titleText,
+  titleSize = Object.keys(fontSizes)[4],
+  subText = null,
+  subSize = Object.keys(fontSizes)[2],
+  isCentered = false
 }) => {
-  const pClasses = {
-    title: `title ${fontSizes[size.title]}`,
-    subTitle: `subtitle ${fontSizes[size.subTitle]}`
+  const classes = {
+    title: parseCssClasses({ isCentered }, 'title', [fontSizes[titleSize]]),
+    subTitle: parseCssClasses({ isCentered }, 'subtitle', [fontSizes[subSize]])
   }
 
   return (
     <>
-      <p data-testid={'test-title'} className={pClasses.title}>
-        {title}
+      <p data-testid={'test-title'} className={classes.title}>
+        {titleText}
       </p>
-      {subTitle && (
-        <p data-testid={'sub-test-title'} className={pClasses.subTitle}>
-          {subTitle}
+      {subText && (
+        <p data-testid={'sub-test-title'} className={classes.subTitle}>
+          {subText}
         </p>
       )}
     </>
@@ -35,10 +34,9 @@ const Title = ({
 export default Title
 
 Title.propTypes = {
-  title: string.isRequired,
-  subTitle: string,
-  size: shape({
-    title: oneOf(parseObjKeys(fontSizes, true)),
-    subTitle: oneOf(parseObjKeys(fontSizes, true))
-  })
+  titleText: string.isRequired,
+  titleSize: oneOf(parseObjKeys(fontSizes, true)),
+  subText: string,
+  subSize: oneOf(parseObjKeys(fontSizes, true)),
+  isCentered: bool
 }

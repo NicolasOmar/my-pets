@@ -1,5 +1,5 @@
 import React from 'react'
-import MessageBlock from '.'
+import Message from '.'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // ENUMS
@@ -11,7 +11,7 @@ import { parseObjKeys } from 'functions/parsers'
 
 export default {
   title: `${STORYBOOK_ROUTES.ATOMS}/Message Block`,
-  component: MessageBlock,
+  component: Message,
   argTypes: {
     msgType: {
       options: parseObjKeys(notificationTypes)
@@ -20,7 +20,7 @@ export default {
   args: minimalConfig
 }
 
-const Template = args => <MessageBlock {...args} />
+const Template = args => <Message {...args} />
 
 export const Minimal = Template.bind({})
 Minimal.storyName = 'Minimal config'

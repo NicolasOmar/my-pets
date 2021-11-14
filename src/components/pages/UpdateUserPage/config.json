@@ -18,8 +18,8 @@
     }
   },
   "header": {
-    "title": "Update user information",
-    "centered": true
+    "titleText": "Update user information",
+    "isCentered": true
   },
   "saveButton": {
     "type": "submit",

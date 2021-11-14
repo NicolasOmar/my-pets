@@ -26,5 +26,5 @@ export const WithChildren = Template.bind({})
 WithChildren.storyName = 'With a "Title" component'
 WithChildren.args = {
   title: 'Item without a child component',
-  children: <Title title={'Child Title'} />
+  children: <Title titleText={'Child Title'} />
 }

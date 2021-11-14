@@ -37,3 +37,10 @@ WithErrors.args = {
   ...withErrors,
   isLoading: false
 }
+
+export const FreeBoxed = Template.bind({})
+FreeBoxed.storyName = 'Without box container'
+FreeBoxed.args = {
+  ...WithErrors.args,
+  isBoxed: false
+}

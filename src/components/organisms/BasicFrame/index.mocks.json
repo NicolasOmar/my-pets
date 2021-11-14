@@ -1,8 +1,8 @@
 {
   "withHeader": {
     "header": {
-      "title": "Basic Frame Header",
-      "subTitle": "With a subtitle"
+      "titleText": "Basic Frame Header",
+      "subText": "With a subtitle"
     }
   },
   "withButtons": {

@@ -1,9 +1,9 @@
 import React from 'react'
-import { arrayOf, element } from 'prop-types'
+import { arrayOf, element, object, oneOfType } from 'prop-types'
 import NavBarItem from 'components/atoms/NavBarItem'
 import NavBarDropdown from 'components/molecules/NavBarDropdown'
 
-const NavBar = ({ icon = null, start = null, end = null }) => {
+const NavBar = ({ icon = null, start = null, end = [] }) => {
   const sectionMapper = {
     dropdown: elem => <NavBarDropdown {...elem} />,
     item: elem => <NavBarItem {...elem} />
@@ -18,7 +18,7 @@ const NavBar = ({ icon = null, start = null, end = null }) => {
 
   const renderSection = (sectionClass, elements) =>
     Array.isArray(elements) &&
-    elements?.length && (
+    elements.length && (
       <section className={sectionClass}>
         {elements.map(elem => sectionMapper[elem.type || 'item'](elem))}
       </section>
@@ -41,6 +41,6 @@ export default NavBar
 
 NavBar.propTypes = {
   icon: element,
-  start: arrayOf(element),
-  end: arrayOf(element)
+  start: oneOfType([arrayOf(element), arrayOf(object)]),
+  end: oneOfType([arrayOf(element), arrayOf(object)])
 }

@@ -15,9 +15,9 @@
     }
   },
   "header": {
-    "title": "Welcome to My Pets",
-    "subTitle": "Log in",
-    "centered": true
+    "titleText": "Welcome to My Pets",
+    "subText": "Log in",
+    "isCentered": true
   },
   "loginButton": {
     "type": "submit",

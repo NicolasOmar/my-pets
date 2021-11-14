@@ -4,7 +4,7 @@ import { parseObjKeys } from 'functions/parsers'
 // ENUMS
 import { notificationTypes } from 'constants/bulma-styles.json'
 
-const MessageBlock = ({ headerText = null, msgType, messages = [] }) => {
+const Message = ({ headerText = null, msgType, messages = [] }) => {
   const renderMsgHeader = headerText =>
     headerText && (
       <section className="message-header">
@@ -36,9 +36,9 @@ const MessageBlock = ({ headerText = null, msgType, messages = [] }) => {
   )
 }
 
-export default MessageBlock
+export default Message
 
-MessageBlock.propTypes = {
+Message.propTypes = {
   headerText: string,
   msgType: oneOf(parseObjKeys(notificationTypes)).isRequired,
   messages: oneOfType([string, arrayOf(string)])

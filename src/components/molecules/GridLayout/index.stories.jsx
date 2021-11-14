@@ -25,16 +25,16 @@ Minimal.storyName = 'Minimal config'
 export const WithComponent = Template.bind({})
 WithComponent.storyName = 'With a "Title" component'
 WithComponent.args = {
-  children: <Title title={'Test'} />
+  children: <Title titleText={'Test'} />
 }
 
 export const WithSeveralComponent = Template.bind({})
 WithSeveralComponent.storyName = 'With 3 "Title" components'
 WithSeveralComponent.args = {
   children: [
-    <Title key="test-1" title={'Test 1'} />,
-    <Title key="test-2" title={'Test 2'} />,
-    <Title key="test-3" title={'Test 3'} />
+    <Title key="test-1" titleText={'Test 1'} />,
+    <Title key="test-2" titleText={'Test 2'} />,
+    <Title key="test-3" titleText={'Test 3'} />
   ]
 }
 
