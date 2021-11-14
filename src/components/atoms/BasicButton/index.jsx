@@ -14,7 +14,7 @@ const BasicButton = ({
   isInverted = false,
   isLoading = false,
   isDisabled = false,
-  onClick = () => console.warn('onClick'),
+  onClick,
   label
 }) => {
   const btnClass = parseCssClasses({ isOutlined, isInverted, isLoading }, 'button', [
@@ -24,7 +24,7 @@ const BasicButton = ({
 
   return (
     <button
-      data-testid={`${type}-${btnClass.replace(' ', '-')}`}
+      data-testid={`${type}-button-${color}`}
       type={type}
       className={btnClass}
       disabled={isDisabled}

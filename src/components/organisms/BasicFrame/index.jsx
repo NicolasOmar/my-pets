@@ -23,12 +23,11 @@ export default BasicFrame
 
 BasicFrame.propTypes = {
   header: shape({
-    title: string.isRequired,
-    subTitle: string,
-    size: shape({
-      title: oneOf(parseObjKeys(fontSizes, true)),
-      subTitle: oneOf(parseObjKeys(fontSizes, true))
-    })
+    titleText: string.isRequired,
+    subText: string,
+    titleSize: oneOf(parseObjKeys(fontSizes, true)),
+    subSize: oneOf(parseObjKeys(fontSizes, true)),
+    isCentered: bool
   }),
   width: oneOf(parseObjKeys(columnSizes, true)),
   centerGrid: bool,

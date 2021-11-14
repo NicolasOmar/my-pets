@@ -4,13 +4,13 @@ import { arrayOf, bool, func, object, shape, string, oneOf } from 'prop-types'
 import FormInput from '../../molecules/FormInput'
 import ButtonGroup from '../../molecules/ButtonGroup'
 import Message from '../../atoms/Message'
-// HELPER FUNCTIONS
+// FUNCTIONS
 import { checkIsValidForm, checkIsValidInput, sendObjValues } from '../../../functions/methods'
 import validators from '../../../functions/validators'
-import { parseCssClasses } from '../../../functions/parsers'
+import { parseCssClasses, parseObjKeys } from '../../../functions/parsers'
 // ENUMS
 import { buttonTypes } from '../../../constants/tag-types.json'
-import { colors } from '../../../constants/bulma-styles.json'
+import { colors, sizes } from 'constants/bulma-styles.json'
 
 const Form = ({
   isLoading = false,
@@ -18,8 +18,8 @@ const Form = ({
   errors = null,
   inputs,
   formButtons = [],
-  onFormSubmit = () => {},
-  onInputBlurChange = () => {}
+  onFormSubmit,
+  onInputBlurChange
 }) => {
   const [formControls, setFormControls] = useState(inputs)
   const [disableSignUpButton, setDisableSignUpButton] = useState(true)
@@ -51,7 +51,6 @@ const Form = ({
 
     if (onInputBlurChange) {
       const validatedForm = onInputBlurChange(_formControls)
-
       setFormControls({
         ...validatedForm,
         [prop]: {
@@ -127,7 +126,11 @@ Form.propTypes = {
   formButtons: arrayOf(
     shape({
       type: oneOf(buttonTypes).isRequired,
-      color: oneOf(colors),
+      color: oneOf(parseObjKeys(colors)),
+      size: oneOf(parseObjKeys(sizes)),
+      isOutlined: bool,
+      isInverted: bool,
+      isLoading: bool,
       isDisabled: bool,
       onClick: func,
       label: string.isRequired

@@ -1,12 +1,7 @@
 import React from 'react'
 import { string, bool, func, element, array, oneOfType } from 'prop-types'
 
-const NavBarItem = ({
-  itemLabel = null,
-  isLink = false,
-  onClickItem = () => console.warn(`onClick ${itemLabel}`),
-  children = null
-}) => {
+const NavBarItem = ({ itemLabel = null, isLink = false, onClickItem, children = null }) => {
   const itemStyle = isLink && !children ? 'navbar-link' : 'navbar-item'
 
   return (

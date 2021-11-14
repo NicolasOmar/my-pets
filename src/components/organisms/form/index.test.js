@@ -24,7 +24,7 @@ describe('[Form]', () => {
 
   test('Should render with errors', () => {
     render(<Form {...{ ...minimalConfig, ...withErrors }} />)
-    const errorForm = screen.getByTestId('error-block')
+    const errorForm = screen.getByTestId('error-message-header')
     expect(errorForm).toBeInTheDocument()
 
     withErrors.errors.graphQLErrors[0].message.split(', ').forEach((_, i) => {
@@ -51,7 +51,7 @@ describe('[Form]', () => {
 
     const email = screen.getByTestId(`${emailInput.control}-${emailInput.type}`)
     const pass = screen.getByTestId(`${passInput.control}-${passInput.type}`)
-    const submitBtn = screen.getByTestId(`${type}-ui-button ${color}`)
+    const submitBtn = screen.getByTestId(`${type}-button-${color}`)
 
     interactWithInput(email, 'test@test.com')
     interactWithInput(pass, 'testtest')
@@ -78,7 +78,7 @@ describe('[Form]', () => {
     )
 
     const email = screen.getByTestId(`${emailInput.control}-${emailInput.type}`)
-    const submitBtn = screen.getByTestId(`${type}-ui-button ${color}`)
+    const submitBtn = screen.getByTestId(`${type}-button-${color}`)
 
     emailValues.forEach(value => interactWithInput(email, value))
     fireEvent.click(submitBtn)

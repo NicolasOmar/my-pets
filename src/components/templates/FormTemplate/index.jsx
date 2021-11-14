@@ -1,5 +1,5 @@
-import { array, bool, func, object } from 'prop-types'
 import React from 'react'
+import { array, bool, func, object } from 'prop-types'
 // COMPONENTS
 import BasicFrame from '../../organisms/BasicFrame'
 import Form from '../../organisms/Form'

@@ -5,11 +5,12 @@ import { useDispatch } from 'react-redux'
 // GRAPHQL CLIENT
 import { useMutation } from '@apollo/client'
 import { LOGOUT } from '../../../graphql/mutations'
+// COMPONENTS
+import NavBar from '../../organisms/NavBar'
 // CONSTANTS
 import { APP_ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
 import { clearAllStorage } from '../../../functions/local-storage'
-import NavBar from '../../organisms/NavBar'
 
 const UserHeader = ({ name }) => {
   let history = useHistory()

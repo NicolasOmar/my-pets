@@ -5,8 +5,8 @@ import NavBarDropdown from 'components/molecules/NavBarDropdown'
 
 const NavBar = ({ icon = null, start = null, end = [] }) => {
   const sectionMapper = {
-    dropdown: elem => <NavBarDropdown {...elem} />,
-    item: elem => <NavBarItem {...elem} />
+    dropdown: (elem, i) => <NavBarDropdown key={i ? `${elem.type}-${i}` : elem.type} {...elem} />,
+    item: (elem, i) => <NavBarItem key={i ? `${elem.type}-${i}` : elem.type} {...elem} />
   }
 
   const renderBrand = icon =>
@@ -20,7 +20,7 @@ const NavBar = ({ icon = null, start = null, end = [] }) => {
     Array.isArray(elements) &&
     elements.length && (
       <section className={sectionClass}>
-        {elements.map(elem => sectionMapper[elem.type || 'item'](elem))}
+        {elements.map((elem, i) => sectionMapper[elem.type || 'item'](elem, i))}
       </section>
     )
 

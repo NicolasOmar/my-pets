@@ -13,12 +13,6 @@ describe('[BasicInput]', () => {
     expect(minimalInput).toBeInTheDocument()
   })
 
-  test('Should render the component with styles', () => {
-    render(<BasicInput {...{ ...minimalConfig, ...styled }} />)
-    const styledInput = screen.getByTestId('styled-input')
-    expect(styledInput).toBeInTheDocument()
-  })
-
   test('Should check that its methods have been called', () => {
     const changeableInput = {
       ...minimalConfig,

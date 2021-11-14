@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import GridLayout from '.'
 
-const centeredClasses = 'center aligned'
+const centeredClasses = 'is-centered'
 const mockOneChild = i => {
   const props = { key: i !== null ? `test-div-${i}` : undefined }
   return (
@@ -15,16 +15,7 @@ describe('[GridLayout]', () => {
   test('Should render the component with required props only', () => {
     render(<GridLayout />)
     const minimalGridLayout = screen.getByTestId('grid-test-layout')
-    expect(minimalGridLayout).toBeInTheDocument()
-  })
-
-  test('Should render with "red" background color', () => {
-    const redColor = 'red'
-    render(<GridLayout color={redColor} children={mockOneChild()} />)
-
-    const redGridLayout = screen.getByTestId('grid-test-layout')
-    expect(redGridLayout).toBeInTheDocument()
-    expect(redGridLayout.children[0].className).toEqual(expect.stringContaining(redColor))
+    expect(minimalGridLayout).not.toBeInTheDocument()
   })
 
   test('Should render with "centerGrid" classes', () => {
@@ -40,12 +31,8 @@ describe('[GridLayout]', () => {
     const props = { centerGrid: true, children }
     render(<GridLayout {...props} />)
 
-    const gridWithChildren = screen.getByTestId('grid-test-layout')
-    expect(gridWithChildren).toBeInTheDocument()
-    expect(gridWithChildren.className).toEqual(expect.stringContaining(centeredClasses))
-
     children.forEach((_, i) => {
-      const childElm = screen.getByTestId(`test-div-${i}`)
+      const childElm = screen.getByTestId(`grid-test-layout-${i}`)
       expect(childElm).toBeInTheDocument()
     })
   })
