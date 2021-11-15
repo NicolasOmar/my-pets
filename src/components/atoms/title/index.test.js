@@ -7,7 +7,7 @@ import { minimalConfig, titleWithSubTitle, centerMainAndSubTitle } from './index
 describe('[Title]', () => {
   test('Should render the component with required props only', () => {
     render(<Title {...minimalConfig} />)
-    const minimalTitle = screen.getByText(minimalConfig.title)
+    const minimalTitle = screen.getByText(minimalConfig.titleText)
     expect(minimalTitle).toBeInTheDocument()
   })
 
@@ -21,13 +21,13 @@ describe('[Title]', () => {
   })
 
   test('Should render the component with both main and sub title centered', () => {
-    const centerClasses = ['center aligned', 'subtitle-centered']
+    const centerClass = 'has-text-centered'
     render(<Title {...centerMainAndSubTitle} />)
 
     Object.keys(centerMainAndSubTitle).forEach((key, i) => {
       if (i < 2) {
         const centeredTitle = screen.getByText(centerMainAndSubTitle[key])
-        expect(centeredTitle.className).toEqual(expect.stringContaining(centerClasses[i]))
+        expect(centeredTitle.className).toEqual(expect.stringContaining(centerClass))
       }
     })
   })

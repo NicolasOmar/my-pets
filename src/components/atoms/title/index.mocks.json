@@ -17,5 +17,10 @@
     "subText": "Small subtitle",
     "titleSize": 5,
     "subSize": 5
+  },
+  "centerMainAndSubTitle": {
+    "titleText": "Centered main title",
+    "subText": "Centered sub title",
+    "isCentered": true
   }
 }

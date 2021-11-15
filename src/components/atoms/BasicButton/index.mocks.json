@@ -1,6 +1,7 @@
 {
   "minimalConfig": {
     "type": "submit",
+    "color": "white",
     "label": "Minimal config button"
   },
   "colored": {

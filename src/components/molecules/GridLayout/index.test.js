@@ -12,16 +12,10 @@ const mockOneChild = i => {
 }
 
 describe('[GridLayout]', () => {
-  test('Should render the component with required props only', () => {
-    render(<GridLayout />)
-    const minimalGridLayout = screen.getByTestId('grid-test-layout')
-    expect(minimalGridLayout).not.toBeInTheDocument()
-  })
-
   test('Should render with "centerGrid" classes', () => {
     render(<GridLayout centerGrid={true} children={mockOneChild()} />)
 
-    const centeredGridLayout = screen.getByTestId('grid-test-layout')
+    const centeredGridLayout = screen.getByTestId('grid-layout-test')
     expect(centeredGridLayout).toBeInTheDocument()
     expect(centeredGridLayout.className).toEqual(expect.stringContaining(centeredClasses))
   })
@@ -32,7 +26,7 @@ describe('[GridLayout]', () => {
     render(<GridLayout {...props} />)
 
     children.forEach((_, i) => {
-      const childElm = screen.getByTestId(`grid-test-layout-${i}`)
+      const childElm = screen.getByTestId(`grid-layout-test-${i}`)
       expect(childElm).toBeInTheDocument()
     })
   })

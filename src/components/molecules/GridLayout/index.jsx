@@ -14,13 +14,19 @@ const GridLayout = ({
   const renderChild = childNode => <div className={`column ${columnSizes[width]}`}>{childNode}</div>
 
   return Array.isArray(children) ? (
-    children.map((childNode, i) => (
-      <div data-testid={`grid-test-layout-${i}`} key={`grid-layout-${i}`} className={columnsStyle}>
-        {renderChild(childNode)}
-      </div>
-    ))
+    children
+      .filter(childNode => childNode)
+      .map((childNode, i) => (
+        <div
+          data-testid={`grid-layout-test-${i}`}
+          key={`grid-layout-${i}`}
+          className={columnsStyle}
+        >
+          {renderChild(childNode)}
+        </div>
+      ))
   ) : (
-    <div data-testid={`grid-test-layout`} className={columnsStyle}>
+    <div data-testid={`grid-layout-test`} className={columnsStyle}>
       {renderChild(children)}
     </div>
   )
