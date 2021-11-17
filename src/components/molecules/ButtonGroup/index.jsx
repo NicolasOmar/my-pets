@@ -1,12 +1,12 @@
 import React from 'react'
 import { arrayOf, bool, func, oneOf, shape, string } from 'prop-types'
 // OTHER COMPONENTS
-import BasicButton from 'components/atoms/BasicButton'
+import BasicButton from '../../atoms/BasicButton'
 // CONSTANTS
-import { buttonTypes } from 'constants/tag-types.json'
-import { colors, sizes } from 'constants/bulma-styles.json'
+import { buttonTypes } from '../../../constants/tag-types.json'
+import { colors, sizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { parseObjKeys } from 'functions/parsers'
+import { parseObjKeys } from '../../../functions/parsers'
 
 const ButtonGroup = ({ buttons }) => {
   return (

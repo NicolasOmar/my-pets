@@ -10,7 +10,7 @@ import validators from '../../../functions/validators'
 import { parseCssClasses, parseObjKeys } from '../../../functions/parsers'
 // ENUMS
 import { buttonTypes } from '../../../constants/tag-types.json'
-import { colors, sizes } from 'constants/bulma-styles.json'
+import { colors, sizes } from '../../../constants/bulma-styles.json'
 
 const Form = ({
   isLoading = false,

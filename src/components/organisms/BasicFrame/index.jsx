@@ -4,9 +4,9 @@ import { string, array, element, shape, bool, oneOf, oneOfType } from 'prop-type
 import Title from '../../atoms/Title'
 import GridLayout from '../../molecules/GridLayout'
 // CONSTANTS
-import { columnSizes, fontSizes } from 'constants/bulma-styles.json'
+import { columnSizes, fontSizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { parseObjKeys } from 'functions/parsers'
+import { parseObjKeys } from '../../../functions/parsers'
 
 const BasicFrame = ({ header, width = 8, centerGrid = false, children }) => {
   const renderHeader = () => (header ? <Title {...header} /> : null)

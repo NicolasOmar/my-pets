@@ -1,7 +1,7 @@
 import React from 'react'
 import NavBarItem from '.'
 // APP_ROUTES
-import { STORYBOOK_ROUTES } from 'constants/routes.json'
+import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // OTHER COMPONENTS
 import Title from '../Title'
 // MOCKS

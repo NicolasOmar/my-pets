@@ -1,12 +1,12 @@
 import React from 'react'
 import { shape, bool, func, string, number, oneOf } from 'prop-types'
 // COMPONENTS
-import BasicInput from 'components/atoms/BasicInput'
+import BasicInput from '../../atoms/BasicInput'
 // CONSTANTS
-import { inputTypes } from 'constants/tag-types.json'
-import { colors, sizes } from 'constants/bulma-styles.json'
+import { inputTypes } from '../../../constants/tag-types.json'
+import { colors, sizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { parseObjKeys } from 'functions/parsers'
+import { parseObjKeys } from '../../../functions/parsers'
 
 const renderLabel = inputLabel => inputLabel && <label className="label">{inputLabel}</label>
 

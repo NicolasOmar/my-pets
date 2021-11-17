@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react'
 // COMPONENTS
 import BasicInput from '.'
 // MOCKS
-import { minimalConfig, styled } from './index.mocks.json'
+import { minimalConfig } from './index.mocks.json'
 
 describe('[BasicInput]', () => {
   const minimalInputTestId = `${minimalConfig.control}-${minimalConfig.type}`

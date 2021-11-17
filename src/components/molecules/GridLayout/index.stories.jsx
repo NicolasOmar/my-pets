@@ -2,10 +2,10 @@ import React from 'react'
 import GridLayout from '.'
 import Title from '../../atoms/Title'
 // APP_ROUTES
-import { STORYBOOK_ROUTES } from 'constants/routes.json'
+import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // ENUMS
-import { columnSizes } from 'constants/bulma-styles.json'
-import { parseObjKeys } from 'functions/parsers'
+import { columnSizes } from '../../../constants/bulma-styles.json'
+import { parseObjKeys } from '../../../functions/parsers'
 
 export default {
   title: `${STORYBOOK_ROUTES.MOLECULES}/Grid Layout`,

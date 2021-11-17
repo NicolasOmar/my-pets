@@ -1,7 +1,7 @@
 import React from 'react'
 import NavBarDropdown from '.'
 // APP_ROUTES
-import { STORYBOOK_ROUTES } from 'constants/routes.json'
+import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // MOCKS
 import mocks from './index.mocks.json'
 

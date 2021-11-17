@@ -1,13 +1,13 @@
 import React from 'react'
 import Title from '.'
 // APP_ROUTES
-import { STORYBOOK_ROUTES } from 'constants/routes.json'
+import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // MOCKS
 import mocks from './index.mocks.json'
 // CONSTANTS
-import { fontSizes } from 'constants/bulma-styles.json'
+import { fontSizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { parseObjKeys } from 'functions/parsers'
+import { parseObjKeys } from '../../../functions/parsers'
 
 export default {
   title: `${STORYBOOK_ROUTES.ATOMS}/Title`,

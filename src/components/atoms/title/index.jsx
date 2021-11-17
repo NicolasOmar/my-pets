@@ -1,9 +1,9 @@
 import React from 'react'
 import { bool, oneOf, string } from 'prop-types'
 // CONSTANTS
-import { fontSizes } from 'constants/bulma-styles.json'
+import { fontSizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { parseObjKeys, parseCssClasses } from 'functions/parsers'
+import { parseObjKeys, parseCssClasses } from '../../../functions/parsers'
 
 const Title = ({
   titleText,

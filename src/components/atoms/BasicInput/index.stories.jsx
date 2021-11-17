@@ -1,12 +1,12 @@
 import React from 'react'
 import BasicInput from '.'
 // APP_ROUTES
-import { STORYBOOK_ROUTES } from 'constants/routes.json'
+import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // CONSTANTS
-import { inputTypes } from 'constants/tag-types.json'
-import { colors, sizes } from 'constants/bulma-styles.json'
+import { inputTypes } from '../../../constants/tag-types.json'
+import { colors, sizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { parseObjKeys } from 'functions/parsers'
+import { parseObjKeys } from '../../../functions/parsers'
 // MOCKS
 import mocks from './index.mocks.json'
 

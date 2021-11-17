@@ -1,7 +1,7 @@
 import React from 'react'
 import { arrayOf, element, object, oneOfType } from 'prop-types'
-import NavBarItem from 'components/atoms/NavBarItem'
-import NavBarDropdown from 'components/molecules/NavBarDropdown'
+import NavBarItem from '../../atoms/NavBarItem'
+import NavBarDropdown from '../../molecules/NavBarDropdown'
 
 const NavBar = ({ icon = null, start = null, end = [] }) => {
   const sectionMapper = {

@@ -1,9 +1,9 @@
 import React from 'react'
 import { element, array, oneOfType, oneOf, bool } from 'prop-types'
 // CONSTANTS
-import { columnSizes } from 'constants/bulma-styles.json'
+import { columnSizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { parseObjKeys } from 'functions/parsers'
+import { parseObjKeys } from '../../../functions/parsers'
 
 const GridLayout = ({
   width = parseObjKeys(columnSizes)[0],

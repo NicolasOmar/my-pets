@@ -1,6 +1,6 @@
 import React from 'react'
 import { arrayOf, shape, string, bool, func, element, array, oneOfType } from 'prop-types'
-import NavBarItem from 'components/atoms/NavBarItem'
+import NavBarItem from '../../atoms/NavBarItem'
 
 const NavBarDropdown = ({ label, options = [] }) => (
   <section data-testid={`navbar-dropdown`} className="navbar-item has-dropdown is-hoverable">

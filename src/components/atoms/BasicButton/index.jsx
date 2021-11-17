@@ -1,10 +1,10 @@
 import React from 'react'
 import { bool, func, oneOf, string } from 'prop-types'
 // CONSTANTS
-import { buttonTypes } from 'constants/tag-types.json'
-import { colors, sizes } from 'constants/bulma-styles.json'
+import { buttonTypes } from '../../../constants/tag-types.json'
+import { colors, sizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { parseCssClasses, parseObjKeys } from 'functions/parsers'
+import { parseCssClasses, parseObjKeys } from '../../../functions/parsers'
 
 const BasicButton = ({
   type,
