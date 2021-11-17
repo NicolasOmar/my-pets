@@ -5,7 +5,7 @@ import { fontSizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
 import { parseObjKeys, parseCssClasses } from '../../../functions/parsers'
 
-const Title = ({
+const TitleHeader = ({
   titleText,
   titleSize = Object.keys(fontSizes)[4],
   subText = null,
@@ -31,9 +31,9 @@ const Title = ({
   )
 }
 
-export default Title
+export default TitleHeader
 
-Title.propTypes = {
+TitleHeader.propTypes = {
   titleText: string.isRequired,
   titleSize: oneOf(parseObjKeys(fontSizes, true)),
   subText: string,

@@ -3,7 +3,7 @@ import NavBarItem from '.'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // OTHER COMPONENTS
-import Title from '../Title'
+import TitleHeader from '../TitleHeader'
 // MOCKS
 import mocks from './index.mocks.json'
 
@@ -23,8 +23,8 @@ LinkItem.storyName = 'As a link'
 LinkItem.args = mocks.linkItem
 
 export const WithChildren = Template.bind({})
-WithChildren.storyName = 'With a "Title" component'
+WithChildren.storyName = 'With a "TitleHeader" component'
 WithChildren.args = {
   title: 'Item without a child component',
-  children: <Title titleText={'Child Title'} />
+  children: <TitleHeader titleText={'Child TitleHeader'} />
 }

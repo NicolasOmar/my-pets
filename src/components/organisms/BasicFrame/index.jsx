@@ -1,7 +1,7 @@
 import React from 'react'
 import { string, array, element, shape, bool, oneOf, oneOfType } from 'prop-types'
 // COMPONENTS
-import Title from '../../atoms/Title'
+import TitleHeader from '../../atoms/TitleHeader'
 import GridLayout from '../../molecules/GridLayout'
 // CONSTANTS
 import { columnSizes, fontSizes } from '../../../constants/bulma-styles.json'
@@ -9,7 +9,7 @@ import { columnSizes, fontSizes } from '../../../constants/bulma-styles.json'
 import { parseObjKeys } from '../../../functions/parsers'
 
 const BasicFrame = ({ header, width = 8, centerGrid = false, children }) => {
-  const renderHeader = () => (header ? <Title {...header} /> : null)
+  const renderHeader = () => (header ? <TitleHeader {...header} /> : null)
 
   return (
     <GridLayout {...{ width, centerGrid }}>

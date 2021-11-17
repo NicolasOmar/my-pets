@@ -34,7 +34,7 @@ Error.storyName = 'Error'
 Error.args = { msgType: 'error' }
 
 export const WithTitle = Template.bind({})
-WithTitle.storyName = 'With a Title'
+WithTitle.storyName = 'With a TitleHeader'
 WithTitle.args = { ...Error.args, headerText: 'Message header' }
 
 export const WithSeveralMessages = Template.bind({})

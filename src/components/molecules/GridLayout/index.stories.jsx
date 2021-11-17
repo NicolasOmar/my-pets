@@ -1,6 +1,6 @@
 import React from 'react'
 import GridLayout from '.'
-import Title from '../../atoms/Title'
+import TitleHeader from '../../atoms/TitleHeader'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // ENUMS
@@ -23,18 +23,18 @@ export const Minimal = Template.bind({})
 Minimal.storyName = 'Minimal config'
 
 export const WithComponent = Template.bind({})
-WithComponent.storyName = 'With a "Title" component'
+WithComponent.storyName = 'With a "TitleHeader" component'
 WithComponent.args = {
-  children: <Title titleText={'Test'} />
+  children: <TitleHeader titleText={'Test'} />
 }
 
 export const WithSeveralComponent = Template.bind({})
-WithSeveralComponent.storyName = 'With 3 "Title" components'
+WithSeveralComponent.storyName = 'With 3 "TitleHeader" components'
 WithSeveralComponent.args = {
   children: [
-    <Title key="test-1" titleText={'Test 1'} />,
-    <Title key="test-2" titleText={'Test 2'} />,
-    <Title key="test-3" titleText={'Test 3'} />
+    <TitleHeader key="test-1" titleText={'Test 1'} />,
+    <TitleHeader key="test-2" titleText={'Test 2'} />,
+    <TitleHeader key="test-3" titleText={'Test 3'} />
   ]
 }
 

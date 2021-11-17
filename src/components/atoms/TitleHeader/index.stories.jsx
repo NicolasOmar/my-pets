@@ -1,5 +1,5 @@
 import React from 'react'
-import Title from '.'
+import TitleHeader from '.'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // MOCKS
@@ -10,8 +10,8 @@ import { fontSizes } from '../../../constants/bulma-styles.json'
 import { parseObjKeys } from '../../../functions/parsers'
 
 export default {
-  title: `${STORYBOOK_ROUTES.ATOMS}/Title`,
-  component: Title,
+  title: `${STORYBOOK_ROUTES.ATOMS}/TitleHeader`,
+  component: TitleHeader,
   argTypes: {
     titleSize: {
       options: parseObjKeys(fontSizes, true)
@@ -23,7 +23,7 @@ export default {
   args: mocks.minimalConfig
 }
 
-const Template = args => <Title {...args} />
+const Template = args => <TitleHeader {...args} />
 
 export const Minimal = Template.bind({})
 Minimal.storyName = 'Minimal config'

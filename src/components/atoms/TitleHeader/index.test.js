@@ -1,18 +1,18 @@
 import { render, screen } from '@testing-library/react'
 // COMPONENT
-import Title from '.'
+import TitleHeader from '.'
 // MOCKS
 import { minimalConfig, titleWithSubTitle, centerMainAndSubTitle } from './index.mocks.json'
 
-describe('[Title]', () => {
+describe('[TitleHeader]', () => {
   test('Should render the component with required props only', () => {
-    render(<Title {...minimalConfig} />)
+    render(<TitleHeader {...minimalConfig} />)
     const minimalTitle = screen.getByText(minimalConfig.titleText)
     expect(minimalTitle).toBeInTheDocument()
   })
 
   test('Should render the component with both main and sub titles', () => {
-    render(<Title {...titleWithSubTitle} />)
+    render(<TitleHeader {...titleWithSubTitle} />)
 
     Object.keys(titleWithSubTitle).forEach(key => {
       const completeTitle = screen.getByText(titleWithSubTitle[key])
@@ -22,7 +22,7 @@ describe('[Title]', () => {
 
   test('Should render the component with both main and sub title centered', () => {
     const centerClass = 'has-text-centered'
-    render(<Title {...centerMainAndSubTitle} />)
+    render(<TitleHeader {...centerMainAndSubTitle} />)
 
     Object.keys(centerMainAndSubTitle).forEach((key, i) => {
       if (i < 2) {

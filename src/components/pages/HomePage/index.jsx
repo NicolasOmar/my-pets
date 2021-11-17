@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 // COMPONENTS
-import Title from '../../atoms/Title'
+import TitleHeader from '../../atoms/TitleHeader'
 // HELPER FUNCTIONS
 import { getLoggedUser } from '../../../functions/local-storage'
 
@@ -12,7 +12,7 @@ const HomePage = () => {
     isCentered: true
   }
 
-  return <Title {...homeText} />
+  return <TitleHeader {...homeText} />
 }
 
 export default HomePage
