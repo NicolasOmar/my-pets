@@ -1,6 +1,6 @@
 {
   "minimalConfig": {
-    "inputLabel": "Form input label",
+    "inputLabel": "FormLayout input label",
     "inputConfig": {
       "type": "text",
       "control": "formInputControl"

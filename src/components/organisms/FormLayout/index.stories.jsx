@@ -1,17 +1,17 @@
 import React from 'react'
-import Form from '.'
+import FormLayout from '.'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // MOCKS
 import { minimalConfig, withButtons, withErrors } from './index.mocks.json'
 
 export default {
-  title: `${STORYBOOK_ROUTES.ORGANISMS}/Form`,
-  component: Form,
+  title: `${STORYBOOK_ROUTES.ORGANISMS}/FormLayout`,
+  component: FormLayout,
   args: minimalConfig
 }
 
-const Template = args => <Form {...args} />
+const Template = args => <FormLayout {...args} />
 
 export const Minimal = Template.bind({})
 Minimal.storyName = 'Minimal config'

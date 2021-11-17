@@ -12,7 +12,7 @@ import { parseCssClasses, parseObjKeys } from '../../../functions/parsers'
 import { buttonTypes } from '../../../constants/tag-types.json'
 import { colors, sizes } from '../../../constants/bulma-styles.json'
 
-const Form = ({
+const FormLayout = ({
   isLoading = false,
   isBoxed = true,
   errors = null,
@@ -116,9 +116,9 @@ const Form = ({
   )
 }
 
-export default Form
+export default FormLayout
 
-Form.propTypes = {
+FormLayout.propTypes = {
   isLoading: bool,
   isBoxed: bool,
   errors: object,

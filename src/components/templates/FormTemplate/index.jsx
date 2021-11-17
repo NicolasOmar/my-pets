@@ -2,7 +2,7 @@ import React from 'react'
 import { array, bool, func, object } from 'prop-types'
 // COMPONENTS
 import BasicFrame from '../../organisms/BasicFrame'
-import Form from '../../organisms/Form'
+import FormLayout from '../../organisms/FormLayout'
 
 const FormTemplate = ({
   header,
@@ -29,7 +29,7 @@ const FormTemplate = ({
     <BasicFrame
       {...{
         header,
-        children: <Form {...formConfig} />,
+        children: <FormLayout {...formConfig} />,
         centerGrid: true
       }}
     />

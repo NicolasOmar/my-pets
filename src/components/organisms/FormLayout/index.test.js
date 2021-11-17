@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import Form from '.'
+import FormLayout from '.'
 // MOCKS
 import { minimalConfig, withButtons, withErrors } from './index.mocks.json'
 
@@ -9,21 +9,21 @@ const interactWithInput = (input, value) => {
   fireEvent.blur(input)
 }
 
-describe('[Form]', () => {
+describe('[FormLayout]', () => {
   test('Should render the component with required props only', () => {
-    render(<Form {...minimalConfig} />)
+    render(<FormLayout {...minimalConfig} />)
     const minimalForm = screen.getByTestId('form')
     expect(minimalForm).toBeInTheDocument()
   })
 
   test('Should render with the button group', () => {
-    render(<Form {...{ ...minimalConfig, ...withButtons }} />)
+    render(<FormLayout {...{ ...minimalConfig, ...withButtons }} />)
     const btnGroupForm = screen.getByTestId('button-group')
     expect(btnGroupForm).toBeInTheDocument()
   })
 
   test('Should render with errors', () => {
-    render(<Form {...{ ...minimalConfig, ...withErrors }} />)
+    render(<FormLayout {...{ ...minimalConfig, ...withErrors }} />)
     const errorForm = screen.getByTestId('error-message-header')
     expect(errorForm).toBeInTheDocument()
 
@@ -40,7 +40,7 @@ describe('[Form]', () => {
     const onFormSubmit = jest.fn()
 
     render(
-      <Form
+      <FormLayout
         {...{
           ...minimalConfig,
           ...withButtons,
@@ -67,7 +67,7 @@ describe('[Form]', () => {
     const onInputBlurChange = jest.fn(() => minimalConfig.inputs)
 
     render(
-      <Form
+      <FormLayout
         {...{
           ...minimalConfig,
           ...withButtons,
