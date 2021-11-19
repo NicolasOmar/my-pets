@@ -1,0 +1,39 @@
+{
+  "inputs": {
+    "oldPass": {
+      "label": "Old Password",
+      "type": "password",
+      "control": "oldPass",
+      "isRequired": true,
+      "minLength": 5
+    },
+    "newPass": {
+      "label": "New Password",
+      "type": "password",
+      "control": "newPass",
+      "isRequired": true,
+      "minLength": 5
+    },
+    "repeatPass": {
+      "label": "Repeat Password",
+      "type": "password",
+      "control": "repeatPass",
+      "isRequired": true,
+      "minLength": 5
+    }
+  },
+  "header": {
+    "titleText": "Update Password",
+    "isCentered": true
+  },
+  "updateButton": {
+    "type": "submit",
+    "color": "success",
+    "label": "Confirm Update"
+  },
+  "cancelButton": {
+    "type": "button",
+    "color": "danger",
+    "label": "Cancel"
+  }
+}

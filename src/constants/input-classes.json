@@ -1,19 +1,51 @@
 {
-  "field": [
+  "button": [
     {
-      "prop": "isRequired",
-      "setClass": "required"
+      "prop": "isOutlined",
+      "setClass": "is-outlined"
     },
+    {
+      "prop": "isInverted",
+      "setClass": "is-inverted"
+    },
+    {
+      "prop": "isLoading",
+      "setClass": "is-loading"
+    }
+  ],
+  "title": [
+    {
+      "prop": "isCentered",
+      "setClass": "has-text-centered"
+    }
+  ],
+  "subtitle": [
+    {
+      "prop": "isCentered",
+      "setClass": "has-text-centered"
+    }
+  ],
+  "input": [
+    {
+      "prop": "isRounded",
+      "setClass": "is-rounded"
+    }
+  ],
+  "field": [
     {
       "prop": "isValid",
       "condition": "isFalse",
       "setClass": "error"
     }
   ],
-  "ui form": [
+  "form": [
     {
       "prop": "isLoading",
       "setClass": "loading"
+    },
+    {
+      "prop": "isBoxed",
+      "setClass": "box"
     },
     {
       "prop": "errors",

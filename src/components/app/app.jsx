@@ -4,12 +4,12 @@ import { useSelector } from 'react-redux'
 // HISTORY
 import history from './history'
 // COMPONENTS
-import UserHeader from '../templates/user-header'
-import HomePage from '../pages/home-page'
-import LoginPage from '../pages/login-page'
-import NewUserPage from '../pages/new-user-page'
-import UpdateUserPage from '../pages/update-user-page'
-import UpdatePasswordPage from '../pages/update-pass-page'
+import UserHeader from '../templates/UserHeader'
+import HomePage from '../pages/HomePage'
+import LoginPage from '../pages/LoginPage'
+import NewUserPage from '../pages/NewUserPage'
+import UpdateUserPage from '../pages/UpdateUserPage'
+import UpdatePasswordPage from '../pages/UpdatePassPage'
 // CONSTANTS
 import { APP_ROUTES } from '../../constants/routes.json'
 

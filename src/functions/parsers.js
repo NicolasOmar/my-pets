@@ -17,7 +17,7 @@ const renderIf = {
 }
 
 /*
-  parseInputClass:
+  parseCssClasses:
   First, you will recive the input configuration with a field value, which is needed to get its corresponding configuration from the JSON file
   After having finded the configuration values, it will map and run "renderIf" method, using the condition (can be specified in the JSON file or will run as a default case), the value of the mapped prop in the input configuration (for example, "isLoading"), which could not exists and the configuration's related css class
   On the "renderIf" method, it will check the input's value condition (explained as the first argument in the "setInputClass" method) and will return:
@@ -25,13 +25,18 @@ const renderIf = {
     Or a null value in a false case
   At last, after all the cases have been mapped, the main method will filter the null cases and concat them in a string, which will be concated in the final class string return (in case that the "mappedClasses" const gets at least one class)
 */
-export const parseInputClass = (inputConfig, fieldName) => {
+export const parseCssClasses = (inputConfig = {}, fieldName, otherClasses = []) => {
   const mappedClasses = inputClasses[fieldName]
     .map(({ prop, condition = 'default', setClass }) =>
       renderIf[condition](inputConfig[prop], setClass)
     )
     .filter(className => className)
+  const concatedClasses = [...mappedClasses, ...otherClasses]
+    .filter(value => value && value !== '')
     .join(' ')
 
-  return mappedClasses !== '' ? fieldName.concat(' ', mappedClasses) : fieldName
+  return fieldName?.concat(' ', concatedClasses)
 }
+
+export const parseObjKeys = (_obj, asNumber = false) =>
+  Object.keys(_obj).map(_objValue => (asNumber ? +_objValue : _objValue))

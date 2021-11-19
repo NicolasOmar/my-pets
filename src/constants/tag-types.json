@@ -1,0 +1,12 @@
+{
+  "buttonTypes": [
+    "button",
+    "submit",
+    "reset"
+  ],
+  "inputTypes": [
+    "text",
+    "email",
+    "password"
+  ]
+}

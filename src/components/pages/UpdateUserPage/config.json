@@ -1,0 +1,34 @@
+{
+  "inputs": {
+    "name": {
+      "label": "Name",
+      "type": "text",
+      "control": "name",
+      "isRequired": true,
+      "minLength": 3,
+      "maxLength": 25
+    },
+    "lastName": {
+      "label": "Last Name",
+      "type": "text",
+      "control": "lastName",
+      "isRequired": true,
+      "minLength": 3,
+      "maxLength": 25
+    }
+  },
+  "header": {
+    "titleText": "Update user information",
+    "isCentered": true
+  },
+  "saveButton": {
+    "type": "submit",
+    "color": "success",
+    "label": "Save"
+  },
+  "goBackButton": {
+    "type": "button",
+    "color": "danger",
+    "label": "Go Back"
+  }
+}

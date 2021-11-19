@@ -1,6 +1,0 @@
-{
-  "testConfig": {
-    "name": "User Name",
-    "options": ["Update User", "Update Pass", "Logout"]
-  }
-}
