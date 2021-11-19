@@ -4,11 +4,11 @@ import NavBarItem from '../../atoms/NavBarItem'
 
 const NavBarDropdown = ({ label, options = [] }) => (
   <section data-testid={`navbar-dropdown`} className="navbar-item has-dropdown is-hoverable">
-    <section data-testid={`navbar-dropdown-label`} className="navbar-item">
+    <section data-testid={`navbar-dropdown-label`} className="navbar-link">
       {label}
     </section>
-    <section data-testid={`navbar-dropdown`} className="navbar-dropdown">
-      {options.map((option, i) => (
+    <section data-testid={`navbar-dropdown`} className="navbar-dropdown is-right">
+      {options?.map((option, i) => (
         <NavBarItem
           data-testid={`navbar-dropdown-item-${i}`}
           key={`navbar-dropdown-item-${i}`}

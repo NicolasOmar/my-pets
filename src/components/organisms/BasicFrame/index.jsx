@@ -9,7 +9,11 @@ import { columnSizes, fontSizes } from '../../../constants/bulma-styles.json'
 import { parseObjKeys } from '../../../functions/parsers'
 
 const BasicFrame = ({ header, width = 8, centerGrid = false, children }) => {
-  const renderHeader = () => (header ? <TitleHeader {...header} /> : null)
+  const styles = {
+    marginTop: '30px',
+    marginBottom: '15px'
+  }
+  const renderHeader = () => (header ? <TitleHeader {...{ ...header, styles }} /> : null)
 
   return (
     <GridLayout {...{ width, centerGrid }}>

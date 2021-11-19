@@ -1,5 +1,5 @@
 import React from 'react'
-import { bool, oneOf, string } from 'prop-types'
+import { bool, object, oneOf, string } from 'prop-types'
 // CONSTANTS
 import { fontSizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
@@ -10,7 +10,8 @@ const TitleHeader = ({
   titleSize = Object.keys(fontSizes)[4],
   subText = null,
   subSize = Object.keys(fontSizes)[2],
-  isCentered = false
+  isCentered = false,
+  styles = {}
 }) => {
   const classes = {
     title: parseCssClasses({ isCentered }, 'title', [fontSizes[titleSize]]),
@@ -18,7 +19,7 @@ const TitleHeader = ({
   }
 
   return (
-    <>
+    <section style={styles}>
       <p data-testid={'test-title'} className={classes.title}>
         {titleText}
       </p>
@@ -27,7 +28,7 @@ const TitleHeader = ({
           {subText}
         </p>
       )}
-    </>
+    </section>
   )
 }
 
@@ -38,5 +39,6 @@ TitleHeader.propTypes = {
   titleSize: oneOf(parseObjKeys(fontSizes, true)),
   subText: string,
   subSize: oneOf(parseObjKeys(fontSizes, true)),
-  isCentered: bool
+  isCentered: bool,
+  styles: object
 }
