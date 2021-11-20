@@ -10,6 +10,7 @@ import LoginPage from '../pages/LoginPage'
 import NewUserPage from '../pages/NewUserPage'
 import UpdateUserPage from '../pages/UpdateUserPage'
 import UpdatePasswordPage from '../pages/UpdatePassPage'
+import AddPetPage from '../pages/AddPetPage'
 // CONSTANTS
 import { APP_ROUTES } from '../../constants/routes.json'
 
@@ -29,6 +30,7 @@ const App = () => {
           <Route exact path={APP_ROUTES.NEW_USER} component={NewUserPage} />
           <Route exact path={APP_ROUTES.UPDATE_USER} component={UpdateUserPage} />
           <Route exact path={APP_ROUTES.UPDATE_PASS} component={UpdatePasswordPage} />
+          <Route exact path={APP_ROUTES.ADD_PET} component={AddPetPage} />
         </Switch>
       </Router>
     </>

@@ -39,6 +39,10 @@ const UserHeader = ({ name }) => {
         label: name.toUpperCase(),
         options: [
           {
+            itemLabel: 'Add Pet',
+            onClickItem: () => history.push(APP_ROUTES.ADD_PET)
+          },
+          {
             itemLabel: 'Update User',
             onClickItem: () => history.push(APP_ROUTES.UPDATE_USER)
           },

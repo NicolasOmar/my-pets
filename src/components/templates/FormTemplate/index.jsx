@@ -10,7 +10,6 @@ const FormTemplate = ({
   errors,
   inputs,
   formButtons,
-  buttonsGrouped,
   onFormSubmit,
   onInputBlurChange
 }) => {
@@ -20,7 +19,6 @@ const FormTemplate = ({
     errors,
     inputs,
     formButtons,
-    buttonsGrouped,
     onFormSubmit: onFormSubmit ?? undefined,
     onInputBlurChange: onInputBlurChange ?? undefined
   }
@@ -44,7 +42,6 @@ FormTemplate.propTypes = {
   errors: object,
   inputs: object,
   formButtons: array,
-  buttonsGrouped: bool,
   onFormSubmit: func,
   onInputBlurChange: func
 }

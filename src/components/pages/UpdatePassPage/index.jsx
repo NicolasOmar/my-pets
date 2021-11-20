@@ -55,7 +55,6 @@ const UpdatePassPage = () => {
       errors={error}
       inputs={inputs}
       formButtons={[updateButton, cancelButton]}
-      buttonsGrouped={true}
       onFormSubmit={formData => onSubmitUpdate(formData)}
       onInputBlurChange={onInputBlurChange}
     />

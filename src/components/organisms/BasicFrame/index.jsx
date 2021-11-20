@@ -29,8 +29,8 @@ BasicFrame.propTypes = {
   header: shape({
     titleText: string.isRequired,
     subText: string,
-    titleSize: oneOf(parseObjKeys(fontSizes, true)),
-    subSize: oneOf(parseObjKeys(fontSizes, true)),
+    titleSize: oneOf(parseObjKeys(fontSizes)),
+    subSize: oneOf(parseObjKeys(fontSizes)),
     isCentered: bool
   }),
   width: oneOf(parseObjKeys(columnSizes, true)),

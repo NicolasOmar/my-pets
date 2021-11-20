@@ -36,9 +36,9 @@ export default TitleHeader
 
 TitleHeader.propTypes = {
   titleText: string.isRequired,
-  titleSize: oneOf(parseObjKeys(fontSizes, true)),
+  titleSize: oneOf(parseObjKeys(fontSizes)),
   subText: string,
-  subSize: oneOf(parseObjKeys(fontSizes, true)),
+  subSize: oneOf(parseObjKeys(fontSizes)),
   isCentered: bool,
   styles: object
 }

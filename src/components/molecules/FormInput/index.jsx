@@ -8,14 +8,19 @@ import { colors, sizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
 import { parseObjKeys } from '../../../functions/parsers'
 
-const renderLabel = inputLabel => inputLabel && <label className="label">{inputLabel}</label>
-
-const FormInput = ({ inputLabel, inputConfig }) => (
-  <div className="field">
-    {renderLabel(inputLabel)}
-    <BasicInput {...{ ...inputConfig, color: inputConfig.isValid === false ? 'danger' : null }} />
-  </div>
-)
+const FormInput = ({ inputLabel, inputConfig }) => {
+  return (
+    <div className="field">
+      {inputLabel && (
+        <label className="label">
+          {inputLabel}
+          {inputConfig.isRequired && <label style={{ color: 'red' }}>*</label>}
+        </label>
+      )}
+      <BasicInput {...{ ...inputConfig, color: inputConfig.isValid === false ? 'danger' : null }} />
+    </div>
+  )
+}
 
 export default FormInput
 

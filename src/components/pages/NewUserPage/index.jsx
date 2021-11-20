@@ -66,7 +66,6 @@ const NewUserPage = () => {
           onClick: () => history.push(APP_ROUTES.LOGIN)
         }
       ]}
-      buttonsGrouped={true}
       onFormSubmit={data => onSubmitCreation(data)}
       onInputBlurChange={onInputBlurChange}
     />

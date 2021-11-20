@@ -1,4 +1,9 @@
 {
+  "header": {
+    "titleText": "Update Password",
+    "titleSize": "big",
+    "isCentered": true
+  },
   "inputs": {
     "oldPass": {
       "label": "Old Password",
@@ -21,10 +26,6 @@
       "isRequired": true,
       "minLength": 5
     }
-  },
-  "header": {
-    "titleText": "Update Password",
-    "isCentered": true
   },
   "updateButton": {
     "type": "submit",

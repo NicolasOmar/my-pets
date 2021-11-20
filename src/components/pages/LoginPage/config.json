@@ -1,4 +1,11 @@
 {
+  "header": {
+    "titleText": "Welcome to My Pets",
+    "titleSize": "big",
+    "subText": "Log in",
+    "subSize": "normal",
+    "isCentered": true
+  },
   "inputs": {
     "email": {
       "label": "Email",
@@ -13,11 +20,6 @@
       "isRequired": true,
       "minLength": 6
     }
-  },
-  "header": {
-    "titleText": "Welcome to My Pets",
-    "subText": "Log in",
-    "isCentered": true
   },
   "loginButton": {
     "type": "submit",

@@ -14,10 +14,10 @@ export default {
   component: TitleHeader,
   argTypes: {
     titleSize: {
-      options: parseObjKeys(fontSizes, true)
+      options: parseObjKeys(fontSizes)
     },
     subSize: {
-      options: parseObjKeys(fontSizes, true)
+      options: parseObjKeys(fontSizes)
     }
   },
   args: mocks.minimalConfig

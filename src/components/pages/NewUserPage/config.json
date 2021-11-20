@@ -1,4 +1,9 @@
 {
+  "header": {
+    "titleText": "Sign up",
+    "titleSize": "big",
+    "isCentered": true
+  },
   "inputs": {
     "name": {
       "label": "Name",
@@ -44,10 +49,6 @@
       "isRequired": true,
       "minLength": 6
     }
-  },
-  "header": {
-    "titleText": "Sign up",
-    "isCentered": true
   },
   "signUpButton": {
     "type": "submit",

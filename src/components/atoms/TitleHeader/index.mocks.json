@@ -9,14 +9,14 @@
   "bigSize": {
     "titleText": "Big title",
     "subText": "Big subtitle",
-    "titleSize": 1,
-    "subSize": 1
+    "titleSize": "bigger",
+    "subSize": "bigger"
   },
   "smallSize": {
     "titleText": "Small title",
     "subText": "Small subtitle",
-    "titleSize": 5,
-    "subSize": 5
+    "titleSize": "small",
+    "subSize": "small"
   },
   "centerMainAndSubTitle": {
     "titleText": "Centered main title",

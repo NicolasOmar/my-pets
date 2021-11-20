@@ -1,4 +1,9 @@
 {
+  "header": {
+    "titleText": "Update user information",
+    "titleSize": "big",
+    "isCentered": true
+  },
   "inputs": {
     "name": {
       "label": "Name",
@@ -16,10 +21,6 @@
       "minLength": 3,
       "maxLength": 25
     }
-  },
-  "header": {
-    "titleText": "Update user information",
-    "isCentered": true
   },
   "saveButton": {
     "type": "submit",

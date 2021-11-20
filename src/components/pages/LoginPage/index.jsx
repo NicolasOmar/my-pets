@@ -55,7 +55,6 @@ const LoginPage = () => {
           onClick: () => history.push(APP_ROUTES.NEW_USER)
         }
       ]}
-      buttonsGrouped={true}
       onFormSubmit={data => onSubmitLogin(data)}
     />
   )
