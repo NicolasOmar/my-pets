@@ -1,6 +1,17 @@
 {
   "header": {
     "titleText": "Add new Pet",
+    "titleSize": "big",
     "isCentered": true
+  },
+  "inputs": {
+    "name": {
+      "label": "Name",
+      "type": "text",
+      "control": "name",
+      "isRequired": true,
+      "minLength": 2,
+      "maxLength": 250
+    }
   }
 }

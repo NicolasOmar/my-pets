@@ -1,0 +1,13 @@
+{
+  "withLabel": {
+    "label": "Radio label"
+  },
+  "checkedWithLabel": {
+    "label": "Radio checked",
+    "isChecked": true
+  },
+  "disabledWithLabel": {
+    "label": "Radio disabled",
+    "isDisabled": true
+  }
+}
