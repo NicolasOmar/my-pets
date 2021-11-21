@@ -1,0 +1,16 @@
+{
+  "minimalConfig": {
+    "name": "minimal-group",
+    "radios": [
+      {
+        "label": "Option 1"
+      },
+      {
+        "label": "Option 2"
+      },
+      {
+        "label": "Option 3"
+      }
+    ]
+  }
+}
