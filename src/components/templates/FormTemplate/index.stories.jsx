@@ -9,7 +9,7 @@ import UpdateUserPageConfigMock from '../../pages/UpdateUserPage/config.json'
 import UpdatePassPageConfigMock from '../../pages/UpdatePassPage/config.json'
 
 export default {
-  title: `${STORYBOOK_ROUTES.TEMPLATES}/FormLayout Template`,
+  title: `${STORYBOOK_ROUTES.TEMPLATES}/FormLayoutTemplate`,
   component: FormTemplate,
   args: {
     ...LoginPageConfigMock,

@@ -2,15 +2,15 @@ import React from 'react'
 import Message from '.'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
-// ENUMS
-import { notificationTypes } from '../../../constants/bulma-styles.json'
 // MOCKS
 import { minimalConfig } from './index.mocks.json'
-// PARSER
+// CONSTANTS
+import { notificationTypes } from '../../../constants/bulma-styles.json'
+// FUNCTIONS
 import { parseObjKeys } from '../../../functions/parsers'
 
 export default {
-  title: `${STORYBOOK_ROUTES.ATOMS}/Message Block`,
+  title: `${STORYBOOK_ROUTES.ATOMS}/Message`,
   component: Message,
   argTypes: {
     msgType: {

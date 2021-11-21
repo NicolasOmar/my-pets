@@ -5,12 +5,13 @@ import ButtonGroup from '../../molecules/ButtonGroup'
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // MOCKS
 import mocks from './index.mocks.json'
-// ENUMS
+// CONSTANTS
 import { columnSizes } from '../../../constants/bulma-styles.json'
+// FUNCTIONS
 import { parseObjKeys } from '../../../functions/parsers'
 
 export default {
-  title: `${STORYBOOK_ROUTES.ORGANISMS}/Basic Frame`,
+  title: `${STORYBOOK_ROUTES.ORGANISMS}/BasicFrame`,
   component: BasicFrame,
   argTypes: {
     width: {

@@ -2,7 +2,7 @@ import React from 'react'
 import NavBar from '.'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
-// STORIES
+// MOCKS
 import mocks from './index.mocks.json'
 
 export default {

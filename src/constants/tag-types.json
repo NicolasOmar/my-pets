@@ -8,5 +8,9 @@
     "text",
     "email",
     "password"
+  ],
+  "selectorTypes": [
+    "radio",
+    "checkbox"
   ]
 }

@@ -6,7 +6,7 @@ import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 import { minimalConfig } from './index.mocks.json'
 
 export default {
-  title: `${STORYBOOK_ROUTES.MOLECULES}/Form Input`,
+  title: `${STORYBOOK_ROUTES.MOLECULES}/FormInput`,
   component: FormInput,
   args: minimalConfig
 }
