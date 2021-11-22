@@ -9,20 +9,24 @@ const BasicRadioCheck = ({
   name = null,
   isDisabled = false,
   isChecked = false,
-  onClick = () => {}
+  onClickCb = () => {}
 }) => {
+  const marginRight = '5px'
+  const inputValue = label?.toLowerCase().replace(' ', '')
   const [inputChecked, setInputChecked] = useState(isChecked)
 
   const onCheck = () => {
-    onClick({ label, name, value: !inputChecked })
+    onClickCb({ label, name, value: !inputChecked, inputValue })
     setInputChecked(!inputChecked)
   }
 
   return (
-    <label className={type}>
+    <label className={type} style={{ marginRight }}>
       <input
         type={type}
         name={name}
+        value={inputValue}
+        style={{ marginRight }}
         disabled={isDisabled}
         checked={inputChecked}
         onChange={() => onCheck()}
@@ -40,5 +44,5 @@ BasicRadioCheck.propTypes = {
   isDisabled: bool,
   isChecked: bool,
   name: string,
-  onClick: func
+  onClickCb: func
 }

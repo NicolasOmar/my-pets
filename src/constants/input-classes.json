@@ -1,4 +1,20 @@
 {
+  "select": [
+    {
+      "prop": "isMultiple",
+      "setClass": "is-multiple"
+    },
+    {
+      "prop": "isLoading",
+      "setClass": "is-loading"
+    }
+  ],
+  "input": [
+    {
+      "prop": "isRounded",
+      "setClass": "is-rounded"
+    }
+  ],
   "button": [
     {
       "prop": "isOutlined",
@@ -23,12 +39,6 @@
     {
       "prop": "isCentered",
       "setClass": "has-text-centered"
-    }
-  ],
-  "input": [
-    {
-      "prop": "isRounded",
-      "setClass": "is-rounded"
     }
   ],
   "field": [
