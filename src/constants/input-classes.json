@@ -29,6 +29,12 @@
       "setClass": "is-loading"
     }
   ],
+  "buttons": [
+    {
+      "prop": "isCentered",
+      "setClass": "is-centered"
+    }
+  ],
   "title": [
     {
       "prop": "isCentered",

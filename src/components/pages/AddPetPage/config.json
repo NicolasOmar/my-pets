@@ -12,6 +12,49 @@
       "isRequired": true,
       "minLength": 2,
       "maxLength": 250
+    },
+    "type": {
+      "label": "Type",
+      "type": "select",
+      "control": "type",
+      "options": [
+        {
+          "label": "Dog",
+          "value": "dog"
+        },
+        {
+          "label": "Cat",
+          "value": "cat"
+        }
+      ]
+    },
+    "birthday": {
+      "label": "Birthday",
+      "type": "date",
+      "control": "birthday",
+      "isRequired": true
+    },
+    "isAdopted": {
+      "label": "Is adopted",
+      "type": "checkbox",
+      "control": "isAdopted",
+      "name": "isAdopted"
+    },
+    "adoptionDate": {
+      "label": "Adoption Date",
+      "type": "date",
+      "control": "adoptionDate",
+      "isRequired": true
     }
+  },
+  "addPetButton": {
+    "type": "submit",
+    "color": "success",
+    "label": "Confirm"
+  },
+  "goToHomeButton": {
+    "type": "button",
+    "color": "danger",
+    "label": "Cancel"
   }
 }

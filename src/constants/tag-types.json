@@ -10,8 +10,12 @@
     "password",
     "date"
   ],
-  "selectorTypes": [
+  "checkTypes": [
     "radio",
     "checkbox"
+  ],
+  "selectorTypes": [
+    "select",
+    "multiple"
   ]
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { bool, func, oneOf, string } from 'prop-types'
 // CONSTANTS
-import { selectorTypes } from '../../../constants/tag-types.json'
+import { checkTypes } from '../../../constants/tag-types.json'
 
 const BasicRadioCheck = ({
   type,
@@ -39,7 +39,7 @@ const BasicRadioCheck = ({
 export default BasicRadioCheck
 
 BasicRadioCheck.propTypes = {
-  type: oneOf(selectorTypes).isRequired,
+  type: oneOf(checkTypes).isRequired,
   label: string,
   isDisabled: bool,
   isChecked: bool,

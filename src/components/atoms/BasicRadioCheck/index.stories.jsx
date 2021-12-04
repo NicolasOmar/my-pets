@@ -3,7 +3,7 @@ import BasicRadioCheck from '.'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // CONSTANTS
-import { selectorTypes } from '../../../constants/tag-types.json'
+import { checkTypes } from '../../../constants/tag-types.json'
 // MOCKS
 import mocks from './index.mocks.json'
 
@@ -12,7 +12,7 @@ export default {
   component: BasicRadioCheck,
   argTypes: {
     type: {
-      options: selectorTypes
+      options: checkTypes
     }
   },
   args: mocks.minimalConfig

@@ -20,12 +20,12 @@
     "large": "is-large"
   },
   "fontSizes": {
-    "huge": "is-1",
-    "bigger": "is-2",
-    "big": "is-3",
-    "normal": "is-4",
+    "tiny": "is-6",
     "small": "is-5",
-    "tiny": "is-6"
+    "normal": "is-4",
+    "big": "is-3",
+    "bigger": "is-2",
+    "huge": "is-1"
   },
   "notificationTypes": {
     "success": "is-success",

@@ -3,7 +3,7 @@ import { arrayOf, bool, func, shape, string, oneOf } from 'prop-types'
 // COMPONENTS
 import BasicRadioCheck from '../../atoms/BasicRadioCheck'
 // CONSTANTS
-import { selectorTypes } from '../../../constants/tag-types.json'
+import { checkTypes } from '../../../constants/tag-types.json'
 
 const RadioCheckGroup = ({ items, name }) => (
   <div data-testid="radio-check-group" className="control">
@@ -18,7 +18,7 @@ export default RadioCheckGroup
 RadioCheckGroup.propTypes = {
   items: arrayOf(
     shape({
-      type: oneOf(selectorTypes).isRequired,
+      type: oneOf(checkTypes).isRequired,
       label: string,
       isDisabled: bool,
       isChecked: bool,

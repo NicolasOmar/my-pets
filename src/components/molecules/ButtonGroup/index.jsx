@@ -6,15 +6,18 @@ import BasicButton from '../../atoms/BasicButton'
 import { buttonTypes } from '../../../constants/tag-types.json'
 import { colors, sizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { parseObjKeys } from '../../../functions/parsers'
+import { parseCssClasses, parseObjKeys } from '../../../functions/parsers'
 
-const ButtonGroup = ({ buttons }) => (
-  <div data-testid="button-group" className="buttons has-addons">
-    {buttons.map((button, i) => (
-      <BasicButton key={`btn-${button.color}-${i}`} {...button} />
-    ))}
-  </div>
-)
+const ButtonGroup = ({ buttons, isCentered = true }) => {
+  const btnGroupClass = parseCssClasses({ isCentered }, 'buttons', ['has-addons'])
+  return (
+    <div data-testid="button-group" className={btnGroupClass}>
+      {buttons.map((button, i) => (
+        <BasicButton key={`btn-${button.color}-${i}`} {...button} />
+      ))}
+    </div>
+  )
+}
 
 export default ButtonGroup
 
@@ -31,5 +34,6 @@ ButtonGroup.propTypes = {
       onClick: func,
       label: string.isRequired
     })
-  ).isRequired
+  ).isRequired,
+  isCentered: bool
 }
