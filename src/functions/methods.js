@@ -3,7 +3,7 @@ import { validations } from '../constants/input-validations.json'
 
 export const checkIsValidForm = form =>
   Object.keys(form)
-    .map(input => form[input].isValid || false)
+    .map(input => form[input].isValid ?? true)
     .every(validationState => validationState)
 
 /*

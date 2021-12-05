@@ -9,7 +9,7 @@ import { parseCssClasses, parseObjKeys } from '../../../functions/parsers'
 const BasicButton = ({
   type,
   color = parseObjKeys(colors)[0],
-  size = parseObjKeys(sizes)[0],
+  size = parseObjKeys(sizes)[1],
   isOutlined = false,
   isInverted = false,
   isLoading = false,

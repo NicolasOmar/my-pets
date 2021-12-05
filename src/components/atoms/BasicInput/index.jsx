@@ -11,7 +11,7 @@ const BasicInput = ({
   control,
   value = '',
   color = parseObjKeys(colors)[0],
-  size = parseObjKeys(sizes)[0],
+  size = parseObjKeys(sizes)[1],
   isRounded = false,
   placeHolder = null,
   onInputChange,
