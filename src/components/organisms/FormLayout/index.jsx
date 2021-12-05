@@ -85,6 +85,7 @@ const FormLayout = ({
       <FormInput
         key={`${prop}-${i}`}
         inputLabel={formControls[prop].label}
+        isLoading={isLoading}
         inputConfig={{
           ...formControls[prop],
           onInputChange,

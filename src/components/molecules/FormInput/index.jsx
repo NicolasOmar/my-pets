@@ -9,7 +9,7 @@ import BasicSelect from '../../atoms/BasicSelect'
 import { inputTypes, checkTypes, selectorTypes } from '../../../constants/tag-types.json'
 import { colors, sizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { parseObjKeys } from '../../../functions/parsers'
+import { parseCssClasses, parseObjKeys } from '../../../functions/parsers'
 
 const parseFormInput = inputConfig => {
   const config = { ...inputConfig, color: inputConfig.isValid === false ? 'danger' : null }
@@ -22,17 +22,21 @@ const parseFormInput = inputConfig => {
   )
 }
 
-const FormInput = ({ inputLabel, inputConfig }) => (
-  <div className="control">
-    <Label labelText={inputLabel} isRequired={inputConfig.isRequired} />
-    {parseFormInput(inputConfig)}
-  </div>
-)
+const FormInput = ({ inputLabel = null, isLoading = false, inputConfig }) => {
+  const controlClass = parseCssClasses({ isLoading }, 'control')
+  return (
+    <section className="field">
+      <Label labelText={inputLabel} isRequired={inputConfig.isRequired} />
+      <section className={controlClass}>{parseFormInput(inputConfig)}</section>
+    </section>
+  )
+}
 
 export default FormInput
 
 FormInput.propTypes = {
   inputLabel: string,
+  isLoading: bool,
   inputConfig: shape({
     type: oneOf([...inputTypes, ...checkTypes, ...selectorTypes]).isRequired,
     control: string.isRequired,
@@ -47,5 +51,5 @@ FormInput.propTypes = {
     isDisabled: bool,
     minLength: number,
     maxLength: number
-  })
+  }).isRequired
 }

@@ -16,6 +16,11 @@ const renderIf = {
   default: (value, setClass) => setInputClass(value === true, setClass)
 }
 
+const mergeInputClasses = (commons, input) =>
+  [...input, ...commons].filter(({ prop }, _, mergedArray) =>
+    mergedArray.find(inputClass => inputClass.prop === prop)
+  )
+
 /*
   parseCssClasses:
   First, you will recive the input configuration with a field value, which is needed to get its corresponding configuration from the JSON file
@@ -26,7 +31,7 @@ const renderIf = {
   At last, after all the cases have been mapped, the main method will filter the null cases and concat them in a string, which will be concated in the final class string return (in case that the "mappedClasses" const gets at least one class)
 */
 export const parseCssClasses = (inputConfig = {}, fieldName, otherClasses = []) => {
-  const classes = [...inputClasses['common'], ...(inputClasses[fieldName] ?? [])]
+  const classes = mergeInputClasses(inputClasses['common'], inputClasses[fieldName] ?? [])
   const mappedClasses = classes
     .map(({ prop, condition = 'default', setClass }) =>
       renderIf[condition](inputConfig[prop], setClass)

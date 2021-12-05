@@ -3,7 +3,7 @@ import FormInput from '.'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // MOCKS
-import { minimalConfig } from './index.mocks.json'
+import { minimalConfig, loading } from './index.mocks.json'
 
 export default {
   title: `${STORYBOOK_ROUTES.MOLECULES}/FormInput`,
@@ -16,8 +16,15 @@ const Template = args => <FormInput {...args} />
 export const Minimal = Template.bind({})
 Minimal.storyName = 'Minimal config'
 
+export const Loading = Template.bind({})
+Loading.storyName = 'Loading'
+Loading.args = {
+  ...Minimal.args,
+  ...loading
+}
+
 export const Invalid = Template.bind({})
-Invalid.storyName = 'Invalid case'
+Invalid.storyName = 'Invalid'
 Invalid.args = {
   ...minimalConfig,
   inputConfig: {

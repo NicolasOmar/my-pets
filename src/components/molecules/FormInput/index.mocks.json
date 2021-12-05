@@ -1,9 +1,12 @@
 {
   "minimalConfig": {
-    "inputLabel": "FormLayout input label",
+    "inputLabel": "Form input label",
     "inputConfig": {
       "type": "text",
       "control": "formInputControl"
     }
+  },
+  "loading": {
+    "isLoading": true
   }
 }
