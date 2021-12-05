@@ -9,6 +9,14 @@ import { APP_ROUTES } from '../../../constants/routes.json'
 const AddPetPage = () => {
   let history = useHistory()
 
+  const onSubmitNewPet = data => {
+    console.error(
+      Object.keys(data)
+        .map(key => ({ [key]: data[key] ?? false }))
+        .reduce((finalObj, currentProp) => ({ ...finalObj, ...currentProp }), {})
+    )
+  }
+
   return (
     <FormTemplate
       header={header}
@@ -20,7 +28,7 @@ const AddPetPage = () => {
           onClick: () => history.push(APP_ROUTES.HOME)
         }
       ]}
-      onFormSubmit={data => console.error('AddPetForm data:', data)}
+      onFormSubmit={formData => onSubmitNewPet(formData)}
     />
   )
 }

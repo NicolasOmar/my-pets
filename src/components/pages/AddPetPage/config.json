@@ -20,11 +20,11 @@
       "options": [
         {
           "label": "Dog",
-          "value": "dog"
+          "value": 1
         },
         {
           "label": "Cat",
-          "value": "cat"
+          "value": 2
         }
       ]
     },
