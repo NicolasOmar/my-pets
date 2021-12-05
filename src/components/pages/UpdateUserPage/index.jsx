@@ -33,12 +33,13 @@ const UpdateUserPage = () => {
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data])
 
-  const onSubmitUpdate = async formData => {
-    updateUser({
-      variables: formData
-    })
-      .then(() => history.push(APP_ROUTES.HOME))
-      .catch(error => console.error(error))
+  const onSubmitUpdate = async variables => {
+    try {
+      await updateUser({ variables })
+      history.push(APP_ROUTES.HOME)
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   return (

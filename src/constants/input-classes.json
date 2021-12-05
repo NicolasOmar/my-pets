@@ -3,10 +3,6 @@
     {
       "prop": "isMultiple",
       "setClass": "is-multiple"
-    },
-    {
-      "prop": "isLoading",
-      "setClass": "is-loading"
     }
   ],
   "input": [
@@ -23,16 +19,6 @@
     {
       "prop": "isInverted",
       "setClass": "is-inverted"
-    },
-    {
-      "prop": "isLoading",
-      "setClass": "is-loading"
-    }
-  ],
-  "buttons": [
-    {
-      "prop": "isCentered",
-      "setClass": "is-centered"
     }
   ],
   "title": [
@@ -56,10 +42,6 @@
   ],
   "form": [
     {
-      "prop": "isLoading",
-      "setClass": "loading"
-    },
-    {
       "prop": "isBoxed",
       "setClass": "box"
     },
@@ -67,6 +49,16 @@
       "prop": "errors",
       "condition": "isNotNull",
       "setClass": "error"
+    }
+  ],
+  "common": [
+    {
+      "prop": "isCentered",
+      "setClass": "is-centered"
+    },
+    {
+      "prop": "isLoading",
+      "setClass": "is-loading"
     }
   ]
 }

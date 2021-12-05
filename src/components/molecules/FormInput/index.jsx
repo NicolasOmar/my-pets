@@ -23,7 +23,7 @@ const parseFormInput = inputConfig => {
 }
 
 const FormInput = ({ inputLabel, inputConfig }) => (
-  <div className="field">
+  <div className="control">
     <Label labelText={inputLabel} isRequired={inputConfig.isRequired} />
     {parseFormInput(inputConfig)}
   </div>

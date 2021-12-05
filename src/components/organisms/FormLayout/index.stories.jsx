@@ -34,8 +34,7 @@ export const WithErrors = Template.bind({})
 WithErrors.storyName = 'With form errors'
 WithErrors.args = {
   ...WithButtons.args,
-  ...withErrors,
-  isLoading: false
+  ...withErrors
 }
 
 export const FreeBoxed = Template.bind({})

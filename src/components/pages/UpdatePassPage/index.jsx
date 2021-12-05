@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router'
 // GRAPHQL CLIENT
 import { useMutation } from '@apollo/client'
 import { UPDATE_PASS } from '../../../graphql/mutations'
@@ -6,10 +7,13 @@ import { UPDATE_PASS } from '../../../graphql/mutations'
 import FormTemplate from '../../templates/FormTemplate'
 // FORM CONFIG
 import { header, inputs, updateButton, cancelButton } from './config.json'
+// CONSTANTS
+import { APP_ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
 import { encryptPass } from '../../../functions/encrypt'
 
 const UpdatePassPage = () => {
+  let history = useHistory()
   const [updatePass, { loading, error }] = useMutation(UPDATE_PASS)
 
   const onSubmitUpdate = async formData => {
@@ -18,9 +22,12 @@ const UpdatePassPage = () => {
       newPass: encryptPass(formData.newPass)
     }
 
-    updatePass({ variables })
-      .then(response => console.warn(response))
-      .catch(error => console.error(error))
+    try {
+      await updatePass({ variables })
+      history.push(APP_ROUTES.HOME)
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   const onInputBlurChange = formData => {

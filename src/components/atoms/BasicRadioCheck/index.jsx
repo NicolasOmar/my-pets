@@ -5,18 +5,19 @@ import { checkTypes } from '../../../constants/tag-types.json'
 
 const BasicRadioCheck = ({
   type,
+  control,
   label = null,
   name = null,
   isDisabled = false,
-  isChecked = false,
-  onClickCb = () => {}
+  value = false,
+  onInputChange
 }) => {
   const marginRight = '5px'
   const inputValue = label?.toLowerCase().replace(' ', '')
-  const [inputChecked, setInputChecked] = useState(isChecked)
+  const [inputChecked, setInputChecked] = useState(value)
 
-  const onCheck = () => {
-    onClickCb({ label, name, value: !inputChecked, inputValue })
+  const onCheckChange = () => {
+    onInputChange({ value: !inputChecked }, control)
     setInputChecked(!inputChecked)
   }
 
@@ -29,7 +30,7 @@ const BasicRadioCheck = ({
         style={{ marginRight }}
         disabled={isDisabled}
         checked={inputChecked}
-        onChange={() => onCheck()}
+        onChange={() => onCheckChange()}
       />
       {label}
     </label>
@@ -40,9 +41,10 @@ export default BasicRadioCheck
 
 BasicRadioCheck.propTypes = {
   type: oneOf(checkTypes).isRequired,
+  control: string.isRequired,
   label: string,
   isDisabled: bool,
-  isChecked: bool,
+  value: bool,
   name: string,
-  onClickCb: func
+  onInputChange: func
 }

@@ -21,21 +21,21 @@ const FormLayout = ({
   onFormSubmit,
   onInputBlurChange
 }) => {
-  const [formControls, setFormControls] = useState(inputs)
-  const [disableSignUpButton, setDisableSignUpButton] = useState(true)
+  const formClass = parseCssClasses({ isBoxed, errors }, 'form')
   const firstUpdate = useRef(true)
-  const formClass = parseCssClasses({ isLoading, isBoxed, errors }, 'form')
+  const [formControls, setFormControls] = useState(inputs)
+  const [disableConfirmButton, setDisableConfirmButton] = useState(true)
 
   useEffect(() => {
     if (firstUpdate.current) {
       firstUpdate.current = false
       return
     }
-    setDisableSignUpButton(!checkIsValidForm(formControls))
+    setDisableConfirmButton(!checkIsValidForm(formControls))
   }, [formControls])
 
   const onInputChange = (evt, prop) => {
-    const { value } = evt.target
+    const { value } = evt.target || evt
 
     checkInputIsValid(prop, {
       ...formControls,
@@ -76,24 +76,22 @@ const FormLayout = ({
   const onSubmit = evt => {
     if (onFormSubmit) {
       evt.preventDefault()
-      !disableSignUpButton && onFormSubmit(sendObjValues({ ...formControls }))
+      !disableConfirmButton && onFormSubmit(sendObjValues({ ...formControls }))
     }
   }
 
   const renderInputs = () =>
-    Object.keys(formControls).map((prop, i) => {
-      return (
-        <FormInput
-          key={`${prop}-${i}`}
-          inputLabel={formControls[prop].label}
-          inputConfig={{
-            ...formControls[prop],
-            onInputChange,
-            onBlurChange
-          }}
-        />
-      )
-    })
+    Object.keys(formControls).map((prop, i) => (
+      <FormInput
+        key={`${prop}-${i}`}
+        inputLabel={formControls[prop].label}
+        inputConfig={{
+          ...formControls[prop],
+          onInputChange,
+          onBlurChange
+        }}
+      />
+    ))
 
   const renderButtons = () =>
     formButtons && <ButtonGroup buttons={formButtons.map(btn => ({ ...btn }))} />

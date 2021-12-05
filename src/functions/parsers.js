@@ -26,7 +26,8 @@ const renderIf = {
   At last, after all the cases have been mapped, the main method will filter the null cases and concat them in a string, which will be concated in the final class string return (in case that the "mappedClasses" const gets at least one class)
 */
 export const parseCssClasses = (inputConfig = {}, fieldName, otherClasses = []) => {
-  const mappedClasses = inputClasses[fieldName]
+  const classes = [...inputClasses['common'], ...(inputClasses[fieldName] ?? [])]
+  const mappedClasses = classes
     .map(({ prop, condition = 'default', setClass }) =>
       renderIf[condition](inputConfig[prop], setClass)
     )
