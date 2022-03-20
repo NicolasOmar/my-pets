@@ -11,7 +11,8 @@ const FormTemplate = ({
   inputs,
   formButtons,
   onFormSubmit,
-  onInputBlurChange
+  onInputBlurChange,
+  dataFetched = true
 }) => {
   const formConfig = {
     header,
@@ -24,13 +25,15 @@ const FormTemplate = ({
   }
 
   return (
-    <BasicFrame
-      {...{
-        header,
-        children: <FormLayout {...formConfig} />,
-        centerGrid: true
-      }}
-    />
+    dataFetched && (
+      <BasicFrame
+        {...{
+          header,
+          children: <FormLayout {...formConfig} />,
+          centerGrid: true
+        }}
+      />
+    )
   )
 }
 
@@ -43,5 +46,6 @@ FormTemplate.propTypes = {
   inputs: object,
   formButtons: array,
   onFormSubmit: func,
-  onInputBlurChange: func
+  onInputBlurChange: func,
+  dataFetched: bool
 }

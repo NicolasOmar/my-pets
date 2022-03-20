@@ -5,9 +5,16 @@ import FormTemplate from '../../templates/FormTemplate'
 import { header, inputs, addPetButton, goToHomeButton } from './config.json'
 // CONSTANTS
 import { APP_ROUTES } from '../../../constants/routes.json'
+import { useQuery } from '@apollo/client'
+import { GET_PET_TYPES } from '../../../graphql/queries'
 
 const AddPetPage = () => {
   let history = useHistory()
+
+  const {
+    loading,
+    data: { getPetTypes }
+  } = useQuery(GET_PET_TYPES)
 
   const onSubmitNewPet = data => {
     console.error(
@@ -20,7 +27,13 @@ const AddPetPage = () => {
   return (
     <FormTemplate
       header={header}
-      inputs={inputs}
+      inputs={{
+        ...inputs,
+        type: {
+          ...inputs.type,
+          options: getPetTypes.map(({ id, name }) => ({ value: id, label: name }))
+        }
+      }}
       formButtons={[
         addPetButton,
         {
@@ -29,6 +42,7 @@ const AddPetPage = () => {
         }
       ]}
       onFormSubmit={formData => onSubmitNewPet(formData)}
+      dataFetched={!loading}
     />
   )
 }

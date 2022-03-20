@@ -16,17 +16,7 @@
     "type": {
       "label": "Type",
       "type": "select",
-      "control": "type",
-      "options": [
-        {
-          "label": "Dog",
-          "value": 1
-        },
-        {
-          "label": "Cat",
-          "value": 2
-        }
-      ]
+      "control": "type"
     },
     "birthday": {
       "label": "Birthday",
