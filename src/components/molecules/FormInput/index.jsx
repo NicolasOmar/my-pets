@@ -1,5 +1,5 @@
 import React from 'react'
-import { shape, bool, func, string, number, oneOf } from 'prop-types'
+import { shape, bool, func, string, number, oneOf, oneOfType } from 'prop-types'
 // COMPONENTS
 import Label from '../../atoms/Label'
 import BasicInput from '../../atoms/BasicInput'
@@ -40,7 +40,7 @@ FormInput.propTypes = {
   inputConfig: shape({
     type: oneOf([...inputTypes, ...checkTypes, ...selectorTypes]).isRequired,
     control: string.isRequired,
-    value: string,
+    value: oneOfType([string, bool]),
     color: oneOf(parseObjKeys(colors)),
     size: oneOf(parseObjKeys(sizes)),
     isRounded: bool,

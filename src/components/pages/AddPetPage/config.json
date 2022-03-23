@@ -9,6 +9,7 @@
       "label": "Name",
       "type": "text",
       "control": "name",
+      "isVisible": true,
       "isRequired": true,
       "minLength": 2,
       "maxLength": 250
@@ -16,25 +17,28 @@
     "type": {
       "label": "Type",
       "type": "select",
-      "control": "type"
+      "control": "type",
+      "isVisible": true
     },
     "birthday": {
       "label": "Birthday",
       "type": "date",
       "control": "birthday",
+      "isVisible": true,
       "isRequired": true
     },
     "isAdopted": {
       "label": "Is adopted",
       "type": "checkbox",
       "control": "isAdopted",
+      "isVisible": true,
       "name": "isAdopted"
     },
     "adoptionDate": {
       "label": "Adoption Date",
       "type": "date",
       "control": "adoptionDate",
-      "isRequired": true
+      "isRequired": false
     }
   },
   "addPetButton": {

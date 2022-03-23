@@ -9,7 +9,7 @@
   "radioChecked": {
     "type": "radio",
     "label": "Radio checked",
-    "isChecked": true
+    "value": true
   },
   "radioDisabled": {
     "type": "radio",
@@ -23,7 +23,7 @@
   "checkChecked": {
     "type": "checkbox",
     "label": "Checkbox checked",
-    "isChecked": true
+    "value": true
   },
   "checkDisabled": {
     "type": "checkbox",

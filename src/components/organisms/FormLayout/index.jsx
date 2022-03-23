@@ -81,18 +81,21 @@ const FormLayout = ({
   }
 
   const renderInputs = () =>
-    Object.keys(formControls).map((prop, i) => (
-      <FormInput
-        key={`${prop}-${i}`}
-        inputLabel={formControls[prop].label}
-        isLoading={isLoading}
-        inputConfig={{
-          ...formControls[prop],
-          onInputChange,
-          onBlurChange
-        }}
-      />
-    ))
+    Object.keys(formControls).map(
+      (prop, i) =>
+        formControls[prop].isVisible && (
+          <FormInput
+            key={`${prop}-${i}`}
+            inputLabel={formControls[prop].label}
+            isLoading={isLoading}
+            inputConfig={{
+              ...formControls[prop],
+              onInputChange,
+              onBlurChange
+            }}
+          />
+        )
+    )
 
   const renderButtons = () =>
     formButtons && <ButtonGroup buttons={formButtons.map(btn => ({ ...btn }))} />

@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
-import { bool, func, oneOf, string } from 'prop-types'
+import { bool, func, object, oneOf, oneOfType, string } from 'prop-types'
 // CONSTANTS
 import { checkTypes } from '../../../constants/tag-types.json'
 
 const BasicRadioCheck = ({
   type,
   control,
-  label = null,
   name = null,
+  styles = { marginRight: '5px' },
+  label = null,
   isDisabled = false,
   value = false,
   onInputChange
 }) => {
-  const marginRight = '5px'
   const inputValue = label?.toLowerCase().replace(' ', '')
   const [inputChecked, setInputChecked] = useState(value)
 
@@ -22,12 +22,12 @@ const BasicRadioCheck = ({
   }
 
   return (
-    <label className={type} style={{ marginRight }}>
+    <label className={type} style={styles}>
       <input
         type={type}
         name={name}
         value={inputValue}
-        style={{ marginRight }}
+        style={styles}
         disabled={isDisabled}
         checked={inputChecked}
         onChange={() => onCheckChange()}
@@ -42,9 +42,10 @@ export default BasicRadioCheck
 BasicRadioCheck.propTypes = {
   type: oneOf(checkTypes).isRequired,
   control: string.isRequired,
+  name: string,
+  styles: object,
   label: string,
   isDisabled: bool,
-  value: bool,
-  name: string,
+  value: oneOfType([string, bool]),
   onInputChange: func
 }

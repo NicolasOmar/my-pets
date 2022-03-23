@@ -1,20 +1,19 @@
 import React from 'react'
 import { useHistory } from 'react-router'
+// GRAPHQL CLIENT
+import { useQuery } from '@apollo/client'
+import { GET_PET_TYPES } from '../../../graphql/queries'
+// COMPONENTS
 import FormTemplate from '../../templates/FormTemplate'
 // FORM CONFIG
 import { header, inputs, addPetButton, goToHomeButton } from './config.json'
 // CONSTANTS
 import { APP_ROUTES } from '../../../constants/routes.json'
-import { useQuery } from '@apollo/client'
-import { GET_PET_TYPES } from '../../../graphql/queries'
 
 const AddPetPage = () => {
   let history = useHistory()
 
-  const {
-    loading,
-    data: { getPetTypes }
-  } = useQuery(GET_PET_TYPES)
+  const { loading, data } = useQuery(GET_PET_TYPES)
 
   const onSubmitNewPet = data => {
     console.error(
@@ -24,6 +23,19 @@ const AddPetPage = () => {
     )
   }
 
+  const onInputBlurChange = formData => {
+    console.error(Object.keys(formData).map(key => `${key}: ${formData[key].value || null}`))
+    const isAdopted = formData.isAdopted.value === true
+    return {
+      ...formData,
+      adoptionDate: {
+        ...formData.adoptionDate,
+        isVisible: isAdopted,
+        isRequired: isAdopted
+      }
+    }
+  }
+
   return (
     <FormTemplate
       header={header}
@@ -31,7 +43,7 @@ const AddPetPage = () => {
         ...inputs,
         type: {
           ...inputs.type,
-          options: getPetTypes.map(({ id, name }) => ({ value: id, label: name }))
+          options: data?.getPetTypes?.map(({ id, name }) => ({ value: id, label: name })) || []
         }
       }}
       formButtons={[
@@ -42,6 +54,7 @@ const AddPetPage = () => {
         }
       ]}
       onFormSubmit={formData => onSubmitNewPet(formData)}
+      onInputBlurChange={onInputBlurChange}
       dataFetched={!loading}
     />
   )
