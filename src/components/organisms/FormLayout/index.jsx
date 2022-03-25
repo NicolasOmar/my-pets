@@ -5,7 +5,7 @@ import FormInput from '../../molecules/FormInput'
 import ButtonGroup from '../../molecules/ButtonGroup'
 import Message from '../../atoms/Message'
 // FUNCTIONS
-import { checkIsValidForm, checkIsValidInput, sendObjValues } from '../../../functions/methods'
+import { checkIsValidForm, validateInput, sendObjValues } from '../../../functions/methods'
 import validators from '../../../functions/validators'
 import { parseCssClasses, parseObjKeys } from '../../../functions/parsers'
 // ENUMS
@@ -56,8 +56,8 @@ const FormLayout = ({
         [prop]: {
           ...validatedForm[prop],
           isValid: validatedForm[prop].hasCustomValidation
-            ? checkIsValidInput(_formControls[prop]) && validatedForm[prop].isValid
-            : checkIsValidInput(_formControls[prop])
+            ? validateInput(_formControls[prop]) && validatedForm[prop].isValid
+            : validateInput(_formControls[prop])
         }
       })
     } else {
@@ -65,7 +65,7 @@ const FormLayout = ({
         ..._formControls,
         [prop]: {
           ..._formControls[prop],
-          isValid: checkIsValidInput(_formControls[prop])
+          isValid: validateInput(_formControls[prop])
         }
       })
     }

@@ -1,4 +1,7 @@
 {
+  "minimalConfig": {
+    "control": "basicSelect"
+  },
   "oneOption": {
     "options": [
       {

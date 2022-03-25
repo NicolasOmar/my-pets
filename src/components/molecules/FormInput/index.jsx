@@ -1,15 +1,14 @@
 import React from 'react'
-import { shape, bool, func, string, number, oneOf, oneOfType } from 'prop-types'
+import { bool, string, oneOfType } from 'prop-types'
 // COMPONENTS
 import Label from '../../atoms/Label'
 import BasicInput from '../../atoms/BasicInput'
 import BasicRadioCheck from '../../atoms/BasicRadioCheck'
 import BasicSelect from '../../atoms/BasicSelect'
 // CONSTANTS
-import { inputTypes, checkTypes, selectorTypes } from '../../../constants/tag-types.json'
-import { colors, sizes } from '../../../constants/bulma-styles.json'
+import { checkTypes, selectorTypes } from '../../../constants/tag-types.json'
 // FUNCTIONS
-import { parseCssClasses, parseObjKeys } from '../../../functions/parsers'
+import { parseCssClasses } from '../../../functions/parsers'
 
 const parseFormInput = inputConfig => {
   const config = { ...inputConfig, color: inputConfig.isValid === false ? 'danger' : null }
@@ -37,19 +36,6 @@ export default FormInput
 FormInput.propTypes = {
   inputLabel: string,
   isLoading: bool,
-  inputConfig: shape({
-    type: oneOf([...inputTypes, ...checkTypes, ...selectorTypes]).isRequired,
-    control: string.isRequired,
-    value: oneOfType([string, bool]),
-    color: oneOf(parseObjKeys(colors)),
-    size: oneOf(parseObjKeys(sizes)),
-    isRounded: bool,
-    placeHolder: string,
-    onInputChange: func,
-    onBlurChange: func,
-    isRequired: bool,
-    isDisabled: bool,
-    minLength: number,
-    maxLength: number
-  }).isRequired
+  inputConfig: oneOfType([BasicInput.propTypes, BasicRadioCheck.propTypes, BasicSelect.propTypes])
+    .isRequired
 }

@@ -7,7 +7,7 @@ export const checkIsValidForm = form =>
     .every(validationState => validationState)
 
 /*
-  checkIsValidInput:
+  validateInput:
   First, the method will map all the validations loaded on the "validations"
   For every validation, it will check if yout input has one prop like "isRequired",
     In case it exists it will run the validator related to that prop (in this case, will be "valueIsEmpty") and will return the reverse value (if it is true, then the value will not be valid)
@@ -16,7 +16,7 @@ export const checkIsValidForm = form =>
     If it is like that, will return that your input is valid
     In other case (only one of those values is false), will return that your value is invalid
 */
-export const checkIsValidInput = input => {
+export const validateInput = input => {
   return validations
     .map(({ prop, fn }) =>
       input[prop] !== undefined ? !validators[fn](input.value, input[prop]) : true

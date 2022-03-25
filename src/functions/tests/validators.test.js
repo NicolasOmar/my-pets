@@ -3,7 +3,8 @@ import {
   mockValueIsEmpty,
   mockValueHasNumbers,
   mockValueLengthIsUnder,
-  mockValueLengthIsAbove
+  mockValueLengthIsAbove,
+  mockDateIsBefore
 } from '../mocks/validators.mocks.json'
 
 const testSuite = [
@@ -28,6 +29,12 @@ const testSuite = [
     values: mockValueLengthIsAbove,
     testFn: validators.valueLengthIsAbove,
     otherProps: 6
+  },
+  {
+    name: '[dateIsBefore]',
+    values: mockDateIsBefore,
+    testFn: validators.dateIsBefore,
+    otherProps: new Date()
   }
 ]
 

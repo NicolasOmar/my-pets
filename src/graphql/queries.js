@@ -8,3 +8,12 @@ export const GET_PET_TYPES = gql`
     }
   }
 `
+
+export const GET_COLORS = gql`
+  query {
+    getColors {
+      id
+      name
+    }
+  }
+`

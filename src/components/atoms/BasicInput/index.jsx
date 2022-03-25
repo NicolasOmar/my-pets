@@ -10,9 +10,9 @@ const BasicInput = ({
   type,
   control,
   value = '',
-  placeHolder = null,
   isRequired = false,
   isDisabled = false,
+  placeHolder = null,
   minLength = null,
   maxLength = null,
   color = parseObjKeys(colors)[3],
@@ -43,17 +43,21 @@ const BasicInput = ({
 export default BasicInput
 
 BasicInput.propTypes = {
+  // BASE INPUT PROPS
   type: oneOf(inputTypes).isRequired,
   control: string.isRequired,
   value: string,
-  placeHolder: string,
   isRequired: bool,
   isDisabled: bool,
+  // TEXT INPUT PROPS
+  placeHolder: string,
   minLength: number,
   maxLength: number,
+  // STYLE PROPS
   color: oneOf(parseObjKeys(colors)),
   size: oneOf(parseObjKeys(sizes)),
   isRounded: bool,
+  // FUNCTIONS
   onInputChange: func,
   onBlurChange: func
 }
