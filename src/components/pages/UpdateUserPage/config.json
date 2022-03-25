@@ -11,7 +11,8 @@
       "control": "name",
       "isRequired": true,
       "minLength": 3,
-      "maxLength": 25
+      "maxLength": 25,
+      "isVisible": true
     },
     "lastName": {
       "label": "Last Name",
@@ -19,7 +20,8 @@
       "control": "lastName",
       "isRequired": true,
       "minLength": 3,
-      "maxLength": 25
+      "maxLength": 25,
+      "isVisible": true
     }
   },
   "saveButton": {

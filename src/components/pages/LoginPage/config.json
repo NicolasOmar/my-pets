@@ -11,14 +11,16 @@
       "label": "Email",
       "type": "email",
       "control": "email",
-      "isRequired": true
+      "isRequired": true,
+      "isVisible": true
     },
     "password": {
       "label": "Password",
       "type": "password",
       "control": "password",
       "isRequired": true,
-      "minLength": 6
+      "minLength": 6,
+      "isVisible": true
     }
   },
   "loginButton": {

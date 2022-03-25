@@ -16,18 +16,33 @@ const AddPetPage = () => {
   const { loading, data } = useQuery(GET_PET_TYPES)
 
   const onSubmitNewPet = data => {
-    console.error(
-      Object.keys(data)
-        .map(key => ({ [key]: data[key] ?? false }))
-        .reduce((finalObj, currentProp) => ({ ...finalObj, ...currentProp }), {})
-    )
+    const petObj = Object.keys(data)
+      .map(key => ({ [key]: data[key] }))
+      .reduce((finalObj, currentProp) => ({ ...finalObj, ...currentProp }), {})
+    console.error({
+      ...petObj
+    })
   }
 
   const onInputBlurChange = formData => {
-    console.error(Object.keys(formData).map(key => `${key}: ${formData[key].value || null}`))
+    console.error(Object.keys(formData).map(key => `${key}: ${formData[key].value}`))
+
+    /**
+     * TODOS:
+     * find a way to import propTypes for higher order components
+     * check if RadioCheckGroup makes sense of having a group of BasicRadioCheck or split the atom in two
+     * check dates have their limits (ex 1/1/1900)
+     * check adoption date could not be before the birthday date
+     * add the isVisible to all Pages
+     * fix broken UT
+     */
     const isAdopted = formData.isAdopted.value === true
     return {
       ...formData,
+      isAdopted: {
+        ...formData.isAdopted,
+        value: isAdopted
+      },
       adoptionDate: {
         ...formData.adoptionDate,
         isVisible: isAdopted,
