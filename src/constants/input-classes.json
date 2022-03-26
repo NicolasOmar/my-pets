@@ -5,12 +5,6 @@
       "setClass": "is-multiple"
     }
   ],
-  "input": [
-    {
-      "prop": "isRounded",
-      "setClass": "is-rounded"
-    }
-  ],
   "button": [
     {
       "prop": "isOutlined",
@@ -52,6 +46,10 @@
     }
   ],
   "common": [
+    {
+      "prop": "isRounded",
+      "setClass": "is-rounded"
+    },
     {
       "prop": "isCentered",
       "setClass": "is-centered"

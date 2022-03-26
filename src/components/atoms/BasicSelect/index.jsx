@@ -11,7 +11,7 @@ const BasicSelect = ({
   isDisabled = false,
   selected = null,
   options = [],
-  optionsShown = 0,
+  optionsShown = 1,
   isMultiple = false,
   color = parseObjKeys(colors)[3],
   size = parseObjKeys(sizes)[1],
@@ -29,7 +29,7 @@ const BasicSelect = ({
     <section className={selectClass}>
       <select
         multiple={isMultiple}
-        size={isMultiple ? optionsShown : 0}
+        size={isMultiple ? optionsShown : 1}
         required={isRequired}
         disabled={isDisabled}
         onChange={evt => onInputChange(evt, control)}

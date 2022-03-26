@@ -10,7 +10,13 @@ import FormTemplate from '../../templates/FormTemplate'
 import { header, inputs, addPetButton, goToHomeButton } from './config.json'
 // CONSTANTS
 import { APP_ROUTES } from '../../../constants/routes.json'
+// FUNCTIONS
 import validators from '../../../functions/validators'
+
+const setOptions = options => [
+  { value: null, label: null },
+  ...options.map(({ id, name }) => ({ value: id, label: name }))
+]
 
 const AddPetPage = () => {
   let history = useHistory()
@@ -28,18 +34,13 @@ const AddPetPage = () => {
   }
 
   const onInputBlurChange = formData => {
-    console.error(
-      Object.keys(formData).map(key => `${key}: ${formData[key].value} | ${formData[key].isValid}`)
-    )
+    // console.error(
+    //   Object.keys(formData).map(key => `${key}: ${formData[key].value} | ${formData[key].isValid}`)
+    // )
     const { isAdopted, adoptionDate, birthday } = formData
     /**
      * TODOS:
-     * check RadioCheckGroup
-     * - Integrate config and logic with new changes
-     * - Integrate it as a FormInput option
      * check dates can have max and min (ex 1/1/1900 to 31/12/2100)
-     * Add Storybook cases for BasicSelect
-     * Add Storybook cases for BasicRadioCheck (review if is needed)
      * Add Storybook cases for FormInput
      */
     const isAdoptedSelected = isAdopted.value === true
@@ -73,7 +74,7 @@ const AddPetPage = () => {
         ...inputs,
         type: {
           ...inputs.type,
-          options: petTypes?.getPetTypes?.map(({ id, name }) => ({ value: id, label: name })) || []
+          options: petTypes?.getPetTypes ? setOptions(petTypes.getPetTypes) : []
         }
       }}
       formButtons={[

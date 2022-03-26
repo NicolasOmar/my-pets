@@ -9,15 +9,26 @@ import BasicSelect from '../../atoms/BasicSelect'
 import { checkTypes, selectorTypes } from '../../../constants/tag-types.json'
 // FUNCTIONS
 import { parseCssClasses } from '../../../functions/parsers'
+import RadioCheckGroup from '../RadioCheckGroup'
 
 const parseFormInput = inputConfig => {
-  const config = { ...inputConfig, color: inputConfig.isValid === false ? 'danger' : null }
+  const baseInputConfig = { ...inputConfig, color: inputConfig.isValid === false ? 'danger' : null }
+
   return checkTypes.includes(inputConfig.type) ? (
-    <BasicRadioCheck {...config} />
+    <RadioCheckGroup
+      {...{
+        ...inputConfig,
+        options: inputConfig.options.map(_option => ({
+          ..._option,
+          onInputChange: inputConfig.onInputChange,
+          onBlurChange: inputConfig.onBlurChange
+        }))
+      }}
+    />
   ) : selectorTypes.includes(inputConfig.type) ? (
-    <BasicSelect {...config} />
+    <BasicSelect {...baseInputConfig} />
   ) : (
-    <BasicInput {...config} />
+    <BasicInput {...baseInputConfig} />
   )
 }
 

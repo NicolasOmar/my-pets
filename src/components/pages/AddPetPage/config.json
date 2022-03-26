@@ -30,9 +30,11 @@
     "isAdopted": {
       "label": "Is adopted",
       "type": "checkbox",
-      "control": "isAdopted",
-      "name": "isAdopted",
-      "isVisible": true
+      "name": "adoption",
+      "isVisible": true,
+      "options": [{
+        "control": "isAdopted"
+      }]
     },
     "adoptionDate": {
       "label": "Adoption Date",

@@ -36,20 +36,36 @@ export const Disabled = Template.bind({})
 Disabled.storyName = 'Disabled'
 Disabled.args = {
   ...mocks.oneOption,
-  isDisabled: true
+  ...mocks.disabled
 }
 
 export const Loading = Template.bind({})
 Loading.storyName = 'Loading'
 Loading.args = {
   ...mocks.oneOption,
-  isLoading: true
+  ...mocks.loading
+}
+
+export const Colored = Template.bind({})
+Colored.storyName = 'Colored'
+Colored.args = {
+  ...mocks.oneOption,
+  ...mocks.colored
+}
+
+export const Rounded = Template.bind({})
+Rounded.storyName = 'Rounded'
+Rounded.args = {
+  ...mocks.oneOption,
+  ...mocks.colored,
+  ...mocks.rounded
 }
 
 export const ManyOptions = Template.bind({})
 ManyOptions.storyName = 'Many options'
 ManyOptions.args = {
-  options: Array(7)
+  ...mocks.manyOptions,
+  options: Array(mocks.manyOptions.optionsShown)
     .fill(null)
     .map((_, i) => ({ label: `Option N°${++i}`, value: `${i}` }))
 }
