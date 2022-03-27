@@ -8,7 +8,8 @@
     "text",
     "email",
     "password",
-    "date"
+    "date",
+    "number"
   ],
   "checkTypes": [
     "radio",

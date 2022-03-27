@@ -1,14 +1,16 @@
 import React from 'react'
-import { array, bool, func, object } from 'prop-types'
+import { array, arrayOf, bool, func, object, shape, string } from 'prop-types'
 // COMPONENTS
 import BasicFrame from '../../organisms/BasicFrame'
 import FormLayout from '../../organisms/FormLayout'
+import Divider from '../../atoms/Divider'
 
 const FormTemplate = ({
   header,
   isLoading,
   errors,
   inputs,
+  dividers,
   formButtons,
   onFormSubmit,
   onInputBlurChange,
@@ -19,6 +21,7 @@ const FormTemplate = ({
     isLoading,
     errors,
     inputs,
+    dividers,
     formButtons,
     onFormSubmit: onFormSubmit ?? undefined,
     onInputBlurChange: onInputBlurChange ?? undefined
@@ -44,6 +47,12 @@ FormTemplate.propTypes = {
   isLoading: bool,
   errors: object,
   inputs: object,
+  dividers: arrayOf(
+    shape({
+      ...Divider.propTypes,
+      after: string.isRequired
+    })
+  ),
   formButtons: array,
   onFormSubmit: func,
   onInputBlurChange: func,

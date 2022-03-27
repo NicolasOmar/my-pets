@@ -7,16 +7,12 @@ import { GET_PET_TYPES } from '../../../graphql/queries'
 // COMPONENTS
 import FormTemplate from '../../templates/FormTemplate'
 // FORM CONFIG
-import { header, inputs, addPetButton, goToHomeButton } from './config.json'
+import { header, inputs, dividers, addPetButton, goToHomeButton } from './config.json'
 // CONSTANTS
 import { APP_ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
 import validators from '../../../functions/validators'
-
-const setOptions = options => [
-  { value: null, label: null },
-  ...options.map(({ id, name }) => ({ value: id, label: name }))
-]
+import { parseDropdownOptions } from '../../../functions/parsers'
 
 const AddPetPage = () => {
   let history = useHistory()
@@ -40,7 +36,6 @@ const AddPetPage = () => {
     const { isAdopted, adoptionDate, birthday } = formData
     /**
      * TODOS:
-     * check dates can have max and min (ex 1/1/1900 to 31/12/2100)
      * Add Storybook cases for FormInput
      */
     const isAdoptedSelected = isAdopted.value === true
@@ -74,9 +69,10 @@ const AddPetPage = () => {
         ...inputs,
         type: {
           ...inputs.type,
-          options: petTypes?.getPetTypes ? setOptions(petTypes.getPetTypes) : []
+          options: parseDropdownOptions(petTypes?.getPetTypes)
         }
       }}
+      dividers={dividers}
       formButtons={[
         addPetButton,
         {

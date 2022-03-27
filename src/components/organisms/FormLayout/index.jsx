@@ -4,6 +4,7 @@ import { arrayOf, bool, func, object, shape, string, oneOf } from 'prop-types'
 import FormInput from '../../molecules/FormInput'
 import ButtonGroup from '../../molecules/ButtonGroup'
 import Message from '../../atoms/Message'
+import Divider from '../../atoms/Divider'
 // FUNCTIONS
 import { checkIsValidForm, validateInput, sendObjValues } from '../../../functions/methods'
 import validators from '../../../functions/validators'
@@ -17,6 +18,7 @@ const FormLayout = ({
   isBoxed = true,
   errors = null,
   inputs,
+  dividers = [],
   formButtons = [],
   onFormSubmit,
   onInputBlurChange
@@ -81,24 +83,36 @@ const FormLayout = ({
   }
 
   const renderInputs = () =>
-    Object.keys(formControls).map(
-      (prop, i) =>
-        formControls[prop].isVisible && (
-          <FormInput
-            key={`${prop}-${i}`}
-            inputLabel={formControls[prop].label}
-            isLoading={isLoading}
-            inputConfig={{
-              ...formControls[prop],
-              onInputChange,
-              onBlurChange
-            }}
-          />
-        )
-    )
+    Object.keys(formControls).map((prop, i) => {
+      const { isVisible, label, control } = formControls[prop]
+      const divider = Array.isArray(dividers) && dividers.find(({ after }) => after === control)
+
+      return (
+        <>
+          {isVisible && (
+            <FormInput
+              key={`${prop}-${i}`}
+              inputLabel={label}
+              isLoading={isLoading}
+              inputConfig={{
+                ...formControls[prop],
+                onInputChange,
+                onBlurChange
+              }}
+            />
+          )}
+          {divider && <Divider key={`divider-after-${control}`} {...divider} />}
+        </>
+      )
+    })
 
   const renderButtons = () =>
-    formButtons && <ButtonGroup buttons={formButtons.map(btn => ({ ...btn }))} />
+    formButtons && (
+      <>
+        <Divider color={'grey'} style={{ margin: '25px 0 20px 0' }} />
+        <ButtonGroup buttons={formButtons.map(btn => ({ ...btn }))} />
+      </>
+    )
 
   const renderErrors = () =>
     errors && (
@@ -125,6 +139,12 @@ FormLayout.propTypes = {
   isBoxed: bool,
   errors: object,
   inputs: object.isRequired,
+  dividers: arrayOf(
+    shape({
+      ...Divider.propTypes,
+      after: string.isRequired
+    })
+  ),
   formButtons: arrayOf(
     shape({
       type: oneOf(buttonTypes).isRequired,

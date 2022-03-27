@@ -46,3 +46,11 @@ export const parseCssClasses = (inputConfig = {}, fieldName, otherClasses = []) 
 
 export const parseObjKeys = (_obj, asNumber = false) =>
   Object.keys(_obj).map(_objValue => (asNumber ? +_objValue : _objValue))
+
+export const parseDropdownOptions = (options, idVal = 'value', labelVal = 'label') =>
+  Array.isArray(options)
+    ? [
+        { value: null, label: null },
+        ...options.map(({ id, name }) => ({ [idVal]: id, [labelVal]: name }))
+      ]
+    : []

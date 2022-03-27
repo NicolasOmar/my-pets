@@ -19,8 +19,8 @@
       "type": "password",
       "control": "password",
       "isRequired": true,
-      "minLength": 6,
-      "isVisible": true
+      "isVisible": true,
+      "minLength": 6
     }
   },
   "loginButton": {

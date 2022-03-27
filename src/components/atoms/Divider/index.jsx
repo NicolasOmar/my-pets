@@ -13,6 +13,6 @@ const Divider = ({ color = parseObjKeys(textColors)[0], style = { borderTop: '1p
 export default Divider
 
 Divider.propTypes = {
-  color: oneOf(parseObjKeys[textColors]),
+  color: oneOf(parseObjKeys(textColors)),
   style: object
 }

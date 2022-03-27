@@ -40,8 +40,31 @@
       "label": "Adoption Date",
       "type": "date",
       "control": "adoptionDate"
+    },
+    "height": {
+      "label": "Height",
+      "type": "number",
+      "control": "height",
+      "isVisible": true
+    },
+    "length": {
+      "label": "Length",
+      "type": "number",
+      "control": "length",
+      "isVisible": true
+    },
+    "weight": {
+      "label": "Weight",
+      "type": "number",
+      "control": "weight",
+      "isVisible": true
     }
   },
+  "dividers": [
+    {
+      "after": "adoptionDate"
+    }
+  ],
   "addPetButton": {
     "type": "submit",
     "color": "success",

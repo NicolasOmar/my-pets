@@ -9,7 +9,7 @@ const BasicSelect = ({
   control,
   isRequired = false,
   isDisabled = false,
-  selected = null,
+  selected = '',
   options = [],
   optionsShown = 1,
   isMultiple = false,
@@ -34,10 +34,11 @@ const BasicSelect = ({
         disabled={isDisabled}
         onChange={evt => onInputChange(evt, control)}
         onBlur={() => onBlurChange(control)}
+        value={selected}
       >
         {Array.isArray(options) &&
           options.map(({ label, value }, i) => (
-            <option key={`select-option-${i}`} value={value} selected={selected === value}>
+            <option key={`select-option-${i}`} value={value}>
               {label}
             </option>
           ))}
