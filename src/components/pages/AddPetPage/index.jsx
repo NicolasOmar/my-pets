@@ -34,10 +34,7 @@ const AddPetPage = () => {
     //   Object.keys(formData).map(key => `${key}: ${formData[key].value} | ${formData[key].isValid}`)
     // )
     const { isAdopted, adoptionDate, birthday } = formData
-    /**
-     * TODOS:
-     * Add Storybook cases for FormInput
-     */
+
     const isAdoptedSelected = isAdopted.value === true
     const hasCorrectDates =
       !isAdoptedSelected || !validators.dateIsBefore(adoptionDate.value, birthday.value)

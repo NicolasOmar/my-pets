@@ -3,12 +3,12 @@ import FormInput from '.'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // MOCKS
-import { minimalConfig, loading } from './index.mocks.json'
+import mocks from './index.mocks.json'
 
 export default {
   title: `${STORYBOOK_ROUTES.MOLECULES}/FormInput`,
   component: FormInput,
-  args: minimalConfig
+  args: mocks.minimalConfig
 }
 
 const Template = args => <FormInput {...args} />
@@ -18,17 +18,21 @@ Minimal.storyName = 'Minimal config'
 
 export const Loading = Template.bind({})
 Loading.storyName = 'Loading'
-Loading.args = {
-  ...Minimal.args,
-  ...loading
-}
+Loading.args = mocks.loading
 
 export const Invalid = Template.bind({})
 Invalid.storyName = 'Invalid'
 Invalid.args = {
-  ...minimalConfig,
   inputConfig: {
-    ...minimalConfig.inputConfig,
+    ...mocks.minimalConfig.inputConfig,
     isValid: false
   }
 }
+
+export const Select = Template.bind({})
+Select.storyName = 'Select config'
+Select.args = mocks.selectConfig
+
+export const CheckGroup = Template.bind({})
+CheckGroup.storyName = 'CheckGroup config'
+CheckGroup.args = mocks.checkGroupConfig
