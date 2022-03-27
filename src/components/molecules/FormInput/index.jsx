@@ -1,5 +1,5 @@
 import React from 'react'
-import { bool, string, oneOfType } from 'prop-types'
+import { bool, string, oneOfType, shape } from 'prop-types'
 // COMPONENTS
 import Label from '../../atoms/Label'
 import BasicInput from '../../atoms/BasicInput'
@@ -47,6 +47,9 @@ export default FormInput
 FormInput.propTypes = {
   inputLabel: string,
   isLoading: bool,
-  inputConfig: oneOfType([BasicInput.propTypes, BasicRadioCheck.propTypes, BasicSelect.propTypes])
-    .isRequired
+  inputConfig: oneOfType([
+    shape(BasicInput.propTypes),
+    shape(BasicRadioCheck.propTypes),
+    shape(BasicSelect.propTypes)
+  ]).isRequired
 }

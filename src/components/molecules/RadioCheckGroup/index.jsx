@@ -1,5 +1,5 @@
 import React from 'react'
-import { arrayOf, string, oneOf, oneOfType } from 'prop-types'
+import { arrayOf, string, oneOf, shape } from 'prop-types'
 // COMPONENTS
 import BasicRadioCheck from '../../atoms/BasicRadioCheck'
 // CONSTANTS
@@ -17,7 +17,7 @@ const RadioCheckGroup = ({ options, type, name }) => (
 export default RadioCheckGroup
 
 RadioCheckGroup.propTypes = {
-  options: arrayOf(oneOfType([BasicRadioCheck.propTypes])).isRequired,
+  options: arrayOf(shape(BasicRadioCheck.propTypes)).isRequired,
   type: oneOf(checkTypes).isRequired,
   name: string.isRequired
 }

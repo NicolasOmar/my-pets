@@ -1,17 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { arrayOf, bool, func, object, shape, string, oneOf } from 'prop-types'
+import { arrayOf, bool, func, object, shape, string } from 'prop-types'
 // COMPONENTS
 import FormInput from '../../molecules/FormInput'
 import ButtonGroup from '../../molecules/ButtonGroup'
 import Message from '../../atoms/Message'
 import Divider from '../../atoms/Divider'
+import BasicButton from '../../atoms/BasicButton'
 // FUNCTIONS
 import { checkIsValidForm, validateInput, sendObjValues } from '../../../functions/methods'
+import { parseCssClasses } from '../../../functions/parsers'
 import validators from '../../../functions/validators'
-import { parseCssClasses, parseObjKeys } from '../../../functions/parsers'
-// ENUMS
-import { buttonTypes } from '../../../constants/tag-types.json'
-import { colors, sizes } from '../../../constants/bulma-styles.json'
 
 const FormLayout = ({
   isLoading = false,
@@ -145,19 +143,7 @@ FormLayout.propTypes = {
       after: string.isRequired
     })
   ),
-  formButtons: arrayOf(
-    shape({
-      type: oneOf(buttonTypes).isRequired,
-      color: oneOf(parseObjKeys(colors)),
-      size: oneOf(parseObjKeys(sizes)),
-      isOutlined: bool,
-      isInverted: bool,
-      isLoading: bool,
-      isDisabled: bool,
-      onClick: func,
-      label: string.isRequired
-    })
-  ),
+  formButtons: arrayOf(shape(BasicButton.propTypes)),
   onFormSubmit: func,
   onInputBlurChange: func
 }
