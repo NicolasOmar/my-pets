@@ -76,6 +76,36 @@
           "label": "Femenine"
         }
       ]
+    },
+    "hairColors": {
+      "label": "Hair Color/s",
+      "type": "select",
+      "control": "hairColors",
+      "isMultiple": false,
+      "optionsShown": 1,
+      "isVisible": true,
+      "isRequired": true
+    },
+    "hasHeterochromia": {
+      "label": "Has Heterochromia",
+      "type": "checkbox",
+      "control": "hasHeterochromia",
+      "name": "hasHeterochromia",
+      "isVisible": true,
+      "options": [
+        {
+          "control": "hasHeterochromia"
+        }
+      ]
+    },
+    "eyeColors": {
+      "label": "Eye Color/s",
+      "type": "select",
+      "control": "eyeColors",
+      "isMultiple": false,
+      "optionsShown": 1,
+      "isVisible": true,
+      "isRequired": true
     }
   },
   "dividers": [
