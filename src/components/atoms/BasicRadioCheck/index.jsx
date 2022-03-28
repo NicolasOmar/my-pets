@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { bool, func, oneOf, oneOfType, string } from 'prop-types'
 // CONSTANTS
 import { checkTypes } from '../../../constants/tag-types.json'
@@ -14,14 +14,8 @@ const BasicRadioCheck = ({
   onInputChange,
   onBlurChange
 }) => {
-  const [inputChecked, setInputChecked] = useState(value)
   const inputValue = label?.toLowerCase().replace(' ', '')
   const styles = { marginRight: '5px' }
-
-  const onCheckChange = () => {
-    onInputChange({ value: !inputChecked }, control)
-    setInputChecked(!inputChecked)
-  }
 
   return (
     <label className={type} style={styles}>
@@ -32,9 +26,9 @@ const BasicRadioCheck = ({
         style={styles}
         required={isRequired}
         disabled={isDisabled}
-        checked={inputChecked}
-        onChange={() => onCheckChange()}
-        onBlur={() => onBlurChange(control)}
+        checked={value}
+        onChange={() => onInputChange(!value, control)}
+        onBlur={() => onBlurChange()}
       />
       {label}
     </label>

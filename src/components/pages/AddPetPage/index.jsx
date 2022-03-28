@@ -30,9 +30,9 @@ const AddPetPage = () => {
   }
 
   const onInputBlurChange = formData => {
-    // console.error(
-    //   Object.keys(formData).map(key => `${key}: ${formData[key].value} | ${formData[key].isValid}`)
-    // )
+    console.error(
+      Object.keys(formData).map(key => `${key}: ${formData[key].value} | ${formData[key].isValid}`)
+    )
     const { isAdopted, adoptionDate, birthday } = formData
 
     const isAdoptedSelected = isAdopted.value === true
@@ -66,7 +66,10 @@ const AddPetPage = () => {
         ...inputs,
         type: {
           ...inputs.type,
-          options: parseDropdownOptions(petTypes?.getPetTypes)
+          options: parseDropdownOptions({
+            selection: petTypes?.getPetTypes,
+            idOriginal: 'name'
+          })
         }
       }}
       dividers={dividers}

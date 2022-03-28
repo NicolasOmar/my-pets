@@ -3,7 +3,6 @@ import { bool, string, oneOfType, shape } from 'prop-types'
 // COMPONENTS
 import Label from '../../atoms/Label'
 import BasicInput from '../../atoms/BasicInput'
-import BasicRadioCheck from '../../atoms/BasicRadioCheck'
 import BasicSelect from '../../atoms/BasicSelect'
 // CONSTANTS
 import { checkTypes, selectorTypes } from '../../../constants/tag-types.json'
@@ -20,8 +19,7 @@ const parseFormInput = inputConfig => {
         ...inputConfig,
         options: inputConfig.options.map(_option => ({
           ..._option,
-          onInputChange: inputConfig.onInputChange,
-          onBlurChange: inputConfig.onBlurChange
+          type: inputConfig.type
         }))
       }}
     />
@@ -34,6 +32,7 @@ const parseFormInput = inputConfig => {
 
 const FormInput = ({ inputLabel = null, isLoading = false, inputConfig }) => {
   const controlClass = parseCssClasses({ isLoading }, 'control')
+
   return (
     <section className="field">
       <Label labelText={inputLabel} isRequired={inputConfig.isRequired} />
@@ -49,7 +48,7 @@ FormInput.propTypes = {
   isLoading: bool,
   inputConfig: oneOfType([
     shape(BasicInput.propTypes),
-    shape(BasicRadioCheck.propTypes),
+    shape(RadioCheckGroup.propTypes),
     shape(BasicSelect.propTypes)
   ]).isRequired
 }

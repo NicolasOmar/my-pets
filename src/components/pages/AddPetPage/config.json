@@ -30,7 +30,8 @@
     "isAdopted": {
       "label": "Is adopted",
       "type": "checkbox",
-      "name": "adoption",
+      "control": "isAdopted",
+      "name": "isAdopted",
       "isVisible": true,
       "options": [{
         "control": "isAdopted"
@@ -58,6 +59,23 @@
       "type": "number",
       "control": "weight",
       "isVisible": true
+    },
+    "gender": {
+      "label": "Gender",
+      "type": "radio",
+      "control": "gender",
+      "name": "gender",
+      "isVisible": true,
+      "options": [
+        {
+          "control": "masculine",
+          "label": "Masculine"
+        },
+        {
+          "control": "femenine",
+          "label": "Femenine"
+        }
+      ]
     }
   },
   "dividers": [

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { arrayOf, bool, func, number, shape, string, oneOf } from 'prop-types'
 // CONSTANTS
 import { colors, sizes } from '../../../constants/bulma-styles.json'
@@ -24,6 +24,12 @@ const BasicSelect = ({
     colors[color],
     sizes[size]
   ])
+  const [selectedValue, setSelectedValue] = useState(selected)
+
+  const onInternalChange = (evt, control) => {
+    setSelectedValue(evt?.target?.value)
+    onInputChange(evt, control)
+  }
 
   return (
     <section className={selectClass}>
@@ -32,9 +38,9 @@ const BasicSelect = ({
         size={isMultiple ? optionsShown : 1}
         required={isRequired}
         disabled={isDisabled}
-        onChange={evt => onInputChange(evt, control)}
+        onChange={evt => onInternalChange(evt, control)}
         onBlur={() => onBlurChange(control)}
-        value={selected}
+        value={selectedValue}
       >
         {Array.isArray(options) &&
           options.map(({ label, value }, i) => (
