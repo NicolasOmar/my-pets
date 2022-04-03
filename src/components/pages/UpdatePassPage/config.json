@@ -30,6 +30,11 @@
       "isVisible": true
     }
   },
+  "dividers": [
+    {
+      "after": "oldPass"
+    }
+  ],
   "updateButton": {
     "type": "submit",
     "color": "success",

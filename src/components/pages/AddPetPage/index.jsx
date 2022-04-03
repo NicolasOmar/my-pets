@@ -12,38 +12,46 @@ import { header, inputs, dividers, addPetButton, goToHomeButton } from './config
 import { APP_ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
 import validators from '../../../functions/validators'
-import { parseDropdownOptions } from '../../../functions/parsers'
+import {
+  parseDate,
+  parseDropdownOptions,
+  parseFormData,
+  parseNumber
+} from '../../../functions/parsers'
+
+const getPropId = (prop, list) => list?.find(({ name }) => prop === name)?.id
 
 const AddPetPage = () => {
   let history = useHistory()
-  const [createPet] = useMutation(CREATE_PET)
+  const [createPet, { loading: loadingCreate, error: errorCreate }] = useMutation(CREATE_PET)
   const { loading: loadingPetTypes, data: petTypes } = useQuery(GET_PET_TYPES)
   const { loading: loadingColors, data: colors } = useQuery(GET_COLORS)
 
-  const onSubmitNewPet = async data => {
-    const petObj = Object.keys(data)
-      .map(key => ({ [key]: data[key] ?? null }))
-      .reduce((finalObj, currentProp) => ({ ...finalObj, ...currentProp }), {})
-    const gender = petObj.gender === 'masculine'
+  const onSubmitNewPet = async formData => {
+    const petObj = parseFormData(formData)
     const petInfo = {
       ...petObj,
-      gender,
-      adoptionDate: petObj?.adoptionDate ? new Date(petObj?.adoptionDate) : null,
-      petType: petTypes?.getPetTypes?.find(({ name }) => petObj.petType === name)?.id,
-      hairColors: colors?.getColors?.find(({ name }) => petObj.hairColors === name)?.id,
-      eyeColors: colors?.getColors?.find(({ name }) => petObj.eyeColors === name)?.id
+      birthday: parseDate(petObj?.birthday),
+      isAdopted: !!petObj.isAdopted,
+      adoptionDate: parseDate(petObj?.adoptionDate),
+      height: parseNumber(petObj.height),
+      length: parseNumber(petObj.length),
+      weight: parseNumber(petObj.weight),
+      gender: petObj.gender === 'masculine',
+      petType: getPropId(petObj?.petType, petTypes?.getPetTypes),
+      hairColors: getPropId(petObj?.hairColors, colors?.getColors),
+      hasHeterochromia: !!petObj.hasHeterochromia,
+      eyeColors: getPropId(petObj?.eyeColors, colors?.getColors)
     }
 
     const test = await createPet({
       variables: { petInfo }
     })
     console.error(test)
+    history.push(APP_ROUTES.HOME)
   }
 
   const onInputBlurChange = formData => {
-    // console.error(
-    //   Object.keys(formData).map(key => `${key}: ${formData[key].value} | ${formData[key].isValid}`)
-    // )
     const { isAdopted, adoptionDate, birthday } = formData
 
     const isAdoptedSelected = isAdopted.value === true
@@ -73,6 +81,8 @@ const AddPetPage = () => {
   return (
     <FormTemplate
       header={header}
+      isLoading={loadingCreate || loadingPetTypes || loadingColors}
+      errors={errorCreate}
       inputs={{
         ...inputs,
         petType: {

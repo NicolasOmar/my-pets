@@ -13,7 +13,7 @@ export const LOGIN = gql`
 
 export const CREATE_USER = gql`
   mutation ($newUser: UserInput!) {
-    newUser: createUser(newUser: $newUser) {
+    createUser(newUser: $newUser) {
       name
       lastName
       email
@@ -39,27 +39,7 @@ export const UPDATE_PASS = gql`
 
 export const CREATE_PET = gql`
   mutation ($petInfo: PetInput!) {
-    petInfo: createPet(petInfo: $petInfo) {
-      name
-      petType {
-        id
-        name
-      }
-      birthday
-      isAdopted
-      adoptionDate
-      height
-      length
-      weight
-      gender
-      hairColors {
-        name
-      }
-      hasHeterochromia
-      eyeColors {
-        name
-      }
-    }
+    createPet(petInfo: $petInfo)
   }
 `
 

@@ -1,3 +1,4 @@
+import validator from 'validator'
 import inputClasses from '../constants/input-classes.json'
 
 export const mergeGraphObj = (graphObj, originalObj) => {
@@ -63,3 +64,12 @@ export const parseDropdownOptions = ({
         }))
       ]
     : []
+
+export const parseNumber = number => (!!number && validator.isNumeric(number) ? +number : null)
+
+export const parseDate = date => (date ? new Date(date) : null)
+
+export const parseFormData = formData =>
+  Object.keys(formData)
+    .map(key => ({ [key]: formData[key] ?? null }))
+    .reduce((finalObj, currentProp) => ({ ...finalObj, ...currentProp }), {})

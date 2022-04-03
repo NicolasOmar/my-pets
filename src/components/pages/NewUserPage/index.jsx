@@ -24,15 +24,13 @@ const NewUserPage = () => {
       password: encryptPass(formData.password)
     }
 
-    createUser({
-      variables: { newUser }
-    })
-      .then(({ data }) => {
-        setLoggedUser(data.newUser)
-
-        history.push(APP_ROUTES.HOME)
-      })
-      .catch(error => console.error(error))
+    try {
+      const response = await createUser({ variables: { newUser } })
+      setLoggedUser(response.newUser)
+      history.push(APP_ROUTES.HOME)
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   const onInputBlurChange = formData => {

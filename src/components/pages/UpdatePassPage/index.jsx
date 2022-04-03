@@ -6,7 +6,7 @@ import { UPDATE_PASS } from '../../../graphql/mutations'
 // COMPONENTS
 import FormTemplate from '../../templates/FormTemplate'
 // FORM CONFIG
-import { header, inputs, updateButton, cancelButton } from './config.json'
+import { header, inputs, dividers, updateButton, cancelButton } from './config.json'
 // CONSTANTS
 import { APP_ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
@@ -61,6 +61,7 @@ const UpdatePassPage = () => {
       isLoading={loading}
       errors={error}
       inputs={inputs}
+      dividers={dividers}
       formButtons={[updateButton, cancelButton]}
       onFormSubmit={formData => onSubmitUpdate(formData)}
       onInputBlurChange={onInputBlurChange}
