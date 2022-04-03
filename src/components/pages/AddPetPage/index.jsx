@@ -1,8 +1,9 @@
 import React from 'react'
 import { useHistory } from 'react-router'
 // GRAPHQL CLIENT
-import { useQuery } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
 import { GET_COLORS, GET_PET_TYPES } from '../../../graphql/queries'
+import { CREATE_PET } from '../../../graphql/mutations'
 // COMPONENTS
 import FormTemplate from '../../templates/FormTemplate'
 // FORM CONFIG
@@ -15,23 +16,34 @@ import { parseDropdownOptions } from '../../../functions/parsers'
 
 const AddPetPage = () => {
   let history = useHistory()
-
+  const [createPet] = useMutation(CREATE_PET)
   const { loading: loadingPetTypes, data: petTypes } = useQuery(GET_PET_TYPES)
   const { loading: loadingColors, data: colors } = useQuery(GET_COLORS)
 
-  const onSubmitNewPet = data => {
+  const onSubmitNewPet = async data => {
     const petObj = Object.keys(data)
       .map(key => ({ [key]: data[key] ?? null }))
       .reduce((finalObj, currentProp) => ({ ...finalObj, ...currentProp }), {})
-    console.error({
-      ...petObj
+    const gender = petObj.gender === 'masculine'
+    const petInfo = {
+      ...petObj,
+      gender,
+      adoptionDate: petObj?.adoptionDate ? new Date(petObj?.adoptionDate) : null,
+      petType: petTypes?.getPetTypes?.find(({ name }) => petObj.petType === name)?.id,
+      hairColors: colors?.getColors?.find(({ name }) => petObj.hairColors === name)?.id,
+      eyeColors: colors?.getColors?.find(({ name }) => petObj.eyeColors === name)?.id
+    }
+
+    const test = await createPet({
+      variables: { petInfo }
     })
+    console.error(test)
   }
 
   const onInputBlurChange = formData => {
-    console.error(
-      Object.keys(formData).map(key => `${key}: ${formData[key].value} | ${formData[key].isValid}`)
-    )
+    // console.error(
+    //   Object.keys(formData).map(key => `${key}: ${formData[key].value} | ${formData[key].isValid}`)
+    // )
     const { isAdopted, adoptionDate, birthday } = formData
 
     const isAdoptedSelected = isAdopted.value === true
@@ -63,8 +75,8 @@ const AddPetPage = () => {
       header={header}
       inputs={{
         ...inputs,
-        type: {
-          ...inputs.type,
+        petType: {
+          ...inputs.petType,
           options: parseDropdownOptions({
             selection: petTypes?.getPetTypes,
             idOriginal: 'name'

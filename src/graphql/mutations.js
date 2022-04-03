@@ -37,6 +37,32 @@ export const UPDATE_PASS = gql`
   }
 `
 
+export const CREATE_PET = gql`
+  mutation ($petInfo: PetInput!) {
+    petInfo: createPet(petInfo: $petInfo) {
+      name
+      petType {
+        id
+        name
+      }
+      birthday
+      isAdopted
+      adoptionDate
+      height
+      length
+      weight
+      gender
+      hairColors {
+        name
+      }
+      hasHeterochromia
+      eyeColors {
+        name
+      }
+    }
+  }
+`
+
 export const LOGOUT = gql`
   mutation {
     logout

@@ -14,10 +14,10 @@
       "minLength": 5,
       "maxLength": 35
     },
-    "type": {
+    "petType": {
       "label": "Type",
       "type": "select",
-      "control": "type",
+      "control": "petType",
       "isVisible": true,
       "isRequired": true
     },
