@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHistory } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 // GRAPHQL CLIENT
 import { useMutation, useQuery } from '@apollo/client'
 import { GET_COLORS, GET_PET_TYPES } from '../../../graphql/queries'
@@ -22,7 +22,7 @@ import {
 const getPropId = (prop, list) => list?.find(({ name }) => prop === name)?.id
 
 const AddPetPage = () => {
-  let history = useHistory()
+  let navigate = useNavigate()
   const [createPet, { loading: loadingCreate, error: errorCreate }] = useMutation(CREATE_PET)
   const { loading: loadingPetTypes, data: petTypes } = useQuery(GET_PET_TYPES)
   const { loading: loadingColors, data: colors } = useQuery(GET_COLORS)
@@ -48,7 +48,7 @@ const AddPetPage = () => {
       variables: { petInfo }
     })
     console.error(test)
-    history.push(APP_ROUTES.HOME)
+    navigate(APP_ROUTES.HOME)
   }
 
   const onInputBlurChange = formData => {
@@ -112,12 +112,11 @@ const AddPetPage = () => {
         addPetButton,
         {
           ...goToHomeButton,
-          onClick: () => history.push(APP_ROUTES.HOME)
+          onClick: () => navigate(APP_ROUTES.HOME)
         }
       ]}
       onFormSubmit={formData => onSubmitNewPet(formData)}
       onInputBlurChange={onInputBlurChange}
-      dataFetched={!loadingPetTypes && !loadingColors}
     />
   )
 }

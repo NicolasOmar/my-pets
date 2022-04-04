@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 // GRAPHQL CLIENT
 import { useMutation } from '@apollo/client'
 import { UPDATE_USER } from '../../../graphql/mutations'
@@ -15,7 +15,7 @@ import { getLoggedUser, setLoggedUser } from '../../../functions/local-storage'
 import { mergeGraphObj } from '../../../functions/parsers'
 
 const UpdateUserPage = () => {
-  let history = useHistory()
+  let navigate = useNavigate()
   const [formObject, setFormObject] = useState(inputs)
   const [updateUser, { data, loading, error }] = useMutation(UPDATE_USER)
   const dispatch = useDispatch()
@@ -36,7 +36,7 @@ const UpdateUserPage = () => {
   const onSubmitUpdate = async variables => {
     try {
       await updateUser({ variables })
-      history.push(APP_ROUTES.HOME)
+      navigate(APP_ROUTES.HOME)
     } catch (e) {
       console.error(e)
     }
@@ -52,7 +52,7 @@ const UpdateUserPage = () => {
         saveButton,
         {
           ...goBackButton,
-          onClick: () => history.push(APP_ROUTES.HOME)
+          onClick: () => navigate(APP_ROUTES.HOME)
         }
       ]}
       onFormSubmit={data => onSubmitUpdate(data)}

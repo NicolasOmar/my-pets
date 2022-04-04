@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHistory } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 // GRAPHQL CLIENT
 import { useMutation } from '@apollo/client'
 import { UPDATE_PASS } from '../../../graphql/mutations'
@@ -13,7 +13,7 @@ import { APP_ROUTES } from '../../../constants/routes.json'
 import { encryptPass } from '../../../functions/encrypt'
 
 const UpdatePassPage = () => {
-  let history = useHistory()
+  let navigate = useNavigate()
   const [updatePass, { loading, error }] = useMutation(UPDATE_PASS)
 
   const onSubmitUpdate = async formData => {
@@ -24,7 +24,7 @@ const UpdatePassPage = () => {
 
     try {
       await updatePass({ variables })
-      history.push(APP_ROUTES.HOME)
+      navigate(APP_ROUTES.HOME)
     } catch (e) {
       console.error(e)
     }

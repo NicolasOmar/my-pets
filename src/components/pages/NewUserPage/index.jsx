@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 // GRAPHQL CLIENT
 import { useMutation } from '@apollo/client'
 import { CREATE_USER } from '../../../graphql/mutations'
@@ -14,7 +14,7 @@ import { encryptPass } from '../../../functions/encrypt'
 import { setLoggedUser } from '../../../functions/local-storage'
 
 const NewUserPage = () => {
-  let history = useHistory()
+  let navigate = useNavigate()
   const [createUser, { loading, error }] = useMutation(CREATE_USER)
 
   const onSubmitCreation = async formData => {
@@ -27,7 +27,7 @@ const NewUserPage = () => {
     try {
       const response = await createUser({ variables: { newUser } })
       setLoggedUser(response.newUser)
-      history.push(APP_ROUTES.HOME)
+      navigate(APP_ROUTES.HOME)
     } catch (e) {
       console.error(e)
     }
@@ -61,7 +61,7 @@ const NewUserPage = () => {
         signUpButton,
         {
           ...goToLoginButton,
-          onClick: () => history.push(APP_ROUTES.LOGIN)
+          onClick: () => navigate(APP_ROUTES.LOGIN)
         }
       ]}
       onFormSubmit={data => onSubmitCreation(data)}

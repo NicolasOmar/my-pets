@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { string } from 'prop-types'
 import { useDispatch } from 'react-redux'
 // GRAPHQL CLIENT
@@ -13,7 +13,7 @@ import { APP_ROUTES } from '../../../constants/routes.json'
 import { clearAllStorage } from '../../../functions/local-storage'
 
 const UserHeader = ({ name }) => {
-  let history = useHistory()
+  let navigate = useNavigate()
   const [logout] = useMutation(LOGOUT)
   const dispatch = useDispatch()
 
@@ -25,7 +25,7 @@ const UserHeader = ({ name }) => {
           type: 'LOGOUT',
           payload: null
         })
-        history.push(APP_ROUTES.LOGIN)
+        navigate(APP_ROUTES.LOGIN)
       })
     } catch (e) {
       console.warn('e', e)
@@ -40,15 +40,18 @@ const UserHeader = ({ name }) => {
         options: [
           {
             itemLabel: 'Add Pet',
-            onClickItem: () => history.push(APP_ROUTES.ADD_PET)
+            onClickItem: () => {
+              console.warn(APP_ROUTES.ADD_PET)
+              navigate(APP_ROUTES.ADD_PET)
+            }
           },
           {
             itemLabel: 'Update User',
-            onClickItem: () => history.push(APP_ROUTES.UPDATE_USER)
+            onClickItem: () => navigate(APP_ROUTES.UPDATE_USER)
           },
           {
             itemLabel: 'Update Pass',
-            onClickItem: () => history.push(APP_ROUTES.UPDATE_PASS)
+            onClickItem: () => navigate(APP_ROUTES.UPDATE_PASS)
           },
           {
             itemLabel: 'Logout',

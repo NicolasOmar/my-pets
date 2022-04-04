@@ -82,7 +82,7 @@ const FormLayout = ({
 
   const renderInputs = () =>
     Object.keys(formControls).map((prop, i) => {
-      const { isVisible, label, control } = formControls[prop]
+      const { isVisible, isDisabled, label, control } = formControls[prop]
       const divider = Array.isArray(dividers) && dividers.find(({ after }) => after === control)
 
       return (
@@ -94,6 +94,7 @@ const FormLayout = ({
               isLoading={isLoading}
               inputConfig={{
                 ...formControls[prop],
+                isDisabled: isDisabled || isLoading,
                 onInputChange,
                 onBlurChange
               }}
