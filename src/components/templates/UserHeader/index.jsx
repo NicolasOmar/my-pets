@@ -40,10 +40,7 @@ const UserHeader = ({ name }) => {
         options: [
           {
             itemLabel: 'Add Pet',
-            onClickItem: () => {
-              console.warn(APP_ROUTES.ADD_PET)
-              navigate(APP_ROUTES.ADD_PET)
-            }
+            onClickItem: () => navigate(APP_ROUTES.ADD_PET)
           },
           {
             itemLabel: 'Update User',

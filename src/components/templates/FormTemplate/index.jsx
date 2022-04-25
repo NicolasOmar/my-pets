@@ -4,10 +4,12 @@ import { array, arrayOf, bool, func, object, shape, string } from 'prop-types'
 import BasicFrame from '../../organisms/BasicFrame'
 import FormLayout from '../../organisms/FormLayout'
 import Divider from '../../atoms/Divider'
+import Spinner from '../../atoms/Spinner'
 
 const FormTemplate = ({
   header,
   isLoading,
+  isFetching = false,
   errors,
   inputs,
   dividers,
@@ -30,7 +32,7 @@ const FormTemplate = ({
     <BasicFrame
       {...{
         header,
-        children: <FormLayout {...formConfig} />,
+        children: isFetching ? <Spinner /> : <FormLayout {...formConfig} />,
         centerGrid: true
       }}
     />
@@ -42,6 +44,7 @@ export default FormTemplate
 FormTemplate.propTypes = {
   header: object,
   isLoading: bool,
+  isFetching: bool,
   errors: object,
   inputs: object,
   dividers: arrayOf(

@@ -81,7 +81,8 @@ const AddPetPage = () => {
   return (
     <FormTemplate
       header={header}
-      isLoading={loadingCreate || loadingPetTypes || loadingColors}
+      isLoading={loadingCreate}
+      isFetching={loadingPetTypes || loadingColors}
       errors={errorCreate}
       inputs={{
         ...inputs,
