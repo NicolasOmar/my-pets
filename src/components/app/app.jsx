@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 // COMPONENTS
 import UserHeader from '../templates/UserHeader'
@@ -25,7 +25,7 @@ const App = () => {
         <Route exact path={APP_ROUTES.UPDATE_USER} element={<UpdateUserPage />} />
         <Route exact path={APP_ROUTES.UPDATE_PASS} element={<UpdatePasswordPage />} />
         <Route exact path={APP_ROUTES.ADD_PET} element={<AddPetPage />} />
-        <Route exact path={APP_ROUTES.BASE} element={<HomePage />} />
+        <Route exact path={APP_ROUTES.BASE} element={<Navigate replace to={APP_ROUTES.LOGIN} />} />
       </Routes>
     </BrowserRouter>
   )

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 // GRAPHQL CLIENT
 import { useMutation } from '@apollo/client'
 import { CREATE_USER } from '../../../graphql/mutations'
@@ -16,6 +17,7 @@ import { setLoggedUser } from '../../../functions/local-storage'
 const NewUserPage = () => {
   let navigate = useNavigate()
   const [createUser, { loading, error }] = useMutation(CREATE_USER)
+  const dispatch = useDispatch()
 
   const onSubmitCreation = async formData => {
     const newUser = {
@@ -26,7 +28,11 @@ const NewUserPage = () => {
 
     try {
       const response = await createUser({ variables: { newUser } })
-      setLoggedUser(response.newUser)
+      setLoggedUser(response.data?.createUser)
+      dispatch({
+        type: 'LOGIN',
+        payload: response.data?.createUser
+      })
       navigate(APP_ROUTES.HOME)
     } catch (e) {
       console.error(e)

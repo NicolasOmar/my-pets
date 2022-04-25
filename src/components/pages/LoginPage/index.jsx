@@ -19,11 +19,6 @@ const LoginPage = () => {
   const [login, { loading, error }] = useMutation(LOGIN)
   const dispatch = useDispatch()
 
-  // useEffect(() => {
-  //   getLoggedUser() && navigate(APP_ROUTES.HOME)
-  //   return () => {}
-  // }, [history])
-
   const onSubmitLogin = async formData => {
     login({
       variables: {
