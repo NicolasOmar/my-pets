@@ -53,17 +53,20 @@ export const parseDropdownOptions = ({
   idOriginal = 'id',
   idAlias = 'value',
   labelOriginal = 'name',
-  labelAlias = 'label'
-}) =>
-  Array.isArray(selection)
+  labelAlias = 'label',
+  withNullValue = true
+}) => {
+  const arrayWithNull = withNullValue ? [{ value: null, label: null }] : []
+  return Array.isArray(selection)
     ? [
-        { value: null, label: null },
+        ...arrayWithNull,
         ...selection.map(option => ({
           [idAlias]: option[idOriginal],
           [labelAlias]: option[labelOriginal]
         }))
       ]
     : []
+}
 
 export const parseNumber = number => (!!number && validator.isNumeric(number) ? +number : null)
 

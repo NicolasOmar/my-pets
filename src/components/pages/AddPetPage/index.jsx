@@ -19,7 +19,11 @@ import {
   parseNumber
 } from '../../../functions/parsers'
 
-const getPropId = (prop, list) => list?.find(({ name }) => prop === name)?.id
+const getPropsIds = (prop, list, searchMultiple = false) => {
+  return searchMultiple
+    ? list?.filter(({ name }) => prop === name)?.map(({ id }) => id)
+    : list?.find(({ name }) => prop === name)?.id
+}
 
 const AddPetPage = () => {
   let navigate = useNavigate()
@@ -38,16 +42,16 @@ const AddPetPage = () => {
       length: parseNumber(petObj.length),
       weight: parseNumber(petObj.weight),
       gender: petObj.gender === 'masculine',
-      petType: getPropId(petObj?.petType, petTypes?.getPetTypes),
-      hairColors: getPropId(petObj?.hairColors, colors?.getColors),
+      petType: getPropsIds(petObj?.petType, petTypes?.getPetTypes, true),
+      hairColors: getPropsIds(petObj?.hairColors, colors?.getColors, true),
       hasHeterochromia: !!petObj.hasHeterochromia,
-      eyeColors: getPropId(petObj?.eyeColors, colors?.getColors)
+      eyeColors: getPropsIds(petObj?.eyeColors, colors?.getColors, !!petObj.hasHeterochromia)
     }
 
-    const test = await createPet({
+    console.error(petInfo)
+    await createPet({
       variables: { petInfo }
     })
-    console.error(test)
     navigate(APP_ROUTES.HOME)
   }
 
@@ -97,7 +101,8 @@ const AddPetPage = () => {
           ...inputs.hairColors,
           options: parseDropdownOptions({
             selection: colors?.getColors,
-            idOriginal: 'name'
+            idOriginal: 'name',
+            withNullValue: false
           })
         },
         eyeColors: {
@@ -105,6 +110,7 @@ const AddPetPage = () => {
           options: parseDropdownOptions({
             selection: colors?.getColors,
             idOriginal: 'name'
+            // withNullValue: false
           })
         }
       }}

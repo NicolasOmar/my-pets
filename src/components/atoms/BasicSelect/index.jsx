@@ -24,10 +24,34 @@ const BasicSelect = ({
     colors[color],
     sizes[size]
   ])
-  const [selectedValue, setSelectedValue] = useState(selected)
+  const parsedSelected = isMultiple ? (Array.isArray(selected) ? selected : []) : selected
+  const [selectedValue, setSelectedValue] = useState(parsedSelected)
+
+  const processSelection = ({ ctrlKey, shiftKey }, originalData, newData) => {
+    if (!newData) return originalData
+    if (shiftKey) {
+      const optionValues = options.map(({ value }) => value)
+      const lastSelect = optionValues.indexOf(originalData[originalData.length - 1])
+      const newSelect = optionValues.indexOf(newData)
+      const slicing = lastSelect < newSelect ? [lastSelect, newSelect] : [newSelect, lastSelect]
+
+      return [...new Set([...originalData, ...optionValues.slice(...slicing), newData])]
+    }
+
+    if (ctrlKey)
+      return originalData.find(item => item === newData)
+        ? originalData.filter(item => item !== newData)
+        : [...originalData, newData]
+
+    if (!shiftKey && !ctrlKey) return [newData]
+    if (shiftKey && ctrlKey) return originalData
+  }
 
   const onInternalChange = (evt, control) => {
-    setSelectedValue(evt?.target?.value)
+    const newValue = isMultiple
+      ? processSelection(evt, selectedValue, evt?.target?.value)
+      : evt?.target?.value
+    setSelectedValue(newValue)
     onInputChange(evt, control)
   }
 
@@ -38,7 +62,8 @@ const BasicSelect = ({
         size={isMultiple ? optionsShown : 1}
         required={isRequired}
         disabled={isDisabled}
-        onChange={evt => onInternalChange(evt, control)}
+        onClick={evt => isMultiple && onInternalChange(evt, control)}
+        onChange={evt => !isMultiple && onInternalChange(evt, control)}
         onBlur={() => onBlurChange(control)}
         value={selectedValue}
       >

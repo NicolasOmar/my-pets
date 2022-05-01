@@ -81,8 +81,8 @@
       "label": "Hair Color/s",
       "type": "select",
       "control": "hairColors",
-      "isMultiple": false,
-      "optionsShown": 1,
+      "isMultiple": true,
+      "optionsShown": 3,
       "isVisible": true,
       "isRequired": true
     },
