@@ -41,7 +41,7 @@ const FormLayout = ({
       ...formControls,
       [prop]: {
         ...formControls[prop],
-        value: validators.valueIsEmpty(value) ? '' : prop === 'hairColors' ? [value] : value
+        value: validators.valueIsEmpty(value) ? '' : value
       }
     })
   }

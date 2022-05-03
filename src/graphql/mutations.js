@@ -39,7 +39,9 @@ export const UPDATE_PASS = gql`
 
 export const CREATE_PET = gql`
   mutation ($petInfo: PetInput!) {
-    createPet(petInfo: $petInfo)
+    createPet(petInfo: $petInfo) {
+      name
+    }
   }
 `
 

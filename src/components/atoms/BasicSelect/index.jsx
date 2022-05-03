@@ -13,6 +13,7 @@ const BasicSelect = ({
   options = [],
   optionsShown = 1,
   isMultiple = false,
+  firstNullOption = false,
   color = parseObjKeys(colors)[3],
   size = parseObjKeys(sizes)[1],
   isRounded = false,
@@ -26,33 +27,49 @@ const BasicSelect = ({
   ])
   const parsedSelected = isMultiple ? (Array.isArray(selected) ? selected : []) : selected
   const [selectedValue, setSelectedValue] = useState(parsedSelected)
+  const parsedOptions = firstNullOption ? [{ label: '', value: null }, ...options] : options
 
-  const processSelection = ({ ctrlKey, shiftKey }, originalData, newData) => {
-    if (!newData) return originalData
+  const processSelection = ({ ctrlKey, shiftKey, originalData, selectedOpts, newSelection }) => {
+    if (!newSelection || (shiftKey && ctrlKey)) return selectedOpts
+    if (!shiftKey && !ctrlKey) return [newSelection]
+
     if (shiftKey) {
-      const optionValues = options.map(({ value }) => value)
-      const lastSelect = optionValues.indexOf(originalData[originalData.length - 1])
-      const newSelect = optionValues.indexOf(newData)
+      const lastSelect = originalData.indexOf(selectedOpts[selectedOpts.length - 1])
+      const newSelect = originalData.indexOf(newSelection)
       const slicing = lastSelect < newSelect ? [lastSelect, newSelect] : [newSelect, lastSelect]
 
-      return [...new Set([...originalData, ...optionValues.slice(...slicing), newData])]
+      return [...new Set([...selectedOpts, ...originalData.slice(...slicing), newSelection])]
     }
 
     if (ctrlKey)
-      return originalData.find(item => item === newData)
-        ? originalData.filter(item => item !== newData)
-        : [...originalData, newData]
-
-    if (!shiftKey && !ctrlKey) return [newData]
-    if (shiftKey && ctrlKey) return originalData
+      return selectedOpts.find(item => item === newSelection)
+        ? selectedOpts.filter(item => item !== newSelection)
+        : [...selectedOpts, newSelection]
   }
 
   const onInternalChange = (evt, control) => {
+    const { ctrlKey, shiftKey, target } = evt
     const newValue = isMultiple
-      ? processSelection(evt, selectedValue, evt?.target?.value)
-      : evt?.target?.value
+      ? processSelection({
+          ctrlKey,
+          shiftKey,
+          originalData: parsedOptions.map(({ value }) => value),
+          selectedOpts: selectedValue,
+          newSelection: target?.value
+        })
+      : target?.value
+
     setSelectedValue(newValue)
-    onInputChange(evt, control)
+    onInputChange(
+      {
+        ...evt,
+        target: {
+          ...evt.target,
+          value: newValue
+        }
+      },
+      control
+    )
   }
 
   return (
@@ -67,8 +84,8 @@ const BasicSelect = ({
         onBlur={() => onBlurChange(control)}
         value={selectedValue}
       >
-        {Array.isArray(options) &&
-          options.map(({ label, value }, i) => (
+        {Array.isArray(parsedOptions) &&
+          parsedOptions.map(({ label, value }, i) => (
             <option key={`select-option-${i}`} value={value}>
               {label}
             </option>
@@ -95,6 +112,7 @@ BasicSelect.propTypes = {
   ),
   optionsShown: number,
   isMultiple: bool,
+  firstNullOption: bool,
   // STYLE PROPS
   color: oneOf(parseObjKeys(colors)),
   size: oneOf(parseObjKeys(sizes)),

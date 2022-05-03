@@ -21,7 +21,9 @@ import {
 
 const getPropsIds = (prop, list, searchMultiple = false) => {
   return searchMultiple
-    ? list?.filter(({ name }) => prop === name)?.map(({ id }) => id)
+    ? (Array.isArray(prop) ? prop : [prop])?.map(
+        propName => list?.find(({ name }) => propName === name)?.id
+      )
     : list?.find(({ name }) => prop === name)?.id
 }
 
@@ -33,6 +35,7 @@ const AddPetPage = () => {
 
   const onSubmitNewPet = async formData => {
     const petObj = parseFormData(formData)
+
     const petInfo = {
       ...petObj,
       birthday: parseDate(petObj?.birthday),
@@ -41,14 +44,14 @@ const AddPetPage = () => {
       height: parseNumber(petObj.height),
       length: parseNumber(petObj.length),
       weight: parseNumber(petObj.weight),
-      gender: petObj.gender === 'masculine',
-      petType: getPropsIds(petObj?.petType, petTypes?.getPetTypes, true),
+      gender: petObj.gender === inputs.gender.options[1].control,
+      petType: getPropsIds(petObj?.petType, petTypes?.getPetTypes),
       hairColors: getPropsIds(petObj?.hairColors, colors?.getColors, true),
       hasHeterochromia: !!petObj.hasHeterochromia,
-      eyeColors: getPropsIds(petObj?.eyeColors, colors?.getColors, !!petObj.hasHeterochromia)
+      eyeColors: getPropsIds(petObj?.eyeColors, colors?.getColors, true)
     }
 
-    console.error(petInfo)
+    console.error(petObj, petInfo)
     await createPet({
       variables: { petInfo }
     })
@@ -56,11 +59,11 @@ const AddPetPage = () => {
   }
 
   const onInputBlurChange = formData => {
-    const { isAdopted, adoptionDate, birthday } = formData
-
+    const { isAdopted, adoptionDate, birthday, hasHeterochromia, eyeColors } = formData
     const isAdoptedSelected = isAdopted.value === true
     const hasCorrectDates =
       !isAdoptedSelected || !validators.dateIsBefore(adoptionDate.value, birthday.value)
+    const hasDiffEyes = !!hasHeterochromia.value
 
     return {
       ...formData,
@@ -78,6 +81,13 @@ const AddPetPage = () => {
         isVisible: isAdoptedSelected,
         isRequired: isAdoptedSelected,
         isValid: hasCorrectDates
+      },
+      eyeColors: {
+        ...eyeColors,
+        isMultiple: hasDiffEyes,
+        optionsShown: hasDiffEyes ? 3 : 1,
+        firstNullOption: !hasDiffEyes,
+        value: eyeColors.isMultiple !== hasDiffEyes ? null : eyeColors.value
       }
     }
   }
@@ -101,8 +111,7 @@ const AddPetPage = () => {
           ...inputs.hairColors,
           options: parseDropdownOptions({
             selection: colors?.getColors,
-            idOriginal: 'name',
-            withNullValue: false
+            idOriginal: 'name'
           })
         },
         eyeColors: {
@@ -110,7 +119,6 @@ const AddPetPage = () => {
           options: parseDropdownOptions({
             selection: colors?.getColors,
             idOriginal: 'name'
-            // withNullValue: false
           })
         }
       }}

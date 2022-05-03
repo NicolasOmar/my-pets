@@ -53,18 +53,13 @@ export const parseDropdownOptions = ({
   idOriginal = 'id',
   idAlias = 'value',
   labelOriginal = 'name',
-  labelAlias = 'label',
-  withNullValue = true
+  labelAlias = 'label'
 }) => {
-  const arrayWithNull = withNullValue ? [{ value: null, label: null }] : []
   return Array.isArray(selection)
-    ? [
-        ...arrayWithNull,
-        ...selection.map(option => ({
-          [idAlias]: option[idOriginal],
-          [labelAlias]: option[labelOriginal]
-        }))
-      ]
+    ? selection.map(option => ({
+        [idAlias]: option[idOriginal],
+        [labelAlias]: option[labelOriginal]
+      }))
     : []
 }
 

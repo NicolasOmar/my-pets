@@ -18,6 +18,7 @@
       "label": "Type",
       "type": "select",
       "control": "petType",
+      "firstNullOption": true,
       "isVisible": true,
       "isRequired": true
     },
@@ -66,6 +67,7 @@
       "control": "gender",
       "name": "gender",
       "isVisible": true,
+      "isRequired": true,
       "options": [
         {
           "control": "masculine",
@@ -102,8 +104,7 @@
       "label": "Eye Color/s",
       "type": "select",
       "control": "eyeColors",
-      "isMultiple": false,
-      "optionsShown": 1,
+      "firstNullOption": true,
       "isVisible": true,
       "isRequired": true
     }
