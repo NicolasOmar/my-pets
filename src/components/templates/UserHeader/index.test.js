@@ -1,29 +1,27 @@
 import { MockedProvider } from '@apollo/client/testing'
 import { fireEvent, render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { configureStore } from '@reduxjs/toolkit'
 // APP_ROUTES
 import { APP_ROUTES } from '../../../constants/routes.json'
 // REDUX
-import store from '../../../redux/reducers'
+import reducers from '../../../redux/reducers'
 // COMPONENTS
 import UserHeader from '.'
 // MOCKS
 import { testConfig } from './index.mocks.json'
 
-const mockHistoryPush = jest.fn()
+const mockUseNavigate = jest.fn()
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
-  useNavigate: () => ({
-    push: mockHistoryPush
-  })
+  useNavigate: () => mockUseNavigate
 }))
 
 describe('[UserHeader]', () => {
   beforeEach(() => {
     render(
-      <Provider store={createStore(store)}>
+      <Provider store={configureStore({ reducer: reducers })}>
         <MockedProvider mocks={[]} addTypename={false}>
           <UserHeader name={testConfig.name} />
         </MockedProvider>
@@ -45,8 +43,8 @@ describe('[UserHeader]', () => {
 
       if (i <= 1) {
         fireEvent.click(menuOption)
-        expect(mockHistoryPush).toHaveBeenCalled()
-        expect(mockHistoryPush).toHaveBeenCalledWith(testRoutes[i])
+        expect(mockUseNavigate).toHaveBeenCalled()
+        expect(mockUseNavigate).toHaveBeenCalledWith(testRoutes[i])
       }
     })
   })

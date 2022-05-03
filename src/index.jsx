@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import reportWebVitals from './reportWebVitals'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { configureStore } from '@reduxjs/toolkit'
 // REDUCERS
 import reducers from './redux/reducers'
 // APOLLO CLIENT
@@ -36,7 +36,7 @@ const client = new ApolloClient({
 })
 
 ReactDOM.render(
-  <Provider store={createStore(reducers)}>
+  <Provider store={configureStore({ reducer: reducers })}>
     <ApolloProvider client={client}>
       <App />
     </ApolloProvider>
