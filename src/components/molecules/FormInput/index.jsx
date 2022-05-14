@@ -34,7 +34,7 @@ const FormInput = ({ inputLabel = null, isLoading = false, inputConfig }) => {
   const controlClass = parseCssClasses({ isLoading }, 'control')
 
   return (
-    <section className="field">
+    <section className="field" data-testid={`test-form-${inputConfig.type}`}>
       <Label labelText={inputLabel} isRequired={inputConfig.isRequired} />
       <section className={controlClass}>{parseFormInput(inputConfig)}</section>
     </section>

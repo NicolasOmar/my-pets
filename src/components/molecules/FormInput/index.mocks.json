@@ -11,6 +11,7 @@
   },
   "selectConfig": {
     "inputConfig": {
+      "control": "testSelect",
       "type": "select",
       "options": [
         {
