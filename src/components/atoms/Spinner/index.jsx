@@ -10,6 +10,7 @@ const Spinner = ({
   animationTime = 2
 }) => (
   <div
+    data-testid="test-spinner"
     className="loader"
     style={{
       width: `${size}px`,

@@ -75,6 +75,7 @@ const BasicSelect = ({
   return (
     <section className={selectClass}>
       <select
+        data-testid={`test-${isMultiple ? 'multiple' : 'single'}-${control}`}
         multiple={isMultiple}
         size={isMultiple ? optionsShown : 1}
         required={isRequired}
@@ -86,7 +87,11 @@ const BasicSelect = ({
       >
         {Array.isArray(parsedOptions) &&
           parsedOptions.map(({ label, value }, i) => (
-            <option key={`select-option-${i}`} value={value}>
+            <option
+              data-testid={`test-select-option-${i}`}
+              key={`select-option-${i}`}
+              value={value}
+            >
               {label}
             </option>
           ))}

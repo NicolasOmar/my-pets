@@ -20,6 +20,7 @@ const BasicRadioCheck = ({
   return (
     <label className={type} style={styles}>
       <input
+        data-testid={`${control}-${type}`}
         type={type}
         name={name}
         value={inputValue}

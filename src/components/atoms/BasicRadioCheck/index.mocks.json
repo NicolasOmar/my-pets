@@ -1,6 +1,7 @@
 {
   "minimalConfig":{
-    "type": "radio"
+    "type": "radio",
+    "control": "test"
   },
   "radioWithLabel": {
     "type": "radio",

@@ -1,14 +1,14 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 // COMPONENTS
-import BasicInput from '.'
+import BasicRadioCheck from '.'
 // MOCKS
 import { minimalConfig } from './index.mocks.json'
 
-describe('[BasicInput]', () => {
+describe('[BasicRadioButton', () => {
   const minimalInputTestId = `${minimalConfig.control}-${minimalConfig.type}`
 
   test('Should render the component with required props only', () => {
-    render(<BasicInput {...minimalConfig} />)
+    render(<BasicRadioCheck {...minimalConfig} />)
     const minimalInput = screen.getByTestId(minimalInputTestId)
     expect(minimalInput).toBeInTheDocument()
   })
@@ -20,14 +20,14 @@ describe('[BasicInput]', () => {
       onBlurChange: jest.fn()
     }
 
-    render(<BasicInput {...inputConfig} />)
-    const clickeableInput = screen.getByTestId(minimalInputTestId)
+    render(<BasicRadioCheck {...inputConfig} />)
+    const changeableInput = screen.getByTestId(minimalInputTestId)
 
-    fireEvent.blur(clickeableInput)
+    fireEvent.blur(changeableInput)
     expect(inputConfig.onBlurChange).toHaveBeenCalled()
 
-    fireEvent.click(clickeableInput)
-    fireEvent.change(clickeableInput, { target: { value: 't' } })
+    fireEvent.click(changeableInput)
+    fireEvent.change(changeableInput, { target: { value: true } })
     expect(inputConfig.onInputChange).toHaveBeenCalled()
   })
 })

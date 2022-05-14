@@ -51,10 +51,10 @@ const AddPetPage = () => {
       eyeColors: getPropsIds(petObj?.eyeColors, colors?.getColors, true)
     }
 
-    console.error(petObj, petInfo)
     await createPet({
       variables: { petInfo }
     })
+
     navigate(APP_ROUTES.HOME)
   }
 

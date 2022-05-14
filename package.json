@@ -1,6 +1,6 @@
 {
   "name": "my-pets",
-  "version": "0.1.47",
+  "version": "0.1.48",
   "author": "Nicolás Omar González Passerino",
   "license": "MIT",
   "private": false,
@@ -17,6 +17,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll=false --verbose",
     "test:ci": "npm test -- --coverage",
+    "test:diff": "npm run test:ci -- --changedSince=develop",
     "eject": "react-scripts eject",
     "lint": "eslint --fix src/**/*.jsx",
     "prettier": "prettier --write src",

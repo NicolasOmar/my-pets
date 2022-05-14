@@ -5,9 +5,8 @@ import { textColors } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
 import { parseObjKeys } from '../../../functions/parsers'
 
-// const Divider = ({ type = 'dashed' }) => <hr className={type} />
 const Divider = ({ color = parseObjKeys(textColors)[0], style = { borderTop: '1px solid' } }) => (
-  <hr style={style} className={`${textColors[color]}`} />
+  <hr style={style} className={`${textColors[color]}`} data-testid={`test-${color}-divider`} />
 )
 
 export default Divider
