@@ -1,23 +1,36 @@
-import { render, screen } from '@testing-library/react'
+import { cleanup, render, screen } from '@testing-library/react'
 import GridLayout from '.'
 
 const centeredClasses = 'is-centered'
-const mockOneChild = i => {
+const mockOneChild = (i = null) => {
   const props = { key: i !== null ? `test-div-${i}` : undefined }
   return (
-    <div data-testid={`test-div${i !== null ? '-' + i : ''}`} {...props}>
+    <div data-testid={`test-div${i ? `-${i}` : ''}`} {...props}>
       Test
     </div>
   )
 }
 
 describe('[GridLayout]', () => {
-  test('Should render with "centerGrid" classes', () => {
+  test('Should render the component with required props only', () => {
+    render(<GridLayout />)
+
+    expect(() => screen.getByTestId('grid-layout-test-0')).toThrow()
+    expect(() => screen.getByTestId('grid-layout-test')).toThrow()
+  })
+
+  test('Should render with and without "centerGrid" classes', () => {
     render(<GridLayout centerGrid={true} children={mockOneChild()} />)
 
-    const centeredGridLayout = screen.getByTestId('grid-layout-test')
-    expect(centeredGridLayout).toBeInTheDocument()
-    expect(centeredGridLayout.className).toEqual(expect.stringContaining(centeredClasses))
+    let defaultGrid = screen.getByTestId('grid-layout-test')
+    expect(defaultGrid).toBeInTheDocument()
+    expect(defaultGrid.className).toEqual(expect.stringContaining(centeredClasses))
+
+    cleanup()
+
+    render(<GridLayout children={mockOneChild()} />)
+    defaultGrid = screen.getByTestId('grid-layout-test')
+    expect(defaultGrid.className).not.toEqual(expect.stringContaining(centeredClasses))
   })
 
   test('Should render with several children', () => {
