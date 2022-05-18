@@ -2,6 +2,7 @@
   "minimalConfig": {
     "control": "minimalGroup",
     "name": "minimal-group",
+    "type": "radio",
     "options": [
       {
         "type": "radio",

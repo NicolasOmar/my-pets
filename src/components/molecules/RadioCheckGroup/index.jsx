@@ -36,7 +36,7 @@ const RadioCheckGroup = ({ options, type, name, onInputChange, onBlurChange }) =
       {Array.isArray(groupOptions) &&
         groupOptions.map((item, i) => (
           <BasicRadioCheck
-            key={`radio-${name}-${i}`}
+            key={`${type}-${name}-${i}`}
             {...{
               ...item,
               type,
