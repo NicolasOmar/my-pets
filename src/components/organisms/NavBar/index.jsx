@@ -11,7 +11,7 @@ const NavBar = ({ icon = null, start = null, end = null }) => {
 
   const renderBrand = icon =>
     icon && (
-      <section className="navbar-brand">
+      <section data-testid="navbar-brand" className="navbar-brand">
         <NavBarItem>{icon}</NavBarItem>
       </section>
     )
@@ -19,16 +19,16 @@ const NavBar = ({ icon = null, start = null, end = null }) => {
   const renderSection = (sectionClass, elements) =>
     Array.isArray(elements) &&
     elements.length && (
-      <section className={sectionClass}>
+      <section data-testid={sectionClass} className={sectionClass}>
         {elements.map((elem, i) => sectionMapper[elem.type || 'item'](elem, i))}
       </section>
     )
 
   return (
-    <nav className="navbar has-shadow">
+    <nav data-testid="navbar-body" className="navbar has-shadow">
       {renderBrand(icon)}
       {(start || end) && (
-        <section className="navbar-menu">
+        <section data-testid="navbar-menu" className="navbar-menu">
           {renderSection('navbar-start', start)}
           {renderSection('navbar-end', end)}
         </section>
