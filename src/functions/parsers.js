@@ -49,7 +49,7 @@ export const parseObjKeys = (_obj, asNumber = false) =>
   Object.keys(_obj).map(_objValue => (asNumber ? +_objValue : _objValue))
 
 export const parseDropdownOptions = ({
-  selection,
+  selection = null,
   idOriginal = 'id',
   idAlias = 'value',
   labelOriginal = 'name',
@@ -63,11 +63,14 @@ export const parseDropdownOptions = ({
     : []
 }
 
-export const parseNumber = number => (!!number && validator.isNumeric(number) ? +number : null)
+export const parseNumber = number =>
+  !!number && validator.isNumeric(String(number)) ? +number : null
 
-export const parseDate = date => (date ? new Date(date) : null)
+export const parseDate = date => (!!date && validator.isDate(date) ? new Date(date) : null)
 
-export const parseFormData = formData =>
-  Object.keys(formData)
-    .map(key => ({ [key]: formData[key] ?? null }))
-    .reduce((finalObj, currentProp) => ({ ...finalObj, ...currentProp }), {})
+export const parseFormData = (formData = null) =>
+  formData
+    ? Object.keys(formData)
+        .map(key => ({ [key]: formData[key] ?? null }))
+        .reduce((finalObj, currentProp) => ({ ...finalObj, ...currentProp }), {})
+    : {}
