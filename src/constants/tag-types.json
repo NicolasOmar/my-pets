@@ -7,6 +7,16 @@
   "inputTypes": [
     "text",
     "email",
-    "password"
+    "password",
+    "date",
+    "number"
+  ],
+  "checkTypes": [
+    "radio",
+    "checkbox"
+  ],
+  "selectorTypes": [
+    "select",
+    "multiple"
   ]
 }

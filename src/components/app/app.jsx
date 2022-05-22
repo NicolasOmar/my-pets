@@ -1,8 +1,6 @@
 import React from 'react'
-import { Router, Route, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-// HISTORY
-import history from './history'
 // COMPONENTS
 import UserHeader from '../templates/UserHeader'
 import HomePage from '../pages/HomePage'
@@ -10,28 +8,26 @@ import LoginPage from '../pages/LoginPage'
 import NewUserPage from '../pages/NewUserPage'
 import UpdateUserPage from '../pages/UpdateUserPage'
 import UpdatePasswordPage from '../pages/UpdatePassPage'
+import AddPetPage from '../pages/AddPetPage'
 // CONSTANTS
 import { APP_ROUTES } from '../../constants/routes.json'
 
-const renderHeader = userState => userState && <UserHeader name={userState.name} />
-
 const App = () => {
   const userData = useSelector(({ userState }) => userState)
-
+  const renderHeader = userState => userState && <UserHeader name={userState.name} />
   return (
-    <>
-      <Router history={history}>
-        {renderHeader(userData)}
-        <Redirect exact from={APP_ROUTES.BASE} to={APP_ROUTES.LOGIN} />
-        <Switch>
-          <Route exact path={APP_ROUTES.HOME} component={HomePage} />
-          <Route exact path={APP_ROUTES.LOGIN} component={LoginPage} />
-          <Route exact path={APP_ROUTES.NEW_USER} component={NewUserPage} />
-          <Route exact path={APP_ROUTES.UPDATE_USER} component={UpdateUserPage} />
-          <Route exact path={APP_ROUTES.UPDATE_PASS} component={UpdatePasswordPage} />
-        </Switch>
-      </Router>
-    </>
+    <BrowserRouter>
+      {renderHeader(userData)}
+      <Routes>
+        <Route exact path={APP_ROUTES.HOME} element={<HomePage />} />
+        <Route exact path={APP_ROUTES.LOGIN} element={<LoginPage />} />
+        <Route exact path={APP_ROUTES.NEW_USER} element={<NewUserPage />} />
+        <Route exact path={APP_ROUTES.UPDATE_USER} element={<UpdateUserPage />} />
+        <Route exact path={APP_ROUTES.UPDATE_PASS} element={<UpdatePasswordPage />} />
+        <Route exact path={APP_ROUTES.ADD_PET} element={<AddPetPage />} />
+        <Route exact path={APP_ROUTES.BASE} element={<Navigate replace to={APP_ROUTES.LOGIN} />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

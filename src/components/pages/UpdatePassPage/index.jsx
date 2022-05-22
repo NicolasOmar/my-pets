@@ -1,15 +1,19 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 // GRAPHQL CLIENT
 import { useMutation } from '@apollo/client'
 import { UPDATE_PASS } from '../../../graphql/mutations'
 // COMPONENTS
 import FormTemplate from '../../templates/FormTemplate'
 // FORM CONFIG
-import { header, inputs, updateButton, cancelButton } from './config.json'
+import { header, inputs, dividers, updateButton, cancelButton } from './config.json'
+// CONSTANTS
+import { APP_ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
 import { encryptPass } from '../../../functions/encrypt'
 
 const UpdatePassPage = () => {
+  let navigate = useNavigate()
   const [updatePass, { loading, error }] = useMutation(UPDATE_PASS)
 
   const onSubmitUpdate = async formData => {
@@ -18,9 +22,12 @@ const UpdatePassPage = () => {
       newPass: encryptPass(formData.newPass)
     }
 
-    updatePass({ variables })
-      .then(response => console.warn(response))
-      .catch(error => console.error(error))
+    try {
+      await updatePass({ variables })
+      navigate(APP_ROUTES.HOME)
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   const onInputBlurChange = formData => {
@@ -54,8 +61,8 @@ const UpdatePassPage = () => {
       isLoading={loading}
       errors={error}
       inputs={inputs}
+      dividers={dividers}
       formButtons={[updateButton, cancelButton]}
-      buttonsGrouped={true}
       onFormSubmit={formData => onSubmitUpdate(formData)}
       onInputBlurChange={onInputBlurChange}
     />

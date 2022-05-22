@@ -3,7 +3,7 @@
     "BASE": "/",
     "LOGIN": "/login",
     "HOME": "/home",
-    "PET_INFO": "/pet-info",
+    "ADD_PET": "/add-pet",
     "NEW_USER": "/new-user",
     "UPDATE_USER": "/update-user",
     "UPDATE_PASS": "/update-pass"

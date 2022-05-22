@@ -1,31 +1,40 @@
 {
+  "header": {
+    "titleText": "Update Password",
+    "titleSize": "big",
+    "isCentered": true
+  },
   "inputs": {
     "oldPass": {
       "label": "Old Password",
       "type": "password",
       "control": "oldPass",
       "isRequired": true,
-      "minLength": 5
+      "minLength": 5,
+      "isVisible": true
     },
     "newPass": {
       "label": "New Password",
       "type": "password",
       "control": "newPass",
       "isRequired": true,
-      "minLength": 5
+      "minLength": 5,
+      "isVisible": true
     },
     "repeatPass": {
       "label": "Repeat Password",
       "type": "password",
       "control": "repeatPass",
       "isRequired": true,
-      "minLength": 5
+      "minLength": 5,
+      "isVisible": true
     }
   },
-  "header": {
-    "titleText": "Update Password",
-    "isCentered": true
-  },
+  "dividers": [
+    {
+      "after": "oldPass"
+    }
+  ],
   "updateButton": {
     "type": "submit",
     "color": "success",

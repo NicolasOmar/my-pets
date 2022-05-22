@@ -10,16 +10,16 @@ const BasicInput = ({
   type,
   control,
   value = '',
-  color = parseObjKeys(colors)[0],
-  size = parseObjKeys(sizes)[0],
-  isRounded = false,
-  placeHolder = null,
-  onInputChange,
-  onBlurChange,
   isRequired = false,
   isDisabled = false,
+  placeHolder = null,
   minLength = null,
-  maxLength = null
+  maxLength = null,
+  color = parseObjKeys(colors)[3],
+  size = parseObjKeys(sizes)[1],
+  isRounded = false,
+  onInputChange,
+  onBlurChange
 }) => {
   const inputClass = parseCssClasses({ isRounded }, 'input', [colors[color], sizes[size]])
   return (
@@ -43,17 +43,21 @@ const BasicInput = ({
 export default BasicInput
 
 BasicInput.propTypes = {
+  // BASE INPUT PROPS
   type: oneOf(inputTypes).isRequired,
   control: string.isRequired,
   value: string,
+  isRequired: bool,
+  isDisabled: bool,
+  // TEXT INPUT PROPS
+  placeHolder: string,
+  minLength: number,
+  maxLength: number,
+  // STYLE PROPS
   color: oneOf(parseObjKeys(colors)),
   size: oneOf(parseObjKeys(sizes)),
   isRounded: bool,
-  placeHolder: string,
+  // FUNCTIONS
   onInputChange: func,
-  onBlurChange: func,
-  isRequired: bool,
-  isDisabled: bool,
-  minLength: number,
-  maxLength: number
+  onBlurChange: func
 }

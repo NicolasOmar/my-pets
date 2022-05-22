@@ -14,20 +14,20 @@ describe('[BasicInput]', () => {
   })
 
   test('Should check that its methods have been called', () => {
-    const changeableInput = {
+    const inputConfig = {
       ...minimalConfig,
       onInputChange: jest.fn(),
       onBlurChange: jest.fn()
     }
 
-    render(<BasicInput {...changeableInput} />)
+    render(<BasicInput {...inputConfig} />)
     const clickeableInput = screen.getByTestId(minimalInputTestId)
 
     fireEvent.blur(clickeableInput)
-    expect(changeableInput.onBlurChange).toHaveBeenCalled()
+    expect(inputConfig.onBlurChange).toHaveBeenCalled()
 
     fireEvent.click(clickeableInput)
     fireEvent.change(clickeableInput, { target: { value: 't' } })
-    expect(changeableInput.onInputChange).toHaveBeenCalled()
+    expect(inputConfig.onInputChange).toHaveBeenCalled()
   })
 })

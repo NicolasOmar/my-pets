@@ -5,13 +5,15 @@
         "label": "Email",
         "type": "email",
         "control": "email",
-        "isRequired": false
+        "isRequired": false,
+        "isVisible": true
       },
       "password": {
         "label": "Password",
         "type": "password",
         "control": "password",
-        "isRequired": false
+        "isRequired": false,
+        "isVisible": true
       }
     }
   },

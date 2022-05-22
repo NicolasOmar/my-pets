@@ -11,7 +11,7 @@ import { parseObjKeys } from '../../../functions/parsers'
 import mocks from './index.mocks.json'
 
 export default {
-  title: `${STORYBOOK_ROUTES.ATOMS}/Basic Button`,
+  title: `${STORYBOOK_ROUTES.ATOMS}/BasicButton`,
   component: BasicButton,
   argTypes: {
     type: {

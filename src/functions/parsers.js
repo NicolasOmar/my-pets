@@ -1,3 +1,4 @@
+import validator from 'validator'
 import inputClasses from '../constants/input-classes.json'
 
 export const mergeGraphObj = (graphObj, originalObj) => {
@@ -16,6 +17,11 @@ const renderIf = {
   default: (value, setClass) => setInputClass(value === true, setClass)
 }
 
+const mergeInputClasses = (commons, input) =>
+  [...input, ...commons].filter(({ prop }, _, mergedArray) =>
+    mergedArray.find(inputClass => inputClass.prop === prop)
+  )
+
 /*
   parseCssClasses:
   First, you will recive the input configuration with a field value, which is needed to get its corresponding configuration from the JSON file
@@ -26,7 +32,8 @@ const renderIf = {
   At last, after all the cases have been mapped, the main method will filter the null cases and concat them in a string, which will be concated in the final class string return (in case that the "mappedClasses" const gets at least one class)
 */
 export const parseCssClasses = (inputConfig = {}, fieldName, otherClasses = []) => {
-  const mappedClasses = inputClasses[fieldName]
+  const classes = mergeInputClasses(inputClasses['common'], inputClasses[fieldName] ?? [])
+  const mappedClasses = classes
     .map(({ prop, condition = 'default', setClass }) =>
       renderIf[condition](inputConfig[prop], setClass)
     )
@@ -40,3 +47,30 @@ export const parseCssClasses = (inputConfig = {}, fieldName, otherClasses = []) 
 
 export const parseObjKeys = (_obj, asNumber = false) =>
   Object.keys(_obj).map(_objValue => (asNumber ? +_objValue : _objValue))
+
+export const parseDropdownOptions = ({
+  selection = null,
+  idOriginal = 'id',
+  idAlias = 'value',
+  labelOriginal = 'name',
+  labelAlias = 'label'
+}) => {
+  return Array.isArray(selection)
+    ? selection.map(option => ({
+        [idAlias]: option[idOriginal],
+        [labelAlias]: option[labelOriginal]
+      }))
+    : []
+}
+
+export const parseNumber = number =>
+  !!number && validator.isNumeric(String(number)) ? +number : null
+
+export const parseDate = date => (!!date && validator.isDate(date) ? new Date(date) : null)
+
+export const parseFormData = (formData = null) =>
+  formData
+    ? Object.keys(formData)
+        .map(key => ({ [key]: formData[key] ?? null }))
+        .reduce((finalObj, currentProp) => ({ ...finalObj, ...currentProp }), {})
+    : {}

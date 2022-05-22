@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 // GRAPHQL CLIENT
 import { useMutation } from '@apollo/client'
@@ -12,17 +12,12 @@ import { inputs, header, loginButton, goToSignUpButton } from './config.json'
 import { APP_ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
 import { encryptPass } from '../../../functions/encrypt'
-import { getLoggedUser, setLoggedUser } from '../../../functions/local-storage'
+import { setLoggedUser } from '../../../functions/local-storage'
 
 const LoginPage = () => {
-  let history = useHistory()
+  let navigate = useNavigate()
   const [login, { loading, error }] = useMutation(LOGIN)
   const dispatch = useDispatch()
-
-  useEffect(() => {
-    getLoggedUser() && history.push(APP_ROUTES.HOME)
-    return () => {}
-  }, [history])
 
   const onSubmitLogin = async formData => {
     login({
@@ -37,7 +32,7 @@ const LoginPage = () => {
           type: 'LOGIN',
           payload: data.loginUser
         })
-        history.push(APP_ROUTES.HOME)
+        navigate(APP_ROUTES.HOME)
       })
       .catch(error => console.error(error))
   }
@@ -52,10 +47,9 @@ const LoginPage = () => {
         loginButton,
         {
           ...goToSignUpButton,
-          onClick: () => history.push(APP_ROUTES.NEW_USER)
+          onClick: () => navigate(APP_ROUTES.NEW_USER)
         }
       ]}
-      buttonsGrouped={true}
       onFormSubmit={data => onSubmitLogin(data)}
     />
   )

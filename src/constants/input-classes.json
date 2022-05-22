@@ -1,4 +1,10 @@
 {
+  "select": [
+    {
+      "prop": "isMultiple",
+      "setClass": "is-multiple"
+    }
+  ],
   "button": [
     {
       "prop": "isOutlined",
@@ -7,10 +13,6 @@
     {
       "prop": "isInverted",
       "setClass": "is-inverted"
-    },
-    {
-      "prop": "isLoading",
-      "setClass": "is-loading"
     }
   ],
   "title": [
@@ -25,12 +27,6 @@
       "setClass": "has-text-centered"
     }
   ],
-  "input": [
-    {
-      "prop": "isRounded",
-      "setClass": "is-rounded"
-    }
-  ],
   "field": [
     {
       "prop": "isValid",
@@ -40,10 +36,6 @@
   ],
   "form": [
     {
-      "prop": "isLoading",
-      "setClass": "loading"
-    },
-    {
       "prop": "isBoxed",
       "setClass": "box"
     },
@@ -51,6 +43,20 @@
       "prop": "errors",
       "condition": "isNotNull",
       "setClass": "error"
+    }
+  ],
+  "common": [
+    {
+      "prop": "isRounded",
+      "setClass": "is-rounded"
+    },
+    {
+      "prop": "isCentered",
+      "setClass": "is-centered"
+    },
+    {
+      "prop": "isLoading",
+      "setClass": "is-loading"
     }
   ]
 }

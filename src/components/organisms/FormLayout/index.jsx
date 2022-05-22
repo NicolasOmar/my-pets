@@ -1,41 +1,41 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { arrayOf, bool, func, object, shape, string, oneOf } from 'prop-types'
+import { arrayOf, bool, func, object, shape, string } from 'prop-types'
 // COMPONENTS
 import FormInput from '../../molecules/FormInput'
 import ButtonGroup from '../../molecules/ButtonGroup'
 import Message from '../../atoms/Message'
+import Divider from '../../atoms/Divider'
+import BasicButton from '../../atoms/BasicButton'
 // FUNCTIONS
-import { checkIsValidForm, checkIsValidInput, sendObjValues } from '../../../functions/methods'
+import { checkIsValidForm, validateInput, sendObjValues } from '../../../functions/methods'
+import { parseCssClasses } from '../../../functions/parsers'
 import validators from '../../../functions/validators'
-import { parseCssClasses, parseObjKeys } from '../../../functions/parsers'
-// ENUMS
-import { buttonTypes } from '../../../constants/tag-types.json'
-import { colors, sizes } from '../../../constants/bulma-styles.json'
 
 const FormLayout = ({
   isLoading = false,
   isBoxed = true,
   errors = null,
   inputs,
+  dividers = [],
   formButtons = [],
   onFormSubmit,
   onInputBlurChange
 }) => {
-  const [formControls, setFormControls] = useState(inputs)
-  const [disableSignUpButton, setDisableSignUpButton] = useState(true)
+  const formClass = parseCssClasses({ isBoxed, errors }, 'form')
   const firstUpdate = useRef(true)
-  const formClass = parseCssClasses({ isLoading, isBoxed, errors }, 'form')
+  const [formControls, setFormControls] = useState(inputs)
+  const [disableConfirmButton, setDisableConfirmButton] = useState(true)
 
   useEffect(() => {
     if (firstUpdate.current) {
       firstUpdate.current = false
       return
     }
-    setDisableSignUpButton(!checkIsValidForm(formControls))
+    setDisableConfirmButton(!checkIsValidForm(formControls))
   }, [formControls])
 
   const onInputChange = (evt, prop) => {
-    const { value } = evt.target
+    const { value } = evt.target || evt
 
     checkInputIsValid(prop, {
       ...formControls,
@@ -56,8 +56,8 @@ const FormLayout = ({
         [prop]: {
           ...validatedForm[prop],
           isValid: validatedForm[prop].hasCustomValidation
-            ? checkIsValidInput(_formControls[prop]) && validatedForm[prop].isValid
-            : checkIsValidInput(_formControls[prop])
+            ? validateInput(_formControls[prop]) && validatedForm[prop].isValid
+            : validateInput(_formControls[prop])
         }
       })
     } else {
@@ -65,7 +65,7 @@ const FormLayout = ({
         ..._formControls,
         [prop]: {
           ..._formControls[prop],
-          isValid: checkIsValidInput(_formControls[prop])
+          isValid: validateInput(_formControls[prop])
         }
       })
     }
@@ -76,27 +76,42 @@ const FormLayout = ({
   const onSubmit = evt => {
     if (onFormSubmit) {
       evt.preventDefault()
-      !disableSignUpButton && onFormSubmit(sendObjValues({ ...formControls }))
+      !disableConfirmButton && onFormSubmit(sendObjValues({ ...formControls }))
     }
   }
 
   const renderInputs = () =>
     Object.keys(formControls).map((prop, i) => {
+      const { isVisible, isDisabled, label, control } = formControls[prop]
+      const divider = Array.isArray(dividers) && dividers.find(({ after }) => after === control)
+
       return (
-        <FormInput
-          key={`${prop}-${i}`}
-          inputLabel={formControls[prop].label}
-          inputConfig={{
-            ...formControls[prop],
-            onInputChange,
-            onBlurChange
-          }}
-        />
+        <>
+          {isVisible && (
+            <FormInput
+              key={`${prop}-${i}`}
+              inputLabel={label}
+              isLoading={isLoading}
+              inputConfig={{
+                ...formControls[prop],
+                isDisabled: isDisabled || isLoading,
+                onInputChange,
+                onBlurChange
+              }}
+            />
+          )}
+          {divider && <Divider key={`divider-after-${control}`} {...divider} />}
+        </>
       )
     })
 
   const renderButtons = () =>
-    formButtons && <ButtonGroup buttons={formButtons.map(btn => ({ ...btn }))} />
+    formButtons && (
+      <>
+        <Divider color={'grey'} style={{ margin: '25px 0 20px 0' }} />
+        <ButtonGroup buttons={formButtons.map(btn => ({ ...btn }))} />
+      </>
+    )
 
   const renderErrors = () =>
     errors && (
@@ -123,19 +138,13 @@ FormLayout.propTypes = {
   isBoxed: bool,
   errors: object,
   inputs: object.isRequired,
-  formButtons: arrayOf(
+  dividers: arrayOf(
     shape({
-      type: oneOf(buttonTypes).isRequired,
-      color: oneOf(parseObjKeys(colors)),
-      size: oneOf(parseObjKeys(sizes)),
-      isOutlined: bool,
-      isInverted: bool,
-      isLoading: bool,
-      isDisabled: bool,
-      onClick: func,
-      label: string.isRequired
+      ...Divider.propTypes,
+      after: string.isRequired
     })
   ),
+  formButtons: arrayOf(shape(BasicButton.propTypes)),
   onFormSubmit: func,
   onInputBlurChange: func
 }

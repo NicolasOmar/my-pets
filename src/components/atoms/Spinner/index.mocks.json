@@ -1,0 +1,14 @@
+{
+  "bigSize": {
+    "size": 300
+  },
+  "smallWheel": {
+    "borderSize": 6
+  },
+  "slowAnimation": {
+    "animationTime": 10
+  },
+  "fastAnimation": {
+    "animationTime": 1
+  }
+}

@@ -6,13 +6,18 @@ import { getLoggedUser } from '../../../functions/local-storage'
 
 const HomePage = () => {
   const [user] = useState(getLoggedUser())
-  const homeText = {
-    titleText: `HELLO ${user.name.toUpperCase()}`,
+  const homeTextConfig = {
+    titleText: `HELLO ${user?.name?.toUpperCase()}`,
+    titleSize: 'bigger',
     subText: 'Welcome to our beautiful place',
-    isCentered: true
+    subSize: 'small',
+    isCentered: true,
+    styles: {
+      marginTop: '40px'
+    }
   }
 
-  return <TitleHeader {...homeText} />
+  return <TitleHeader {...homeTextConfig} />
 }
 
 export default HomePage

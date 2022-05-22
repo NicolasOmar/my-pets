@@ -1,16 +1,19 @@
 import React from 'react'
-import { array, bool, func, object } from 'prop-types'
+import { array, arrayOf, bool, func, object, shape, string } from 'prop-types'
 // COMPONENTS
 import BasicFrame from '../../organisms/BasicFrame'
 import FormLayout from '../../organisms/FormLayout'
+import Divider from '../../atoms/Divider'
+import Spinner from '../../atoms/Spinner'
 
 const FormTemplate = ({
   header,
   isLoading,
+  isFetching = false,
   errors,
   inputs,
+  dividers,
   formButtons,
-  buttonsGrouped,
   onFormSubmit,
   onInputBlurChange
 }) => {
@@ -19,8 +22,8 @@ const FormTemplate = ({
     isLoading,
     errors,
     inputs,
+    dividers,
     formButtons,
-    buttonsGrouped,
     onFormSubmit: onFormSubmit ?? undefined,
     onInputBlurChange: onInputBlurChange ?? undefined
   }
@@ -29,7 +32,7 @@ const FormTemplate = ({
     <BasicFrame
       {...{
         header,
-        children: <FormLayout {...formConfig} />,
+        children: isFetching ? <Spinner /> : <FormLayout {...formConfig} />,
         centerGrid: true
       }}
     />
@@ -41,10 +44,16 @@ export default FormTemplate
 FormTemplate.propTypes = {
   header: object,
   isLoading: bool,
+  isFetching: bool,
   errors: object,
   inputs: object,
+  dividers: arrayOf(
+    shape({
+      ...Divider.propTypes,
+      after: string.isRequired
+    })
+  ),
   formButtons: array,
-  buttonsGrouped: bool,
   onFormSubmit: func,
   onInputBlurChange: func
 }

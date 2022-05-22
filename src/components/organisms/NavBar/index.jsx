@@ -3,7 +3,7 @@ import { arrayOf, element, object, oneOfType } from 'prop-types'
 import NavBarItem from '../../atoms/NavBarItem'
 import NavBarDropdown from '../../molecules/NavBarDropdown'
 
-const NavBar = ({ icon = null, start = null, end = [] }) => {
+const NavBar = ({ icon = null, start = null, end = null }) => {
   const sectionMapper = {
     dropdown: (elem, i) => <NavBarDropdown key={i ? `${elem.type}-${i}` : elem.type} {...elem} />,
     item: (elem, i) => <NavBarItem key={i ? `${elem.type}-${i}` : elem.type} {...elem} />
@@ -11,7 +11,7 @@ const NavBar = ({ icon = null, start = null, end = [] }) => {
 
   const renderBrand = icon =>
     icon && (
-      <section className="navbar-brand">
+      <section data-testid="navbar-brand" className="navbar-brand">
         <NavBarItem>{icon}</NavBarItem>
       </section>
     )
@@ -19,16 +19,16 @@ const NavBar = ({ icon = null, start = null, end = [] }) => {
   const renderSection = (sectionClass, elements) =>
     Array.isArray(elements) &&
     elements.length && (
-      <section className={sectionClass}>
+      <section data-testid={sectionClass} className={sectionClass}>
         {elements.map((elem, i) => sectionMapper[elem.type || 'item'](elem, i))}
       </section>
     )
 
   return (
-    <nav className="navbar">
+    <nav data-testid="navbar-body" className="navbar has-shadow">
       {renderBrand(icon)}
       {(start || end) && (
-        <section className="navbar-menu">
+        <section data-testid="navbar-menu" className="navbar-menu">
           {renderSection('navbar-start', start)}
           {renderSection('navbar-end', end)}
         </section>

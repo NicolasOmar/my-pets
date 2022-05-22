@@ -6,7 +6,7 @@ import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 import mocks from './index.mocks.json'
 
 export default {
-  title: `${STORYBOOK_ROUTES.MOLECULES}/Navbar Dropdown`,
+  title: `${STORYBOOK_ROUTES.MOLECULES}/NavBarDropdown`,
   component: NavBarDropdown,
   args: mocks.minimalConfig
 }

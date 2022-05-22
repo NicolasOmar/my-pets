@@ -1,0 +1,34 @@
+{
+  "minimalConfig":{
+    "type": "radio",
+    "control": "test"
+  },
+  "radioWithLabel": {
+    "type": "radio",
+    "label": "Radio label"
+  },
+  "radioChecked": {
+    "type": "radio",
+    "label": "Radio checked",
+    "value": true
+  },
+  "radioDisabled": {
+    "type": "radio",
+    "label": "Radio disabled",
+    "isDisabled": true
+  },
+  "checkWithLabel": {
+    "type": "checkbox",
+    "label": "Checkbox label"
+  },
+  "checkChecked": {
+    "type": "checkbox",
+    "label": "Checkbox checked",
+    "value": true
+  },
+  "checkDisabled": {
+    "type": "checkbox",
+    "label": "Checkbox disabled",
+    "isDisabled": true
+  }
+}

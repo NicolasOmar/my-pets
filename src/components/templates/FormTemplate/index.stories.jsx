@@ -7,9 +7,10 @@ import LoginPageConfigMock from '../../pages/LoginPage/config.json'
 import NewUserPageConfigMock from '../../pages/NewUserPage/config.json'
 import UpdateUserPageConfigMock from '../../pages/UpdateUserPage/config.json'
 import UpdatePassPageConfigMock from '../../pages/UpdatePassPage/config.json'
+import AddPetPageConfigMock from '../../pages/AddPetPage/config.json'
 
 export default {
-  title: `${STORYBOOK_ROUTES.TEMPLATES}/FormLayout Template`,
+  title: `${STORYBOOK_ROUTES.TEMPLATES}/FormTemplate`,
   component: FormTemplate,
   args: {
     ...LoginPageConfigMock,
@@ -41,4 +42,11 @@ UpdatePassExample.storyName = 'Update Password'
 UpdatePassExample.args = {
   ...UpdatePassPageConfigMock,
   formButtons: [UpdatePassPageConfigMock.updateButton, UpdatePassPageConfigMock.cancelButton]
+}
+
+export const AddPetExtample = Template.bind({})
+AddPetExtample.storyName = 'App Pet'
+AddPetExtample.args = {
+  ...AddPetPageConfigMock,
+  formButtons: [AddPetPageConfigMock.addPetButton, AddPetPageConfigMock.goToHomeButton]
 }

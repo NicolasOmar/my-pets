@@ -6,7 +6,7 @@ import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 import mocks from './index.mocks.json'
 
 export default {
-  title: `${STORYBOOK_ROUTES.MOLECULES}/Button Group`,
+  title: `${STORYBOOK_ROUTES.MOLECULES}/ButtonGroup`,
   component: ButtonGroup,
   args: mocks.minimalConfig
 }

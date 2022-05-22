@@ -11,7 +11,7 @@ import store from '../../../redux/reducers'
 import { testConfig } from './index.mocks.json'
 
 export default {
-  title: `${STORYBOOK_ROUTES.TEMPLATES}/User Header`,
+  title: `${STORYBOOK_ROUTES.TEMPLATES}/UserHeader`,
   component: UserHeader,
   args: { name: testConfig.name }
 }

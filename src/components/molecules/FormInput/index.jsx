@@ -1,39 +1,54 @@
 import React from 'react'
-import { shape, bool, func, string, number, oneOf } from 'prop-types'
+import { bool, string, oneOfType, shape } from 'prop-types'
 // COMPONENTS
+import Label from '../../atoms/Label'
 import BasicInput from '../../atoms/BasicInput'
+import BasicSelect from '../../atoms/BasicSelect'
 // CONSTANTS
-import { inputTypes } from '../../../constants/tag-types.json'
-import { colors, sizes } from '../../../constants/bulma-styles.json'
+import { checkTypes, selectorTypes } from '../../../constants/tag-types.json'
 // FUNCTIONS
-import { parseObjKeys } from '../../../functions/parsers'
+import { parseCssClasses } from '../../../functions/parsers'
+import RadioCheckGroup from '../RadioCheckGroup'
 
-const renderLabel = inputLabel => inputLabel && <label className="label">{inputLabel}</label>
+const parseFormInput = inputConfig => {
+  const baseInputConfig = { ...inputConfig, color: inputConfig.isValid === false ? 'danger' : null }
 
-const FormInput = ({ inputLabel, inputConfig }) => (
-  <div className="field">
-    {renderLabel(inputLabel)}
-    <BasicInput {...{ ...inputConfig, color: inputConfig.isValid === false ? 'danger' : null }} />
-  </div>
-)
+  return checkTypes.includes(inputConfig.type) ? (
+    <RadioCheckGroup
+      {...{
+        ...inputConfig,
+        options: inputConfig.options.map(_option => ({
+          ..._option,
+          type: inputConfig.type
+        }))
+      }}
+    />
+  ) : selectorTypes.includes(inputConfig.type) ? (
+    <BasicSelect {...baseInputConfig} />
+  ) : (
+    <BasicInput {...baseInputConfig} />
+  )
+}
+
+const FormInput = ({ inputLabel = null, isLoading = false, inputConfig }) => {
+  const controlClass = parseCssClasses({ isLoading }, 'control')
+
+  return (
+    <section className="field" data-testid={`test-form-${inputConfig.type}`}>
+      <Label labelText={inputLabel} isRequired={inputConfig.isRequired} />
+      <section className={controlClass}>{parseFormInput(inputConfig)}</section>
+    </section>
+  )
+}
 
 export default FormInput
 
 FormInput.propTypes = {
   inputLabel: string,
-  inputConfig: shape({
-    type: oneOf(inputTypes).isRequired,
-    control: string.isRequired,
-    value: string,
-    color: oneOf(parseObjKeys(colors)),
-    size: oneOf(parseObjKeys(sizes)),
-    isRounded: bool,
-    placeHolder: string,
-    onInputChange: func,
-    onBlurChange: func,
-    isRequired: bool,
-    isDisabled: bool,
-    minLength: number,
-    maxLength: number
-  })
+  isLoading: bool,
+  inputConfig: oneOfType([
+    shape(BasicInput.propTypes),
+    shape(RadioCheckGroup.propTypes),
+    shape(BasicSelect.propTypes)
+  ]).isRequired
 }

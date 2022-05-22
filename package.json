@@ -1,6 +1,6 @@
 {
   "name": "my-pets",
-  "version": "0.1.26",
+  "version": "0.1.54",
   "author": "Nicolás Omar González Passerino",
   "license": "MIT",
   "private": false,
@@ -15,8 +15,9 @@
   "scripts": {
     "start": "env-cmd -f ./env/local.env react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --modulePaths=src --watchAll=false",
+    "test": "react-scripts test --watchAll=false --verbose",
     "test:ci": "npm test -- --coverage",
+    "test:diff": "npm run test:ci -- --changedSince=main",
     "eject": "react-scripts eject",
     "lint": "eslint --fix src/**/*.jsx",
     "prettier": "prettier --write src",
@@ -26,6 +27,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.3.14",
+    "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.5.0",
@@ -36,9 +38,10 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.4",
-    "react-router-dom": "^5.2.0",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "^4.0.1",
     "redux": "^4.1.0",
+    "validator": "^13.7.0",
     "web-vitals": "^0.2.4"
   },
   "devDependencies": {

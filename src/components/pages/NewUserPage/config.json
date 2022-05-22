@@ -1,4 +1,9 @@
 {
+  "header": {
+    "titleText": "Sign up",
+    "titleSize": "big",
+    "isCentered": true
+  },
   "inputs": {
     "name": {
       "label": "Name",
@@ -6,7 +11,8 @@
       "control": "name",
       "isRequired": true,
       "minLength": 3,
-      "maxLength": 25
+      "maxLength": 25,
+      "isVisible": true
     },
     "lastName": {
       "label": "Last Name",
@@ -14,7 +20,8 @@
       "control": "lastName",
       "isRequired": true,
       "minLength": 3,
-      "maxLength": 25
+      "maxLength": 25,
+      "isVisible": true
     },
     "userName": {
       "label": "User Name",
@@ -22,32 +29,32 @@
       "control": "userName",
       "isRequired": true,
       "minLength": 4,
-      "maxLength": 10
+      "maxLength": 10,
+      "isVisible": true
     },
     "email": {
       "label": "Email",
       "type": "email",
       "control": "email",
-      "isRequired": true
+      "isRequired": true,
+      "isVisible": true
     },
     "password": {
       "label": "Password",
       "type": "password",
       "control": "password",
       "isRequired": true,
-      "minLength": 6
+      "minLength": 6,
+      "isVisible": true
     },
     "repeatPass": {
       "label": "Repeat Password",
       "type": "password",
       "control": "repeatPass",
       "isRequired": true,
-      "minLength": 6
+      "minLength": 6,
+      "isVisible": true
     }
-  },
-  "header": {
-    "titleText": "Sign up",
-    "isCentered": true
   },
   "signUpButton": {
     "type": "submit",
