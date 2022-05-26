@@ -6,15 +6,17 @@ import Image from '../../atoms/Image'
 const Card = ({ cardImage, cardContent, cardFooter }) => {
   const renderImage = () =>
     cardImage && (
-      <div className="card-image">
+      <section className="card-image">
         <Image {...cardImage} />
-      </div>
+      </section>
     )
 
-  const renderContent = () => cardContent && <div className="card-content">{cardContent}</div>
+  const renderContent = () =>
+    cardContent && <section className="card-content">{cardContent}</section>
 
   const renderFooter = () =>
-    Array.isArray(cardFooter) && (
+    Array.isArray(cardFooter) &&
+    cardFooter.length && (
       <footer className="card-footer">
         {cardFooter.map(({ label, link }, i) => (
           <a key={`card-footer-item-${i}`} href={link} className="card-footer-item">
@@ -25,11 +27,11 @@ const Card = ({ cardImage, cardContent, cardFooter }) => {
     )
 
   return (
-    <div className="card">
+    <section className="card">
       {renderImage()}
       {renderContent()}
       {renderFooter()}
-    </div>
+    </section>
   )
 }
 
