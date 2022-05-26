@@ -1,0 +1,21 @@
+{
+  "testCardContent": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur",
+  "testBaseImage": {
+    "src": "https://bulma.io/images/placeholders/1280x960.png",
+    "altText": "Test base image"
+  },
+  "testFooterItems": [
+    {
+      "label": "Save",
+      "link": "#"
+    },
+    {
+      "label": "Edit",
+      "link": "#"
+    },
+    {
+      "label": "Delete",
+      "link": "#"
+    }
+  ]
+}

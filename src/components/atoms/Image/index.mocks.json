@@ -1,0 +1,38 @@
+{
+  "minimalConfig": {
+    "src": "https://bulma.io/images/placeholders/64x64.png",
+    "altText": "Test base image"
+  },
+  "bigImage": {
+    "src": "https://bulma.io/images/placeholders/256x256.png",
+    "altText": "Test base image"
+  },
+  "roundedImage": {
+    "isRounded": true
+  },
+  "3by2": {
+    "src": "https://bulma.io/images/placeholders/480x320.png",
+    "altText": "Test image, 3by2 = 480x320",
+    "ratio": "3by2"
+  },
+  "5by3": {
+    "src": "https://bulma.io/images/placeholders/800x480.png",
+    "altText": "Test image, 5by3 = 800x480",
+    "ratio": "5by3"
+  },
+  "16by9": {
+    "src": "https://bulma.io/images/placeholders/640x360.png",
+    "altText": "Test image, 16by9 = 640x360",
+    "ratio": "16by9"
+  },
+  "3by5": {
+    "src": "https://bulma.io/images/placeholders/480x800.png",
+    "altText": "Test image, 3by5 = 480x800",
+    "ratio": "3by5"
+  },
+  "9by16": {
+    "src": "https://bulma.io/images/placeholders/360x640.png",
+    "altText": "Test image, 9by16 = 360x640",
+    "ratio": "9by16"
+  }
+}
