@@ -12,7 +12,7 @@ const mockOneChild = (i = null) => {
 }
 
 describe('[GridLayout]', () => {
-  test('Should render the component with required props only', () => {
+  test.skip('Should render the component with required props only', () => {
     render(<GridLayout />)
 
     expect(() => screen.getByTestId('grid-layout-test-0')).toThrow()

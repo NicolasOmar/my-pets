@@ -17,3 +17,23 @@ export const GET_COLORS = gql`
     }
   }
 `
+
+export const GET_MY_PETS = gql`
+  query {
+    getMyPets {
+      name
+      petType {
+        name
+      }
+      birthday
+      isAdopted
+      adoptionDate
+      hairColors {
+        name
+      }
+      eyeColors {
+        name
+      }
+    }
+  }
+`

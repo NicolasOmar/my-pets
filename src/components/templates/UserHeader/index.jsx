@@ -43,6 +43,10 @@ const UserHeader = ({ name }) => {
             onClickItem: () => navigate(APP_ROUTES.ADD_PET)
           },
           {
+            itemLabel: 'See My Pets',
+            onClickItem: () => navigate(APP_ROUTES.LIST_MY_PETS)
+          },
+          {
             itemLabel: 'Update User',
             onClickItem: () => navigate(APP_ROUTES.UPDATE_USER)
           },
