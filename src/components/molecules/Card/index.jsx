@@ -1,5 +1,5 @@
 import React from 'react'
-import { arrayOf, element, elementType, oneOfType, shape, string } from 'prop-types'
+import { array, arrayOf, element, elementType, oneOfType, shape, string } from 'prop-types'
 // COMPONENTS
 import Image from '../../atoms/Image'
 
@@ -38,7 +38,7 @@ const Card = ({ cardImage, cardContent, cardFooter }) => {
 export default Card
 
 Card.propTypes = {
-  cardImage: Image.propTypes,
-  cardContent: oneOfType([element, elementType]).isRequired,
+  cardImage: shape(Image.propTypes),
+  cardContent: oneOfType([element, elementType, array]).isRequired,
   cardFooter: arrayOf(shape({ label: string, link: string }))
 }
