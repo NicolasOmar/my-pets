@@ -15,14 +15,17 @@ const CardsDisplayer = ({ cardsListTitle, cardListData = [] }) => {
           cardContent: (
             <>
               {cardTitle && <TitleHeader key={`card-title-${cardI}`} {...cardTitle} />}
-              {cardContent.map((_content, contI) => (
-                <section
-                  key={`card-content-section-${cardI}${contI}`}
-                  className={cardTitle && !contI ? 'card-body' : ''}
-                >
-                  {_content}
-                </section>
-              ))}
+              {cardContent.map(
+                (_content, contI) =>
+                  _content && (
+                    <section
+                      key={`card-content-section-${cardI}${contI}`}
+                      className={cardTitle && !contI ? 'card-body' : ''}
+                    >
+                      {_content}
+                    </section>
+                  )
+              )}
             </>
           ),
           cardFooter,

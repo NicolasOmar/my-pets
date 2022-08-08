@@ -55,7 +55,7 @@ const AddPetPage = () => {
       variables: { petInfo }
     })
 
-    navigate(APP_ROUTES.HOME)
+    navigate(APP_ROUTES.LIST_MY_PETS)
   }
 
   const onInputBlurChange = formData => {

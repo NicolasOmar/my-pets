@@ -1,4 +1,5 @@
 import validator from 'validator'
+import { DateTime } from 'luxon'
 import inputClasses from '../constants/input-classes.json'
 
 export const mergeGraphObj = (graphObj, originalObj) => {
@@ -69,7 +70,12 @@ export const parseNumber = number =>
 export const parseBooleanStrings = (boolean, trueString, falseString) =>
   boolean ? trueString : falseString
 
-export const parseDate = date => (!!date && validator.isDate(date) ? new Date(date) : null)
+export const parseDate = date => (!!date && validator.isDate(date) ? new Date(+date) : null)
+
+export const parseDateString = (date, nullValue = null, format = 'dd/LL/yyyy') =>
+  date ? DateTime.fromMillis(+date).toFormat(format) : nullValue
+
+export const parseStringToList = (rawList, prop) => rawList.map(item => item[prop]).join(', ')
 
 export const parseFormData = (formData = null) =>
   formData
