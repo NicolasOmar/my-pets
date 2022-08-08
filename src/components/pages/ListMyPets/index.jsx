@@ -3,8 +3,12 @@ import React, { useEffect, useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { GET_MY_PETS } from '../../../graphql/queries'
 // COMPONENTS
-import CardsDisplayer from '../../templates/CardsDisplayer'
-import { parseBooleanStrings, parseDateString, parseStringToList } from '../../../functions/parsers'
+import CardsListTemplate from '../../templates/CardsListTemplate'
+import {
+  parseBooleanStrings,
+  parseDateString,
+  parseArrayToString
+} from '../../../functions/parsers'
 
 const ListMyPets = () => {
   const { loading, data } = useQuery(GET_MY_PETS, { fetchPolicy: 'network-only' })
@@ -39,8 +43,8 @@ const ListMyPets = () => {
                   `Yes, ${parseDateString(adoptionDate, '-')}`,
                   'No'
                 )}`,
-                `Hair: ${parseStringToList(hairColors, 'name')}`,
-                `Eyes: ${parseStringToList(eyeColors, 'name')}`
+                `Hair: ${parseArrayToString(hairColors, 'name')}`,
+                `Eyes: ${parseArrayToString(eyeColors, 'name')}`
               ],
               cardFooter: [
                 { label: 'Update', link: '/' },
@@ -54,7 +58,7 @@ const ListMyPets = () => {
     [data]
   )
 
-  return !loading && <CardsDisplayer {...{ cardsListTitle, cardListData: petsInfo }} />
+  return !loading && <CardsListTemplate {...{ cardsListTitle, cardListData: petsInfo }} />
 }
 
 export default ListMyPets

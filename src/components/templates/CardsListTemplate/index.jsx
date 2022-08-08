@@ -6,7 +6,7 @@ import Card from '../../molecules/Card'
 import GridLayout from '../../molecules/GridLayout'
 import TitleHeader from '../../atoms/TitleHeader'
 
-const CardsDisplayer = ({ cardsListTitle, cardListData = [] }) => {
+const CardsListTemplate = ({ cardsListTitle, cardListData = [] }) => {
   const parseCardsList = () =>
     cardListData.map(
       ({ key, cardImage, cardTitle, cardContent, cardFooter, childWidth = 3 }, cardI) => {
@@ -49,9 +49,9 @@ const CardsDisplayer = ({ cardsListTitle, cardListData = [] }) => {
   )
 }
 
-export default CardsDisplayer
+export default CardsListTemplate
 
-CardsDisplayer.propTypes = {
+CardsListTemplate.propTypes = {
   cardsListTitle: shape(TitleHeader.propTypes),
   cardListData: arrayOf(
     shape({

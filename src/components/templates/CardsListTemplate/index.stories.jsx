@@ -1,5 +1,5 @@
 import React from 'react'
-import CardsDisplayer from '.'
+import CardsListTemplate from '.'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // CARD MOCKS
@@ -15,14 +15,14 @@ const renderCards = number =>
     }))
 
 export default {
-  title: `${STORYBOOK_ROUTES.TEMPLATES}/CardsDisplayed`,
-  component: CardsDisplayer,
+  title: `${STORYBOOK_ROUTES.TEMPLATES}/CardsListTemplate`,
+  component: CardsListTemplate,
   args: {
     cardListData: renderCards(1)
   }
 }
 
-const Template = args => <CardsDisplayer {...args} />
+const Template = args => <CardsListTemplate {...args} />
 
 export const DisplayOneCard = Template.bind({})
 DisplayOneCard.storyName = 'Display 1 card'

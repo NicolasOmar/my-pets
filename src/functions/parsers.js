@@ -75,7 +75,7 @@ export const parseDate = date => (!!date && validator.isDate(date) ? new Date(+d
 export const parseDateString = (date, nullValue = null, format = 'dd/LL/yyyy') =>
   date ? DateTime.fromMillis(+date).toFormat(format) : nullValue
 
-export const parseStringToList = (rawList, prop) => rawList.map(item => item[prop]).join(', ')
+export const parseArrayToString = (rawList, prop) => rawList.map(item => item[prop]).join(', ')
 
 export const parseFormData = (formData = null) =>
   formData
