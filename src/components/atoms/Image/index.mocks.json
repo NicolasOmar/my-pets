@@ -5,9 +5,11 @@
   },
   "bigImage": {
     "src": "https://bulma.io/images/placeholders/256x256.png",
-    "altText": "Test base image"
+    "altText": "Test big image"
   },
   "roundedImage": {
+    "src": "https://bulma.io/images/placeholders/256x256.png",
+    "altText": "Test rounded image",
     "isRounded": true
   },
   "3by2": {

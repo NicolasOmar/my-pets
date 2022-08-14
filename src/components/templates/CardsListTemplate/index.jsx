@@ -1,12 +1,13 @@
 import React from 'react'
 import './index.scss'
-import { arrayOf, number, shape } from 'prop-types'
+import { arrayOf, bool, number, shape } from 'prop-types'
 // COMPONENTS
 import Card from '../../molecules/Card'
 import GridLayout from '../../molecules/GridLayout'
 import TitleHeader from '../../atoms/TitleHeader'
+import Spinner from '../../atoms/Spinner'
 
-const CardsListTemplate = ({ cardsListTitle, cardListData = [] }) => {
+const CardsListTemplate = ({ isFetching = false, cardsListTitle, cardListData = [] }) => {
   const parseCardsList = () =>
     cardListData.map(
       ({ key, cardImage, cardTitle, cardContent, cardFooter, childWidth = 3 }, cardI) => {
@@ -19,7 +20,7 @@ const CardsListTemplate = ({ cardsListTitle, cardListData = [] }) => {
                 (_content, contI) =>
                   _content && (
                     <section
-                      key={`card-content-section-${cardI}${contI}`}
+                      key={`card-content-section-${cardI}-${contI}`}
                       className={cardTitle && !contI ? 'card-body' : ''}
                     >
                       {_content}
@@ -36,7 +37,9 @@ const CardsListTemplate = ({ cardsListTitle, cardListData = [] }) => {
       }
     )
 
-  return (
+  return isFetching ? (
+    <Spinner />
+  ) : (
     <GridLayout
       {...{
         width: 12,
@@ -52,6 +55,7 @@ const CardsListTemplate = ({ cardsListTitle, cardListData = [] }) => {
 export default CardsListTemplate
 
 CardsListTemplate.propTypes = {
+  isFetching: bool,
   cardsListTitle: shape(TitleHeader.propTypes),
   cardListData: arrayOf(
     shape({

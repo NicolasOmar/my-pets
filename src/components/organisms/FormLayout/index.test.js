@@ -18,7 +18,6 @@ describe('[FormLayout]', () => {
 
   test('Should render with the button group', () => {
     render(<FormLayout {...{ ...minimalConfig, ...withButtons }} />)
-    console.log(<FormLayout {...{ ...minimalConfig, ...withButtons }} />)
     const btnGroupForm = screen.getByTestId('test-button-group')
     expect(btnGroupForm).toBeInTheDocument()
   })

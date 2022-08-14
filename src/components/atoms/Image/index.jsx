@@ -11,10 +11,11 @@ const Image = ({ src, altText, styles = {}, fixedRatio, ratio, isRounded = false
     : imageRatios[ratio]
     ? `image ${imageRatios[ratio]}`
     : 'image'
-  const imgClass = isRounded && 'is-rounded'
+  const imgClass = isRounded ? 'is-rounded' : ''
+  const testId = altText.toLowerCase().replace(' ', '-')
 
   return (
-    <figure className={figureClass} style={styles}>
+    <figure data-testid={testId} className={figureClass} style={styles}>
       <img src={src} alt={altText} className={imgClass} />
     </figure>
   )

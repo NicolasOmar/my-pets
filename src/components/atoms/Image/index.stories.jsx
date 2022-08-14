@@ -9,7 +9,6 @@ import { imageRatios } from '../../../constants/bulma-styles.json'
 // FUNCITONS
 import { parseObjKeys } from '../../../functions/parsers'
 
-console.warn(parseObjKeys(imageRatios))
 export default {
   title: `${STORYBOOK_ROUTES.ATOMS}/Image`,
   component: Image,
