@@ -3,7 +3,7 @@ import { cleanup, render, screen } from '@testing-library/react'
 import Spinner from '../../atoms/Spinner'
 import NavBar from '.'
 // MOCKS
-import { startConfig, endConfig, withDropdownConfig } from './index.mocks.json'
+import { startConfig, endConfig } from './index.mocks.json'
 
 const checkExists = sectionId => expect(screen.getByTestId(sectionId)).toBeInTheDocument()
 

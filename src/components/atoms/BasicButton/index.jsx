@@ -41,7 +41,7 @@ const BasicButton = ({
 export default BasicButton
 
 BasicButton.propTypes = {
-  // BASE BUTTON PROPS
+  // BASE PROPS
   type: oneOf(buttonTypes).isRequired,
   label: string.isRequired,
   isDisabled: bool,

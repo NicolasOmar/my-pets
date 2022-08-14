@@ -5,12 +5,14 @@ import TitleHeader from '../../atoms/TitleHeader'
 import GridLayout from '../../molecules/GridLayout'
 
 const BasicFrame = ({ header, width = 8, centerGrid = false, children }) => {
-  const styles = {
+  const headerStyles = {
     marginTop: '30px',
     marginBottom: '15px'
   }
   const renderHeader = () =>
-    header ? <TitleHeader key="header-title-header" {...{ ...header, styles }} /> : null
+    header ? (
+      <TitleHeader key="header-title-header" {...{ ...header, styles: headerStyles }} />
+    ) : null
 
   return (
     <GridLayout {...{ width, centerGrid }}>

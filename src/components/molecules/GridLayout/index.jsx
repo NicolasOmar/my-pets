@@ -1,56 +1,72 @@
 import React from 'react'
-import { element, array, oneOfType, oneOf, bool } from 'prop-types'
+import { element, array, oneOfType, oneOf, bool, object } from 'prop-types'
 // CONSTANTS
 import { columnSizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
 import { parseObjKeys } from '../../../functions/parsers'
 
 const GridLayout = ({
+  children = [],
   width = parseObjKeys(columnSizes)[0],
   centerGrid = false,
-  children = []
+  styles = {}
 }) => {
   const columnsStyle = centerGrid ? 'columns is-centered' : 'columns'
-  const renderChild = childNode => {
-    const columnClass = childNode.props?.childWidth
-      ? columnSizes[childNode.props?.childWidth]
-      : columnSizes[width]
-    return <div className={`column ${columnClass}`}>{childNode}</div>
+  const renderChild = (childNode, i = 0) => {
+    const columnClass = columnSizes[childNode.props?.childWidth || width]
+    return (
+      <section
+        key={`column-${i}`}
+        data-testid={`test-column-${i}`}
+        className={`column ${columnClass}`}
+        style={styles}
+      >
+        {childNode}
+      </section>
+    )
   }
 
   return Array.isArray(children) ? (
     children.every(childNode => childNode.props?.childWidth) ? (
-      <div
-        data-testid={`grid-layout-test`}
+      <section
         key={`grid-layout`}
+        data-testid={`test-grid-layout`}
         className={`${columnsStyle} is-multiline`}
+        style={styles}
       >
-        {children.filter(childNode => childNode).map(childNode => renderChild(childNode))}
-      </div>
+        {children.filter(childNode => childNode).map((childNode, i) => renderChild(childNode, i))}
+      </section>
     ) : (
       children
         .filter(childNode => childNode)
         .map((childNode, i) => (
-          <div
-            data-testid={`grid-layout-test-${i}`}
+          <section
             key={`grid-layout-${i}`}
+            data-testid={`test-grid-layout-${i}`}
             className={columnsStyle}
+            style={styles}
           >
             {renderChild(childNode)}
-          </div>
+          </section>
         ))
     )
   ) : (
-    <div data-testid={`grid-layout-test`} className={columnsStyle}>
+    <section
+      key={`grid-layout`}
+      data-testid={`test-grid-layout`}
+      className={columnsStyle}
+      style={styles}
+    >
       {renderChild(children)}
-    </div>
+    </section>
   )
 }
 
 export default GridLayout
 
 GridLayout.propTypes = {
+  children: oneOfType([element, array]),
   width: oneOf(parseObjKeys(columnSizes, true)),
   centerGrid: bool,
-  children: oneOfType([element, array])
+  styles: object
 }

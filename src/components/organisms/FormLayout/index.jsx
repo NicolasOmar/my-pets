@@ -80,58 +80,49 @@ const FormLayout = ({
     }
   }
 
-  const renderInputs = () =>
-    Object.keys(formControls).map((prop, i) => {
-      const { isVisible, isDisabled, label, control } = formControls[prop]
-      const divider = Array.isArray(dividers) && dividers.find(({ after }) => after === control)
-
-      return (
-        <>
-          {isVisible && (
-            <FormInput
-              key={`input-${prop}-${i}`}
-              inputLabel={label}
-              isLoading={isLoading}
-              inputConfig={{
-                ...formControls[prop],
-                isDisabled: isDisabled || isLoading,
-                onInputChange,
-                onBlurChange
-              }}
-            />
-          )}
-          {divider && <Divider key={`divider-after-${control}`} {...divider} />}
-        </>
-      )
-    })
-
-  const renderButtons = () =>
-    formButtons && (
-      <>
-        <Divider
-          key="form-button-group-divider"
-          color={'grey'}
-          style={{ margin: '25px 0 20px 0' }}
-        />
-        <ButtonGroup key="form-button-group" buttons={formButtons.map(btn => ({ ...btn }))} />
-      </>
-    )
-
-  const renderErrors = () =>
-    errors && (
-      <Message
-        key="form-error-message"
-        msgType={'error'}
-        headerText={'New Errors'}
-        messages={errors.graphQLErrors[0].message.split(',')}
-      />
-    )
-
   return (
-    <form data-testid="form" key="form-layout-base" className={formClass} onSubmit={onSubmit}>
-      {renderInputs()}
-      {renderButtons()}
-      {renderErrors()}
+    <form key="form-base" data-testid="test-form-base" className={formClass} onSubmit={onSubmit}>
+      {Object.keys(formControls).map((prop, i) => {
+        const { isVisible, isDisabled, label, control } = formControls[prop]
+        const divider = Array.isArray(dividers) && dividers.find(({ after }) => after === control)
+
+        return (
+          <>
+            {isVisible && (
+              <FormInput
+                key={`input-${prop}-${i}`}
+                inputLabel={label}
+                isLoading={isLoading}
+                inputConfig={{
+                  ...formControls[prop],
+                  isDisabled: isDisabled || isLoading,
+                  onInputChange,
+                  onBlurChange
+                }}
+              />
+            )}
+            {divider && <Divider key={`divider-after-${control}`} {...divider} />}
+          </>
+        )
+      })}
+      {formButtons && (
+        <>
+          <Divider
+            key="form-button-group-divider"
+            color={'grey'}
+            style={{ margin: '25px 0 20px 0' }}
+          />
+          <ButtonGroup key="form-button-group" buttons={formButtons.map(btn => ({ ...btn }))} />
+        </>
+      )}
+      {errors && (
+        <Message
+          key="form-error-message"
+          msgType={'error'}
+          headerText={'New Errors'}
+          messages={errors.graphQLErrors[0].message.split(',')}
+        />
+      )}
     </form>
   )
 }

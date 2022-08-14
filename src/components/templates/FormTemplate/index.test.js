@@ -6,7 +6,7 @@ import LoginPageConfigMock from '../../pages/LoginPage/config.json'
 describe('[FormTemplate]', () => {
   test('Should render the component with required props only', () => {
     render(<FormTemplate {...LoginPageConfigMock} />)
-    const formElement = screen.getByTestId('form')
+    const formElement = screen.getByTestId('test-form-base')
     expect(formElement).toBeInTheDocument()
   })
 })

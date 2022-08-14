@@ -32,7 +32,7 @@ const RadioCheckGroup = ({ options, type, name, onInputChange, onBlurChange }) =
   }
 
   return (
-    <section data-testid="radio-check-group" className="control">
+    <section data-testid="test-radio-check-group" className="control">
       {Array.isArray(groupOptions) &&
         groupOptions.map((item, i) => (
           <BasicRadioCheck

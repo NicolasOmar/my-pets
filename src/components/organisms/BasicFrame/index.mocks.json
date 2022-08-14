@@ -11,5 +11,5 @@
       { "type": "button", "color": "danger", "label": "Second Button" }
     ]
   },
-  "headerTestIds": ["grid-layout-test-0", "test-title", "sub-test-title"]
+  "headerTestIds": ["test-grid-layout-0", "test-title", "test-sub-title"]
 }
