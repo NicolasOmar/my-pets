@@ -35,17 +35,20 @@ describe('[UserHeader]', () => {
   })
 
   test('Should render each option and execute user redirection', () => {
-    const testRoutes = [APP_ROUTES.UPDATE_USER, APP_ROUTES.UPDATE_PASS, APP_ROUTES.LOGIN]
+    const testRoutes = [
+      APP_ROUTES.ADD_PET,
+      APP_ROUTES.LIST_MY_PETS,
+      APP_ROUTES.UPDATE_USER,
+      APP_ROUTES.UPDATE_PASS
+    ]
 
     testConfig.options.forEach((optionLabel, i) => {
       const menuOption = screen.getByText(optionLabel)
       expect(menuOption).toBeInTheDocument()
 
-      if (i <= 1) {
-        fireEvent.click(menuOption)
-        expect(mockUseNavigate).toHaveBeenCalled()
-        expect(mockUseNavigate).toHaveBeenCalledWith(testRoutes[i])
-      }
+      fireEvent.click(menuOption)
+      expect(mockUseNavigate).toHaveBeenCalled()
+      expect(mockUseNavigate).toHaveBeenCalledWith(testRoutes[i])
     })
   })
 })

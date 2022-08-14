@@ -2,9 +2,10 @@
   "testConfig": {
     "name": "User Name",
     "options": [
+      "Add Pet",
+      "See My Pets",
       "Update User",
-      "Update Pass",
-      "Logout"
+      "Update Pass"
     ]
   }
 }

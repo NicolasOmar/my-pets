@@ -2,7 +2,7 @@ import React from 'react'
 import CardsListTemplate from '.'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
-// CARD MOCKS
+// MOCKS
 import cardMocks from '../../molecules/Card/index.mocks.json'
 
 const renderCards = number =>
