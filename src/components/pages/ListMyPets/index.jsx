@@ -4,6 +4,8 @@ import { useQuery } from '@apollo/client'
 import { GET_MY_PETS } from '../../../graphql/queries'
 // COMPONENTS
 import CardsListTemplate from '../../templates/CardsListTemplate'
+import Spinner from '../../atoms/Spinner'
+// PARSERS
 import {
   parseBooleanStrings,
   parseDateString,
@@ -58,7 +60,11 @@ const ListMyPets = () => {
     [data]
   )
 
-  return !loading && <CardsListTemplate {...{ cardsListTitle, cardListData: petsInfo }} />
+  return loading ? (
+    <Spinner />
+  ) : (
+    <CardsListTemplate {...{ cardsListTitle, cardListData: petsInfo }} />
+  )
 }
 
 export default ListMyPets

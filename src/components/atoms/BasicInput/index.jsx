@@ -1,5 +1,5 @@
 import React from 'react'
-import { bool, func, string, number, oneOf } from 'prop-types'
+import { bool, func, string, number, oneOf, object } from 'prop-types'
 // CONSTANTS
 import { inputTypes } from '../../../constants/tag-types.json'
 import { colors, sizes } from '../../../constants/bulma-styles.json'
@@ -15,6 +15,7 @@ const BasicInput = ({
   placeHolder = null,
   minLength = null,
   maxLength = null,
+  styles = {},
   color = parseObjKeys(colors)[3],
   size = parseObjKeys(sizes)[1],
   isRounded = false,
@@ -24,9 +25,11 @@ const BasicInput = ({
   const inputClass = parseCssClasses({ isRounded }, 'input', [colors[color], sizes[size]])
   return (
     <input
-      data-testid={`${control}-${type}`}
+      key={`${control}-${type}`}
+      data-testid={`test-${control}-${type}`}
       type={type}
       className={inputClass}
+      style={styles}
       value={value}
       placeholder={placeHolder}
       required={isRequired}
@@ -54,6 +57,7 @@ BasicInput.propTypes = {
   minLength: number,
   maxLength: number,
   // STYLE PROPS
+  styles: object,
   color: oneOf(parseObjKeys(colors)),
   size: oneOf(parseObjKeys(sizes)),
   isRounded: bool,

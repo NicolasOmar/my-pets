@@ -9,7 +9,8 @@ const BasicFrame = ({ header, width = 8, centerGrid = false, children }) => {
     marginTop: '30px',
     marginBottom: '15px'
   }
-  const renderHeader = () => (header ? <TitleHeader {...{ ...header, styles }} /> : null)
+  const renderHeader = () =>
+    header ? <TitleHeader key="header-title-header" {...{ ...header, styles }} /> : null
 
   return (
     <GridLayout {...{ width, centerGrid }}>

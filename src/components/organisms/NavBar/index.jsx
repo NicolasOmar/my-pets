@@ -12,7 +12,7 @@ const NavBar = ({ icon = null, start = null, end = null }) => {
   const renderBrand = icon =>
     icon && (
       <section data-testid="navbar-brand" className="navbar-brand">
-        <NavBarItem>{icon}</NavBarItem>
+        <NavBarItem key="navbar-brand">{icon}</NavBarItem>
       </section>
     )
 

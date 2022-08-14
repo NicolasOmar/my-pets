@@ -5,7 +5,7 @@ import BasicInput from '.'
 import { minimalConfig } from './index.mocks.json'
 
 describe('[BasicInput]', () => {
-  const minimalInputTestId = `${minimalConfig.control}-${minimalConfig.type}`
+  const minimalInputTestId = `test-${minimalConfig.control}-${minimalConfig.type}`
 
   test('Should render the component with required props only', () => {
     render(<BasicInput {...minimalConfig} />)

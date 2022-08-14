@@ -7,8 +7,8 @@ import { parseObjKeys, parseCssClasses } from '../../../functions/parsers'
 
 const TitleHeader = ({
   titleText,
-  titleSize = Object.keys(fontSizes)[4],
   subText = null,
+  titleSize = Object.keys(fontSizes)[4],
   subSize = Object.keys(fontSizes)[2],
   isCentered = false,
   styles = {}
@@ -20,11 +20,11 @@ const TitleHeader = ({
 
   return (
     <section style={styles}>
-      <p data-testid={'test-title'} className={classes.title}>
+      <p key={'title'} data-testid={'test-title'} className={classes.title}>
         {titleText}
       </p>
       {subText && (
-        <p data-testid={'sub-test-title'} className={classes.subTitle}>
+        <p key={'sub-title'} data-testid={'test-sub-title'} className={classes.subTitle}>
           {subText}
         </p>
       )}
@@ -36,8 +36,9 @@ export default TitleHeader
 
 TitleHeader.propTypes = {
   titleText: string.isRequired,
-  titleSize: oneOf(parseObjKeys(fontSizes)),
   subText: string,
+  // STYLE PROPS
+  titleSize: oneOf(parseObjKeys(fontSizes)),
   subSize: oneOf(parseObjKeys(fontSizes)),
   isCentered: bool,
   styles: object

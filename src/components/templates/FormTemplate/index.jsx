@@ -32,7 +32,11 @@ const FormTemplate = ({
     <BasicFrame
       {...{
         header,
-        children: isFetching ? <Spinner /> : <FormLayout {...formConfig} />,
+        children: isFetching ? (
+          <Spinner key="form-spinner" />
+        ) : (
+          <FormLayout key="form-layout" {...formConfig} />
+        ),
         centerGrid: true
       }}
     />

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { arrayOf, bool, func, number, shape, string, oneOf } from 'prop-types'
+import { arrayOf, bool, func, number, shape, string, oneOf, object } from 'prop-types'
 // CONSTANTS
 import { colors, sizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
@@ -14,6 +14,7 @@ const BasicSelect = ({
   optionsShown = 1,
   isMultiple = false,
   firstNullOption = false,
+  styles = {},
   color = parseObjKeys(colors)[3],
   size = parseObjKeys(sizes)[1],
   isRounded = false,
@@ -21,6 +22,7 @@ const BasicSelect = ({
   onInputChange,
   onBlurChange
 }) => {
+  const multipleString = isMultiple ? 'multiple' : 'single'
   const selectClass = parseCssClasses({ isMultiple, isLoading, isRounded }, 'select', [
     colors[color],
     sizes[size]
@@ -73,9 +75,10 @@ const BasicSelect = ({
   }
 
   return (
-    <section className={selectClass}>
+    <section key={`${multipleString}-${control}-section`} className={selectClass} style={styles}>
       <select
-        data-testid={`test-${isMultiple ? 'multiple' : 'single'}-${control}`}
+        key={`${multipleString}-${control}`}
+        data-testid={`test-${multipleString}-${control}`}
         multiple={isMultiple}
         size={isMultiple ? optionsShown : 1}
         required={isRequired}
@@ -88,8 +91,8 @@ const BasicSelect = ({
         {Array.isArray(parsedOptions) &&
           parsedOptions.map(({ label, value }, i) => (
             <option
-              data-testid={`test-select-option-${i}`}
               key={`select-option-${i}`}
+              data-testid={`test-select-option-${i}`}
               value={value}
             >
               {label}
@@ -119,6 +122,7 @@ BasicSelect.propTypes = {
   isMultiple: bool,
   firstNullOption: bool,
   // STYLE PROPS
+  styles: object,
   color: oneOf(parseObjKeys(colors)),
   size: oneOf(parseObjKeys(sizes)),
   isRounded: bool,

@@ -11,11 +11,11 @@ import { parseCssClasses, parseObjKeys } from '../../../functions/parsers'
 const ButtonGroup = ({ buttons, isCentered = true }) => {
   const btnGroupClass = parseCssClasses({ isCentered }, 'buttons', ['has-addons'])
   return (
-    <div data-testid="button-group" className={btnGroupClass}>
+    <section data-testid="button-group" className={btnGroupClass}>
       {buttons.map((button, i) => (
         <BasicButton key={`btn-${button.color}-${i}`} {...button} />
       ))}
-    </div>
+    </section>
   )
 }
 

@@ -7,19 +7,19 @@ import { minimalConfig } from './index.mocks.json'
 describe('[Message]', () => {
   test('Should render the component with required props only', () => {
     render(<Message {...minimalConfig} />)
-    const minimalMsgBlock = screen.getByTestId(`${minimalConfig.msgType}-msg`)
+    const minimalMsgBlock = screen.getByTestId(`test-${minimalConfig.msgType}-msg`)
     expect(minimalMsgBlock).toBeInTheDocument()
   })
 
   test('Should render the component with header', () => {
     render(<Message {...{ ...minimalConfig, headerText: 'test' }} />)
-    const headerMsgBlock = screen.getByTestId(`${minimalConfig.msgType}-message-header`)
+    const headerMsgBlock = screen.getByTestId(`test-${minimalConfig.msgType}-message-header`)
     expect(headerMsgBlock).toBeInTheDocument()
   })
 
   test('Should render the component with a error msg', () => {
     render(<Message {...minimalConfig} />)
-    const singleMsgBlock = screen.getByTestId(`${minimalConfig.msgType}-msg`)
+    const singleMsgBlock = screen.getByTestId(`test-${minimalConfig.msgType}-msg`)
     expect(singleMsgBlock).toBeInTheDocument()
   })
 
@@ -31,7 +31,7 @@ describe('[Message]', () => {
     render(<Message {...{ ...minimalConfig, messages }} />)
 
     messages.forEach((_, i) => {
-      const multipleMsgBlock = screen.getByTestId(`${minimalConfig.msgType}-msg-${i}`)
+      const multipleMsgBlock = screen.getByTestId(`test-${minimalConfig.msgType}-msg-${i}`)
       expect(multipleMsgBlock).toBeInTheDocument()
     })
   })

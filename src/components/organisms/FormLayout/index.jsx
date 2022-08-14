@@ -89,7 +89,7 @@ const FormLayout = ({
         <>
           {isVisible && (
             <FormInput
-              key={`${prop}-${i}`}
+              key={`input-${prop}-${i}`}
               inputLabel={label}
               isLoading={isLoading}
               inputConfig={{
@@ -108,14 +108,19 @@ const FormLayout = ({
   const renderButtons = () =>
     formButtons && (
       <>
-        <Divider color={'grey'} style={{ margin: '25px 0 20px 0' }} />
-        <ButtonGroup buttons={formButtons.map(btn => ({ ...btn }))} />
+        <Divider
+          key="form-button-group-divider"
+          color={'grey'}
+          style={{ margin: '25px 0 20px 0' }}
+        />
+        <ButtonGroup key="form-button-group" buttons={formButtons.map(btn => ({ ...btn }))} />
       </>
     )
 
   const renderErrors = () =>
     errors && (
       <Message
+        key="form-error-message"
         msgType={'error'}
         headerText={'New Errors'}
         messages={errors.graphQLErrors[0].message.split(',')}
@@ -123,7 +128,7 @@ const FormLayout = ({
     )
 
   return (
-    <form data-testid="form" className={formClass} onSubmit={onSubmit}>
+    <form data-testid="form" key="form-layout-base" className={formClass} onSubmit={onSubmit}>
       {renderInputs()}
       {renderButtons()}
       {renderErrors()}

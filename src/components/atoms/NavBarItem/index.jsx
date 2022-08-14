@@ -1,11 +1,23 @@
 import React from 'react'
-import { string, bool, func, element, array, oneOfType } from 'prop-types'
+import { string, bool, func, element, array, oneOfType, object } from 'prop-types'
 
-const NavBarItem = ({ itemLabel = null, isLink = false, onClickItem, children = null }) => {
+const NavBarItem = ({
+  children = null,
+  itemLabel = null,
+  isLink = false,
+  styles = {},
+  onClickItem
+}) => {
   const itemStyle = isLink && !children ? 'navbar-link' : 'navbar-item'
 
   return (
-    <div data-testid={`navbar-item`} className={itemStyle} onClick={onClickItem}>
+    <div
+      key={`${itemStyle}`}
+      data-testid={`test-${itemStyle}`}
+      className={itemStyle}
+      style={styles}
+      onClick={onClickItem}
+    >
       {children || itemLabel}
     </div>
   )
@@ -14,8 +26,11 @@ const NavBarItem = ({ itemLabel = null, isLink = false, onClickItem, children = 
 export default NavBarItem
 
 NavBarItem.propTypes = {
+  children: oneOfType([element, array]),
   itemLabel: string,
+  // STYLE PROPS
   isLink: bool,
-  onClickItem: func,
-  children: oneOfType([element, array])
+  styles: object,
+  // FUNCTIONS
+  onClickItem: func
 }
