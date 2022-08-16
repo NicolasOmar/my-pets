@@ -12,23 +12,23 @@ const interactWithInput = (input, value) => {
 describe('[FormLayout]', () => {
   test('Should render the component with required props only', () => {
     render(<FormLayout {...minimalConfig} />)
-    const minimalForm = screen.getByTestId('form')
+    const minimalForm = screen.getByTestId('test-form-base')
     expect(minimalForm).toBeInTheDocument()
   })
 
   test('Should render with the button group', () => {
     render(<FormLayout {...{ ...minimalConfig, ...withButtons }} />)
-    const btnGroupForm = screen.getByTestId('button-group')
+    const btnGroupForm = screen.getByTestId('test-button-group')
     expect(btnGroupForm).toBeInTheDocument()
   })
 
   test('Should render with errors', () => {
     render(<FormLayout {...{ ...minimalConfig, ...withErrors }} />)
-    const errorForm = screen.getByTestId('error-message-header')
+    const errorForm = screen.getByTestId('test-error-message-header')
     expect(errorForm).toBeInTheDocument()
 
     withErrors.errors.graphQLErrors[0].message.split(', ').forEach((_, i) => {
-      const errorFormElm = screen.getByTestId(`error-msg-${i}`)
+      const errorFormElm = screen.getByTestId(`test-error-msg-${i}`)
       expect(errorFormElm).toBeInTheDocument()
     })
   })
@@ -49,9 +49,9 @@ describe('[FormLayout]', () => {
       />
     )
 
-    const email = screen.getByTestId(`${emailInput.control}-${emailInput.type}`)
-    const pass = screen.getByTestId(`${passInput.control}-${passInput.type}`)
-    const submitBtn = screen.getByTestId(`${type}-button-${color}`)
+    const email = screen.getByTestId(`test-${emailInput.control}-${emailInput.type}`)
+    const pass = screen.getByTestId(`test-${passInput.control}-${passInput.type}`)
+    const submitBtn = screen.getByTestId(`test-${type}-button-${color}`)
 
     interactWithInput(email, 'test@test.com')
     interactWithInput(pass, 'testtest')
@@ -77,8 +77,8 @@ describe('[FormLayout]', () => {
       />
     )
 
-    const email = screen.getByTestId(`${emailInput.control}-${emailInput.type}`)
-    const submitBtn = screen.getByTestId(`${type}-button-${color}`)
+    const email = screen.getByTestId(`test-${emailInput.control}-${emailInput.type}`)
+    const submitBtn = screen.getByTestId(`test-${type}-button-${color}`)
 
     emailValues.forEach(value => interactWithInput(email, value))
     fireEvent.click(submitBtn)

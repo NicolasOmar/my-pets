@@ -4,8 +4,8 @@ import BasicRadioCheck from '.'
 // MOCKS
 import { minimalConfig } from './index.mocks.json'
 
-describe('[BasicRadioButton', () => {
-  const minimalInputTestId = `${minimalConfig.control}-${minimalConfig.type}`
+describe('[BasicRadioButton]', () => {
+  const minimalInputTestId = `test-${minimalConfig.control}-${minimalConfig.type}`
 
   test('Should render the component with required props only', () => {
     render(<BasicRadioCheck {...minimalConfig} />)

@@ -1,5 +1,5 @@
 import React from 'react'
-import { bool, func, oneOf, oneOfType, string } from 'prop-types'
+import { bool, func, object, oneOf, oneOfType, string } from 'prop-types'
 // CONSTANTS
 import { checkTypes } from '../../../constants/tag-types.json'
 
@@ -11,16 +11,17 @@ const BasicRadioCheck = ({
   isDisabled = false,
   name = null,
   label = null,
+  styles = { marginRight: '5px' },
   onInputChange,
   onBlurChange
 }) => {
   const inputValue = label?.toLowerCase().replace(' ', '')
-  const styles = { marginRight: '5px' }
 
   return (
     <label className={type} style={styles}>
       <input
-        data-testid={`${control}-${type}`}
+        key={`${control}-${type}`}
+        data-testid={`test-${control}-${type}`}
         type={type}
         name={name}
         value={inputValue}
@@ -48,6 +49,8 @@ BasicRadioCheck.propTypes = {
   // RADIO/CHECK INPUT PROPS
   name: string,
   label: string,
+  // STYLE PROPS
+  styles: object,
   // FUNCTIONS
   onInputChange: func,
   onBlurChange: func

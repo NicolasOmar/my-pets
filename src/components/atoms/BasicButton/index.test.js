@@ -4,7 +4,7 @@ import BasicButton from '.'
 import { minimalConfig, disabled } from './index.mocks.json'
 
 describe('[BasicButton]', () => {
-  let btnTestId = `${minimalConfig.type}-button-${minimalConfig.color}`
+  let btnTestId = `test-${minimalConfig.type}-button-${minimalConfig.color}`
 
   test('Should render the component with required props only', () => {
     render(<BasicButton {...minimalConfig} />)

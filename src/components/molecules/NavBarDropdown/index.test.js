@@ -1,13 +1,13 @@
 // MOCKS
 import { render, screen } from '@testing-library/react'
 import NavBarDropdown from '.'
-import { minimalConfig, withOneItem, withSeveralItems } from './index.mocks.json'
+import { minimalConfig, withOneItem } from './index.mocks.json'
 
 describe('[NavBarDropdown]', () => {
   test('Should render the component with required props only', () => {
     render(<NavBarDropdown {...minimalConfig} />)
-    const testSection = screen.getByTestId('navbar-dropdown')
-    const testLabel = screen.getByTestId('navbar-dropdown-label')
+    const testSection = screen.getByTestId('test-navbar-dropdown')
+    const testLabel = screen.getByTestId('test-navbar-dropdown-label')
     const testLabelText = screen.getByText(minimalConfig.label)
 
     expect(testSection).toBeInTheDocument()

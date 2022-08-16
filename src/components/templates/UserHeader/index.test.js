@@ -1,5 +1,5 @@
 import { MockedProvider } from '@apollo/client/testing'
-import { fireEvent, render, screen } from '@testing-library/react'
+import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
 // APP_ROUTES
@@ -9,7 +9,8 @@ import reducers from '../../../redux/reducers'
 // COMPONENTS
 import UserHeader from '.'
 // MOCKS
-import { testConfig } from './index.mocks.json'
+import { testConfig, logoutMock } from './index.mocks.json'
+import { LOGOUT } from '../../../graphql/mutations'
 
 const mockUseNavigate = jest.fn()
 
@@ -19,15 +20,26 @@ jest.mock('react-router-dom', () => ({
 }))
 
 describe('[UserHeader]', () => {
+  const _logout = [
+    {
+      ...logoutMock,
+      request: {
+        ...logoutMock.request,
+        query: LOGOUT
+      }
+    }
+  ]
   beforeEach(() => {
     render(
       <Provider store={configureStore({ reducer: reducers })}>
-        <MockedProvider mocks={[]} addTypename={false}>
+        <MockedProvider mocks={_logout} addTypename={false}>
           <UserHeader name={testConfig.name} />
         </MockedProvider>
       </Provider>
     )
   })
+
+  afterEach(() => cleanup())
 
   test('Should render the component with required props only', () => {
     const element = screen.getByText(testConfig.name.toUpperCase())
@@ -35,17 +47,24 @@ describe('[UserHeader]', () => {
   })
 
   test('Should render each option and execute user redirection', () => {
-    const testRoutes = [APP_ROUTES.UPDATE_USER, APP_ROUTES.UPDATE_PASS, APP_ROUTES.LOGIN]
+    // const onLogoutMock = jets.fn()
+    const testRoutes = [
+      APP_ROUTES.ADD_PET,
+      APP_ROUTES.LIST_MY_PETS,
+      APP_ROUTES.UPDATE_USER,
+      APP_ROUTES.UPDATE_PASS,
+      APP_ROUTES.LOGIN
+    ]
 
-    testConfig.options.forEach((optionLabel, i) => {
+    testConfig.options.forEach(async (optionLabel, i) => {
       const menuOption = screen.getByText(optionLabel)
-      expect(menuOption).toBeInTheDocument()
+      fireEvent.click(menuOption)
 
-      if (i <= 1) {
-        fireEvent.click(menuOption)
+      await waitFor(() => {
+        expect(menuOption).toBeInTheDocument()
         expect(mockUseNavigate).toHaveBeenCalled()
         expect(mockUseNavigate).toHaveBeenCalledWith(testRoutes[i])
-      }
+      })
     })
   })
 })

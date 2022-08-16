@@ -9,6 +9,7 @@ import NewUserPage from '../pages/NewUserPage'
 import UpdateUserPage from '../pages/UpdateUserPage'
 import UpdatePasswordPage from '../pages/UpdatePassPage'
 import AddPetPage from '../pages/AddPetPage'
+import ListMyPets from '../pages/ListMyPets'
 // CONSTANTS
 import { APP_ROUTES } from '../../constants/routes.json'
 
@@ -25,6 +26,7 @@ const App = () => {
         <Route exact path={APP_ROUTES.UPDATE_USER} element={<UpdateUserPage />} />
         <Route exact path={APP_ROUTES.UPDATE_PASS} element={<UpdatePasswordPage />} />
         <Route exact path={APP_ROUTES.ADD_PET} element={<AddPetPage />} />
+        <Route exact path={APP_ROUTES.LIST_MY_PETS} element={<ListMyPets />} />
         <Route exact path={APP_ROUTES.BASE} element={<Navigate replace to={APP_ROUTES.LOGIN} />} />
       </Routes>
     </BrowserRouter>

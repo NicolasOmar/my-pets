@@ -1,5 +1,5 @@
 import React from 'react'
-import { bool, string, oneOfType, shape } from 'prop-types'
+import { bool, string, oneOfType, shape, object } from 'prop-types'
 // COMPONENTS
 import Label from '../../atoms/Label'
 import BasicInput from '../../atoms/BasicInput'
@@ -30,11 +30,16 @@ const parseFormInput = inputConfig => {
   )
 }
 
-const FormInput = ({ inputLabel = null, isLoading = false, inputConfig }) => {
+const FormInput = ({ inputLabel = null, isLoading = false, inputConfig, styles = {} }) => {
   const controlClass = parseCssClasses({ isLoading }, 'control')
 
   return (
-    <section className="field" data-testid={`test-form-${inputConfig.type}`}>
+    <section
+      key={`field-${inputConfig.type}-${inputConfig.control}`}
+      data-testid={`test-field-${inputConfig.type}-${inputConfig.control}`}
+      className="field"
+      style={styles}
+    >
       <Label labelText={inputLabel} isRequired={inputConfig.isRequired} />
       <section className={controlClass}>{parseFormInput(inputConfig)}</section>
     </section>
@@ -50,5 +55,6 @@ FormInput.propTypes = {
     shape(BasicInput.propTypes),
     shape(RadioCheckGroup.propTypes),
     shape(BasicSelect.propTypes)
-  ]).isRequired
+  ]).isRequired,
+  styles: object
 }

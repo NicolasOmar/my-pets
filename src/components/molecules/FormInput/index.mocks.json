@@ -25,14 +25,17 @@
     "inputConfig": {
       "options": [
         {
+          "type": "checkbox",
           "control": "testCheckboxControl",
           "label": "Check 1"
         },
         {
+          "type": "checkbox",
           "control": "testCheckboxControl",
           "label": "Check 2"
         },
         {
+          "type": "checkbox",
           "control": "testCheckboxControl",
           "label": "Check 3"
         }

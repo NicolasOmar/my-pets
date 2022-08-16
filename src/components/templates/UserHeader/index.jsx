@@ -19,14 +19,13 @@ const UserHeader = ({ name }) => {
 
   const onLogout = async () => {
     try {
-      logout().then(() => {
-        clearAllStorage()
-        dispatch({
-          type: 'LOGOUT',
-          payload: null
-        })
-        navigate(APP_ROUTES.LOGIN)
+      await logout()
+      clearAllStorage()
+      dispatch({
+        type: 'LOGOUT',
+        payload: null
       })
+      navigate(APP_ROUTES.LOGIN)
     } catch (e) {
       console.warn('e', e)
     }
@@ -41,6 +40,10 @@ const UserHeader = ({ name }) => {
           {
             itemLabel: 'Add Pet',
             onClickItem: () => navigate(APP_ROUTES.ADD_PET)
+          },
+          {
+            itemLabel: 'See My Pets',
+            onClickItem: () => navigate(APP_ROUTES.LIST_MY_PETS)
           },
           {
             itemLabel: 'Update User',

@@ -1,19 +1,18 @@
 import React from 'react'
-import { string, array, element, shape, bool, oneOf, oneOfType } from 'prop-types'
+import { shape } from 'prop-types'
 // COMPONENTS
 import TitleHeader from '../../atoms/TitleHeader'
 import GridLayout from '../../molecules/GridLayout'
-// CONSTANTS
-import { columnSizes, fontSizes } from '../../../constants/bulma-styles.json'
-// FUNCTIONS
-import { parseObjKeys } from '../../../functions/parsers'
 
 const BasicFrame = ({ header, width = 8, centerGrid = false, children }) => {
-  const styles = {
+  const headerStyles = {
     marginTop: '30px',
     marginBottom: '15px'
   }
-  const renderHeader = () => (header ? <TitleHeader {...{ ...header, styles }} /> : null)
+  const renderHeader = () =>
+    header ? (
+      <TitleHeader key="header-title-header" {...{ ...header, styles: headerStyles }} />
+    ) : null
 
   return (
     <GridLayout {...{ width, centerGrid }}>
@@ -26,14 +25,6 @@ const BasicFrame = ({ header, width = 8, centerGrid = false, children }) => {
 export default BasicFrame
 
 BasicFrame.propTypes = {
-  header: shape({
-    titleText: string.isRequired,
-    subText: string,
-    titleSize: oneOf(parseObjKeys(fontSizes)),
-    subSize: oneOf(parseObjKeys(fontSizes)),
-    isCentered: bool
-  }),
-  width: oneOf(parseObjKeys(columnSizes, true)),
-  centerGrid: bool,
-  children: oneOfType([element, array])
+  header: shape(TitleHeader.propTypes),
+  ...GridLayout.propTypes
 }

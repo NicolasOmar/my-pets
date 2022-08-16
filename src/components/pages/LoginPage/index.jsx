@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 // GRAPHQL CLIENT
@@ -12,12 +12,14 @@ import { inputs, header, loginButton, goToSignUpButton } from './config.json'
 import { APP_ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
 import { encryptPass } from '../../../functions/encrypt'
-import { setLoggedUser } from '../../../functions/local-storage'
+import { getLoggedUser, setLoggedUser } from '../../../functions/local-storage'
 
 const LoginPage = () => {
   let navigate = useNavigate()
   const [login, { loading, error }] = useMutation(LOGIN)
   const dispatch = useDispatch()
+
+  useEffect(() => getLoggedUser() && navigate(APP_ROUTES.HOME), [navigate])
 
   const onSubmitLogin = async formData => {
     login({

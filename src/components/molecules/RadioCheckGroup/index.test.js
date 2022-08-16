@@ -7,7 +7,7 @@ describe('[RadioCheckGroup]', () => {
   test('Should render the component with required props only', () => {
     render(<RadioCheckGroup {...minimalConfig} />)
 
-    const testGroupSection = screen.getByTestId('radio-check-group')
+    const testGroupSection = screen.getByTestId('test-radio-check-group')
     expect(testGroupSection).toBeInTheDocument()
 
     minimalConfig.options.forEach(({ label }) => {
@@ -27,7 +27,7 @@ describe('[RadioCheckGroup]', () => {
 
     render(<RadioCheckGroup {...groupWithMethods} />)
 
-    const testOption = screen.getByTestId(`${singleOption.control}-${groupWithMethods.type}`)
+    const testOption = screen.getByTestId(`test-${singleOption.control}-${groupWithMethods.type}`)
 
     fireEvent.blur(testOption)
     expect(groupWithMethods.onBlurChange).toHaveBeenCalled()

@@ -5,13 +5,18 @@ import { textColors } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
 import { parseObjKeys } from '../../../functions/parsers'
 
-const Divider = ({ color = parseObjKeys(textColors)[0], style = { borderTop: '1px solid' } }) => (
-  <hr style={style} className={`${textColors[color]}`} data-testid={`test-${color}-divider`} />
+const Divider = ({ color = parseObjKeys(textColors)[0], styles = { borderTop: '1px solid' } }) => (
+  <hr
+    key={`divider-${color}`}
+    data-testid={`test-divider-${color}`}
+    style={styles}
+    className={`${textColors[color]}`}
+  />
 )
 
 export default Divider
 
 Divider.propTypes = {
   color: oneOf(parseObjKeys(textColors)),
-  style: object
+  styles: object
 }

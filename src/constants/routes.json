@@ -6,7 +6,8 @@
     "ADD_PET": "/add-pet",
     "NEW_USER": "/new-user",
     "UPDATE_USER": "/update-user",
-    "UPDATE_PASS": "/update-pass"
+    "UPDATE_PASS": "/update-pass",
+    "LIST_MY_PETS": "/my-pets"
   },
   "STORYBOOK_ROUTES": {
     "ATOMS": "MyPets/Atoms",
