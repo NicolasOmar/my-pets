@@ -5,7 +5,18 @@
       "Add Pet",
       "See My Pets",
       "Update User",
-      "Update Pass"
+      "Update Pass",
+      "Logout"
     ]
+  },
+  "logoutMock": {
+    "request": {
+      "query": "LOGOUT"
+    },
+    "result": {
+      "data": {
+        "logout": true
+      }
+    }
   }
 }

@@ -19,14 +19,13 @@ const UserHeader = ({ name }) => {
 
   const onLogout = async () => {
     try {
-      logout().then(() => {
-        clearAllStorage()
-        dispatch({
-          type: 'LOGOUT',
-          payload: null
-        })
-        navigate(APP_ROUTES.LOGIN)
+      await logout()
+      clearAllStorage()
+      dispatch({
+        type: 'LOGOUT',
+        payload: null
       })
+      navigate(APP_ROUTES.LOGIN)
     } catch (e) {
       console.warn('e', e)
     }
