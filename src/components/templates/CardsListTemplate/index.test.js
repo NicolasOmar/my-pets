@@ -9,7 +9,8 @@ describe('[CardListTemplate]', () => {
   const renderCards = number =>
     Array(number)
       .fill(null)
-      .map(() => ({
+      .map((_, i) => ({
+        cardTitle: { titleText: `Test card ${i}` },
         cardImage: cardMocks.testBaseImage,
         cardContent: [cardMocks.testCardContent],
         cardFooter: cardMocks.testFooterItems
@@ -23,7 +24,10 @@ describe('[CardListTemplate]', () => {
     expect(screen.getAllByTestId('test-card-content').length).toBe(items)
   }
 
-  test('Should render the component with required props only', () => renderCardListCases(3))
+  test('Should render the component with required props only', () => {
+    renderCardListCases(3)
+    expect(screen.getAllByTestId('test-title').length).toBe(3)
+  })
 
   test('Should render the component with isFetching', () => {
     render(<CardsListTemplate {...{ cardListData: renderCards(5), isFetching: true }} />)
@@ -31,7 +35,7 @@ describe('[CardListTemplate]', () => {
   })
 
   test('Should render the component with title included', () => {
-    renderCardListCases(1, { cardsListTitle: mocks.cardsListTitle })
-    expect(screen.getByTestId('test-title')).toBeInTheDocument()
+    renderCardListCases(5, { cardsListTitle: mocks.cardsListTitle })
+    expect(screen.getAllByTestId('test-title').length).toBe(6)
   })
 })
