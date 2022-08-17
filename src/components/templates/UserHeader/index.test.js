@@ -4,13 +4,14 @@ import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
 // APP_ROUTES
 import { APP_ROUTES } from '../../../constants/routes.json'
+// GRAPHQL
+import { LOGOUT } from '../../../graphql/mutations'
 // REDUX
 import reducers from '../../../redux/reducers'
 // COMPONENTS
 import UserHeader from '.'
 // MOCKS
 import { testConfig, logoutMock } from './index.mocks.json'
-import { LOGOUT } from '../../../graphql/mutations'
 
 const mockUseNavigate = jest.fn()
 
