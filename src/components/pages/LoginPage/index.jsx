@@ -29,7 +29,7 @@ const LoginPage = () => {
       })
       navigate(APP_ROUTES.HOME)
     }
-  }, [data])
+  }, [data, dispatch, navigate])
 
   const onSubmitLogin = async formData => {
     await login({
