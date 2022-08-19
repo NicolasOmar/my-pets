@@ -4,13 +4,14 @@ import HomePage from '.'
 // HELPER FUNCTIONS
 import { setLoggedUser } from '../../../functions/local-storage'
 
-describe.skip('[HomePage]', () => {
-  describe('[HAPPY PATH]', () => {
-    test('Renders with a dummy logged User', () => {
-      setLoggedUser({ name: 'Test' })
-      render(<HomePage />)
-      const element = screen.getByText(`HELLO TEST`)
-      expect(element).toBeInTheDocument()
-    })
+describe('[HomePage]', () => {
+  beforeAll(() => {
+    const name = 'Test User'
+    setLoggedUser({ name })
+  })
+
+  test('Renders with a dummy logged User', () => {
+    render(<HomePage />)
+    expect(screen.getByText(`HELLO ${name.toUpperCase()}`)).toBeInTheDocument()
   })
 })
