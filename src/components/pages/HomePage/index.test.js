@@ -4,9 +4,10 @@ import HomePage from '.'
 // HELPER FUNCTIONS
 import { setLoggedUser } from '../../../functions/local-storage'
 
+const name = 'Test User'
+
 describe('[HomePage]', () => {
   beforeAll(() => {
-    const name = 'Test User'
     setLoggedUser({ name })
   })
 
