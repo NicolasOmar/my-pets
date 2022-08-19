@@ -7,6 +7,7 @@
     "NEW_USER": "/new-user",
     "UPDATE_USER": "/update-user",
     "UPDATE_PASS": "/update-pass",
+    "UPDATE_PET": "/update-pet",
     "LIST_MY_PETS": "/my-pets"
   },
   "STORYBOOK_ROUTES": {

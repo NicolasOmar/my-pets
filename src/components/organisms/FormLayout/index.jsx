@@ -109,7 +109,7 @@ const FormLayout = ({
         <>
           <Divider
             key="form-button-group-divider"
-            color={'grey'}
+            color={'grey-light'}
             style={{ margin: '25px 0 20px 0' }}
           />
           <ButtonGroup key="form-button-group" buttons={formButtons.map(btn => ({ ...btn }))} />

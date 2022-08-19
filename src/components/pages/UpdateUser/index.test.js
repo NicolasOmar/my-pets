@@ -7,7 +7,7 @@ import { configureStore } from '@reduxjs/toolkit'
 // REDUX
 import reducer from '../../../redux/reducers'
 // COMPONENTS
-import UpdateUserPage from '.'
+import UpdateUser from '.'
 // MOCKS
 import { inputs } from './config.json'
 
@@ -22,12 +22,12 @@ jest.mock('../../../functions/local-storage', () => ({
   getLoggedUser: () => ({ name: 'test', lastName: 'test' })
 }))
 
-describe('[UpdateUserPage]', () => {
+describe('[UpdateUser]', () => {
   test('Should render the page with its inputs', () => {
     render(
       <Provider store={configureStore({ reducer })}>
         <MockedProvider mocks={[]} addTypename={false}>
-          <UpdateUserPage />
+          <UpdateUser />
         </MockedProvider>
       </Provider>
     )

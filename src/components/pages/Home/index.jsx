@@ -4,7 +4,7 @@ import TitleHeader from '../../atoms/TitleHeader'
 // HELPER FUNCTIONS
 import { getLoggedUser } from '../../../functions/local-storage'
 
-const HomePage = () => {
+const Home = () => {
   const [user] = useState(getLoggedUser())
   const homeTextConfig = {
     titleText: `HELLO ${user?.name?.toUpperCase()}`,
@@ -20,4 +20,4 @@ const HomePage = () => {
   return <TitleHeader {...homeTextConfig} />
 }
 
-export default HomePage
+export default Home

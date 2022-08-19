@@ -4,7 +4,7 @@ import { MockedProvider } from '@apollo/client/testing'
 // import { APP_ROUTES } from '../../../constants/routes.json'
 // GRAPHQL
 // COMPONENTS
-import UpdatePassPage from '.'
+import UpdatePass from '.'
 // MOCKS
 import { inputs } from './config.json'
 
@@ -15,11 +15,11 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockUseNavigate
 }))
 
-describe('[UpdatePassPage]', () => {
+describe('[UpdatePass]', () => {
   test('Should render the page with its inputs', () => {
     render(
       <MockedProvider mocks={[]} addTypename={false}>
-        <UpdatePassPage />
+        <UpdatePass />
       </MockedProvider>
     )
 

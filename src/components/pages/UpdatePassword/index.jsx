@@ -12,7 +12,7 @@ import { APP_ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
 import { encryptPass } from '../../../functions/encrypt'
 
-const UpdatePassPage = () => {
+const UpdatePass = () => {
   let navigate = useNavigate()
   const [updatePass, { loading, error }] = useMutation(UPDATE_PASS)
 
@@ -69,4 +69,4 @@ const UpdatePassPage = () => {
   )
 }
 
-export default UpdatePassPage
+export default UpdatePass

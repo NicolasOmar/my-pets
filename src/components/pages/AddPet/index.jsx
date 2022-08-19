@@ -27,7 +27,7 @@ const getPropsIds = (prop, list, searchMultiple = false) => {
     : list?.find(({ name }) => prop === name)?.id
 }
 
-const AddPetPage = () => {
+const AddPet = () => {
   let navigate = useNavigate()
   const [createPet, { loading: loadingCreate, error: errorCreate }] = useMutation(CREATE_PET)
   const { loading: loadingPetTypes, data: petTypes } = useQuery(GET_PET_TYPES)
@@ -35,7 +35,7 @@ const AddPetPage = () => {
 
   const onSubmitNewPet = async formData => {
     const petObj = parseFormData(formData)
-
+    console.warn(petObj, petObj?.adoptionDate)
     const petInfo = {
       ...petObj,
       birthday: parseDate(petObj?.birthday),
@@ -136,4 +136,4 @@ const AddPetPage = () => {
   )
 }
 
-export default AddPetPage
+export default AddPet

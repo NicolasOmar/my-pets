@@ -70,7 +70,8 @@ export const parseNumber = number =>
 export const parseBooleanStrings = (boolean, trueString, falseString) =>
   boolean ? trueString : falseString
 
-export const parseDate = date => (!!date && validator.isDate(date) ? new Date(+date) : null)
+export const parseDate = date =>
+  !!date && validator.isDate(date) ? new Date(!!+date || date) : null
 
 export const parseDateString = (date, nullValue = null, format = 'dd/LL/yyyy') =>
   date ? DateTime.fromMillis(+date).toFormat(format) : nullValue

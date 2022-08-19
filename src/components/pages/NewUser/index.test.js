@@ -8,7 +8,7 @@ import { APP_ROUTES } from '../../../constants/routes.json'
 // REDUX
 import reducer from '../../../redux/reducers'
 // COMPONENTS
-import NewUserPage from '.'
+import NewUser from '.'
 // MOCKS
 import { inputs, goToLoginButton } from './config.json'
 
@@ -19,12 +19,12 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockUseNavigate
 }))
 
-describe('[NewUserPage]', () => {
+describe('[NewUser]', () => {
   test('Should render the page with its inputs', () => {
     render(
       <Provider store={configureStore({ reducer })}>
         <MockedProvider mocks={[]} addTypename={false}>
-          <NewUserPage />
+          <NewUser />
         </MockedProvider>
       </Provider>
     )
@@ -39,7 +39,7 @@ describe('[NewUserPage]', () => {
     render(
       <Provider store={configureStore({ reducer })}>
         <MockedProvider mocks={[]} addTypename={false}>
-          <NewUserPage />
+          <NewUser />
         </MockedProvider>
       </Provider>
     )

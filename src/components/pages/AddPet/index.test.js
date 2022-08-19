@@ -4,7 +4,7 @@ import { MockedProvider } from '@apollo/client/testing'
 // GRAPHQL
 // REDUX
 // COMPONENTS
-import AddPetPage from '.'
+import AddPet from '.'
 // MOCKS
 import { inputs } from './config.json'
 
@@ -15,11 +15,11 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockUseNavigate
 }))
 
-describe('[AddPetPage]', () => {
+describe('[AddPet]', () => {
   test('Should render the page with its inputs', () => {
     render(
       <MockedProvider mocks={[]} addTypename={false}>
-        <AddPetPage />
+        <AddPet />
       </MockedProvider>
     )
 

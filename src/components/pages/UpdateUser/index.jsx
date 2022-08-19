@@ -14,7 +14,7 @@ import { APP_ROUTES } from '../../../constants/routes.json'
 import { getLoggedUser, setLoggedUser } from '../../../functions/local-storage'
 import { mergeGraphObj } from '../../../functions/parsers'
 
-const UpdateUserPage = () => {
+const UpdateUser = () => {
   let navigate = useNavigate()
   const [formObject, setFormObject] = useState(inputs)
   const [updateUser, { data, loading, error }] = useMutation(UPDATE_USER)
@@ -60,4 +60,4 @@ const UpdateUserPage = () => {
   )
 }
 
-export default UpdateUserPage
+export default UpdateUser

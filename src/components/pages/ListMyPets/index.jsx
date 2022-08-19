@@ -17,6 +17,7 @@ const ListMyPets = () => {
 
   const cardsListTitle = {
     titleText: 'My list of Pets',
+    titleSize: 'big',
     isCentered: true,
     childWidth: 12,
     styles: {

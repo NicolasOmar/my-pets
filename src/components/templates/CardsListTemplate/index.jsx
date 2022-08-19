@@ -42,7 +42,7 @@ const CardsListTemplate = ({ isFetching = false, cardsListTitle, cardListData = 
   ) : (
     <GridLayout
       {...{
-        width: 12,
+        width: 9,
         centerGrid: true,
         children: cardsListTitle
           ? [<TitleHeader key="cards-title" {...cardsListTitle} />, ...parseCardsList()]

@@ -9,7 +9,7 @@ import { LOGIN } from '../../../graphql/mutations'
 // REDUX
 import reducer from '../../../redux/reducers'
 // COMPONENTS
-import LoginPage from '.'
+import Login from '.'
 // MOCKS
 import { loginUserMock } from './index.mocks.json'
 import { inputs, loginButton, goToSignUpButton } from './config.json'
@@ -25,12 +25,12 @@ jest.mock('../../../functions/encrypt', () => ({
   encryptPass: () => 'encryptedPass'
 }))
 
-describe('[LoginPage]', () => {
+describe('[Login]', () => {
   test('Should render the page with its inputs', () => {
     render(
       <Provider store={configureStore({ reducer })}>
         <MockedProvider mocks={[]} addTypename={false}>
-          <LoginPage />
+          <Login />
         </MockedProvider>
       </Provider>
     )
@@ -64,7 +64,7 @@ describe('[LoginPage]', () => {
     render(
       <Provider store={configureStore({ reducer })}>
         <MockedProvider mocks={mocks} addTypename={false}>
-          <LoginPage />
+          <Login />
         </MockedProvider>
       </Provider>
     )
@@ -91,7 +91,7 @@ describe('[LoginPage]', () => {
     render(
       <Provider store={configureStore({ reducer })}>
         <MockedProvider mocks={[]} addTypename={false}>
-          <LoginPage />
+          <Login />
         </MockedProvider>
       </Provider>
     )
