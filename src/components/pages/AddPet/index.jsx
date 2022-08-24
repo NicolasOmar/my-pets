@@ -35,7 +35,7 @@ const AddPet = () => {
 
   const onSubmitNewPet = async formData => {
     const petObj = parseFormData(formData)
-    console.warn(petObj, petObj?.adoptionDate)
+
     const petInfo = {
       ...petObj,
       birthday: parseDate(petObj?.birthday),
