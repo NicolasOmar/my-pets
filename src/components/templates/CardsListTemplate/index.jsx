@@ -59,8 +59,8 @@ CardsListTemplate.propTypes = {
   cardsListTitle: shape(TitleHeader.propTypes),
   cardListData: arrayOf(
     shape({
-      cardTitle: shape(TitleHeader.propTypes),
       ...Card.propTypes,
+      cardTitle: shape(TitleHeader.propTypes),
       childWidth: number
     })
   ).isRequired

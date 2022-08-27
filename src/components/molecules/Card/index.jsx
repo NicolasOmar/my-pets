@@ -1,5 +1,15 @@
 import React from 'react'
-import { array, arrayOf, element, elementType, object, oneOfType, shape, string } from 'prop-types'
+import {
+  array,
+  arrayOf,
+  element,
+  elementType,
+  func,
+  object,
+  oneOfType,
+  shape,
+  string
+} from 'prop-types'
 // COMPONENTS
 import Image from '../../atoms/Image'
 
@@ -19,10 +29,10 @@ const Card = ({ cardImage = null, cardContent, cardFooter = [], styles = {} }) =
     )
 
   const renderFooter = () =>
-    cardFooter.length && (
+    cardFooter.length > 0 && (
       <footer data-testid={'test-card-footer'} className="card-footer">
-        {cardFooter.map(({ label, link }, i) => (
-          <a key={`card-footer-item-${i}`} href={link} className="card-footer-item">
+        {cardFooter.map(({ label, onClick }, i) => (
+          <a key={`card-footer-item-${i}`} onClick={onClick} className="card-footer-item">
             {label}
           </a>
         ))}
@@ -43,6 +53,6 @@ export default Card
 Card.propTypes = {
   cardImage: shape(Image.propTypes),
   cardContent: oneOfType([element, elementType, array]).isRequired,
-  cardFooter: arrayOf(shape({ label: string, link: string })),
+  cardFooter: arrayOf(shape({ label: string, onClick: func })),
   styles: object
 }

@@ -26,10 +26,15 @@ const App = () => {
         <Route exact path={APP_ROUTES.NEW_USER} element={<NewUser />} />
         <Route exact path={APP_ROUTES.UPDATE_USER} element={<UpdateUser />} />
         <Route exact path={APP_ROUTES.UPDATE_PASS} element={<UpdatePassword />} />
-        <Route exact path={APP_ROUTES.UPDATE_PET} element={<UpdatePet />} />
+        <Route path={`${APP_ROUTES.UPDATE_PET}/:petName`} element={<UpdatePet />} />
         <Route exact path={APP_ROUTES.ADD_PET} element={<AddPet />} />
         <Route exact path={APP_ROUTES.LIST_MY_PETS} element={<ListMyPets />} />
         <Route exact path={APP_ROUTES.BASE} element={<Navigate replace to={APP_ROUTES.LOGIN} />} />
+        <Route
+          exact
+          path={APP_ROUTES.UPDATE_PET}
+          element={<Navigate replace to={APP_ROUTES.LIST_MY_PETS} />}
+        />
       </Routes>
     </BrowserRouter>
   )

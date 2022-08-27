@@ -3,18 +3,18 @@ import FormTemplate from '.'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // CONFIG AS MOCK
-import LoginPageConfigMock from '../../pages/Login/config.json'
-import NewUserPageConfigMock from '../../pages/NewUser/config.json'
-import UpdateUserPageConfigMock from '../../pages/UpdateUser/config.json'
-import UpdatePassPageConfigMock from '../../pages/UpdatePass/config.json'
-import AddPetPageConfigMock from '../../pages/AddPet/config.json'
+import LoginPageConfig from '../../pages/Login/config.json'
+import NewUserPageConfig from '../../pages/NewUser/config.json'
+import UpdateUserPageConfig from '../../pages/UpdateUser/config.json'
+import UpdatePassPageConfig from '../../pages/UpdatePassword/config.json'
+import AddPetPageConfig from '../../pages/AddPet/config.json'
 
 export default {
   title: `${STORYBOOK_ROUTES.TEMPLATES}/FormTemplate`,
   component: FormTemplate,
   args: {
-    ...LoginPageConfigMock,
-    formButtons: [LoginPageConfigMock.loginButton, LoginPageConfigMock.goToSignUpButton]
+    ...LoginPageConfig,
+    formButtons: [LoginPageConfig.loginButton, LoginPageConfig.goToSignUpButton]
   }
 }
 
@@ -26,27 +26,27 @@ LoginExample.storyName = 'Login'
 export const NewUserExample = Template.bind({})
 NewUserExample.storyName = 'New User'
 NewUserExample.args = {
-  ...NewUserPageConfigMock,
-  formButtons: [NewUserPageConfigMock.signUpButton, NewUserPageConfigMock.goToLoginButton]
+  ...NewUserPageConfig,
+  formButtons: [NewUserPageConfig.signUpButton, NewUserPageConfig.goToLoginButton]
 }
 
 export const UpdateUserExample = Template.bind({})
 UpdateUserExample.storyName = 'Update User'
 UpdateUserExample.args = {
-  ...UpdateUserPageConfigMock,
-  formButtons: [UpdateUserPageConfigMock.saveButton, UpdateUserPageConfigMock.goBackButton]
+  ...UpdateUserPageConfig,
+  formButtons: [UpdateUserPageConfig.saveButton, UpdateUserPageConfig.goBackButton]
 }
 
 export const UpdatePassExample = Template.bind({})
 UpdatePassExample.storyName = 'Update Password'
 UpdatePassExample.args = {
-  ...UpdatePassPageConfigMock,
-  formButtons: [UpdatePassPageConfigMock.updateButton, UpdatePassPageConfigMock.cancelButton]
+  ...UpdatePassPageConfig,
+  formButtons: [UpdatePassPageConfig.updateButton, UpdatePassPageConfig.cancelButton]
 }
 
 export const AddPetExtample = Template.bind({})
 AddPetExtample.storyName = 'App Pet'
 AddPetExtample.args = {
-  ...AddPetPageConfigMock,
-  formButtons: [AddPetPageConfigMock.addPetButton, AddPetPageConfigMock.goToHomeButton]
+  ...AddPetPageConfig,
+  formButtons: [AddPetPageConfig.addPetButton, AddPetPageConfig.goToHomeButton]
 }

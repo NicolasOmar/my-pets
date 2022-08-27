@@ -5,17 +5,8 @@
     "altText": "Test base image"
   },
   "testFooterItems": [
-    {
-      "label": "Save",
-      "link": "#"
-    },
-    {
-      "label": "Edit",
-      "link": "#"
-    },
-    {
-      "label": "Delete",
-      "link": "#"
-    }
+    { "label": "Save" },
+    { "label": "Edit" },
+    { "label": "Delete" }
   ]
 }

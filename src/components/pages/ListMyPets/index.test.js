@@ -10,6 +10,13 @@ import reducer from '../../../redux/reducers'
 import ListMyPets from '.'
 // MOCKS
 
+const mockUseNavigate = jest.fn()
+
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockUseNavigate
+}))
+
 describe('[ListMyPets]', () => {
   test('Should render the page with its inputs', () => {
     render(
