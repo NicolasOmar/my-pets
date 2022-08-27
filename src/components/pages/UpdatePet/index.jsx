@@ -52,7 +52,7 @@ const UpdatePet = () => {
 
       setIsBlankForm(false)
     }
-  }, [petData])
+  }, [petData, petTypes, colors])
 
   return (
     <FormTemplate

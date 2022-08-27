@@ -32,7 +32,7 @@ const Card = ({ cardImage = null, cardContent, cardFooter = [], styles = {} }) =
     cardFooter.length > 0 && (
       <footer data-testid={'test-card-footer'} className="card-footer">
         {cardFooter.map(({ label, onClick }, i) => (
-          <a key={`card-footer-item-${i}`} onClick={onClick} className="card-footer-item">
+          <a key={`card-footer-item-${i}`} href="/" onClick={onClick} className="card-footer-item">
             {label}
           </a>
         ))}

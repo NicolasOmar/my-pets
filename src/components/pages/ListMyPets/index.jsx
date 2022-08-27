@@ -45,7 +45,13 @@ const ListMyPets = () => {
                 `Eyes: ${parseArrayToString(eyeColors, 'name')}`
               ],
               cardFooter: [
-                { label: 'Update', onClick: () => navigate(`${APP_ROUTES.UPDATE_PET}/${name}`) }
+                {
+                  label: 'Update',
+                  onClick: evt => {
+                    evt.preventDefault()
+                    navigate(`${APP_ROUTES.UPDATE_PET}/${name}`)
+                  }
+                }
                 // { label: 'Remove', onClick: () => navigate(APP_ROUTES.ADD_PET) }
               ],
               childWidth: 3
