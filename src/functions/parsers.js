@@ -84,3 +84,10 @@ export const parseFormData = (formData = null) =>
         .map(key => ({ [key]: formData[key] ?? null }))
         .reduce((finalObj, currentProp) => ({ ...finalObj, ...currentProp }), {})
     : {}
+
+export const parseIdsToStrings = (ids = [], stringList = null) =>
+  Array.isArray(ids)
+    ? ids.map(({ id }) => (stringList ? stringList.find(_string => _string.id === id).name : id))
+    : stringList
+    ? stringList.find(_string => _string.id === ids.id).name
+    : ids.id

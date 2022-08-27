@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { arrayOf, bool, func, number, shape, string, oneOf, object } from 'prop-types'
+import { arrayOf, bool, func, number, shape, string, oneOf, object, oneOfType } from 'prop-types'
 // CONSTANTS
 import { colors, sizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
@@ -111,7 +111,7 @@ BasicSelect.propTypes = {
   isRequired: bool,
   isDisabled: bool,
   // SELECT INPUT PROPS
-  selected: string,
+  selected: oneOfType([arrayOf(string), string]),
   options: arrayOf(
     shape({
       label: string,

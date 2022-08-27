@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 // GRAPHQL CLIENT
 import { useLazyQuery, useQuery } from '@apollo/client'
@@ -10,26 +10,55 @@ import { header, inputs, dividers, addPetButton, goToList } from './config.json'
 // CONSTANTS
 import { APP_ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
-import { parseDropdownOptions } from '../../../functions/parsers'
+import { parseDropdownOptions, parseIdsToStrings } from '../../../functions/parsers'
 
 const UpdatePet = () => {
   const params = useParams()
   let navigate = useNavigate()
-  const { loading: loadingPetTypes, data: petTypes } = useQuery(GET_PET_TYPES)
-  const { loading: loadingColors, data: colors } = useQuery(GET_COLORS)
-  const [getPet, { loading: loadingPet, data }] = useLazyQuery(GET_PET)
+  const [isBlankForm, setIsBlankForm] = useState(true)
+  const { loading: isLoadingPetTypes, data: petTypes } = useQuery(GET_PET_TYPES)
+  const { loading: isLoadingColors, data: colors } = useQuery(GET_COLORS)
+  const [getPet, { data: petData }] = useLazyQuery(GET_PET)
 
   useEffect(
     () => params.petName && getPet({ variables: { name: params.petName } }),
     [params, getPet]
   )
-  useEffect(() => data && console.warn(data?.getPet), [data])
+
+  useEffect(() => {
+    const complexProps = [
+      { prop: 'petType', stringList: petTypes?.getPetTypes },
+      { prop: 'hairColors', stringList: colors?.getColors },
+      { prop: 'eyeColors', stringList: colors?.getColors }
+    ]
+
+    if (petData) {
+      Object.keys(inputs).forEach(key => {
+        const isComplexProp = complexProps.find(({ prop }) => prop === key) ?? null
+        const dataProp = isComplexProp
+          ? {
+              selected: parseIdsToStrings(petData?.getPet[key], isComplexProp.stringList),
+              isMultiple: Array.isArray(petData?.getPet[key])
+            }
+          : { value: petData?.getPet[key] }
+
+        inputs[key] = {
+          ...inputs[key],
+          ...dataProp
+        }
+
+        console.warn(key, dataProp, petData?.getPet[key], inputs[key])
+      })
+
+      setIsBlankForm(false)
+    }
+  }, [petData])
 
   return (
     <FormTemplate
       header={header}
       isLoading={false}
-      isFetching={loadingPetTypes || loadingColors || loadingPet}
+      isFetching={isLoadingPetTypes || isLoadingColors || isBlankForm}
       inputs={{
         ...inputs,
         petType: {
@@ -59,7 +88,7 @@ const UpdatePet = () => {
         addPetButton,
         {
           ...goToList,
-          onClick: () => navigate(APP_ROUTES.HOME)
+          onClick: () => navigate(APP_ROUTES.LIST_MY_PETS)
         }
       ]}
       onFormSubmit={formData => console.warn(formData)}
