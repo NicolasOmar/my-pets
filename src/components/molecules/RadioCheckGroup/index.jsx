@@ -29,7 +29,7 @@ const RadioCheckGroup = ({ options, type, name, value, onInputChange, onBlurChan
       })
     )
   }
-  console.warn('RadioCheckGroup', type, options, value)
+
   return (
     Array.isArray(groupOptions) && (
       <section data-testid="test-radio-check-group" className="control">

@@ -28,9 +28,11 @@ export const GET_MY_PETS = gql`
       birthday
       isAdopted
       adoptionDate
+      gender
       hairColors {
         name
       }
+      hasHeterochromia
       eyeColors {
         name
       }

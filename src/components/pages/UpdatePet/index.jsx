@@ -59,10 +59,9 @@ const UpdatePet = () => {
           ...inputs[key],
           ...dataProp
         }
-
-        // console.warn(key, dataProp, petData?.getPet[key], inputs[key])
       })
 
+      inputs.adoptionDate.isVisible = inputs.isAdopted.value
       setIsBlankForm(false)
     }
   }, [petData, petTypes, colors])
