@@ -10,7 +10,11 @@ import { header, inputs, dividers, addPetButton, goToList } from './config.json'
 // CONSTANTS
 import { APP_ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
-import { parseDropdownOptions, parseIdsToStrings } from '../../../functions/parsers'
+import {
+  parseDateString,
+  parseDropdownOptions,
+  parseIdsToStrings
+} from '../../../functions/parsers'
 
 const UpdatePet = () => {
   const params = useParams()
@@ -34,20 +38,29 @@ const UpdatePet = () => {
 
     if (petData) {
       Object.keys(inputs).forEach(key => {
+        let dataProp = null
         const isComplexProp = complexProps.find(({ prop }) => prop === key) ?? null
-        const dataProp = isComplexProp
-          ? {
+
+        switch (inputs[key].type) {
+          case 'date':
+            dataProp = { value: parseDateString(petData?.getPet[key], null, 'yyyy-LL-dd') }
+            break
+          case 'select':
+            dataProp = {
               selected: parseIdsToStrings(petData?.getPet[key], isComplexProp.stringList),
               isMultiple: Array.isArray(petData?.getPet[key])
             }
-          : { value: petData?.getPet[key] }
+            break
+          default:
+            dataProp = { value: petData?.getPet[key] }
+        }
 
         inputs[key] = {
           ...inputs[key],
           ...dataProp
         }
 
-        console.warn(key, dataProp, petData?.getPet[key], inputs[key])
+        // console.warn(key, dataProp, petData?.getPet[key], inputs[key])
       })
 
       setIsBlankForm(false)
