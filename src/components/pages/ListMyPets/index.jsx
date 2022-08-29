@@ -27,6 +27,7 @@ const ListMyPets = () => {
         data?.getMyPets?.map(
           (
             {
+              id,
               name,
               petType,
               birthday,
@@ -62,7 +63,7 @@ const ListMyPets = () => {
               cardFooter: [
                 {
                   label: 'Update',
-                  onClick: () => navigate(`${APP_ROUTES.UPDATE_PET}/${name}`)
+                  onClick: () => navigate(`${APP_ROUTES.UPDATE_PET}/${id}`)
                 }
                 // { label: 'Remove', onClick: () => navigate(APP_ROUTES.ADD_PET) }
               ],

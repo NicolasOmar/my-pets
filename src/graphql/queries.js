@@ -21,6 +21,7 @@ export const GET_COLORS = gql`
 export const GET_MY_PETS = gql`
   query {
     getMyPets {
+      id
       name
       petType {
         name
@@ -41,8 +42,8 @@ export const GET_MY_PETS = gql`
 `
 
 export const GET_PET = gql`
-  query ($name: String!) {
-    getPet(name: $name) {
+  query ($id: ID!) {
+    getPet(id: $id) {
       name
       petType {
         id

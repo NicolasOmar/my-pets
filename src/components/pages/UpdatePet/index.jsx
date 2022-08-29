@@ -24,10 +24,7 @@ const UpdatePet = () => {
   const { loading: isLoadingColors, data: colors } = useQuery(GET_COLORS)
   const [getPet, { data: petData }] = useLazyQuery(GET_PET)
 
-  useEffect(
-    () => params.petName && getPet({ variables: { name: params.petName } }),
-    [params, getPet]
-  )
+  useEffect(() => params.petId && getPet({ variables: { id: params.petId } }), [params, getPet])
 
   useEffect(() => {
     const complexProps = [
