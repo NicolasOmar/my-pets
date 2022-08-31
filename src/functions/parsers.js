@@ -91,3 +91,11 @@ export const parseIdsToStrings = (ids = [], stringList = null) =>
     : stringList
     ? stringList.find(_string => _string.id === ids.id).name
     : ids.id
+
+export const getPropsIds = (prop, list, searchMultiple = false) => {
+  return searchMultiple
+    ? (Array.isArray(prop) ? prop : [prop])?.map(
+        propName => list?.find(({ name }) => propName === name)?.id
+      )
+    : list?.find(({ name }) => prop === name)?.id
+}

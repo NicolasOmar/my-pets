@@ -50,3 +50,25 @@ export const LOGOUT = gql`
     logout
   }
 `
+
+export const UPDATE_PET = gql`
+  mutation ($petInfo: PetInput!) {
+    updatePet(petInfo: $petInfo) {
+      name
+      petType {
+        name
+      }
+      birthday
+      isAdopted
+      adoptionDate
+      gender
+      hairColors {
+        name
+      }
+      hasHeterochromia
+      eyeColors {
+        name
+      }
+    }
+  }
+`

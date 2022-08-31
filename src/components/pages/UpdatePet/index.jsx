@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 // GRAPHQL CLIENT
-import { useLazyQuery, useQuery } from '@apollo/client'
+import { useLazyQuery, useMutation, useQuery } from '@apollo/client'
 import { GET_COLORS, GET_PET, GET_PET_TYPES } from '../../../graphql/queries'
+import { UPDATE_PET } from '../../../graphql/mutations'
 // COMPONENTS
 import FormTemplate from '../../templates/FormTemplate'
 // FORM CONFIG
@@ -11,10 +12,15 @@ import { header, inputs, dividers, addPetButton, goToList } from './config.json'
 import { APP_ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
 import {
+  getPropsIds,
+  parseDate,
   parseDateString,
   parseDropdownOptions,
-  parseIdsToStrings
+  parseFormData,
+  parseIdsToStrings,
+  parseNumber
 } from '../../../functions/parsers'
+// import validators from '../../../functions/validators'
 
 const UpdatePet = () => {
   const params = useParams()
@@ -23,6 +29,7 @@ const UpdatePet = () => {
   const { loading: isLoadingPetTypes, data: petTypes } = useQuery(GET_PET_TYPES)
   const { loading: isLoadingColors, data: colors } = useQuery(GET_COLORS)
   const [getPet, { data: petData }] = useLazyQuery(GET_PET)
+  const [updatePet, { loading: loadingUpdate, error: errorUpdate }] = useMutation(UPDATE_PET)
 
   useEffect(() => params.petId && getPet({ variables: { id: params.petId } }), [params, getPet])
 
@@ -36,7 +43,7 @@ const UpdatePet = () => {
     if (petData) {
       Object.keys(inputs).forEach(key => {
         let dataProp = null
-        const isComplexProp = complexProps.find(({ prop }) => prop === key) ?? null
+        const isComplexProp = complexProps.find(({ prop }) => prop === key)
 
         switch (inputs[key].type) {
           case 'date':
@@ -49,7 +56,7 @@ const UpdatePet = () => {
             }
             break
           default:
-            dataProp = { value: petData?.getPet[key] }
+            dataProp = { value: petData?.getPet[key] ?? '' }
         }
 
         inputs[key] = {
@@ -63,11 +70,72 @@ const UpdatePet = () => {
     }
   }, [petData, petTypes, colors])
 
+  const onSubmitUpdatePet = async formData => {
+    const petObj = parseFormData(formData)
+
+    const petInfo = {
+      ...petObj,
+      id: params.petId,
+      birthday: parseDate(petObj?.birthday),
+      isAdopted: !!petObj.isAdopted,
+      adoptionDate: parseDate(petObj?.adoptionDate),
+      height: parseNumber(petObj.height),
+      length: parseNumber(petObj.length),
+      weight: parseNumber(petObj.weight),
+      petType: getPropsIds(petObj?.petType, petTypes?.getPetTypes),
+      hairColors: getPropsIds(petObj?.hairColors, colors?.getColors, true),
+      hasHeterochromia: !!petObj.hasHeterochromia,
+      eyeColors: getPropsIds(petObj?.eyeColors, colors?.getColors, true)
+    }
+
+    console.warn('formData', formData)
+    console.warn('petObj', petObj)
+    console.warn('petInfo', petInfo)
+    const response = await updatePet({ variables: { petInfo } })
+    console.warn(response)
+    return null
+  }
+
+  // const onInputBlurChange = formData => {
+  //   const { isAdopted, adoptionDate, birthday, hasHeterochromia, eyeColors } = formData
+  //   const isAdoptedSelected = isAdopted.value === true
+  //   const hasCorrectDates =
+  //     !isAdoptedSelected || !validators.dateIsBefore(adoptionDate.value, birthday.value)
+  //   const hasDiffEyes = !!hasHeterochromia.value
+
+  //   return {
+  //     ...formData,
+  //     isAdopted: {
+  //       ...formData.isAdopted,
+  //       value: isAdoptedSelected
+  //     },
+  //     birthday: {
+  //       ...formData.birthday,
+  //       isValid: hasCorrectDates
+  //     },
+  //     adoptionDate: {
+  //       ...formData.adoptionDate,
+  //       value: isAdoptedSelected ? formData.adoptionDate.value : null,
+  //       isVisible: isAdoptedSelected,
+  //       isRequired: isAdoptedSelected,
+  //       isValid: hasCorrectDates
+  //     },
+  //     eyeColors: {
+  //       ...eyeColors,
+  //       isMultiple: hasDiffEyes,
+  //       optionsShown: hasDiffEyes ? 3 : 1,
+  //       firstNullOption: !hasDiffEyes,
+  //       value: eyeColors.isMultiple !== hasDiffEyes ? null : eyeColors.value
+  //     }
+  //   }
+  // }
+
   return (
     <FormTemplate
       header={header}
-      isLoading={false}
+      isLoading={loadingUpdate}
       isFetching={isLoadingPetTypes || isLoadingColors || isBlankForm}
+      errors={errorUpdate}
       inputs={{
         ...inputs,
         petType: {
@@ -100,7 +168,8 @@ const UpdatePet = () => {
           onClick: () => navigate(APP_ROUTES.LIST_MY_PETS)
         }
       ]}
-      onFormSubmit={formData => console.warn(formData)}
+      onFormSubmit={formData => onSubmitUpdatePet(formData)}
+      // onInputBlurChange={onInputBlurChange}
     />
   )
 }

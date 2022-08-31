@@ -13,25 +13,18 @@ import { APP_ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
 import validators from '../../../functions/validators'
 import {
+  getPropsIds,
   parseDate,
   parseDropdownOptions,
   parseFormData,
   parseNumber
 } from '../../../functions/parsers'
 
-const getPropsIds = (prop, list, searchMultiple = false) => {
-  return searchMultiple
-    ? (Array.isArray(prop) ? prop : [prop])?.map(
-        propName => list?.find(({ name }) => propName === name)?.id
-      )
-    : list?.find(({ name }) => prop === name)?.id
-}
-
 const AddPet = () => {
   let navigate = useNavigate()
-  const [createPet, { loading: loadingCreate, error: errorCreate }] = useMutation(CREATE_PET)
   const { loading: loadingPetTypes, data: petTypes } = useQuery(GET_PET_TYPES)
   const { loading: loadingColors, data: colors } = useQuery(GET_COLORS)
+  const [createPet, { loading: loadingCreate, error: errorCreate }] = useMutation(CREATE_PET)
 
   const onSubmitNewPet = async formData => {
     const petObj = parseFormData(formData)
@@ -44,7 +37,6 @@ const AddPet = () => {
       height: parseNumber(petObj.height),
       length: parseNumber(petObj.length),
       weight: parseNumber(petObj.weight),
-      gender: petObj.gender === inputs.gender.options[1].control,
       petType: getPropsIds(petObj?.petType, petTypes?.getPetTypes),
       hairColors: getPropsIds(petObj?.hairColors, colors?.getColors, true),
       hasHeterochromia: !!petObj.hasHeterochromia,

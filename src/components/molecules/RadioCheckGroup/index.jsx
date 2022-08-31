@@ -9,47 +9,47 @@ const RadioCheckGroup = ({ options, type, name, value, onInputChange, onBlurChan
   const isRadio = type === 'radio'
   const [groupOptions, setGroupOptions] = useState(options)
 
-  const onOptionChange = (value, control) => {
+  const onOptionChange = (_value, control) => {
     onInputChange(
       {
         target: {
-          value: isRadio ? control : value
+          value: isRadio ? control : _value
         }
       },
       name
     )
 
     setGroupOptions(
-      groupOptions.map(_option => {
-        const isNonSelectedRadio = isRadio && _option.control !== control
-        return {
-          ..._option,
-          value: isNonSelectedRadio ? false : value
-        }
-      })
+      groupOptions.map(_option => ({
+        ..._option,
+        value: isRadio ? _option.control === control : _value
+      }))
     )
   }
 
   return (
     Array.isArray(groupOptions) && (
       <section data-testid="test-radio-check-group" className="control">
-        {groupOptions.map((item, i) => (
-          <BasicRadioCheck
-            key={`${type}-${name}-${i}`}
-            {...{
-              ...item,
-              value: isRadio
-                ? i === Number(value)
-                : Array.isArray(value)
-                ? options.find(({ control }) => item.control === control)
-                : value,
-              type,
-              name,
-              onInputChange: (value, control) => onOptionChange(value, control),
-              onBlurChange: () => onBlurChange(name)
-            }}
-          />
-        ))}
+        {groupOptions.map((item, i) => {
+          const _value = item.value !== undefined ? item.value : value
+          return (
+            <BasicRadioCheck
+              key={`${type}-${name}-${i}`}
+              {...{
+                ...item,
+                value: isRadio
+                  ? item.control === _value
+                  : Array.isArray(_value)
+                  ? options.find(({ control }) => item.control === control)
+                  : _value,
+                type,
+                name,
+                onInputChange: (value, control) => onOptionChange(value, control),
+                onBlurChange: () => onBlurChange(name)
+              }}
+            />
+          )
+        })}
       </section>
     )
   )
