@@ -29,7 +29,7 @@ export const sendObjValues = form =>
     .map(input => {
       return (
         form[input] && {
-          [input]: form[input].value
+          [input]: form[input].selected || form[input].value
         }
       )
     })

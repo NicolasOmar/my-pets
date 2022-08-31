@@ -30,26 +30,23 @@ const RadioCheckGroup = ({ options, type, name, value, onInputChange, onBlurChan
   return (
     Array.isArray(groupOptions) && (
       <section data-testid="test-radio-check-group" className="control">
-        {groupOptions.map((item, i) => {
-          const _value = item.value !== undefined ? item.value : value
-          return (
-            <BasicRadioCheck
-              key={`${type}-${name}-${i}`}
-              {...{
-                ...item,
-                value: isRadio
-                  ? item.control === _value
-                  : Array.isArray(_value)
-                  ? options.find(({ control }) => item.control === control)
-                  : _value,
-                type,
-                name,
-                onInputChange: (value, control) => onOptionChange(value, control),
-                onBlurChange: () => onBlurChange(name)
-              }}
-            />
-          )
-        })}
+        {groupOptions.map((item, i) => (
+          <BasicRadioCheck
+            key={`${type}-${name}-${i}`}
+            {...{
+              ...item,
+              value: isRadio
+                ? item.control === value
+                : Array.isArray(value)
+                ? options.find(({ control }) => item.control === control)
+                : value,
+              type,
+              name,
+              onInputChange: (value, control) => onOptionChange(value, control),
+              onBlurChange: () => onBlurChange(name)
+            }}
+          />
+        ))}
       </section>
     )
   )

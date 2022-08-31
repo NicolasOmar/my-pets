@@ -27,8 +27,9 @@ const BasicSelect = ({
     colors[color],
     sizes[size]
   ])
-  const parsedSelected = isMultiple ? (Array.isArray(selected) ? selected : []) : selected
-  const [selectedValue, setSelectedValue] = useState(parsedSelected)
+  const [selectedValue, setSelectedValue] = useState(
+    isMultiple ? (Array.isArray(selected) ? selected : []) : selected
+  )
   const parsedOptions = firstNullOption ? [{ label: '', value: null }, ...options] : options
 
   const processSelection = ({ ctrlKey, shiftKey, originalData, selectedOpts, newSelection }) => {
@@ -62,6 +63,7 @@ const BasicSelect = ({
       : target?.value
 
     setSelectedValue(newValue)
+
     onInputChange(
       {
         ...evt,

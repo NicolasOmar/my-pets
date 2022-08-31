@@ -20,16 +20,16 @@ import {
   parseIdsToStrings,
   parseNumber
 } from '../../../functions/parsers'
-// import validators from '../../../functions/validators'
+import validators from '../../../functions/validators'
 
 const UpdatePet = () => {
   const params = useParams()
   let navigate = useNavigate()
-  const [isBlankForm, setIsBlankForm] = useState(true)
+  const [isLoadingPet, setIsLoadingPet] = useState(true)
   const { loading: isLoadingPetTypes, data: petTypes } = useQuery(GET_PET_TYPES)
   const { loading: isLoadingColors, data: colors } = useQuery(GET_COLORS)
   const [getPet, { data: petData }] = useLazyQuery(GET_PET)
-  const [updatePet, { loading: loadingUpdate, error: errorUpdate }] = useMutation(UPDATE_PET)
+  const [updatePet, { loading: isUpdating, error: errorUpdate }] = useMutation(UPDATE_PET)
 
   useEffect(() => params.petId && getPet({ variables: { id: params.petId } }), [params, getPet])
 
@@ -66,7 +66,7 @@ const UpdatePet = () => {
       })
 
       inputs.adoptionDate.isVisible = inputs.isAdopted.value
-      setIsBlankForm(false)
+      setIsLoadingPet(false)
     }
   }, [petData, petTypes, colors])
 
@@ -96,45 +96,46 @@ const UpdatePet = () => {
     return null
   }
 
-  // const onInputBlurChange = formData => {
-  //   const { isAdopted, adoptionDate, birthday, hasHeterochromia, eyeColors } = formData
-  //   const isAdoptedSelected = isAdopted.value === true
-  //   const hasCorrectDates =
-  //     !isAdoptedSelected || !validators.dateIsBefore(adoptionDate.value, birthday.value)
-  //   const hasDiffEyes = !!hasHeterochromia.value
+  const onInputBlurChange = formData => {
+    console.warn('onInputBlurChange', formData)
+    const { isAdopted, adoptionDate, birthday, hasHeterochromia, eyeColors } = formData
+    const isAdoptedSelected = isAdopted.value === true
+    const hasCorrectDates =
+      !isAdoptedSelected || !validators.dateIsBefore(adoptionDate.value, birthday.value)
+    const hasDiffEyes = !!hasHeterochromia.value
 
-  //   return {
-  //     ...formData,
-  //     isAdopted: {
-  //       ...formData.isAdopted,
-  //       value: isAdoptedSelected
-  //     },
-  //     birthday: {
-  //       ...formData.birthday,
-  //       isValid: hasCorrectDates
-  //     },
-  //     adoptionDate: {
-  //       ...formData.adoptionDate,
-  //       value: isAdoptedSelected ? formData.adoptionDate.value : null,
-  //       isVisible: isAdoptedSelected,
-  //       isRequired: isAdoptedSelected,
-  //       isValid: hasCorrectDates
-  //     },
-  //     eyeColors: {
-  //       ...eyeColors,
-  //       isMultiple: hasDiffEyes,
-  //       optionsShown: hasDiffEyes ? 3 : 1,
-  //       firstNullOption: !hasDiffEyes,
-  //       value: eyeColors.isMultiple !== hasDiffEyes ? null : eyeColors.value
-  //     }
-  //   }
-  // }
+    return {
+      ...formData,
+      isAdopted: {
+        ...formData.isAdopted,
+        value: isAdoptedSelected
+      },
+      birthday: {
+        ...formData.birthday,
+        isValid: hasCorrectDates
+      },
+      adoptionDate: {
+        ...formData.adoptionDate,
+        value: isAdoptedSelected ? formData.adoptionDate.value : null,
+        isVisible: isAdoptedSelected,
+        isRequired: isAdoptedSelected,
+        isValid: hasCorrectDates
+      },
+      eyeColors: {
+        ...eyeColors,
+        isMultiple: hasDiffEyes,
+        optionsShown: hasDiffEyes ? 3 : 1,
+        firstNullOption: !hasDiffEyes,
+        value: eyeColors.isMultiple !== hasDiffEyes ? null : eyeColors.value
+      }
+    }
+  }
 
   return (
     <FormTemplate
       header={header}
-      isLoading={loadingUpdate}
-      isFetching={isLoadingPetTypes || isLoadingColors || isBlankForm}
+      isLoading={isUpdating}
+      isFetching={isLoadingPetTypes || isLoadingColors || isLoadingPet}
       errors={errorUpdate}
       inputs={{
         ...inputs,
@@ -169,7 +170,7 @@ const UpdatePet = () => {
         }
       ]}
       onFormSubmit={formData => onSubmitUpdatePet(formData)}
-      // onInputBlurChange={onInputBlurChange}
+      onInputBlurChange={onInputBlurChange}
     />
   )
 }
