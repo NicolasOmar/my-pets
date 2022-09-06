@@ -3,9 +3,21 @@ import { string, bool, object } from 'prop-types'
 
 const Label = ({ labelText = null, styles = {}, isRequired = false }) =>
   labelText && (
-    <label key={`label-${labelText.replace(' ', '-')}`} className="label" style={styles}>
+    <label
+      key={`label-${labelText.replace(' ', '-')}`}
+      data-testid={`test-label-${labelText.replace(' ', '-')}`}
+      className="label"
+      style={styles}
+    >
       {labelText}
-      {isRequired && <label style={{ color: 'red', marginLeft: '2px' }}>*</label>}
+      {isRequired && (
+        <label
+          data-testid={`test-required-${labelText.replace(' ', '-')}`}
+          style={{ color: 'red', marginLeft: '2px' }}
+        >
+          *
+        </label>
+      )}
     </label>
   )
 
