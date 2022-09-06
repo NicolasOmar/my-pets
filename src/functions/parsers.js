@@ -99,3 +99,6 @@ export const getPropsIds = (prop, list, searchMultiple = false) => {
       )
     : list?.find(({ name }) => prop === name)?.id
 }
+
+export const normalizeCapitalWord = (word = '') =>
+  `${word.charAt(0).toUpperCase()}${word.slice(1).toLowerCase()}`

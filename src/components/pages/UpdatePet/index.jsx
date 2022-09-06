@@ -41,6 +41,7 @@ const UpdatePet = () => {
     ]
 
     if (petData) {
+      const { hasHeterochromia, isAdopted } = petData.getPet
       Object.keys(inputs).forEach(key => {
         let dataProp = null
         const isComplexProp = complexProps.find(({ prop }) => prop === key)
@@ -49,12 +50,15 @@ const UpdatePet = () => {
           case 'date':
             dataProp = { value: parseDateString(petData?.getPet[key], null, 'yyyy-LL-dd') }
             break
-          case 'select':
+          case 'select': {
+            const value = parseIdsToStrings(petData?.getPet[key], isComplexProp.stringList)
             dataProp = {
-              selected: parseIdsToStrings(petData?.getPet[key], isComplexProp.stringList),
+              value,
+              selected: value,
               isMultiple: Array.isArray(petData?.getPet[key])
             }
             break
+          }
           default:
             dataProp = { value: petData?.getPet[key] ?? '' }
         }
@@ -65,13 +69,25 @@ const UpdatePet = () => {
         }
       })
 
-      inputs.adoptionDate.isVisible = inputs.isAdopted.value
+      inputs.eyeColors = {
+        ...inputs.eyeColors,
+        value: hasHeterochromia ? inputs.eyeColors.value : inputs.eyeColors.value[0],
+        selected: hasHeterochromia ? inputs.eyeColors.selected : inputs.eyeColors.selected[0],
+        isMultiple: hasHeterochromia
+      }
+
+      inputs.adoptionDate = {
+        ...inputs.adoptionDate,
+        isVisible: isAdopted
+      }
+
       setIsLoadingPet(false)
     }
   }, [petData, petTypes, colors])
 
   const onSubmitUpdatePet = async formData => {
     const petObj = parseFormData(formData)
+    console.warn('onSubmitUpdatePet', formData, petObj)
 
     const petInfo = {
       ...petObj,
@@ -88,17 +104,14 @@ const UpdatePet = () => {
       eyeColors: getPropsIds(petObj?.eyeColors, colors?.getColors, true)
     }
 
-    console.warn('formData', formData)
-    console.warn('petObj', petObj)
-    console.warn('petInfo', petInfo)
-    const response = await updatePet({ variables: { petInfo } })
-    console.warn(response)
-    return null
+    const updateResponse = await updatePet({ variables: { petInfo } })
+
+    updateResponse && navigate(APP_ROUTES.LIST_MY_PETS)
   }
 
   const onInputBlurChange = formData => {
-    console.warn('onInputBlurChange', formData)
-    const { isAdopted, adoptionDate, birthday, hasHeterochromia, eyeColors } = formData
+    const { isAdopted, petType, adoptionDate, birthday, hasHeterochromia, hairColors, eyeColors } =
+      formData
     const isAdoptedSelected = isAdopted.value === true
     const hasCorrectDates =
       !isAdoptedSelected || !validators.dateIsBefore(adoptionDate.value, birthday.value)
@@ -109,6 +122,10 @@ const UpdatePet = () => {
       isAdopted: {
         ...formData.isAdopted,
         value: isAdoptedSelected
+      },
+      petType: {
+        ...petType,
+        selected: petType.value
       },
       birthday: {
         ...formData.birthday,
@@ -121,12 +138,16 @@ const UpdatePet = () => {
         isRequired: isAdoptedSelected,
         isValid: hasCorrectDates
       },
+      hairColors: {
+        ...hairColors,
+        selected: hairColors.value
+      },
       eyeColors: {
         ...eyeColors,
         isMultiple: hasDiffEyes,
         optionsShown: hasDiffEyes ? 3 : 1,
         firstNullOption: !hasDiffEyes,
-        value: eyeColors.isMultiple !== hasDiffEyes ? null : eyeColors.value
+        selected: eyeColors.isMultiple !== hasDiffEyes ? null : eyeColors.value
       }
     }
   }

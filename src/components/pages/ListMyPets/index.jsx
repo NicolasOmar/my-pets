@@ -13,7 +13,8 @@ import { APP_ROUTES } from '../../../constants/routes.json'
 import {
   parseBooleanStrings,
   parseDateString,
-  parseArrayToString
+  parseArrayToString,
+  normalizeCapitalWord
 } from '../../../functions/parsers'
 
 const ListMyPets = () => {
@@ -55,7 +56,7 @@ const ListMyPets = () => {
                   `Yes, ${parseDateString(adoptionDate, '-')}`,
                   'No'
                 )}`,
-                `Gender: ${parseBooleanStrings(gender, 'Femenine', 'Masculine')}`,
+                `Gender: ${normalizeCapitalWord(gender)}`,
                 `Hair: ${parseArrayToString(hairColors, 'name')}`,
                 `Has Heterochromia: ${parseBooleanStrings(hasHeterochromia, 'Yes', 'No')}`,
                 `Eyes: ${parseArrayToString(eyeColors, 'name')}`

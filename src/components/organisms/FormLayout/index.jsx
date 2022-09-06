@@ -76,7 +76,6 @@ const FormLayout = ({
   const onSubmit = evt => {
     if (onFormSubmit) {
       evt.preventDefault()
-      console.warn('onSubmit', formControls, sendObjValues({ ...formControls }))
       !disableConfirmButton && onFormSubmit(sendObjValues({ ...formControls }))
     }
   }
