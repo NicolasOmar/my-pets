@@ -34,6 +34,7 @@ const Card = ({ cardImage = null, cardContent, cardFooter = [], styles = {} }) =
         {cardFooter.map(({ label, onClick }, i) => (
           <a
             key={`card-footer-item-${i}`}
+            data-testid={`test-card-footer-item-${i}`}
             href="/"
             onClick={evt => {
               evt.preventDefault()
