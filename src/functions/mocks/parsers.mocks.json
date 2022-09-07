@@ -46,7 +46,7 @@
   },
   "parseDateString": {
     "goodCases": [1602288000000, "1602288000000"],
-    "goodResults": ["09/10/2020", "09/10/2020"],
+    "goodResults": ["10/10/2020", "10/10/2020"],
     "badCases": [false, null, 0],
     "badResults": [null, null, null]
   },
