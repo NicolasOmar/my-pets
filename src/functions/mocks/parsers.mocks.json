@@ -44,7 +44,12 @@
     "badCases": [1, 16, {}, [], "monday", true, null],
     "badResults": [null, null, null, null, null, null, null]
   },
-  "parseDateString": null,
+  "parseDateString": {
+    "goodCases": [1602288000000, "1602288000000"],
+    "goodResults": ["09/10/2020", "09/10/2020"],
+    "badCases": [false, null, 0],
+    "badResults": [null, null, null]
+  },
   "parseArrayToString": {
     "numberCase": {
       "rawData": [

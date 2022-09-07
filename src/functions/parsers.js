@@ -55,20 +55,19 @@ export const parseDropdownOptions = ({
   idAlias = 'value',
   labelOriginal = 'name',
   labelAlias = 'label'
-}) => {
-  return Array.isArray(selection)
+}) =>
+  Array.isArray(selection)
     ? selection.map(option => ({
         [idAlias]: option[idOriginal],
         [labelAlias]: option[labelOriginal]
       }))
     : []
-}
 
 export const parseNumber = number =>
   !!number && validator.isNumeric(String(number)) ? +number : null
 
 export const parseBooleanToString = (boolean, trueString, falseString) =>
-  !!boolean ? trueString : falseString
+  boolean ? trueString : falseString
 
 export const parseDate = date =>
   !!date && validator.isDate(date) ? new Date(!!+date || date) : null

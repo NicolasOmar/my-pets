@@ -8,7 +8,8 @@ import {
   parseFormDataToObj,
   parseNumber,
   searchNamesFromIds,
-  searchIdsFromNames
+  searchIdsFromNames,
+  parseDateString
 } from '../parsers'
 // MOCKS
 import mocks from '../mocks/parsers.mocks.json'
@@ -69,7 +70,7 @@ describe('[Funtions.parsers]', () => {
 
   describe('[parseDate]', () => runGoodBadCases(mocks.parseDate, parseDate))
 
-  describe.skip('[parseDateString]', () => {})
+  describe('[parseDateString]', () => runGoodBadCases(mocks.parseDateString, parseDateString))
 
   describe('[parseArrayToString]', () => {
     test('Should return the expected cases', () => {
