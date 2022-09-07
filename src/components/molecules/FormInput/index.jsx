@@ -7,7 +7,7 @@ import BasicSelect from '../../atoms/BasicSelect'
 // CONSTANTS
 import { checkTypes, selectorTypes } from '../../../constants/tag-types.json'
 // FUNCTIONS
-import { parseCssClasses } from '../../../functions/parsers'
+import { parseConfigToClassName } from '../../../functions/parsers'
 import RadioCheckGroup from '../RadioCheckGroup'
 
 const parseFormInput = inputConfig => {
@@ -31,7 +31,7 @@ const parseFormInput = inputConfig => {
 }
 
 const FormInput = ({ inputLabel = null, isLoading = false, inputConfig, styles = {} }) => {
-  const controlClass = parseCssClasses({ isLoading }, 'control')
+  const controlClass = parseConfigToClassName({ isLoading }, 'control')
 
   return (
     <section

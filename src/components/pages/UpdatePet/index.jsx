@@ -12,12 +12,12 @@ import { header, inputs, dividers, addPetButton, goToList } from './config.json'
 import { APP_ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
 import {
-  getPropsIds,
+  searchNamesFromIds,
   parseDate,
   parseDateString,
   parseDropdownOptions,
-  parseFormData,
-  parseIdsToStrings,
+  parseFormDataToObj,
+  searchIdsFromNames,
   parseNumber
 } from '../../../functions/parsers'
 import validators from '../../../functions/validators'
@@ -51,10 +51,10 @@ const UpdatePet = () => {
             dataProp = { value: parseDateString(petData?.getPet[key], null, 'yyyy-LL-dd') }
             break
           case 'select': {
-            const value = parseIdsToStrings(petData?.getPet[key], isComplexProp.stringList)
+            const selectValue = searchIdsFromNames(petData?.getPet[key], isComplexProp.stringList)
             dataProp = {
-              value,
-              selected: value,
+              value: selectValue,
+              selected: selectValue,
               isMultiple: Array.isArray(petData?.getPet[key])
             }
             break
@@ -86,7 +86,7 @@ const UpdatePet = () => {
   }, [petData, petTypes, colors])
 
   const onSubmitUpdatePet = async formData => {
-    const petObj = parseFormData(formData)
+    const petObj = parseFormDataToObj(formData)
     console.warn('onSubmitUpdatePet', formData, petObj)
 
     const petInfo = {
@@ -98,10 +98,10 @@ const UpdatePet = () => {
       height: parseNumber(petObj.height),
       length: parseNumber(petObj.length),
       weight: parseNumber(petObj.weight),
-      petType: getPropsIds(petObj?.petType, petTypes?.getPetTypes),
-      hairColors: getPropsIds(petObj?.hairColors, colors?.getColors, true),
+      petType: searchNamesFromIds(petObj?.petType, petTypes?.getPetTypes),
+      hairColors: searchNamesFromIds(petObj?.hairColors, colors?.getColors, true),
       hasHeterochromia: !!petObj.hasHeterochromia,
-      eyeColors: getPropsIds(petObj?.eyeColors, colors?.getColors, true)
+      eyeColors: searchNamesFromIds(petObj?.eyeColors, colors?.getColors, true)
     }
 
     const updateResponse = await updatePet({ variables: { petInfo } })

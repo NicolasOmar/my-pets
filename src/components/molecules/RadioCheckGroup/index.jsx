@@ -5,7 +5,7 @@ import BasicRadioCheck from '../../atoms/BasicRadioCheck'
 // CONSTANTS
 import { checkTypes } from '../../../constants/tag-types.json'
 
-const RadioCheckGroup = ({ options, type, name, value, onInputChange, onBlurChange }) => {
+const RadioCheckGroup = ({ options, type, name, value = null, onInputChange, onBlurChange }) => {
   const isRadio = type === 'radio'
   const [groupOptions, setGroupOptions] = useState(options)
 

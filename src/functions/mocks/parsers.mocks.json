@@ -1,5 +1,5 @@
 {
-  "mergeGraphObj": {
+  "parseGraphToObj": {
     "graphObj": {
       "_typename": "typename",
       "graphOne": null,
@@ -10,7 +10,8 @@
       "graphTwo": "graphTwo"
     }
   },
-  "parseObjKeys": { },
+  "parseConfigToClassName": null,
+  "parseObjKeys": null,
   "parseDropdownOptions": {
     "raw": [
       { "id": "itemId1", "name": "nameId1" },
@@ -33,11 +34,53 @@
     "badCases": [null, false, {}, [], "a", "B", "test"],
     "badResults": [null, null, null, null, null, null, null]
   },
+  "parseBooleanToString": {
+    "goodCases": [true, 1, {}],
+    "goodResults": ["OK", "OK", "OK"],
+    "badCases": [false, null, 0],
+    "badResults": ["FAIL", "FAIL", "FAIL"]
+  },
   "parseDate": {
     "badCases": [1, 16, {}, [], "monday", true, null],
     "badResults": [null, null, null, null, null, null, null]
   },
-  "parseFormData": {
+  "parseDateString": null,
+  "parseArrayToString": {
+    "numberCase": {
+      "rawData": [
+        { "numberCase": 1 },
+        { "numberCase": 2 },
+        { "numberCase": 3 },
+        { "numberCase": 4 },
+        { "numberCase": 5 }
+      ],
+      "parsedData": "1, 2, 3, 4, 5",
+      "separator": ", "
+    },
+    "stringCase": {
+      "rawData": [
+        { "stringCase": "A" },
+        { "stringCase": "B" },
+        { "stringCase": "C" },
+        { "stringCase": "D" },
+        { "stringCase": "E" }
+      ],
+      "parsedData": "A.B.C.D.E",
+      "separator": "."
+    },
+    "mixedCase": {
+      "rawData": [
+        { "mixedCase": 1 },
+        { "mixedCase": "A" },
+        { "mixedCase": 2 },
+        { "mixedCase": "B" },
+        { "mixedCase": "3" }
+      ],
+      "parsedData": "1 * A * 2 * B * 3",
+      "separator": " * "
+    }
+  },
+  "parseFormDataToObj": {
     "raw": {
       "prop1": 0,
       "prop2": false,
@@ -56,5 +99,50 @@
       },
       "prop6": []
     }
+  },
+  "searchIdsFromNames": {
+    "idArray": {
+      "ids": [
+        { "id": "2" },
+        { "id": "5" }
+      ],
+      "stringList": [
+        { "id": "1", "name": "nameId1" },
+        { "id": "2", "name": "nameId2" },
+        { "id": "3", "name": "nameId3" },
+        { "id": "4", "name": "nameId4" },
+        { "id": "5", "name": "nameId5" }
+      ],
+      "result": ["nameId2", "nameId5"]
+    }
+  },
+  "searchNamesFromIds": {
+    "withMultipleSearch": {
+      "list": [
+        { "id": "1", "name": "nameId1"},
+        { "id": "2", "name": "nameId2"},
+        { "id": "3", "name": "nameId3"},
+        { "id": "4", "name": "nameId4"},
+        { "id": "5", "name": "nameId5"}
+      ],
+      "items": ["nameId2", "nameId3", "nameId4"],
+      "searchMultiple": true,
+      "result": ["2", "3", "4"]
+    },
+    "withoutMultipleSearch": {
+      "list": [
+        { "id": "1", "name": "nameId1"},
+        { "id": "2", "name": "nameId2"},
+        { "id": "3", "name": "nameId3"},
+        { "id": "4", "name": "nameId4"},
+        { "id": "5", "name": "nameId5"}
+      ],
+      "items": "nameId5",
+      "result": "5"
+    }
+  },
+  "normalizeCapitalWord": {
+    "cases": ["test", "IDEA", "firstName", "name LastName", null],
+    "results": ["Test", "Idea", "Firstname", "Name lastname", ""]
   }
 }

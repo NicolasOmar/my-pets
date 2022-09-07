@@ -16,7 +16,24 @@ describe('[RadioCheckGroup]', () => {
     })
   })
 
-  test('Should check that its methods have been called', () => {
+  test('Should render the component with checkbox options', () => {
+    const checkConfig = {
+      ...minimalConfig,
+      type: 'checkbox',
+      value: minimalConfig.options.map(({ control }) => control),
+      options: minimalConfig.options.map(option => ({ ...option, type: 'checkbox' }))
+    }
+
+    render(<RadioCheckGroup {...checkConfig} />)
+    expect(screen.getByTestId('test-radio-check-group')).toBeInTheDocument()
+
+    checkConfig.options.forEach(({ label, control }) => {
+      expect(screen.getByText(label)).toBeInTheDocument()
+      expect(screen.getByTestId(`test-${control}-${checkConfig.type}`)).toBeInTheDocument()
+    })
+  })
+
+  test('Should check that its methods have been called as radio buttons', () => {
     const [singleOption] = minimalConfig.options
     const groupWithMethods = {
       ...minimalConfig,
@@ -34,5 +51,28 @@ describe('[RadioCheckGroup]', () => {
 
     fireEvent.click(testOption)
     expect(groupWithMethods.onInputChange).toHaveBeenCalled()
+  })
+
+  test('Should check that its methods have been called as checkboxes', () => {
+    const [singleOption] = minimalConfig.options.map(option => ({ ...option, type: 'checkbox' }))
+    const checkConfigWithMethods = {
+      ...minimalConfig,
+      type: 'checkbox',
+      options: [singleOption],
+      onInputChange: jest.fn(),
+      onBlurChange: jest.fn()
+    }
+
+    render(<RadioCheckGroup {...checkConfigWithMethods} />)
+
+    const testOption = screen.getByTestId(
+      `test-${singleOption.control}-${checkConfigWithMethods.type}`
+    )
+
+    fireEvent.blur(testOption)
+    expect(checkConfigWithMethods.onBlurChange).toHaveBeenCalled()
+
+    fireEvent.click(testOption)
+    expect(checkConfigWithMethods.onInputChange).toHaveBeenCalled()
   })
 })

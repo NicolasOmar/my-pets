@@ -4,7 +4,7 @@ import { bool, func, string, number, oneOf, object } from 'prop-types'
 import { inputTypes } from '../../../constants/tag-types.json'
 import { colors, sizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { parseCssClasses, parseObjKeys } from '../../../functions/parsers'
+import { parseConfigToClassName, parseObjKeys } from '../../../functions/parsers'
 
 const BasicInput = ({
   type,
@@ -22,7 +22,7 @@ const BasicInput = ({
   onInputChange,
   onBlurChange
 }) => {
-  const inputClass = parseCssClasses({ isRounded }, 'input', [colors[color], sizes[size]])
+  const inputClass = parseConfigToClassName({ isRounded }, 'input', [colors[color], sizes[size]])
   return (
     <input
       key={`${control}-${type}`}

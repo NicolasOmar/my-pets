@@ -13,10 +13,10 @@ import { APP_ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
 import validators from '../../../functions/validators'
 import {
-  getPropsIds,
+  searchNamesFromIds,
   parseDate,
   parseDropdownOptions,
-  parseFormData,
+  parseFormDataToObj,
   parseNumber
 } from '../../../functions/parsers'
 
@@ -27,7 +27,7 @@ const AddPet = () => {
   const [createPet, { loading: loadingCreate, error: errorCreate }] = useMutation(CREATE_PET)
 
   const onSubmitNewPet = async formData => {
-    const petObj = parseFormData(formData)
+    const petObj = parseFormDataToObj(formData)
 
     const petInfo = {
       ...petObj,
@@ -37,10 +37,10 @@ const AddPet = () => {
       height: parseNumber(petObj.height),
       length: parseNumber(petObj.length),
       weight: parseNumber(petObj.weight),
-      petType: getPropsIds(petObj?.petType, petTypes?.getPetTypes),
-      hairColors: getPropsIds(petObj?.hairColors, colors?.getColors, true),
+      petType: searchNamesFromIds(petObj?.petType, petTypes?.getPetTypes),
+      hairColors: searchNamesFromIds(petObj?.hairColors, colors?.getColors, true),
       hasHeterochromia: !!petObj.hasHeterochromia,
-      eyeColors: getPropsIds(petObj?.eyeColors, colors?.getColors, true)
+      eyeColors: searchNamesFromIds(petObj?.eyeColors, colors?.getColors, true)
     }
 
     await createPet({

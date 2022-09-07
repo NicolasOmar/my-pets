@@ -3,7 +3,7 @@ import { arrayOf, bool, func, number, shape, string, oneOf, object, oneOfType } 
 // CONSTANTS
 import { colors, sizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { parseCssClasses, parseObjKeys } from '../../../functions/parsers'
+import { parseConfigToClassName, parseObjKeys } from '../../../functions/parsers'
 
 const BasicSelect = ({
   control,
@@ -23,7 +23,7 @@ const BasicSelect = ({
   onBlurChange
 }) => {
   const multipleString = isMultiple ? 'multiple' : 'single'
-  const selectClass = parseCssClasses({ isMultiple, isLoading, isRounded }, 'select', [
+  const selectClass = parseConfigToClassName({ isMultiple, isLoading, isRounded }, 'select', [
     colors[color],
     sizes[size]
   ])

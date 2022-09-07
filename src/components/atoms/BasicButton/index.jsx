@@ -4,7 +4,7 @@ import { bool, func, object, oneOf, string } from 'prop-types'
 import { buttonTypes } from '../../../constants/tag-types.json'
 import { colors, sizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { parseCssClasses, parseObjKeys } from '../../../functions/parsers'
+import { parseConfigToClassName, parseObjKeys } from '../../../functions/parsers'
 
 const BasicButton = ({
   type,
@@ -18,7 +18,7 @@ const BasicButton = ({
   isLoading = false,
   onClick
 }) => {
-  const btnClass = parseCssClasses({ isOutlined, isInverted, isLoading }, 'button', [
+  const btnClass = parseConfigToClassName({ isOutlined, isInverted, isLoading }, 'button', [
     colors[color],
     sizes[size]
   ])

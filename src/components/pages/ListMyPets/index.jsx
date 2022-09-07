@@ -11,7 +11,7 @@ import { cardsListTitle } from './config.json'
 import { APP_ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
 import {
-  parseBooleanStrings,
+  parseBooleanToString,
   parseDateString,
   parseArrayToString,
   normalizeCapitalWord
@@ -51,14 +51,14 @@ const ListMyPets = () => {
               },
               cardContent: [
                 `Birthday: ${parseDateString(birthday, '-')}`,
-                `Adopted: ${parseBooleanStrings(
+                `Adopted: ${parseBooleanToString(
                   isAdopted,
                   `Yes, ${parseDateString(adoptionDate, '-')}`,
                   'No'
                 )}`,
                 `Gender: ${normalizeCapitalWord(gender)}`,
                 `Hair: ${parseArrayToString(hairColors, 'name')}`,
-                `Has Heterochromia: ${parseBooleanStrings(hasHeterochromia, 'Yes', 'No')}`,
+                `Has Heterochromia: ${parseBooleanToString(hasHeterochromia, 'Yes', 'No')}`,
                 `Eyes: ${parseArrayToString(eyeColors, 'name')}`
               ],
               cardFooter: [

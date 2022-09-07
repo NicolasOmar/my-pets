@@ -3,10 +3,10 @@ import { arrayOf, bool, object, shape } from 'prop-types'
 // OTHER COMPONENTS
 import BasicButton from '../../atoms/BasicButton'
 // FUNCTIONS
-import { parseCssClasses } from '../../../functions/parsers'
+import { parseConfigToClassName } from '../../../functions/parsers'
 
 const ButtonGroup = ({ buttons, styles = {}, isCentered = true }) => {
-  const btnGroupClass = parseCssClasses({ isCentered }, 'buttons', ['has-addons'])
+  const btnGroupClass = parseConfigToClassName({ isCentered }, 'buttons', ['has-addons'])
   return (
     <section
       key={'button-group'}
