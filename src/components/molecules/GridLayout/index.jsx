@@ -27,7 +27,7 @@ const GridLayout = ({
   }
 
   return Array.isArray(children) ? (
-    children.every(childNode => childNode.props?.childWidth) ? (
+    children.filter(childNode => childNode).every(childNode => childNode?.props?.childWidth) ? (
       <section
         key={`grid-layout`}
         data-testid={`test-grid-layout`}
