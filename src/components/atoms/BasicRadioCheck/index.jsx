@@ -14,28 +14,24 @@ const BasicRadioCheck = ({
   styles = { marginRight: '5px' },
   onInputChange,
   onBlurChange
-}) => {
-  const inputValue = label?.toLowerCase().replace(' ', '')
-
-  return (
-    <label className={type} style={styles}>
-      <input
-        key={`${control}-${type}`}
-        data-testid={`test-${control}-${type}`}
-        type={type}
-        name={name}
-        value={inputValue}
-        style={styles}
-        required={isRequired}
-        disabled={isDisabled}
-        checked={value}
-        onChange={() => onInputChange(!value, control)}
-        onBlur={() => onBlurChange()}
-      />
-      {label}
-    </label>
-  )
-}
+}) => (
+  <label className={type} style={styles}>
+    <input
+      key={`${control}-${type}`}
+      data-testid={`test-${control}-${type}`}
+      type={type}
+      name={name}
+      value={label?.toLowerCase().replace(' ', '')}
+      style={styles}
+      required={isRequired}
+      disabled={isDisabled}
+      checked={value}
+      onChange={() => onInputChange(!value, control)}
+      onBlur={() => onBlurChange()}
+    />
+    {label}
+  </label>
+)
 
 export default BasicRadioCheck
 

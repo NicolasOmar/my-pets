@@ -3,12 +3,13 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 // COMPONENTS
 import UserHeader from '../templates/UserHeader'
-import HomePage from '../pages/HomePage'
-import LoginPage from '../pages/LoginPage'
-import NewUserPage from '../pages/NewUserPage'
-import UpdateUserPage from '../pages/UpdateUserPage'
-import UpdatePasswordPage from '../pages/UpdatePassPage'
-import AddPetPage from '../pages/AddPetPage'
+import Home from '../pages/Home'
+import Login from '../pages/Login'
+import NewUser from '../pages/NewUser'
+import UpdateUser from '../pages/UpdateUser'
+import UpdatePassword from '../pages/UpdatePassword'
+import UpdatePet from '../pages/UpdatePet'
+import AddPet from '../pages/AddPet'
 import ListMyPets from '../pages/ListMyPets'
 // CONSTANTS
 import { APP_ROUTES } from '../../constants/routes.json'
@@ -20,14 +21,20 @@ const App = () => {
     <BrowserRouter>
       {renderHeader(userData)}
       <Routes>
-        <Route exact path={APP_ROUTES.HOME} element={<HomePage />} />
-        <Route exact path={APP_ROUTES.LOGIN} element={<LoginPage />} />
-        <Route exact path={APP_ROUTES.NEW_USER} element={<NewUserPage />} />
-        <Route exact path={APP_ROUTES.UPDATE_USER} element={<UpdateUserPage />} />
-        <Route exact path={APP_ROUTES.UPDATE_PASS} element={<UpdatePasswordPage />} />
-        <Route exact path={APP_ROUTES.ADD_PET} element={<AddPetPage />} />
+        <Route exact path={APP_ROUTES.HOME} element={<Home />} />
+        <Route exact path={APP_ROUTES.LOGIN} element={<Login />} />
+        <Route exact path={APP_ROUTES.NEW_USER} element={<NewUser />} />
+        <Route exact path={APP_ROUTES.UPDATE_USER} element={<UpdateUser />} />
+        <Route exact path={APP_ROUTES.UPDATE_PASS} element={<UpdatePassword />} />
+        <Route exact path={`${APP_ROUTES.UPDATE_PET}/:petId`} element={<UpdatePet />} />
+        <Route exact path={APP_ROUTES.ADD_PET} element={<AddPet />} />
         <Route exact path={APP_ROUTES.LIST_MY_PETS} element={<ListMyPets />} />
         <Route exact path={APP_ROUTES.BASE} element={<Navigate replace to={APP_ROUTES.LOGIN} />} />
+        <Route
+          exact
+          path={APP_ROUTES.UPDATE_PET}
+          element={<Navigate replace to={APP_ROUTES.LIST_MY_PETS} />}
+        />
       </Routes>
     </BrowserRouter>
   )

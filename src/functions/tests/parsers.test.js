@@ -1,9 +1,15 @@
 import {
-  mergeGraphObj,
+  parseGraphToObj,
+  normalizeCapitalWord,
+  parseArrayToString,
+  parseBooleanToString,
   parseDate,
   parseDropdownOptions,
-  parseFormData,
-  parseNumber
+  parseFormDataToObj,
+  parseNumber,
+  searchNamesFromIds,
+  searchIdsFromNames,
+  parseDateString
 } from '../parsers'
 // MOCKS
 import mocks from '../mocks/parsers.mocks.json'
@@ -20,14 +26,16 @@ const runGoodBadCases = (mocks, fn) => {
 }
 
 describe('[Funtions.parsers]', () => {
-  describe('[mergeGraphObj]', () => {
+  describe('[parseGraphToObj]', () => {
     test('Should run with the required arguments', () => {
       const {
-        mergeGraphObj: { graphObj, originalObj }
+        parseGraphToObj: { graphObj, originalObj }
       } = mocks
-      expect(mergeGraphObj(graphObj, originalObj)).toEqual(graphObj)
+      expect(parseGraphToObj(graphObj, originalObj)).toEqual(graphObj)
     })
   })
+
+  describe.skip('[parseConfigToClassName]', () => {})
 
   describe.skip('[parseObjKeys]', () => {})
 
@@ -46,18 +54,96 @@ describe('[Funtions.parsers]', () => {
 
   describe('[parseNumber]', () => runGoodBadCases(mocks.parseNumber, parseNumber))
 
+  describe('[parseBooleanToString]', () => {
+    test('Should return the expected cases', () => {
+      const { goodCases, goodResults, badCases, badResults } = mocks.parseBooleanToString
+
+      goodCases.forEach((_case, i) =>
+        expect(parseBooleanToString(_case, goodResults[i], badResults[i])).toEqual(goodResults[i])
+      )
+
+      badCases.forEach((_case, i) =>
+        expect(parseBooleanToString(_case, goodResults[i], badResults[i])).toEqual(badResults[i])
+      )
+    })
+  })
+
   describe('[parseDate]', () => runGoodBadCases(mocks.parseDate, parseDate))
 
-  describe('[parseFormData]', () => {
+  describe('[parseDateString]', () => runGoodBadCases(mocks.parseDateString, parseDateString))
+
+  describe('[parseArrayToString]', () => {
+    test('Should return the expected cases', () => {
+      Object.keys(mocks.parseArrayToString).forEach(caseKey => {
+        const { rawData, parsedData, separator } = mocks.parseArrayToString[caseKey]
+        expect(parseArrayToString(rawData, caseKey, separator)).toEqual(parsedData)
+      })
+    })
+
+    test('Should return the expected cases with default separator', () => {
+      const { rawData, parsedData } = mocks.parseArrayToString.numberCase
+      expect(parseArrayToString(rawData, 'numberCase')).toEqual(parsedData)
+    })
+  })
+
+  describe('[parseFormDataToObj]', () => {
     test('Should run with the required arguments', () => {
       const {
-        parseFormData: { raw, final }
+        parseFormDataToObj: { raw, final }
       } = mocks
-      expect(parseFormData(raw)).toEqual(final)
+      expect(parseFormDataToObj(raw)).toEqual(final)
     })
 
     test('Should return an empty object if you send no params', () => {
-      expect(parseFormData()).toEqual({})
+      expect(parseFormDataToObj()).toEqual({})
+    })
+  })
+
+  describe('[searchIdsFromNames]', () => {
+    test('Should return the expected string array based on an id object array', () => {
+      const { ids, stringList, result } = mocks.searchIdsFromNames.idArray
+      expect(searchIdsFromNames(ids, stringList)).toEqual(result)
+    })
+
+    test('Should return the expected single string based on an single id object', () => {
+      const {
+        ids: [idObj],
+        stringList,
+        result
+      } = mocks.searchIdsFromNames.idArray
+      expect(searchIdsFromNames(idObj, stringList)).toEqual(result[0])
+    })
+
+    test('Should return the id string based on an single id object without any stringList', () => {
+      const [idObj] = mocks.searchIdsFromNames.idArray.ids
+      expect(searchIdsFromNames(idObj, undefined)).toEqual(idObj.id)
+    })
+  })
+
+  describe('[searchNamesFromIds]', () => {
+    test('Should run with multipleSearch', () => {
+      const { list, items, result, searchMultiple } = mocks.searchNamesFromIds.withMultipleSearch
+      expect(searchNamesFromIds(items, list, searchMultiple)).toEqual(result)
+    })
+
+    test('Should run without multipleSearch', () => {
+      const { list, items, result } = mocks.searchNamesFromIds.withoutMultipleSearch
+      expect(searchNamesFromIds(items, list)).toEqual(result)
+    })
+
+    test('Should return null or [] in case ids or list arguments are not provided', () => {
+      const { list, items, searchMultiple } = mocks.searchNamesFromIds.withMultipleSearch
+      expect(searchNamesFromIds(undefined, list, searchMultiple)).toEqual(null)
+      expect(searchNamesFromIds(items, undefined, searchMultiple)).toEqual([])
+      expect(searchNamesFromIds(undefined, list)).toEqual(null)
+      expect(searchNamesFromIds(items, undefined)).toEqual(null)
+    })
+  })
+
+  describe('[normalizeCapitalWord]', () => {
+    test('Should return the expected cases', () => {
+      const { cases, results } = mocks.normalizeCapitalWord
+      cases.forEach((_case, i) => expect(normalizeCapitalWord(_case)).toEqual(results[i]))
     })
   })
 })

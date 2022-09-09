@@ -12,16 +12,16 @@ import { inputs, header, saveButton, goBackButton } from './config.json'
 import { APP_ROUTES } from '../../../constants/routes.json'
 // FUNCTIONS
 import { getLoggedUser, setLoggedUser } from '../../../functions/local-storage'
-import { mergeGraphObj } from '../../../functions/parsers'
+import { parseGraphToObj } from '../../../functions/parsers'
 
-const UpdateUserPage = () => {
+const UpdateUser = () => {
   let navigate = useNavigate()
   const [formObject, setFormObject] = useState(inputs)
   const [updateUser, { data, loading, error }] = useMutation(UPDATE_USER)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    const user = data ? mergeGraphObj(data.updateUser, getLoggedUser()) : getLoggedUser()
+    const user = data ? parseGraphToObj(data.updateUser, getLoggedUser()) : getLoggedUser()
 
     if (data) {
       setLoggedUser(user)
@@ -60,4 +60,4 @@ const UpdateUserPage = () => {
   )
 }
 
-export default UpdateUserPage
+export default UpdateUser

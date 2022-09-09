@@ -26,13 +26,7 @@ export const validateInput = input => {
 
 export const sendObjValues = form =>
   Object.keys(form)
-    .map(input => {
-      return (
-        form[input] && {
-          [input]: form[input].value
-        }
-      )
-    })
+    .map(input => form[input] && { [input]: form[input].value })
     .reduce((parsedForm, inputWithValue) => {
       return {
         ...parsedForm,

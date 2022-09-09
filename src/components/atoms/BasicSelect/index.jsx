@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { arrayOf, bool, func, number, shape, string, oneOf, object } from 'prop-types'
+import { arrayOf, bool, func, number, shape, string, oneOf, object, oneOfType } from 'prop-types'
 // CONSTANTS
 import { colors, sizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { parseCssClasses, parseObjKeys } from '../../../functions/parsers'
+import { parseConfigToClassName, parseObjKeys } from '../../../functions/parsers'
 
 const BasicSelect = ({
   control,
@@ -23,12 +23,13 @@ const BasicSelect = ({
   onBlurChange
 }) => {
   const multipleString = isMultiple ? 'multiple' : 'single'
-  const selectClass = parseCssClasses({ isMultiple, isLoading, isRounded }, 'select', [
+  const selectClass = parseConfigToClassName({ isMultiple, isLoading, isRounded }, 'select', [
     colors[color],
     sizes[size]
   ])
-  const parsedSelected = isMultiple ? (Array.isArray(selected) ? selected : []) : selected
-  const [selectedValue, setSelectedValue] = useState(parsedSelected)
+  const [selectedValue, setSelectedValue] = useState(
+    isMultiple ? (Array.isArray(selected) ? selected : []) : selected
+  )
   const parsedOptions = firstNullOption ? [{ label: '', value: null }, ...options] : options
 
   const processSelection = ({ ctrlKey, shiftKey, originalData, selectedOpts, newSelection }) => {
@@ -62,6 +63,7 @@ const BasicSelect = ({
       : target?.value
 
     setSelectedValue(newValue)
+
     onInputChange(
       {
         ...evt,
@@ -111,7 +113,7 @@ BasicSelect.propTypes = {
   isRequired: bool,
   isDisabled: bool,
   // SELECT INPUT PROPS
-  selected: string,
+  selected: oneOfType([arrayOf(string), string]),
   options: arrayOf(
     shape({
       label: string,

@@ -14,7 +14,7 @@ import { APP_ROUTES } from '../../../constants/routes.json'
 import { encryptPass } from '../../../functions/encrypt'
 import { setLoggedUser } from '../../../functions/local-storage'
 
-const NewUserPage = () => {
+const NewUser = () => {
   let navigate = useNavigate()
   const [createUser, { loading, error }] = useMutation(CREATE_USER)
   const dispatch = useDispatch()
@@ -76,4 +76,4 @@ const NewUserPage = () => {
   )
 }
 
-export default NewUserPage
+export default NewUser

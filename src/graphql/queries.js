@@ -21,6 +21,7 @@ export const GET_COLORS = gql`
 export const GET_MY_PETS = gql`
   query {
     getMyPets {
+      id
       name
       petType {
         name
@@ -28,11 +29,38 @@ export const GET_MY_PETS = gql`
       birthday
       isAdopted
       adoptionDate
+      gender
       hairColors {
         name
       }
+      hasHeterochromia
       eyeColors {
         name
+      }
+    }
+  }
+`
+
+export const GET_PET = gql`
+  query ($id: ID!) {
+    getPet(id: $id) {
+      name
+      petType {
+        id
+      }
+      birthday
+      isAdopted
+      adoptionDate
+      height
+      length
+      weight
+      gender
+      hairColors {
+        id
+      }
+      hasHeterochromia
+      eyeColors {
+        id
       }
     }
   }

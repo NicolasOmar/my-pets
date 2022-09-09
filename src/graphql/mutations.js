@@ -50,3 +50,9 @@ export const LOGOUT = gql`
     logout
   }
 `
+
+export const UPDATE_PET = gql`
+  mutation ($petInfo: PetInput!) {
+    updatePet(petInfo: $petInfo)
+  }
+`

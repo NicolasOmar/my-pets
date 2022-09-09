@@ -11,6 +11,11 @@ describe('[Message]', () => {
     expect(minimalMsgBlock).toBeInTheDocument()
   })
 
+  test('Should render the component with required props only', () => {
+    render(<Message {...{ msgType: minimalConfig.msgType }} />)
+    expect(() => screen.getByTestId(`test-${minimalConfig.msgType}-msg`)).toThrow()
+  })
+
   test('Should render the component with header', () => {
     render(<Message {...{ ...minimalConfig, headerText: 'test' }} />)
     const headerMsgBlock = screen.getByTestId(`test-${minimalConfig.msgType}-message-header`)

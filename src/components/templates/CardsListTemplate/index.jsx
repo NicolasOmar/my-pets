@@ -42,7 +42,7 @@ const CardsListTemplate = ({ isFetching = false, cardsListTitle, cardListData = 
   ) : (
     <GridLayout
       {...{
-        width: 12,
+        width: 9,
         centerGrid: true,
         children: cardsListTitle
           ? [<TitleHeader key="cards-title" {...cardsListTitle} />, ...parseCardsList()]
@@ -59,8 +59,8 @@ CardsListTemplate.propTypes = {
   cardsListTitle: shape(TitleHeader.propTypes),
   cardListData: arrayOf(
     shape({
-      cardTitle: shape(TitleHeader.propTypes),
       ...Card.propTypes,
+      cardTitle: shape(TitleHeader.propTypes),
       childWidth: number
     })
   ).isRequired

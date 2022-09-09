@@ -13,10 +13,10 @@ describe('[BasicSelect]', () => {
       .fill(null)
       .map((_, i) => ({ label: `Option ${i}`, value: `${i}` }))
   }
-  const testOptions = options => {
-    options.forEach((_, i) => {
+  const runOptionCases = options => {
+    options.forEach((_, i) =>
       expect(screen.getByTestId(`test-select-option-${i}`)).toBeInTheDocument()
-    })
+    )
   }
 
   test('Should render the component with required props only', () => {
@@ -26,18 +26,23 @@ describe('[BasicSelect]', () => {
 
   test('Should render the component with at least one option', () => {
     render(<BasicSelect {...oneOptionConfig} />)
-    testOptions(oneOptionConfig.options)
+    runOptionCases(oneOptionConfig.options)
+  })
+
+  test('Should render the component with a null option at the first', () => {
+    render(<BasicSelect {...{ ...oneOptionConfig, firstNullOption: true }} />)
+    runOptionCases([null, ...oneOptionConfig.options])
   })
 
   test('Should render the component with at least multiple options', () => {
     render(<BasicSelect {...multipleOptionsConfig} />)
-    testOptions(multipleOptionsConfig.options)
+    runOptionCases(multipleOptionsConfig.options)
 
     cleanup()
 
     render(<BasicSelect {...{ ...multipleOptionsConfig, isMultiple: true }} />)
     expect(screen.getByTestId(multiSelectTestId)).toBeInTheDocument()
-    testOptions(multipleOptionsConfig.options)
+    runOptionCases(multipleOptionsConfig.options)
   })
 
   test('Should that its methods have been called when is single options', () => {
