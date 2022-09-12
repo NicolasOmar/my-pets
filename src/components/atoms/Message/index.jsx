@@ -2,7 +2,9 @@ import React from 'react'
 import { arrayOf, object, oneOf, oneOfType, string } from 'prop-types'
 import { parseObjKeys } from '../../../functions/parsers'
 // ENUMS
-import { notificationTypes } from '../../../constants/bulma-styles.json'
+import BULMA_STYLES from '../../../constants/bulma-styles.json'
+
+const { notificationTypes } = BULMA_STYLES
 
 const Message = ({ headerText = null, msgType, messages = [], styles = {} }) => {
   const renderMsgHeader = headerText =>

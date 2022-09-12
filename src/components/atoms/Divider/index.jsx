@@ -1,9 +1,11 @@
 import React from 'react'
 import { object, oneOf } from 'prop-types'
 // CONSTANTS
-import { textColors } from '../../../constants/bulma-styles.json'
+import BULMA_STYLES from '../../../constants/bulma-styles.json'
 // FUNCTIONS
 import { parseObjKeys } from '../../../functions/parsers'
+
+const { textColors } = BULMA_STYLES
 
 const Divider = ({ color = parseObjKeys(textColors)[0], styles = { borderTop: '1px solid' } }) => (
   <hr

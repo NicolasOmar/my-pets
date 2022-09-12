@@ -1,7 +1,9 @@
 import React from 'react'
 import { bool, func, object, oneOf, oneOfType, string } from 'prop-types'
 // CONSTANTS
-import { checkTypes } from '../../../constants/tag-types.json'
+import TAG_TYPES from '../../../constants/tag-types.json'
+
+const { checkTypes } = TAG_TYPES
 
 const BasicRadioCheck = ({
   type,

@@ -1,10 +1,13 @@
 import React from 'react'
 import { bool, func, string, number, oneOf, object } from 'prop-types'
 // CONSTANTS
-import { inputTypes } from '../../../constants/tag-types.json'
-import { colors, sizes } from '../../../constants/bulma-styles.json'
+import TAG_TYPES from '../../../constants/tag-types.json'
+import BULMA_STYLES from '../../../constants/bulma-styles.json'
 // FUNCTIONS
 import { parseConfigToClassName, parseObjKeys } from '../../../functions/parsers'
+
+const { inputTypes } = TAG_TYPES
+const { colors, sizes } = BULMA_STYLES
 
 const BasicInput = ({
   type,

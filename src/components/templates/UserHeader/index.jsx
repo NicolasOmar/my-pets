@@ -8,9 +8,11 @@ import { LOGOUT } from '../../../graphql/mutations'
 // COMPONENTS
 import NavBar from '../../organisms/NavBar'
 // CONSTANTS
-import { APP_ROUTES } from '../../../constants/routes.json'
+import ROUTES from '../../../constants/routes.json'
 // FUNCTIONS
 import { clearAllStorage } from '../../../functions/local-storage'
+
+const { APP_ROUTES } = ROUTES
 
 const UserHeader = ({ name }) => {
   let navigate = useNavigate()

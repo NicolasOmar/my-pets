@@ -7,12 +7,15 @@ import { LOGIN } from '../../../graphql/mutations'
 // COMPONENTS
 import FormTemplate from '../../templates/FormTemplate'
 // FORM CONFIG
-import { inputs, header, loginButton, goToSignUpButton } from './config.json'
+import CONFIG from './config.json'
 // CONSTANTS
-import { APP_ROUTES } from '../../../constants/routes.json'
+import ROUTES from '../../../constants/routes.json'
 // FUNCTIONS
 import { encryptPass } from '../../../functions/encrypt'
 import { getLoggedUser, setLoggedUser } from '../../../functions/local-storage'
+
+const { inputs, header, loginButton, goToSignUpButton } = CONFIG
+const { APP_ROUTES } = ROUTES
 
 const Login = () => {
   let navigate = useNavigate()

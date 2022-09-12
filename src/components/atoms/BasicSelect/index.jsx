@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { arrayOf, bool, func, number, shape, string, oneOf, object, oneOfType } from 'prop-types'
 // CONSTANTS
-import { colors, sizes } from '../../../constants/bulma-styles.json'
+import BULMA_STYLES from '../../../constants/bulma-styles.json'
 // FUNCTIONS
 import { parseConfigToClassName, parseObjKeys } from '../../../functions/parsers'
+
+const { colors, sizes } = BULMA_STYLES
 
 const BasicSelect = ({
   control,

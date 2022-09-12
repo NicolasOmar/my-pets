@@ -6,11 +6,14 @@ import { UPDATE_PASS } from '../../../graphql/mutations'
 // COMPONENTS
 import FormTemplate from '../../templates/FormTemplate'
 // FORM CONFIG
-import { header, inputs, dividers, updateButton, cancelButton } from './config.json'
+import CONFIG from './config.json'
 // CONSTANTS
-import { APP_ROUTES } from '../../../constants/routes.json'
+import ROUTES from '../../../constants/routes.json'
 // FUNCTIONS
 import { encryptPass } from '../../../functions/encrypt'
+
+const { header, inputs, dividers, updateButton, cancelButton } = CONFIG
+const { APP_ROUTES } = ROUTES
 
 const UpdatePass = () => {
   let navigate = useNavigate()

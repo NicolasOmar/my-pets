@@ -12,7 +12,9 @@ import UpdatePet from '../pages/UpdatePet'
 import AddPet from '../pages/AddPet'
 import ListMyPets from '../pages/ListMyPets'
 // CONSTANTS
-import { APP_ROUTES } from '../../constants/routes.json'
+import ROUTES from '../../constants/routes.json'
+
+const { APP_ROUTES } = ROUTES
 
 const App = () => {
   const userData = useSelector(({ userState }) => userState)

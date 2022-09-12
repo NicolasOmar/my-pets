@@ -3,7 +3,7 @@ import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/re
 import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
 // APP_ROUTES
-import { APP_ROUTES } from '../../../constants/routes.json'
+import ROUTES from '../../../constants/routes.json'
 // GRAPHQL
 import { LOGOUT } from '../../../graphql/mutations'
 // REDUX
@@ -49,6 +49,7 @@ describe('[UserHeader]', () => {
 
   test('Should render each option and execute user redirection', () => {
     // const onLogoutMock = jets.fn()
+    const { APP_ROUTES } = ROUTES
     const testRoutes = [
       APP_ROUTES.ADD_PET,
       APP_ROUTES.LIST_MY_PETS,

@@ -3,7 +3,7 @@ import { MockedProvider } from '@apollo/client/testing'
 import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
 // APP_ROUTES
-import { APP_ROUTES } from '../../../constants/routes.json'
+import ROUTES from '../../../constants/routes.json'
 // GRAPHQL
 import { LOGIN } from '../../../graphql/mutations'
 // REDUX
@@ -101,7 +101,7 @@ describe('[Login]', () => {
 
     await waitFor(() => {
       expect(mockUseNavigate).toHaveBeenCalled()
-      expect(mockUseNavigate).toHaveBeenCalledWith(APP_ROUTES.NEW_USER)
+      expect(mockUseNavigate).toHaveBeenCalledWith(ROUTES.APP_ROUTES.NEW_USER)
     })
   })
 })
