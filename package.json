@@ -24,10 +24,10 @@
     "update-version": "node scripts/update-version.js",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "build:public:styles": "npm run build:styles -- -o public/styles",
-    "build:storybook:styles": "npm run build:styles -- -o .storybook",
-    "build:styles": "node-sass --omit-source-map-url --output-style compressed sass/styles.scss",
-    "prepare:styles": "npm run build:public:styles && npm run build:storybook:styles"
+    "sass:css": "node-sass --omit-source-map-url --output-style compressed sass/styles.scss",
+    "sass:css:app": "npm run sass:css -- -o public/styles",
+    "sass:css:storybook": "npm run sass:css -- -o .storybook",
+    "build:styles": "npm run sass:css:app && npm run sass:css:storybook"
   },
   "dependencies": {
     "@apollo/client": "^3.3.14",
@@ -97,7 +97,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm run prepare:styles && git add .",
+      "pre-commit": "lint-staged && npm run build:styles && git add .",
       "pre-push": "npm run build && npm test && npm run update-version"
     }
   }

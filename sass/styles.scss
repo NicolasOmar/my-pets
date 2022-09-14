@@ -1,12 +1,133 @@
 @charset "utf-8";
-@import "../node_modules/bulma/bulma.sass";
+// USE BUILT-IN SCSS FUNCTIONS
+@use "sass:map";
+// Import only what you need from Bulma
+@import "../node_modules/bulma/sass/utilities/initial-variables.sass";
+@import "../node_modules/bulma/sass/utilities/functions.sass";
 
-@media (prefers-color-scheme: dark) {
+$variables: (
+  "dark": $grey-dark,
+  "light": $white-ter,
+);
+
+html {
+  height: 100%;
+
   body {
-    --bkg-color: #121212;
+    height: 100%;
+
+    &.dark-mode {
+      background: map-get($map: $variables, $key: "dark");
+
+      p {
+        color: $white-ter;
+      }
+    
+      form {
+        background: $grey-dark;
+    
+        label {
+          color: $white-ter;
+        }
+    
+        input {
+          background: $grey-dark;
+          color: $white-ter;
+        }
+      }
+    }
+
+    &.light-mode {
+      background: map-get($map: $variables, $key: "light");
+      
+      p {
+        color: $grey-dark;
+      }
+    
+      form {
+        background: $white-ter;
+    
+        label {
+          color: $grey-dark;
+        }
+    
+        input {
+          background: $white-ter;
+          color: $grey-dark;
+        }
+      }
+    }
+
+    div#root {
+      height: 100%;
+    }
   }
 }
 
-body {
-  background: var(--bkg-color);
+@media (prefers-color-scheme: dark) {
+  body {
+    background: map-get($map: $variables, $key: "dark");
+
+    div#root {
+      p {
+        color: $white-ter;
+      }
+    
+      form {
+        background: $grey-dark;
+    
+        label {
+          color: $white-ter;
+        }
+    
+        input {
+          background: $grey-dark;
+          color: $white-ter;
+        }
+      }
+
+      section {
+        background: $grey-dark;
+        color: $white-ter;
+
+        p {
+          color: $white-ter;
+        }
+      }
+    }
+
+    &.light-mode {
+      background: map-get($map: $variables, $key: "light");
+
+      div#root {
+        p {
+          color: $grey-dark;
+        }
+    
+        form {
+          background: $white-ter;
+    
+          label {
+            color: $grey-dark;
+          }
+    
+          input {
+            background: $white-ter;
+            color: $grey-dark;
+          }
+        }
+
+        section {
+          background: $white-ter;
+          color: $grey-dark;
+
+          p {
+            color: $grey-dark;
+          }
+        }
+      }
+    }
+  }
 }
+
+@import "../node_modules/bulma/bulma.sass";
