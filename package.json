@@ -1,6 +1,6 @@
 {
   "name": "my-pets",
-  "version": "0.1.74",
+  "version": "0.1.75",
   "author": "Nicolás Omar González Passerino",
   "license": "MIT",
   "private": false,
@@ -63,6 +63,7 @@
     "husky": "^4.3.5",
     "lint-staged": "^10.5.3",
     "node-sass": "^7.0.3",
+    "postcss": "^8.4.16",
     "prettier": "^2.2.1",
     "prompts": "^2.4.0",
     "prop-types": "^15.7.2"

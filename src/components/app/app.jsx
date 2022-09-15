@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 // COMPONENTS
-import UserHeader from '../templates/UserHeader'
+import UserHeader from '../pages/UserHeader'
 import Home from '../pages/Home'
 import Login from '../pages/Login'
 import NewUser from '../pages/NewUser'

@@ -2,11 +2,11 @@ import React from 'react'
 import UserHeader from '.'
 import { MockedProvider } from '@apollo/client/testing'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { configureStore } from '@reduxjs/toolkit'
 // APP_ROUTES
 import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // REDUX
-import store from '../../../redux/reducers'
+import reducers from '../../../redux/reducers'
 // MOCKS
 import { testConfig } from './index.mocks.json'
 
@@ -17,7 +17,7 @@ export default {
 }
 
 const Template = args => (
-  <Provider store={createStore(store)}>
+  <Provider store={configureStore({ reducer: reducers })}>
     <MockedProvider mocks={[]} addTypename={false}>
       <UserHeader {...args} />
     </MockedProvider>
