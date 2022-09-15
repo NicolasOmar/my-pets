@@ -22,8 +22,8 @@
     "lint": "eslint --fix src/**/*.jsx",
     "prettier": "prettier --write src",
     "update-version": "node scripts/update-version.js",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public",
     "sass:css": "node-sass --omit-source-map-url --output-style compressed sass/styles.scss",
     "styles:app": "npm run sass:css -- -o public/styles",
     "styles:storybook": "npm run sass:css -- -o .storybook",
@@ -51,12 +51,18 @@
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/eslint-parser": "^7.18.9",
-    "@storybook/addon-actions": "^6.5.10",
-    "@storybook/addon-essentials": "^6.5.10",
-    "@storybook/addon-links": "^6.5.10",
-    "@storybook/preset-create-react-app": "^3.2.0",
-    "@storybook/react": "^6.5.10",
+    "@storybook/addon-actions": "^6.5.12",
+    "@storybook/addon-essentials": "^6.5.12",
+    "@storybook/addon-interactions": "^6.5.12",
+    "@storybook/addon-links": "^6.5.12",
+    "@storybook/builder-webpack5": "^6.5.12",
+    "@storybook/manager-webpack5": "^6.5.12",
+    "@storybook/node-logger": "^6.5.12",
+    "@storybook/preset-create-react-app": "^4.1.2",
+    "@storybook/react": "^6.5.12",
+    "@storybook/testing-library": "^0.0.13",
     "babel-loader": "8.1.0",
+    "babel-plugin-named-exports-order": "^0.0.2",
     "bulma": "^0.9.4",
     "eslint": "^7.15.0",
     "eslint-plugin-react": "^7.21.5",
@@ -66,7 +72,8 @@
     "postcss": "^8.4.16",
     "prettier": "^2.2.1",
     "prompts": "^2.4.0",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.8.1",
+    "webpack": "^5.74.0"
   },
   "browserslist": {
     "production": [
@@ -101,5 +108,17 @@
       "pre-commit": "lint-staged && npm run build:styles && git add .storybook/styles.css public/styles/styles.css",
       "pre-push": "npm run build && npm test && npm run update-version"
     }
+  },
+  "eslintConfig": {
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
   }
 }
