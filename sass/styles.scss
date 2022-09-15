@@ -1,6 +1,4 @@
 @charset "utf-8";
-// USE BUILT-IN SCSS FUNCTIONS
-@use "sass:map";
 // IMPORT MIXINGS
 @import "./mixings.scss";
   
@@ -30,6 +28,16 @@ html {
 
     &.light-mode {
       @include light-mode;
+    }
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    @include light-mode;
+
+    &.light-mode {
+      @include dark-mode;
     }
   }
 }
