@@ -25,9 +25,9 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "sass:css": "node-sass --omit-source-map-url --output-style compressed sass/styles.scss",
-    "sass:css:app": "npm run sass:css -- -o public/styles",
-    "sass:css:storybook": "npm run sass:css -- -o .storybook",
-    "build:styles": "npm run sass:css:app && npm run sass:css:storybook"
+    "sass:app": "npm run sass:css -- -o public/styles",
+    "sass:storybook": "npm run sass:css -- -o .storybook",
+    "build:styles": "npm run sass:app && npm run sass:storybook"
   },
   "dependencies": {
     "@apollo/client": "^3.3.14",

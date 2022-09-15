@@ -2,14 +2,17 @@
 // USE BUILT-IN SCSS FUNCTIONS
 @use "sass:map";
 // Import only what you need from Bulma
-@import "../node_modules/bulma/sass/utilities/initial-variables.sass";
-@import "../node_modules/bulma/sass/utilities/functions.sass";
+@import "../node_modules/bulma/sass/utilities/derived-variables.sass";
 
-$variables: (
-  "dark": $grey-dark,
-  "light": $white-ter,
+$themes: (
+  "dark-bg": $grey-dark,
+  "dark-link": $primary,
+  "dark-link-hov": $cyan,
+  "light-bg": $light,
+  "light-link": $link,
+  "light-link-hov": $link-hover,
 );
-
+  
 html {
   height: 100%;
 
@@ -17,43 +20,47 @@ html {
     height: 100%;
 
     &.dark-mode {
-      background: map-get($map: $variables, $key: "dark");
+      background: map-get($map: $themes, $key: "dark-bg");
 
       p {
-        color: $white-ter;
+        color: map-get($map: $themes, $key: "light-bg");
+      }
+
+      a {
+        color: map-get($map: $themes, $key: "dark-link");
       }
     
       form {
-        background: $grey-dark;
+        background: map-get($map: $themes, $key: "dark-bg");
     
         label {
-          color: $white-ter;
+          color: map-get($map: $themes, $key: "light-bg");
         }
     
         input {
-          background: $grey-dark;
-          color: $white-ter;
+          background: map-get($map: $themes, $key: "dark-bg");
+          color: map-get($map: $themes, $key: "light-bg");
         }
       }
     }
 
     &.light-mode {
-      background: map-get($map: $variables, $key: "light");
+      background: map-get($map: $themes, $key: "light-bg");
       
       p {
-        color: $grey-dark;
+        color: map-get($map: $themes, $key: "dark-bg");
       }
     
       form {
-        background: $white-ter;
+        background: map-get($map: $themes, $key: "light-bg");
     
         label {
-          color: $grey-dark;
+          color: map-get($map: $themes, $key: "dark-bg");
         }
     
         input {
-          background: $white-ter;
-          color: $grey-dark;
+          background: map-get($map: $themes, $key: "light-bg");
+          color: map-get($map: $themes, $key: "dark-bg");
         }
       }
     }
@@ -66,63 +73,79 @@ html {
 
 @media (prefers-color-scheme: dark) {
   body {
-    background: map-get($map: $variables, $key: "dark");
+    background: map-get($map: $themes, $key: "dark-bg");
 
     div#root {
       p {
-        color: $white-ter;
+        color: map-get($map: $themes, $key: "light-bg");
+      }
+      
+      a {
+        color: map-get($map: $themes, $key: "dark-link");
+
+        &:hover {
+          color: map-get($map: $themes, $key: "dark-link-hov");
+        }
       }
     
       form {
-        background: $grey-dark;
+        background: map-get($map: $themes, $key: "dark-bg");
     
         label {
-          color: $white-ter;
+          color: map-get($map: $themes, $key: "light-bg");
         }
     
         input {
-          background: $grey-dark;
-          color: $white-ter;
+          background: map-get($map: $themes, $key: "dark-bg");
+          color: map-get($map: $themes, $key: "light-bg");
         }
       }
 
       section {
-        background: $grey-dark;
-        color: $white-ter;
+        background: map-get($map: $themes, $key: "dark-bg");
+        color: map-get($map: $themes, $key: "light-bg");
 
         p {
-          color: $white-ter;
+          color: map-get($map: $themes, $key: "light-bg");
         }
       }
     }
 
     &.light-mode {
-      background: map-get($map: $variables, $key: "light");
+      background: map-get($map: $themes, $key: "light-bg");
 
       div#root {
         p {
-          color: $grey-dark;
+          color: map-get($map: $themes, $key: "dark-bg");
+        }
+      
+        a {
+          color: map-get($map: $themes, $key: "light-link");
+
+          &:hover {
+            color: map-get($map: $themes, $key: "light-link-hov");
+          }
         }
     
         form {
-          background: $white-ter;
+          background: map-get($map: $themes, $key: "light-bg");
     
           label {
-            color: $grey-dark;
+            color: map-get($map: $themes, $key: "dark-bg");
           }
     
           input {
-            background: $white-ter;
-            color: $grey-dark;
+            background: map-get($map: $themes, $key: "light-bg");
+            color: map-get($map: $themes, $key: "dark-bg");
           }
         }
 
         section {
-          background: $white-ter;
-          color: $grey-dark;
+          background: map-get($map: $themes, $key: "light-bg");
+          color: map-get($map: $themes, $key: "dark-bg");
 
           p {
-            color: $grey-dark;
+            color: map-get($map: $themes, $key: "dark-bg");
           }
         }
       }
