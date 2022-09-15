@@ -1,0 +1,91 @@
+// Import only what you need from Bulma
+@import "../node_modules/bulma/sass/utilities/derived-variables.sass";
+
+$themes: (
+  "dark-bg": $grey-dark,
+  "dark-link": $primary,
+  "dark-link-hov": $cyan,
+  "light-bg": $light,
+  "light-link": $link,
+  "light-link-hov": $link-hover,
+);
+
+@mixin dark-mode {
+  background: map-get($map: $themes, $key: "dark-bg");
+
+  div#root {
+    p {
+      color: map-get($map: $themes, $key: "light-bg");
+    }
+
+    a {
+      color: map-get($map: $themes, $key: "dark-link");
+
+      &:hover {
+        color: map-get($map: $themes, $key: "dark-link-hov");
+      }
+    }
+
+    form {
+      background: map-get($map: $themes, $key: "dark-bg");
+
+      label {
+        color: map-get($map: $themes, $key: "light-bg");
+      }
+
+      input {
+        background: map-get($map: $themes, $key: "dark-bg");
+        color: map-get($map: $themes, $key: "light-bg");
+      }
+    }
+
+    section {
+      background: map-get($map: $themes, $key: "dark-bg");
+      color: map-get($map: $themes, $key: "light-bg");
+
+      p {
+        color: map-get($map: $themes, $key: "light-bg");
+      }
+    }
+  }
+}
+
+@mixin light-mode {
+  background: map-get($map: $themes, $key: "light-bg");
+
+  div#root {
+    p {
+      color: map-get($map: $themes, $key: "dark-bg");
+    }
+
+    a {
+      color: map-get($map: $themes, $key: "light-link");
+
+      &:hover {
+        color: map-get($map: $themes, $key: "light-link-hov");
+      }
+    }
+
+    form {
+      background: map-get($map: $themes, $key: "light-bg");
+
+      label {
+        color: map-get($map: $themes, $key: "dark-bg");
+      }
+
+      input {
+        background: map-get($map: $themes, $key: "light-bg");
+        color: map-get($map: $themes, $key: "dark-bg");
+      }
+    }
+
+    section {
+      background: map-get($map: $themes, $key: "light-bg");
+      color: map-get($map: $themes, $key: "dark-bg");
+
+      p {
+        color: map-get($map: $themes, $key: "dark-bg");
+      }
+    }
+  }
+}

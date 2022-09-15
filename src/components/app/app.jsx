@@ -19,16 +19,10 @@ const { APP_ROUTES } = ROUTES
 const App = () => {
   const userData = useSelector(({ userState }) => userState)
   const renderHeader = userState => userState && <UserHeader name={userState.name} />
-  const testStyling = () => {
-    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
-    const toggleStyle = isDarkMode ? 'light-mode' : 'dark-mode'
-    document.body.classList.toggle(toggleStyle)
-    console.warn(window.matchMedia('(prefers-color-scheme: dark)').matches)
-  }
+
   return (
     <BrowserRouter>
       {renderHeader(userData)}
-      <button onClick={() => testStyling()}>ToggleStyles</button>
       <Routes>
         <Route exact path={APP_ROUTES.HOME} element={<Home />} />
         <Route exact path={APP_ROUTES.LOGIN} element={<Login />} />

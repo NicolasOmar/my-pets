@@ -33,6 +33,12 @@ const UserHeader = ({ name }) => {
     }
   }
 
+  const toggleStyle = () => {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const toggleStyle = isDarkMode ? 'light-mode' : 'dark-mode'
+    document.body.classList.toggle(toggleStyle)
+  }
+
   const dropdownConfig = {
     end: [
       {
@@ -54,6 +60,10 @@ const UserHeader = ({ name }) => {
           {
             itemLabel: 'Update Pass',
             onClickItem: () => navigate(APP_ROUTES.UPDATE_PASS)
+          },
+          {
+            itemLabel: 'Toggle Style',
+            onClickItem: () => toggleStyle()
           },
           {
             itemLabel: 'Logout',
