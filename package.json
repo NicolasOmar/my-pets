@@ -1,6 +1,6 @@
 {
   "name": "my-pets",
-  "version": "0.1.75",
+  "version": "0.1.76",
   "author": "Nicolás Omar González Passerino",
   "license": "MIT",
   "private": false,
@@ -73,6 +73,7 @@
     "prettier": "^2.2.1",
     "prompts": "^2.4.0",
     "prop-types": "^15.8.1",
+    "storybook-dark-mode": "^1.1.2",
     "webpack": "^5.74.0"
   },
   "browserslist": {
@@ -103,12 +104,6 @@
       "prettier --write"
     ]
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged && npm run build:styles && git add .storybook/styles.css public/styles/styles.css",
-      "pre-push": "npm run build && npm test && npm run update-version"
-    }
-  },
   "eslintConfig": {
     "overrides": [
       {
@@ -120,5 +115,11 @@
         }
       }
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm run build:styles && git add .storybook/styles.css public/styles/styles.css",
+      "pre-push": "npm run build && npm test && npm run update-version"
+    }
   }
 }
