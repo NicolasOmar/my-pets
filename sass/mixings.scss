@@ -31,27 +31,27 @@ $light: (
       }
     }
 
+    input {
+      background: map-get($map: $dark, $key: "bg");
+      color: map-get($map: $light, $key: "bg");
+    }
+
+    select {
+      background: map-get($map: $dark, $key: "bg");
+      color: map-get($map: $light, $key: "bg");
+
+      option {
+        background: map-get($map: $dark, $key: "bg");
+        color: map-get($map: $light, $key: "bg");
+      }
+    }
+
+    label {
+      color: map-get($map: $light, $key: "bg");
+    }
+
     form {
       background: map-get($map: $dark, $key: "bg");
-
-      label {
-        color: map-get($map: $light, $key: "bg");
-      }
-
-      input {
-        background: map-get($map: $dark, $key: "bg");
-        color: map-get($map: $light, $key: "bg");
-      }
-
-      select {
-        background: map-get($map: $dark, $key: "bg");
-        color: map-get($map: $light, $key: "bg");
-
-        option {
-          background: map-get($map: $dark, $key: "bg");
-          color: map-get($map: $light, $key: "bg");
-        }
-      }
     }
 
     section {
@@ -81,27 +81,27 @@ $light: (
       }
     }
 
+    input {
+      background: map-get($map: $light, $key: "bg");
+      color: map-get($map: $dark, $key: "bg");
+    }
+      
+    select {
+      background: map-get($map: $light, $key: "bg");
+      color: map-get($map: $dark, $key: "bg");
+
+      option {
+        background: map-get($map: $light, $key: "bg");
+        color: map-get($map: $dark, $key: "bg");
+      }
+    }
+
+    label {
+      color: map-get($map: $dark, $key: "bg");
+    }
+
     form {
       background: map-get($map: $light, $key: "bg");
-
-      label {
-        color: map-get($map: $dark, $key: "bg");
-      }
-
-      input {
-        background: map-get($map: $light, $key: "bg");
-        color: map-get($map: $dark, $key: "bg");
-      }
-      
-      select {
-        background: map-get($map: $light, $key: "bg");
-        color: map-get($map: $dark, $key: "bg");
-
-        option {
-          background: map-get($map: $light, $key: "bg");
-          color: map-get($map: $dark, $key: "bg");
-        }
-      }
     }
 
     section {
