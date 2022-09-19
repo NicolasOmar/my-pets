@@ -1,9 +1,11 @@
 import React from 'react'
 import { bool, number, object, oneOf, string } from 'prop-types'
 // CONSTANTS
-import { imageRatios } from '../../../constants/bulma-styles.json'
+import BULMA_STYLES from '../../../constants/bulma-styles.json'
 // FUNCTIONS
 import { parseObjKeys } from '../../../functions/parsers'
+
+const { imageRatios } = BULMA_STYLES
 
 const Image = ({ src, altText, styles = {}, fixedRatio, ratio, isRounded = false }) => {
   const figureClass = Number.isInteger(fixedRatio)

@@ -1,9 +1,11 @@
 import React from 'react'
 import { bool, object, oneOf, string } from 'prop-types'
 // CONSTANTS
-import { fontSizes } from '../../../constants/bulma-styles.json'
+import BULMA_STYLES from '../../../constants/bulma-styles.json'
 // FUNCTIONS
 import { parseObjKeys, parseConfigToClassName } from '../../../functions/parsers'
+
+const { fontSizes } = BULMA_STYLES
 
 const TitleHeader = ({
   titleText,

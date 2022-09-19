@@ -6,9 +6,9 @@ import { GET_MY_PETS } from '../../../graphql/queries'
 // COMPONENTS
 import CardsListTemplate from '../../templates/CardsListTemplate'
 // PAGE CONFIG
-import { cardsListTitle } from './config.json'
+import CONFIG from './config.json'
 // CONSTANTS
-import { APP_ROUTES } from '../../../constants/routes.json'
+import ROUTES from '../../../constants/routes.json'
 // FUNCTIONS
 import {
   parseBooleanToString,
@@ -16,6 +16,9 @@ import {
   parseArrayToString,
   normalizeCapitalWord
 } from '../../../functions/parsers'
+
+const { cardsListTitle } = CONFIG
+const { APP_ROUTES } = ROUTES
 
 const ListMyPets = () => {
   let navigate = useNavigate()

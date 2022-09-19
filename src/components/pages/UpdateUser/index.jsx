@@ -7,12 +7,15 @@ import { UPDATE_USER } from '../../../graphql/mutations'
 // COMPONENTS
 import FormTemplate from '../../templates/FormTemplate'
 // FORM CONFIG
-import { inputs, header, saveButton, goBackButton } from './config.json'
+import CONFIG from './config.json'
 // CONSTANTS
-import { APP_ROUTES } from '../../../constants/routes.json'
+import ROUTES from '../../../constants/routes.json'
 // FUNCTIONS
 import { getLoggedUser, setLoggedUser } from '../../../functions/local-storage'
 import { parseGraphToObj } from '../../../functions/parsers'
+
+const { inputs, header, saveButton, goBackButton } = CONFIG
+const { APP_ROUTES } = ROUTES
 
 const UpdateUser = () => {
   let navigate = useNavigate()

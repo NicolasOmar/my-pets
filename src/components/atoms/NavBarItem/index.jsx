@@ -11,7 +11,7 @@ const NavBarItem = ({
   const itemStyle = isLink && !children ? 'navbar-link' : 'navbar-item'
 
   return (
-    <div
+    <section
       key={`${itemStyle}`}
       data-testid={`test-${itemStyle}`}
       className={itemStyle}
@@ -19,7 +19,7 @@ const NavBarItem = ({
       onClick={onClickItem}
     >
       {children || itemLabel}
-    </div>
+    </section>
   )
 }
 

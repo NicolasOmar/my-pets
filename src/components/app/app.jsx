@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 // COMPONENTS
-import UserHeader from '../templates/UserHeader'
+import UserHeader from '../pages/UserHeader'
 import Home from '../pages/Home'
 import Login from '../pages/Login'
 import NewUser from '../pages/NewUser'
@@ -12,11 +12,14 @@ import UpdatePet from '../pages/UpdatePet'
 import AddPet from '../pages/AddPet'
 import ListMyPets from '../pages/ListMyPets'
 // CONSTANTS
-import { APP_ROUTES } from '../../constants/routes.json'
+import ROUTES from '../../constants/routes.json'
+
+const { APP_ROUTES } = ROUTES
 
 const App = () => {
   const userData = useSelector(({ userState }) => userState)
   const renderHeader = userState => userState && <UserHeader name={userState.name} />
+
   return (
     <BrowserRouter>
       {renderHeader(userData)}

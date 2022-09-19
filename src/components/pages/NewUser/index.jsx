@@ -7,17 +7,20 @@ import { CREATE_USER } from '../../../graphql/mutations'
 // COMPONENTS
 import FormTemplate from '../../templates/FormTemplate'
 // FORM CONFIG
-import { inputs, header, signUpButton, goToLoginButton } from './config.json'
+import CONFIG from './config.json'
 // CONSTANTS
-import { APP_ROUTES } from '../../../constants/routes.json'
+import ROUTES from '../../../constants/routes.json'
 // FUNCTIONS
 import { encryptPass } from '../../../functions/encrypt'
 import { setLoggedUser } from '../../../functions/local-storage'
+
+const { inputs, header, signUpButton, goToLoginButton } = CONFIG
 
 const NewUser = () => {
   let navigate = useNavigate()
   const [createUser, { loading, error }] = useMutation(CREATE_USER)
   const dispatch = useDispatch()
+  const { APP_ROUTES } = ROUTES
 
   const onSubmitCreation = async formData => {
     const newUser = {

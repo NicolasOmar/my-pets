@@ -1,5 +1,5 @@
 import validators from './validators'
-import { validations } from '../constants/input-validations.json'
+import VALIDATIONS from '../constants/input-validations.json'
 
 export const checkIsValidForm = form =>
   Object.keys(form)
@@ -17,11 +17,9 @@ export const checkIsValidForm = form =>
     In other case (only one of those values is false), will return that your value is invalid
 */
 export const validateInput = input => {
-  return validations
-    .map(({ prop, fn }) =>
-      input[prop] !== undefined ? !validators[fn](input.value, input[prop]) : true
-    )
-    .every(validationState => validationState)
+  return VALIDATIONS.map(({ prop, fn }) =>
+    input[prop] !== undefined ? !validators[fn](input.value, input[prop]) : true
+  ).every(validationState => validationState)
 }
 
 export const sendObjValues = form =>

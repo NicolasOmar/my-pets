@@ -7,9 +7,9 @@ import { UPDATE_PET } from '../../../graphql/mutations'
 // COMPONENTS
 import FormTemplate from '../../templates/FormTemplate'
 // FORM CONFIG
-import { header, inputs, dividers, addPetButton, goToList } from './config.json'
+import CONFIG from './config.json'
 // CONSTANTS
-import { APP_ROUTES } from '../../../constants/routes.json'
+import ROUTES from '../../../constants/routes.json'
 // FUNCTIONS
 import {
   searchNamesFromIds,
@@ -21,6 +21,9 @@ import {
   parseNumber
 } from '../../../functions/parsers'
 import validators from '../../../functions/validators'
+
+const { header, inputs, dividers, addPetButton, goToList } = CONFIG
+const { APP_ROUTES } = ROUTES
 
 const UpdatePet = () => {
   const params = useParams()

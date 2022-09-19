@@ -1,9 +1,11 @@
 import React from 'react'
 import { element, array, oneOfType, oneOf, bool, object } from 'prop-types'
 // CONSTANTS
-import { columnSizes } from '../../../constants/bulma-styles.json'
+import BULMA_STYLES from '../../../constants/bulma-styles.json'
 // FUNCTIONS
 import { parseObjKeys } from '../../../functions/parsers'
+
+const { columnSizes } = BULMA_STYLES
 
 const GridLayout = ({
   children = [],

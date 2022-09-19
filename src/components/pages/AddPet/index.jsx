@@ -7,9 +7,9 @@ import { CREATE_PET } from '../../../graphql/mutations'
 // COMPONENTS
 import FormTemplate from '../../templates/FormTemplate'
 // FORM CONFIG
-import { header, inputs, dividers, addPetButton, goToHomeButton } from './config.json'
+import CONFIG from './config.json'
 // CONSTANTS
-import { APP_ROUTES } from '../../../constants/routes.json'
+import ROUTES from '../../../constants/routes.json'
 // FUNCTIONS
 import validators from '../../../functions/validators'
 import {
@@ -19,6 +19,9 @@ import {
   parseFormDataToObj,
   parseNumber
 } from '../../../functions/parsers'
+
+const { header, inputs, dividers, addPetButton, goToHomeButton } = CONFIG
+const { APP_ROUTES } = ROUTES
 
 const AddPet = () => {
   let navigate = useNavigate()

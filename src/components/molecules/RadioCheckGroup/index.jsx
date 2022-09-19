@@ -3,7 +3,9 @@ import { arrayOf, string, oneOf, shape, func, oneOfType, bool } from 'prop-types
 // COMPONENTS
 import BasicRadioCheck from '../../atoms/BasicRadioCheck'
 // CONSTANTS
-import { checkTypes } from '../../../constants/tag-types.json'
+import TAG_TYPES from '../../../constants/tag-types.json'
+
+const { checkTypes } = TAG_TYPES
 
 const RadioCheckGroup = ({ options, type, name, value = null, onInputChange, onBlurChange }) => {
   const isRadio = type === 'radio'

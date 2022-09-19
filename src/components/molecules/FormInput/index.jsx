@@ -4,11 +4,13 @@ import { bool, string, oneOfType, shape, object } from 'prop-types'
 import Label from '../../atoms/Label'
 import BasicInput from '../../atoms/BasicInput'
 import BasicSelect from '../../atoms/BasicSelect'
+import RadioCheckGroup from '../RadioCheckGroup'
 // CONSTANTS
-import { checkTypes, selectorTypes } from '../../../constants/tag-types.json'
+import TAG_TYPES from '../../../constants/tag-types.json'
 // FUNCTIONS
 import { parseConfigToClassName } from '../../../functions/parsers'
-import RadioCheckGroup from '../RadioCheckGroup'
+
+const { checkTypes, selectorTypes } = TAG_TYPES
 
 const parseFormInput = inputConfig => {
   const baseInputConfig = { ...inputConfig, color: inputConfig.isValid === false ? 'danger' : null }
