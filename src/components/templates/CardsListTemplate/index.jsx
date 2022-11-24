@@ -1,5 +1,4 @@
 import React from 'react'
-import './index.scss'
 import { arrayOf, bool, number, shape } from 'prop-types'
 // COMPONENTS
 import Card from '../../molecules/Card'
@@ -8,7 +7,7 @@ import TitleHeader from '../../atoms/TitleHeader'
 import Spinner from '../../atoms/Spinner'
 import Icon from '../../atoms/Icon'
 
-const renderItem = ({ type = 'section', key, classes = null, content }) => {
+const renderSectionContent = ({ type = 'section', key, classes = null, content }) => {
   switch (type) {
     case 'section':
       return (
@@ -25,24 +24,30 @@ const renderItem = ({ type = 'section', key, classes = null, content }) => {
   }
 }
 
-const mapRender = (content, mapFn) =>
-  Array.isArray(content)
-    ? content
-        .filter(content => content)
-        .map((contentItem, contentIndex) => mapFn(contentItem, contentIndex))
-    : content
+const renderCardSection = (cardSection, mapFn) =>
+  Array.isArray(cardSection)
+    ? cardSection
+        .filter(cardSection => cardSection)
+        .map((_sectionContent, _sectionIndex) => mapFn(_sectionContent, _sectionIndex))
+    : cardSection
 
 const CardsListTemplate = ({ isFetching = false, cardsListTitle, cardListData = [] }) => {
   const parseCardsList = () =>
     cardListData.map(
       ({ key, cardHeader, cardImage, cardContent, cardFooter, childWidth = 3 }, cardI) => {
         const cardConfig = {
-          cardHeader: mapRender(cardHeader, (content, contentIndex) =>
-            renderItem({ ...content, key: `card-header-section-${cardI}-${contentIndex}` })
+          cardHeader: renderCardSection(cardHeader, (headerContent, contentIndex) =>
+            renderSectionContent({
+              ...headerContent,
+              key: `card-header-section-${cardI}-${contentIndex}`
+            })
           ),
           cardImage,
-          cardContent: mapRender(cardContent, (content, contentIndex) =>
-            renderItem({ ...content, key: `card-content-section-${cardI}-${contentIndex}` })
+          cardContent: renderCardSection(cardContent, (sectionContent, contentIndex) =>
+            renderSectionContent({
+              ...sectionContent,
+              key: `card-content-section-${cardI}-${contentIndex}`
+            })
           ),
           cardFooter,
           childWidth

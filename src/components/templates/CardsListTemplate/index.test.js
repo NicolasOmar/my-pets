@@ -10,9 +10,19 @@ describe('[CardListTemplate]', () => {
     Array(number)
       .fill(null)
       .map((_, i) => ({
-        cardTitle: { titleText: `Test card ${i}` },
         cardImage: cardMocks.testBaseImage,
-        cardContent: [cardMocks.testCardContent],
+        cardContent: [
+          {
+            type: 'section',
+            content: cardMocks.testCardContent
+          },
+          {
+            type: 'title',
+            content: {
+              titleText: `Test card ${i}`
+            }
+          }
+        ],
         cardFooter: cardMocks.testFooterItems
       }))
 

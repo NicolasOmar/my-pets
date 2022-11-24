@@ -6,7 +6,11 @@ const Icon = ({ isCustom = false, src = '', alt = '', size = 30, styles = {}, cs
     <section style={styles} className={cssClasses}>
       <img src={src} alt={alt} title={alt} height={size} width={size} />
     </section>
-  ) : null
+  ) : (
+    <span className="icon">
+      <i className={`fas fa-${cssClasses}`}></i>
+    </span>
+  )
 
 export default Icon
 
