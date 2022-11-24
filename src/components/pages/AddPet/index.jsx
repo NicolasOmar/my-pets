@@ -43,7 +43,8 @@ const AddPet = () => {
       petType: searchNamesFromIds(petObj?.petType, petTypes?.getPetTypes),
       hairColors: searchNamesFromIds(petObj?.hairColors, colors?.getColors, true),
       hasHeterochromia: !!petObj.hasHeterochromia,
-      eyeColors: searchNamesFromIds(petObj?.eyeColors, colors?.getColors, true)
+      eyeColors: searchNamesFromIds(petObj?.eyeColors, colors?.getColors, true),
+      passedAway: false
     }
 
     await createPet({

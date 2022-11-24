@@ -109,6 +109,18 @@
       "firstNullOption": true,
       "isVisible": true,
       "isRequired": true
+    },
+    "passedAway": {
+      "label": "Passed Away?",
+      "type": "checkbox",
+      "control": "passedAway",
+      "name": "passedAway",
+      "isVisible": true,
+      "options": [
+        {
+          "control": "passedAway"
+        }
+      ]
     }
   },
   "dividers": [

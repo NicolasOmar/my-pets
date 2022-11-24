@@ -31,7 +31,7 @@ const UpdatePet = () => {
   const [isLoadingPet, setIsLoadingPet] = useState(true)
   const { loading: isLoadingPetTypes, data: petTypes } = useQuery(GET_PET_TYPES)
   const { loading: isLoadingColors, data: colors } = useQuery(GET_COLORS)
-  const [getPet, { data: petData }] = useLazyQuery(GET_PET)
+  const [getPet, { data: petData }] = useLazyQuery(GET_PET, { fetchPolicy: 'no-cache' })
   const [updatePet, { loading: isUpdating, error: errorUpdate }] = useMutation(UPDATE_PET)
 
   useEffect(() => params.petId && getPet({ variables: { id: params.petId } }), [params, getPet])
@@ -45,6 +45,7 @@ const UpdatePet = () => {
 
     if (petData) {
       const { hasHeterochromia, isAdopted } = petData.getPet
+
       Object.keys(inputs).forEach(key => {
         let dataProp = null
         const isComplexProp = complexProps.find(({ prop }) => prop === key)
@@ -104,7 +105,8 @@ const UpdatePet = () => {
       petType: searchNamesFromIds(petObj?.petType, petTypes?.getPetTypes),
       hairColors: searchNamesFromIds(petObj?.hairColors, colors?.getColors, true),
       hasHeterochromia: !!petObj.hasHeterochromia,
-      eyeColors: searchNamesFromIds(petObj?.eyeColors, colors?.getColors, true)
+      eyeColors: searchNamesFromIds(petObj?.eyeColors, colors?.getColors, true),
+      passedAway: !!petObj.passedAway
     }
 
     const updateResponse = await updatePet({ variables: { petInfo } })

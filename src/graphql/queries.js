@@ -62,6 +62,7 @@ export const GET_PET = gql`
       eyeColors {
         id
       }
+      passedAway
     }
   }
 `
