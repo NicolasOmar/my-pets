@@ -48,7 +48,20 @@ const ListMyPets = () => {
             return {
               key: `pet-card-info-${i}`,
               cardContent: [
-                passedAway ? { type: 'icon' } : null,
+                passedAway
+                  ? {
+                      type: 'icon',
+                      content: {
+                        isCustom: true,
+                        src: 'https://img.icons8.com/external-xnimrodx-lineal-xnimrodx/64/null/external-dead-halloween-xnimrodx-lineal-xnimrodx-3.png',
+                        alt: 'Passed Away',
+                        styles: {
+                          display: 'flex',
+                          justifyContent: 'flex-end'
+                        }
+                      }
+                    }
+                  : null,
                 {
                   type: 'title',
                   content: {
