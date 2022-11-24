@@ -7,28 +7,54 @@ import GridLayout from '../../molecules/GridLayout'
 import TitleHeader from '../../atoms/TitleHeader'
 import Spinner from '../../atoms/Spinner'
 
+const renderItem = ({ type = 'section', key, classes = null, content }) => {
+  switch (type) {
+    case 'section':
+      return (
+        <section key={key} className={classes}>
+          {content}
+        </section>
+      )
+    case 'icon':
+      return (
+        <section style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <img
+            src="https://img.icons8.com/external-xnimrodx-lineal-xnimrodx/64/null/external-dead-halloween-xnimrodx-lineal-xnimrodx-3.png"
+            alt="test"
+            height={30}
+            width={30}
+          />
+        </section>
+      )
+    case 'title':
+      return <TitleHeader key={key} {...content} />
+    default:
+      return content ?? null
+  }
+}
+
 const CardsListTemplate = ({ isFetching = false, cardsListTitle, cardListData = [] }) => {
   const parseCardsList = () =>
     cardListData.map(
-      ({ key, cardImage, cardTitle, cardContent, cardFooter, childWidth = 3 }, cardI) => {
+      ({ key, cardHeader, cardImage, cardContent, cardFooter, childWidth = 3 }, cardI) => {
         const cardConfig = {
+          cardHeader: cardHeader
+            ?.filter(content => content)
+            .map((content, contentIndex) =>
+              renderItem({
+                ...content,
+                key: `card-header-section-${cardI}-${contentIndex}`
+              })
+            ),
           cardImage,
-          cardContent: (
-            <>
-              {cardTitle && <TitleHeader key={`card-title-${cardI}`} {...cardTitle} />}
-              {cardContent.map(
-                (_content, contI) =>
-                  _content && (
-                    <section
-                      key={`card-content-section-${cardI}-${contI}`}
-                      className={cardTitle && !contI ? 'card-body' : ''}
-                    >
-                      {_content}
-                    </section>
-                  )
-              )}
-            </>
-          ),
+          cardContent: cardContent
+            ?.filter(content => content)
+            .map((content, contentIndex) =>
+              renderItem({
+                ...content,
+                key: `card-content-section-${cardI}-${contentIndex}`
+              })
+            ),
           cardFooter,
           childWidth
         }
@@ -60,7 +86,6 @@ CardsListTemplate.propTypes = {
   cardListData: arrayOf(
     shape({
       ...Card.propTypes,
-      cardTitle: shape(TitleHeader.propTypes),
       childWidth: number
     })
   ).isRequired

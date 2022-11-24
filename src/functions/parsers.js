@@ -106,5 +106,5 @@ export const searchNamesFromIds = (ids = null, list = [], searchMultiple = false
     : list?.find(({ name }) => ids === name)?.id ?? null
 }
 
-export const normalizeCapitalWord = word =>
+export const capitalizeWord = word =>
   word ? `${word.charAt(0).toUpperCase()}${word.slice(1).toLowerCase()}` : ''

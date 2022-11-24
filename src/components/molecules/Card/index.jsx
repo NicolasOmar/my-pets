@@ -13,23 +13,36 @@ import {
 // COMPONENTS
 import Image from '../../atoms/Image'
 
-const Card = ({ cardImage = null, cardContent, cardFooter = [], styles = {} }) => {
+const Card = ({
+  cardHeader = null,
+  cardImage = null,
+  cardContent,
+  cardFooter = [],
+  styles = {}
+}) => {
+  const renderHeader = () =>
+    cardHeader ? (
+      <header data-testid={'test-card-header'} className="card-header">
+        {cardHeader}
+      </header>
+    ) : null
+
   const renderImage = () =>
-    cardImage && (
+    cardImage ? (
       <section data-testid={'test-card-image'} className="card-image">
         <Image {...cardImage} />
       </section>
-    )
+    ) : null
 
   const renderContent = () =>
-    cardContent && (
+    cardContent ? (
       <section data-testid={'test-card-content'} className="card-content">
         {cardContent}
       </section>
-    )
+    ) : null
 
   const renderFooter = () =>
-    cardFooter.length > 0 && (
+    cardFooter.length > 0 ? (
       <footer data-testid={'test-card-footer'} className="card-footer">
         {cardFooter.map(({ label, onClick }, i) => (
           <a
@@ -46,10 +59,11 @@ const Card = ({ cardImage = null, cardContent, cardFooter = [], styles = {} }) =
           </a>
         ))}
       </footer>
-    )
+    ) : null
 
   return (
     <section className="card" style={styles}>
+      {renderHeader()}
       {renderImage()}
       {renderContent()}
       {renderFooter()}
@@ -60,6 +74,7 @@ const Card = ({ cardImage = null, cardContent, cardFooter = [], styles = {} }) =
 export default Card
 
 Card.propTypes = {
+  cardHeader: oneOfType([element, elementType, array]),
   cardImage: shape(Image.propTypes),
   cardContent: oneOfType([element, elementType, array]).isRequired,
   cardFooter: arrayOf(shape({ label: string, onClick: func })),

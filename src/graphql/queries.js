@@ -37,6 +37,7 @@ export const GET_MY_PETS = gql`
       eyeColors {
         name
       }
+      passedAway
     }
   }
 `

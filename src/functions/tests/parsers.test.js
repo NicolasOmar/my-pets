@@ -1,6 +1,6 @@
 import {
   parseGraphToObj,
-  normalizeCapitalWord,
+  capitalizeWord,
   parseArrayToString,
   parseBooleanToString,
   parseDate,
@@ -140,10 +140,10 @@ describe('[Funtions.parsers]', () => {
     })
   })
 
-  describe('[normalizeCapitalWord]', () => {
+  describe('[capitalizeWord]', () => {
     test('Should return the expected cases', () => {
-      const { cases, results } = mocks.normalizeCapitalWord
-      cases.forEach((_case, i) => expect(normalizeCapitalWord(_case)).toEqual(results[i]))
+      const { cases, results } = mocks.capitalizeWord
+      cases.forEach((_case, i) => expect(capitalizeWord(_case)).toEqual(results[i]))
     })
   })
 })
