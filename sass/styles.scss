@@ -36,7 +36,7 @@ html {
   body {
     @include light-mode;
 
-    &.light-mode {
+    &.dark-mode {
       @include dark-mode;
     }
   }

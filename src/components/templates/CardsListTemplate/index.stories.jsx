@@ -10,7 +10,12 @@ const renderCards = number =>
     .fill(null)
     .map(() => ({
       cardImage: cardMocks.testBaseImage,
-      cardContent: [cardMocks.testCardContent],
+      cardContent: [
+        {
+          type: 'section',
+          content: cardMocks.testCardContent
+        }
+      ],
       cardFooter: cardMocks.testFooterItems
     }))
 

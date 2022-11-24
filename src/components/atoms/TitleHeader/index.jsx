@@ -13,7 +13,8 @@ const TitleHeader = ({
   titleSize = Object.keys(fontSizes)[4],
   subSize = Object.keys(fontSizes)[2],
   isCentered = false,
-  styles = {}
+  styles = {},
+  cssClasses = ''
 }) => {
   const classes = {
     title: parseConfigToClassName({ isCentered }, 'title', [fontSizes[titleSize]]),
@@ -21,7 +22,7 @@ const TitleHeader = ({
   }
 
   return (
-    <section style={styles}>
+    <section style={styles} className={cssClasses}>
       <p key={'title'} data-testid={'test-title'} className={classes.title}>
         {titleText}
       </p>
@@ -43,5 +44,6 @@ TitleHeader.propTypes = {
   titleSize: oneOf(parseObjKeys(fontSizes)),
   subSize: oneOf(parseObjKeys(fontSizes)),
   isCentered: bool,
-  styles: object
+  styles: object,
+  cssClasses: string
 }

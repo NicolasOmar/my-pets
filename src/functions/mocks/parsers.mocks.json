@@ -146,7 +146,7 @@
       "result": "5"
     }
   },
-  "normalizeCapitalWord": {
+  "capitalizeWord": {
     "cases": ["test", "IDEA", "firstName", "name LastName", null],
     "results": ["Test", "Idea", "Firstname", "Name lastname", ""]
   }

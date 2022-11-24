@@ -14,7 +14,7 @@ import {
   parseBooleanToString,
   parseDateString,
   parseArrayToString,
-  normalizeCapitalWord
+  capitalizeWord
 } from '../../../functions/parsers'
 
 const { cardsListTitle } = CONFIG
@@ -40,30 +40,59 @@ const ListMyPets = () => {
               gender,
               hairColors,
               hasHeterochromia,
-              eyeColors
+              eyeColors,
+              passedAway
             },
             i
           ) => {
             return {
               key: `pet-card-info-${i}`,
-              cardTitle: {
-                titleText: name,
-                titleSize: 'normal',
-                subText: petType.name,
-                subSize: 'tiny'
-              },
               cardContent: [
-                `Birthday: ${parseDateString(birthday, '-')}`,
-                `Adopted: ${parseBooleanToString(
-                  isAdopted,
-                  `Yes, ${parseDateString(adoptionDate, '-')}`,
-                  'No'
-                )}`,
-                `Gender: ${normalizeCapitalWord(gender)}`,
-                `Hair: ${parseArrayToString(hairColors, 'name')}`,
-                `Has Heterochromia: ${parseBooleanToString(hasHeterochromia, 'Yes', 'No')}`,
-                `Eyes: ${parseArrayToString(eyeColors, 'name')}`
-              ],
+                passedAway
+                  ? {
+                      type: 'icon',
+                      content: {
+                        isCustom: true,
+                        src: 'https://img.icons8.com/external-xnimrodx-lineal-xnimrodx/64/null/external-dead-halloween-xnimrodx-lineal-xnimrodx-3.png',
+                        alt: 'Passed Away',
+                        styles: {
+                          display: 'flex',
+                          justifyContent: 'flex-end'
+                        }
+                      }
+                    }
+                  : null,
+                {
+                  type: 'title',
+                  content: {
+                    titleText: name,
+                    titleSize: 'normal',
+                    subText: petType.name,
+                    subSize: 'tiny',
+                    cssClasses: 'pb-2'
+                  }
+                },
+                { type: 'section', content: `Birthday: ${parseDateString(birthday, '-')}` },
+                {
+                  type: 'section',
+                  content: `Adopted: ${parseBooleanToString(
+                    isAdopted,
+                    `Yes, ${parseDateString(adoptionDate, '-')}`,
+                    'No'
+                  )}`
+                },
+                { type: 'section', content: `Gender: ${capitalizeWord(gender)}` },
+                { type: 'section', content: `Hair: ${parseArrayToString(hairColors, 'name')}` },
+                {
+                  type: 'section',
+                  content: `Has Heterochromia: ${parseBooleanToString(
+                    hasHeterochromia,
+                    'Yes',
+                    'No'
+                  )}`
+                },
+                { type: 'section', content: `Eyes: ${parseArrayToString(eyeColors, 'name')}` }
+              ].filter(items => items),
               cardFooter: [
                 {
                   label: 'Update',
