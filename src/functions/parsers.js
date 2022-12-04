@@ -11,7 +11,7 @@ const renderIf = {
 }
 
 const mergeInputClasses = (commons, input) =>
-  [...input, ...commons].filter(({ prop }, _, mergedArray) =>
+  [...input, ...(commons ?? [])].filter(({ prop }, _, mergedArray) =>
     mergedArray.find(inputClass => inputClass.prop === prop)
   )
 
@@ -48,8 +48,27 @@ export const parseConfigToClassName = (inputConfig = {}, fieldName, otherClasses
   return fieldName?.concat(' ', concatedClasses)
 }
 
-export const simpleParseConfigToClasses = (fieldName, otherClasses = []) =>
-  [fieldName, ...otherClasses].filter(value => value && value !== '').join(' ')
+export const newParseConfigToClasses = ({
+  useCommonClasses = false,
+  fieldName,
+  fieldConfig = {},
+  otherClasses = []
+}) => {
+  const classes = mergeInputClasses(
+    useCommonClasses ? inputClasses['common'] : null,
+    inputClasses[fieldName] ?? []
+  )
+  const mappedConditionalClasses = classes
+    .map(({ prop, condition = 'default', setClass }) =>
+      renderIf[condition](fieldConfig[prop], setClass)
+    )
+    .filter(className => className)
+  const concatedClasses = [...mappedConditionalClasses, ...otherClasses]
+    .filter(value => value && value !== '')
+    .join(' ')
+
+  return fieldName?.concat(' ', concatedClasses)
+}
 
 export const parseObjKeys = (_obj, asNumber = false) =>
   Object.keys(_obj).map(_objValue => (asNumber ? +_objValue : _objValue))

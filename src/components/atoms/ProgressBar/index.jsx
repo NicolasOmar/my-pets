@@ -3,7 +3,7 @@ import React from 'react'
 import { bool, number, oneOf } from 'prop-types'
 import BULMA_STYLES from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { simpleParseConfigToClasses, parseObjKeys } from '../../../functions/parsers'
+import { newParseConfigToClasses, parseObjKeys } from '../../../functions/parsers'
 
 const { colors, sizes } = BULMA_STYLES
 
@@ -14,7 +14,10 @@ const ProgressBar = ({
   color = parseObjKeys(colors)[7],
   size = parseObjKeys(sizes)[1]
 }) => {
-  const progressClass = simpleParseConfigToClasses('progress', [colors[color], sizes[size]])
+  const progressClass = newParseConfigToClasses({
+    fieldName: 'progress',
+    otherClasses: [colors[color], sizes[size]]
+  })
 
   return isLoading ? (
     <progress
