@@ -35,7 +35,7 @@ describe('[Funtions.parsers]', () => {
     })
   })
 
-  describe.skip('[parseConfigToClassName]', () => {})
+  describe.skip('[parseFieldConfigToClasses]', () => {})
 
   describe.skip('[parseObjKeys]', () => {})
 

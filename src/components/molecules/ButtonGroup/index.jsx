@@ -3,15 +3,20 @@ import { arrayOf, bool, object, shape } from 'prop-types'
 // OTHER COMPONENTS
 import BasicButton from '../../atoms/BasicButton'
 // FUNCTIONS
-import { parseConfigToClassName } from '../../../functions/parsers'
+import { parseFieldConfigToClasses } from '../../../functions/parsers'
 
 const ButtonGroup = ({ buttons, styles = {}, isCentered = true }) => {
-  const btnGroupClass = parseConfigToClassName({ isCentered }, 'buttons', ['has-addons'])
+  const btnGroupClasses = parseFieldConfigToClasses({
+    useCommonClasses: true,
+    fieldConfig: { isCentered },
+    fieldName: 'buttons',
+    otherClasses: ['has-addons']
+  })
   return (
     <section
       key={'button-group'}
       data-testid="test-button-group"
-      className={btnGroupClass}
+      className={btnGroupClasses}
       style={styles}
     >
       {buttons.map((button, i) => (

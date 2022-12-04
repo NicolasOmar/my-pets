@@ -3,7 +3,7 @@ import { arrayOf, bool, func, number, shape, string, oneOf, object, oneOfType } 
 // CONSTANTS
 import BULMA_STYLES from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { parseConfigToClassName, parseObjKeys } from '../../../functions/parsers'
+import { parseFieldConfigToClasses, parseObjKeys } from '../../../functions/parsers'
 
 const { colors, sizes } = BULMA_STYLES
 
@@ -25,10 +25,12 @@ const BasicSelect = ({
   onBlurChange
 }) => {
   const multipleString = isMultiple ? 'multiple' : 'single'
-  const selectClass = parseConfigToClassName({ isMultiple, isLoading, isRounded }, 'select', [
-    colors[color],
-    sizes[size]
-  ])
+  const selectClasses = parseFieldConfigToClasses({
+    useCommonClasses: true,
+    fieldConfig: { isMultiple, isLoading, isRounded },
+    fieldName: 'select',
+    otherClasses: [colors[color], sizes[size]]
+  })
   const [selectedValue, setSelectedValue] = useState(
     isMultiple ? (Array.isArray(selected) ? selected : []) : selected
   )
@@ -79,7 +81,7 @@ const BasicSelect = ({
   }
 
   return (
-    <section key={`${multipleString}-${control}-section`} className={selectClass} style={styles}>
+    <section key={`${multipleString}-${control}-section`} className={selectClasses} style={styles}>
       <select
         key={`${multipleString}-${control}`}
         data-testid={`test-${multipleString}-${control}`}

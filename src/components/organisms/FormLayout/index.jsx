@@ -8,7 +8,7 @@ import Divider from '../../atoms/Divider'
 import BasicButton from '../../atoms/BasicButton'
 // FUNCTIONS
 import { checkIsValidForm, validateInput, sendObjValues } from '../../../functions/methods'
-import { parseConfigToClassName } from '../../../functions/parsers'
+import { parseFieldConfigToClasses } from '../../../functions/parsers'
 import validators from '../../../functions/validators'
 
 const FormLayout = ({
@@ -21,7 +21,10 @@ const FormLayout = ({
   onFormSubmit,
   onInputBlurChange
 }) => {
-  const formClass = parseConfigToClassName({ isBoxed, errors }, 'form')
+  const formClasses = parseFieldConfigToClasses({
+    fieldConfig: { isBoxed, errors },
+    fieldName: 'form'
+  })
   const firstUpdate = useRef(true)
   const [formControls, setFormControls] = useState(inputs)
   const [disableConfirmButton, setDisableConfirmButton] = useState(true)
@@ -81,7 +84,7 @@ const FormLayout = ({
   }
 
   return (
-    <form key="form-base" data-testid="test-form-base" className={formClass} onSubmit={onSubmit}>
+    <form key="form-base" data-testid="test-form-base" className={formClasses} onSubmit={onSubmit}>
       {Object.keys(formControls).map((prop, i) => {
         const { isVisible, isDisabled, label, control } = formControls[prop]
         const divider = Array.isArray(dividers) && dividers.find(({ after }) => after === control)

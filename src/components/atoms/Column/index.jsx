@@ -3,7 +3,7 @@ import { array, bool, element, elementType, object, oneOf, oneOfType, string } f
 // CONSTANTS
 import BULMA_STYLES from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { parseObjKeys, newParseConfigToClasses } from '../../../functions/parsers'
+import { parseObjKeys, parseFieldConfigToClasses } from '../../../functions/parsers'
 
 const { columnSizes } = BULMA_STYLES
 
@@ -17,7 +17,7 @@ const Column = ({
   children = null,
   styles = {}
 }) => {
-  const columnClasses = newParseConfigToClasses({
+  const columnClasses = parseFieldConfigToClasses({
     useCommonClasses: true,
     fieldConfig: { isCentered, isMultiline },
     fieldName: isContainer ? 'columns' : 'column',

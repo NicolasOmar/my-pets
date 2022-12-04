@@ -1,6 +1,6 @@
 import validator from 'validator'
 import { DateTime } from 'luxon'
-import inputClasses from '../constants/input-classes.json'
+import tagClasses from '../constants/tag-classes.json'
 
 const setInputClass = (condition, setClass) => (condition ? setClass : null)
 
@@ -24,7 +24,7 @@ export const parseGraphToObj = (graphObj, originalObj) => {
 }
 
 /*
-  parseConfigToClassName:
+  parseFieldConfigToClasses:
   First, you will recive the input configuration with a field value, which is needed to get its corresponding configuration from the JSON file
   After having finded the configuration values, it will map and run "renderIf" method, using the condition (can be specified in the JSON file or will run as a default case), the value of the mapped prop in the input configuration (for example, "isLoading"), which could not exists and the configuration's related css class
   On the "renderIf" method, it will check the input's value condition (explained as the first argument in the "setInputClass" method) and will return:
@@ -32,31 +32,15 @@ export const parseGraphToObj = (graphObj, originalObj) => {
     Or a null value in a false case
   At last, after all the cases have been mapped, the main method will filter the null cases and concat them in a string, which will be concated in the final class string return (in case that the "mappedClasses" const gets at least one class)
 */
-export const parseConfigToClassName = (inputConfig = {}, fieldName, otherClasses = []) => {
-  const classes = mergeInputClasses(inputClasses['common'], inputClasses[fieldName] ?? [])
-  // console.warn('surface', classes, otherClasses)
-  const mappedClasses = classes
-    .map(({ prop, condition = 'default', setClass }) => {
-      console.warn(classes)
-      return renderIf[condition](inputConfig[prop], setClass)
-    })
-    .filter(className => className)
-  const concatedClasses = [...mappedClasses, ...otherClasses]
-    .filter(value => value && value !== '')
-    .join(' ')
-
-  return fieldName?.concat(' ', concatedClasses)
-}
-
-export const newParseConfigToClasses = ({
+export const parseFieldConfigToClasses = ({
   useCommonClasses = false,
   fieldName,
   fieldConfig = {},
   otherClasses = []
 }) => {
   const classes = mergeInputClasses(
-    useCommonClasses ? inputClasses['common'] : null,
-    inputClasses[fieldName] ?? []
+    useCommonClasses ? tagClasses['common'] : null,
+    tagClasses[fieldName] ?? []
   )
   const mappedConditionalClasses = classes
     .map(({ prop, condition = 'default', setClass }) =>
