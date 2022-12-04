@@ -21,7 +21,7 @@ const ProgressBar = ({
 
   return isLoading ? (
     <progress
-      data-testid="test-isLoading-progress-bar"
+      data-testid="test-loading-progress-bar"
       className={progressClasses}
       max={maxValue}
     ></progress>

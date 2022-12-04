@@ -1,6 +1,6 @@
 import { cleanup, render, screen } from '@testing-library/react'
 // COMPONENTS
-import ProgressPar from '../../atoms/ProgressPar'
+import ProgressBar from '../../atoms/ProgressBar'
 import NavBar from '.'
 // MOCKS
 import { startConfig, endConfig } from './index.mocks.json'
@@ -32,7 +32,7 @@ describe('[NavBar]', () => {
   })
 
   test('Should render the brand', () => {
-    render(<NavBar icon={<ProgressPar />} />)
+    render(<NavBar icon={<ProgressBar />} />)
 
     checkExists('navbar-brand')
   })

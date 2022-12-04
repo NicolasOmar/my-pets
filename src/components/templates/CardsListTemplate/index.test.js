@@ -41,7 +41,7 @@ describe('[CardListTemplate]', () => {
 
   test('Should render the component with isFetching', () => {
     render(<CardsListTemplate {...{ cardListData: renderCards(5), isFetching: true }} />)
-    expect(screen.getByTestId('test-spinner')).toBeInTheDocument()
+    expect(screen.getByTestId('test-loading-progress-bar')).toBeInTheDocument()
   })
 
   test('Should render the component with title included', () => {
