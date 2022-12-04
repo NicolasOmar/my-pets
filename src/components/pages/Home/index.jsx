@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import TitleHeader from '../../atoms/TitleHeader'
 // HELPER FUNCTIONS
 import { getLoggedUser } from '../../../functions/local-storage'
+import GridLayout from '../../molecules/GridLayout'
+import CardsListTemplate from '../../templates/CardsListTemplate'
 
 const Home = () => {
   const [user] = useState(getLoggedUser())
@@ -13,11 +15,29 @@ const Home = () => {
     subSize: 'small',
     isCentered: true,
     styles: {
-      marginTop: '40px'
+      margin: '20px 0px'
     }
   }
+  const cardListConfig = {
+    cardListData: [
+      { cardContent: 'test' },
+      { cardContent: 'test' },
+      { cardContent: 'test' },
+      { cardContent: 'test' },
+      { cardContent: 'test' }
+    ]
+  }
 
-  return <TitleHeader {...homeTextConfig} />
+  const girdConfig = {
+    width: 11,
+    centerGrid: true,
+    children: [
+      <TitleHeader key={'home-title'} {...homeTextConfig} />,
+      <CardsListTemplate key={'home-card-list'} {...cardListConfig} />
+    ]
+  }
+
+  return <GridLayout {...girdConfig} />
 }
 
 export default Home

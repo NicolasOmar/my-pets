@@ -42,7 +42,7 @@ Therefore, the following [link](https://my-pets-prod.netlify.app) sends you to t
 ## Find out more
 | [Project Status](https://github.com/users/NicolasOmar/projects/1/views/1) | [Storybook site](https://my-pets-storybook.netlify.app/) | [Node Repo](https://github.com/NicolasOmar/my-pets-api) |
 | :--- | :--- | :--- |
-| Trello board for project status tracking | Site dedicated to show and test all the created components | Node API repository
+| Project board for project status tracking | Site dedicated to show and test all the created components | Node API repository
 
 ## License
 **MIT**
