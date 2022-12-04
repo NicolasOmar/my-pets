@@ -10,7 +10,7 @@ const { columnSizes } = BULMA_STYLES
 const Column = ({
   key = null,
   testId = null,
-  width = parseObjKeys(columnSizes)[0],
+  width = null,
   isCentered = false,
   isContainer = false,
   isMultiline = false,
@@ -21,7 +21,7 @@ const Column = ({
     useCommonClasses: true,
     fieldConfig: { isCentered, isMultiline },
     fieldName: isContainer ? 'columns' : 'column',
-    otherClasses: [columnSizes[width]]
+    otherClasses: width ? [columnSizes[width]] : []
   })
 
   return (

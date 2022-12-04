@@ -4,6 +4,7 @@ import { element, array, oneOfType, oneOf, bool, object } from 'prop-types'
 import BULMA_STYLES from '../../../constants/bulma-styles.json'
 // FUNCTIONS
 import { parseObjKeys } from '../../../functions/parsers'
+import Column from '../../atoms/Column'
 
 const { columnSizes } = BULMA_STYLES
 
@@ -13,54 +14,60 @@ const GridLayout = ({
   centerGrid = false,
   styles = {}
 }) => {
-  const columnsStyle = centerGrid ? 'columns is-centered' : 'columns'
-  const renderChild = (childNode, i = 0) => {
-    const columnClass = columnSizes[childNode.props?.childWidth || width]
-    return (
-      <section
-        key={`column-${i}`}
-        data-testid={`test-column-${i}`}
-        className={`column ${columnClass}`}
-        style={styles}
-      >
-        {childNode}
-      </section>
-    )
-  }
+  const renderChild = (childNode, i = 0) => (
+    <Column
+      {...{
+        key: `column-${i}`,
+        testId: `test-column-${i}`,
+        width: childNode.props?.childWidth || width,
+        children: childNode
+      }}
+    />
+  )
 
   return Array.isArray(children) ? (
     children.filter(childNode => childNode).every(childNode => childNode?.props?.childWidth) ? (
-      <section
-        key={`grid-layout`}
-        data-testid={`test-grid-layout`}
-        className={`${columnsStyle} is-multiline`}
-        style={styles}
-      >
-        {children.filter(childNode => childNode).map((childNode, i) => renderChild(childNode, i))}
-      </section>
+      <Column
+        {...{
+          key: `grid-layout`,
+          testId: `test-grid-layout`,
+          isCentered: centerGrid,
+          isMultiline: true,
+          isContainer: true,
+          children: children
+            .filter(childNode => childNode)
+            .map((childNode, i) => renderChild(childNode, i)),
+          styles
+        }}
+      />
     ) : (
       children
         .filter(childNode => childNode)
         .map((childNode, i) => (
-          <section
+          <Column
             key={`grid-layout-${i}`}
-            data-testid={`test-grid-layout-${i}`}
-            className={columnsStyle}
-            style={styles}
-          >
-            {renderChild(childNode)}
-          </section>
+            {...{
+              key: `grid-layout-${i}`,
+              testId: `test-grid-layout-${i}`,
+              isCentered: centerGrid,
+              isContainer: true,
+              children: renderChild(childNode),
+              styles
+            }}
+          />
         ))
     )
   ) : (
-    <section
-      key={`grid-layout`}
-      data-testid={`test-grid-layout`}
-      className={columnsStyle}
-      style={styles}
-    >
-      {renderChild(children)}
-    </section>
+    <Column
+      {...{
+        key: `grid-layout`,
+        testId: `test-grid-layout`,
+        isCentered: centerGrid,
+        isContainer: true,
+        children: renderChild(children),
+        styles
+      }}
+    />
   )
 }
 
