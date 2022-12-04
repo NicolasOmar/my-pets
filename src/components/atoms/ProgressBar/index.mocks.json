@@ -1,0 +1,14 @@
+{
+  "isHalfSize": {
+    "value": 50
+  },
+  "isSuccessColor": {
+    "color": "success"
+  },
+  "isLargeSize": {
+    "size": "large"
+  },
+  "isLoading": {
+    "isLoading": true
+  }
+}

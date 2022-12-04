@@ -22,7 +22,6 @@ export const parameters = {
 
 export const decorators = [
   (Story) => {
-    console.warn(`${useDarkMode() ? 'is' : 'is not'} using dark mode`)
     const toggleStyle = useDarkMode() ? 'dark-mode' : 'light-mode'
     document.body.classList.toggle(toggleStyle)
     return <Story />

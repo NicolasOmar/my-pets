@@ -1,43 +1,35 @@
 import React, { useState } from 'react'
 // COMPONENTS
-import TitleHeader from '../../atoms/TitleHeader'
+import CardsListTemplate from '../../templates/CardsListTemplate'
 // HELPER FUNCTIONS
 import { getLoggedUser } from '../../../functions/local-storage'
-import GridLayout from '../../molecules/GridLayout'
-import CardsListTemplate from '../../templates/CardsListTemplate'
 
 const Home = () => {
   const [user] = useState(getLoggedUser())
-  const homeTextConfig = {
+
+  const cardsListTitle = {
     titleText: `HELLO ${user?.name?.toUpperCase()}`,
     titleSize: 'bigger',
     subText: 'Welcome to our beautiful place',
     subSize: 'small',
     isCentered: true,
-    styles: {
-      margin: '20px 0px'
-    }
-  }
-  const cardListConfig = {
-    cardListData: [
-      { cardContent: 'test' },
-      { cardContent: 'test' },
-      { cardContent: 'test' },
-      { cardContent: 'test' },
-      { cardContent: 'test' }
-    ]
+    childWidth: 12,
+    styles: { margin: '20px 0px' }
   }
 
-  const girdConfig = {
-    width: 11,
-    centerGrid: true,
-    children: [
-      <TitleHeader key={'home-title'} {...homeTextConfig} />,
-      <CardsListTemplate key={'home-card-list'} {...cardListConfig} />
-    ]
-  }
+  const cardListData = Array(5)
+    .fill(null)
+    .map((_, i) => ({
+      key: `widget-item-${i}`,
+      cardContent: [
+        {
+          type: 'section',
+          content: `widget-test-${i}`
+        }
+      ]
+    }))
 
-  return <GridLayout {...girdConfig} />
+  return <CardsListTemplate {...{ isFetching: true, cardsListTitle, cardListData }} />
 }
 
 export default Home

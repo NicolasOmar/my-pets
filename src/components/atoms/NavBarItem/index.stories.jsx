@@ -8,7 +8,7 @@ import TitleHeader from '../TitleHeader'
 import mocks from './index.mocks.json'
 
 export default {
-  title: `${STORYBOOK_ROUTES.ATOMS}/NavbarItem`,
+  title: `${STORYBOOK_ROUTES.ATOMS}/NavBarItem`,
   component: NavBarItem,
   args: mocks.minimalConfig
 }

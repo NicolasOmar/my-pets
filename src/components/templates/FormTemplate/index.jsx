@@ -4,7 +4,7 @@ import { array, arrayOf, bool, func, object, shape, string } from 'prop-types'
 import BasicFrame from '../../organisms/BasicFrame'
 import FormLayout from '../../organisms/FormLayout'
 import Divider from '../../atoms/Divider'
-import Spinner from '../../atoms/Spinner'
+import ProgressBar from '../../atoms/ProgressBar'
 
 const FormTemplate = ({
   header,
@@ -33,7 +33,7 @@ const FormTemplate = ({
       {...{
         header,
         children: isFetching ? (
-          <Spinner key="form-spinner" />
+          <ProgressBar key="form-progressBar" />
         ) : (
           <FormLayout key="form-layout" {...formConfig} />
         ),

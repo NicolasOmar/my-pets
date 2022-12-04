@@ -4,8 +4,8 @@ import { arrayOf, bool, number, shape } from 'prop-types'
 import Card from '../../molecules/Card'
 import GridLayout from '../../molecules/GridLayout'
 import TitleHeader from '../../atoms/TitleHeader'
-import Spinner from '../../atoms/Spinner'
 import Icon from '../../atoms/Icon'
+import ProgressBar from '../../atoms/ProgressBar'
 
 const renderSectionContent = ({ type = 'section', key, classes = null, content }) => {
   switch (type) {
@@ -31,42 +31,50 @@ const renderCardSection = (cardSection, mapFn) =>
         .map((_sectionContent, _sectionIndex) => mapFn(_sectionContent, _sectionIndex))
     : cardSection
 
-const CardsListTemplate = ({ isFetching = false, cardsListTitle, cardListData = [] }) => {
+const CardsListTemplate = ({
+  isFetching = false,
+  templateWidth = 9,
+  cardsListTitle,
+  cardListData = []
+}) => {
   const parseCardsList = () =>
-    cardListData.map(
-      ({ key, cardHeader, cardImage, cardContent, cardFooter, childWidth = 3 }, cardI) => {
-        const cardConfig = {
-          cardHeader: renderCardSection(cardHeader, (headerContent, contentIndex) =>
-            renderSectionContent({
-              ...headerContent,
-              key: `card-header-section-${cardI}-${contentIndex}`
-            })
-          ),
-          cardImage,
-          cardContent: renderCardSection(cardContent, (sectionContent, contentIndex) =>
-            renderSectionContent({
-              ...sectionContent,
-              key: `card-content-section-${cardI}-${contentIndex}`
-            })
-          ),
-          cardFooter,
-          childWidth
-        }
+    isFetching
+      ? [<ProgressBar key={`card-progress-bar`} isLoading={true} />]
+      : cardListData.map(
+          ({ key, cardHeader, cardImage, cardContent, cardFooter, childWidth = 3 }, cardI) => {
+            const cardConfig = {
+              cardHeader: renderCardSection(cardHeader, (headerContent, contentIndex) =>
+                renderSectionContent({
+                  ...headerContent,
+                  key: `card-header-section-${cardI}-${contentIndex}`
+                })
+              ),
+              cardImage,
+              cardContent: renderCardSection(cardContent, (sectionContent, contentIndex) =>
+                renderSectionContent({
+                  ...sectionContent,
+                  key: `card-content-section-${cardI}-${contentIndex}`
+                })
+              ),
+              cardFooter,
+              childWidth
+            }
 
-        return <Card key={key} {...cardConfig} />
-      }
-    )
+            return <Card key={key} {...cardConfig} />
+          }
+        )
 
-  return isFetching ? (
-    <Spinner />
-  ) : (
+  const children = [
+    cardsListTitle ? <TitleHeader key="cards-title" {...cardsListTitle} /> : null,
+    ...parseCardsList()
+  ]
+
+  return (
     <GridLayout
       {...{
-        width: 9,
+        width: templateWidth,
         centerGrid: true,
-        children: cardsListTitle
-          ? [<TitleHeader key="cards-title" {...cardsListTitle} />, ...parseCardsList()]
-          : parseCardsList()
+        children
       }}
     />
   )
@@ -76,6 +84,7 @@ export default CardsListTemplate
 
 CardsListTemplate.propTypes = {
   isFetching: bool,
+  templateWidth: number,
   cardsListTitle: shape(TitleHeader.propTypes),
   cardListData: arrayOf(
     shape({

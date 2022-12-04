@@ -34,10 +34,12 @@ export const parseGraphToObj = (graphObj, originalObj) => {
 */
 export const parseConfigToClassName = (inputConfig = {}, fieldName, otherClasses = []) => {
   const classes = mergeInputClasses(inputClasses['common'], inputClasses[fieldName] ?? [])
+  // console.warn('surface', classes, otherClasses)
   const mappedClasses = classes
-    .map(({ prop, condition = 'default', setClass }) =>
-      renderIf[condition](inputConfig[prop], setClass)
-    )
+    .map(({ prop, condition = 'default', setClass }) => {
+      console.warn(classes)
+      return renderIf[condition](inputConfig[prop], setClass)
+    })
     .filter(className => className)
   const concatedClasses = [...mappedClasses, ...otherClasses]
     .filter(value => value && value !== '')
@@ -45,6 +47,9 @@ export const parseConfigToClassName = (inputConfig = {}, fieldName, otherClasses
 
   return fieldName?.concat(' ', concatedClasses)
 }
+
+export const simpleParseConfigToClasses = (fieldName, otherClasses = []) =>
+  [fieldName, ...otherClasses].filter(value => value && value !== '').join(' ')
 
 export const parseObjKeys = (_obj, asNumber = false) =>
   Object.keys(_obj).map(_objValue => (asNumber ? +_objValue : _objValue))
