@@ -6,6 +6,7 @@ import GridLayout from '../../molecules/GridLayout'
 import TitleHeader from '../../atoms/TitleHeader'
 import Icon from '../../atoms/Icon'
 import ProgressBar from '../../atoms/ProgressBar'
+import Column from '../../atoms/Column'
 
 const renderSectionContent = ({ type = 'section', key, classes = null, content }) => {
   switch (type) {
@@ -31,12 +32,7 @@ const renderCardSection = (cardSection, mapFn) =>
         .map((_sectionContent, _sectionIndex) => mapFn(_sectionContent, _sectionIndex))
     : cardSection
 
-const CardsListTemplate = ({
-  isFetching = false,
-  templateWidth = 9,
-  cardsListTitle,
-  cardListData = []
-}) => {
+const CardsListTemplate = ({ isFetching = false, cardsListTitle, cardListData = [] }) => {
   const parseCardsList = () =>
     isFetching
       ? [<ProgressBar key={`card-progress-bar`} isLoading={true} />]
@@ -64,19 +60,28 @@ const CardsListTemplate = ({
           }
         )
 
-  const children = [
-    cardsListTitle ? <TitleHeader key="cards-title" {...cardsListTitle} /> : null,
-    ...parseCardsList()
-  ]
-
   return (
-    <GridLayout
-      {...{
-        width: templateWidth,
-        centerGrid: true,
-        children
-      }}
-    />
+    <>
+      {cardsListTitle ? (
+        <Column
+          {...{
+            _key: 'test-card-list-header',
+            testId: 'test-card-list-header',
+            width: 12,
+            children: [<TitleHeader key="cards-title" {...cardsListTitle} />]
+          }}
+        />
+      ) : null}
+      <GridLayout
+        {...{
+          centerGrid: true,
+          styles: {
+            margin: '0 2.5%'
+          },
+          children: parseCardsList()
+        }}
+      />
+    </>
   )
 }
 
@@ -84,7 +89,6 @@ export default CardsListTemplate
 
 CardsListTemplate.propTypes = {
   isFetching: bool,
-  templateWidth: number,
   cardsListTitle: shape(TitleHeader.propTypes),
   cardListData: arrayOf(
     shape({

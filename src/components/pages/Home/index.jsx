@@ -29,7 +29,7 @@ const Home = () => {
       ]
     }))
 
-  return <CardsListTemplate {...{ isFetching: true, cardsListTitle, cardListData }} />
+  return <CardsListTemplate {...{ isFetching: false, cardsListTitle, cardListData }} />
 }
 
 export default Home

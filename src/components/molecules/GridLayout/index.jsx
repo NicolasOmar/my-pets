@@ -16,8 +16,9 @@ const GridLayout = ({
 }) => {
   const renderChild = (childNode, i = 0) => (
     <Column
+      key={`column-${i}`}
       {...{
-        key: `column-${i}`,
+        _key: `column-${i}`,
         testId: `test-column-${i}`,
         width: childNode.props?.childWidth || width,
         children: childNode
@@ -28,8 +29,9 @@ const GridLayout = ({
   return Array.isArray(children) ? (
     children.filter(childNode => childNode).every(childNode => childNode?.props?.childWidth) ? (
       <Column
+        key={'grid-layout'}
         {...{
-          key: `grid-layout`,
+          _key: `grid-layout`,
           testId: `test-grid-layout`,
           isCentered: centerGrid,
           isMultiline: true,
@@ -47,7 +49,7 @@ const GridLayout = ({
           <Column
             key={`grid-layout-${i}`}
             {...{
-              key: `grid-layout-${i}`,
+              _key: `grid-layout-${i}`,
               testId: `test-grid-layout-${i}`,
               isCentered: centerGrid,
               isContainer: true,
@@ -60,7 +62,7 @@ const GridLayout = ({
   ) : (
     <Column
       {...{
-        key: `grid-layout`,
+        _key: `grid-layout`,
         testId: `test-grid-layout`,
         isCentered: centerGrid,
         isContainer: true,

@@ -8,7 +8,7 @@ import { parseObjKeys, parseFieldConfigToClasses } from '../../../functions/pars
 const { columnSizes } = BULMA_STYLES
 
 const Column = ({
-  key = null,
+  _key = null,
   testId = null,
   width = null,
   isCentered = false,
@@ -25,7 +25,7 @@ const Column = ({
   })
 
   return (
-    <section key={key} data-testid={testId} className={columnClasses} style={styles}>
+    <section key={_key} data-testid={testId} className={columnClasses} style={styles}>
       {children}
     </section>
   )
@@ -34,7 +34,7 @@ const Column = ({
 export default Column
 
 Column.propTypes = {
-  key: string.isRequired,
+  _key: string.isRequired,
   testId: string.isRequired,
   width: oneOf(parseObjKeys(columnSizes, true)),
   isCentered: bool,
