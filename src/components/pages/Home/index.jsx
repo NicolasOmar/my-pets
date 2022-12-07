@@ -25,7 +25,8 @@ const Home = () => {
         {
           type: 'title',
           content: {
-            titleText: 'Test',
+            titleText: 'First widget test',
+            titleSize: 'normal',
             styles: { marginBottom: '20px' }
           }
         },
