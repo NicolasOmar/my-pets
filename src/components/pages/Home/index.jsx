@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 // COMPONENTS
 import CardsListTemplate from '../../templates/CardsListTemplate'
+import TagList from '../../molecules/TagList'
 // HELPER FUNCTIONS
 import { getLoggedUser } from '../../../functions/local-storage'
 
@@ -17,17 +18,35 @@ const Home = () => {
     styles: { margin: '20px 0px' }
   }
 
-  const cardListData = Array(5)
-    .fill(null)
-    .map((_, i) => ({
-      key: `widget-item-${i}`,
+  const cardListData = [
+    {
+      key: `widget-item`,
       cardContent: [
         {
+          type: 'title',
+          content: {
+            titleText: 'Test',
+            styles: { marginBottom: '20px' }
+          }
+        },
+        {
           type: 'section',
-          content: `widget-test-${i}`
+          content: (
+            <TagList
+              {...{
+                dataList: Array(13)
+                  .fill(null)
+                  .map((_, i) => ({
+                    text: `widget-test-${++i}`,
+                    color: i % 2 ? 'success' : 'danger'
+                  }))
+              }}
+            />
+          )
         }
       ]
-    }))
+    }
+  ]
 
   return <CardsListTemplate {...{ isFetching: false, cardsListTitle, cardListData }} />
 }

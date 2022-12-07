@@ -32,7 +32,12 @@ const renderCardSection = (cardSection, mapFn) =>
         .map((_sectionContent, _sectionIndex) => mapFn(_sectionContent, _sectionIndex))
     : cardSection
 
-const CardsListTemplate = ({ isFetching = false, cardsListTitle, cardListData = [] }) => {
+const CardsListTemplate = ({
+  isFetching = false,
+  cardsListTitle,
+  cardListData = [],
+  centerList = true
+}) => {
   const parseCardsList = () =>
     isFetching
       ? [<ProgressBar key={`card-progress-bar`} isLoading={true} />]
@@ -74,7 +79,7 @@ const CardsListTemplate = ({ isFetching = false, cardsListTitle, cardListData = 
       ) : null}
       <GridLayout
         {...{
-          centerGrid: true,
+          centerGrid: centerList,
           styles: {
             margin: '0 2.5%'
           },
@@ -95,5 +100,6 @@ CardsListTemplate.propTypes = {
       ...Card.propTypes,
       childWidth: number
     })
-  ).isRequired
+  ).isRequired,
+  centerList: bool
 }
