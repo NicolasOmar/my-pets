@@ -3,7 +3,7 @@ import { bool, object, oneOf, string } from 'prop-types'
 // CONSTANTS
 import BULMA_STYLES from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { parseObjKeys, parseConfigToClassName } from '../../../functions/parsers'
+import { parseObjKeys, parseFieldConfigToClasses } from '../../../functions/parsers'
 
 const { fontSizes } = BULMA_STYLES
 
@@ -17,8 +17,18 @@ const TitleHeader = ({
   cssClasses = ''
 }) => {
   const classes = {
-    title: parseConfigToClassName({ isCentered }, 'title', [fontSizes[titleSize]]),
-    subTitle: parseConfigToClassName({ isCentered }, 'subtitle', [fontSizes[subSize]])
+    title: parseFieldConfigToClasses({
+      useCommonClasses: true,
+      fieldConfig: { isCentered },
+      fieldName: 'title',
+      otherClasses: [fontSizes[titleSize]]
+    }),
+    subTitle: parseFieldConfigToClasses({
+      useCommonClasses: true,
+      fieldConfig: { isCentered },
+      fieldName: 'subtitle',
+      otherClasses: [fontSizes[subSize]]
+    })
   }
 
   return (

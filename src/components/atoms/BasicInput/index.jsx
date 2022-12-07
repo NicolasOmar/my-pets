@@ -4,7 +4,7 @@ import { bool, func, string, number, oneOf, object } from 'prop-types'
 import TAG_TYPES from '../../../constants/tag-types.json'
 import BULMA_STYLES from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { parseConfigToClassName, parseObjKeys } from '../../../functions/parsers'
+import { parseFieldConfigToClasses, parseObjKeys } from '../../../functions/parsers'
 
 const { inputTypes } = TAG_TYPES
 const { colors, sizes } = BULMA_STYLES
@@ -25,13 +25,19 @@ const BasicInput = ({
   onInputChange,
   onBlurChange
 }) => {
-  const inputClass = parseConfigToClassName({ isRounded }, 'input', [colors[color], sizes[size]])
+  const inputClasses = parseFieldConfigToClasses({
+    useCommonClasses: true,
+    fieldConfig: { isRounded },
+    fieldName: 'input',
+    otherClasses: [colors[color], sizes[size]]
+  })
+
   return (
     <input
       key={`${control}-${type}`}
       data-testid={`test-${control}-${type}`}
       type={type}
-      className={inputClass}
+      className={inputClasses}
       style={styles}
       value={value}
       placeholder={placeHolder}

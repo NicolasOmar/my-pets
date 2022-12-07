@@ -1,6 +1,6 @@
 import validator from 'validator'
 import { DateTime } from 'luxon'
-import inputClasses from '../constants/input-classes.json'
+import tagClasses from '../constants/tag-classes.json'
 
 const setInputClass = (condition, setClass) => (condition ? setClass : null)
 
@@ -10,8 +10,8 @@ const renderIf = {
   default: (value, setClass) => setInputClass(value === true, setClass)
 }
 
-const mergeInputClasses = (commons, input) =>
-  [...input, ...commons].filter(({ prop }, _, mergedArray) =>
+const mergeFieldClasses = (commons, input) =>
+  [...input, ...(commons ?? [])].filter(({ prop }, _, mergedArray) =>
     mergedArray.find(inputClass => inputClass.prop === prop)
   )
 
@@ -24,22 +24,36 @@ export const parseGraphToObj = (graphObj, originalObj) => {
 }
 
 /*
-  parseConfigToClassName:
-  First, you will recive the input configuration with a field value, which is needed to get its corresponding configuration from the JSON file
-  After having finded the configuration values, it will map and run "renderIf" method, using the condition (can be specified in the JSON file or will run as a default case), the value of the mapped prop in the input configuration (for example, "isLoading"), which could not exists and the configuration's related css class
+  parseFieldConfigToClasses:
+    {
+      useCommonClasses => will add common bulma classes in case the fieldConfig needs to use it
+      fieldName => used to append at the string result start, also to render its custom classes (have to be added in "tag-classes" file)
+      fieldConfig => configuration object with properties that will be used to render in css classes
+      otherClasses => other raw/string classes that will be appended at the string result end
+    }
+  First, it will merge the properties from common "tagClasses" (in case you want it) and the props from the input config object (from "tag-classes" file)
+  Second, it will map the "classes" and run "renderIf" method, using the condition (can be specified in the JSON file or will run as a default case), the value of the mapped prop in the input configuration (for example, "isLoading"), which could not exists and the configuration's related css class
   On the "renderIf" method, it will check the input's value condition (explained as the first argument in the "setInputClass" method) and will return:
     The assigned class if the condition is true
     Or a null value in a false case
   At last, after all the cases have been mapped, the main method will filter the null cases and concat them in a string, which will be concated in the final class string return (in case that the "mappedClasses" const gets at least one class)
 */
-export const parseConfigToClassName = (inputConfig = {}, fieldName, otherClasses = []) => {
-  const classes = mergeInputClasses(inputClasses['common'], inputClasses[fieldName] ?? [])
-  const mappedClasses = classes
+export const parseFieldConfigToClasses = ({
+  useCommonClasses = false,
+  fieldConfig = {},
+  fieldName,
+  otherClasses = []
+}) => {
+  const classes = mergeFieldClasses(
+    useCommonClasses ? tagClasses['common'] : null,
+    tagClasses[fieldName] ?? []
+  )
+  const mappedConditionalClasses = classes
     .map(({ prop, condition = 'default', setClass }) =>
-      renderIf[condition](inputConfig[prop], setClass)
+      renderIf[condition](fieldConfig[prop], setClass)
     )
     .filter(className => className)
-  const concatedClasses = [...mappedClasses, ...otherClasses]
+  const concatedClasses = [...mappedConditionalClasses, ...otherClasses]
     .filter(value => value && value !== '')
     .join(' ')
 

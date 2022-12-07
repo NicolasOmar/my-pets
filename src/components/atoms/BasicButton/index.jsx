@@ -4,7 +4,7 @@ import { bool, func, object, oneOf, string } from 'prop-types'
 import TAG_TYPES from '../../../constants/tag-types.json'
 import BULMA_STYLES from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { parseConfigToClassName, parseObjKeys } from '../../../functions/parsers'
+import { parseFieldConfigToClasses, parseObjKeys } from '../../../functions/parsers'
 
 const { buttonTypes } = TAG_TYPES
 const { colors, sizes } = BULMA_STYLES
@@ -21,17 +21,19 @@ const BasicButton = ({
   isLoading = false,
   onClick
 }) => {
-  const btnClass = parseConfigToClassName({ isOutlined, isInverted, isLoading }, 'button', [
-    colors[color],
-    sizes[size]
-  ])
+  const btnClasses = parseFieldConfigToClasses({
+    useCommonClasses: true,
+    fieldConfig: { isOutlined, isInverted, isLoading },
+    fieldName: 'button',
+    otherClasses: [colors[color], sizes[size]]
+  })
 
   return (
     <button
       key={`${type}-button-${color}`}
       data-testid={`test-${type}-button-${color}`}
       type={type}
-      className={btnClass}
+      className={btnClasses}
       style={styles}
       disabled={isDisabled}
       onClick={onClick}

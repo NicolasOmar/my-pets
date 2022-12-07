@@ -29,6 +29,6 @@ describe('[AddPet]', () => {
     //     ).toBeInTheDocument()
     // })
 
-    expect(screen.getByTestId('test-spinner')).toBeInTheDocument()
+    expect(screen.getByTestId('test-progress-bar')).toBeInTheDocument()
   })
 })

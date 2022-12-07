@@ -8,7 +8,7 @@ import RadioCheckGroup from '../RadioCheckGroup'
 // CONSTANTS
 import TAG_TYPES from '../../../constants/tag-types.json'
 // FUNCTIONS
-import { parseConfigToClassName } from '../../../functions/parsers'
+import { parseFieldConfigToClasses } from '../../../functions/parsers'
 
 const { checkTypes, selectorTypes } = TAG_TYPES
 
@@ -33,7 +33,11 @@ const parseFormInput = inputConfig => {
 }
 
 const FormInput = ({ inputLabel = null, isLoading = false, inputConfig, styles = {} }) => {
-  const controlClass = parseConfigToClassName({ isLoading }, 'control')
+  const controlClasses = parseFieldConfigToClasses({
+    useCommonClasses: true,
+    fieldConfig: { isLoading },
+    fieldName: 'control'
+  })
 
   return (
     <section
@@ -43,7 +47,7 @@ const FormInput = ({ inputLabel = null, isLoading = false, inputConfig, styles =
       style={styles}
     >
       <Label labelText={inputLabel} isRequired={inputConfig.isRequired} />
-      <section className={controlClass}>{parseFormInput(inputConfig)}</section>
+      <section className={controlClasses}>{parseFormInput(inputConfig)}</section>
     </section>
   )
 }

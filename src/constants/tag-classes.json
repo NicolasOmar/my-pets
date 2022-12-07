@@ -45,6 +45,12 @@
       "setClass": "error"
     }
   ],
+  "columns": [
+    {
+      "prop": "isMultiline",
+      "setClass": "is-multiline"
+    }
+  ],
   "common": [
     {
       "prop": "isRounded",
