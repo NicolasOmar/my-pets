@@ -22,13 +22,18 @@ const Tag = ({
     fieldName: 'tag',
     otherClasses: [colors[color], sizes[size]]
   })
-  const testId = `test-tag-${sizes[size]}-${colors[color]}`
+  const tagTestId = `test-tag-${size}-${color}`
+  const deleteTestId = `test-tag-delete-${size}-${color}`
 
   return (
-    <span data-testid={testId} className={tagClasses} onClick={() => onTextClick}>
+    <span data-testid={tagTestId} className={tagClasses} onClick={onTextClick}>
       {text}
       {hasDeleteBtn ? (
-        <button className={`delete ${size}`} onClick={() => onDeleteClick}></button>
+        <button
+          data-testid={deleteTestId}
+          className={`delete ${size}`}
+          onClick={onDeleteClick}
+        ></button>
       ) : null}
     </span>
   )

@@ -13,4 +13,11 @@ describe('[TagList]', () => {
     expect(testTagList).toBeInTheDocument()
     dataList.forEach(({ text }) => expect(() => screen.getByText(text).toBeInTheDocument()))
   })
+
+  test('Should not render the component by passing an empty array or a null value', () => {
+    ;[[], null, undefined].forEach(_case => {
+      render(<TagList {...{ dataList: _case }} />)
+      expect(() => screen.getByTestId(`test-tag-list-${_case}`)).toThrow()
+    })
+  })
 })
