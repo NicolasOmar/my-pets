@@ -6,7 +6,7 @@ import { setLoggedUser } from '../../../functions/local-storage'
 // MOCKS
 import { nameMock } from './index.mocks.json'
 
-describe('[Home]', () => {
+describe.skip('[Home]', () => {
   beforeAll(() => {
     setLoggedUser({ name: nameMock })
   })
