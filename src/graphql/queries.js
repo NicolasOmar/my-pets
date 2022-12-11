@@ -67,3 +67,12 @@ export const GET_PET = gql`
     }
   }
 `
+
+export const GET_MY_PETS_QUANTITY = gql`
+  query {
+    getMyPetsQuantity {
+      name
+      quantity
+    }
+  }
+`
