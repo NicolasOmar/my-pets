@@ -17,7 +17,7 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockUseNavigate
 }))
 
-describe.skip('[ListMyPets]', () => {
+describe('[ListMyPets]', () => {
   test('Should render the page with its inputs', () => {
     render(
       <Provider store={configureStore({ reducer })}>
@@ -27,7 +27,7 @@ describe.skip('[ListMyPets]', () => {
       </Provider>
     )
 
-    expect(() => screen.getByText('My list of Pets')).toThrow()
-    expect(screen.getByTestId('test-progress-bar')).toBeInTheDocument()
+    expect(screen.getByText('My list of Pets')).toBeInTheDocument()
+    expect(screen.getByTestId('test-loading-progress-bar')).toBeInTheDocument()
   })
 })

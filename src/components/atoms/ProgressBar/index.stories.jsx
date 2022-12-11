@@ -45,9 +45,9 @@ IsLargeSize.args = {
   ...mocks.isLargeSize
 }
 
-export const isLoading = Template.bind({})
-isLoading.storyName = 'Is just loading'
-isLoading.args = {
+export const IsInfiniteLoading = Template.bind({})
+IsInfiniteLoading.storyName = 'With infinite loading'
+IsInfiniteLoading.args = {
   ...IsLargeSize.args,
-  ...mocks.isLoading
+  ...mocks.IsInfiniteLoading
 }

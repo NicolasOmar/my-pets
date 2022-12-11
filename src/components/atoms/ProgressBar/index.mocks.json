@@ -8,7 +8,7 @@
   "isLargeSize": {
     "size": "large"
   },
-  "isLoading": {
-    "isLoading": true
+  "isInfiniteLoading": {
+    "isInfiniteLoading": true
   }
 }

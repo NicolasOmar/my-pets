@@ -1,55 +1,80 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+// GRAPHQL CLIENT
+import { useLazyQuery } from '@apollo/client'
+import { GET_MY_PETS_POPULATION } from '../../../graphql/queries'
 // COMPONENTS
 import CardsListTemplate from '../../templates/CardsListTemplate'
 import TagList from '../../molecules/TagList'
-// HELPER FUNCTIONS
+import ProgressBar from '../../atoms/ProgressBar'
+// FUNCTIONS
 import { getLoggedUser } from '../../../functions/local-storage'
+// MOCKS
+import config from './config.json'
+
+const { cardListTitle, petPopulationWidget } = config
 
 const Home = () => {
   const [user] = useState(getLoggedUser())
-
-  const cardsListTitle = {
-    titleText: `HELLO ${user?.name?.toUpperCase()}`,
-    titleSize: 'bigger',
-    subText: 'Welcome to our beautiful place',
-    subSize: 'small',
-    isCentered: true,
-    childWidth: 12,
-    styles: { margin: '20px 0px' }
-  }
-
-  const cardListData = [
+  const [cardListData, setCardListData] = useState([
     {
-      key: `widget-item`,
+      ...petPopulationWidget,
       cardContent: [
+        petPopulationWidget.cardContent[0],
         {
-          type: 'title',
-          content: {
-            titleText: 'First widget test',
-            titleSize: 'normal',
-            styles: { marginBottom: '20px' }
-          }
-        },
-        {
-          type: 'section',
-          content: (
-            <TagList
-              {...{
-                dataList: Array(13)
-                  .fill(null)
-                  .map((_, i) => ({
-                    text: `widget-test-${++i}`,
-                    color: i % 2 ? 'success' : 'danger'
-                  }))
-              }}
-            />
-          )
+          ...petPopulationWidget.cardContent[1],
+          content: <ProgressBar isInfiniteLoading={true} />
         }
       ]
     }
-  ]
+  ])
+  const [getData, { data }] = useLazyQuery(GET_MY_PETS_POPULATION)
 
-  return <CardsListTemplate {...{ isFetching: false, cardsListTitle, cardListData }} />
+  useEffect(() => {
+    const asyncGetData = async () => await getData()
+    asyncGetData()
+  }, [getData])
+
+  useEffect(() => {
+    if (data) {
+      const [all, ...pets] = data.getMyPetsPopulation
+      setCardListData([
+        {
+          ...petPopulationWidget,
+          cardContent: [
+            {
+              ...petPopulationWidget.cardContent[0],
+              content: {
+                ...petPopulationWidget.cardContent[0].content,
+                titleText: `${
+                  all.quantity === 0 ? `No created Pets yet` : `Created Pets: ${all.quantity}`
+                }`
+              }
+            },
+            {
+              ...petPopulationWidget.cardContent[1],
+              content: (
+                <TagList
+                  {...{
+                    dataList: pets.map(({ name, quantity }, i) => ({
+                      text: `${name}s: ${quantity}`,
+                      color: i % 2 ? 'success' : 'danger'
+                    }))
+                  }}
+                />
+              )
+            }
+          ]
+        }
+      ])
+    }
+  }, [data])
+
+  const cardsListTitle = {
+    ...cardListTitle,
+    titleText: `HELLO ${user?.name?.toUpperCase()}`
+  }
+
+  return <CardsListTemplate {...{ cardsListTitle, cardListData }} />
 }
 
 export default Home

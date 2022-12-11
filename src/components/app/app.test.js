@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { configureStore } from '@reduxjs/toolkit'
 // REDUX
-import store from '../../redux/reducers'
+import reducer from '../../redux/reducers'
 // COMPONENTS
 import App from './app'
 
@@ -11,7 +11,7 @@ describe.skip('[App]', () => {
   describe('[HAPPY PATH]', () => {
     test('Renders without props', () => {
       render(
-        <Provider store={createStore(store)}>
+        <Provider store={configureStore({ reducer })}>
           <MockedProvider mocks={[]} addTypefile={false}>
             <App />
           </MockedProvider>
