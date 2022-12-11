@@ -36,7 +36,7 @@ export default Column
 Column.propTypes = {
   _key: string.isRequired,
   testId: string.isRequired,
-  width: oneOf(parseObjKeys(columnSizes, true), parseObjKeys(columnSizes)),
+  width: oneOf([...parseObjKeys(columnSizes, true), ...parseObjKeys(columnSizes)]),
   isCentered: bool,
   isContainer: bool,
   isMultiline: bool,

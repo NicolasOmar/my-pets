@@ -40,7 +40,7 @@ const CardsListTemplate = ({
 }) => {
   const parseCardsList = () =>
     isFetching
-      ? [<ProgressBar key={`card-progress-bar`} isLoading={true} />]
+      ? [<ProgressBar key={`card-progress-bar`} isInfiniteLoading={true} />]
       : cardListData.map(
           ({ key, cardHeader, cardImage, cardContent, cardFooter, childWidth = 3 }, cardI) => {
             const cardConfig = {

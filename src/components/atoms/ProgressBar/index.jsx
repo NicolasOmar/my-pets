@@ -10,7 +10,7 @@ const { colors, sizes } = BULMA_STYLES
 const ProgressBar = ({
   value = 0,
   maxValue = 100,
-  isLoading = false,
+  isInfiniteLoading = false,
   color = parseObjKeys(colors)[7],
   size = parseObjKeys(sizes)[1]
 }) => {
@@ -19,7 +19,7 @@ const ProgressBar = ({
     otherClasses: [colors[color], sizes[size]]
   })
 
-  return isLoading ? (
+  return isInfiniteLoading ? (
     <progress
       data-testid="test-loading-progress-bar"
       className={progressClasses}
@@ -43,7 +43,7 @@ ProgressBar.propTypes = {
   // BASE PROPS
   value: number,
   maxValue: number,
-  isLoading: bool,
+  isInfiniteLoading: bool,
   // STYLE PROPS
   color: oneOf(parseObjKeys(colors)),
   size: oneOf(parseObjKeys(sizes))

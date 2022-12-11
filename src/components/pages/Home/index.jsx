@@ -1,17 +1,33 @@
 import React, { useState, useEffect } from 'react'
 // GRAPHQL CLIENT
 import { useLazyQuery } from '@apollo/client'
-import { GET_MY_PETS_QUANTITY } from '../../../graphql/queries'
+import { GET_MY_PETS_POPULATION } from '../../../graphql/queries'
 // COMPONENTS
 import CardsListTemplate from '../../templates/CardsListTemplate'
 import TagList from '../../molecules/TagList'
+import ProgressBar from '../../atoms/ProgressBar'
 // FUNCTIONS
 import { getLoggedUser } from '../../../functions/local-storage'
+// MOCKS
+import config from './config.json'
+
+const { cardListTitle, petPopulationWidget } = config
 
 const Home = () => {
   const [user] = useState(getLoggedUser())
-  const [getData, { data, loading: isFetching }] = useLazyQuery(GET_MY_PETS_QUANTITY)
-  const [cardListData, setCardListData] = useState([])
+  const [cardListData, setCardListData] = useState([
+    {
+      ...petPopulationWidget,
+      cardContent: [
+        petPopulationWidget.cardContent[0],
+        {
+          ...petPopulationWidget.cardContent[1],
+          content: <ProgressBar isInfiniteLoading={true} />
+        }
+      ]
+    }
+  ])
+  const [getData, { data }] = useLazyQuery(GET_MY_PETS_POPULATION)
 
   useEffect(() => {
     const asyncGetData = async () => await getData()
@@ -20,21 +36,22 @@ const Home = () => {
 
   useEffect(() => {
     if (data) {
-      const [all, ...pets] = data.getMyPetsQuantity
+      const [all, ...pets] = data.getMyPetsPopulation
       setCardListData([
         {
-          key: `widget-item`,
+          ...petPopulationWidget,
           cardContent: [
             {
-              type: 'title',
+              ...petPopulationWidget.cardContent[0],
               content: {
-                titleText: `Pets: ${all.quantity}`,
-                titleSize: 'normal',
-                styles: { marginBottom: '20px' }
+                ...petPopulationWidget.cardContent[0].content,
+                titleText: `${
+                  all.quantity === 0 ? `No created Pets yet` : `Created Pets: ${all.quantity}`
+                }`
               }
             },
             {
-              type: 'section',
+              ...petPopulationWidget.cardContent[1],
               content: (
                 <TagList
                   {...{
@@ -53,16 +70,11 @@ const Home = () => {
   }, [data])
 
   const cardsListTitle = {
-    titleText: `HELLO ${user?.name?.toUpperCase()}`,
-    titleSize: 'bigger',
-    subText: 'Welcome to our beautiful place',
-    subSize: 'small',
-    isCentered: true,
-    childWidth: 12,
-    styles: { margin: '20px 0px' }
+    ...cardListTitle,
+    titleText: `HELLO ${user?.name?.toUpperCase()}`
   }
 
-  return <CardsListTemplate {...{ isFetching, cardsListTitle, cardListData }} />
+  return <CardsListTemplate {...{ cardsListTitle, cardListData }} />
 }
 
 export default Home

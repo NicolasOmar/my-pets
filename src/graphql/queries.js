@@ -68,9 +68,9 @@ export const GET_PET = gql`
   }
 `
 
-export const GET_MY_PETS_QUANTITY = gql`
+export const GET_MY_PETS_POPULATION = gql`
   query {
-    getMyPetsQuantity {
+    getMyPetsPopulation {
       name
       quantity
     }
