@@ -1,6 +1,6 @@
 {
   "name": "my-pets",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "Nicolás Omar González Passerino",
   "license": "MIT",
   "private": false,
@@ -38,7 +38,7 @@
     "crypto-js": "^4.0.0",
     "env-cmd": "^10.1.0",
     "graphql": "^15.5.0",
-    "luxon": "^3.0.1",
+    "luxon": ">=3.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.4",
@@ -68,13 +68,23 @@
     "eslint-plugin-react": "^7.21.5",
     "husky": "^4.3.5",
     "lint-staged": "^10.5.3",
-    "node-sass": "^7.0.3",
+    "node-sass": "^8.0.0",
     "postcss": "^8.4.16",
     "prettier": "^2.2.1",
     "prompts": "^2.4.0",
     "prop-types": "^15.8.1",
     "storybook-dark-mode": "^1.1.2",
     "webpack": "^5.74.0"
+  },
+  "peerDependencies": {
+    "loader-utils": "^3.2.1",
+    "json5": "^2.2.2",
+    "minimatch": "^3.0.5",
+    "nth-check": "^2.0.1",
+    "http-cache-semantics": "^4.1.1",
+    "trim-newlines": "^3.0.1",
+    "glob-parent": "^5.1.2",
+    "trim": "^0.0.3"
   },
   "browserslist": {
     "production": [
