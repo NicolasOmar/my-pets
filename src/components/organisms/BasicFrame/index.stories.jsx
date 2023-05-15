@@ -1,8 +1,6 @@
 import React from 'react'
 import BasicFrame from '.'
 import ButtonGroup from '../../molecules/ButtonGroup'
-// APP_ROUTES
-import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // MOCKS
 import mocks from './index.mocks.json'
 // CONSTANTS
@@ -11,7 +9,7 @@ import { columnSizes } from '../../../constants/bulma-styles.json'
 import { parseObjKeys } from '../../../functions/parsers'
 
 export default {
-  title: `${STORYBOOK_ROUTES.ORGANISMS}/BasicFrame`,
+  title: 'MyPets/Organisms/BasicFrame',
   component: BasicFrame,
   argTypes: {
     width: {

@@ -1,15 +1,13 @@
 import React from 'react'
 import GridLayout from '.'
 import TitleHeader from '../../atoms/TitleHeader'
-// APP_ROUTES
-import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // CONSTANTS
 import { columnSizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
 import { parseObjKeys } from '../../../functions/parsers'
 
 export default {
-  title: `${STORYBOOK_ROUTES.MOLECULES}/GridLayout`,
+  title: 'MyPets/Molecules/GridLayout',
   component: GridLayout,
   argTypes: {
     width: {

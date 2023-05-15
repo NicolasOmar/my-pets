@@ -9,11 +9,5 @@
     "UPDATE_PASS": "/update-pass",
     "UPDATE_PET": "/update-pet",
     "LIST_MY_PETS": "/my-pets"
-  },
-  "STORYBOOK_ROUTES": {
-    "ATOMS": "MyPets/Atoms",
-    "MOLECULES": "MyPets/Molecules",
-    "ORGANISMS": "MyPets/Organisms",
-    "TEMPLATES": "MyPets/Templates"
   }
 }

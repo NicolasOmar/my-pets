@@ -22,7 +22,10 @@ const Login = () => {
   const [login, { loading, error, data }] = useMutation(LOGIN)
   const dispatch = useDispatch()
 
-  useEffect(() => getLoggedUser() && navigate(APP_ROUTES.HOME), [navigate])
+  useEffect(() => {
+    getLoggedUser() && navigate(APP_ROUTES.HOME)
+    return () => {}
+  }, [navigate])
   useEffect(() => {
     if (data) {
       setLoggedUser(data.loginUser)

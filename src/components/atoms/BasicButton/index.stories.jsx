@@ -1,7 +1,5 @@
 import React from 'react'
 import BasicButton from '.'
-// APP_ROUTES
-import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // CONSTANTS
 import { buttonTypes } from '../../../constants/tag-types.json'
 import { colors, sizes } from '../../../constants/bulma-styles.json'
@@ -11,7 +9,7 @@ import { parseObjKeys } from '../../../functions/parsers'
 import mocks from './index.mocks.json'
 
 export default {
-  title: `${STORYBOOK_ROUTES.ATOMS}/BasicButton`,
+  title: 'MyPets/Atoms/BasicButton',
   component: BasicButton,
   argTypes: {
     type: {

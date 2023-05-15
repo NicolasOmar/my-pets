@@ -1,12 +1,10 @@
 import React from 'react'
 import NavBarDropdown from '.'
-// APP_ROUTES
-import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // MOCKS
 import mocks from './index.mocks.json'
 
 export default {
-  title: `${STORYBOOK_ROUTES.MOLECULES}/NavBarDropdown`,
+  title: 'MyPets/Molecules/NavBarDropdown',
   component: NavBarDropdown,
   args: mocks.minimalConfig
 }

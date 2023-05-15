@@ -1,14 +1,12 @@
 import React from 'react'
 import NavBarItem from '.'
-// APP_ROUTES
-import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // OTHER COMPONENTS
 import TitleHeader from '../TitleHeader'
 // MOCKS
 import mocks from './index.mocks.json'
 
 export default {
-  title: `${STORYBOOK_ROUTES.ATOMS}/NavBarItem`,
+  title: 'MyPets/Atoms/NavBarItem',
   component: NavBarItem,
   args: mocks.minimalConfig
 }

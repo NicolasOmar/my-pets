@@ -1,7 +1,5 @@
 import React from 'react'
 import CardsListTemplate from '.'
-// APP_ROUTES
-import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // MOCKS
 import cardMocks from '../../molecules/Card/index.mocks.json'
 
@@ -20,7 +18,7 @@ const renderCards = number =>
     }))
 
 export default {
-  title: `${STORYBOOK_ROUTES.TEMPLATES}/CardsListTemplate`,
+  title: 'MyPets/Templates/CardsListTemplate',
   component: CardsListTemplate,
   args: {
     cardListData: renderCards(1)

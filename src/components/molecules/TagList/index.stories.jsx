@@ -1,10 +1,8 @@
 import React from 'react'
 import TagList from '.'
-// APP_ROUTES
-import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 
 export default {
-  title: `${STORYBOOK_ROUTES.MOLECULES}/TagList`,
+  title: 'MyPets/Molecules/TagList',
   component: TagList
 }
 

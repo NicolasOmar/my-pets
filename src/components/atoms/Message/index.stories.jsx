@@ -1,7 +1,5 @@
 import React from 'react'
 import Message from '.'
-// APP_ROUTES
-import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // MOCKS
 import { minimalConfig } from './index.mocks.json'
 // CONSTANTS
@@ -10,7 +8,7 @@ import { notificationTypes } from '../../../constants/bulma-styles.json'
 import { parseObjKeys } from '../../../functions/parsers'
 
 export default {
-  title: `${STORYBOOK_ROUTES.ATOMS}/Message`,
+  title: 'MyPets/Atoms/Message',
   component: Message,
   argTypes: {
     msgType: {
