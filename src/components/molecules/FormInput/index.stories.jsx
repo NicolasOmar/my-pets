@@ -1,12 +1,10 @@
 import React from 'react'
 import FormInput from '.'
-// APP_ROUTES
-import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // MOCKS
 import mocks from './index.mocks.json'
 
 export default {
-  title: `${STORYBOOK_ROUTES.MOLECULES}/FormInput`,
+  title: 'MyPets/Molecules/FormInput',
   component: FormInput,
   args: mocks.minimalConfig
 }

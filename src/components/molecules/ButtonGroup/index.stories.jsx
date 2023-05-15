@@ -1,12 +1,10 @@
 import React from 'react'
 import ButtonGroup from '.'
-// APP_ROUTES
-import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // MOCKS
 import mocks from './index.mocks.json'
 
 export default {
-  title: `${STORYBOOK_ROUTES.MOLECULES}/ButtonGroup`,
+  title: 'MyPets/Molecules/ButtonGroup',
   component: ButtonGroup,
   args: mocks.minimalConfig
 }

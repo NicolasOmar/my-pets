@@ -1,13 +1,11 @@
 import React from 'react'
 import Icon from '.'
-// APP_ROUTES
-import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // CONSTANTS
 // MOCKS
 import mocks from './index.mocks.json'
 
 export default {
-  title: `${STORYBOOK_ROUTES.ATOMS}/Icon`,
+  title: 'MyPets/Atoms/Icon',
   component: Icon
 }
 

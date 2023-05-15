@@ -3,15 +3,13 @@ import UserHeader from '.'
 import { MockedProvider } from '@apollo/client/testing'
 import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
-// APP_ROUTES
-import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // REDUX
 import reducers from '../../../redux/reducers'
 // MOCKS
 import { testConfig } from './index.mocks.json'
 
 export default {
-  title: `${STORYBOOK_ROUTES.TEMPLATES}/UserHeader`,
+  title: 'MyPets/Templates/UserHeader',
   component: UserHeader,
   args: { name: testConfig.name }
 }

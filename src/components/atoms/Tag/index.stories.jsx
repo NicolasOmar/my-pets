@@ -1,7 +1,5 @@
 import React from 'react'
 import Tag from '.'
-// APP_ROUTES
-import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // CONSTANTS
 import { colors, sizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
@@ -10,7 +8,7 @@ import { parseObjKeys } from '../../../functions/parsers'
 import mocks from './index.mocks.json'
 
 export default {
-  title: `${STORYBOOK_ROUTES.ATOMS}/Tag`,
+  title: 'MyPets/Atoms/Tag',
   component: Tag,
   argTypes: {
     color: {

@@ -1,7 +1,5 @@
 import React from 'react'
 import Image from '.'
-// APP_ROUTES
-import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // MOCKS
 import mocks from './index.mocks.json'
 // STYLES
@@ -10,7 +8,7 @@ import { imageRatios } from '../../../constants/bulma-styles.json'
 import { parseObjKeys } from '../../../functions/parsers'
 
 export default {
-  title: `${STORYBOOK_ROUTES.ATOMS}/Image`,
+  title: 'MyPets/Atoms/Image',
   component: Image,
   argTypes: {
     ratio: {

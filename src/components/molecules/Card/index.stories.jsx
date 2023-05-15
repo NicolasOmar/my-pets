@@ -2,13 +2,11 @@ import React from 'react'
 import Card from '.'
 // COMPONENTS
 import Image from '../../atoms/Image'
-// APP_ROUTES
-import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // MOCKS
 import { testCardContent, testBaseImage, testFooterItems } from './index.mocks.json'
 
 export default {
-  title: `${STORYBOOK_ROUTES.MOLECULES}/Card`,
+  title: 'MyPets/Molecules/Card',
   component: Card,
   args: {
     cardContent: <section>{testCardContent}</section>

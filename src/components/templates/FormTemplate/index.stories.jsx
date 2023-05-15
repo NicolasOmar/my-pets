@@ -1,7 +1,5 @@
 import React from 'react'
 import FormTemplate from '.'
-// APP_ROUTES
-import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // CONFIG AS MOCK
 import LoginPageConfig from '../../pages/Login/config.json'
 import NewUserPageConfig from '../../pages/NewUser/config.json'
@@ -10,7 +8,7 @@ import UpdatePassPageConfig from '../../pages/UpdatePassword/config.json'
 import AddPetPageConfig from '../../pages/AddPet/config.json'
 
 export default {
-  title: `${STORYBOOK_ROUTES.TEMPLATES}/FormTemplate`,
+  title: 'MyPets/Templates/FormTemplate',
   component: FormTemplate,
   args: {
     ...LoginPageConfig,

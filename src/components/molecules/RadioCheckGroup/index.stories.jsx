@@ -1,14 +1,12 @@
 import React from 'react'
 import RadioCheckGroup from '.'
-// APP_ROUTES
-import { STORYBOOK_ROUTES } from '../../../constants/routes.json'
 // CONSTANTS
 import { checkTypes } from '../../../constants/tag-types.json'
 // MOCKS
 import mocks from './index.mocks.json'
 
 export default {
-  title: `${STORYBOOK_ROUTES.MOLECULES}/RadioCheckGroup`,
+  title: 'MyPets/Molecules/RadioCheckGroup',
   component: RadioCheckGroup,
   argTypes: {
     type: {
