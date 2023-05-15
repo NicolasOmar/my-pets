@@ -1,6 +1,6 @@
 {
   "name": "my-pets",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": "Nicolás Omar González Passerino",
   "license": "MIT",
   "private": false,
@@ -22,7 +22,6 @@
     "lint": "eslint --fix src/**/*.jsx",
     "prettier": "prettier --write src",
     "lint-staged": "lint-staged -v",
-    "update-version": "node scripts/update-version.js",
     "storybook": "storybook dev",
     "build-storybook": "storybook build",
     "sass:css": "node-sass --omit-source-map-url --output-style compressed sass/styles.scss",
@@ -73,7 +72,6 @@
     "node-sass": "^8.0.0",
     "postcss": "^8.4.23",
     "prettier": "^2.8.8",
-    "prompts": "^2.4.2",
     "prop-types": "^15.8.1",
     "storybook": "^7.0.11",
     "storybook-dark-mode": "^3.0.0",
