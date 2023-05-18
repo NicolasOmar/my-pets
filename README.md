@@ -1,5 +1,70 @@
-# My Pets ![My Pets version](https://img.shields.io/github/package-json/v/nicolasomar/my-pets?color=success&label=%20&style=flat-square) ![My Pets Coverage](https://img.shields.io/codecov/c/github/nicolasomar/my-pets?label=%20&logo=codecov&style=flat-square)
-Web page based on React for daily activity logging of family pets.
+# My Pets
+Web system for families. It helps them manage and keep track of everything related to their pets.
+
+## Table of contents
+
+- [Status](#status)
+- [Dependencies](#dependencies)
+- [What do I need?](#what-do-i-need)
+- [Setup](#setup)
+- [How to run it](#how-to-run-it)
+- [Folder structure](#folder-structure)
+- [Branches and Environments](#branches-and-environments)
+- [Find out more](#find-out-more)
+- [License](#license)
+
+## Status
+![Project version][badge-repo-version]
+[![Code Coverage][badge-code-coverage]][link-code-coverage]
+[![Quality Gate Status][badge-soundcloud-quality]][link-soundcloud-status]
+[![Maintainability Rating][badge-soundcloud-maintanibility]][link-soundcloud-status]
+[![Security Rating][badge-soundcloud-security]][link-soundcloud-status]
+[![Technical Debt][badge-soundcloud-tech-debt]][link-soundcloud-status]
+[![Known Vulnerabilities][badge-snyk-status]][link-snyk-status]
+![GitHub Repo stars][badge-github-repo-stars]
+![GitHub commit activity][badge-github-commits]
+![GitHub last commit][badge-github-last-commit]
+
+[badge-repo-version]: https://img.shields.io/github/package-json/v/nicolasomar/my-pets?label=version&logo=npm&color=success
+[badge-code-coverage]: https://img.shields.io/codecov/c/github/nicolasomar/my-pets?label=coverage&logo=codecov
+[link-code-coverage]: https://app.codecov.io/gh/NicolasOmar/my-pets
+[badge-soundcloud-quality]: https://sonarcloud.io/api/project_badges/measure?project=NicolasOmar_my-pets&metric=alert_status
+[badge-soundcloud-maintanibility]: https://sonarcloud.io/api/project_badges/measure?project=NicolasOmar_my-pets&metric=sqale_rating
+[badge-soundcloud-security]: https://sonarcloud.io/api/project_badges/measure?project=NicolasOmar_my-pets&metric=security_rating
+[badge-soundcloud-tech-debt]: https://sonarcloud.io/api/project_badges/measure?project=NicolasOmar_my-pets&metric=sqale_index
+[link-soundcloud-status]: https://sonarcloud.io/summary/new_code?id=NicolasOmar_my-pets
+[badge-snyk-status]: https://img.shields.io/snyk/vulnerabilities/github/nicolasomar/my-pets?logo=snyk
+[link-snyk-status]: https://snyk.io/test/github/nicolasomar/my-pets
+[badge-github-repo-stars]: https://img.shields.io/github/stars/nicolasomar/my-pets?label=stars&logo=github&labelColor=535353&style=flat
+[badge-github-commits]: https://img.shields.io/github/commit-activity/m/nicolasomar/my-pets?logo=github
+[badge-github-last-commit]: https://img.shields.io/github/last-commit/nicolasomar/my-pets?logo=github
+
+## Dependencies
+![react dependency][badge-dependency-react]
+![graphql dependency][badge-dependency-graphql]
+![apollo dependency][badge-dependency-apollo]
+![redux dependency][badge-dependency-redux]
+![react-router-dom dependency][badge-dependency-react-router-dom]
+![validator dependency][badge-dependency-validator]
+![bulma dependency][badge-dependency-bulma]
+![storybook dependency][badge-dependency-storybook]
+![react testing library dependency][badge-dependency-react-testing-library]
+![eslint dependency][badge-dependency-eslint]
+![prettier dependency][badge-dependency-prettier]
+![prop-types dependency][badge-dependency-prop-types]
+
+[badge-dependency-react]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/react/main?logo=react
+[badge-dependency-graphql]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/graphql/main?logo=graphql
+[badge-dependency-apollo]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/@apollo/client/main?logo=apollographql
+[badge-dependency-redux]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/redux/main?logo=redux
+[badge-dependency-react-router-dom]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/react-router-dom/main?logo=reactrouter
+[badge-dependency-validator]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/validator/main
+[badge-dependency-bulma]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/bulma/main?logo=bulma
+[badge-dependency-storybook]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/storybook/main?logo=storybook
+[badge-dependency-react-testing-library]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/@testing-library/react/main?logo=testinglibrary
+[badge-dependency-eslint]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/eslint/main?logo=eslint
+[badge-dependency-prettier]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/prettier/main?logo=prettier
+[badge-dependency-prop-types]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/prop-types/main?logo=prop-types
 
 ## What do I need?
 Before cloning this repo, I recommend installing the following software:
