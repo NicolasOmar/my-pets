@@ -1,5 +1,38 @@
-# My Pets ![My Pets version](https://img.shields.io/github/package-json/v/nicolasomar/my-pets?color=success&label=%20&style=flat-square) ![My Pets Coverage](https://img.shields.io/codecov/c/github/nicolasomar/my-pets?label=%20&logo=codecov&style=flat-square)
-Web page based on React for daily activity logging of family pets.
+# My Pets
+Web system for families. It helps them manage and keep track of everything related to their pets.
+
+## Table of contents
+
+- [Status](#status)
+- [Dependencies](#dependencies)
+- [What do I need?](#what-do-i-need)
+- [Setup](#setup)
+- [How to run it](#how-to-run-it)
+- [Folder structure](#folder-structure)
+- [Branches and Environments](#branches-and-environments)
+- [Find out more](#find-out-more)
+- [License](#license)
+
+## Status
+
+![Project version][badge-repo-version]
+[![Code Coverage][badge-code-coverage]][link-code-coverage]
+[![Quality Gate Status][badge-soundcloud-quality]][link-soundcloud-status]
+[![Maintainability Rating][badge-soundcloud-maintanibility]][link-soundcloud-status]
+[![Security Rating][badge-soundcloud-security]][link-soundcloud-status]
+[![Technical Debt][badge-soundcloud-tech-debt]][link-soundcloud-status]
+
+[badge-repo-version]: https://img.shields.io/github/package-json/v/nicolasomar/my-pets?label=version&logo=npm&color=success
+[badge-code-coverage]: https://img.shields.io/codecov/c/github/nicolasomar/my-pets?label=coverage&logo=codecov
+[link-code-coverage]: https://app.codecov.io/gh/NicolasOmar/my-pets
+[badge-soundcloud-quality]: https://sonarcloud.io/api/project_badges/measure?project=NicolasOmar_my-pets&metric=alert_status
+[badge-soundcloud-maintanibility]: https://sonarcloud.io/api/project_badges/measure?project=NicolasOmar_my-pets&metric=sqale_rating
+[badge-soundcloud-security]: https://sonarcloud.io/api/project_badges/measure?project=NicolasOmar_my-pets&metric=security_rating
+[badge-soundcloud-tech-debt]: https://sonarcloud.io/api/project_badges/measure?project=NicolasOmar_my-pets&metric=sqale_index
+[link-soundcloud-status]: https://sonarcloud.io/summary/new_code?id=NicolasOmar_my-pets
+[badge-snyk-status]: https://img.shields.io/snyk/vulnerabilities/github/nicolasomar/my-pets?logo=snyk
+
+## Dependencies
 
 ## What do I need?
 Before cloning this repo, I recommend installing the following software:
