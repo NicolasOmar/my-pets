@@ -5,22 +5,12 @@ on:
     types: [opened, edited]
 
 jobs:
-  add-to-project:
+  add-bug-to-project:
     runs-on: ubuntu-latest
     steps:
-    - name: 1/2 | Add bug to project
-      uses: actions/add-to-project@0.5.0
+    - name: Add bug to project
+      uses: actions/add-to-project@main
       with:
         project-url: https://github.com/users/NicolasOmar/projects/1
         github-token: ${{ secrets.ADD_TO_MY_PETS_PROJECT }}
         labeled: bug
-
-  assign-to-developer:
-    needs: add-to-project
-    runs-on: ubuntu-latest
-    steps:
-    - name: 2/2 | Assign bug to developer
-      uses: pozil/auto-assign-issue@v1
-      with:
-        assignees: nicolasomar
-        allowSelfAssign: false
