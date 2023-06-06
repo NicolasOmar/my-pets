@@ -1,0 +1,16 @@
+name: Assign new bug
+
+on:
+  issues:
+    types: [opened, edited]
+
+jobs:
+  add-bug-to-project:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Add bug to project
+      uses: actions/add-to-project@main
+      with:
+        project-url: https://github.com/users/NicolasOmar/projects/1
+        github-token: ${{ secrets.ADD_TO_MY_PETS_PROJECT }}
+        labeled: bug

@@ -1,0 +1,13 @@
+{
+  "lightColored": {
+    "color": "danger-light"
+  },
+  "darkColored": {
+    "color": "danger-dark"
+  },
+  "customStyle": {
+    "style": {
+      "borderTop": "5px dashed"
+    }
+  }
+}

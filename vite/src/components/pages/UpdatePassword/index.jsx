@@ -1,0 +1,75 @@
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+// GRAPHQL CLIENT
+import { useMutation } from '@apollo/client'
+import { UPDATE_PASS } from '../../../graphql/mutations'
+// COMPONENTS
+import FormTemplate from '../../templates/FormTemplate'
+// FORM CONFIG
+import CONFIG from './config.json'
+// CONSTANTS
+import ROUTES from '../../../constants/routes.json'
+// FUNCTIONS
+import { encryptPass } from '../../../functions/encrypt'
+
+const { header, inputs, dividers, updateButton, cancelButton } = CONFIG
+const { APP_ROUTES } = ROUTES
+
+const UpdatePass = () => {
+  let navigate = useNavigate()
+  const [updatePass, { loading, error }] = useMutation(UPDATE_PASS)
+
+  const onSubmitUpdate = async formData => {
+    const variables = {
+      oldPass: encryptPass(formData.oldPass),
+      newPass: encryptPass(formData.newPass)
+    }
+
+    try {
+      await updatePass({ variables })
+      navigate(APP_ROUTES.HOME)
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  const onInputBlurChange = formData => {
+    const isValid =
+      formData.oldPass.value !== formData.newPass.value &&
+      formData.newPass.value === formData.repeatPass.value
+
+    return {
+      ...formData,
+      oldPass: {
+        ...formData.oldPass,
+        hasCustomValidation: true,
+        isValid
+      },
+      newPass: {
+        ...formData.newPass,
+        hasCustomValidation: true,
+        isValid
+      },
+      repeatPass: {
+        ...formData.repeatPass,
+        hasCustomValidation: true,
+        isValid
+      }
+    }
+  }
+
+  return (
+    <FormTemplate
+      header={header}
+      isLoading={loading}
+      errors={error}
+      inputs={inputs}
+      dividers={dividers}
+      formButtons={[updateButton, cancelButton]}
+      onFormSubmit={formData => onSubmitUpdate(formData)}
+      onInputBlurChange={onInputBlurChange}
+    />
+  )
+}
+
+export default UpdatePass

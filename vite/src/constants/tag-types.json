@@ -1,0 +1,22 @@
+{
+  "buttonTypes": [
+    "button",
+    "submit",
+    "reset"
+  ],
+  "inputTypes": [
+    "text",
+    "email",
+    "password",
+    "date",
+    "number"
+  ],
+  "checkTypes": [
+    "radio",
+    "checkbox"
+  ],
+  "selectorTypes": [
+    "select",
+    "multiple"
+  ]
+}

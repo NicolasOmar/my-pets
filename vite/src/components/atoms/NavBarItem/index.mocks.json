@@ -1,0 +1,9 @@
+{
+  "minimalConfig": {
+    "itemLabel": "Item Label"
+  },
+  "linkItem": {
+    "itemLabel": "Item Link",
+    "isLink": true
+  }
+}

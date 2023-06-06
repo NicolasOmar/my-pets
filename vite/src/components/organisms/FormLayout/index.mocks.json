@@ -1,0 +1,43 @@
+{
+  "minimalConfig": {
+    "inputs": {
+      "email": {
+        "label": "Email",
+        "type": "email",
+        "control": "email",
+        "isRequired": false,
+        "isVisible": true
+      },
+      "password": {
+        "label": "Password",
+        "type": "password",
+        "control": "password",
+        "isRequired": false,
+        "isVisible": true
+      }
+    }
+  },
+  "withButtons": {
+    "formButtons": [
+      {
+        "type": "submit",
+        "color": "success",
+        "label": "Log in"
+      },
+      {
+        "type": "button",
+        "color": "danger",
+        "label": "Or you can Sign up"
+      }
+    ]
+  },
+  "withErrors": {
+    "errors": {
+      "graphQLErrors": [
+        {
+          "message": "This is a test message, just the first idea of how to work it"
+        }
+      ]
+    }
+  }
+}

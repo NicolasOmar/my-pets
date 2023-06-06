@@ -1,0 +1,28 @@
+{
+  "minimalConfig": {
+    "type": "text",
+    "control": "basicInputControl"
+  },
+  "colored": {
+    "color": "danger"
+  },
+  "large": {
+    "size": "large"
+  },
+  "rounded": {
+    "isRounded": true
+  },
+  "password": {
+    "type": "password"
+  },
+  "placeholderOnly": {
+    "placeHolder": "Hi!"
+  },
+  "valueAndPlaceholder": {
+    "value": "Hello!",
+    "placeHolder": "Nice to see you again"
+  },
+  "disabled": {
+    "isDisabled": true
+  }
+}

@@ -14,13 +14,20 @@
   },
   "type": "module",
   "scripts": {
-    "start": "vite",
+    "start": "env-cmd -f ./env/local.env vite",
     "start:prod": "npm run build && npm run preview",
     "build": "vite build",
     "preview": "vite preview",
+    "setup": "npm i && husky install",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "prettier": "prettier --write src",
+    "lint-staged": "lint-staged -v",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "sass:css": "node-sass --omit-source-map-url --output-style compressed sass/styles.scss",
+    "styles:app": "npm run sass:css -- -o public/styles",
+    "styles:storybook": "npm run sass:css -- -o .storybook",
+    "build:styles": "npm run styles:app && npm run styles:storybook"
   },
   "dependencies": {
     "@apollo/client": "^3.7.15",
@@ -61,5 +68,14 @@
     "prop-types": "^15.8.1",
     "storybook": "^7.0.18",
     "vite": "^4.3.9"
+  },
+  "lint-staged": {
+    "src/**/*.jsx": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "src/**/*.(js|scss)": [
+      "prettier --write"
+    ]
   }
 }

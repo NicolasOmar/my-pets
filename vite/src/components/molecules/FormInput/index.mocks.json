@@ -1,0 +1,47 @@
+{
+  "minimalConfig": {
+    "inputLabel": "Form input label",
+    "inputConfig": {
+      "type": "text",
+      "control": "formInputControl"
+    }
+  },
+  "loading": {
+    "isLoading": true
+  },
+  "selectConfig": {
+    "inputConfig": {
+      "control": "testSelect",
+      "type": "select",
+      "options": [
+        {
+          "label": "Test option",
+          "value": "testOption"
+        }
+      ]
+    }
+  },
+  "checkGroupConfig": {
+    "inputConfig": {
+      "options": [
+        {
+          "type": "checkbox",
+          "control": "testCheckboxControl",
+          "label": "Check 1"
+        },
+        {
+          "type": "checkbox",
+          "control": "testCheckboxControl",
+          "label": "Check 2"
+        },
+        {
+          "type": "checkbox",
+          "control": "testCheckboxControl",
+          "label": "Check 3"
+        }
+      ],
+      "type": "checkbox",
+      "name": "testCheckboxInput"
+    }
+  }
+}
