@@ -1,11 +1,19 @@
-module.exports = {
-  "stories": ["../src/components/**/*.stories.@(jsx)"],
-  "addons": ["@storybook/addon-links", "@storybook/addon-essentials", "@storybook/addon-interactions", "@storybook/preset-create-react-app", "storybook-dark-mode"],
-  "framework": {
-    name: "@storybook/react-webpack5",
+/** @type { import('@storybook/react-vite').StorybookConfig } */
+
+const config = {
+  stories: ['../src/components/**/*.stories.@(jsx)'],
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-interactions'
+  ],
+  framework: {
+    name: '@storybook/react-vite',
     options: {}
   },
   docs: {
-    autodocs: true
+    autodocs: 'tag'
   }
-};
+}
+
+export default config
