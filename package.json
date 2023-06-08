@@ -16,7 +16,7 @@
   "scripts": {
     "start": "vite",
     "start:prod": "npm run build && npm run preview",
-    "test": "vitest --config ./vitest.config.js",
+    "test": "vitest",
     "test:ci": "npm run test -- --coverage",
     "build": "vite build",
     "preview": "vite preview",
@@ -80,7 +80,8 @@
     "src/**/*.!(test).jsx": [
       "prettier --write",
       "eslint --fix"
-    ],"src/**/*.test.jsx": [
+    ],
+    "src/**/*.test.jsx": [
       "prettier --write"
     ],
     "src/**/*.(js|scss)": [
