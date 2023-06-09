@@ -87,11 +87,7 @@ export const parseDate = date =>
   !!date && validator.isDate(date) ? new Date(!!+date || date) : null
 
 export const parseDateString = (date, nullValue = null, format = 'dd/LL/yyyy') =>
-  date
-    ? DateTime.fromMillis(+date)
-        .toUTC()
-        .toFormat(format)
-    : nullValue
+  date ? DateTime.fromMillis(+date).toUTC().toFormat(format) : nullValue
 
 export const parseArrayToString = (rawList, prop, separator = ', ') =>
   rawList.map(item => item[prop]).join(separator)

@@ -1,9 +1,5 @@
 {
-  "mockedNames": [
-    "firstName",
-    "secondName",
-    "thirdName"
-  ],
+  "mockedNames": ["firstName", "secondName", "thirdName"],
   "mockedData": [
     "test data of first storage",
     "test data of second storage",

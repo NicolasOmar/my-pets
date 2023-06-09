@@ -8,7 +8,7 @@ import userReducer from './redux/reducers'
 import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 // COMPONENTS
-import App from  './components/app/app'
+import App from './components/app/app'
 // FUNCTIONS
 import { getLoggedUser } from './functions/local-storage'
 
@@ -47,5 +47,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <App />
       </ApolloProvider>
     </Provider>
-  </React.StrictMode>,
+  </React.StrictMode>
 )
