@@ -41,6 +41,8 @@ Web system for families. It helps them manage and keep track of everything relat
 
 ## Dependencies
 ![react dependency][badge-dependency-react]
+![vite dependency][badge-dependency-vite]
+![vitest dependency][badge-dependency-vitest]
 ![graphql dependency][badge-dependency-graphql]
 ![apollo dependency][badge-dependency-apollo]
 ![redux dependency][badge-dependency-redux]
@@ -54,6 +56,8 @@ Web system for families. It helps them manage and keep track of everything relat
 ![prop-types dependency][badge-dependency-prop-types]
 
 [badge-dependency-react]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/react/main?logo=react
+[badge-dependency-vite]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/vite/main?logo=vite
+[badge-dependency-vitest]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/vitest/main?logo=vitest
 [badge-dependency-graphql]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/graphql/main?logo=graphql
 [badge-dependency-apollo]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/@apollo/client/main?logo=apollographql
 [badge-dependency-redux]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/redux/main?logo=redux

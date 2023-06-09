@@ -17,10 +17,13 @@ import { testConfig, logoutMock } from './index.mocks.json'
 
 const mockUseNavigate = vi.fn()
 
-vi.mock('react-router-dom', () => ({
-  ...vi.requireActual('react-router-dom'),
-  useNavigate: () => mockUseNavigate
-}))
+vi.mock('react-router-dom', async originalPackage => {
+  const _originalPackage = await originalPackage
+  return {
+    ..._originalPackage,
+    useNavigate: () => mockUseNavigate
+  }
+})
 
 describe('[UserHeader]', () => {
   const _logout = [

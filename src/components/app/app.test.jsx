@@ -1,13 +1,15 @@
-import { render, screen } from '@testing-library/react'
-import { MockedProvider } from '@apollo/client/testing'
+import React from 'react'
 import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
+import { describe, test, expect } from 'vitest'
+import { render, screen } from '@testing-library/react'
+import { MockedProvider } from '@apollo/client/testing'
 // REDUX
 import reducer from '../../redux/reducers'
 // COMPONENTS
 import App from './app'
 
-describe.skip('[App]', () => {
+describe('[App]', () => {
   describe('[HAPPY PATH]', () => {
     test('Renders without props', () => {
       render(

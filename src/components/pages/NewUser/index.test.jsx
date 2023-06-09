@@ -16,10 +16,13 @@ import { inputs, goToLoginButton } from './config.json'
 
 const mockUseNavigate = vi.fn()
 
-vi.mock('react-router-dom', () => ({
-  ...vi.requireActual('react-router-dom'),
-  useNavigate: () => mockUseNavigate
-}))
+vi.mock('react-router-dom', async originalPackage => {
+  const _originalPackage = await originalPackage
+  return {
+    ..._originalPackage,
+    useNavigate: () => mockUseNavigate
+  }
+})
 
 describe('[NewUser]', () => {
   test('Should render the page with its inputs', () => {

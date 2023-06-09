@@ -18,10 +18,13 @@ import { inputs, loginButton, goToSignUpButton } from './config.json'
 
 const mockUseNavigate = vi.fn()
 
-vi.mock('react-router-dom', () => ({
-  ...vi.requireActual('react-router-dom'),
-  useNavigate: () => mockUseNavigate
-}))
+vi.mock('react-router-dom', async originalPackage => {
+  const _originalPackage = await originalPackage
+  return {
+    ..._originalPackage,
+    useNavigate: () => mockUseNavigate
+  }
+})
 
 vi.mock('../../../functions/encrypt', () => ({
   encryptPass: () => 'encryptedPass'

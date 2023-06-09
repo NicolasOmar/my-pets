@@ -1,5 +1,5 @@
 import React from 'react'
-import { describe, test, expect } from 'vitest'
+import { describe, test, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
 // APP_ROUTES
@@ -10,12 +10,15 @@ import AddPet from '.'
 // MOCKS
 import { inputs } from './config.json'
 
-const mockUseNavigate = jest.fn()
+const mockUseNavigate = vi.fn()
 
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useNavigate: () => mockUseNavigate
-}))
+vi.mock('react-router-dom', async originalPackage => {
+  const _originalPackage = await originalPackage
+  return {
+    ..._originalPackage,
+    useNavigate: () => mockUseNavigate
+  }
+})
 
 describe('[AddPet]', () => {
   test('Should render the page with its inputs', () => {
