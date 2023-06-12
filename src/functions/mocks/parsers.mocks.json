@@ -29,8 +29,8 @@
     ]
   },
   "parseNumber": {
-    "goodCases": [1, 2, 3, 10, "55", "333", "1.3" ],
-    "goodResults": [1, 2, 3, 10, 55, 333, 1.3 ],
+    "goodCases": [1, 2, 3, 10, "55", "333", "1.3"],
+    "goodResults": [1, 2, 3, 10, 55, 333, 1.3],
     "badCases": [null, false, {}, [], "a", "B", "test"],
     "badResults": [null, null, null, null, null, null, null]
   },
@@ -107,10 +107,7 @@
   },
   "searchIdsFromNames": {
     "idArray": {
-      "ids": [
-        { "id": "2" },
-        { "id": "5" }
-      ],
+      "ids": [{ "id": "2" }, { "id": "5" }],
       "stringList": [
         { "id": "1", "name": "nameId1" },
         { "id": "2", "name": "nameId2" },
@@ -124,11 +121,11 @@
   "searchNamesFromIds": {
     "withMultipleSearch": {
       "list": [
-        { "id": "1", "name": "nameId1"},
-        { "id": "2", "name": "nameId2"},
-        { "id": "3", "name": "nameId3"},
-        { "id": "4", "name": "nameId4"},
-        { "id": "5", "name": "nameId5"}
+        { "id": "1", "name": "nameId1" },
+        { "id": "2", "name": "nameId2" },
+        { "id": "3", "name": "nameId3" },
+        { "id": "4", "name": "nameId4" },
+        { "id": "5", "name": "nameId5" }
       ],
       "items": ["nameId2", "nameId3", "nameId4"],
       "searchMultiple": true,
@@ -136,11 +133,11 @@
     },
     "withoutMultipleSearch": {
       "list": [
-        { "id": "1", "name": "nameId1"},
-        { "id": "2", "name": "nameId2"},
-        { "id": "3", "name": "nameId3"},
-        { "id": "4", "name": "nameId4"},
-        { "id": "5", "name": "nameId5"}
+        { "id": "1", "name": "nameId1" },
+        { "id": "2", "name": "nameId2" },
+        { "id": "3", "name": "nameId3" },
+        { "id": "4", "name": "nameId4" },
+        { "id": "5", "name": "nameId5" }
       ],
       "items": "nameId5",
       "result": "5"

@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { string } from 'prop-types'
-import { useDispatch } from 'react-redux'
 // GRAPHQL CLIENT
 import { useMutation } from '@apollo/client'
 import { LOGOUT } from '../../../graphql/mutations'
+// CONTEXT
+import { UserContext } from '../../../context'
 // COMPONENTS
 import NavBar from '../../organisms/NavBar'
 // CONSTANTS
@@ -17,7 +18,7 @@ const { APP_ROUTES } = ROUTES
 const UserHeader = ({ name }) => {
   let navigate = useNavigate()
   const [logout] = useMutation(LOGOUT)
-  const dispatch = useDispatch()
+  const { setUserData } = useContext(UserContext)
   const isDarkModeOs = window.matchMedia('(prefers-color-scheme: dark)').matches
   const [isDarkModeApp, setIsDarkModeApp] = useState(getStorage('isDarkMode') ?? isDarkModeOs)
 
@@ -30,10 +31,7 @@ const UserHeader = ({ name }) => {
     try {
       await logout()
       clearAllStorage()
-      dispatch({
-        type: 'LOGOUT',
-        payload: null
-      })
+      setUserData(null)
       navigate(APP_ROUTES.LOGIN)
     } catch (e) {
       console.warn('e', e)

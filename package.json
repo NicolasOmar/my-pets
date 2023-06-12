@@ -1,6 +1,6 @@
 {
   "name": "my-pets",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "author": "Nicolás Omar González Passerino",
   "license": "MIT",
   "private": false,
@@ -12,17 +12,19 @@
   "bugs": {
     "url": "https://github.com/NicolasOmar/my-pets/issues"
   },
+  "type": "module",
   "scripts": {
-    "start": "env-cmd -f ./env/local.env react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --watchAll=false --verbose",
-    "test:ci": "npm test -- --coverage",
-    "test:diff": "npm run test:ci -- --changedSince=main",
-    "eject": "react-scripts eject",
-    "lint": "eslint --fix src/**/*.jsx",
+    "start": "vite",
+    "start:prod": "npm run build && npm run preview",
+    "test": "vitest",
+    "test:ci": "npm run test -- --coverage",
+    "build": "vite build",
+    "preview": "vite preview",
+    "setup": "npm i && husky install",
+    "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "prettier": "prettier --write src",
     "lint-staged": "lint-staged -v",
-    "storybook": "storybook dev",
+    "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "sass:css": "node-sass --omit-source-map-url --output-style compressed sass/styles.scss",
     "styles:app": "npm run sass:css -- -o public/styles",
@@ -30,91 +32,57 @@
     "build:styles": "npm run styles:app && npm run styles:storybook"
   },
   "dependencies": {
-    "@apollo/client": "^3.7.14",
-    "@reduxjs/toolkit": "^1.9.5",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^14.0.0",
-    "@testing-library/user-event": "^14.4.3",
+    "@apollo/client": "^3.7.15",
     "crypto-js": "^4.1.1",
-    "env-cmd": "^10.1.0",
     "graphql": "^16.6.0",
     "luxon": "^3.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-redux": "^8.0.5",
-    "react-router-dom": "^6.11.1",
-    "react-scripts": "5.0.1",
-    "redux": "^4.2.1",
+    "react-router-dom": "^6.12.0",
     "validator": "^13.9.0",
-    "web-vitals": "^3.3.1"
+    "web-vitals": "^3.3.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.21.8",
-    "@babel/eslint-parser": "^7.21.8",
-    "@storybook/addon-actions": "^7.0.11",
-    "@storybook/addon-essentials": "^7.0.11",
-    "@storybook/addon-interactions": "^7.0.11",
-    "@storybook/addon-links": "^7.0.11",
-    "@storybook/addon-mdx-gfm": "^7.0.11",
-    "@storybook/cli": "^7.0.11",
-    "@storybook/node-logger": "^7.0.11",
-    "@storybook/preset-create-react-app": "^7.0.11",
-    "@storybook/react": "^7.0.11",
-    "@storybook/react-webpack5": "^7.0.11",
-    "@storybook/testing-library": "^0.1.0",
-    "babel-loader": "9.1.2",
-    "babel-plugin-named-exports-order": "^0.0.2",
+    "@storybook/addon-essentials": "^7.0.18",
+    "@storybook/addon-interactions": "^7.0.18",
+    "@storybook/addon-links": "^7.0.18",
+    "@storybook/blocks": "^7.0.18",
+    "@storybook/react": "^7.0.18",
+    "@storybook/react-vite": "^7.0.18",
+    "@storybook/testing-library": "^0.0.14-next.2",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@types/react": "^18.0.37",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react-swc": "^3.0.0",
+    "@vitest/coverage-v8": "^0.32.0",
     "bulma": "^0.9.4",
-    "eslint": "^8.40.0",
+    "eslint": "^8.38.0",
     "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.3.4",
+    "eslint-plugin-storybook": "^0.6.12",
     "husky": "^8.0.3",
+    "jsdom": "^22.1.0",
     "lint-staged": "^13.2.2",
-    "node-sass": "^8.0.0",
-    "postcss": "^8.4.23",
+    "node-sass": "^9.0.0",
+    "postcss": "^8.4.24",
     "prettier": "^2.8.8",
     "prop-types": "^15.8.1",
-    "storybook": "^7.0.11",
-    "storybook-dark-mode": "^3.0.0",
-    "webpack": "^5.82.1"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/components/**/index.(jsx)",
-      "src/functions/**/*.(js)",
-      "src/redux/**/*.(js)"
-    ]
+    "storybook": "^7.0.18",
+    "vite": "^4.3.9",
+    "vitest": "^0.32.0"
   },
   "lint-staged": {
-    "src/**/*.jsx": [
+    "src/**/*.!(test).jsx": [
       "prettier --write",
       "eslint --fix"
     ],
+    "src/**/*.test.jsx": [
+      "prettier --write"
+    ],
     "src/**/*.(js|scss)": [
       "prettier --write"
-    ]
-  },
-  "eslintConfig": {
-    "overrides": [
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      }
     ]
   }
 }

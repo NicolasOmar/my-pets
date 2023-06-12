@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 // GRAPHQL CLIENT
 import { useMutation } from '@apollo/client'
 import { UPDATE_USER } from '../../../graphql/mutations'
+// CONTEXT
+import { UserContext } from '../../../context'
 // COMPONENTS
 import FormTemplate from '../../templates/FormTemplate'
 // FORM CONFIG
@@ -19,16 +20,16 @@ const { APP_ROUTES } = ROUTES
 
 const UpdateUser = () => {
   let navigate = useNavigate()
-  const [formObject, setFormObject] = useState(inputs)
   const [updateUser, { data, loading, error }] = useMutation(UPDATE_USER)
-  const dispatch = useDispatch()
+  const { setUserData } = useContext(UserContext)
+  const [formObject, setFormObject] = useState(inputs)
 
   useEffect(() => {
     const user = data ? parseGraphToObj(data.updateUser, getLoggedUser()) : getLoggedUser()
 
     if (data) {
       setLoggedUser(user)
-      dispatch({ type: 'UPDATE', payload: user })
+      setUserData(user)
     }
 
     Object.keys(user).forEach(key => formObject[key] && (formObject[key].value = user[key]))

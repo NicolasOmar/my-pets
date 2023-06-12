@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
 // GRAPHQL CLIENT
 import { useMutation } from '@apollo/client'
 import { CREATE_USER } from '../../../graphql/mutations'
+// CONTEXT
+import { UserContext } from '../../../context'
 // COMPONENTS
 import FormTemplate from '../../templates/FormTemplate'
 // FORM CONFIG
@@ -15,12 +16,12 @@ import { encryptPass } from '../../../functions/encrypt'
 import { setLoggedUser } from '../../../functions/local-storage'
 
 const { inputs, header, signUpButton, goToLoginButton } = CONFIG
+const { APP_ROUTES } = ROUTES
 
 const NewUser = () => {
   let navigate = useNavigate()
   const [createUser, { loading, error }] = useMutation(CREATE_USER)
-  const dispatch = useDispatch()
-  const { APP_ROUTES } = ROUTES
+  const { setUserData } = useContext(UserContext)
 
   const onSubmitCreation = async formData => {
     const newUser = {
@@ -32,10 +33,7 @@ const NewUser = () => {
     try {
       const response = await createUser({ variables: { newUser } })
       setLoggedUser(response.data?.createUser)
-      dispatch({
-        type: 'LOGIN',
-        payload: response.data?.createUser
-      })
+      setUserData(response.data?.createUser)
       navigate(APP_ROUTES.HOME)
     } catch (e) {
       console.error(e)

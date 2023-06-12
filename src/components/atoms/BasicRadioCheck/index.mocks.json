@@ -1,5 +1,5 @@
 {
-  "minimalConfig":{
+  "minimalConfig": {
     "type": "radio",
     "control": "test"
   },

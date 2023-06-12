@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+// CONTEXT
+import { UserContext } from '../../context'
 // COMPONENTS
 import UserHeader from '../pages/UserHeader'
 import Home from '../pages/Home'
@@ -16,9 +17,10 @@ import ROUTES from '../../constants/routes.json'
 
 const { APP_ROUTES } = ROUTES
 
+const renderHeader = userData => userData && <UserHeader name={userData.name} />
+
 const App = () => {
-  const userData = useSelector(({ userState }) => userState)
-  const renderHeader = userState => userState && <UserHeader name={userState.name} />
+  const { userData } = useContext(UserContext)
 
   return (
     <BrowserRouter>
