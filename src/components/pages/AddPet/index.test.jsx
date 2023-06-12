@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
 // APP_ROUTES
 // GRAPHQL
-// REDUX
+// CONTEXT
 // COMPONENTS
 import AddPet from '.'
 // MOCKS

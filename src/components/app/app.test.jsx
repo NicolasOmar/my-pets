@@ -1,23 +1,25 @@
 import React from 'react'
-import { Provider } from 'react-redux'
-import { configureStore } from '@reduxjs/toolkit'
 import { describe, test, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
-// REDUX
-import reducer from '../../redux/reducers'
+// APP_ROUTES
+// GRAPHQL
+// CONTEXT
+import { UserContext } from '../../context'
 // COMPONENTS
 import App from './app'
 
 describe('[App]', () => {
+  const providerMock = { userData: null }
+
   describe('[HAPPY PATH]', () => {
     test('Renders without props', () => {
       render(
-        <Provider store={configureStore({ reducer })}>
+        <UserContext.Provider value={providerMock}>
           <MockedProvider mocks={[]} addTypefile={false}>
             <App />
           </MockedProvider>
-        </Provider>
+        </UserContext.Provider>
       )
       const element = screen.getByText(/Welcome to My Pets/i)
       expect(element).toBeInTheDocument()

@@ -1,6 +1,4 @@
 import React from 'react'
-import { Provider } from 'react-redux'
-import { configureStore } from '@reduxjs/toolkit'
 import { describe, test, expect, vi } from 'vitest'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
@@ -8,8 +6,8 @@ import { MockedProvider } from '@apollo/client/testing'
 import ROUTES from '../../../constants/routes.json'
 // GRAPHQL
 import { LOGIN } from '../../../graphql/mutations'
-// REDUX
-import reducer from '../../../redux/reducers'
+// CONTEXT
+import { UserContext } from '../../../context'
 // COMPONENTS
 import Login from '.'
 // MOCKS
@@ -31,13 +29,18 @@ vi.mock('../../../functions/encrypt', () => ({
 }))
 
 describe('[Login]', () => {
+  const providerMock = {
+    userData: loginUserMock,
+    setUserData: vi.fn()
+  }
+
   test('Should render the page with its inputs', () => {
     render(
-      <Provider store={configureStore({ reducer })}>
+      <UserContext.Provider value={providerMock}>
         <MockedProvider mocks={[]} addTypename={false}>
           <Login />
         </MockedProvider>
-      </Provider>
+      </UserContext.Provider>
     )
 
     Object.keys(inputs).forEach(key => {
@@ -67,11 +70,11 @@ describe('[Login]', () => {
     ]
 
     render(
-      <Provider store={configureStore({ reducer })}>
+      <UserContext.Provider value={providerMock}>
         <MockedProvider mocks={mocks} addTypename={false}>
           <Login />
         </MockedProvider>
-      </Provider>
+      </UserContext.Provider>
     )
 
     Object.keys(inputs).forEach(key => {
@@ -94,11 +97,11 @@ describe('[Login]', () => {
 
   test('Should redirect user to sign up page', async () => {
     render(
-      <Provider store={configureStore({ reducer })}>
+      <UserContext.Provider value={{ ...providerMock, userData: null }}>
         <MockedProvider mocks={[]} addTypename={false}>
           <Login />
         </MockedProvider>
-      </Provider>
+      </UserContext.Provider>
     )
 
     const signUpBtn = screen.getByText(goToSignUpButton.label)

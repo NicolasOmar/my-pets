@@ -2,12 +2,10 @@ import React from 'react'
 import { describe, test, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
-import { Provider } from 'react-redux'
-import { configureStore } from '@reduxjs/toolkit'
 // APP_ROUTES
 // GRAPHQL
-// REDUX
-import reducer from '../../../redux/reducers'
+// CONTEXT
+import { UserContext } from '../../../context'
 // COMPONENTS
 import UpdateUser from '.'
 // MOCKS
@@ -29,12 +27,14 @@ vi.mock('../../../functions/local-storage', () => ({
 
 describe('[UpdateUser]', () => {
   test('Should render the page with its inputs', () => {
+    const providerMock = { setUserData: vi.fn() }
+
     render(
-      <Provider store={configureStore({ reducer })}>
+      <UserContext.Provider value={providerMock}>
         <MockedProvider mocks={[]} addTypename={false}>
           <UpdateUser />
         </MockedProvider>
-      </Provider>
+      </UserContext.Provider>
     )
 
     Object.keys(inputs).forEach(key => {

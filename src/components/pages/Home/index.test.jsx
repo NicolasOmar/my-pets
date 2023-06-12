@@ -2,6 +2,9 @@ import React from 'react'
 import { describe, test, expect } from 'vitest'
 import { MockedProvider } from '@apollo/client/testing'
 import { render, screen } from '@testing-library/react'
+// APP_ROUTES
+// GRAPHQL
+// CONTEXT
 // COMPONENTS
 import Home from '.'
 // FUNCTIONS

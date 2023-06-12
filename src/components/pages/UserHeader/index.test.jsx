@@ -1,6 +1,4 @@
 import React from 'react'
-import { Provider } from 'react-redux'
-import { configureStore } from '@reduxjs/toolkit'
 import { describe, test, expect, vi } from 'vitest'
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
@@ -8,8 +6,8 @@ import { MockedProvider } from '@apollo/client/testing'
 import ROUTES from '../../../constants/routes.json'
 // GRAPHQL
 import { LOGOUT } from '../../../graphql/mutations'
-// REDUX
-import reducers from '../../../redux/reducers'
+// CONTEXT
+import { UserContext } from '../../../context'
 // COMPONENTS
 import UserHeader from '.'
 // MOCKS
@@ -26,7 +24,7 @@ vi.mock('react-router-dom', async originalPackage => {
 })
 
 describe('[UserHeader]', () => {
-  const _logout = [
+  const _logoutMock = [
     {
       ...logoutMock,
       request: {
@@ -35,6 +33,7 @@ describe('[UserHeader]', () => {
       }
     }
   ]
+  const providerMock = { setUserData: vi.fn() }
 
   beforeAll(() => {
     window.matchMedia = query => ({
@@ -51,11 +50,11 @@ describe('[UserHeader]', () => {
 
   beforeEach(() => {
     render(
-      <Provider store={configureStore({ reducer: reducers })}>
-        <MockedProvider mocks={_logout} addTypename={false}>
+      <UserContext.Provider value={providerMock}>
+        <MockedProvider mocks={_logoutMock} addTypename={false}>
           <UserHeader name={testConfig.name} />
         </MockedProvider>
-      </Provider>
+      </UserContext.Provider>
     )
   })
 

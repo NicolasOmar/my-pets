@@ -1,14 +1,12 @@
 import React from 'react'
-import { Provider } from 'react-redux'
-import { configureStore } from '@reduxjs/toolkit'
-import { describe, test, expect, vi } from 'vitest'
+import { describe, test, expect, vi, beforeEach } from 'vitest'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
 // APP_ROUTES
 import ROUTES from '../../../constants/routes.json'
 // GRAPHQL
-// REDUX
-import reducer from '../../../redux/reducers'
+// CONTEXT
+import { UserContext } from '../../../context'
 // COMPONENTS
 import NewUser from '.'
 // MOCKS
@@ -25,15 +23,19 @@ vi.mock('react-router-dom', async originalPackage => {
 })
 
 describe('[NewUser]', () => {
-  test('Should render the page with its inputs', () => {
+  const providerMock = { setUserData: vi.fn() }
+
+  beforeEach(() => {
     render(
-      <Provider store={configureStore({ reducer })}>
+      <UserContext.Provider value={providerMock}>
         <MockedProvider mocks={[]} addTypename={false}>
           <NewUser />
         </MockedProvider>
-      </Provider>
+      </UserContext.Provider>
     )
+  })
 
+  test('Should render the page with its inputs', () => {
     Object.keys(inputs).forEach(key => {
       const inputElem = screen.getByTestId(`test-${inputs[key].control}-${inputs[key].type}`)
       expect(inputElem).toBeInTheDocument()
@@ -41,14 +43,6 @@ describe('[NewUser]', () => {
   })
 
   test('Should redirect user to sign up page', async () => {
-    render(
-      <Provider store={configureStore({ reducer })}>
-        <MockedProvider mocks={[]} addTypename={false}>
-          <NewUser />
-        </MockedProvider>
-      </Provider>
-    )
-
     const loginBtn = screen.getByText(goToLoginButton.label)
     fireEvent.click(loginBtn)
 
