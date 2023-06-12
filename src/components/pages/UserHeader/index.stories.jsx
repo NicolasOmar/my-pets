@@ -1,10 +1,8 @@
 import React from 'react'
 import UserHeader from '.'
 import { MockedProvider } from '@apollo/client/testing'
-import { Provider } from 'react-redux'
-import { configureStore } from '@reduxjs/toolkit'
-// REDUX
-import reducers from '../../../redux/reducers'
+// CONTEXT
+import { UserContext } from '../../../context'
 // MOCKS
 import { testConfig } from './index.mocks.json'
 
@@ -15,11 +13,11 @@ export default {
 }
 
 const Template = args => (
-  <Provider store={configureStore({ reducer: reducers })}>
+  <UserContext.Provider value={{ setUserData: () => { } }}>
     <MockedProvider mocks={[]} addTypename={false}>
       <UserHeader {...args} />
     </MockedProvider>
-  </Provider>
+  </UserContext.Provider>
 )
 
 export const Minimal = Template.bind({})
