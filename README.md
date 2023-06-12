@@ -41,11 +41,11 @@ Web system for families. It helps them manage and keep track of everything relat
 
 ## Dependencies
 ![react dependency][badge-dependency-react]
+![prop-types dependency][badge-dependency-prop-types]
 ![vite dependency][badge-dependency-vite]
 ![vitest dependency][badge-dependency-vitest]
 ![graphql dependency][badge-dependency-graphql]
 ![apollo dependency][badge-dependency-apollo]
-![redux dependency][badge-dependency-redux]
 ![react-router-dom dependency][badge-dependency-react-router-dom]
 ![validator dependency][badge-dependency-validator]
 ![bulma dependency][badge-dependency-bulma]
@@ -53,14 +53,13 @@ Web system for families. It helps them manage and keep track of everything relat
 ![react testing library dependency][badge-dependency-react-testing-library]
 ![eslint dependency][badge-dependency-eslint]
 ![prettier dependency][badge-dependency-prettier]
-![prop-types dependency][badge-dependency-prop-types]
 
 [badge-dependency-react]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/react/main?logo=react
-[badge-dependency-vite]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/vite/main?logo=vite
-[badge-dependency-vitest]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/vitest/main?logo=vitest
+[badge-dependency-prop-types]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/prop-types/main?logo=prop-types
+[badge-dependency-vite]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/vite/main?logo=vite
+[badge-dependency-vitest]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/vitest/main?logo=vitest
 [badge-dependency-graphql]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/graphql/main?logo=graphql
 [badge-dependency-apollo]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/@apollo/client/main?logo=apollographql
-[badge-dependency-redux]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/redux/main?logo=redux
 [badge-dependency-react-router-dom]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/react-router-dom/main?logo=reactrouter
 [badge-dependency-validator]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/validator/main
 [badge-dependency-bulma]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/bulma/main?logo=bulma
@@ -68,7 +67,6 @@ Web system for families. It helps them manage and keep track of everything relat
 [badge-dependency-react-testing-library]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/@testing-library/react/main?logo=testinglibrary
 [badge-dependency-eslint]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/eslint/main?logo=eslint
 [badge-dependency-prettier]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/prettier/main?logo=prettier
-[badge-dependency-prop-types]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/prop-types/main?logo=prop-types
 
 ## What do I need?
 Before cloning this repo, I recommend installing the following software:
