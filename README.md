@@ -64,7 +64,7 @@ Web system for families. It helps them manage and keep track of everything relat
 [badge-dependency-validator]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/validator/main
 [badge-dependency-bulma]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/bulma/main?logo=bulma
 [badge-dependency-storybook]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/storybook/main?logo=storybook
-[badge-dependency-react-testing-library]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/@testing-library/react/main?logo=testinglibrary
+[badge-dependency-react-testing-library]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/@testing-library/react/main?logo=testinglibrary
 [badge-dependency-eslint]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/eslint/main?logo=eslint
 [badge-dependency-prettier]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/prettier/main?logo=prettier
 
