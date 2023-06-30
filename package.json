@@ -25,6 +25,7 @@
     "prettier": "prettier --write src",
     "lint-staged": "lint-staged -v",
     "storybook": "storybook dev -p 6006",
+    "storybook:cli": "npm run storybook -- --no-open",
     "build-storybook": "storybook build",
     "sass:css": "node-sass --omit-source-map-url --output-style compressed sass/styles.scss",
     "styles:app": "npm run sass:css -- -o public/styles",

@@ -118,3 +118,22 @@ export const searchNamesFromIds = (ids = null, list = [], searchMultiple = false
 
 export const capitalizeWord = word =>
   word ? `${word.charAt(0).toUpperCase()}${word.slice(1).toLowerCase()}` : ''
+
+export const buildArgTypes = (baseObj, extensions) => {
+  return Object.keys(baseObj)
+    .map(key => ({
+      [key]: extensions[key]
+        ? {
+            ...baseObj[key],
+            ...extensions[key]
+          }
+        : baseObj[key]
+    }))
+    .reduce((firstObj, objKey) => ({
+      ...firstObj,
+      ...objKey
+    }))
+}
+
+export const parseListToStoryOptions = (list, isObject = false) =>
+  isObject ? Object.keys(list).join(' | ') : list.join(' | ')

@@ -1,30 +1,64 @@
 {
-  "minimalConfig": {
-    "type": "submit",
-    "color": "white",
-    "label": "Minimal config button"
+  "testing": {
+    "minimalConfig": {
+      "type": "submit",
+      "color": "white",
+      "label": "Minimal config button"
+    },
+    "colored": {
+      "color": "danger",
+      "label": "Colored button"
+    },
+    "loading": {
+      "isLoading": true
+    },
+    "outlined": {
+      "isOutlined": true,
+      "label": "Outlined button"
+    },
+    "inverted": {
+      "isInverted": true,
+      "label": "Inverted button"
+    },
+    "disabled": {
+      "isDisabled": true,
+      "label": "Disabled button"
+    },
+    "large": {
+      "size": "large",
+      "label": "Large button"
+    }
   },
-  "colored": {
-    "color": "danger",
-    "label": "Colored button"
-  },
-  "loading": {
-    "isLoading": true
-  },
-  "outlined": {
-    "isOutlined": true,
-    "label": "Outlined button"
-  },
-  "inverted": {
-    "isInverted": true,
-    "label": "Inverted button"
-  },
-  "disabled": {
-    "isDisabled": true,
-    "label": "Disabled button"
-  },
-  "large": {
-    "size": "large",
-    "label": "Large button"
+  "storybook": {
+    "type": {
+      "description": "Button's type you will use"
+    },
+    "label": {
+      "description": "Button's text that will be shown"
+    },
+    "isDisabled": {
+      "description": "Makes the button unable to be clicked"
+    },
+    "styles": {
+      "description": "Adds custom CSS styles"
+    },
+    "color": {
+      "description": "Sets a color based con Bulma's color options"
+    },
+    "size": {
+      "description": "Sets a size based on Bulma's size options"
+    },
+    "isOutlined": {
+      "description": "Exchange button's main color in the one on its text and border"
+    },
+    "isInverted": {
+      "description": "Exchange button's main color in the one on its text and border"
+    },
+    "isLoading": {
+      "description": "Changes button's text with a spinner animation"
+    },
+    "onClick": {
+      "description": "Sets button's click functionality"
+    }
   }
 }
