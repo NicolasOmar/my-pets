@@ -1,28 +1,74 @@
 {
-  "minimalConfig": {
-    "type": "text",
-    "control": "basicInputControl"
+  "testing": {
+    "minimalConfig": {
+      "type": "text",
+      "control": "basicInputControl"
+    },
+    "colored": {
+      "color": "danger"
+    },
+    "large": {
+      "size": "large"
+    },
+    "rounded": {
+      "isRounded": true
+    },
+    "password": {
+      "type": "password"
+    },
+    "placeholderOnly": {
+      "placeHolder": "Hi!"
+    },
+    "valueAndPlaceholder": {
+      "value": "Hello!",
+      "placeHolder": "Nice to see you again"
+    },
+    "disabled": {
+      "isDisabled": true
+    }
   },
-  "colored": {
-    "color": "danger"
-  },
-  "large": {
-    "size": "large"
-  },
-  "rounded": {
-    "isRounded": true
-  },
-  "password": {
-    "type": "password"
-  },
-  "placeholderOnly": {
-    "placeHolder": "Hi!"
-  },
-  "valueAndPlaceholder": {
-    "value": "Hello!",
-    "placeHolder": "Nice to see you again"
-  },
-  "disabled": {
-    "isDisabled": true
+  "storybook": {
+    "type": {
+      "description": "*Required*. Input's type you will use"
+    },
+    "control": {
+      "description": "*Required*. Used to populate several input's properties"
+    },
+    "value": {
+      "description": "Set's input's value"
+    },
+    "isRequired": {
+      "description": "Marks the input as required"
+    },
+    "isDisabled": {
+      "description": "Makes the input unable to be clicked"
+    },
+    "placeHolder": {
+      "description": "Sets a placeholder text that will be shown while the user doesn't input any value"
+    },
+    "minLength": {
+      "description": "Sets input's minimun length of characters"
+    },
+    "maxLength": {
+      "description": "Sets input's maximun length of characters"
+    },
+    "styles": {
+      "description": "Adds custom CSS styles"
+    },
+    "color": {
+      "description": "Sets a color based con Bulma's color options"
+    },
+    "size": {
+      "description": "Sets a size based on Bulma's size options"
+    },
+    "isRounded": {
+      "description": "Makes input's corners rounded"
+    },
+    "onInputChange": {
+      "description": "Sends event and control information to its parent component when user press a new key"
+    },
+    "onBlurChange": {
+      "description": "Sends control information to its parent component when user changes its focus to other form input"
+    }
   }
 }

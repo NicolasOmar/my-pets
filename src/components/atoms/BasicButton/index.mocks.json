@@ -31,10 +31,10 @@
   },
   "storybook": {
     "type": {
-      "description": "Button's type you will use"
+      "description": "*Required*. Button's type you will use"
     },
     "label": {
-      "description": "Button's text that will be shown"
+      "description": "*Required*. Button's text that will be shown"
     },
     "isDisabled": {
       "description": "Makes the button unable to be clicked"
@@ -58,7 +58,7 @@
       "description": "Changes button's text with a spinner animation"
     },
     "onClick": {
-      "description": "Sets button's click functionality"
+      "description": "Sends a click signal to its parent component when user clicks on the button"
     }
   }
 }
