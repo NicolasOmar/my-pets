@@ -1,34 +1,68 @@
 {
-  "minimalConfig": {
-    "type": "radio",
-    "control": "test"
+  "testing": {
+    "minimalConfig": {
+      "type": "radio",
+      "control": "test"
+    },
+    "radioWithLabel": {
+      "type": "radio",
+      "label": "Radio label"
+    },
+    "radioChecked": {
+      "type": "radio",
+      "label": "Radio checked",
+      "value": true
+    },
+    "radioDisabled": {
+      "type": "radio",
+      "label": "Radio disabled",
+      "isDisabled": true
+    },
+    "checkWithLabel": {
+      "type": "checkbox",
+      "label": "Checkbox label"
+    },
+    "checkChecked": {
+      "type": "checkbox",
+      "label": "Checkbox checked",
+      "value": true
+    },
+    "checkDisabled": {
+      "type": "checkbox",
+      "label": "Checkbox disabled",
+      "isDisabled": true
+    }
   },
-  "radioWithLabel": {
-    "type": "radio",
-    "label": "Radio label"
-  },
-  "radioChecked": {
-    "type": "radio",
-    "label": "Radio checked",
-    "value": true
-  },
-  "radioDisabled": {
-    "type": "radio",
-    "label": "Radio disabled",
-    "isDisabled": true
-  },
-  "checkWithLabel": {
-    "type": "checkbox",
-    "label": "Checkbox label"
-  },
-  "checkChecked": {
-    "type": "checkbox",
-    "label": "Checkbox checked",
-    "value": true
-  },
-  "checkDisabled": {
-    "type": "checkbox",
-    "label": "Checkbox disabled",
-    "isDisabled": true
+  "storybook": {
+    "type": {
+      "description": "*Required*. Input type you will use"
+    },
+    "control": {
+      "description": "*Required*. Used to populate several input's properties"
+    },
+    "value": {
+      "description": "Set's input's value"
+    },
+    "isRequired": {
+      "description": "Marks the input as required"
+    },
+    "isDisabled": {
+      "description": "Makes the input unable to be clicked"
+    },
+    "name": {
+      "description": "Radio/Check input primitive property"
+    },
+    "label": {
+      "description": "Input's text that will be shown"
+    },
+    "styles": {
+      "description": "Adds custom CSS styles"
+    },
+    "onInputChange": {
+      "description": "Sends input inverted value and control information to its parent component when user press a new key"
+    },
+    "onBlurChange": {
+      "description": "Reutilize input's onBlur function and resend a notification to its parent component when user changes its focus to other form input"
+    }
   }
 }
