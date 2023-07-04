@@ -1,5 +1,5 @@
 import React from 'react'
-import { describe, test, expect, vi } from 'vitest'
+import { describe, test, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 // COMPONENTS
 import Divider from '.'

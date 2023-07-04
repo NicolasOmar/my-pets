@@ -2,12 +2,17 @@ import Column from '.'
 // CONSTANTS
 import { columnSizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { buildArgTypes, parseObjKeys } from '../../../functions/parsers'
+import { buildArgTypes, parseListToStoryOptions, parseObjKeys } from '../../../functions/parsers'
 // MOCKS
 import { storybook } from './index.mocks.json'
 
 const columnStoryConfig = {
   width: {
+    table: {
+      type: {
+        summary: parseListToStoryOptions(columnSizes, true)
+      }
+    },
     options: parseObjKeys(columnSizes)
   }
 }

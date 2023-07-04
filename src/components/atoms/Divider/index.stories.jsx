@@ -1,20 +1,29 @@
-import React from 'react'
 import Divider from '.'
 // CONSTANTS
 import { textColors } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { parseObjKeys } from '../../../functions/parsers'
+import { buildArgTypes, parseListToStoryOptions, parseObjKeys } from '../../../functions/parsers'
 // MOCKS
-import mocks from './index.mocks.json'
+import { testing, storybook } from './index.mocks.json'
+
+const dividerStoryConfig = {
+  color: {
+    table: {
+      type: {
+        summary: parseListToStoryOptions(textColors, true)
+      },
+      defaultValue: {
+        summary: parseObjKeys(textColors)[3]
+      }
+    },
+    options: parseObjKeys(textColors)
+  }
+}
 
 export default {
   title: 'MyPets/Atoms/Divider',
   component: Divider,
-  argTypes: {
-    color: {
-      options: parseObjKeys(textColors)
-    }
-  }
+  argTypes: buildArgTypes(storybook, dividerStoryConfig)
 }
 
 const Template = args => <Divider {...args} />
@@ -24,15 +33,15 @@ Minimal.storyName = 'Minimal config'
 
 export const Light = Template.bind({})
 Light.storyName = 'Light color'
-Light.args = mocks.lightColored
+Light.args = testing.lightColored
 
 export const Dark = Template.bind({})
 Dark.storyName = 'Dark color'
-Dark.args = mocks.darkColored
+Dark.args = testing.darkColored
 
 export const CustomStyle = Template.bind({})
 CustomStyle.storyName = 'Custom Style'
 CustomStyle.args = {
-  ...mocks.darkColored,
-  ...mocks.customStyle
+  ...testing.darkColored,
+  ...testing.customStyle
 }
