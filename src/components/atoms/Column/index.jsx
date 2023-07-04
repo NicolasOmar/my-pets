@@ -1,5 +1,5 @@
 import React from 'react'
-import { array, bool, element, elementType, object, oneOf, oneOfType, string } from 'prop-types'
+import PropTypes from 'prop-types'
 // CONSTANTS
 import BULMA_STYLES from '../../../constants/bulma-styles.json'
 // FUNCTIONS
@@ -34,12 +34,12 @@ const Column = ({
 export default Column
 
 Column.propTypes = {
-  _key: string.isRequired,
-  testId: string.isRequired,
-  width: oneOf([...parseObjKeys(columnSizes, true), ...parseObjKeys(columnSizes)]),
-  isCentered: bool,
-  isContainer: bool,
-  isMultiline: bool,
-  children: oneOfType([element, array, elementType]),
-  styles: object
+  _key: PropTypes.string.isRequired,
+  testId: PropTypes.string.isRequired,
+  width: PropTypes.oneOf([...parseObjKeys(columnSizes, true), ...parseObjKeys(columnSizes)]),
+  isCentered: PropTypes.bool,
+  isContainer: PropTypes.bool,
+  isMultiline: PropTypes.bool,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.array, PropTypes.elementType]),
+  styles: PropTypes.object
 }

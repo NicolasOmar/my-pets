@@ -1,0 +1,31 @@
+{
+  "storybook": {
+    "_key": {
+      "description": "Unique key used when the column is part of a list of columns (each with its specific key)"
+    },
+    "testId": {
+      "description": "Unique ID used to localize the component using unit tests suites"
+    },
+    "width": {
+      "control": {
+        "type": "select"
+      },
+      "description": "Indicates column's width using a idea similar to Bootstrap grid system"
+    },
+    "isCentered": {
+      "description": "Centers colmun's content"
+    },
+    "isContainer": {
+      "description": "Enabler to make the column a container for a list of columns (with its own width based on container's width)"
+    },
+    "isMultiline": {
+      "description": "Used to render several components in more than 1 line and use column's designated width"
+    },
+    "children": {
+      "description": "Indicates which components (could be 1 or more) container in the column"
+    },
+    "styles": {
+      "description": "Adds custom CSS styles"
+    }
+  }
+}

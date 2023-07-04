@@ -135,5 +135,5 @@ export const buildArgTypes = (baseObj, extensions) => {
     }))
 }
 
-export const parseListToStoryOptions = (list, isObject = false) =>
-  isObject ? Object.keys(list).join(' | ') : list.join(' | ')
+export const parseListToStoryOptions = (list, isObject = false, separator = ' | ') =>
+  isObject ? Object.keys(list).join(separator) : list.join(separator)
