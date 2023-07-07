@@ -119,7 +119,7 @@ export const searchNamesFromIds = (ids = null, list = [], searchMultiple = false
 export const capitalizeWord = word =>
   word ? `${word.charAt(0).toUpperCase()}${word.slice(1).toLowerCase()}` : ''
 
-export const buildArgTypes = (baseObj, extensions) => {
+export const buildArgTypes = (baseObj, extensions = {}) => {
   return Object.keys(baseObj)
     .map(key => ({
       [key]: extensions[key]

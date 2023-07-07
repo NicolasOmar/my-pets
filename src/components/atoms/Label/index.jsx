@@ -1,5 +1,5 @@
 import React from 'react'
-import { string, bool, object } from 'prop-types'
+import PropTypes from 'prop-types'
 
 const Label = ({ labelText = null, styles = {}, isRequired = false }) =>
   labelText && (
@@ -24,8 +24,8 @@ const Label = ({ labelText = null, styles = {}, isRequired = false }) =>
 export default Label
 
 Label.propTypes = {
-  labelText: string,
+  labelText: PropTypes.string,
   // STYLE PROPS
-  styles: object,
-  isRequired: bool
+  styles: PropTypes.object,
+  isRequired: PropTypes.bool
 }
