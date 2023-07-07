@@ -7,16 +7,18 @@ import Icon from '.'
 import mocks from './index.mocks.json'
 
 describe('[Icon]', () => {
+  const { ghostSrc, baseTestId } = mocks.testing
+
   test('Should render the component with required props only', () => {
     render(<Icon />)
-    const minimalIcon = screen.getByTestId('test-custom-icon')
+    const minimalIcon = screen.getByTestId(baseTestId)
     expect(minimalIcon).toBeInTheDocument()
   })
 
   test('Should render the component with a custom src', () => {
-    render(<Icon {...mocks.ghostSrc} />)
-    const iconWithImageSrc = screen.getByTestId('test-custom-icon-img')
+    render(<Icon {...ghostSrc} />)
+    const iconWithImageSrc = screen.getByTestId(`${baseTestId}-img`)
     expect(iconWithImageSrc).toBeInTheDocument()
-    expect(iconWithImageSrc.src).toEqual(mocks.ghostSrc.src)
+    expect(iconWithImageSrc.src).toEqual(ghostSrc.src)
   })
 })

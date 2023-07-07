@@ -1,5 +1,6 @@
 {
   "testing": {
+    "baseTestId": "test-divider-white",
     "lightColored": {
       "color": "danger-light"
     },

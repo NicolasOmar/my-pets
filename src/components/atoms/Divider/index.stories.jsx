@@ -42,6 +42,6 @@ Dark.args = testing.darkColored
 export const CustomStyle = Template.bind({})
 CustomStyle.storyName = 'Custom Style'
 CustomStyle.args = {
-  ...testing.darkColored,
+  ...Dark.args,
   ...testing.customStyle
 }
