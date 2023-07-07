@@ -50,29 +50,29 @@ OneOption.args = testing.oneOption
 export const Disabled = Template.bind({})
 Disabled.storyName = 'Disabled'
 Disabled.args = {
-  ...testing.oneOption,
+  ...OneOption.args,
   ...testing.disabled
 }
 
 export const Loading = Template.bind({})
 Loading.storyName = 'Loading'
 Loading.args = {
-  ...testing.oneOption,
+  ...OneOption.args,
   ...testing.loading
 }
 
 export const Colored = Template.bind({})
 Colored.storyName = 'Colored'
 Colored.args = {
-  ...testing.oneOption,
+  ...OneOption.args,
   ...testing.colored
 }
 
 export const Rounded = Template.bind({})
 Rounded.storyName = 'Rounded'
 Rounded.args = {
-  ...testing.oneOption,
-  ...testing.colored,
+  ...OneOption.args,
+  ...Colored.args,
   ...testing.rounded
 }
 

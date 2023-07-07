@@ -8,10 +8,10 @@ import { textColors } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
 import { parseObjKeys } from '../../../functions/parsers'
 // MOCKS
-import mocks from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 describe('[Divider]', () => {
-  const { baseTestId } = mocks.testing
+  const { baseTestId } = testing
 
   test('Should render the component with required props only', () => {
     render(<Divider />)

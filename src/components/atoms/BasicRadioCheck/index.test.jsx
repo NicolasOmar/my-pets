@@ -4,10 +4,10 @@ import { fireEvent, render, screen } from '@testing-library/react'
 // COMPONENTS
 import BasicRadioCheck from '.'
 // MOCKS
-import mocks from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 describe('[BasicRadioCheck]', () => {
-  const { minimalConfig } = mocks.testing
+  const { minimalConfig } = testing
   const minimalInputTestId = `test-${minimalConfig.control}-${minimalConfig.type}`
 
   test('Should render the component with required props only', () => {

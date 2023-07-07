@@ -4,10 +4,10 @@ import { fireEvent, render, screen } from '@testing-library/react'
 // COMPONENT
 import BasicButton from '.'
 // MOCKS
-import mocks from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 describe('[BasicButton]', () => {
-  const { minimalConfig, disabled } = mocks.testing
+  const { minimalConfig, disabled } = testing
   let btnTestId = `test-${minimalConfig.type}-button-${minimalConfig.color}`
 
   test('Should render the component with required props only', () => {

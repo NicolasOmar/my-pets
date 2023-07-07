@@ -4,10 +4,10 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 // COMPONENTS
 import BasicSelect from '.'
 // MOCKS
-import mocks from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 describe('[BasicSelect]', () => {
-  const { minimalConfig, oneOption } = mocks.testing
+  const { minimalConfig, oneOption } = testing
   const singleSelectTestId = `test-single-${minimalConfig.control}`
   const multiSelectTestId = `test-multiple-${minimalConfig.control}`
   const oneOptionConfig = { ...minimalConfig, ...oneOption }

@@ -4,10 +4,10 @@ import { render, screen } from '@testing-library/react'
 // COMPONENTS
 import Icon from '.'
 // MOCKS
-import mocks from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 describe('[Icon]', () => {
-  const { ghostSrc, baseTestId } = mocks.testing
+  const { ghostSrc, baseTestId } = testing
 
   test('Should render the component with required props only', () => {
     render(<Icon />)
