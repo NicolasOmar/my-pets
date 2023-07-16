@@ -1,21 +1,27 @@
-import React from 'react'
 import Message from '.'
-// MOCKS
-import { minimalConfig } from './index.mocks.json'
 // CONSTANTS
 import { notificationTypes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { parseObjKeys } from '../../../functions/parsers'
+import { buildArgTypes, parseListToStoryOptions, parseObjKeys } from '../../../functions/parsers'
+// MOCKS
+import { testing, storybook } from './index.mocks.json'
+
+const messageStoryConfig = {
+  msgType: {
+    table: {
+      type: {
+        summary: parseListToStoryOptions(notificationTypes, true)
+      }
+    },
+    options: parseObjKeys(notificationTypes)
+  }
+}
 
 export default {
   title: 'MyPets/Atoms/Message',
   component: Message,
-  argTypes: {
-    msgType: {
-      options: parseObjKeys(notificationTypes)
-    }
-  },
-  args: minimalConfig
+  argTypes: buildArgTypes(storybook, messageStoryConfig),
+  args: testing.minimalConfig
 }
 
 const Template = args => <Message {...args} />
@@ -41,5 +47,5 @@ WithSeveralMessages.args = {
   ...WithTitle.args,
   messages: Array(5)
     .fill(null)
-    .map((_, i) => `${minimalConfig.messages} N°${++i}`)
+    .map((_, i) => `${testing.minimalConfig.messages} N°${++i}`)
 }

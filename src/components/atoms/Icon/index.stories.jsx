@@ -5,12 +5,10 @@ import { buildArgTypes } from '../../../functions/parsers'
 // MOCKS
 import { testing, storybook } from './index.mocks.json'
 
-const iconStoryConfig = {}
-
 export default {
   title: 'MyPets/Atoms/Icon',
   component: Icon,
-  argTypes: buildArgTypes(storybook, iconStoryConfig)
+  argTypes: buildArgTypes(storybook)
 }
 
 const Template = args => <Icon {...args} />
