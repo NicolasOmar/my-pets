@@ -1,5 +1,5 @@
 import React from 'react'
-import { string, bool, func, element, array, oneOfType, object } from 'prop-types'
+import PropTypes from 'prop-types'
 
 const NavBarItem = ({
   children = null,
@@ -26,11 +26,11 @@ const NavBarItem = ({
 export default NavBarItem
 
 NavBarItem.propTypes = {
-  children: oneOfType([element, array]),
-  itemLabel: string,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.array]),
+  itemLabel: PropTypes.string,
   // STYLE PROPS
-  isLink: bool,
-  styles: object,
+  isLink: PropTypes.bool,
+  styles: PropTypes.object,
   // FUNCTIONS
-  onClickItem: func
+  onClickItem: PropTypes.func
 }
