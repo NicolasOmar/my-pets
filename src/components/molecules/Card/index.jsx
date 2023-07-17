@@ -1,15 +1,5 @@
 import React from 'react'
-import {
-  array,
-  arrayOf,
-  element,
-  elementType,
-  func,
-  object,
-  oneOfType,
-  shape,
-  string
-} from 'prop-types'
+import PropTypes from 'prop-types'
 // COMPONENTS
 import Image from '../../atoms/Image'
 
@@ -74,9 +64,21 @@ const Card = ({
 export default Card
 
 Card.propTypes = {
-  cardHeader: oneOfType([element, elementType, array]),
-  cardImage: shape(Image.propTypes),
-  cardContent: oneOfType([element, elementType, array]).isRequired,
-  cardFooter: arrayOf(shape({ label: string, onClick: func })),
-  styles: object
+  cardHeader: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.elementType,
+    PropTypes.array
+  ]),
+  cardImage: PropTypes.shape(Image.propTypes),
+  cardContent: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.elementType,
+    PropTypes.array
+  ]).isRequired,
+  cardFooter: PropTypes.arrayOf(
+    PropTypes.shape(
+      { label: PropTypes.string, onClick: PropTypes.func }
+    )
+  ),
+  styles: PropTypes.object
 }

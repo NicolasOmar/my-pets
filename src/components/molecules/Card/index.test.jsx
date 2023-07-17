@@ -4,31 +4,33 @@ import { fireEvent, render, screen } from '@testing-library/react'
 // COMPONENTS
 import Card from '.'
 // MOCKS
-import mocks from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 describe('[Card]', () => {
+  const { testCardContent, testBaseImage, testFooterItems } = testing
+
   test('Should render the component with required props only', () => {
-    render(<Card cardContent={mocks.testCardContent} />)
+    render(<Card cardContent={testCardContent} />)
     expect(screen.getByTestId('test-card-content')).toBeInTheDocument()
   })
 
   test('Should render the component with cardImage', () => {
-    render(<Card cardContent={mocks.testCardContent} cardImage={mocks.testBaseImage} />)
+    render(<Card cardContent={testCardContent} cardImage={testBaseImage} />)
     expect(screen.getByTestId('test-card-image')).toBeInTheDocument()
   })
 
   test('Should render the component with cardFooter', () => {
-    render(<Card cardContent={mocks.testCardContent} cardFooter={mocks.testFooterItems} />)
+    render(<Card cardContent={testCardContent} cardFooter={testFooterItems} />)
     expect(screen.getByTestId('test-card-content')).toBeInTheDocument()
   })
 
   test('Should click the button and run the assigned onClick function', () => {
     const onClickFn = vi.fn()
     const cardConfig = {
-      cardContent: mocks.testCardContent,
+      cardContent: testCardContent,
       cardFooter: [
         {
-          ...mocks.testFooterItems[0],
+          ...testFooterItems[0],
           onClick: onClickFn
         }
       ]
