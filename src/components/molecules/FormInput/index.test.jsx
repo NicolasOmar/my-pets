@@ -4,9 +4,11 @@ import { cleanup, render, screen } from '@testing-library/react'
 // COMPONENTS
 import FormInput from '.'
 // MOCKS
-import { minimalConfig, selectConfig, checkGroupConfig } from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 describe('[FormInput]', () => {
+  const { minimalConfig, selectConfig, checkGroupConfig } = testing
+
   const getInputConfig = config => {
     render(<FormInput {...config} />)
     const testFormInput = screen.getByTestId(
