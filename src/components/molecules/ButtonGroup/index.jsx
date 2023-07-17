@@ -1,5 +1,5 @@
 import React from 'react'
-import { arrayOf, bool, object, shape } from 'prop-types'
+import PropTypes from 'prop-types'
 // OTHER COMPONENTS
 import BasicButton from '../../atoms/BasicButton'
 // FUNCTIONS
@@ -29,8 +29,8 @@ const ButtonGroup = ({ buttons, styles = {}, isCentered = true }) => {
 export default ButtonGroup
 
 ButtonGroup.propTypes = {
-  buttons: arrayOf(shape(BasicButton.propTypes)).isRequired,
+  buttons: PropTypes.arrayOf(PropTypes.shape(BasicButton.propTypes)).isRequired,
   // STYLE PROPS
-  styles: object,
-  isCentered: bool
+  styles: PropTypes.object,
+  isCentered: PropTypes.bool
 }
