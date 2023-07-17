@@ -1,5 +1,5 @@
 import React from 'react'
-import { bool, func, string, oneOf } from 'prop-types'
+import PropTypes from 'prop-types'
 // CONSTANTS
 import BULMA_STYLES from '../../../constants/bulma-styles.json'
 // FUNCTIONS
@@ -42,13 +42,13 @@ const Tag = ({
 export default Tag
 
 Tag.propTypes = {
-  text: string.isRequired,
-  hasDeleteBtn: bool,
+  text: PropTypes.string.isRequired,
+  hasDeleteBtn: PropTypes.bool,
   // STYLE PROPS
-  color: oneOf(parseObjKeys(colors)),
-  size: oneOf(parseObjKeys(sizes)),
-  isRounded: bool,
+  color: PropTypes.oneOf(parseObjKeys(colors)),
+  size: PropTypes.oneOf(parseObjKeys(sizes)),
+  isRounded: PropTypes.bool,
   // FUNCTIONS
-  onTextClick: func,
-  onDeleteClick: func
+  onTextClick: PropTypes.func,
+  onDeleteClick: PropTypes.func
 }
