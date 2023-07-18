@@ -1,12 +1,23 @@
-import React from 'react'
 import NavBarDropdown from '.'
 // MOCKS
-import mocks from './index.mocks.json'
+import { testing, storybook } from './index.mocks.json'
+import { buildArgTypes } from '../../../functions/parsers'
+
+const navBarDropdownStoryConfig = {
+  options: {
+    table: {
+      type: {
+        summary: 'NavBarItem[]'
+      }
+    }
+  }
+}
 
 export default {
   title: 'MyPets/Molecules/NavBarDropdown',
   component: NavBarDropdown,
-  args: mocks.minimalConfig
+  argTypes: buildArgTypes(storybook, navBarDropdownStoryConfig),
+  args: testing.minimalConfig
 }
 
 const Template = args => <NavBarDropdown {...args} />
@@ -16,11 +27,11 @@ Minimal.storyName = 'Minimal config'
 
 export const WithOneItem = Template.bind({})
 WithOneItem.storyName = 'With 1 item'
-WithOneItem.args = mocks.withOneItem
+WithOneItem.args = testing.withOneItem
 
 export const WithSeveralItems = Template.bind({})
 WithSeveralItems.storyName = 'With several items'
 WithSeveralItems.args = {
-  ...mocks.withSeveralItems,
+  ...testing.withSeveralItems,
   options: new Array(7).fill(null).map((_, i) => ({ itemLabel: `Option N°${++i}` }))
 }

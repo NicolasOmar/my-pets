@@ -1,16 +1,29 @@
 {
-  "minimalConfig": {
-    "label": "Minimal config dropdown"
+  "testing": {
+    "minimalConfig": {
+      "label": "Minimal config dropdown"
+    },
+    "withOneItem": {
+      "label": "Dropdown with 1 item",
+      "options": [
+        {
+          "itemLabel": "Dropdown Option Item"
+        }
+      ]
+    },
+    "withSeveralItems": {
+      "label": "Dropdown with several items"
+    }
   },
-  "withOneItem": {
-    "label": "Dropdown with 1 item",
-    "options": [
-      {
-        "itemLabel": "Dropdown Option Item"
-      }
-    ]
-  },
-  "withSeveralItems": {
-    "label": "Dropdown with several items"
+  "storybook": {
+    "label": {
+      "description": "*Required*. Adds a label on top of the NavBar"
+    },
+    "options": {
+      "description": "Sets the options that will be shown once user clicks on the dropdown"
+    },
+    "styles": {
+      "description": "Adds custom CSS styles"
+    }
   }
 }
