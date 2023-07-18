@@ -1,10 +1,11 @@
 import React from 'react'
-import { element, array, oneOfType, oneOf, bool, object } from 'prop-types'
+import PropTypes from 'prop-types'
+// OTHER COMPONENTS
+import Column from '../../atoms/Column'
 // CONSTANTS
 import BULMA_STYLES from '../../../constants/bulma-styles.json'
 // FUNCTIONS
 import { parseObjKeys } from '../../../functions/parsers'
-import Column from '../../atoms/Column'
 
 const { columnSizes } = BULMA_STYLES
 
@@ -76,8 +77,11 @@ const GridLayout = ({
 export default GridLayout
 
 GridLayout.propTypes = {
-  children: oneOfType([element, array]),
-  width: oneOf(parseObjKeys(columnSizes, true)),
-  centerGrid: bool,
-  styles: object
+  children: PropTypes.oneOfType([
+    PropTypes.element, 
+    PropTypes.array
+  ]),
+  width: PropTypes.oneOf(parseObjKeys(columnSizes, true)),
+  centerGrid: PropTypes.bool,
+  styles: PropTypes.object
 }
