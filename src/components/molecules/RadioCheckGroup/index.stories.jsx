@@ -28,5 +28,6 @@ export const UsingCheckbox = Template.bind({})
 UsingCheckbox.storyName = 'Using checkbox'
 UsingCheckbox.args = {
   ...Minimal.args,
+  type: 'checkbox',
   options: testing.minimalConfig.options.map(item => ({ ...item, type: 'checkbox' }))
 }
