@@ -1,19 +1,22 @@
-import React from 'react'
 import RadioCheckGroup from '.'
 // CONSTANTS
 import { checkTypes } from '../../../constants/tag-types.json'
+// FUNCTIONS
+import { buildArgTypes } from '../../../functions/parsers'
 // MOCKS
-import mocks from './index.mocks.json'
+import { testing, storybook } from './index.mocks.json'
+
+const radioCheckGroupStoryConfig = {
+  type: {
+    options: checkTypes
+  }
+}
 
 export default {
   title: 'MyPets/Molecules/RadioCheckGroup',
   component: RadioCheckGroup,
-  argTypes: {
-    type: {
-      options: checkTypes
-    }
-  },
-  args: mocks.minimalConfig
+  argTypes: buildArgTypes(storybook, radioCheckGroupStoryConfig),
+  args: testing.minimalConfig
 }
 
 const Template = args => <RadioCheckGroup {...args} />
@@ -25,5 +28,5 @@ export const UsingCheckbox = Template.bind({})
 UsingCheckbox.storyName = 'Using checkbox'
 UsingCheckbox.args = {
   ...Minimal.args,
-  options: mocks.minimalConfig.options.map(item => ({ ...item, type: 'checkbox' }))
+  options: testing.minimalConfig.options.map(item => ({ ...item, type: 'checkbox' }))
 }

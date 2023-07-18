@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { arrayOf, string, oneOf, shape, func, oneOfType, bool } from 'prop-types'
+import PropTypes from 'prop-types'
 // COMPONENTS
 import BasicRadioCheck from '../../atoms/BasicRadioCheck'
 // CONSTANTS
@@ -58,12 +58,21 @@ export default RadioCheckGroup
 
 RadioCheckGroup.propTypes = {
   // GROUP OPTIONS
-  options: arrayOf(shape({ control: string, label: string })).isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      control: PropTypes.string,
+      label: PropTypes.string
+    })
+  ).isRequired,
   // RADIO/CHECK INPUT PROPS
-  type: oneOf(checkTypes).isRequired,
-  name: string.isRequired,
-  value: oneOfType([arrayOf(string), string, bool]),
+  type: PropTypes.oneOf(checkTypes).isRequired,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.string,
+    PropTypes.bool
+  ]),
   // FUNCTIONS
-  onInputChange: func,
-  onBlurChange: func
+  onInputChange: PropTypes.func,
+  onBlurChange: PropTypes.func
 }

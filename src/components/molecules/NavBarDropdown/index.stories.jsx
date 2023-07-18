@@ -1,7 +1,8 @@
 import NavBarDropdown from '.'
+// FUNCTIONS
+import { buildArgTypes } from '../../../functions/parsers'
 // MOCKS
 import { testing, storybook } from './index.mocks.json'
-import { buildArgTypes } from '../../../functions/parsers'
 
 const navBarDropdownStoryConfig = {
   options: {
