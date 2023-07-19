@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { arrayOf, bool, func, object, shape, string } from 'prop-types'
+import PropTypes from 'prop-types'
 // COMPONENTS
 import FormInput from '../../molecules/FormInput'
 import ButtonGroup from '../../molecules/ButtonGroup'
@@ -133,17 +133,19 @@ const FormLayout = ({
 export default FormLayout
 
 FormLayout.propTypes = {
-  isLoading: bool,
-  isBoxed: bool,
-  errors: object,
-  inputs: object.isRequired,
-  dividers: arrayOf(
-    shape({
+  isLoading: PropTypes.bool,
+  isBoxed: PropTypes.bool,
+  errors: PropTypes.object,
+  inputs: PropTypes.object.isRequired,
+  dividers: PropTypes.arrayOf(
+    PropTypes.shape({
       ...Divider.propTypes,
-      after: string.isRequired
+      after: PropTypes.string.isRequired
     })
   ),
-  formButtons: arrayOf(shape(BasicButton.propTypes)),
-  onFormSubmit: func,
-  onInputBlurChange: func
+  formButtons: PropTypes.arrayOf(
+    PropTypes.shape(BasicButton.propTypes)
+  ),
+  onFormSubmit: PropTypes.func,
+  onInputBlurChange: PropTypes.func
 }

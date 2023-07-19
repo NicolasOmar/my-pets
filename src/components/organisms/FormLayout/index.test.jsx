@@ -4,7 +4,7 @@ import { fireEvent, render, screen } from '@testing-library/react'
 // COMPONENTS
 import FormLayout from '.'
 // MOCKS
-import { minimalConfig, withButtons, withErrors } from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 const interactWithInput = (input, value) => {
   fireEvent.click(input)
@@ -13,6 +13,8 @@ const interactWithInput = (input, value) => {
 }
 
 describe('[FormLayout]', () => {
+  const { minimalConfig, withButtons, withErrors } = testing
+
   test('Should render the component with required props only', () => {
     render(<FormLayout {...minimalConfig} />)
     const minimalForm = screen.getByTestId('test-form-base')

@@ -22,10 +22,12 @@ const gridLayoutStoryConfig = {
   }
 }
 
+export const gridLayoutArgsConfig = buildArgTypes(storybook, gridLayoutStoryConfig)
+
 export default {
   title: 'MyPets/Molecules/GridLayout',
   component: GridLayout,
-  argTypes: buildArgTypes(storybook, gridLayoutStoryConfig)
+  argTypes: gridLayoutArgsConfig
 }
 
 const Template = args => <GridLayout {...args} />
