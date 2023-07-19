@@ -1,40 +1,56 @@
 {
-  "startConfig": {
-    "start": [
-      {
-        "type": "item",
-        "itemLabel": "First item"
-      },
-      {
-        "type": "item",
-        "itemLabel": "Second item"
-      }
-    ]
+  "testing": {
+    "startConfig": {
+      "start": [
+        {
+          "type": "item",
+          "itemLabel": "First item"
+        },
+        {
+          "type": "item",
+          "itemLabel": "Second item"
+        }
+      ]
+    },
+    "endConfig": {
+      "end": [
+        {
+          "type": "item",
+          "itemLabel": "Almost last item"
+        },
+        {
+          "type": "item",
+          "itemLabel": "Last item"
+        }
+      ]
+    },
+    "withDropdownConfig": {
+      "end": [
+        {
+          "type": "dropdown",
+          "label": "A Dropdown",
+          "options": [
+            { "itemLabel": "First item" },
+            { "itemLabel": "Second item" },
+            { "itemLabel": "Almost last item" },
+            { "itemLabel": "Last item" }
+          ]
+        }
+      ]
+    }
   },
-  "endConfig": {
-    "end": [
-      {
-        "type": "item",
-        "itemLabel": "Almost last item"
-      },
-      {
-        "type": "item",
-        "itemLabel": "Last item"
-      }
-    ]
-  },
-  "withDropdownConfig": {
-    "end": [
-      {
-        "type": "dropdown",
-        "label": "A Dropdown",
-        "options": [
-          { "itemLabel": "First item" },
-          { "itemLabel": "Second item" },
-          { "itemLabel": "Almost last item" },
-          { "itemLabel": "Last item" }
-        ]
-      }
-    ]
+  "storybook": {
+    "icon": {
+      "description": "Sets a custom Icon at NavBar's start"
+    },
+    "start": {
+      "description": "Sets a list/array of dropdown objects to be shown at NavBar's start"
+    },
+    "end": {
+      "description": "Sets a list/array of dropdown objects to be shown at NavBar's end"
+    },
+    "styles": {
+      "description": "Adds custom CSS styles"
+    }
   }
 }

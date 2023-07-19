@@ -5,11 +5,13 @@ import { cleanup, render, screen } from '@testing-library/react'
 import ProgressBar from '../../atoms/ProgressBar'
 import NavBar from '.'
 // MOCKS
-import { startConfig, endConfig } from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 const checkExists = sectionId => expect(screen.getByTestId(sectionId)).toBeInTheDocument()
 
 describe('[NavBar]', () => {
+  const { startConfig, endConfig } = testing
+
   test('Should render the component with required props only', () => {
     render(<NavBar />)
 

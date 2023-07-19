@@ -1,5 +1,5 @@
 import React from 'react'
-import { arrayOf, element, object, oneOfType } from 'prop-types'
+import PropTypes from 'prop-types'
 // COMPONENTS
 import NavBarItem from '../../atoms/NavBarItem'
 import NavBarDropdown from '../../molecules/NavBarDropdown'
@@ -41,8 +41,14 @@ const NavBar = ({ icon = null, start = null, end = null, styles = {} }) => {
 export default NavBar
 
 NavBar.propTypes = {
-  icon: element,
-  start: oneOfType([arrayOf(element), arrayOf(object)]),
-  end: oneOfType([arrayOf(element), arrayOf(object)]),
-  styles: object
+  icon: PropTypes.element,
+  start: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.element),
+    PropTypes.arrayOf(PropTypes.object)
+  ]),
+  end: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.element),
+    PropTypes.arrayOf(PropTypes.object)
+  ]),
+  styles: PropTypes.object
 }
