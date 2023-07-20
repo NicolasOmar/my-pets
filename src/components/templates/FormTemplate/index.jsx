@@ -1,5 +1,5 @@
 import React from 'react'
-import { array, arrayOf, bool, func, object, shape, string } from 'prop-types'
+import PropTypes from 'prop-types'
 // COMPONENTS
 import BasicFrame from '../../organisms/BasicFrame'
 import FormLayout from '../../organisms/FormLayout'
@@ -46,18 +46,18 @@ const FormTemplate = ({
 export default FormTemplate
 
 FormTemplate.propTypes = {
-  header: object,
-  isLoading: bool,
-  isFetching: bool,
-  errors: object,
-  inputs: object,
-  dividers: arrayOf(
-    shape({
+  header: PropTypes.object,
+  isLoading: PropTypes.bool,
+  isFetching: PropTypes.bool,
+  errors: PropTypes.object,
+  inputs: PropTypes.object,
+  dividers: PropTypes.arrayOf(
+    PropTypes.shape({
       ...Divider.propTypes,
-      after: string.isRequired
+      after: PropTypes.string.isRequired
     })
   ),
-  formButtons: array,
-  onFormSubmit: func,
-  onInputBlurChange: func
+  formButtons: PropTypes.array,
+  onFormSubmit: PropTypes.func,
+  onInputBlurChange: PropTypes.func
 }
