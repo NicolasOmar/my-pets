@@ -1,5 +1,5 @@
 import React from 'react'
-import { arrayOf, bool, number, shape } from 'prop-types'
+import PropTypes from 'prop-types'
 // COMPONENTS
 import Card from '../../molecules/Card'
 import GridLayout from '../../molecules/GridLayout'
@@ -93,13 +93,13 @@ const CardsListTemplate = ({
 export default CardsListTemplate
 
 CardsListTemplate.propTypes = {
-  isFetching: bool,
-  cardsListTitle: shape(TitleHeader.propTypes),
-  cardListData: arrayOf(
-    shape({
+  isFetching: PropTypes.bool,
+  cardsListTitle: PropTypes.shape(TitleHeader.propTypes),
+  cardListData: PropTypes.arrayOf(
+    PropTypes.shape({
       ...Card.propTypes,
-      childWidth: number
+      childWidth: PropTypes.number
     })
   ).isRequired,
-  centerList: bool
+  centerList: PropTypes.bool
 }
