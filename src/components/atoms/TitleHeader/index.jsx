@@ -1,5 +1,5 @@
 import React from 'react'
-import { bool, object, oneOf, string } from 'prop-types'
+import PropTypes from 'prop-types'
 // CONSTANTS
 import BULMA_STYLES from '../../../constants/bulma-styles.json'
 // FUNCTIONS
@@ -48,12 +48,12 @@ const TitleHeader = ({
 export default TitleHeader
 
 TitleHeader.propTypes = {
-  titleText: string.isRequired,
-  subText: string,
+  titleText: PropTypes.string.isRequired,
+  subText: PropTypes.string,
   // STYLE PROPS
-  titleSize: oneOf(parseObjKeys(fontSizes)),
-  subSize: oneOf(parseObjKeys(fontSizes)),
-  isCentered: bool,
-  styles: object,
-  cssClasses: string
+  titleSize: PropTypes.oneOf(parseObjKeys(fontSizes)),
+  subSize: PropTypes.oneOf(parseObjKeys(fontSizes)),
+  isCentered: PropTypes.bool,
+  styles: PropTypes.object,
+  cssClasses: PropTypes.string
 }

@@ -4,9 +4,11 @@ import { render, screen } from '@testing-library/react'
 // COMPONENT
 import TitleHeader from '.'
 // MOCKS
-import { minimalConfig, titleWithSubTitle, centerMainAndSubTitle } from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 describe('[TitleHeader]', () => {
+  const { minimalConfig, titleWithSubTitle, centerMainAndSubTitle } = testing
+
   test('Should render the component with required props only', () => {
     render(<TitleHeader {...minimalConfig} />)
     const minimalTitle = screen.getByText(minimalConfig.titleText)

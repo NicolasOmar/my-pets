@@ -1,3 +1,4 @@
+import { describe, test, expect } from 'vitest'
 import {
   parseGraphToObj,
   capitalizeWord,
@@ -9,7 +10,9 @@ import {
   parseNumber,
   searchNamesFromIds,
   searchIdsFromNames,
-  parseDateString
+  parseDateString,
+  buildArgTypes,
+  parseListToStoryOptions
 } from '../parsers'
 // MOCKS
 import mocks from '../mocks/parsers.mocks.json'
@@ -144,6 +147,20 @@ describe('[Funtions.parsers]', () => {
     test('Should return the expected cases', () => {
       const { cases, results } = mocks.capitalizeWord
       cases.forEach((_case, i) => expect(capitalizeWord(_case)).toEqual(results[i]))
+    })
+  })
+
+  describe('[buildArgTypes]', () => {
+    test('Should return the expected cases', () => {
+      const { cases, results } = mocks.buildArgTypes
+      cases.forEach((_case, i) => expect(buildArgTypes(..._case)).toEqual(results[i]))
+    })
+  })
+
+  describe('[parseListToStoryOptions]', () => {
+    test('Should return the expected cases', () => {
+      const { cases, results } = mocks.parseListToStoryOptions
+      cases.forEach((_case, i) => expect(parseListToStoryOptions(..._case)).toEqual(results[i]))
     })
   })
 })

@@ -1,5 +1,5 @@
 import React from 'react'
-import { bool, func, object, oneOf, oneOfType, string } from 'prop-types'
+import PropTypes from 'prop-types'
 // CONSTANTS
 import TAG_TYPES from '../../../constants/tag-types.json'
 
@@ -39,17 +39,17 @@ export default BasicRadioCheck
 
 BasicRadioCheck.propTypes = {
   // BASE INPUT PROPS
-  type: oneOf(checkTypes).isRequired,
-  control: string.isRequired,
-  value: oneOfType([string, bool]),
-  isRequired: bool,
-  isDisabled: bool,
+  type: PropTypes.oneOf(checkTypes).isRequired,
+  control: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  isRequired: PropTypes.bool,
+  isDisabled: PropTypes.bool,
   // RADIO/CHECK INPUT PROPS
-  name: string,
-  label: string,
+  name: PropTypes.string,
+  label: PropTypes.string,
   // STYLE PROPS
-  styles: object,
+  styles: PropTypes.object,
   // FUNCTIONS
-  onInputChange: func,
-  onBlurChange: func
+  onInputChange: PropTypes.func,
+  onBlurChange: PropTypes.func
 }

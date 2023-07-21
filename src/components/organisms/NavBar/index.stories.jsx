@@ -1,11 +1,11 @@
-import React from 'react'
 import NavBar from '.'
 // MOCKS
-import mocks from './index.mocks.json'
+import { testing, storybook } from './index.mocks.json'
 
 export default {
   title: 'MyPets/Organisms/NavBar',
-  component: NavBar
+  component: NavBar,
+  argTypes: storybook
 }
 
 const Template = args => <NavBar {...args} />
@@ -15,18 +15,18 @@ Minimal.storyName = 'Minimal config'
 
 export const WithStart = Template.bind({})
 WithStart.storyName = 'With items at start'
-WithStart.args = mocks.startConfig
+WithStart.args = testing.startConfig
 
 export const WithStartAndEnd = Template.bind({})
 WithStartAndEnd.storyName = 'With items at start and end'
 WithStartAndEnd.args = {
-  ...mocks.startConfig,
-  ...mocks.endConfig
+  ...testing.startConfig,
+  ...testing.endConfig
 }
 
 export const withDropdownConfigAtEnd = Template.bind({})
 withDropdownConfigAtEnd.storyName = 'With items at start and a dropdown'
 withDropdownConfigAtEnd.args = {
-  ...mocks.startConfig,
-  ...mocks.withDropdownConfig
+  ...testing.startConfig,
+  ...testing.withDropdownConfig
 }

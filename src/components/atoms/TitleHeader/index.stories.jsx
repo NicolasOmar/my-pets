@@ -1,24 +1,41 @@
-import React from 'react'
 import TitleHeader from '.'
 // MOCKS
-import mocks from './index.mocks.json'
+import { testing, storybook } from './index.mocks.json'
 // CONSTANTS
 import { fontSizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { parseObjKeys } from '../../../functions/parsers'
+import { buildArgTypes, parseListToStoryOptions, parseObjKeys } from '../../../functions/parsers'
+
+const titleHeaderStoryConfig = {
+  titleSize: {
+    table: {
+      type: {
+        summary: parseListToStoryOptions(fontSizes, true)
+      },
+      defaultValue: {
+        summary: parseObjKeys(fontSizes)[4]
+      }
+    },
+    options: parseObjKeys(fontSizes)
+  },
+  subSize: {
+    table: {
+      type: {
+        summary: parseListToStoryOptions(fontSizes, true)
+      },
+      defaultValue: {
+        summary: parseObjKeys(fontSizes)[2]
+      }
+    },
+    options: parseObjKeys(fontSizes)
+  }
+}
 
 export default {
   title: 'MyPets/Atoms/TitleHeader',
   component: TitleHeader,
-  argTypes: {
-    titleSize: {
-      options: parseObjKeys(fontSizes)
-    },
-    subSize: {
-      options: parseObjKeys(fontSizes)
-    }
-  },
-  args: mocks.minimalConfig
+  argTypes: buildArgTypes(storybook, titleHeaderStoryConfig),
+  args: testing.minimalConfig
 }
 
 const Template = args => <TitleHeader {...args} />
@@ -30,20 +47,20 @@ export const MainAndSub = Template.bind({})
 MainAndSub.storyName = 'Main and Sub titles'
 MainAndSub.args = {
   ...Minimal.args,
-  ...mocks.titleWithSubTitle
+  ...testing.titleWithSubTitle
 }
 
 export const BigSize = Template.bind({})
 BigSize.storyName = 'Big Size'
-BigSize.args = mocks.bigSize
+BigSize.args = testing.bigSize
 
 export const SmallSize = Template.bind({})
 SmallSize.storyName = 'Small Size'
-SmallSize.args = mocks.smallSize
+SmallSize.args = testing.smallSize
 
 export const Centered = Template.bind({})
 Centered.storyName = 'Centered'
 Centered.args = {
-  ...mocks.smallSize,
+  ...testing.smallSize,
   isCentered: true
 }

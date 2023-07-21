@@ -146,5 +146,91 @@
   "capitalizeWord": {
     "cases": ["test", "IDEA", "firstName", "name LastName", null],
     "results": ["Test", "Idea", "Firstname", "Name lastname", ""]
+  },
+  "buildArgTypes": {
+    "cases": [
+      [
+        {
+          "first": {
+            "description": "one"
+          }
+        },
+        {
+          "first": {
+            "description": "uno"
+          }
+        }
+      ],
+      [
+        {
+          "first": {
+            "description": "one"
+          },
+          "second": {
+            "description": "two"
+          },
+          "third": {
+            "description": "three"
+          }
+        },
+        {
+          "second": {
+            "table": "dos"
+          }
+        }
+      ],
+      [
+        {
+          "fourth": "cuatro"
+        }
+      ]
+    ],
+    "results": [
+      {
+        "first": {
+          "description": "uno"
+        }
+      },
+      {
+        "first": {
+          "description": "one"
+        },
+        "second": {
+          "description": "two",
+          "table": "dos"
+        },
+        "third": {
+          "description": "three"
+        }
+      },
+      {
+        "fourth": "cuatro"
+      }
+    ]
+  },
+  "parseListToStoryOptions": {
+    "cases": [
+      [
+        ["one", "two", "three"]
+      ],
+      [
+        {
+          "one": "uno",
+          "two": "dos",
+          "three": "tres"
+        },
+        true
+      ],
+      [
+        ["first", "second", "third"],
+        false,
+        " , "
+      ]
+    ],
+    "results": [
+      "one | two | three",
+      "one | two | three",
+      "first , second , third"
+    ]
   }
 }

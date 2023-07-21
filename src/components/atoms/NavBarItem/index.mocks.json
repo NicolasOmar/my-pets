@@ -1,9 +1,28 @@
 {
-  "minimalConfig": {
-    "itemLabel": "Item Label"
+  "testing": {
+    "minimalConfig": {
+      "itemLabel": "Item Label"
+    },
+    "linkItem": {
+      "itemLabel": "Item Link",
+      "isLink": true
+    }
   },
-  "linkItem": {
-    "itemLabel": "Item Link",
-    "isLink": true
+  "storybook": {
+    "children": {
+      "description": "Indicates which components (could be 1 or more) container in the NavBar"
+    },
+    "itemLabel": {
+      "description": "In case of not use a child, the item will show a string label"
+    },
+    "isLink": {
+      "description": "Set the item style as a links instead a common item"
+    },
+    "styles": {
+      "description": "Adds custom CSS styles"
+    },
+    "onClickItem": {
+      "description": "Sends a click signal to its parent component when user clicks on the button"
+    }
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { object, oneOf } from 'prop-types'
+import PropTypes from 'prop-types'
 // CONSTANTS
 import BULMA_STYLES from '../../../constants/bulma-styles.json'
 // FUNCTIONS
@@ -19,6 +19,6 @@ const Divider = ({ color = parseObjKeys(textColors)[0], styles = { borderTop: '1
 export default Divider
 
 Divider.propTypes = {
-  color: oneOf(parseObjKeys(textColors)),
-  styles: object
+  color: PropTypes.oneOf(parseObjKeys(textColors)),
+  styles: PropTypes.object
 }

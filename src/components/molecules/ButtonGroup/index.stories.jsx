@@ -1,15 +1,15 @@
-import React from 'react'
 import ButtonGroup from '.'
 // MOCKS
-import mocks from './index.mocks.json'
+import { testing, storybook } from './index.mocks.json'
 
 export default {
   title: 'MyPets/Molecules/ButtonGroup',
   component: ButtonGroup,
-  args: mocks.minimalConfig
+  argTypes: storybook,
+  args: testing.minimalConfig
 }
 
-const mockButtons = (prop, values, buttonArray = mocks.minimalConfig.buttons) => ({
+const mockButtons = (prop, values, buttonArray = testing.minimalConfig.buttons) => ({
   buttons: buttonArray.map((button, i) => ({
     ...button,
     [prop]: values[i]

@@ -1,19 +1,26 @@
 import React from 'react'
 import { describe, test, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
+// COMPONENTS
 import Label from '.'
 // MOCKS
-import mocks from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 describe('[Label]', () => {
-  const mockedText = mocks.labelText.replace(' ', '-')
+  const mockedText = testing.withLabelText.labelText.replace(' ', '-')
+
   test('Should render the component with labelText only', () => {
-    render(<Label labelText={mocks.labelText} />)
+    render(<Label {...testing.withLabelText} />)
     expect(screen.getByTestId(`test-label-${mockedText}`)).toBeInTheDocument()
   })
 
   test('Should render the component with isRequired', () => {
-    render(<Label {...mocks} />)
+    const requiredLabel = {
+      ...testing.withLabelText,
+      ...testing.requiredVersion
+    }
+
+    render(<Label {...requiredLabel} />)
     expect(screen.getByTestId(`test-label-${mockedText}`)).toBeInTheDocument()
     expect(screen.getByTestId(`test-required-${mockedText}`)).toBeInTheDocument()
   })

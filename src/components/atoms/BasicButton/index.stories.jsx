@@ -1,28 +1,50 @@
-import React from 'react'
 import BasicButton from '.'
 // CONSTANTS
 import { buttonTypes } from '../../../constants/tag-types.json'
 import { colors, sizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { parseObjKeys } from '../../../functions/parsers'
+import { buildArgTypes, parseListToStoryOptions, parseObjKeys } from '../../../functions/parsers'
 // MOCKS
-import mocks from './index.mocks.json'
+import { testing, storybook } from './index.mocks.json'
+
+const basicButtonStoryConfig = {
+  type: {
+    table: {
+      type: {
+        summary: parseListToStoryOptions(buttonTypes)
+      }
+    },
+    options: buttonTypes
+  },
+  color: {
+    table: {
+      type: {
+        summary: parseListToStoryOptions(colors, true)
+      },
+      defaultValue: {
+        summary: parseObjKeys(colors)[0]
+      }
+    },
+    options: parseObjKeys(colors)
+  },
+  size: {
+    table: {
+      type: {
+        summary: parseListToStoryOptions(sizes, true)
+      },
+      defaultValue: {
+        summary: parseObjKeys(sizes)[1]
+      }
+    },
+    options: parseObjKeys(sizes)
+  }
+}
 
 export default {
   title: 'MyPets/Atoms/BasicButton',
   component: BasicButton,
-  argTypes: {
-    type: {
-      options: buttonTypes
-    },
-    color: {
-      options: parseObjKeys(colors)
-    },
-    size: {
-      options: parseObjKeys(sizes)
-    }
-  },
-  args: mocks.minimalConfig
+  argTypes: buildArgTypes(storybook, basicButtonStoryConfig),
+  args: testing.minimalConfig
 }
 
 const Template = args => <BasicButton {...args} />
@@ -32,39 +54,39 @@ Minimal.storyName = 'Minimal config'
 
 export const Colored = Template.bind({})
 Colored.storyName = 'Colored'
-Colored.args = mocks.colored
+Colored.args = testing.colored
 
 export const Loading = Template.bind({})
 Loading.storyName = 'Loading'
 Loading.args = {
   ...Colored.args,
-  ...mocks.loading
+  ...testing.loading
 }
 
 export const Outlined = Template.bind({})
 Outlined.storyName = 'Outlined'
 Outlined.args = {
   ...Colored.args,
-  ...mocks.outlined
+  ...testing.outlined
 }
 
 export const Inverted = Template.bind({})
 Inverted.storyName = 'Inverted'
 Inverted.args = {
   ...Colored.args,
-  ...mocks.inverted
+  ...testing.inverted
 }
 
 export const Disabled = Template.bind({})
 Disabled.storyName = 'Disabled'
 Disabled.args = {
   ...Colored.args,
-  ...mocks.disabled
+  ...testing.disabled
 }
 
 export const Large = Template.bind({})
 Large.storyName = 'Large'
 Large.args = {
   ...Colored.args,
-  ...mocks.large
+  ...testing.large
 }

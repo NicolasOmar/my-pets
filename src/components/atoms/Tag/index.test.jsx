@@ -4,9 +4,11 @@ import { fireEvent, render, screen } from '@testing-library/react'
 // COMPONENT
 import Tag from '.'
 // MOCKS
-import mocks from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 describe('[Tag]', () => {
+  const { colored, large, withDeleteBtn } = testing
+
   test('Should render the component with required props only', () => {
     render(<Tag />)
     const basicTag = screen.getByTestId('test-tag-normal-white')
@@ -14,24 +16,24 @@ describe('[Tag]', () => {
   })
 
   test('Should render with a specific color and size', () => {
-    render(<Tag {...mocks.colored} />)
+    render(<Tag {...colored} />)
     const coloredTag = screen.getByTestId('test-tag-normal-link')
     expect(coloredTag).toBeInTheDocument()
 
-    render(<Tag {...{ ...mocks.colored, ...mocks.large }} />)
+    render(<Tag {...{ ...colored, ...large }} />)
     const hugeTag = screen.getByTestId('test-tag-large-link')
     expect(hugeTag).toBeInTheDocument()
   })
 
   test('Should render with a delete button', () => {
-    render(<Tag {...{ ...mocks.withDeleteBtn }} />)
+    render(<Tag {...{ ...withDeleteBtn }} />)
     const deleteTag = screen.getByTestId('test-tag-delete-normal-white')
     expect(deleteTag).toBeInTheDocument()
   })
 
   test('Should check that it has been clicked in its text and delete button', () => {
     const clickeableBtn = {
-      ...mocks.withDeleteBtn,
+      ...withDeleteBtn,
       onTextClick: vi.fn(),
       onDeleteClick: vi.fn()
     }

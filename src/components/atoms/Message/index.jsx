@@ -1,8 +1,9 @@
 import React from 'react'
-import { arrayOf, object, oneOf, oneOfType, string } from 'prop-types'
-import { parseObjKeys } from '../../../functions/parsers'
+import PropTypes from 'prop-types'
 // ENUMS
 import BULMA_STYLES from '../../../constants/bulma-styles.json'
+// FUNCTIONS
+import { parseObjKeys } from '../../../functions/parsers'
 
 const { notificationTypes } = BULMA_STYLES
 
@@ -47,9 +48,9 @@ const Message = ({ headerText = null, msgType, messages = [], styles = {} }) => 
 export default Message
 
 Message.propTypes = {
-  headerText: string,
-  msgType: oneOf(parseObjKeys(notificationTypes)).isRequired,
-  messages: oneOfType([string, arrayOf(string)]),
+  headerText: PropTypes.string,
+  msgType: PropTypes.oneOf(parseObjKeys(notificationTypes)).isRequired,
+  messages: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
   // STYLE PROPS
-  styles: object
+  styles: PropTypes.object
 }

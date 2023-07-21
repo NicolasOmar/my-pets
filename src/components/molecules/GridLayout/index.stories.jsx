@@ -1,19 +1,33 @@
-import React from 'react'
 import GridLayout from '.'
+// OTHER COMPONENTS
 import TitleHeader from '../../atoms/TitleHeader'
 // CONSTANTS
 import { columnSizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { parseObjKeys } from '../../../functions/parsers'
+import { buildArgTypes, parseListToStoryOptions, parseObjKeys } from '../../../functions/parsers'
+// MOCKS
+import { testing, storybook } from './index.mocks.json'
+
+const gridLayoutStoryConfig = {
+  width: {
+    table: {
+      type: {
+        summary: parseListToStoryOptions(columnSizes, true)
+      },
+      defaultValue: {
+        summary: parseObjKeys(columnSizes)[0]
+      }
+    },
+    options: parseObjKeys(columnSizes)
+  }
+}
+
+export const gridLayoutArgsConfig = buildArgTypes(storybook, gridLayoutStoryConfig)
 
 export default {
   title: 'MyPets/Molecules/GridLayout',
   component: GridLayout,
-  argTypes: {
-    width: {
-      options: parseObjKeys(columnSizes)
-    }
-  }
+  argTypes: gridLayoutArgsConfig
 }
 
 const Template = args => <GridLayout {...args} />
@@ -24,17 +38,15 @@ Minimal.storyName = 'Minimal config'
 export const WithComponent = Template.bind({})
 WithComponent.storyName = 'With a "TitleHeader" component'
 WithComponent.args = {
-  children: <TitleHeader titleText={'Test'} />
+  children: <TitleHeader titleText={testing.testText} />
 }
 
 export const WithSeveralComponent = Template.bind({})
 WithSeveralComponent.storyName = 'With 3 "TitleHeader" components'
 WithSeveralComponent.args = {
-  children: [
-    <TitleHeader key="test-1" titleText={'Test 1'} />,
-    <TitleHeader key="test-2" titleText={'Test 2'} />,
-    <TitleHeader key="test-3" titleText={'Test 3'} />
-  ]
+  children: testing.severalTestTexts.map(_text => (
+    <TitleHeader key={_text.replace(' ', '-').toLocaleLowerCase()} titleText={testing.testText} />
+  ))
 }
 
 export const Centered = Template.bind({})

@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react'
 // COMPONENTS
 import Image from '.'
 // MOCKS
-import mocks from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 const renderImageCase = mockCase => {
   test(`Should render ${mockCase.altText.replace('Test ', '')}`, () => {
@@ -14,4 +14,5 @@ const renderImageCase = mockCase => {
   })
 }
 
-describe('[Image]', () => Object.keys(mocks).forEach(mockCase => renderImageCase(mocks[mockCase])))
+describe('[Image]', () =>
+  Object.keys(testing).forEach(mockCase => renderImageCase(testing[mockCase])))

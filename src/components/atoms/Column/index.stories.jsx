@@ -1,21 +1,26 @@
-import React from 'react'
 import Column from '.'
 // CONSTANTS
 import { columnSizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { parseObjKeys } from '../../../functions/parsers'
+import { buildArgTypes, parseListToStoryOptions, parseObjKeys } from '../../../functions/parsers'
 // MOCKS
-// import mocks from './index.mocks.json'
+import { storybook } from './index.mocks.json'
+
+const columnStoryConfig = {
+  width: {
+    table: {
+      type: {
+        summary: parseListToStoryOptions(columnSizes, true)
+      }
+    },
+    options: parseObjKeys(columnSizes)
+  }
+}
 
 export default {
   title: 'MyPets/Atoms/Column',
   component: Column,
-  argTypes: {
-    width: {
-      options: parseObjKeys(columnSizes)
-    }
-  }
-  // args: mocks.minimalConfig
+  argTypes: buildArgTypes(storybook, columnStoryConfig)
 }
 
 const Template = args => <Column {...args} />

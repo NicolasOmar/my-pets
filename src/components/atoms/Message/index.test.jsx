@@ -4,16 +4,18 @@ import { render, screen } from '@testing-library/react'
 // COMPONENTS
 import Message from '.'
 // MOCKS
-import { minimalConfig } from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 describe('[Message]', () => {
+  const { minimalConfig } = testing
+
   test('Should render the component with required props only', () => {
     render(<Message {...minimalConfig} />)
     const minimalMsgBlock = screen.getByTestId(`test-${minimalConfig.msgType}-msg`)
     expect(minimalMsgBlock).toBeInTheDocument()
   })
 
-  test('Should render the component with required props only', () => {
+  test('Should throw an error trying to render the component without required props only', () => {
     render(<Message {...{ msgType: minimalConfig.msgType }} />)
     expect(() => screen.getByTestId(`test-${minimalConfig.msgType}-msg`)).toThrow()
   })
@@ -30,7 +32,7 @@ describe('[Message]', () => {
     expect(singleMsgBlock).toBeInTheDocument()
   })
 
-  test('Should render the component with header', () => {
+  test('Should render the component with several messages', () => {
     const messages = Array(5)
       .fill(null)
       .map((_, i) => `test-${++i}`)

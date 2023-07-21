@@ -4,9 +4,11 @@ import { fireEvent, render, screen } from '@testing-library/react'
 // COMPONENTS
 import RadioCheckGroup from '.'
 // MOCKS
-import { minimalConfig } from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 describe('[RadioCheckGroup]', () => {
+  const { minimalConfig } = testing
+
   test('Should render the component with required props only', () => {
     render(<RadioCheckGroup {...minimalConfig} />)
 

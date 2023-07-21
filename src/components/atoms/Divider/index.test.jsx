@@ -1,5 +1,5 @@
 import React from 'react'
-import { describe, test, expect, vi } from 'vitest'
+import { describe, test, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 // COMPONENTS
 import Divider from '.'
@@ -7,11 +7,15 @@ import Divider from '.'
 import { textColors } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
 import { parseObjKeys } from '../../../functions/parsers'
+// MOCKS
+import { testing } from './index.mocks.json'
 
 describe('[Divider]', () => {
+  const { baseTestId } = testing
+
   test('Should render the component with required props only', () => {
     render(<Divider />)
-    const minimalDivider = screen.getByTestId('test-divider-white')
+    const minimalDivider = screen.getByTestId(baseTestId)
     expect(minimalDivider).toBeInTheDocument()
   })
 

@@ -1,0 +1,21 @@
+{
+  "testing": {
+    "testText": "Test",
+    "severalTestTexts": ["Test 1", "Test 2", "Test 3"],
+    "centeredClasses": "is-centered"
+  },
+  "storybook": {
+    "children": {
+      "description": "Indicates which components (could be 1 or more) container in the grid"
+    },
+    "width": {
+      "description": "Indicates grid's width using a idea similar to Bootstrap grid system"
+    },
+    "centerGrid": {
+      "description": "Centers grid's content"
+    },
+    "styles": {
+      "description": "Adds custom CSS styles"
+    }
+  }
+}

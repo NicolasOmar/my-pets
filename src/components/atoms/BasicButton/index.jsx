@@ -1,5 +1,5 @@
 import React from 'react'
-import { bool, func, object, oneOf, string } from 'prop-types'
+import PropTypes from 'prop-types'
 // CONSTANTS
 import TAG_TYPES from '../../../constants/tag-types.json'
 import BULMA_STYLES from '../../../constants/bulma-styles.json'
@@ -47,16 +47,16 @@ export default BasicButton
 
 BasicButton.propTypes = {
   // BASE PROPS
-  type: oneOf(buttonTypes).isRequired,
-  label: string.isRequired,
-  isDisabled: bool,
+  type: PropTypes.oneOf(buttonTypes).isRequired,
+  label: PropTypes.string.isRequired,
+  isDisabled: PropTypes.bool,
   // STYLE PROPS
-  styles: object,
-  color: oneOf(parseObjKeys(colors)),
-  size: oneOf(parseObjKeys(sizes)),
-  isOutlined: bool,
-  isInverted: bool,
-  isLoading: bool,
+  styles: PropTypes.object,
+  color: PropTypes.oneOf(Object.keys(colors)),
+  size: PropTypes.oneOf(Object.keys(sizes)),
+  isOutlined: PropTypes.bool,
+  isInverted: PropTypes.bool,
+  isLoading: PropTypes.bool,
   // FUNCTIONS
-  onClick: func
+  onClick: PropTypes.func
 }

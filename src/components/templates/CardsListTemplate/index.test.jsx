@@ -4,16 +4,18 @@ import { render, screen } from '@testing-library/react'
 // COMPONENTS
 import CardsListTemplate from '.'
 // MOCKS
-import mocks from './index.mocks.json'
+import { testing } from './index.mocks.json'
 import cardMocks from '../../molecules/Card/index.mocks.json'
 
 describe('[CardsListTemplate]', () => {
+  const cardTestMocks = cardMocks.testing
+
   const renderCards = number =>
     Array(number)
       .fill(null)
       .map((_, i) => ({
         cardHeader: [{ content: `Test title card ${i}` }],
-        cardImage: cardMocks.testBaseImage,
+        cardImage: cardTestMocks.testBaseImage,
         cardContent: [
           {
             type: 'title',
@@ -32,14 +34,14 @@ describe('[CardsListTemplate]', () => {
           },
           {
             type: 'section',
-            content: cardMocks.testCardContent
+            content: cardTestMocks.testCardContent
           },
           {
             type: 'otherContent',
-            content: cardMocks.testCardContent
+            content: cardTestMocks.testCardContent
           }
         ],
-        cardFooter: cardMocks.testFooterItems
+        cardFooter: cardTestMocks.testFooterItems
       }))
 
   const renderCardListCases = (items, otherProps = {}) => {
@@ -71,12 +73,12 @@ describe('[CardsListTemplate]', () => {
   })
 
   test('Should render the component with title included', () => {
-    renderCardListCases(5, { cardsListTitle: mocks.cardsListTitle })
+    renderCardListCases(5, { cardsListTitle: testing.cardsListTitle })
     expect(screen.getAllByTestId('test-title').length).toBe(6)
   })
 
   test('Should render the component without any data', () => {
-    renderCardListCases(0, { cardsListTitle: mocks.cardsListTitle })
+    renderCardListCases(0, { cardsListTitle: testing.cardsListTitle })
     expect(screen.getAllByTestId('test-title').length).toBe(1)
   })
 })

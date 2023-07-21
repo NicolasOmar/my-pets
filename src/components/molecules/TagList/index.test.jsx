@@ -3,8 +3,12 @@ import { describe, test, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 // COMPONENTS
 import TagList from '.'
+// MOCKS
+import { testing } from './index.mocks.json'
 
 describe('[TagList]', () => {
+  const { testDataListText } = testing
+
   test('Should render the component with required props only', () => {
     const dataList = Array(5)
       .fill(null)
@@ -12,7 +16,7 @@ describe('[TagList]', () => {
 
     render(<TagList {...{ dataList }} />)
 
-    const testTagList = screen.getByTestId(`test-tag-list-${dataList.length}`)
+    const testTagList = screen.getByTestId(`${testDataListText}-${dataList.length}`)
     expect(testTagList).toBeInTheDocument()
     dataList.forEach(({ text }) => expect(() => screen.getByText(text).toBeInTheDocument()))
   })

@@ -1,11 +1,13 @@
-import React from 'react'
 import FormLayout from '.'
 // MOCKS
-import { minimalConfig, withButtons, withErrors } from './index.mocks.json'
+import { testing, storybook } from './index.mocks.json'
+
+const { minimalConfig, withButtons, withErrors } = testing
 
 export default {
   title: 'MyPets/Organisms/FormLayout',
   component: FormLayout,
+  argTypes: storybook,
   args: minimalConfig
 }
 

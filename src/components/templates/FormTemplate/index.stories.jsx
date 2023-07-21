@@ -1,4 +1,3 @@
-import React from 'react'
 import FormTemplate from '.'
 // CONFIG AS MOCK
 import LoginPageConfig from '../../pages/Login/config.json'
@@ -6,10 +5,13 @@ import NewUserPageConfig from '../../pages/NewUser/config.json'
 import UpdateUserPageConfig from '../../pages/UpdateUser/config.json'
 import UpdatePassPageConfig from '../../pages/UpdatePassword/config.json'
 import AddPetPageConfig from '../../pages/AddPet/config.json'
+// MOCKS
+import { storybook } from './index.mocks.json'
 
 export default {
   title: 'MyPets/Templates/FormTemplate',
   component: FormTemplate,
+  argTypes: storybook,
   args: {
     ...LoginPageConfig,
     formButtons: [LoginPageConfig.loginButton, LoginPageConfig.goToSignUpButton]

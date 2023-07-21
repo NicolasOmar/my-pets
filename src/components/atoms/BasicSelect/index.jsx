@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { arrayOf, bool, func, number, shape, string, oneOf, object, oneOfType } from 'prop-types'
+import PropTypes from 'prop-types'
 // CONSTANTS
 import BULMA_STYLES from '../../../constants/bulma-styles.json'
 // FUNCTIONS
@@ -113,27 +113,27 @@ export default BasicSelect
 
 BasicSelect.propTypes = {
   // BASE INPUT PROPS
-  control: string.isRequired,
-  isRequired: bool,
-  isDisabled: bool,
+  control: PropTypes.string.isRequired,
+  isRequired: PropTypes.bool,
+  isDisabled: PropTypes.bool,
   // SELECT INPUT PROPS
-  selected: oneOfType([arrayOf(string), string]),
-  options: arrayOf(
-    shape({
-      label: string,
-      value: string
+  selected: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      value: PropTypes.string
     })
   ),
-  optionsShown: number,
-  isMultiple: bool,
-  firstNullOption: bool,
+  optionsShown: PropTypes.number,
+  isMultiple: PropTypes.bool,
+  firstNullOption: PropTypes.bool,
   // STYLE PROPS
-  styles: object,
-  color: oneOf(parseObjKeys(colors)),
-  size: oneOf(parseObjKeys(sizes)),
-  isRounded: bool,
-  isLoading: bool,
+  styles: PropTypes.object,
+  color: PropTypes.oneOf(parseObjKeys(colors)),
+  size: PropTypes.oneOf(parseObjKeys(sizes)),
+  isRounded: PropTypes.bool,
+  isLoading: PropTypes.bool,
   // FUNCTIONS
-  onInputChange: func,
-  onBlurChange: func
+  onInputChange: PropTypes.func,
+  onBlurChange: PropTypes.func
 }

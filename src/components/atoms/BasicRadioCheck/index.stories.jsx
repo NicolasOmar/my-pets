@@ -1,19 +1,27 @@
-import React from 'react'
 import BasicRadioCheck from '.'
 // CONSTANTS
 import { checkTypes } from '../../../constants/tag-types.json'
+// FUNCTIONS
+import { buildArgTypes, parseListToStoryOptions } from '../../../functions/parsers'
 // MOCKS
-import mocks from './index.mocks.json'
+import { testing, storybook } from './index.mocks.json'
+
+const basicRadioCheckStoryConfig = {
+  type: {
+    table: {
+      type: {
+        summary: parseListToStoryOptions(checkTypes)
+      }
+    },
+    options: checkTypes
+  }
+}
 
 export default {
   title: 'MyPets/Atoms/BasicRadioCheck',
   component: BasicRadioCheck,
-  argTypes: {
-    type: {
-      options: checkTypes
-    }
-  },
-  args: mocks.minimalConfig
+  argTypes: buildArgTypes(storybook, basicRadioCheckStoryConfig),
+  args: testing.minimalConfig
 }
 
 const Template = args => <BasicRadioCheck {...args} />
@@ -23,24 +31,24 @@ Minimal.storyName = 'Minimal config'
 
 export const RadioWithLabel = Template.bind({})
 RadioWithLabel.storyName = 'Radio with label'
-RadioWithLabel.args = mocks.radioWithLabel
+RadioWithLabel.args = testing.radioWithLabel
 
 export const RadioChecked = Template.bind({})
 RadioChecked.storyName = 'Radio checked'
-RadioChecked.args = mocks.radioChecked
+RadioChecked.args = testing.radioChecked
 
 export const RadioDisabled = Template.bind({})
 RadioDisabled.storyName = 'Radio disabled'
-RadioDisabled.args = mocks.radioDisabled
+RadioDisabled.args = testing.radioDisabled
 
 export const CheckWithLabel = Template.bind({})
 CheckWithLabel.storyName = 'Checkbox with label'
-CheckWithLabel.args = mocks.checkWithLabel
+CheckWithLabel.args = testing.checkWithLabel
 
 export const CheckChecked = Template.bind({})
 CheckChecked.storyName = 'Checkbox checked'
-CheckChecked.args = mocks.checkChecked
+CheckChecked.args = testing.checkChecked
 
 export const CheckDisabled = Template.bind({})
 CheckDisabled.storyName = 'Checkbox Disabled'
-CheckDisabled.args = mocks.checkDisabled
+CheckDisabled.args = testing.checkDisabled

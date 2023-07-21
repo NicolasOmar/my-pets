@@ -1,5 +1,5 @@
 import React from 'react'
-import { shape } from 'prop-types'
+import PropTypes from 'prop-types'
 // COMPONENTS
 import TitleHeader from '../../atoms/TitleHeader'
 import GridLayout from '../../molecules/GridLayout'
@@ -25,6 +25,6 @@ const BasicFrame = ({ header = null, width = 8, centerGrid = false, children = [
 export default BasicFrame
 
 BasicFrame.propTypes = {
-  header: shape(TitleHeader.propTypes),
+  header: PropTypes.shape(TitleHeader.propTypes),
   ...GridLayout.propTypes
 }

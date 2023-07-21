@@ -4,7 +4,9 @@ import { fireEvent, render, screen } from '@testing-library/react'
 // COMPONENTS
 import ButtonGroup from '.'
 // MOCKS
-import { minimalConfig } from './index.mocks.json'
+import { testing } from './index.mocks.json'
+
+const { minimalConfig } = testing
 
 const testButtons = mockConfig => {
   render(<ButtonGroup {...mockConfig} />)

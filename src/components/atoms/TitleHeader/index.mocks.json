@@ -1,26 +1,51 @@
 {
-  "minimalConfig": {
-    "titleText": "Minimal TitleHeader"
+  "testing": {
+    "minimalConfig": {
+      "titleText": "Minimal TitleHeader"
+    },
+    "titleWithSubTitle": {
+      "titleText": "Main title",
+      "subText": "Subtitle"
+    },
+    "bigSize": {
+      "titleText": "Big title",
+      "subText": "Big subtitle",
+      "titleSize": "bigger",
+      "subSize": "bigger"
+    },
+    "smallSize": {
+      "titleText": "Small title",
+      "subText": "Small subtitle",
+      "titleSize": "small",
+      "subSize": "small"
+    },
+    "centerMainAndSubTitle": {
+      "titleText": "Centered main title",
+      "subText": "Centered sub title",
+      "isCentered": true
+    }
   },
-  "titleWithSubTitle": {
-    "titleText": "Main title",
-    "subText": "Subtitle"
-  },
-  "bigSize": {
-    "titleText": "Big title",
-    "subText": "Big subtitle",
-    "titleSize": "bigger",
-    "subSize": "bigger"
-  },
-  "smallSize": {
-    "titleText": "Small title",
-    "subText": "Small subtitle",
-    "titleSize": "small",
-    "subSize": "small"
-  },
-  "centerMainAndSubTitle": {
-    "titleText": "Centered main title",
-    "subText": "Centered sub title",
-    "isCentered": true
+  "storybook": {
+    "titleText": {
+      "description": "Sets the text that will be shown as main title"
+    },
+    "subText": {
+      "description": "Sets the text that will be shown as subtitle"
+    },
+    "titleSize": {
+      "description": "Sets title's size based on Bulma's size options"
+    },
+    "subSize": {
+      "description": "Sets subtitle's size based on Bulma's size options"
+    },
+    "isCentered": {
+      "description": "Centers the whole title (and subtitle)"
+    },
+    "styles": {
+      "description": "Adds custom CSS styles"
+    },
+    "cssClasses": {
+      "description": "String of custom CSS classes that can be injected into the component (works for custom and not-custom versions)"
+    }
   }
 }

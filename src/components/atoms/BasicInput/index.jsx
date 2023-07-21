@@ -1,5 +1,5 @@
 import React from 'react'
-import { bool, func, string, number, oneOf, object } from 'prop-types'
+import PropTypes from 'prop-types'
 // CONSTANTS
 import TAG_TYPES from '../../../constants/tag-types.json'
 import BULMA_STYLES from '../../../constants/bulma-styles.json'
@@ -56,21 +56,21 @@ export default BasicInput
 
 BasicInput.propTypes = {
   // BASE INPUT PROPS
-  type: oneOf(inputTypes).isRequired,
-  control: string.isRequired,
-  value: string,
-  isRequired: bool,
-  isDisabled: bool,
+  type: PropTypes.oneOf(inputTypes).isRequired,
+  control: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  isRequired: PropTypes.bool,
+  isDisabled: PropTypes.bool,
   // TEXT INPUT PROPS
-  placeHolder: string,
-  minLength: number,
-  maxLength: number,
+  placeHolder: PropTypes.string,
+  minLength: PropTypes.number,
+  maxLength: PropTypes.number,
   // STYLE PROPS
-  styles: object,
-  color: oneOf(parseObjKeys(colors)),
-  size: oneOf(parseObjKeys(sizes)),
-  isRounded: bool,
+  styles: PropTypes.object,
+  color: PropTypes.oneOf(parseObjKeys(colors)),
+  size: PropTypes.oneOf(parseObjKeys(sizes)),
+  isRounded: PropTypes.bool,
   // FUNCTIONS
-  onInputChange: func,
-  onBlurChange: func
+  onInputChange: PropTypes.func,
+  onBlurChange: PropTypes.func
 }

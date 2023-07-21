@@ -1,20 +1,29 @@
-import React from 'react'
 import BasicFrame from '.'
+// OTHER COMPONENTS
 import ButtonGroup from '../../molecules/ButtonGroup'
-// MOCKS
-import mocks from './index.mocks.json'
-// CONSTANTS
-import { columnSizes } from '../../../constants/bulma-styles.json'
+// OTHER COMPONENTS STORY CONFIGS
+import { gridLayoutArgsConfig } from '../../molecules/GridLayout/index.stories'
 // FUNCTIONS
-import { parseObjKeys } from '../../../functions/parsers'
+import { buildArgTypes } from '../../../functions/parsers'
+// MOCKS
+import { testing, storybook } from './index.mocks.json'
+
+const basicFrameStoryConfig = {
+  header: {
+    table: {
+      type: {
+        summary: 'TitleHeader'
+      }
+    }
+  }
+}
 
 export default {
   title: 'MyPets/Organisms/BasicFrame',
   component: BasicFrame,
   argTypes: {
-    width: {
-      options: parseObjKeys(columnSizes, true)
-    }
+    ...buildArgTypes(storybook, basicFrameStoryConfig),
+    ...gridLayoutArgsConfig
   }
 }
 
@@ -25,13 +34,13 @@ Minimal.storyName = 'Minimal config'
 
 export const WithHeader = Template.bind({})
 WithHeader.storyName = 'With a Header'
-WithHeader.args = mocks.withHeader
+WithHeader.args = testing.withHeader
 
 export const WithChildren = Template.bind({})
 WithChildren.storyName = 'With a Button Group'
 WithChildren.args = {
   ...WithHeader.args,
-  children: <ButtonGroup {...mocks.withButtons} />
+  children: <ButtonGroup {...testing.withButtons} />
 }
 
 export const FullWidth = Template.bind({})

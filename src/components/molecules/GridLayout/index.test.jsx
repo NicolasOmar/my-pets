@@ -3,13 +3,16 @@ import { describe, test, expect } from 'vitest'
 import { cleanup, render, screen } from '@testing-library/react'
 // COMPONENTS
 import GridLayout from '.'
+// MOCKS
+import { testing } from './index.mocks.json'
 
-const centeredClasses = 'is-centered'
+const { testText, centeredClasses } = testing
+
 const mockOneChild = (i = null) => {
   const props = { key: i !== null ? `test-div-${i}` : undefined }
   return (
     <div data-testid={`test-div${i ? `-${i}` : ''}`} {...props}>
-      Test
+      {testText}
     </div>
   )
 }

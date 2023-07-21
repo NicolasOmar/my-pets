@@ -1,25 +1,28 @@
-import React from 'react'
 import CardsListTemplate from '.'
 // MOCKS
 import cardMocks from '../../molecules/Card/index.mocks.json'
+import { storybook } from './index.mocks.json'
+
+const cardTestMocks = cardMocks.testing
 
 const renderCards = number =>
   Array(number)
     .fill(null)
     .map(() => ({
-      cardImage: cardMocks.testBaseImage,
+      cardImage: cardTestMocks.testBaseImage,
       cardContent: [
         {
           type: 'section',
-          content: cardMocks.testCardContent
+          content: cardTestMocks.testCardContent
         }
       ],
-      cardFooter: cardMocks.testFooterItems
+      cardFooter: cardTestMocks.testFooterItems
     }))
 
 export default {
   title: 'MyPets/Templates/CardsListTemplate',
   component: CardsListTemplate,
+  argTypes: storybook,
   args: {
     cardListData: renderCards(1)
   }

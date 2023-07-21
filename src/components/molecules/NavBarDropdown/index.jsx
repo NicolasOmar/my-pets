@@ -1,5 +1,6 @@
 import React from 'react'
-import { arrayOf, object, shape, string } from 'prop-types'
+import PropTypes from 'prop-types'
+// OTHER COMPONENTS
 import NavBarItem from '../../atoms/NavBarItem'
 
 const NavBarDropdown = ({ label, options = [], styles = {} }) => (
@@ -22,7 +23,9 @@ const NavBarDropdown = ({ label, options = [], styles = {} }) => (
 export default NavBarDropdown
 
 NavBarDropdown.propTypes = {
-  label: string.isRequired,
-  options: arrayOf(shape(NavBarItem.propTypes)),
-  styles: object
+  label: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape(NavBarItem.propTypes)
+  ),
+  styles: PropTypes.object
 }

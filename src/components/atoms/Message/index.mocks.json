@@ -1,6 +1,22 @@
 {
-  "minimalConfig": {
-    "msgType": "success",
-    "messages": "block message"
+  "testing": {
+    "minimalConfig": {
+      "msgType": "success",
+      "messages": "block message"
+    }
+  },
+  "storybook": {
+    "headerText": {
+      "description": "Sets the text that will be shown on the header"
+    },
+    "msgType": {
+      "description": "Sets message container color based on one of several types"
+    },
+    "messages": {
+      "description": "Sets the text that will be show on the conteniner. Can be one or several texts"
+    },
+    "styles": {
+      "description": "Adds custom CSS styles"
+    }
   }
 }

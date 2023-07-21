@@ -1,5 +1,5 @@
 import React from 'react'
-import { bool, number, object, oneOf, string } from 'prop-types'
+import PropTypes from 'prop-types'
 // CONSTANTS
 import BULMA_STYLES from '../../../constants/bulma-styles.json'
 // FUNCTIONS
@@ -27,11 +27,11 @@ export default Image
 
 Image.propTypes = {
   // BASE IMG PROPS
-  src: string.isRequired,
-  altText: string.isRequired,
+  src: PropTypes.string.isRequired,
+  altText: PropTypes.string.isRequired,
   // STYLE PROPS
-  styles: object,
-  fixedRatio: number,
-  ratio: oneOf(parseObjKeys(imageRatios)),
-  isRounded: bool
+  styles: PropTypes.object,
+  fixedRatio: PropTypes.number,
+  ratio: PropTypes.oneOf(parseObjKeys(imageRatios)),
+  isRounded: PropTypes.bool
 }
