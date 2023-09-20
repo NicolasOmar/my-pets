@@ -3,9 +3,9 @@ import BasicButton from '.'
 import { buttonTypes } from '../../../constants/tag-types.json'
 import { colors, sizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { buildArgTypes, parseListToStoryOptions, parseObjKeys } from '../../../functions/parsers'
+import { parseListToStoryOptions, parseObjKeys } from '../../../functions/parsers'
 // MOCKS
-import { testing, storybook } from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 const basicButtonStoryConfig = {
   type: {
@@ -43,7 +43,7 @@ const basicButtonStoryConfig = {
 export default {
   title: 'MyPets/Atoms/BasicButton',
   component: BasicButton,
-  argTypes: buildArgTypes(storybook, basicButtonStoryConfig),
+  argTypes: basicButtonStoryConfig,
   args: testing.minimalConfig
 }
 
