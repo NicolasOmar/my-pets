@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 // TYPES
-import { elementTypes } from '../../../types/commonTypes'
+import { elementPropTypes } from '../../../types/commonTypes'
 // CONSTANTS
 import TAG_TYPES from '../../../constants/tag-types.json'
 import BULMA_STYLES from '../../../constants/bulma-styles.json'
@@ -51,7 +51,7 @@ const BasicButton = ({
 export default BasicButton
 
 BasicButton.propTypes = {
-  ...elementTypes,
+  ...elementPropTypes,
   /** `Attribute` `Required` Button's type you will use */
   type: PropTypes.oneOf(buttonTypes).isRequired,
   /** `Attribute` `Required` Button's text that will be shown */

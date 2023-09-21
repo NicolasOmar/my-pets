@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 
-export const elementTypes = {
+export const elementPropTypes = {
   /** `Attribute` ID used to locate the element in unit test suites (like Jest) */
   testId: PropTypes.string,
   /** `Attribute` Custom CSS classes, applicable for specific scenarios */
@@ -9,7 +9,7 @@ export const elementTypes = {
   style: PropTypes.object
 }
 
-export const containerTypes = {
+export const containerPropTypes = {
   /** `Attribute` *For container case*. ID used to locate the element in unit test suites (like Jest) */
   containerTestId: PropTypes.string,
   /** `Attribute` *For container case*. Custom CSS classes, applicable for specific scenarios */
@@ -18,7 +18,7 @@ export const containerTypes = {
   containerStyle: PropTypes.object
 }
 
-export const componentTypes = {
-  ...elementTypes,
-  ...containerTypes
+export const complexPropTypes = {
+  ...elementPropTypes,
+  ...containerPropTypes
 }

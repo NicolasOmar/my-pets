@@ -27,52 +27,5 @@
       "isMultiple": true,
       "optionsShown": 7
     }
-  },
-  "storybook": {
-    "control": {
-      "description": "*Required*. Used to populate several select's properties"
-    },
-    "isRequired": {
-      "description": "Marks the select as required"
-    },
-    "isDisabled": {
-      "description": "Makes the select unable to be clicked"
-    },
-    "selected": {
-      "description": "Mention which of select's options have been selected"
-    },
-    "options": {
-      "description": "Mention the options that will be selectable"
-    },
-    "optionsShown": {
-      "description": "Display the amount of options without clicking the select. Only when `isMultiple` property is true"
-    },
-    "isMultiple": {
-      "description": "Makes the select capable of hold more of one option selected (in case you need more than 1 valid option)"
-    },
-    "firstNullOption": {
-      "description": "Makes select's text a blank text"
-    },
-    "styles": {
-      "description": "Adds custom CSS styles"
-    },
-    "color": {
-      "description": "Sets a color based con Bulma's color options"
-    },
-    "size": {
-      "description": "Sets a size based on Bulma's size options"
-    },
-    "isRounded": {
-      "description": "Makes select's corners rounded"
-    },
-    "isLoading": {
-      "description": "Add a spinner animation to select's content"
-    },
-    "onInputChange": {
-      "description": "Sends event and control information to its parent component when user press a new key"
-    },
-    "onBlurChange": {
-      "description": "Sends control information to its parent component when user changes its focus to other form input"
-    }
   }
 }

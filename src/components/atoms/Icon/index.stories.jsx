@@ -1,14 +1,12 @@
 import Icon from '.'
 // CONSTANTS
 // FUNCTIONS
-import { buildArgTypes } from '../../../functions/parsers'
 // MOCKS
-import { testing, storybook } from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 export default {
   title: 'MyPets/Atoms/Icon',
-  component: Icon,
-  argTypes: buildArgTypes(storybook)
+  component: Icon
 }
 
 const Template = args => <Icon {...args} />

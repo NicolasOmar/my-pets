@@ -4,25 +4,5 @@
     "ghostSrc": {
       "src": "https://img.icons8.com/external-xnimrodx-lineal-xnimrodx/64/null/external-dead-halloween-xnimrodx-lineal-xnimrodx-3.png"
     }
-  },
-  "storybook": {
-    "isCustom": {
-      "description": "Indicates that the icon shown is not from any of Bulma's sources"
-    },
-    "src": {
-      "description": "Indicates link related to the custom icon that will be shown"
-    },
-    "alt": {
-      "description": "Displays an alternative text when the icon can't be shown"
-    },
-    "size": {
-      "description": "Sets a size in pixels based on a numeric input"
-    },
-    "styles": {
-      "description": "Adds custom CSS styles"
-    },
-    "cssClasses": {
-      "description": "String of custom CSS classes that can be injected into the component (works for custom and not-custom versions)"
-    }
   }
 }

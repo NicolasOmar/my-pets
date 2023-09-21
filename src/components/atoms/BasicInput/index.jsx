@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 // TYPES
-import { elementTypes } from '../../../types/commonTypes'
+import { elementPropTypes } from '../../../types/commonTypes'
 // CONSTANTS
 import TAG_TYPES from '../../../constants/tag-types.json'
 import BULMA_STYLES from '../../../constants/bulma-styles.json'
@@ -60,7 +60,7 @@ const BasicInput = ({
 export default BasicInput
 
 BasicInput.propTypes = {
-  ... elementTypes,
+  ... elementPropTypes,
   /** `Attribute` `Required`. Input's type you will use */
   type: PropTypes.oneOf(inputTypes).isRequired,
   /** `Attribute` `Required`. Used to populate several input's properties */

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 // TYPES
-import { componentTypes } from '../../../types/commonTypes'
+import { complexPropTypes } from '../../../types/commonTypes'
 // CONSTANTS
 import TAG_TYPES from '../../../constants/tag-types.json'
 
@@ -56,7 +56,7 @@ const BasicRadioCheck = ({
 export default BasicRadioCheck
 
 BasicRadioCheck.propTypes = {
-  ...componentTypes,
+  ...complexPropTypes,
   /** `Attribute` `Required`. Input type you will use */
   type: PropTypes.oneOf(checkTypes).isRequired,
   /** `Attribute` `Required`. Used to populate several input's properties */
