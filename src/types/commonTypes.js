@@ -6,7 +6,7 @@ export const elementTypes = {
   /** `Attribute` Custom CSS classes, applicable for specific scenarios */
   cssClasses: PropTypes.string,
   /** `Styling` Custom styling applicable for specific scenarios */
-  style: PropTypes.string
+  style: PropTypes.object
 }
 
 export const containerTypes = {
@@ -15,7 +15,7 @@ export const containerTypes = {
   /** `Attribute` *For container case*. Custom CSS classes, applicable for specific scenarios */
   containerCssClasses: PropTypes.string,
   /** `Styling` *For container case*. Custom styling applicable for specific scenarios */
-  containerStyle: PropTypes.string
+  containerStyle: PropTypes.object
 }
 
 export const componentTypes = {

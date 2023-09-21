@@ -2,9 +2,9 @@ import BasicRadioCheck from '.'
 // CONSTANTS
 import { checkTypes } from '../../../constants/tag-types.json'
 // FUNCTIONS
-import { buildArgTypes, parseListToStoryOptions } from '../../../functions/parsers'
+import { parseListToStoryOptions } from '../../../functions/parsers'
 // MOCKS
-import { testing, storybook } from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 const basicRadioCheckStoryConfig = {
   type: {
@@ -20,7 +20,7 @@ const basicRadioCheckStoryConfig = {
 export default {
   title: 'MyPets/Atoms/BasicRadioCheck',
   component: BasicRadioCheck,
-  argTypes: buildArgTypes(storybook, basicRadioCheckStoryConfig),
+  argTypes: basicRadioCheckStoryConfig,
   args: testing.minimalConfig
 }
 

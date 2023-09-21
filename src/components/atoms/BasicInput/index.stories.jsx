@@ -3,9 +3,9 @@ import BasicInput from '.'
 import { inputTypes } from '../../../constants/tag-types.json'
 import { colors, sizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { buildArgTypes, parseListToStoryOptions, parseObjKeys } from '../../../functions/parsers'
+import { parseListToStoryOptions, parseObjKeys } from '../../../functions/parsers'
 // MOCKS
-import { testing, storybook } from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 const basicInputStoryConfig = {
   type: {
@@ -43,7 +43,7 @@ const basicInputStoryConfig = {
 export default {
   title: 'MyPets/Atoms/BasicInput',
   component: BasicInput,
-  argTypes: buildArgTypes(storybook, basicInputStoryConfig),
+  argTypes: basicInputStoryConfig,
   args: testing.minimalConfig
 }
 
