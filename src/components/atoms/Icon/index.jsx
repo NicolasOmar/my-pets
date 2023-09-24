@@ -14,43 +14,37 @@ const Icon = ({
   src = '',
   alt = '',
   size = 30
-}) =>{
+}) => {
   const iconTestId = testId ?? isCustom ? `test-custom-icon-img` : null
   const iconContainerTestId = containerTestId ?? isCustom ? `test-custom-icon` : `test-icon`
 
-  return (
-    isCustom ? (
-      <section
-        data-testid={iconContainerTestId}
-        className={containerCssClasses}
-        style={containerStyle ?? undefined}
-      >
-        {src ? (
-          <img
-            data-testid={iconTestId}
-            src={src}
-            alt={alt}
-            title={alt}
-            height={size}
-            width={size}
-            className={cssClasses ?? undefined}
-            style={style}
-          />
-        ) : null}
-      </section>
-    ) : (
-      <span
-        data-testid={iconContainerTestId}
-        className={containerCssClasses ?? 'icon'}
-        style={containerStyle ?? undefined}
-      >
-        <i
+  return isCustom ? (
+    <section
+      data-testid={iconContainerTestId}
+      className={containerCssClasses}
+      style={containerStyle ?? undefined}
+    >
+      {src ? (
+        <img
           data-testid={iconTestId}
-          className={`fas fa-${cssClasses}`}
+          src={src}
+          alt={alt}
+          title={alt}
+          height={size}
+          width={size}
+          className={cssClasses ?? undefined}
           style={style}
-        ></i>
-      </span>
-    )
+        />
+      ) : null}
+    </section>
+  ) : (
+    <span
+      data-testid={iconContainerTestId}
+      className={containerCssClasses ?? 'icon'}
+      style={containerStyle ?? undefined}
+    >
+      <i data-testid={iconTestId} className={`fas fa-${cssClasses}`} style={style}></i>
+    </span>
   )
 }
 

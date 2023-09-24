@@ -44,11 +44,7 @@ const Message = ({
   )
 
   return (
-    <article
-      data-testid={messageTestId}
-      className={messageClasses}
-      style={style ?? undefined}
-    >
+    <article data-testid={messageTestId} className={messageClasses} style={style ?? undefined}>
       {renderMsgHeader()}
       {renderMsgs()}
     </article>

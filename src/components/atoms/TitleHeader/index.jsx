@@ -30,7 +30,7 @@ const TitleHeader = ({
       fieldConfig: { isCentered },
       fieldName: 'title',
       otherClasses: [fontSizes[titleSize], cssClasses]
-    }),
+    })
   }
   const subTitleConfig = {
     testId: testId ? `test-sub-title-${testId}` : 'test-sub-title',
@@ -39,7 +39,7 @@ const TitleHeader = ({
       fieldConfig: { isCentered },
       fieldName: 'subtitle',
       otherClasses: [fontSizes[subSize]]
-    }),
+    })
   }
 
   return (
@@ -56,10 +56,7 @@ const TitleHeader = ({
         {titleText}
       </p>
       {subText && (
-        <p
-          data-testid={subTitleConfig.testId}
-          className={subTitleConfig.classes}
-        >
+        <p data-testid={subTitleConfig.testId} className={subTitleConfig.classes}>
           {subText}
         </p>
       )}

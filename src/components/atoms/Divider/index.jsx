@@ -13,7 +13,7 @@ const Divider = ({
   testId = null,
   cssClasses = null,
   style = { borderTop: '1px solid' },
-  color = parseObjKeys(textColors)[0],
+  color = parseObjKeys(textColors)[0]
 }) => (
   <hr
     key={`divider-${color}`}
@@ -28,5 +28,5 @@ export default Divider
 Divider.propTypes = {
   ...elementPropTypes,
   /** `Styling` Sets a color based con Bulma's color options */
-  color: PropTypes.oneOf(parseObjKeys(textColors)),
+  color: PropTypes.oneOf(parseObjKeys(textColors))
 }

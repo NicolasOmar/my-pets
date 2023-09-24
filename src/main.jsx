@@ -34,13 +34,13 @@ const apolloClient = new ApolloClient({
 
 const AppWrapper = () => {
   const [userData, setUserData] = useState(getLoggedUser())
-  
+
   return (
     <UserContext.Provider value={{ userData, setUserData }}>
       <ApolloProvider client={apolloClient}>
         <App />
       </ApolloProvider>
-    </UserContext.Provider >
+    </UserContext.Provider>
   )
 }
 

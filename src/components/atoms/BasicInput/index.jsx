@@ -60,7 +60,7 @@ const BasicInput = ({
 export default BasicInput
 
 BasicInput.propTypes = {
-  ... elementPropTypes,
+  ...elementPropTypes,
   /** `Attribute` `Required`. Input's type you will use */
   type: PropTypes.oneOf(inputTypes).isRequired,
   /** `Attribute` `Required`. Used to populate several input's properties */

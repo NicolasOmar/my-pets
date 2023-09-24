@@ -9,13 +9,12 @@ import { parseObjKeys } from '../../../functions/parsers'
 
 const { imageRatios } = BULMA_STYLES
 
-const parseImgClasses = (fixedRatio, ratio) => (
+const parseImgClasses = (fixedRatio, ratio) =>
   Number.isInteger(fixedRatio)
     ? `image is-${fixedRatio}x${fixedRatio}`
     : imageRatios[ratio]
-      ? `image ${imageRatios[ratio]}`
-      : 'image'
-)
+    ? `image ${imageRatios[ratio]}`
+    : 'image'
 
 const Image = ({
   testId = null,

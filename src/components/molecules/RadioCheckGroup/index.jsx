@@ -12,7 +12,7 @@ const { checkTypes } = TAG_TYPES
 const RadioCheckGroup = ({
   testId = null,
   cssClasses = null,
-  style = null, 
+  style = null,
   options,
   type,
   name,

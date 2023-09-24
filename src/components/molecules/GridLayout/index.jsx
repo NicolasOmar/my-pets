@@ -90,10 +90,7 @@ export default GridLayout
 GridLayout.propTypes = {
   ...elementPropTypes,
   /** `Attribute` Indicates which components (could be 1 or more) container in the grid */
-  children: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.array
-  ]),
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.array]),
   /** `Styling` Indicates grid's width using a idea similar to Bootstrap grid system */
   width: PropTypes.oneOf(parseObjKeys(columnSizes, true)),
   /** `Styling` Centers grid's content */

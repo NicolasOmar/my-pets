@@ -42,7 +42,5 @@ NavBarDropdown.propTypes = {
   /** `Required` `Attribute` Adds a label on top of the NavBar */
   label: PropTypes.string.isRequired,
   /** `Attribute` Sets the options that will be shown once user clicks on the dropdown */
-  options: PropTypes.arrayOf(
-    PropTypes.shape(NavBarItem.propTypes)
-  )
+  options: PropTypes.arrayOf(PropTypes.shape(NavBarItem.propTypes))
 }

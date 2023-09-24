@@ -22,7 +22,7 @@
     "preview": "vite preview",
     "setup": "npm i && husky install",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "prettier": "prettier --write src",
+    "prettier": "prettier src/**/*.jsx --write",
     "lint-staged": "lint-staged -v",
     "storybook": "storybook dev -p 6006",
     "storybook:cli": "npm run storybook -- --no-open",

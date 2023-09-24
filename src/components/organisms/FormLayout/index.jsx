@@ -143,9 +143,7 @@ FormLayout.propTypes = {
     })
   ),
   /** `Attribute` Array of `BasicButtons` objects that will be displayed in a `ButtonGroup` component below the parsed `inputs` */
-  formButtons: PropTypes.arrayOf(
-    PropTypes.shape(BasicButton.propTypes)
-  ),
+  formButtons: PropTypes.arrayOf(PropTypes.shape(BasicButton.propTypes)),
   /** `Attribute` Display an array of error objects that will be displayed in a `Message` component */
   errors: PropTypes.object,
   /** `Styling` Adds a spinner on the form and disable the screen (to avoid additional user behavior with the inputs) */
