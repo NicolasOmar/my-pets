@@ -38,19 +38,5 @@
         }
       ]
     }
-  },
-  "storybook": {
-    "icon": {
-      "description": "Sets a custom Icon at NavBar's start"
-    },
-    "start": {
-      "description": "Sets a list/array of dropdown objects to be shown at NavBar's start"
-    },
-    "end": {
-      "description": "Sets a list/array of dropdown objects to be shown at NavBar's end"
-    },
-    "styles": {
-      "description": "Adds custom CSS styles"
-    }
   }
 }

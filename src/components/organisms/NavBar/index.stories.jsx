@@ -1,11 +1,10 @@
 import NavBar from '.'
 // MOCKS
-import { testing, storybook } from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 export default {
   title: 'MyPets/Organisms/NavBar',
-  component: NavBar,
-  argTypes: storybook
+  component: NavBar
 }
 
 const Template = args => <NavBar {...args} />
