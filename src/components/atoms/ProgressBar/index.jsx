@@ -1,6 +1,8 @@
 import React from 'react'
-// CONSTANTS
 import PropTypes from 'prop-types'
+// TYPES
+import { elementPropTypes } from '../../../types/commonTypes'
+// CONSTANTS
 import BULMA_STYLES from '../../../constants/bulma-styles.json'
 // FUNCTIONS
 import { parseFieldConfigToClasses, parseObjKeys } from '../../../functions/parsers'
@@ -8,31 +10,31 @@ import { parseFieldConfigToClasses, parseObjKeys } from '../../../functions/pars
 const { colors, sizes } = BULMA_STYLES
 
 const ProgressBar = ({
+  testId = null,
+  cssClasses = null,
+  style = null,
   value = 0,
   maxValue = 100,
   isInfiniteLoading = false,
   color = parseObjKeys(colors)[7],
   size = parseObjKeys(sizes)[1]
 }) => {
+  const progressTestId =
+    testId ?? isInfiniteLoading ? 'test-loading-progress-bar' : 'test-progress-bar'
   const progressClasses = parseFieldConfigToClasses({
     fieldName: 'progress',
-    otherClasses: [colors[color], sizes[size]]
+    otherClasses: [colors[color], sizes[size], cssClasses]
   })
 
-  return isInfiniteLoading ? (
+  return (
     <progress
-      data-testid="test-loading-progress-bar"
-      className={progressClasses}
+      data-testid={progressTestId}
+      value={isInfiniteLoading ? undefined : value}
       max={maxValue}
-    ></progress>
-  ) : (
-    <progress
-      data-testid="test-progress-bar"
       className={progressClasses}
-      value={value}
-      max={maxValue}
+      style={style ?? undefined}
     >
-      {`${value}%`}
+      {isInfiniteLoading ? undefined : `${value}%`}
     </progress>
   )
 }
@@ -40,11 +42,15 @@ const ProgressBar = ({
 export default ProgressBar
 
 ProgressBar.propTypes = {
-  // BASE PROPS
+  ...elementPropTypes,
+  /** `Attribute` Sets the value that will display completion percentage in its selected `color` */
   value: PropTypes.number,
+  /** `Attribute` Sets a maximun numeric value that will display the whole bar in color */
   maxValue: PropTypes.number,
+  /** `Styling` Sets an animation as infinite loading (will avoid to use the `value` prop) */
   isInfiniteLoading: PropTypes.bool,
-  // STYLE PROPS
+  /** `Styling` Sets a color based con Bulma's color options */
   color: PropTypes.oneOf(parseObjKeys(colors)),
+  /** `Styling` Sets a size based on Bulma's size options */
   size: PropTypes.oneOf(parseObjKeys(sizes))
 }

@@ -25,6 +25,7 @@ const BasicFrame = ({ header = null, width = 8, centerGrid = false, children = [
 export default BasicFrame
 
 BasicFrame.propTypes = {
+  /** `Attribute` Header configuration object to show a `TitleHeader` above the rest of the components that will compose the frame */
   header: PropTypes.shape(TitleHeader.propTypes),
   ...GridLayout.propTypes
 }

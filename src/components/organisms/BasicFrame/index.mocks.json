@@ -27,10 +27,5 @@
       "test-title",
       "test-sub-title"
     ]
-  },
-  "storybook": {
-    "header": {
-      "description": "Header configuration object to show a `TitleHeader` above the rest of the components that will compose the frame"
-    }
   }
 }

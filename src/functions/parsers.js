@@ -54,7 +54,7 @@ export const parseFieldConfigToClasses = ({
     )
     .filter(className => className)
   const concatedClasses = [...mappedConditionalClasses, ...otherClasses]
-    .filter(value => value && value !== '')
+    .filter(value => Boolean(value && value !== ''))
     .join(' ')
 
   return fieldName?.concat(' ', concatedClasses)

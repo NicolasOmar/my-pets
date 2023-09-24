@@ -33,9 +33,9 @@ const renderCardSection = (cardSection, mapFn) =>
     : cardSection
 
 const CardsListTemplate = ({
-  isFetching = false,
   cardsListTitle,
   cardListData = [],
+  isFetching = false,
   centerList = true
 }) => {
   const parseCardsList = () =>
@@ -93,13 +93,17 @@ const CardsListTemplate = ({
 export default CardsListTemplate
 
 CardsListTemplate.propTypes = {
-  isFetching: PropTypes.bool,
+  /** `Attribute` Header configuration object to show a `TitleHeader` above the rest of the components that will compose the template */
   cardsListTitle: PropTypes.shape(TitleHeader.propTypes),
+  /** `Required` `Attribute` List of `Card` configuration objects that will be displayed */
   cardListData: PropTypes.arrayOf(
     PropTypes.shape({
       ...Card.propTypes,
       childWidth: PropTypes.number
     })
   ).isRequired,
+  /** `Styling` Adds a spinner on the form and disable the screen (to avoid additional user behavior with the cards) */
+  isFetching: PropTypes.bool,
+  /** `Styling` Will center the list of cards according the screen or a father container */
   centerList: PropTypes.bool
 }

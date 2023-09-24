@@ -2,9 +2,9 @@ import Image from '.'
 // STYLES
 import { imageRatios } from '../../../constants/bulma-styles.json'
 // FUNCITONS
-import { buildArgTypes, parseObjKeys } from '../../../functions/parsers'
+import { parseObjKeys } from '../../../functions/parsers'
 // MOCKS
-import { testing, storybook } from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 const imageStoryConfig = {
   ratio: {
@@ -15,7 +15,7 @@ const imageStoryConfig = {
 export default {
   title: 'MyPets/Atoms/Image',
   component: Image,
-  argTypes: buildArgTypes(storybook, imageStoryConfig),
+  argTypes: imageStoryConfig,
   args: testing.minimalConfig
 }
 

@@ -42,22 +42,9 @@
           }
         ],
         "type": "checkbox",
-        "name": "testCheckboxInput"
+        "name": "testCheckboxInput",
+        "control": "testCheckboxInput"
       }
-    }
-  },
-  "storybook": {
-    "inputLabel": {
-      "description": "Adds a label on top of the input"
-    },
-    "isLoading": {
-      "description": "Adds a spinner on the input"
-    },
-    "inputConfig": {
-      "description": "Configuration for the input, functions included"
-    },
-    "styles": {
-      "description": "Adds custom CSS styles"
     }
   }
 }

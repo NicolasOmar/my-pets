@@ -2,9 +2,9 @@ import Message from '.'
 // CONSTANTS
 import { notificationTypes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { buildArgTypes, parseListToStoryOptions, parseObjKeys } from '../../../functions/parsers'
+import { parseListToStoryOptions, parseObjKeys } from '../../../functions/parsers'
 // MOCKS
-import { testing, storybook } from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 const messageStoryConfig = {
   msgType: {
@@ -20,7 +20,7 @@ const messageStoryConfig = {
 export default {
   title: 'MyPets/Atoms/Message',
   component: Message,
-  argTypes: buildArgTypes(storybook, messageStoryConfig),
+  argTypes: messageStoryConfig,
   args: testing.minimalConfig
 }
 

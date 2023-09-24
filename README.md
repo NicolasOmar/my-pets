@@ -33,7 +33,7 @@ Web system for families. It helps them manage and keep track of everything relat
 [badge-soundcloud-security]: https://sonarcloud.io/api/project_badges/measure?project=NicolasOmar_my-pets&metric=security_rating
 [badge-soundcloud-tech-debt]: https://sonarcloud.io/api/project_badges/measure?project=NicolasOmar_my-pets&metric=sqale_index
 [link-soundcloud-status]: https://sonarcloud.io/summary/new_code?id=NicolasOmar_my-pets
-[badge-snyk-status]: https://img.shields.io/snyk/vulnerabilities/github/nicolasomar/my-pets?logo=snyk
+[badge-snyk-status]: https://snyk.io/test/github/nicolasomar/my-pets/badge.svg
 [link-snyk-status]: https://snyk.io/test/github/nicolasomar/my-pets
 [badge-github-repo-stars]: https://img.shields.io/github/stars/nicolasomar/my-pets?label=stars&logo=github&labelColor=535353&style=flat
 [badge-github-commits]: https://img.shields.io/github/commit-activity/m/nicolasomar/my-pets?logo=github

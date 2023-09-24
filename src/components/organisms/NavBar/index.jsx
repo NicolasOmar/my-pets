@@ -41,14 +41,18 @@ const NavBar = ({ icon = null, start = null, end = null, styles = {} }) => {
 export default NavBar
 
 NavBar.propTypes = {
+  /** `Attribute` Sets a custom Icon at NavBar's start */
   icon: PropTypes.element,
+  /** `Attribute` Sets a list/array of dropdown objects to be shown at NavBar's start */
   start: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.element),
     PropTypes.arrayOf(PropTypes.object)
   ]),
+  /** `Attribute` Sets a list/array of dropdown objects to be shown at NavBar's end */
   end: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.element),
     PropTypes.arrayOf(PropTypes.object)
   ]),
+  /** `Styling` Adds custom CSS styles */
   styles: PropTypes.object
 }

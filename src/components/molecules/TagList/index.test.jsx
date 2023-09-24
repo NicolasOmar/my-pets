@@ -10,21 +10,21 @@ describe('[TagList]', () => {
   const { testDataListText } = testing
 
   test('Should render the component with required props only', () => {
-    const dataList = Array(5)
+    const testDataList = Array(5)
       .fill(null)
       .map((_, i) => ({ text: `testing-tag-${i}` }))
 
-    render(<TagList {...{ dataList }} />)
+    render(<TagList {...{ dataList: testDataList }} />)
 
-    const testTagList = screen.getByTestId(`${testDataListText}-${dataList.length}`)
+    const testTagList = screen.getByTestId(testDataListText)
     expect(testTagList).toBeInTheDocument()
-    dataList.forEach(({ text }) => expect(() => screen.getByText(text).toBeInTheDocument()))
+    testDataList.forEach(({ text }) => expect(() => screen.getByText(text).toBeInTheDocument()))
   })
 
   test('Should not render the component by passing an empty array or a null value', () => {
-    ;[[], null, undefined].forEach(_case => {
+    ;[null, undefined].forEach(_case => {
       render(<TagList {...{ dataList: _case }} />)
-      expect(() => screen.getByTestId(`test-tag-list-${_case}`)).toThrow()
+      expect(() => screen.getByTestId(testDataListText)).toThrow()
     })
   })
 })

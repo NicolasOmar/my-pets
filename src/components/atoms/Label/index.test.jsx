@@ -26,8 +26,6 @@ describe('[Label]', () => {
   })
 
   test('Should not render the component when props are not being provided', () => {
-    render(<Label />)
-    expect(() => screen.getByTestId(`test-label-${mockedText}`)).toThrow()
-    expect(() => screen.getByTestId(`test-required-${mockedText}`)).toThrow()
+    expect(() => render(<Label />)).toThrow()
   })
 })

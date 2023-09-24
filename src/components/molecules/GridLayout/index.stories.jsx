@@ -4,9 +4,9 @@ import TitleHeader from '../../atoms/TitleHeader'
 // CONSTANTS
 import { columnSizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { buildArgTypes, parseListToStoryOptions, parseObjKeys } from '../../../functions/parsers'
+import { parseListToStoryOptions, parseObjKeys } from '../../../functions/parsers'
 // MOCKS
-import { testing, storybook } from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 const gridLayoutStoryConfig = {
   width: {
@@ -22,12 +22,10 @@ const gridLayoutStoryConfig = {
   }
 }
 
-export const gridLayoutArgsConfig = buildArgTypes(storybook, gridLayoutStoryConfig)
-
 export default {
   title: 'MyPets/Molecules/GridLayout',
   component: GridLayout,
-  argTypes: gridLayoutArgsConfig
+  argTypes: gridLayoutStoryConfig
 }
 
 const Template = args => <GridLayout {...args} />

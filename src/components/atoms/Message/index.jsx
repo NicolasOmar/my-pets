@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+// TYPES
+import { elementPropTypes } from '../../../types/commonTypes'
 // ENUMS
 import BULMA_STYLES from '../../../constants/bulma-styles.json'
 // FUNCTIONS
@@ -7,26 +9,34 @@ import { parseObjKeys } from '../../../functions/parsers'
 
 const { notificationTypes } = BULMA_STYLES
 
-const Message = ({ headerText = null, msgType, messages = [], styles = {} }) => {
-  const renderMsgHeader = headerText =>
+const Message = ({
+  testId = null,
+  cssClasses = null,
+  style = null,
+  headerText = null,
+  msgType,
+  messages = []
+}) => {
+  const messageTestId = testId ?? `${msgType}-message`
+  const messageClasses = `message ${notificationTypes[msgType]} ${cssClasses ?? ''}`
+  const renderMsgHeader = () =>
     headerText && (
       <section className="message-header">
         <p data-testid={`test-${msgType}-message-header`}>{headerText}</p>
       </section>
     )
-
-  const renderMsgs = messages => (
+  const renderMsgs = () => (
     <section className="message-body">
       {Array.isArray(messages) ? (
         <ul>
           {messages.map((msg, i) => (
-            <li data-testid={`test-${msgType}-msg-${i}`} key={`${msgType}-msg-${i}`}>
+            <li key={`${msgType}-msg-${i}`} data-testid={`test-${msgType}-msg-${i}`}>
               {msg}
             </li>
           ))}
         </ul>
       ) : (
-        <p data-testid={`test-${msgType}-msg`} key={`${msgType}-msg`}>
+        <p key={`${msgType}-msg`} data-testid={`test-${msgType}-msg`}>
           {messages}
         </p>
       )}
@@ -34,13 +44,9 @@ const Message = ({ headerText = null, msgType, messages = [], styles = {} }) => 
   )
 
   return (
-    <article
-      data-testid={`${msgType}-message`}
-      className={`message ${notificationTypes[msgType]}`}
-      style={styles}
-    >
-      {renderMsgHeader(headerText)}
-      {renderMsgs(messages)}
+    <article data-testid={messageTestId} className={messageClasses} style={style ?? undefined}>
+      {renderMsgHeader()}
+      {renderMsgs()}
     </article>
   )
 }
@@ -48,9 +54,11 @@ const Message = ({ headerText = null, msgType, messages = [], styles = {} }) => 
 export default Message
 
 Message.propTypes = {
+  ...elementPropTypes,
+  /** `Attribute` Sets the text that will be shown on the header */
   headerText: PropTypes.string,
+  /** `Attribute` `Required` Sets message container color based on one of several types */
   msgType: PropTypes.oneOf(parseObjKeys(notificationTypes)).isRequired,
-  messages: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-  // STYLE PROPS
-  styles: PropTypes.object
+  /** `Attribute` Sets the text that will be show on the conteniner. Can be one or several texts */
+  messages: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
 }

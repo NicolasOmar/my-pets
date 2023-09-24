@@ -12,13 +12,5 @@
         "borderTop": "5px dashed"
       }
     }
-  },
-  "storybook": {
-    "color": {
-      "description": "Sets a color based con Bulma's color options"
-    },
-    "styles": {
-      "description": "Adds custom CSS styles"
-    }
   }
 }

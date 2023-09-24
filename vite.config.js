@@ -9,6 +9,7 @@ export default defineConfig({
     reporters: 'verbose',
     globals: true,
     environment: 'jsdom',
+    include: ['src/**/*.test.{jsx,js}'],
     setupFiles: ['./tests/setup.js'],
     coverage: {
       branches: 80,

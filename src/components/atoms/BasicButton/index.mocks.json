@@ -28,37 +28,5 @@
       "size": "large",
       "label": "Large button"
     }
-  },
-  "storybook": {
-    "type": {
-      "description": "*Required*. Button's type you will use"
-    },
-    "label": {
-      "description": "*Required*. Button's text that will be shown"
-    },
-    "isDisabled": {
-      "description": "Makes the button unable to be clicked"
-    },
-    "styles": {
-      "description": "Adds custom CSS styles"
-    },
-    "color": {
-      "description": "Sets a color based con Bulma's color options"
-    },
-    "size": {
-      "description": "Sets a size based on Bulma's size options"
-    },
-    "isOutlined": {
-      "description": "Exchange button's main color in the one on its text and border"
-    },
-    "isInverted": {
-      "description": "Exchange button's main color in the one on its text and border"
-    },
-    "isLoading": {
-      "description": "Changes button's text with a spinner animation"
-    },
-    "onClick": {
-      "description": "Sends a click signal to its parent component when user clicks on the button"
-    }
   }
 }

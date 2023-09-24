@@ -12,22 +12,5 @@
     "isInfiniteLoading": {
       "isInfiniteLoading": true
     }
-  },
-  "storybook": {
-    "value": {
-      "description": "Sets the value that will display completion percentage in its selected `color`"
-    },
-    "maxValue": {
-      "description": "Sets a maximun numeric value that will display the whole bar in color"
-    },
-    "isInfiniteLoading": {
-      "description": "Sets an animation as infinite loading (will avoid to use the `value` prop)"
-    },
-    "color": {
-      "description": "Sets a color based con Bulma's color options"
-    },
-    "size": {
-      "description": "Sets a size based on Bulma's size options"
-    }
   }
 }

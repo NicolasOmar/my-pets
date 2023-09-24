@@ -14,16 +14,5 @@
     "withSeveralItems": {
       "label": "Dropdown with several items"
     }
-  },
-  "storybook": {
-    "label": {
-      "description": "*Required*. Adds a label on top of the NavBar"
-    },
-    "options": {
-      "description": "Sets the options that will be shown once user clicks on the dropdown"
-    },
-    "styles": {
-      "description": "Adds custom CSS styles"
-    }
   }
 }

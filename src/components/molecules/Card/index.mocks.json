@@ -10,22 +10,5 @@
       { "label": "Edit" },
       { "label": "Delete" }
     ]
-  },
-  "storybook": {
-    "cardHeader": {
-      "description": "Sets the header section where a title and subtitle will be shown"
-    },
-    "cardImage": {
-      "description": "Sets the image section where will be shown"
-    },
-    "cardContent": {
-      "description": "Sets the content section where any type of component or text will be shown"
-    },
-    "cardFooter": {
-      "description": "Sets the footer section where a list of links will be shown"
-    },
-    "styles": {
-      "description": "Adds custom CSS styles"
-    }
   }
 }

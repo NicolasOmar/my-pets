@@ -1,10 +1,5 @@
 {
   "testing": {
     "testDataListText": "test-tag-list-item"
-  },
-  "storybook": {
-    "dataList": {
-      "description": "Sets the tags that will be shown inside this group"
-    }
   }
 }

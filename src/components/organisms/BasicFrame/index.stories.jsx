@@ -1,12 +1,9 @@
 import BasicFrame from '.'
 // OTHER COMPONENTS
 import ButtonGroup from '../../molecules/ButtonGroup'
-// OTHER COMPONENTS STORY CONFIGS
-import { gridLayoutArgsConfig } from '../../molecules/GridLayout/index.stories'
 // FUNCTIONS
-import { buildArgTypes } from '../../../functions/parsers'
 // MOCKS
-import { testing, storybook } from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 const basicFrameStoryConfig = {
   header: {
@@ -21,10 +18,7 @@ const basicFrameStoryConfig = {
 export default {
   title: 'MyPets/Organisms/BasicFrame',
   component: BasicFrame,
-  argTypes: {
-    ...buildArgTypes(storybook, basicFrameStoryConfig),
-    ...gridLayoutArgsConfig
-  }
+  argTypes: basicFrameStoryConfig
 }
 
 const Template = args => <BasicFrame {...args} />

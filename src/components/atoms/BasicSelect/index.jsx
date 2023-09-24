@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+// TYPES
+import { complexPropTypes } from '../../../types/commonTypes'
 // CONSTANTS
 import BULMA_STYLES from '../../../constants/bulma-styles.json'
 // FUNCTIONS
@@ -8,6 +10,12 @@ import { parseFieldConfigToClasses, parseObjKeys } from '../../../functions/pars
 const { colors, sizes } = BULMA_STYLES
 
 const BasicSelect = ({
+  testId = null,
+  cssClasses = null,
+  style = null,
+  containerTestId = null,
+  containerCssClasses = null,
+  containerStyle = null,
   control,
   isRequired = false,
   isDisabled = false,
@@ -16,7 +24,6 @@ const BasicSelect = ({
   optionsShown = 1,
   isMultiple = false,
   firstNullOption = false,
-  styles = {},
   color = parseObjKeys(colors)[3],
   size = parseObjKeys(sizes)[1],
   isRounded = false,
@@ -25,11 +32,13 @@ const BasicSelect = ({
   onBlurChange
 }) => {
   const multipleString = isMultiple ? 'multiple' : 'single'
-  const selectClasses = parseFieldConfigToClasses({
+  const selectTestId = testId ?? `test-${multipleString}-${control}`
+  const selectContainerTestId = containerTestId ?? `test-container-${multipleString}-${control}`
+  const selectContainerClasses = parseFieldConfigToClasses({
     useCommonClasses: true,
     fieldConfig: { isMultiple, isLoading, isRounded },
     fieldName: 'select',
-    otherClasses: [colors[color], sizes[size]]
+    otherClasses: [colors[color], sizes[size], containerCssClasses]
   })
   const [selectedValue, setSelectedValue] = useState(
     isMultiple ? (Array.isArray(selected) ? selected : []) : selected
@@ -81,18 +90,25 @@ const BasicSelect = ({
   }
 
   return (
-    <section key={`${multipleString}-${control}-section`} className={selectClasses} style={styles}>
+    <section
+      key={`${multipleString}-${control}-section`}
+      data-testid={selectContainerTestId}
+      className={selectContainerClasses ?? undefined}
+      style={containerStyle}
+    >
       <select
         key={`${multipleString}-${control}`}
-        data-testid={`test-${multipleString}-${control}`}
+        data-testid={selectTestId}
         multiple={isMultiple}
         size={isMultiple ? optionsShown : 1}
         required={isRequired}
         disabled={isDisabled}
+        className={cssClasses ?? undefined}
+        style={style}
+        value={selectedValue}
         onClick={evt => isMultiple && onInternalChange(evt, control)}
         onChange={evt => !isMultiple && onInternalChange(evt, control)}
         onBlur={() => onBlurChange(control)}
-        value={selectedValue}
       >
         {Array.isArray(parsedOptions) &&
           parsedOptions.map(({ label, value }, i) => (
@@ -112,28 +128,42 @@ const BasicSelect = ({
 export default BasicSelect
 
 BasicSelect.propTypes = {
-  // BASE INPUT PROPS
+  ...complexPropTypes,
+  /** `Attribute` `Required`. Used to populate several select's properties */
   control: PropTypes.string.isRequired,
+  /** `Attribute` Marks the select as required */
   isRequired: PropTypes.bool,
+  /** `Attribute` Makes the select unable to be clicked */
   isDisabled: PropTypes.bool,
-  // SELECT INPUT PROPS
+  /** `Attribute` Mention which of select's options have been selected */
   selected: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
+  /** `Attribute` Mention the options that will be selectable */
   options: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string,
       value: PropTypes.string
     })
   ),
+  /** `Attribute` Display the amount of options without clicking the select. Only when */
   optionsShown: PropTypes.number,
+  /** `Attribute` Makes the select capable of hold more of one option selected (in case you */
   isMultiple: PropTypes.bool,
+  /** `Attribute` Makes select's text a blank text */
   firstNullOption: PropTypes.bool,
   // STYLE PROPS
-  styles: PropTypes.object,
+  /** `Styling` Sets a color based con Bulma's color options */
   color: PropTypes.oneOf(parseObjKeys(colors)),
+  /** `Styling` Sets a size based on Bulma's size options */
   size: PropTypes.oneOf(parseObjKeys(sizes)),
+  /** `Styling` Makes select's corners rounded */
   isRounded: PropTypes.bool,
+  /** `Styling` Add a spinner animation to select's content */
   isLoading: PropTypes.bool,
   // FUNCTIONS
+  /** `Function` Sends a click signal to its parent component when user clicks on the select */
+  onClick: PropTypes.func,
+  /** `Function` Sends event and control information to its parent component when user press a new key */
   onInputChange: PropTypes.func,
+  /** `Function` Sends control information to its parent component when user changes its focus to other form input */
   onBlurChange: PropTypes.func
 }

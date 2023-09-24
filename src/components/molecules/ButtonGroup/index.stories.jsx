@@ -1,11 +1,10 @@
 import ButtonGroup from '.'
 // MOCKS
-import { testing, storybook } from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 export default {
   title: 'MyPets/Molecules/ButtonGroup',
   component: ButtonGroup,
-  argTypes: storybook,
   args: testing.minimalConfig
 }
 

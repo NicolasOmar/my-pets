@@ -2,14 +2,12 @@ import NavBarItem from '.'
 // OTHER COMPONENTS
 import TitleHeader from '../TitleHeader'
 // FUNCTIONS
-import { buildArgTypes } from '../../../functions/parsers'
 // MOCKS
-import { testing, storybook } from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 export default {
   title: 'MyPets/Atoms/NavBarItem',
   component: NavBarItem,
-  argTypes: buildArgTypes(storybook),
   args: testing.minimalConfig
 }
 

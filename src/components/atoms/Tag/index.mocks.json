@@ -15,28 +15,5 @@
     "withDeleteBtn": {
       "hasDeleteBtn": true
     }
-  },
-  "storybook": {
-    "text": {
-      "description": "Sets the text that will be shown on the tag"
-    },
-    "hasDeleteBtn": {
-      "description": "Will show a delete button that can include a `click` function"
-    },
-    "color": {
-      "description": "Sets a color based con Bulma's color options"
-    },
-    "size": {
-      "description": "Sets a size based on Bulma's size options"
-    },
-    "isRounded": {
-      "description": "Makes tag's corners rounded"
-    },
-    "onTextClick": {
-      "description": "Sends a click signal from clicking the tag label to its parent component when user clicks on the button"
-    },
-    "onDeleteClick": {
-      "description": "Sends a click signal from clicking its delete button to its parent component when user clicks on the button"
-    }
   }
 }

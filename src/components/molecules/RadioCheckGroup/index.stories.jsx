@@ -2,9 +2,8 @@ import RadioCheckGroup from '.'
 // CONSTANTS
 import { checkTypes } from '../../../constants/tag-types.json'
 // FUNCTIONS
-import { buildArgTypes } from '../../../functions/parsers'
 // MOCKS
-import { testing, storybook } from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 const radioCheckGroupStoryConfig = {
   type: {
@@ -15,7 +14,7 @@ const radioCheckGroupStoryConfig = {
 export default {
   title: 'MyPets/Molecules/RadioCheckGroup',
   component: RadioCheckGroup,
-  argTypes: buildArgTypes(storybook, radioCheckGroupStoryConfig),
+  argTypes: radioCheckGroupStoryConfig,
   args: testing.minimalConfig
 }
 

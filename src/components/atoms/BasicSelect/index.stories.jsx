@@ -2,9 +2,9 @@ import BasicSelect from '.'
 // CONSTANTS
 import { colors, sizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { buildArgTypes, parseListToStoryOptions, parseObjKeys } from '../../../functions/parsers'
+import { parseListToStoryOptions, parseObjKeys } from '../../../functions/parsers'
 // MOCKS
-import { testing, storybook } from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 const basicSelectStoryConfig = {
   color: {
@@ -34,7 +34,7 @@ const basicSelectStoryConfig = {
 export default {
   title: 'MyPets/Atoms/BasicSelect',
   component: BasicSelect,
-  argTypes: buildArgTypes(storybook, basicSelectStoryConfig),
+  argTypes: basicSelectStoryConfig,
   args: testing.minimalConfig
 }
 
