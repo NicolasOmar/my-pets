@@ -1,8 +1,7 @@
 import NavBarDropdown from '.'
 // FUNCTIONS
-import { buildArgTypes } from '../../../functions/parsers'
 // MOCKS
-import { testing, storybook } from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 const navBarDropdownStoryConfig = {
   options: {
@@ -17,7 +16,7 @@ const navBarDropdownStoryConfig = {
 export default {
   title: 'MyPets/Molecules/NavBarDropdown',
   component: NavBarDropdown,
-  argTypes: buildArgTypes(storybook, navBarDropdownStoryConfig),
+  argTypes: navBarDropdownStoryConfig,
   args: testing.minimalConfig
 }
 

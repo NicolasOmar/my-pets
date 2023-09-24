@@ -22,25 +22,5 @@
         }
       ]
     }
-  },
-  "storybook": {
-    "options": {
-      "description": "*Required*. Sets the options that will be shown inside this group"
-    },
-    "type": {
-      "description": "*Required*. Sets the type for all the controls inside the group"
-    },
-    "name": {
-      "description": "*Required*. Used to indicate in the `onInputChange` and `onBlurChange` which input has been affected after executing that function"
-    },
-    "value": {
-      "description": "Indicate which of the displayed options has been selected. Can be one in a single string or several in an array of strings (as well a boolean case for the RadioButton case)"
-    },
-    "onInputChange": {
-      "description": "Sends event and control information to its parent component when user press a new key"
-    },
-    "onBlurChange": {
-      "description": "Sends control information to its parent component when user changes its focus to other input"
-    }
   }
 }

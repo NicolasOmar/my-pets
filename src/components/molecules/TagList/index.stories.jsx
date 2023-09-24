@@ -1,7 +1,6 @@
 import TagList from '.'
-import { buildArgTypes } from '../../../functions/parsers'
 // MOCKS
-import { testing, storybook } from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 const tagListStoryConfig = {
   dataList: {
@@ -16,7 +15,7 @@ const tagListStoryConfig = {
 export default {
   title: 'MyPets/Molecules/TagList',
   component: TagList,
-  argTypes: buildArgTypes(storybook, tagListStoryConfig)
+  argTypes: tagListStoryConfig
 }
 
 const Template = args => <TagList {...args} />

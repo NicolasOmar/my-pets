@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+// TYPES
+import { elementPropTypes } from '../../../types/commonTypes'
 // OTHER COMPONENTS
 import Column from '../../atoms/Column'
 // CONSTANTS
@@ -10,11 +12,51 @@ import { parseObjKeys } from '../../../functions/parsers'
 const { columnSizes } = BULMA_STYLES
 
 const GridLayout = ({
+  testId = null,
+  style = null,
   children = [],
   width = parseObjKeys(columnSizes)[0],
-  centerGrid = false,
-  styles = {}
+  centerGrid = false
 }) => {
+  const gridLayoutTestId = testId ?? 'test-grid-layout'
+  const renderGridLayout = () => {
+    const gridHasDefinedWidth = children
+      .filter(childNode => childNode)
+      .every(childNode => childNode?.props?.childWidth)
+
+    return gridHasDefinedWidth ? (
+      <Column
+        key={'grid-layout'}
+        {...{
+          _key: `grid-layout`,
+          testId: gridLayoutTestId,
+          isCentered: centerGrid,
+          isMultiline: true,
+          isContainer: true,
+          children: children
+            .filter(childNode => childNode)
+            .map((childNode, i) => renderChild(childNode, i)),
+          style: style ?? undefined
+        }}
+      />
+    ) : (
+      children
+        .filter(childNode => childNode)
+        .map((childNode, i) => (
+          <Column
+            key={`grid-layout-${i}`}
+            {...{
+              _key: `grid-layout-${i}`,
+              testId: `${gridLayoutTestId}-${i}`,
+              isCentered: centerGrid,
+              isContainer: true,
+              children: renderChild(childNode),
+              style: style ?? undefined
+            }}
+          />
+        ))
+    )
+  }
   const renderChild = (childNode, i = 0) => (
     <Column
       key={`column-${i}`}
@@ -28,47 +70,16 @@ const GridLayout = ({
   )
 
   return Array.isArray(children) ? (
-    children.filter(childNode => childNode).every(childNode => childNode?.props?.childWidth) ? (
-      <Column
-        key={'grid-layout'}
-        {...{
-          _key: `grid-layout`,
-          testId: `test-grid-layout`,
-          isCentered: centerGrid,
-          isMultiline: true,
-          isContainer: true,
-          children: children
-            .filter(childNode => childNode)
-            .map((childNode, i) => renderChild(childNode, i)),
-          styles
-        }}
-      />
-    ) : (
-      children
-        .filter(childNode => childNode)
-        .map((childNode, i) => (
-          <Column
-            key={`grid-layout-${i}`}
-            {...{
-              _key: `grid-layout-${i}`,
-              testId: `test-grid-layout-${i}`,
-              isCentered: centerGrid,
-              isContainer: true,
-              children: renderChild(childNode),
-              styles
-            }}
-          />
-        ))
-    )
+    renderGridLayout()
   ) : (
     <Column
       {...{
         _key: `grid-layout`,
-        testId: `test-grid-layout`,
+        testId: `${gridLayoutTestId}`,
         isCentered: centerGrid,
         isContainer: true,
         children: renderChild(children),
-        styles
+        style: style ?? undefined
       }}
     />
   )
@@ -77,11 +88,14 @@ const GridLayout = ({
 export default GridLayout
 
 GridLayout.propTypes = {
+  ...elementPropTypes,
+  /** `Attribute` Indicates which components (could be 1 or more) container in the grid */
   children: PropTypes.oneOfType([
-    PropTypes.element, 
+    PropTypes.element,
     PropTypes.array
   ]),
+  /** `Styling` Indicates grid's width using a idea similar to Bootstrap grid system */
   width: PropTypes.oneOf(parseObjKeys(columnSizes, true)),
-  centerGrid: PropTypes.bool,
-  styles: PropTypes.object
+  /** `Styling` Centers grid's content */
+  centerGrid: PropTypes.bool
 }

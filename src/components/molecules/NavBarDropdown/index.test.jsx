@@ -11,7 +11,7 @@ describe('[NavBarDropdown]', () => {
 
   test('Should render the component with required props only', () => {
     render(<NavBarDropdown {...minimalConfig} />)
-    const testSection = screen.getByTestId('test-navbar-dropdown')
+    const testSection = screen.getByTestId('test-navbar-dropdown-container')
     const testLabel = screen.getByTestId('test-navbar-dropdown-label')
     const testLabelText = screen.getByText(minimalConfig.label)
 
