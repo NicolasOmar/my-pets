@@ -38,25 +38,5 @@
       "altText": "Test image, 9by16 = 360x640",
       "ratio": "9by16"
     }
-  },
-  "storybook": {
-    "src": {
-      "description": "Indicates link related to the image that will be shown"
-    },
-    "altText": {
-      "description": "Displays an alternative text when the image can't be shown"
-    },
-    "styles": {
-      "description": "Adds custom CSS styles"
-    },
-    "fixedRatio": {
-      "description": "Sets a size based on a list of defined ratios by Bulma"
-    },
-    "ratio": {
-      "description": "Sets a size in pixels based on a numeric input"
-    },
-    "isRounded": {
-      "description": "Makes select's corners rounded"
-    }
   }
 }

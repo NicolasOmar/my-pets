@@ -6,16 +6,5 @@
     "requiredVersion": {
       "isRequired": true
     }
-  },
-  "storybook": {
-    "labelText": {
-      "description": "Sets the text that will be shown"
-    },
-    "styles": {
-      "description": "Adds custom CSS styles"
-    },
-    "isRequired": {
-      "description": "Adds a red asterisk that mark the component next to it as required"
-    }
   }
 }

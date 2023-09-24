@@ -12,8 +12,8 @@ const BasicRadioCheck = ({
   cssClasses = null,
   style = null,
   containerTestId = null,
-  containerCssClasses = { marginRight: '5px' },
-  containerStyle = null,
+  containerCssClasses = null,
+  containerStyle = { marginRight: '5px' },
   type,
   control,
   value = false,
@@ -24,19 +24,19 @@ const BasicRadioCheck = ({
   onInputChange,
   onBlurChange
 }) => {
-  const inputTestId = testId ?? `test-${control}-${type}`
-  const inputContainerTestId = containerTestId ?? `test-container-${control}-${type}`
-  const inputContainerClasses = `${type} ${containerCssClasses}`
+  const radioTestId = testId ?? `test-${control}-${type}`
+  const radioContainerTestId = containerTestId ?? `test-container-${control}-${type}`
+  const radioContainerClasses = `${type} ${containerCssClasses}`
 
   return (
     <label
-      data-testid={inputContainerTestId}
-      className={inputContainerClasses}
+      data-testid={radioContainerTestId}
+      className={radioContainerClasses}
       style={containerStyle}
     >
       <input
         key={`${control}-${type}`}
-        data-testid={inputTestId}
+        data-testid={radioTestId}
         type={type}
         name={name}
         value={label?.toLowerCase().replace(' ', '')}

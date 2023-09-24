@@ -46,7 +46,7 @@ const FormInput = ({ inputLabel = null, isLoading = false, inputConfig, styles =
       className="field"
       style={styles}
     >
-      <Label labelText={inputLabel} isRequired={inputConfig.isRequired} />
+      {inputLabel && <Label labelText={inputLabel} isRequired={inputConfig.isRequired} />}
       <section className={controlClasses}>{parseFormInput(inputConfig)}</section>
     </section>
   )
