@@ -1,10 +1,10 @@
 import TitleHeader from '.'
 // MOCKS
-import { testing, storybook } from './index.mocks.json'
+import { testing } from './index.mocks.json'
 // CONSTANTS
 import { fontSizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { buildArgTypes, parseListToStoryOptions, parseObjKeys } from '../../../functions/parsers'
+import { parseListToStoryOptions, parseObjKeys } from '../../../functions/parsers'
 
 const titleHeaderStoryConfig = {
   titleSize: {
@@ -34,7 +34,7 @@ const titleHeaderStoryConfig = {
 export default {
   title: 'MyPets/Atoms/TitleHeader',
   component: TitleHeader,
-  argTypes: buildArgTypes(storybook, titleHeaderStoryConfig),
+  argTypes: titleHeaderStoryConfig,
   args: testing.minimalConfig
 }
 

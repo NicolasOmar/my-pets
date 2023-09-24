@@ -2,9 +2,9 @@ import Tag from '.'
 // CONSTANTS
 import { colors, sizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { buildArgTypes, parseListToStoryOptions, parseObjKeys } from '../../../functions/parsers'
+import { parseListToStoryOptions, parseObjKeys } from '../../../functions/parsers'
 // MOCKS
-import { testing, storybook } from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 const tagStoryConfig = {
   color: {
@@ -34,7 +34,7 @@ const tagStoryConfig = {
 export default {
   title: 'MyPets/Atoms/Tag',
   component: Tag,
-  argTypes: buildArgTypes(storybook, tagStoryConfig),
+  argTypes: tagStoryConfig,
   args: testing.minimal
 }
 

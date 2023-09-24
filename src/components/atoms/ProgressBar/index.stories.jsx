@@ -2,9 +2,9 @@ import ProgressBar from '.'
 // CONSTANTS
 import { colors, sizes } from '../../../constants/bulma-styles.json'
 // FUNCTIONS
-import { buildArgTypes, parseListToStoryOptions, parseObjKeys } from '../../../functions/parsers'
+import { parseListToStoryOptions, parseObjKeys } from '../../../functions/parsers'
 // MOCKS
-import { testing, storybook } from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 const progressBarStoryConfig = {
   color: {
@@ -34,7 +34,7 @@ const progressBarStoryConfig = {
 export default {
   title: 'MyPets/Atoms/ProgressBar',
   component: ProgressBar,
-  argTypes: buildArgTypes(storybook, progressBarStoryConfig)
+  argTypes: progressBarStoryConfig
 }
 
 const Template = args => <ProgressBar {...args} />
@@ -64,5 +64,5 @@ export const IsInfiniteLoading = Template.bind({})
 IsInfiniteLoading.storyName = 'With infinite loading'
 IsInfiniteLoading.args = {
   ...IsLargeSize.args,
-  ...testing.IsInfiniteLoading
+  ...testing.isInfiniteLoading
 }

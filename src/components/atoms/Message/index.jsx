@@ -12,7 +12,7 @@ const { notificationTypes } = BULMA_STYLES
 const Message = ({
   testId = null,
   cssClasses = null,
-  style = null, 
+  style = null,
   headerText = null,
   msgType,
   messages = []
@@ -61,7 +61,7 @@ Message.propTypes = {
   ...elementPropTypes,
   /** `Attribute` Sets the text that will be shown on the header */
   headerText: PropTypes.string,
-  /** `Required` `Attribute` Sets message container color based on one of several types */
+  /** `Attribute` `Required` Sets message container color based on one of several types */
   msgType: PropTypes.oneOf(parseObjKeys(notificationTypes)).isRequired,
   /** `Attribute` Sets the text that will be show on the conteniner. Can be one or several texts */
   messages: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
