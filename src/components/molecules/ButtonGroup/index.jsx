@@ -1,23 +1,32 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+// TYPES
+import { elementPropTypes } from '../../../types/commonTypes'
 // OTHER COMPONENTS
 import BasicButton from '../../atoms/BasicButton'
 // FUNCTIONS
 import { parseFieldConfigToClasses } from '../../../functions/parsers'
 
-const ButtonGroup = ({ buttons, styles = {}, isCentered = true }) => {
+const ButtonGroup = ({
+  testId = null,
+  cssClasses = null,
+  style = null,
+  buttons,
+  isCentered = true
+}) => {
+  const btnGroupTestId = testId ?? 'test-button-group'
   const btnGroupClasses = parseFieldConfigToClasses({
     useCommonClasses: true,
     fieldConfig: { isCentered },
     fieldName: 'buttons',
-    otherClasses: ['has-addons']
+    otherClasses: ['has-addons', cssClasses]
   })
   return (
     <section
       key={'button-group'}
-      data-testid="test-button-group"
+      data-testid={btnGroupTestId}
       className={btnGroupClasses}
-      style={styles}
+      style={style}
     >
       {buttons.map((button, i) => (
         <BasicButton key={`btn-${button.color}-${i}`} {...button} />
@@ -29,8 +38,9 @@ const ButtonGroup = ({ buttons, styles = {}, isCentered = true }) => {
 export default ButtonGroup
 
 ButtonGroup.propTypes = {
+  ...elementPropTypes,
+  /** `Required` `Attribute` Array of button that will be shown together without any gap */
   buttons: PropTypes.arrayOf(PropTypes.shape(BasicButton.propTypes)).isRequired,
-  // STYLE PROPS
-  styles: PropTypes.object,
+  /** `Styling` Will center the group in the screen (on in another container) */
   isCentered: PropTypes.bool
 }

@@ -12,16 +12,5 @@
         }
       ]
     }
-  },
-  "storybook": {
-    "buttons": {
-      "description": "Array of button that will be shown together without any gap"
-    },
-    "styles": {
-      "description": "Adds custom CSS styles"
-    },
-    "isCentered": {
-      "description": "Will center the group in the screen (on in another container)"
-    }
   }
 }

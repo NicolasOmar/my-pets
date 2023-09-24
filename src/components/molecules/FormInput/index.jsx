@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+// TYPES
+import { complexPropTypes } from '../../../types/commonTypes'
 // COMPONENTS
 import Label from '../../atoms/Label'
 import BasicInput from '../../atoms/BasicInput'
@@ -32,22 +34,42 @@ const parseFormInput = inputConfig => {
   )
 }
 
-const FormInput = ({ inputLabel = null, isLoading = false, inputConfig, styles = {} }) => {
-  const controlClasses = parseFieldConfigToClasses({
+const FormInput = ({
+  testId = null,
+  cssClasses = null,
+  style = null,
+  containerTestId = null,
+  containerCssClasses = null,
+  containerStyle = null,
+  inputLabel = null,
+  isLoading = false,
+  inputConfig
+}) => {
+  const formInputContainerTestId = containerTestId ?? 'test-conatiner-field'
+  const formInputTestId = testId ?? 'test-field'
+  const formInputContainerClasses = containerCssClasses ?? 'field'
+  const formInputClasses = parseFieldConfigToClasses({
     useCommonClasses: true,
     fieldConfig: { isLoading },
-    fieldName: 'control'
+    fieldName: 'control',
+    otherClasses: [cssClasses]
   })
 
   return (
     <section
       key={`field-${inputConfig.type}-${inputConfig.control}`}
-      data-testid={`test-field-${inputConfig.type}-${inputConfig.control}`}
-      className="field"
-      style={styles}
+      data-testid={`${formInputContainerTestId}-${inputConfig.type}-${inputConfig.control}`}
+      className={formInputContainerClasses}
+      style={containerStyle ?? undefined}
     >
       {inputLabel && <Label labelText={inputLabel} isRequired={inputConfig.isRequired} />}
-      <section className={controlClasses}>{parseFormInput(inputConfig)}</section>
+      <section
+        data-testid={`${formInputTestId}-${inputConfig.type}-${inputConfig.control}`}
+        className={formInputClasses}
+        style={style ?? undefined}
+      >
+        {parseFormInput(inputConfig)}
+      </section>
     </section>
   )
 }
@@ -55,12 +77,15 @@ const FormInput = ({ inputLabel = null, isLoading = false, inputConfig, styles =
 export default FormInput
 
 FormInput.propTypes = {
+  ...complexPropTypes,
+  /** `Attribute` Adds a label on top of the input */
   inputLabel: PropTypes.string,
+  /** `Attribute` Adds a spinner on the input */
   isLoading: PropTypes.bool,
+  /** `Attribute` Configuration for the input, functions included */
   inputConfig: PropTypes.oneOfType([
     PropTypes.shape(BasicInput.propTypes),
     PropTypes.shape(RadioCheckGroup.propTypes),
     PropTypes.shape(BasicSelect.propTypes)
-  ]).isRequired,
-  styles: PropTypes.object
+  ]).isRequired
 }

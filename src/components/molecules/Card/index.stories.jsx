@@ -2,14 +2,13 @@ import Card from '.'
 // COMPONENTS
 import Image from '../../atoms/Image'
 // MOCKS
-import { testing, storybook } from './index.mocks.json'
+import { testing } from './index.mocks.json'
 
 const { testCardContent, testBaseImage, testFooterItems } = testing
 
 export default {
   title: 'MyPets/Molecules/Card',
   component: Card,
-  argTypes: storybook,
   args: {
     cardContent: <section>{testCardContent}</section>
   }

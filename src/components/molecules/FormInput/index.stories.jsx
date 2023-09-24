@@ -1,8 +1,8 @@
 import FormInput from '.'
 // MOCKS
-import { testing, storybook } from './index.mocks.json'
+import { testing } from './index.mocks.json'
 // FUNCTIONS
-import { buildArgTypes, parseListToStoryOptions } from '../../../functions/parsers'
+import { parseListToStoryOptions } from '../../../functions/parsers'
 
 const formInputStoryConfig = {
   inputConfig: {
@@ -17,7 +17,7 @@ const formInputStoryConfig = {
 export default {
   title: 'MyPets/Molecules/FormInput',
   component: FormInput,
-  argTypes: buildArgTypes(storybook, formInputStoryConfig),
+  argTypes: formInputStoryConfig,
   args: testing.minimalConfig
 }
 
