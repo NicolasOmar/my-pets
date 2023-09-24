@@ -5,27 +5,19 @@
     }
   },
   "storybook": {
-    "isFetching": {
-      "description": "Adds a spinner on the form and disable the screen (to avoid additional user behavior with the cards)"
-    },
     "cardsListTitle": {
       "table": {
         "type": {
           "summary": "TitleHeader"
         }
-      },
-      "description": "Header configuration object to show a `TitleHeader` above the rest of the components that will compose the template"
+      }
     },
     "cardListData": {
       "table": {
         "type": {
           "summary": "Card[]"
         }
-      },
-      "description": "List of `Card` configuration objects that will be displayed"
-    },
-    "centerList": {
-      "description": "Will center the list of cards according the screen or a father container"
+      }
     }
   }
 }

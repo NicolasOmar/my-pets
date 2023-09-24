@@ -12,12 +12,12 @@ import { parseFieldConfigToClasses } from '../../../functions/parsers'
 import validators from '../../../functions/validators'
 
 const FormLayout = ({
-  isLoading = false,
-  isBoxed = true,
-  errors = null,
   inputs,
   dividers = [],
   formButtons = [],
+  errors = null,
+  isLoading = false,
+  isBoxed = true,
   onFormSubmit,
   onInputBlurChange
 }) => {
@@ -133,15 +133,9 @@ const FormLayout = ({
 export default FormLayout
 
 FormLayout.propTypes = {
-  /** `Styling` Adds a spinner on the form and disable the screen (to avoid additional user behavior with the inputs) */
-  isLoading: PropTypes.bool,
-  /** `Styling` Sets the form container as a box (differentiating it from the screen) */
-  isBoxed: PropTypes.bool,
-  /** `Attribute` Display an array of error objects that will be displayed in a `Message` component */
-  errors: PropTypes.object,
   /** `Required` `Attribute` Set of inputs (in a configuration object) that will be parsed and displayed in the form according its provided configuration as `FormInput` */
   inputs: PropTypes.object.isRequired,
-  /** `Attribute` List of splitters that will separate form secions */
+  /** `Attribute` List of splitters that will separate form section */
   dividers: PropTypes.arrayOf(
     PropTypes.shape({
       ...Divider.propTypes,
@@ -152,6 +146,12 @@ FormLayout.propTypes = {
   formButtons: PropTypes.arrayOf(
     PropTypes.shape(BasicButton.propTypes)
   ),
+  /** `Attribute` Display an array of error objects that will be displayed in a `Message` component */
+  errors: PropTypes.object,
+  /** `Styling` Adds a spinner on the form and disable the screen (to avoid additional user behavior with the inputs) */
+  isLoading: PropTypes.bool,
+  /** `Styling` Sets the form container as a box (differentiating it from the screen) */
+  isBoxed: PropTypes.bool,
   /** `Function` Will execute custom code once the form is submited (by pressing enter in any input or clicking on the designated submit button) */
   onFormSubmit: PropTypes.func,
   /** `Function` Will execute custom code on each time the user changes focus from any input, returning input's data */
