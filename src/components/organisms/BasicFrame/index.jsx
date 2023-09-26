@@ -11,7 +11,7 @@ const BasicFrame = ({ header = null, width = 8, centerGrid = false, children = [
   }
   const renderHeader = () =>
     header ? (
-      <TitleHeader key="header-title-header" {...{ ...header, styles: headerStyles }} />
+      <TitleHeader key="header-title-header" {...{ ...header, style: headerStyles }} />
     ) : null
 
   return (

@@ -55,7 +55,7 @@ const ListMyPets = () => {
                         isCustom: true,
                         src: 'https://img.icons8.com/external-xnimrodx-lineal-xnimrodx/64/null/external-dead-halloween-xnimrodx-lineal-xnimrodx-3.png',
                         alt: 'Passed Away',
-                        styles: {
+                        style: {
                           display: 'flex',
                           justifyContent: 'flex-end'
                         }

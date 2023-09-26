@@ -80,7 +80,7 @@ const CardsListTemplate = ({
       <GridLayout
         {...{
           centerGrid: centerList,
-          styles: {
+          style: {
             margin: '0 2.5%'
           },
           children: parseCardsList()

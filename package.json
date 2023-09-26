@@ -15,10 +15,11 @@
   "type": "module",
   "scripts": {
     "start": "vite",
-    "start:prod": "npm run build && npm run preview",
+    "start:prod": "npm run build:app && npm run preview",
     "test": "vitest",
     "test:ci": "npm run test -- --coverage",
-    "build": "vite build",
+    "build:app": "vite build",
+    "build:storybook": "storybook build",
     "preview": "vite preview",
     "setup": "npm i && husky install",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
@@ -26,11 +27,10 @@
     "lint-staged": "lint-staged -v",
     "storybook": "storybook dev -p 6006",
     "storybook:cli": "npm run storybook -- --no-open",
-    "build-storybook": "storybook build",
     "sass:css": "node-sass --omit-source-map-url --output-style compressed sass/styles.scss",
     "styles:app": "npm run sass:css -- -o public/styles",
     "styles:storybook": "npm run sass:css -- -o .storybook",
-    "build:styles": "npm run styles:app && npm run styles:storybook"
+    "styles:build": "npm run styles:app && npm run styles:storybook"
   },
   "dependencies": {
     "@apollo/client": "^3.8.4",
@@ -55,7 +55,7 @@
     "@testing-library/react": "^14.0.0",
     "@types/react": "^18.2.22",
     "@types/react-dom": "^18.2.7",
-    "@vitejs/plugin-react-swc": "^3.3.2",
+    "@vitejs/plugin-react-swc": "^3.4.0",
     "@vitest/coverage-v8": "^0.34.5",
     "bulma": "^0.9.4",
     "eslint": "^8.50.0",
