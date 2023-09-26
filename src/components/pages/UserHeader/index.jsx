@@ -38,7 +38,7 @@ const UserHeader = ({ name }) => {
     }
   }
 
-  const toggleStyle = () => {
+  const toggleAppMode = () => {
     const inverseAppStyle = isDarkModeOs ? 'light-mode' : 'dark-mode'
     document.body.classList.toggle(inverseAppStyle)
     setIsDarkModeApp(!isDarkModeApp)
@@ -50,7 +50,7 @@ const UserHeader = ({ name }) => {
       {
         type: 'item',
         itemLabel: `Change to ${isDarkModeApp ? 'Light' : 'Dark'} mode`,
-        onClickItem: toggleStyle
+        onClickItem: toggleAppMode
       },
       {
         type: 'dropdown',
@@ -65,12 +65,8 @@ const UserHeader = ({ name }) => {
             onClickItem: () => navigate(APP_ROUTES.LIST_MY_PETS)
           },
           {
-            itemLabel: 'Update User',
-            onClickItem: () => navigate(APP_ROUTES.UPDATE_USER)
-          },
-          {
-            itemLabel: 'Update Pass',
-            onClickItem: () => navigate(APP_ROUTES.UPDATE_PASS)
+            itemLabel: 'Settings',
+            onClickItem: () => navigate(APP_ROUTES.SETTINGS)
           },
           {
             itemLabel: 'Logout',

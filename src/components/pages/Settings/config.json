@@ -1,0 +1,87 @@
+{
+  "updateUserConfig": {
+    "header": {
+      "titleText": "Update user information",
+      "titleSize": "big",
+      "isCentered": true
+    },
+    "inputs": {
+      "name": {
+        "label": "Name",
+        "type": "text",
+        "control": "name",
+        "isRequired": true,
+        "minLength": 3,
+        "maxLength": 25,
+        "isVisible": true
+      },
+      "lastName": {
+        "label": "Last Name",
+        "type": "text",
+        "control": "lastName",
+        "isRequired": true,
+        "minLength": 3,
+        "maxLength": 25,
+        "isVisible": true
+      }
+    },
+    "saveButton": {
+      "type": "submit",
+      "color": "success",
+      "label": "Save"
+    },
+    "goBackButton": {
+      "type": "button",
+      "color": "danger",
+      "label": "Go Back"
+    }
+  },
+  "updatePassConfig": {
+    "header": {
+      "titleText": "Update Password",
+      "titleSize": "big",
+      "isCentered": true
+    },
+    "inputs": {
+      "oldPass": {
+        "label": "Old Password",
+        "type": "password",
+        "control": "oldPass",
+        "isRequired": true,
+        "minLength": 5,
+        "isVisible": true
+      },
+      "newPass": {
+        "label": "New Password",
+        "type": "password",
+        "control": "newPass",
+        "isRequired": true,
+        "minLength": 5,
+        "isVisible": true
+      },
+      "repeatPass": {
+        "label": "Repeat Password",
+        "type": "password",
+        "control": "repeatPass",
+        "isRequired": true,
+        "minLength": 5,
+        "isVisible": true
+      }
+    },
+    "dividers": [
+      {
+        "after": "oldPass"
+      }
+    ],
+    "updateButton": {
+      "type": "submit",
+      "color": "success",
+      "label": "Confirm Update"
+    },
+    "cancelButton": {
+      "type": "button",
+      "color": "danger",
+      "label": "Cancel"
+    }
+  }
+}

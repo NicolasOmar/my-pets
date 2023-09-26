@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 // GRAPHQL CLIENT
 import { useLazyQuery } from '@apollo/client'
-import { GET_MY_PETS_POPULATION } from '../../../graphql/queries'
+import { GET_MY_PETS_POPULATION_QUERY } from '../../../graphql/queries'
 // COMPONENTS
 import CardsListTemplate from '../../templates/CardsListTemplate'
 import TagList from '../../molecules/TagList'
@@ -27,7 +27,7 @@ const Home = () => {
       ]
     }
   ])
-  const [getData, { data }] = useLazyQuery(GET_MY_PETS_POPULATION)
+  const [getData, { data }] = useLazyQuery(GET_MY_PETS_POPULATION_QUERY)
 
   useEffect(() => {
     const asyncGetData = async () => await getData()

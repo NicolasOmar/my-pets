@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-export const GET_PET_TYPES = gql`
+export const GET_PET_TYPES_QUERY = gql`
   query {
     getPetTypes {
       id
@@ -9,7 +9,7 @@ export const GET_PET_TYPES = gql`
   }
 `
 
-export const GET_COLORS = gql`
+export const GET_COLORS_QUERY = gql`
   query {
     getColors {
       id
@@ -18,7 +18,7 @@ export const GET_COLORS = gql`
   }
 `
 
-export const GET_MY_PETS = gql`
+export const GET_MY_PETS_QUERY = gql`
   query {
     getMyPets {
       id
@@ -42,7 +42,7 @@ export const GET_MY_PETS = gql`
   }
 `
 
-export const GET_PET = gql`
+export const GET_PET_QUERY = gql`
   query ($id: ID!) {
     getPet(id: $id) {
       name
@@ -68,7 +68,7 @@ export const GET_PET = gql`
   }
 `
 
-export const GET_MY_PETS_POPULATION = gql`
+export const GET_MY_PETS_POPULATION_QUERY = gql`
   query {
     getMyPetsPopulation {
       name
