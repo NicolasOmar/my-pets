@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 // GRAPHQL CLIENT
 import { useLazyQuery, useMutation, useQuery } from '@apollo/client'
-import { GET_COLORS, GET_PET, GET_PET_TYPES } from '../../../graphql/queries'
+import { GET_COLORS_QUERY, GET_PET_QUERY, GET_PET_TYPES_QUERY } from '../../../graphql/queries'
 import { UPDATE_PET } from '../../../graphql/mutations'
 // COMPONENTS
 import FormTemplate from '../../templates/FormTemplate'
@@ -29,9 +29,9 @@ const UpdatePet = () => {
   const params = useParams()
   let navigate = useNavigate()
   const [isLoadingPet, setIsLoadingPet] = useState(true)
-  const { loading: isLoadingPetTypes, data: petTypes } = useQuery(GET_PET_TYPES)
-  const { loading: isLoadingColors, data: colors } = useQuery(GET_COLORS)
-  const [getPet, { data: petData }] = useLazyQuery(GET_PET, { fetchPolicy: 'no-cache' })
+  const { loading: isLoadingPetTypes, data: petTypes } = useQuery(GET_PET_TYPES_QUERY)
+  const { loading: isLoadingColors, data: colors } = useQuery(GET_COLORS_QUERY)
+  const [getPet, { data: petData }] = useLazyQuery(GET_PET_QUERY, { fetchPolicy: 'no-cache' })
   const [updatePet, { loading: isUpdating, error: errorUpdate }] = useMutation(UPDATE_PET)
 
   useEffect(() => params.petId && getPet({ variables: { id: params.petId } }), [params, getPet])
