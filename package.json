@@ -33,7 +33,7 @@
     "build:styles": "npm run styles:app && npm run styles:storybook"
   },
   "dependencies": {
-    "@apollo/client": "^3.8.4",
+    "@apollo/client": "^3.8.5",
     "crypto-js": "^4.1.1",
     "graphql": "^16.8.1",
     "luxon": "^3.4.3",
