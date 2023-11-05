@@ -7,6 +7,8 @@ import { UPDATE_USER, UPDATE_PASS } from '../../../graphql/mutations'
 import { UserContext } from '../../../context'
 // COMPONENTS
 import FormTemplate from '../../templates/FormTemplate'
+import Divider from '../../atoms/Divider'
+import Notification from '../../molecules/Notification'
 // FORM CONFIG
 import CONFIG from './config.json'
 // CONSTANTS
@@ -20,17 +22,20 @@ const { APP_ROUTES } = ROUTES
 
 const SettingsPage = () => {
   let navigate = useNavigate()
-
   const { setUserData } = useContext(UserContext)
   const [formObject, setFormObject] = useState(updateUserConfig.inputs)
-  const [
-    updateUser,
-    { data: updateUserData, loading: updateUserLoading, error: updateUserError }
-  ] = useMutation(UPDATE_USER)
+  const [updateUser, {
+    data: updateUserData,
+    loading: updateUserLoading,
+    error: updateUserError
+  }] = useMutation(UPDATE_USER)
   const [updatePass, { loading, error }] = useMutation(UPDATE_PASS)
+  const [showNotification, setShowNotification] = useState(false)
 
   useEffect(() => {
-    const userInfo = updateUserData ? parseGraphToObj(updateUserData.updateUser, getLoggedUser()) : getLoggedUser()
+    const userInfo = updateUserData
+      ? parseGraphToObj(updateUserData.updateUser, getLoggedUser())
+      : getLoggedUser()
 
     if (updateUserData) {
       setLoggedUser(userInfo)
@@ -45,7 +50,8 @@ const SettingsPage = () => {
   const onSubmitUserUpdate = async variables => {
     try {
       await updateUser({ variables })
-      navigate(APP_ROUTES.HOME)
+      setShowNotification(true)
+      // navigate(APP_ROUTES.HOME)
     } catch (e) {
       console.error(e)
     }
@@ -106,20 +112,28 @@ const SettingsPage = () => {
         ]}
         onFormSubmit={data => onSubmitUserUpdate(data)}
       />
-      
+
+      <Divider style={{ padding: '1em 0' }} />
+
       <FormTemplate
         header={updatePassConfig.header}
         isLoading={loading}
         errors={error}
         inputs={updatePassConfig.inputs}
         dividers={updatePassConfig.dividers}
-        formButtons={[
-          updatePassConfig.updateButton,
-          updatePassConfig.cancelButton
-        ]}
+        formButtons={[updatePassConfig.updateButton, updatePassConfig.cancelButton]}
         onFormSubmit={passFormData => onSubmitPassUpdate(passFormData)}
         onInputBlurChange={onUpdatePassBlurChange}
       />
+
+      {
+        showNotification && 
+        <Notification
+          text='Password sucessfully changed'
+          color={'succcess'}
+          onDelete={() => setShowNotification(false)}
+        />
+      }
     </>
   )
 }
