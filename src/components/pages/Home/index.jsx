@@ -14,7 +14,7 @@ import config from './config.json'
 const { cardListTitle, petPopulationWidget } = config
 
 const Home = () => {
-  const [user] = useState(getLoggedUser())
+  const user = getLoggedUser()
   const [cardListData, setCardListData] = useState([
     {
       ...petPopulationWidget,
@@ -46,7 +46,7 @@ const Home = () => {
               content: {
                 ...petPopulationWidget.cardContent[0].content,
                 titleText: `${
-                  all.quantity === 0 ? `No created Pets yet` : `Created Pets: ${all.quantity}`
+                  all.quantity === 0 ? `No pets yet` : `You have ${all.quantity} pets`
                 }`
               }
             },
