@@ -17,25 +17,21 @@ const Notification = ({
   style = null,
   text,
   color = parseObjKeys(colors)[0],
-  onDelete = null
+  isLightColor = false,
+  onDeleteClick = null
 }) => {
-  const onCloseNotification = () => {
-    if (onDelete) {
-      onDelete()
-    }
-  }
   const notificationClasses = parseFieldConfigToClasses({
-    useCommonClasses: false,
-    fieldConfig: {},
     fieldName: 'notification',
+    fieldConfig: { isLightColor },
     otherClasses: [colors[color], cssClasses]
   })
+  const notificationTestId = testId ?? `test-notification-${colors[color]}`
 
   return (
-    <section data-testId={testId} class={notificationClasses} style={style ?? undefined}>
-      <button class="delete" onClick={onCloseNotification}></button>
+    <div data-testid={notificationTestId} className={notificationClasses} style={style ?? undefined}>
+      <button data-testid={`${notificationTestId}-delete`} className="delete" onClick={onDeleteClick ?? undefined} />
       {text}
-    </section>
+    </div>
   )
 }
 
@@ -47,6 +43,8 @@ Notification.propTypes = {
   text: PropTypes.string.isRequired,
   /** `Styling` Sets a color based con Bulma's color options */
   color: PropTypes.oneOf(Object.keys(colors)),
+  /** `Styling` Sets a the color in a lighter variant */
+  isLightColor: PropTypes.bool,
   /** `Function` Sends a click signal to its parent component when user clicks on the button */
-  onClick: PropTypes.func
+  onDeleteClick: PropTypes.func
 }

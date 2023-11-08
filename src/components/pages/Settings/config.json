@@ -28,12 +28,12 @@
     "saveButton": {
       "type": "submit",
       "color": "success",
-      "label": "Save"
+      "label": "Save changes"
     },
     "goBackButton": {
       "type": "button",
       "color": "danger",
-      "label": "Go Back"
+      "label": "Go back to Home"
     }
   },
   "updatePassConfig": {
@@ -76,12 +76,12 @@
     "updateButton": {
       "type": "submit",
       "color": "success",
-      "label": "Confirm Update"
+      "label": "Save changes"
     },
-    "cancelButton": {
+    "goBackButton": {
       "type": "button",
       "color": "danger",
-      "label": "Cancel"
+      "label": "Go back to Home"
     }
   }
 }

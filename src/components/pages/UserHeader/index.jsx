@@ -11,7 +11,7 @@ import NavBar from '../../organisms/NavBar'
 // CONSTANTS
 import ROUTES from '../../../constants/routes.json'
 // FUNCTIONS
-import { clearAllStorage, getStorage, setStorage } from '../../../functions/local-storage'
+import { clearAllStorage } from '../../../functions/local-storage'
 
 const { APP_ROUTES } = ROUTES
 
@@ -19,13 +19,13 @@ const UserHeader = ({ name }) => {
   let navigate = useNavigate()
   const [logout] = useMutation(LOGOUT)
   const { setUserData } = useContext(UserContext)
-  const isDarkModeOs = window.matchMedia('(prefers-color-scheme: dark)').matches
-  const [isDarkModeApp, setIsDarkModeApp] = useState(getStorage('isDarkMode') ?? isDarkModeOs)
+  // const isDarkModeOs = window.matchMedia('(prefers-color-scheme: dark)').matches
+  // const [isDarkModeApp, setIsDarkModeApp] = useState(getStorage('isDarkMode') ?? isDarkModeOs)
 
-  useEffect(() => {
-    const appStyle = getStorage('isDarkMode') ?? isDarkModeOs ? 'dark-mode' : 'light-mode'
-    document.body.classList.toggle(appStyle)
-  }, [isDarkModeOs])
+  // useEffect(() => {
+  //   const appStyle = getStorage('isDarkMode') ?? isDarkModeOs ? 'dark-mode' : 'light-mode'
+  //   document.body.classList.toggle(appStyle)
+  // }, [isDarkModeOs])
 
   const onLogout = async () => {
     try {
@@ -38,20 +38,20 @@ const UserHeader = ({ name }) => {
     }
   }
 
-  const toggleAppMode = () => {
-    const inverseAppStyle = isDarkModeOs ? 'light-mode' : 'dark-mode'
-    document.body.classList.toggle(inverseAppStyle)
-    setIsDarkModeApp(!isDarkModeApp)
-    setStorage('isDarkMode', !isDarkModeApp)
-  }
+  // const toggleAppMode = () => {
+  //   const inverseAppStyle = isDarkModeOs ? 'light-mode' : 'dark-mode'
+  //   document.body.classList.toggle(inverseAppStyle)
+  //   setIsDarkModeApp(!isDarkModeApp)
+  //   setStorage('isDarkMode', !isDarkModeApp)
+  // }
 
   const dropdownConfig = {
     end: [
-      {
-        type: 'item',
-        itemLabel: `Change to ${isDarkModeApp ? 'Light' : 'Dark'} mode`,
-        onClickItem: toggleAppMode
-      },
+      // {
+      //   type: 'item',
+      //   itemLabel: `Change to ${isDarkModeApp ? 'Light' : 'Dark'} mode`,
+      //   onClickItem: toggleAppMode
+      // },
       {
         type: 'dropdown',
         label: name.toUpperCase(),

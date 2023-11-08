@@ -16,6 +16,7 @@ import ROUTES from '../../../constants/routes.json'
 // FUNCTIONS
 import { getLoggedUser, setLoggedUser } from '../../../functions/local-storage'
 import { parseGraphToObj } from '../../../functions/parsers'
+import { encryptPass } from '../../../functions/encrypt'
 
 const { updateUserConfig, updatePassConfig } = CONFIG
 const { APP_ROUTES } = ROUTES
@@ -30,7 +31,13 @@ const SettingsPage = () => {
     error: updateUserError
   }] = useMutation(UPDATE_USER)
   const [updatePass, { loading, error }] = useMutation(UPDATE_PASS)
-  const [showNotification, setShowNotification] = useState(false)
+  const [showNotification, setShowNotification] = useState(null)
+
+  const buildNotification = (text) => ({
+    text,
+    color: 'primary',
+    onDeleteClick: () => setShowNotification(null)
+  })
 
   useEffect(() => {
     const userInfo = updateUserData
@@ -50,8 +57,7 @@ const SettingsPage = () => {
   const onSubmitUserUpdate = async variables => {
     try {
       await updateUser({ variables })
-      setShowNotification(true)
-      // navigate(APP_ROUTES.HOME)
+      setShowNotification(buildNotification('User data sucessfully changed'))
     } catch (e) {
       console.error(e)
     }
@@ -65,7 +71,7 @@ const SettingsPage = () => {
 
     try {
       await updatePass({ variables })
-      navigate(APP_ROUTES.HOME)
+      setShowNotification(buildNotification('Password sucessfully changed'))
     } catch (e) {
       console.error(e)
     }
@@ -121,18 +127,19 @@ const SettingsPage = () => {
         errors={error}
         inputs={updatePassConfig.inputs}
         dividers={updatePassConfig.dividers}
-        formButtons={[updatePassConfig.updateButton, updatePassConfig.cancelButton]}
+        formButtons={[
+          updatePassConfig.updateButton,
+          {
+            ...updatePassConfig.goBackButton,
+            onClick: () => navigate(APP_ROUTES.HOME)
+          }
+        ]}
         onFormSubmit={passFormData => onSubmitPassUpdate(passFormData)}
         onInputBlurChange={onUpdatePassBlurChange}
       />
 
       {
-        showNotification && 
-        <Notification
-          text='Password sucessfully changed'
-          color={'succcess'}
-          onDelete={() => setShowNotification(false)}
-        />
+        showNotification && <Notification {...showNotification} />
       }
     </>
   )
