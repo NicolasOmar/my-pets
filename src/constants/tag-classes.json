@@ -51,6 +51,12 @@
       "setClass": "is-multiline"
     }
   ],
+  "notification": [
+    {
+      "prop": "isLightColor",
+      "setClass": "is-light"
+    }
+  ],
   "common": [
     {
       "prop": "isRounded",

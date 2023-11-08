@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { string } from 'prop-types'
 // GRAPHQL CLIENT
@@ -11,7 +11,7 @@ import NavBar from '../../organisms/NavBar'
 // CONSTANTS
 import ROUTES from '../../../constants/routes.json'
 // FUNCTIONS
-import { clearAllStorage, getStorage, setStorage } from '../../../functions/local-storage'
+import { clearAllStorage } from '../../../functions/local-storage'
 
 const { APP_ROUTES } = ROUTES
 
@@ -19,13 +19,13 @@ const UserHeader = ({ name }) => {
   let navigate = useNavigate()
   const [logout] = useMutation(LOGOUT)
   const { setUserData } = useContext(UserContext)
-  const isDarkModeOs = window.matchMedia('(prefers-color-scheme: dark)').matches
-  const [isDarkModeApp, setIsDarkModeApp] = useState(getStorage('isDarkMode') ?? isDarkModeOs)
+  // const isDarkModeOs = window.matchMedia('(prefers-color-scheme: dark)').matches
+  // const [isDarkModeApp, setIsDarkModeApp] = useState(getStorage('isDarkMode') ?? isDarkModeOs)
 
-  useEffect(() => {
-    const appStyle = getStorage('isDarkMode') ?? isDarkModeOs ? 'dark-mode' : 'light-mode'
-    document.body.classList.toggle(appStyle)
-  }, [isDarkModeOs])
+  // useEffect(() => {
+  //   const appStyle = getStorage('isDarkMode') ?? isDarkModeOs ? 'dark-mode' : 'light-mode'
+  //   document.body.classList.toggle(appStyle)
+  // }, [isDarkModeOs])
 
   const onLogout = async () => {
     try {
@@ -38,20 +38,20 @@ const UserHeader = ({ name }) => {
     }
   }
 
-  const toggleStyle = () => {
-    const inverseAppStyle = isDarkModeOs ? 'light-mode' : 'dark-mode'
-    document.body.classList.toggle(inverseAppStyle)
-    setIsDarkModeApp(!isDarkModeApp)
-    setStorage('isDarkMode', !isDarkModeApp)
-  }
+  // const toggleAppMode = () => {
+  //   const inverseAppStyle = isDarkModeOs ? 'light-mode' : 'dark-mode'
+  //   document.body.classList.toggle(inverseAppStyle)
+  //   setIsDarkModeApp(!isDarkModeApp)
+  //   setStorage('isDarkMode', !isDarkModeApp)
+  // }
 
   const dropdownConfig = {
     end: [
-      {
-        type: 'item',
-        itemLabel: `Change to ${isDarkModeApp ? 'Light' : 'Dark'} mode`,
-        onClickItem: toggleStyle
-      },
+      // {
+      //   type: 'item',
+      //   itemLabel: `Change to ${isDarkModeApp ? 'Light' : 'Dark'} mode`,
+      //   onClickItem: toggleAppMode
+      // },
       {
         type: 'dropdown',
         label: name.toUpperCase(),
@@ -65,12 +65,8 @@ const UserHeader = ({ name }) => {
             onClickItem: () => navigate(APP_ROUTES.LIST_MY_PETS)
           },
           {
-            itemLabel: 'Update User',
-            onClickItem: () => navigate(APP_ROUTES.UPDATE_USER)
-          },
-          {
-            itemLabel: 'Update Pass',
-            onClickItem: () => navigate(APP_ROUTES.UPDATE_PASS)
+            itemLabel: 'Settings',
+            onClickItem: () => navigate(APP_ROUTES.SETTINGS)
           },
           {
             itemLabel: 'Logout',

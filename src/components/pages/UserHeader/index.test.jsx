@@ -71,8 +71,7 @@ describe('[UserHeader]', () => {
     const testRoutes = [
       APP_ROUTES.ADD_PET,
       APP_ROUTES.LIST_MY_PETS,
-      APP_ROUTES.UPDATE_USER,
-      APP_ROUTES.UPDATE_PASS,
+      APP_ROUTES.SETTINGS,
       APP_ROUTES.LOGIN
     ]
 

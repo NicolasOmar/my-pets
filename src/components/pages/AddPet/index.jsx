@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 // GRAPHQL CLIENT
 import { useMutation, useQuery } from '@apollo/client'
-import { GET_COLORS, GET_PET_TYPES } from '../../../graphql/queries'
+import { GET_COLORS_QUERY, GET_PET_TYPES_QUERY } from '../../../graphql/queries'
 import { CREATE_PET } from '../../../graphql/mutations'
 // COMPONENTS
 import FormTemplate from '../../templates/FormTemplate'
@@ -25,8 +25,8 @@ const { APP_ROUTES } = ROUTES
 
 const AddPet = () => {
   let navigate = useNavigate()
-  const { loading: loadingPetTypes, data: petTypes } = useQuery(GET_PET_TYPES)
-  const { loading: loadingColors, data: colors } = useQuery(GET_COLORS)
+  const { loading: loadingPetTypes, data: petTypes } = useQuery(GET_PET_TYPES_QUERY)
+  const { loading: loadingColors, data: colors } = useQuery(GET_COLORS_QUERY)
   const [createPet, { loading: loadingCreate, error: errorCreate }] = useMutation(CREATE_PET)
 
   const onSubmitNewPet = async formData => {

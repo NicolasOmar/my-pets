@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 // GRAPHQL CLIENT
 import { useQuery } from '@apollo/client'
-import { GET_MY_PETS } from '../../../graphql/queries'
+import { GET_MY_PETS_QUERY } from '../../../graphql/queries'
 // COMPONENTS
 import CardsListTemplate from '../../templates/CardsListTemplate'
 // PAGE CONFIG
@@ -22,7 +22,7 @@ const { APP_ROUTES } = ROUTES
 
 const ListMyPets = () => {
   let navigate = useNavigate()
-  const { loading, data } = useQuery(GET_MY_PETS, { fetchPolicy: 'network-only' })
+  const { loading, data } = useQuery(GET_MY_PETS_QUERY, { fetchPolicy: 'network-only' })
   const [petsInfo, setPetsInfo] = useState([])
 
   useEffect(
@@ -55,7 +55,7 @@ const ListMyPets = () => {
                         isCustom: true,
                         src: 'https://img.icons8.com/external-xnimrodx-lineal-xnimrodx/64/null/external-dead-halloween-xnimrodx-lineal-xnimrodx-3.png',
                         alt: 'Passed Away',
-                        styles: {
+                        style: {
                           display: 'flex',
                           justifyContent: 'flex-end'
                         }
