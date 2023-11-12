@@ -57,7 +57,7 @@ export const parseFieldConfigToClasses = ({
     .filter(value => Boolean(value && value !== ''))
     .join(' ')
 
-  return fieldName?.concat(' ', concatedClasses)
+  return fieldName?.concat(' ', concatedClasses).trim()
 }
 
 export const parseObjKeys = (_obj, asNumber = false) =>

@@ -11,23 +11,25 @@ export default {
 
 const Template = args => <Icon {...args} />
 
-export const Minimal = Template.bind({})
-Minimal.storyName = 'Minimal config'
+export const MinimalConfig = Template.bind({})
 
-export const CustomWithSrc = Template.bind({})
-CustomWithSrc.storyName = 'Custom with soruce icon'
-CustomWithSrc.args = testing.ghostSrc
+export const MaterialVersion = Template.bind({})
+MaterialVersion.args = {
+  iconLabel: 'ab-testing',
+  isCustom: false
+}
+
+export const CustomVersion = Template.bind({})
+CustomVersion.args = testing.ghostSrc
 
 export const CustomWithTitle = Template.bind({})
-CustomWithTitle.storyName = 'Custom with title'
 CustomWithTitle.args = {
-  ...CustomWithSrc.args,
+  ...CustomVersion.args,
   alt: 'Passed Away'
 }
 
-export const WithBigSize = Template.bind({})
-WithBigSize.storyName = 'Custom with big size'
-WithBigSize.args = {
-  ...CustomWithSrc.args,
+export const CustomWithBigSize = Template.bind({})
+CustomWithBigSize.args = {
+  ...CustomVersion.args,
   size: 90
 }
