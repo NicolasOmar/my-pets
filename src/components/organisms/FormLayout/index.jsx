@@ -133,7 +133,7 @@ const FormLayout = ({
 export default FormLayout
 
 FormLayout.propTypes = {
-  /** `Required` `Attribute` Set of inputs (in a configuration object) that will be parsed and displayed in the form according its provided configuration as `FormInput` */
+  /** `Attribute` `Required` Set of inputs (in a configuration object) that will be parsed and displayed in the form according its provided configuration as `FormInput` */
   inputs: PropTypes.object.isRequired,
   /** `Attribute` List of splitters that will separate form section */
   dividers: PropTypes.arrayOf(

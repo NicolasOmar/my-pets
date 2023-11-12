@@ -22,6 +22,6 @@ export default TagList
 
 TagList.propTypes = {
   ...elementPropTypes,
-  /** `Required` `Attribute` Sets the tags that will be shown inside this group */
+  /** `Attribute` `Required` Sets the tags that will be shown inside this group */
   dataList: PropTypes.arrayOf(PropTypes.shape(Tag.propTypes)).isRequired
 }

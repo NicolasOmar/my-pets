@@ -25,15 +25,12 @@ const SettingsPage = () => {
   let navigate = useNavigate()
   const { setUserData } = useContext(UserContext)
   const [formObject, setFormObject] = useState(updateUserConfig.inputs)
-  const [updateUser, {
-    data: updateUserData,
-    loading: updateUserLoading,
-    error: updateUserError
-  }] = useMutation(UPDATE_USER)
+  const [updateUser, { data: updateUserData, loading: updateUserLoading, error: updateUserError }] =
+    useMutation(UPDATE_USER)
   const [updatePass, { loading, error }] = useMutation(UPDATE_PASS)
   const [showNotification, setShowNotification] = useState(null)
 
-  const buildNotification = (text) => ({
+  const buildNotification = text => ({
     text,
     color: 'primary',
     onDeleteClick: () => setShowNotification(null)
@@ -138,9 +135,7 @@ const SettingsPage = () => {
         onInputBlurChange={onUpdatePassBlurChange}
       />
 
-      {
-        showNotification && <Notification {...showNotification} />
-      }
+      {showNotification && <Notification {...showNotification} />}
     </>
   )
 }

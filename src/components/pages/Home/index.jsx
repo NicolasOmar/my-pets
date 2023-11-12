@@ -46,8 +46,11 @@ const Home = () => {
               content: {
                 ...petPopulationWidget.cardContent[0].content,
                 titleText: `${
-                  all.quantity === 0 ? `No pets yet` : `You have ${all.quantity} pets`
-                }`
+                  all.quantity === 0
+                    ? `You have no pets yet`
+                    : `You have ${all.quantity} ${all.quantity === 1 ? 'pet' : 'pets'}`
+                }`,
+                isCentered: true
               }
             },
             {
