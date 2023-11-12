@@ -4,8 +4,8 @@
     "titleSize": "big",
     "isCentered": true,
     "childWidth": 12,
-    "styles": {
-      "paddingTop": "15px"
+    "containerStyle": {
+      "padding": "15px 0"
     }
   }
 }

@@ -25,6 +25,8 @@ const ListMyPets = () => {
   const { loading, data } = useQuery(GET_MY_PETS_QUERY, { fetchPolicy: 'network-only' })
   const [petsInfo, setPetsInfo] = useState([])
 
+  const basicCallbackInput = (event, control) => console.warn(event.target.value, control)
+
   useEffect(
     () =>
       setPetsInfo(
@@ -69,7 +71,7 @@ const ListMyPets = () => {
                     titleSize: 'normal',
                     subText: petType.name,
                     subSize: 'tiny',
-                    cssClasses: 'pb-2'
+                    containerCssClasses: 'pb-3'
                   }
                 },
                 { type: 'section', content: `Birthday: ${parseDateString(birthday, '-')}` },
@@ -108,7 +110,7 @@ const ListMyPets = () => {
     [data, navigate]
   )
 
-  return <CardsListTemplate {...{ isFetching: loading, cardsListTitle, cardListData: petsInfo }} />
+  return <CardsListTemplate {...{ cardsListTitle, hasSearch: true, cardListData: petsInfo, isFetching: loading, onSearch: basicCallbackInput }} />
 }
 
 export default ListMyPets

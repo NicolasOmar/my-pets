@@ -23,7 +23,7 @@ const BasicInput = ({
   placeHolder = null,
   minLength = null,
   maxLength = null,
-  color = parseObjKeys(colors)[3],
+  color = parseObjKeys(colors)[5],
   size = parseObjKeys(sizes)[1],
   isRounded = false,
   onInputChange,
@@ -43,13 +43,13 @@ const BasicInput = ({
       data-testid={inputTestId}
       type={type}
       className={inputClasses}
-      style={style}
+      style={style ?? undefined}
       value={value}
       placeholder={placeHolder}
       required={isRequired}
       disabled={isDisabled}
-      onChange={evt => onInputChange(evt, control)}
-      onBlur={() => onBlurChange(control)}
+      onChange={evt => onInputChange ? onInputChange(evt, control) : undefined}
+      onBlur={() => onBlurChange ? onBlurChange(control) : undefined}
       name={control.toLowerCase().replace(' ', '-')}
       minLength={minLength}
       maxLength={maxLength}
