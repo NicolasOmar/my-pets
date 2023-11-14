@@ -34,31 +34,30 @@ const renderCardSection = (cardSection, mapFn) =>
     : cardSection
 
 const CardsListTemplate = ({
-  cardListData,
+  cardsListData,
   cardsListTitle = null,
-  hasSearch = false,
-  searchValue = null,
+  searchInput = null,
   isFetching = false,
-  centerList = true,
-  onSearch = null
+  centerList = true
 }) => {
+  const searchInputConfig = searchInput ? { ...searchInput, value: searchInput.value ?? null } : null
   const parseCardsList = () =>
     isFetching
       ? [<ProgressBar key={`card-progress-bar`} isInfiniteLoading={true} />]
-      : cardListData?.map(
-          ({ key, cardHeader, cardImage, cardContent, cardFooter, childWidth = 3 }, cardI) => {
+      : cardsListData?.map(
+          ({ key, cardHeader, cardImage, cardContent, cardFooter, childWidth = 3 }, cardIndex) => {
             const cardConfig = {
-              cardHeader: renderCardSection(cardHeader, (headerContent, contentIndex) =>
+              cardHeader: renderCardSection(cardHeader, (headerContent, headerIndex) =>
                 renderSectionContent({
                   ...headerContent,
-                  key: `card-header-section-${cardI}-${contentIndex}`
+                  key: `card-header-section-${cardIndex}-${headerIndex}`
                 })
               ),
               cardImage,
               cardContent: renderCardSection(cardContent, (sectionContent, contentIndex) =>
                 renderSectionContent({
                   ...sectionContent,
-                  key: `card-content-section-${cardI}-${contentIndex}`
+                  key: `card-content-section-${cardIndex}-${contentIndex}`
                 })
               ),
               cardFooter,
@@ -71,18 +70,20 @@ const CardsListTemplate = ({
 
   return (
     <>
-      {cardsListTitle ? (
-        <Column
-          {...{
-            _key: 'test-card-list-header',
-            testId: 'test-card-list-header',
-            width: 12,
-            children: [<TitleHeader key="cards-title" {...cardsListTitle} />]
-          }}
-        />
-      ) : null}
       {
-        hasSearch ? (
+        cardsListTitle ? (
+          <Column
+            {...{
+              _key: 'test-card-list-header',
+              testId: 'test-card-list-header',
+              width: 12,
+              children: [<TitleHeader key="cards-title" {...cardsListTitle} />]
+            }}
+          />
+        ) : null
+      }
+      {
+        searchInputConfig ? (
           <Column
             {...{
               _key: 'test-card-list-search',
@@ -93,17 +94,7 @@ const CardsListTemplate = ({
                 margin: '0 auto'
               },
               cssClasses: 'pb-4',
-              children: [(
-                <BasicInput {
-                  ...{
-                    type: 'text',
-                    control: 'search',
-                    value: searchValue,
-                    placeHolder: 'Search your pet by its name',
-                    onInputChange: onSearch
-                  }
-                } />
-              )]
+              children: [<BasicInput {...searchInputConfig} />]
             }}
           />
         ) : null
@@ -125,7 +116,7 @@ export default CardsListTemplate
 
 CardsListTemplate.propTypes = {
   /**`Attribute` `Required` List of `Card` configuration objects that will be displayed */
-  cardListData: PropTypes.arrayOf(
+  cardsListData: PropTypes.arrayOf(
     PropTypes.shape({
       ...Card.propTypes,
       childWidth: PropTypes.number
@@ -133,14 +124,10 @@ CardsListTemplate.propTypes = {
   ).isRequired,
   /** `Attribute` Header configuration object to show a `TitleHeader` above the rest of the components that will compose the template */
   cardsListTitle: PropTypes.shape(TitleHeader.propTypes),
-  /** `Attribute` Adds a search bar which will make searchs based on what the implementer adds */
-  hasSearch: PropTypes.bool,
-  /** `Attribute` Used if `hasSearch` is `true`. Sets search display value to what te user is writing */
-  searchValue: PropTypes.string,
+  /** `Attribute` Sets a `BasicInput` config object to make custom search when the user is writing */
+  searchInput: PropTypes.shape(BasicInput.propTypes),
   /** `Styling` Adds a spinner on the form and disable the screen (to avoid additional user behavior with the cards) */
   isFetching: PropTypes.bool,
   /** `Styling` Will center the list of cards according the screen or a father container */
-  centerList: PropTypes.bool,
-  /** `Function` Will send the search termns to its father component */
-  onSearch: PropTypes.func
+  centerList: PropTypes.bool
 }

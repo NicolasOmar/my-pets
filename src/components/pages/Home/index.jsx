@@ -15,7 +15,7 @@ const { cardListTitle, petPopulationWidget } = config
 
 const Home = () => {
   const user = getLoggedUser()
-  const [cardListData, setCardListData] = useState([
+  const [cardsListData, setCardListData] = useState([
     {
       ...petPopulationWidget,
       cardContent: [
@@ -77,7 +77,7 @@ const Home = () => {
     titleText: `HELLO ${user?.name?.toUpperCase()}`
   }
 
-  return <CardsListTemplate {...{ cardsListTitle, cardListData }} />
+  return <CardsListTemplate {...{ cardsListTitle, cardsListData }} />
 }
 
 export default Home

@@ -28,13 +28,16 @@ const ListMyPets = () => {
       fetchPolicy: 'network-only'
     })
   const [petsInfo, setPetsInfo] = useState([])
-
   const basicCallbackInput = (event) => {
     const searchValue = event.target.value
     refetch({ search: searchValue })
+  }  
+  const searchInput = {
+    type: 'text',
+    control: 'search',
+    placeHolder: 'Search your pet by its name',
+    onInputChange: debouncer(basicCallbackInput, 500)
   }
-
-  const optimizedCallback = debouncer(basicCallbackInput, 500)
 
   useEffect(
     () =>
@@ -119,7 +122,13 @@ const ListMyPets = () => {
     [data, navigate]
   )
 
-  return <CardsListTemplate {...{ cardsListTitle, hasSearch: true, cardListData: petsInfo, isFetching: loading, onSearch: optimizedCallback }} />
+  return (
+    <CardsListTemplate {...{
+      cardsListData: petsInfo,
+      cardsListTitle,
+      searchInput,
+      isFetching: loading,
+    }} />)
 }
 
 export default ListMyPets
