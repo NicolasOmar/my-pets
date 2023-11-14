@@ -16,16 +16,25 @@ import {
   parseArrayToString,
   capitalizeWord
 } from '../../../functions/parsers'
+import { debouncer } from '../../../functions/methods'
 
 const { cardsListTitle } = CONFIG
 const { APP_ROUTES } = ROUTES
 
 const ListMyPets = () => {
   let navigate = useNavigate()
-  const { loading, data } = useQuery(GET_MY_PETS_QUERY, { fetchPolicy: 'network-only' })
+  const { loading, data, refetch } = useQuery(
+    GET_MY_PETS_QUERY, {
+      fetchPolicy: 'network-only'
+    })
   const [petsInfo, setPetsInfo] = useState([])
 
-  const basicCallbackInput = (event, control) => console.warn(event.target.value, control)
+  const basicCallbackInput = (event) => {
+    const searchValue = event.target.value
+    refetch({ search: searchValue })
+  }
+
+  const optimizedCallback = debouncer(basicCallbackInput, 500)
 
   useEffect(
     () =>
@@ -110,7 +119,7 @@ const ListMyPets = () => {
     [data, navigate]
   )
 
-  return <CardsListTemplate {...{ cardsListTitle, hasSearch: true, cardListData: petsInfo, isFetching: loading, onSearch: basicCallbackInput }} />
+  return <CardsListTemplate {...{ cardsListTitle, hasSearch: true, cardListData: petsInfo, isFetching: loading, onSearch: optimizedCallback }} />
 }
 
 export default ListMyPets
