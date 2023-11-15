@@ -24,5 +24,14 @@
     "titleSize": "normal",
     "subSize": "tiny",
     "containerCssClasses": "pb-3"
+  },
+  "petSearchInput": {
+    "type": "text",
+    "control": "search",
+    "placeHolder": "Search your pet by its name"
+  },
+  "noPetsText": {
+    "titleText": "Sorry, there are no pets with the name/s you are searching for",
+    "containerCssClasses": "pt-3"
   }
 }

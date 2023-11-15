@@ -18,7 +18,7 @@ import {
 } from '../../../functions/parsers'
 import { debouncer } from '../../../functions/methods'
 
-const { cardsListTitle, passedAwayIcon, petTitle } = CONFIG
+const { cardsListTitle, passedAwayIcon, petTitle, petSearchInput, noPetsText } = CONFIG
 const { APP_ROUTES } = ROUTES
 
 const ListMyPets = () => {
@@ -33,15 +33,10 @@ const ListMyPets = () => {
     refetch({ search: searchValue })
   }  
   const searchInput = {
-    type: 'text',
-    control: 'search',
-    placeHolder: 'Search your pet by its name',
+    ...petSearchInput,
     onInputChange: debouncer(basicCallbackInput, 500)
   }
-
-  /** ToDo:
-   * - What happens if you have no value? Do you show any message?
-   */
+  
   useEffect(
     () =>
       setPetsInfo(
@@ -118,7 +113,7 @@ const ListMyPets = () => {
               childWidth: 3
             }
           }
-        ) || []
+        ) ?? []
       ),
     [data, navigate]
   )
@@ -128,6 +123,7 @@ const ListMyPets = () => {
       cardsListData: petsInfo,
       cardsListTitle,
       searchInput,
+      noDataText: noPetsText,
       isFetching: loading,
     }} />)
 }

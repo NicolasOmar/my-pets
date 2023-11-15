@@ -37,36 +37,48 @@ const CardsListTemplate = ({
   cardsListData,
   cardsListTitle = null,
   searchInput = null,
+  noDataText = null,
   isFetching = false,
   centerList = true
 }) => {
   const searchInputConfig = searchInput ? { ...searchInput, value: searchInput.value ?? null } : null
+  const noDataConfig = {
+    ...noDataText,
+    childWidth: 12,
+    isCentered: true
+  }
   const parseCardsList = () =>
     isFetching
       ? [<ProgressBar key={`card-progress-bar`} isInfiniteLoading={true} />]
-      : cardsListData?.map(
-          ({ key, cardHeader, cardImage, cardContent, cardFooter, childWidth = 3 }, cardIndex) => {
-            const cardConfig = {
-              cardHeader: renderCardSection(cardHeader, (headerContent, headerIndex) =>
-                renderSectionContent({
-                  ...headerContent,
-                  key: `card-header-section-${cardIndex}-${headerIndex}`
-                })
-              ),
-              cardImage,
-              cardContent: renderCardSection(cardContent, (sectionContent, contentIndex) =>
-                renderSectionContent({
-                  ...sectionContent,
-                  key: `card-content-section-${cardIndex}-${contentIndex}`
-                })
-              ),
-              cardFooter,
-              childWidth
-            }
+      : (
+          cardsListData.length > 0 ? (
+            cardsListData?.map(
+              ({ key, cardHeader, cardImage, cardContent, cardFooter, childWidth = 3 }, cardIndex) => {
+                const cardConfig = {
+                  cardHeader: renderCardSection(cardHeader, (headerContent, headerIndex) =>
+                    renderSectionContent({
+                      ...headerContent,
+                      key: `card-header-section-${cardIndex}-${headerIndex}`
+                    })
+                  ),
+                  cardImage,
+                  cardContent: renderCardSection(cardContent, (sectionContent, contentIndex) =>
+                    renderSectionContent({
+                      ...sectionContent,
+                      key: `card-content-section-${cardIndex}-${contentIndex}`
+                    })
+                  ),
+                  cardFooter,
+                  childWidth
+                }
 
-            return <Card key={key} {...cardConfig} />
-          }
-        ) ?? null
+                return <Card key={key} {...cardConfig} />
+              }
+            ) ?? [null]
+          ) : [
+            noDataText ? <TitleHeader {...noDataConfig} /> : null
+          ]
+      )
 
   return (
     <>
@@ -127,6 +139,8 @@ CardsListTemplate.propTypes = {
   cardsListTitle: PropTypes.shape(TitleHeader.propTypes),
   /** `Attribute` Sets a `BasicInput` config object to make custom search when the user is writing */
   searchInput: PropTypes.shape(BasicInput.propTypes),
+  /** `Attribute` Text configuration object to show a `TitleHeader` that will be shown in case there is no data */
+  noDataText: PropTypes.shape(TitleHeader.propTypes),
   /** `Styling` Adds a spinner on the form and disable the screen (to avoid additional user behavior with the cards) */
   isFetching: PropTypes.bool,
   /** `Styling` Will center the list of cards according the screen or a father container */
