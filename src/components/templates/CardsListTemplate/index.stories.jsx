@@ -8,7 +8,8 @@ const cardTestMocks = cardMocks.testing
 const renderCards = number =>
   Array(number)
     .fill(null)
-    .map(() => ({
+    .map((_, i) => ({
+      key: `story-card-${i}`,
       cardImage: cardTestMocks.testBaseImage,
       cardContent: [
         {

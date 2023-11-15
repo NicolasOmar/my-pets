@@ -7,5 +7,22 @@
     "containerStyle": {
       "padding": "15px 0"
     }
+  },
+  "passedAwayIcon": {
+    "type": "icon",
+    "content": {
+      "isCustom": true,
+      "src": "https://img.icons8.com/external-xnimrodx-lineal-xnimrodx/64/null/external-dead-halloween-xnimrodx-lineal-xnimrodx-3.png",
+      "alt": "Passed Away",
+      "style": {
+        "display": "flex",
+        "justifyContent": "flex-end"
+      }
+    }
+  },
+  "petTitle": {
+    "titleSize": "normal",
+    "subSize": "tiny",
+    "containerCssClasses": "pb-3"
   }
 }

@@ -9,7 +9,7 @@ import { testing } from './index.mocks.json'
 describe('[Label]', () => {
   const mockedText = testing.withLabelText.labelText.replace(' ', '-')
 
-  test('Should render the component with labelText only', () => {
+  test('Should render the component with required props only', () => {
     render(<Label {...testing.withLabelText} />)
     expect(screen.getByTestId(`test-label-${mockedText}`)).toBeInTheDocument()
   })

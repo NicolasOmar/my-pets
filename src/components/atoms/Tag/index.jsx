@@ -13,7 +13,7 @@ const Tag = ({
   testId = null,
   cssClasses = null,
   style = null,
-  text = null,
+  text,
   hasDeleteBtn = false,
   color = parseObjKeys(colors)[0],
   size = parseObjKeys(sizes)[1],
@@ -31,21 +31,23 @@ const Tag = ({
   const deleteTestId = `test-tag-delete-${size}-${color}`
 
   return (
-    <span
-      data-testid={tagTestId}
-      className={tagClasses}
-      style={style ?? undefined}
-      onClick={onTextClick}
-    >
-      {text}
-      {hasDeleteBtn ? (
-        <button
-          data-testid={deleteTestId}
-          className={`delete ${size}`}
-          onClick={onDeleteClick}
-        ></button>
-      ) : null}
-    </span>
+    text ? (
+      <span
+        data-testid={tagTestId}
+        className={tagClasses}
+        style={style ?? undefined}
+        onClick={onTextClick}
+      >
+        {text}
+        {hasDeleteBtn ? (
+          <button
+            data-testid={deleteTestId}
+            className={`delete ${size}`}
+            onClick={onDeleteClick}
+          ></button>
+        ) : null}
+      </span>
+    ) : null
   )
 }
 

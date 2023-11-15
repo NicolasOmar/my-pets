@@ -90,7 +90,7 @@ const FormLayout = ({
         const divider = Array.isArray(dividers) && dividers.find(({ after }) => after === control)
 
         return (
-          <>
+          <React.Fragment key={`input-container-${prop}-${i}`}>
             {isVisible && (
               <FormInput
                 key={`input-${prop}-${i}`}
@@ -105,7 +105,7 @@ const FormLayout = ({
               />
             )}
             {divider && <Divider key={`divider-after-${control}`} {...divider} />}
-          </>
+          </React.Fragment>
         )
       })}
       {formButtons && (

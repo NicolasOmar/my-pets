@@ -18,7 +18,7 @@ import {
 } from '../../../functions/parsers'
 import { debouncer } from '../../../functions/methods'
 
-const { cardsListTitle } = CONFIG
+const { cardsListTitle, passedAwayIcon, petTitle } = CONFIG
 const { APP_ROUTES } = ROUTES
 
 const ListMyPets = () => {
@@ -39,6 +39,9 @@ const ListMyPets = () => {
     onInputChange: debouncer(basicCallbackInput, 500)
   }
 
+  /** ToDo:
+   * - What happens if you have no value? Do you show any message?
+   */
   useEffect(
     () =>
       setPetsInfo(
@@ -59,60 +62,58 @@ const ListMyPets = () => {
             },
             i
           ) => {
+            const parsedBirthday = parseDateString(birthday, '-')
+            const parsedAdoptionDate = parseBooleanToString(
+              isAdopted, [`Yes, ${parseDateString(adoptionDate, '-')}`, 'No']
+            )
+            const parsedHairColors = parseArrayToString(hairColors, 'name')
+            const parsedHeterochromia = parseBooleanToString(
+              hasHeterochromia, ['Yes', 'No']
+            )
+            const parsedEyeColors = parseArrayToString(eyeColors, 'name')
+
             return {
               key: `pet-card-info-${i}`,
               cardContent: [
-                passedAway
-                  ? {
-                      type: 'icon',
-                      content: {
-                        isCustom: true,
-                        src: 'https://img.icons8.com/external-xnimrodx-lineal-xnimrodx/64/null/external-dead-halloween-xnimrodx-lineal-xnimrodx-3.png',
-                        alt: 'Passed Away',
-                        style: {
-                          display: 'flex',
-                          justifyContent: 'flex-end'
-                        }
-                      }
-                    }
-                  : null,
+                passedAway ? passedAwayIcon : null,
                 {
                   type: 'title',
                   content: {
+                    ...petTitle,
                     titleText: name,
-                    titleSize: 'normal',
                     subText: petType.name,
-                    subSize: 'tiny',
-                    containerCssClasses: 'pb-3'
                   }
                 },
-                { type: 'section', content: `Birthday: ${parseDateString(birthday, '-')}` },
                 {
                   type: 'section',
-                  content: `Adopted: ${parseBooleanToString(
-                    isAdopted,
-                    `Yes, ${parseDateString(adoptionDate, '-')}`,
-                    'No'
-                  )}`
+                  content: `Birthday: ${parsedBirthday}`
                 },
-                { type: 'section', content: `Gender: ${capitalizeWord(gender)}` },
-                { type: 'section', content: `Hair: ${parseArrayToString(hairColors, 'name')}` },
                 {
                   type: 'section',
-                  content: `Has Heterochromia: ${parseBooleanToString(
-                    hasHeterochromia,
-                    'Yes',
-                    'No'
-                  )}`
+                  content: `Adopted: ${parsedAdoptionDate}`
                 },
-                { type: 'section', content: `Eyes: ${parseArrayToString(eyeColors, 'name')}` }
+                {
+                  type: 'section',
+                  content: `Gender: ${capitalizeWord(gender)}`
+                },
+                {
+                  type: 'section',
+                  content: `Hair: ${parsedHairColors}`
+                },
+                {
+                  type: 'section',
+                  content: `Has Heterochromia: ${parsedHeterochromia}`
+                },
+                {
+                  type: 'section',
+                  content: `Eyes: ${parsedEyeColors}`
+                }
               ].filter(items => items),
               cardFooter: [
                 {
                   label: 'Update',
                   onClick: () => navigate(`${APP_ROUTES.UPDATE_PET}/${id}`)
                 }
-                // { label: 'Remove', onClick: () => navigate(APP_ROUTES.ADD_PET) }
               ],
               childWidth: 3
             }

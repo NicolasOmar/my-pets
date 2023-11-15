@@ -14,6 +14,7 @@ describe('[CardsListTemplate]', () => {
     Array(number)
       .fill(null)
       .map((_, i) => ({
+        key: `test-list-card-item-${i}`,
         cardHeader: [{ content: `Test title card ${i}` }],
         cardImage: cardTestMocks.testBaseImage,
         cardContent: [
@@ -23,7 +24,6 @@ describe('[CardsListTemplate]', () => {
               titleText: `Test card ${i}`
             }
           },
-
           {
             type: 'icon',
             content: {

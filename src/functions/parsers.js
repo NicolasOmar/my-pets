@@ -80,7 +80,7 @@ export const parseDropdownOptions = ({
 export const parseNumber = number =>
   !!number && validator.isNumeric(String(number)) ? +number : null
 
-export const parseBooleanToString = (boolean, trueString, falseString) =>
+export const parseBooleanToString = (boolean, [trueString, falseString]) =>
   boolean ? trueString : falseString
 
 export const parseDate = date =>

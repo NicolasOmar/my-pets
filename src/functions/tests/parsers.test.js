@@ -62,11 +62,11 @@ describe('[Funtions.parsers]', () => {
       const { goodCases, goodResults, badCases, badResults } = mocks.parseBooleanToString
 
       goodCases.forEach((_case, i) =>
-        expect(parseBooleanToString(_case, goodResults[i], badResults[i])).toEqual(goodResults[i])
+        expect(parseBooleanToString(_case, [goodResults[i], badResults[i]])).toEqual(goodResults[i])
       )
 
       badCases.forEach((_case, i) =>
-        expect(parseBooleanToString(_case, goodResults[i], badResults[i])).toEqual(badResults[i])
+        expect(parseBooleanToString(_case, [goodResults[i], badResults[i]])).toEqual(badResults[i])
       )
     })
   })

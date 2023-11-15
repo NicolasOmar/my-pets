@@ -119,6 +119,7 @@ CardsListTemplate.propTypes = {
   cardsListData: PropTypes.arrayOf(
     PropTypes.shape({
       ...Card.propTypes,
+      key: PropTypes.string.isRequired,
       childWidth: PropTypes.number
     })
   ).isRequired,
