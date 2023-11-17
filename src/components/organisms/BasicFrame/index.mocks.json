@@ -2,8 +2,10 @@
   "testing": {
     "withHeader": {
       "header": {
-        "titleText": "Basic Frame Header",
-        "subText": "With a subtitle"
+        "title": {
+          "titleText": "Basic Frame Header",
+          "subText": "With a subtitle"
+        }
       }
     },
     "withButtons": {
