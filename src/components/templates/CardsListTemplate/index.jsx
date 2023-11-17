@@ -9,7 +9,7 @@ import ProgressBar from '../../atoms/ProgressBar'
 import Column from '../../atoms/Column'
 import BasicInput from '../../atoms/BasicInput'
 
-const renderSectionContent = ({ type = 'section', key, classes = null, content }) => {
+const renderCardSectionContent = ({ type = 'section', key, classes = null, content }) => {
   switch (type) {
     case 'section':
       return (
@@ -33,11 +33,40 @@ const renderCardSection = (cardSection, mapFn) =>
         .map((_sectionContent, _sectionIndex) => mapFn(_sectionContent, _sectionIndex))
     : cardSection
 
+const renderCardsGroup = cardsListData => (
+  cardsListData?.map(
+    ({ key, cardHeader, cardImage, cardContent, cardFooter, childWidth = 3 }, cardIndex) => {
+      const cardConfig = {
+        cardHeader: renderCardSection(cardHeader, (headerContent, headerIndex) =>
+          renderCardSectionContent({
+            ...headerContent,
+            key: `card-header-section-${cardIndex}-${headerIndex}`
+          })
+        ),
+        cardImage,
+        cardContent: renderCardSection(cardContent, (sectionContent, contentIndex) =>
+          renderCardSectionContent({
+            ...sectionContent,
+            key: `card-content-section-${cardIndex}-${contentIndex}`
+          })
+        ),
+        cardFooter,
+        childWidth
+      }
+
+      return <Card key={key} {...cardConfig} />
+    }
+  ) ?? [null]
+)
+
 const CardsListTemplate = ({
   cardsListData,
   cardsListTitle = null,
   searchInput = null,
-  noDataText = null,
+  noDataText = {
+    testId: 'test-no-data-title',
+    titleText: 'No data'
+  },
   isFetching = false,
   centerList = true
 }) => {
@@ -50,35 +79,7 @@ const CardsListTemplate = ({
   const parseCardsList = () =>
     isFetching
       ? [<ProgressBar key={`card-progress-bar`} isInfiniteLoading={true} />]
-      : (
-          cardsListData.length > 0 ? (
-            cardsListData?.map(
-              ({ key, cardHeader, cardImage, cardContent, cardFooter, childWidth = 3 }, cardIndex) => {
-                const cardConfig = {
-                  cardHeader: renderCardSection(cardHeader, (headerContent, headerIndex) =>
-                    renderSectionContent({
-                      ...headerContent,
-                      key: `card-header-section-${cardIndex}-${headerIndex}`
-                    })
-                  ),
-                  cardImage,
-                  cardContent: renderCardSection(cardContent, (sectionContent, contentIndex) =>
-                    renderSectionContent({
-                      ...sectionContent,
-                      key: `card-content-section-${cardIndex}-${contentIndex}`
-                    })
-                  ),
-                  cardFooter,
-                  childWidth
-                }
-
-                return <Card key={key} {...cardConfig} />
-              }
-            ) ?? [null]
-          ) : [
-            noDataText ? <TitleHeader {...noDataConfig} /> : null
-          ]
-      )
+      : cardsListData.length > 0 ? renderCardsGroup(cardsListData) : [<TitleHeader {...noDataConfig} />]
 
   return (
     <>
