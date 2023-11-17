@@ -1,0 +1,14 @@
+{
+  "brandIcon": {
+    "isCustom": false,
+    "iconLabel": "cat",
+    "iconText": "MyPets",
+    "style": {
+      "fontSize": "2rem"
+    },
+    "containerStyle": {
+      "marginLeft": "2rem",
+      "cursor": "pointer"
+    }
+  }
+}
