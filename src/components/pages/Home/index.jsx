@@ -17,7 +17,7 @@ const { cardListTitle, petPopulationWidget } = config
 
 const Home = () => {
   const user = getLoggedUser()
-  const [cardsListData, setCardListData] = useState([
+  const [cardsListData, setCardsListData] = useState([
     {
       ...petPopulationWidget,
       cardContent: [
@@ -47,7 +47,7 @@ const Home = () => {
         startString: 'You have'
       })
       
-      setCardListData([
+      setCardsListData([
         {
           ...petPopulationWidget,
           cardContent: [

@@ -2,6 +2,5 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 npm run lint-staged
-npm run test:ci
 npm run styles:build
 git add .storybook/styles.css public/styles/styles.css

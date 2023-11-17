@@ -12,6 +12,7 @@ const Icon = ({
   containerCssClasses = null,
   containerStyle = null,
   iconLabel = null,
+  iconText = null,
   isCustom = true,
   src = null,
   alt = null,
@@ -40,6 +41,7 @@ const Icon = ({
           data-testid={iconTestId}
           className={cssClasses ?? undefined}
           style={style ?? undefined}
+          aria-hidden="true"
           src={src}
           alt={alt ?? undefined}
           title={alt ?? undefined}
@@ -59,10 +61,12 @@ const Icon = ({
         data-testid={iconTestId}
         className={iconClasses}
         style={style ?? undefined}
+        aria-hidden="true"
         alt={alt ?? undefined}
         title={alt ?? undefined}
         onClick={onClick ?? undefined}
       ></i>
+      {iconText ? <span>{iconText}</span> : null}
     </span>
   )
 }
@@ -74,12 +78,14 @@ Icon.propTypes = {
   ...clickeablePropTypes,
   /** `Attribute` In case of using [a Material Design Icon](https://pictogrammers.com/library/mdi/), it will make appear the selected option in the UI */
   iconLabel: PropTypes.string,
-  /** `Attribute` Indicates that the icon shown is from an external url (not from `Material Design Icon`)*/
+  /** `Attribute` Used when `isCustom` is `false`. Sets a text next to the icon */
+  iconText: PropTypes.string,
+  /** `Attribute` Indicates that the icon shown is from an external url (and be shown in a `img` tag)*/
   isCustom: PropTypes.bool,
-  /** `Attribute` Used for a **custom cases**. It indicates link related to the custom icon that will be shown */
+  /** `Attribute` Used when `isCustom` is `true`. It indicates link related to the custom icon that will be shown */
   src: PropTypes.string,
   /** `Attribute` Displays an alternative text when the icon can't be shown */
   alt: PropTypes.string,
-  /** `Attribute` Used for a **custom cases**. Sets a size in pixels based on a numeric input */
+  /** `Attribute` Used when `isCustom` is `true`. Sets a size in pixels based on a numeric input */
   size: PropTypes.number
 }
