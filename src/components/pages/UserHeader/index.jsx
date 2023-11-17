@@ -46,6 +46,14 @@ const UserHeader = ({ name }) => {
   // }
 
   const dropdownConfig = {
+    icon: {
+      isCustom: false,
+      iconLabel: 'cat',
+      style: {
+        fontSize: '2rem'
+      },
+      onClick: () => navigate(APP_ROUTES.HOME)
+    },
     end: [
       // {
       //   type: 'item',

@@ -28,13 +28,10 @@ const ListMyPets = () => {
       fetchPolicy: 'network-only'
     })
   const [petsInfo, setPetsInfo] = useState([])
-  const basicCallbackInput = (event) => {
-    const searchValue = event.target.value
-    refetch({ search: searchValue })
-  }  
+  const searchInputCallback = (event) => refetch({ search: event.target.value }) 
   const searchInput = {
     ...petSearchInput,
-    onInputChange: debouncer(basicCallbackInput, 500)
+    onInputChange: debouncer(searchInputCallback, 500)
   }
   
   useEffect(

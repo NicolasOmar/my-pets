@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 // TYPES
-import { complexPropTypes } from '../../../types/commonTypes'
+import { complexPropTypes, clickeablePropTypes } from '../../../types/commonTypes'
 import { parseFieldConfigToClasses } from '../../../functions/parsers'
 
 const Icon = ({
@@ -15,7 +15,8 @@ const Icon = ({
   isCustom = true,
   src = null,
   alt = null,
-  size = 30
+  size = 30,
+  onClick = null
 }) => {
   const iconTestId = testId ?? isCustom ? `test-custom-icon-img` : `test-icon-mdi-${iconLabel}`
   const iconContainerTestId = containerTestId ?? isCustom ? `test-custom-icon` : `test-icon`
@@ -44,6 +45,7 @@ const Icon = ({
           title={alt ?? undefined}
           height={size}
           width={size}
+          onClick={onClick ?? undefined}
         />
       ) : null}
     </section>
@@ -59,6 +61,7 @@ const Icon = ({
         style={style ?? undefined}
         alt={alt ?? undefined}
         title={alt ?? undefined}
+        onClick={onClick ?? undefined}
       ></i>
     </span>
   )
@@ -68,6 +71,7 @@ export default Icon
 
 Icon.propTypes = {
   ...complexPropTypes,
+  ...clickeablePropTypes,
   /** `Attribute` In case of using [a Material Design Icon](https://pictogrammers.com/library/mdi/), it will make appear the selected option in the UI */
   iconLabel: PropTypes.string,
   /** `Attribute` Indicates that the icon shown is from an external url (not from `Material Design Icon`)*/

@@ -10,6 +10,8 @@ import ProgressBar from '../../atoms/ProgressBar'
 import { getLoggedUser } from '../../../functions/local-storage'
 // MOCKS
 import config from './config.json'
+// FUNCTIONS
+import { parseSingularPluralStrings } from '../../../functions/parsers'
 
 const { cardListTitle, petPopulationWidget } = config
 
@@ -37,6 +39,14 @@ const Home = () => {
   useEffect(() => {
     if (data) {
       const [all, ...pets] = data.getMyPetsPopulation
+      const petQuantityText = parseSingularPluralStrings({
+        quantity: all.quantity,
+        zeroString: 'no pets yet',
+        singularString: 'pet',
+        pluralAddition: 's',
+        startString: 'You have'
+      })
+      
       setCardListData([
         {
           ...petPopulationWidget,
@@ -45,11 +55,7 @@ const Home = () => {
               ...petPopulationWidget.cardContent[0],
               content: {
                 ...petPopulationWidget.cardContent[0].content,
-                titleText: `${
-                  all.quantity === 0
-                    ? `You have no pets yet`
-                    : `You have ${all.quantity} ${all.quantity === 1 ? 'pet' : 'pets'}`
-                }`,
+                titleText: petQuantityText,
                 isCentered: true
               }
             },

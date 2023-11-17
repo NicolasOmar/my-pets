@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 // TYPES
-import { elementPropTypes } from '../../../types/commonTypes'
+import { elementPropTypes, clickeablePropTypes } from '../../../types/commonTypes'
 // CONSTANTS
 import TAG_TYPES from '../../../constants/tag-types.json'
 import BULMA_STYLES from '../../../constants/bulma-styles.json'
@@ -52,6 +52,7 @@ export default BasicButton
 
 BasicButton.propTypes = {
   ...elementPropTypes,
+  ...clickeablePropTypes,
   /** `Attribute` `Required` Button's type you will use */
   type: PropTypes.oneOf(buttonTypes).isRequired,
   /** `Attribute` `Required` Button's text that will be shown */
@@ -67,7 +68,5 @@ BasicButton.propTypes = {
   /** `Styling` Exchange button's main color in the one on its text and border */
   isInverted: PropTypes.bool,
   /** `Styling` Changes button's text with a spinner animation */
-  isLoading: PropTypes.bool,
-  /** `Function` Sends a click signal to its parent component when user clicks on the button */
-  onClick: PropTypes.func
+  isLoading: PropTypes.bool
 }

@@ -137,3 +137,30 @@ export const buildArgTypes = (baseObj, extensions = {}) => {
 
 export const parseListToStoryOptions = (list, isObject = false, separator = ' | ') =>
   isObject ? Object.keys(list).join(separator) : list.join(separator)
+
+export const parseSingularPluralStrings = ({
+  quantity = 0,
+  zeroString = 'no data',
+  singularString = 'singular',
+  pluralString = null,
+  pluralAddition = 's',
+  startString = '',
+  endString = ''
+}) => {
+  let partialText = ''
+  const pluralAlternative = pluralString ?? `${singularString}${pluralAddition}`
+
+  switch (quantity) {
+    case 0:
+      partialText = zeroString
+      break
+    case 1:
+      partialText = `${quantity} ${singularString}`
+      break
+    default:
+      partialText = `${quantity} ${pluralAlternative}`
+      break
+  }
+
+  return `${startString} ${partialText} ${endString}`
+}
