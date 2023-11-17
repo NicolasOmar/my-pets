@@ -1,13 +1,15 @@
 import React from 'react'
 import { describe, test, expect, vi } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
 // APP_ROUTES
 // GRAPHQL
+import { GET_MY_PETS_QUERY } from '../../../graphql/queries'
 // CONTEXT
 // COMPONENTS
 import ListMyPets from '.'
 // MOCKS
+import { testing } from './index.mocks.json'
 
 const mockUseNavigate = vi.fn()
 
@@ -18,16 +20,49 @@ vi.mock('react-router-dom', async originalPackage => {
     useNavigate: () => mockUseNavigate
   }
 })
+const baseRequest = [
+  {
+    request: {
+      query: GET_MY_PETS_QUERY
+    }
+  },
+  {
+    result: null
+  }
+]
 
 describe('[ListMyPets]', () => {
-  test('Should render the page with its inputs', () => {
+  const { pageTitle, loadingBarTestId, valuesToAppear } = testing
+
+  test('Should render the page with the loading component', async () => {
     render(
       <MockedProvider mocks={[]} addTypename={false}>
         <ListMyPets />
       </MockedProvider>
     )
 
-    expect(screen.getByText('My list of Pets')).toBeInTheDocument()
-    expect(screen.getByTestId('test-loading-progress-bar')).toBeInTheDocument()
+    await waitFor(() => {
+      expect(screen.getByText(pageTitle)).toBeInTheDocument()
+      expect(screen.getByTestId(loadingBarTestId)).toBeInTheDocument()
+    })
+  })
+
+  test('Should render the page with the loaded pet', async () => {
+    const positiveMock = [
+      {
+        request: baseRequest[0].request,
+        result: testing.positiveResponse
+      }
+    ]
+
+    render(
+      <MockedProvider mocks={positiveMock} addTypename={false}>
+        <ListMyPets />
+      </MockedProvider>
+    )
+
+    await waitFor(() => {
+      valuesToAppear.forEach(mockValue => expect(screen.getByText(mockValue)).toBeInTheDocument())
+    })
   })
 })
