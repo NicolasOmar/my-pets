@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 // COMPONENTS
 import TitleHeader from '../../atoms/TitleHeader'
+import Icon from '../../atoms/Icon'
 import GridLayout from '../../molecules/GridLayout'
 
 const BasicFrame = ({ header = null, width = 8, centerGrid = false, children = [] }) => {
@@ -11,7 +12,10 @@ const BasicFrame = ({ header = null, width = 8, centerGrid = false, children = [
   }
   const renderHeader = () =>
     header ? (
-      <TitleHeader key="header-title-header" {...{ ...header, style: headerStyles }} />
+      <>
+        {header.icon ? <Icon key="header-icon" {...header.icon} /> : null}
+        {header.title ? <TitleHeader key="header-title-header" {...{ ...header.title, style: headerStyles }} /> : null}
+      </>
     ) : null
 
   return (
@@ -26,6 +30,9 @@ export default BasicFrame
 
 BasicFrame.propTypes = {
   /** `Attribute` Header configuration object to show a `TitleHeader` above the rest of the components that will compose the frame */
-  header: PropTypes.shape(TitleHeader.propTypes),
+  header: PropTypes.shape({
+    title: PropTypes.shape(TitleHeader.propTypes),
+    icon: PropTypes.shape(Icon.propTypes)
+  }),
   ...GridLayout.propTypes
 }

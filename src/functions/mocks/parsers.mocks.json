@@ -232,5 +232,41 @@
       "one | two | three",
       "first , second , third"
     ]
+  },
+  "parseSingularPluralStrings": {
+    "cases": [
+      {
+        "quantity": 0
+      },
+      {
+        "quantity": 1,
+        "singularString": "test",
+        "pluralAddition": "s"
+      },
+      {
+        "quantity": 2,
+        "singularString": "test",
+        "pluralAddition": "ess"
+      },
+      {
+        "quantity": 3,
+        "pluralString": "cases"
+      },
+      {
+        "startString": "here",
+        "endString": "lies"
+      },
+      {
+        "zeroString": "no cases"
+      }
+    ],
+    "results": [
+      "no data",
+      "1 test",
+      "2 testess",
+      "3 cases",
+      "here no data lies",
+      "no cases"
+    ]
   }
 }

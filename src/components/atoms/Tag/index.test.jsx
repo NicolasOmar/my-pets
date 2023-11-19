@@ -7,32 +7,42 @@ import Tag from '.'
 import { testing } from './index.mocks.json'
 
 describe('[Tag]', () => {
-  const { colored, large, withDeleteBtn } = testing
+  const { minimal, colored, large, withDeleteBtn } = testing
 
-  test('Should render the component with required props only', () => {
+  test('Should render if the component with required prop only', () => {
+    render(<Tag {...minimal} />)
+    const basicConfig = screen.getByTestId('test-tag-normal-white')
+    expect(basicConfig).toBeInTheDocument()
+  })
+
+  test('Should not render if the component has not required props injected', () => {
     render(<Tag />)
-    const basicTag = screen.getByTestId('test-tag-normal-white')
-    expect(basicTag).toBeInTheDocument()
+    expect(() => screen.getByTestId('test-tag-normal-white')).toThrow()
   })
 
   test('Should render with a specific color and size', () => {
-    render(<Tag {...colored} />)
+    const coloredConfig = { ...minimal, ...colored }
+    const largeConfig = { ...minimal, ...colored, ...large }
+
+    render(<Tag {...coloredConfig} />)
     const coloredTag = screen.getByTestId('test-tag-normal-link')
     expect(coloredTag).toBeInTheDocument()
 
-    render(<Tag {...{ ...colored, ...large }} />)
+    render(<Tag {...largeConfig} />)
     const hugeTag = screen.getByTestId('test-tag-large-link')
     expect(hugeTag).toBeInTheDocument()
   })
 
   test('Should render with a delete button', () => {
-    render(<Tag {...{ ...withDeleteBtn }} />)
+    const deletableConfig = { ...minimal, ...withDeleteBtn }
+    render(<Tag {...deletableConfig} />)
     const deleteTag = screen.getByTestId('test-tag-delete-normal-white')
     expect(deleteTag).toBeInTheDocument()
   })
 
   test('Should check that it has been clicked in its text and delete button', () => {
     const clickeableBtn = {
+      ...minimal,
       ...withDeleteBtn,
       onTextClick: vi.fn(),
       onDeleteClick: vi.fn()

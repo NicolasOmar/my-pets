@@ -72,16 +72,16 @@ export default RadioCheckGroup
 
 RadioCheckGroup.propTypes = {
   ...elementPropTypes,
-  /** `Required` `Attribute` Sets the options that will be shown inside this group */
+  /** `Attribute` `Required` Sets the options that will be shown inside this group */
   options: PropTypes.arrayOf(
     PropTypes.shape({
       control: PropTypes.string,
       label: PropTypes.string
     })
   ).isRequired,
-  /** `Required` `Attribute` Sets the type for all the controls inside the group */
+  /** `Attribute` `Required` Sets the type for all the controls inside the group */
   type: PropTypes.oneOf(checkTypes).isRequired,
-  /** `Required` `Attribute` Used to indicate in the `onInputChange` and `onBlurChange` which input has been affected after executing that function */
+  /** `Attribute` `Required` Used to indicate in the `onInputChange` and `onBlurChange` which input has been affected after executing that function */
   name: PropTypes.string.isRequired,
   /** `Attribute` Indicate which of the displayed options has been selected. Can be one in a single string or several in an array of strings (as well a boolean case for the RadioButton case) */
   value: PropTypes.oneOfType([

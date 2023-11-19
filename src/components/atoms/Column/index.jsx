@@ -39,7 +39,7 @@ export default Column
 Column.propTypes = {
   ...elementPropTypes,
   /** `Attribute` Unique key used when the column is part of a list of columns (each with its specific key) */
-  _key: PropTypes.string.isRequired,
+  _key: PropTypes.string,
   /** `Attribute` Indicates which components (could be 1 or more) container in the column */
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.array, PropTypes.elementType]),
   /** `Styling` Indicates column's width using a idea similar to Bootstrap grid system */

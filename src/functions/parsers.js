@@ -57,7 +57,7 @@ export const parseFieldConfigToClasses = ({
     .filter(value => Boolean(value && value !== ''))
     .join(' ')
 
-  return fieldName?.concat(' ', concatedClasses)
+  return fieldName?.concat(' ', concatedClasses).trim()
 }
 
 export const parseObjKeys = (_obj, asNumber = false) =>
@@ -80,7 +80,7 @@ export const parseDropdownOptions = ({
 export const parseNumber = number =>
   !!number && validator.isNumeric(String(number)) ? +number : null
 
-export const parseBooleanToString = (boolean, trueString, falseString) =>
+export const parseBooleanToString = (boolean, [trueString, falseString]) =>
   boolean ? trueString : falseString
 
 export const parseDate = date =>
@@ -103,8 +103,8 @@ export const searchIdsFromNames = (ids = [], stringList = null) =>
   Array.isArray(ids)
     ? ids.map(({ id }) => (stringList ? stringList.find(_string => _string.id === id).name : id))
     : stringList
-    ? stringList.find(_string => _string.id === ids.id).name
-    : ids.id
+      ? stringList.find(_string => _string.id === ids.id).name
+      : ids.id
 
 export const searchNamesFromIds = (ids = null, list = [], searchMultiple = false) => {
   return searchMultiple
@@ -137,3 +137,30 @@ export const buildArgTypes = (baseObj, extensions = {}) => {
 
 export const parseListToStoryOptions = (list, isObject = false, separator = ' | ') =>
   isObject ? Object.keys(list).join(separator) : list.join(separator)
+
+export const parseSingularPluralStrings = ({
+  quantity = 0,
+  zeroString = 'no data',
+  singularString = 'singular',
+  pluralString = null,
+  pluralAddition = 's',
+  startString = '',
+  endString = ''
+}) => {
+  let partialText = ''
+  const pluralAlternative = pluralString ?? `${singularString}${pluralAddition}`
+
+  switch (quantity) {
+    case 0:
+      partialText = zeroString
+      break
+    case 1:
+      partialText = `${quantity} ${singularString}`
+      break
+    default:
+      partialText = `${quantity} ${pluralAlternative}`
+      break
+  }
+
+  return `${startString} ${partialText} ${endString}`.trim()
+}

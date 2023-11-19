@@ -1,10 +1,23 @@
 {
   "header": {
-    "titleText": "Welcome to My Pets",
-    "titleSize": "big",
-    "subText": "Log in",
-    "subSize": "normal",
-    "isCentered": true
+    "title": {
+      "titleText": "Welcome to My Pets",
+      "titleSize": "big",
+      "subText": "Log in",
+      "subSize": "normal",
+      "isCentered": true
+    },
+    "icon": {
+      "isCustom": false,
+      "iconLabel": "cat",
+      "style": {
+        "fontSize": "5rem"
+      },
+      "containerStyle": {
+        "display": "table",
+        "margin": "2rem auto 0 auto"
+      }
+    }
   },
   "inputs": {
     "email": {

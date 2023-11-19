@@ -16,15 +16,24 @@ import {
   parseArrayToString,
   capitalizeWord
 } from '../../../functions/parsers'
+import { debouncer } from '../../../functions/methods'
 
-const { cardsListTitle } = CONFIG
+const { cardsListTitle, passedAwayIcon, petTitle, petSearchInput, noPetsText } = CONFIG
 const { APP_ROUTES } = ROUTES
 
 const ListMyPets = () => {
   let navigate = useNavigate()
-  const { loading, data } = useQuery(GET_MY_PETS_QUERY, { fetchPolicy: 'network-only' })
+  const { loading, data, refetch } = useQuery(
+    GET_MY_PETS_QUERY, {
+      fetchPolicy: 'network-only'
+    })
   const [petsInfo, setPetsInfo] = useState([])
-
+  const searchInputCallback = (event) => refetch({ search: event.target.value }) 
+  const searchInput = {
+    ...petSearchInput,
+    onInputChange: debouncer(searchInputCallback, 500)
+  }
+  
   useEffect(
     () =>
       setPetsInfo(
@@ -45,70 +54,75 @@ const ListMyPets = () => {
             },
             i
           ) => {
+            const parsedBirthday = parseDateString(birthday, '-')
+            const parsedAdoptionDate = parseBooleanToString(
+              isAdopted, [`Yes, ${parseDateString(adoptionDate, '-')}`, 'No']
+            )
+            const parsedHairColors = parseArrayToString(hairColors, 'name')
+            const parsedHeterochromia = parseBooleanToString(
+              hasHeterochromia, ['Yes', 'No']
+            )
+            const parsedEyeColors = parseArrayToString(eyeColors, 'name')
+
             return {
               key: `pet-card-info-${i}`,
               cardContent: [
-                passedAway
-                  ? {
-                      type: 'icon',
-                      content: {
-                        isCustom: true,
-                        src: 'https://img.icons8.com/external-xnimrodx-lineal-xnimrodx/64/null/external-dead-halloween-xnimrodx-lineal-xnimrodx-3.png',
-                        alt: 'Passed Away',
-                        style: {
-                          display: 'flex',
-                          justifyContent: 'flex-end'
-                        }
-                      }
-                    }
-                  : null,
+                passedAway ? passedAwayIcon : null,
                 {
                   type: 'title',
                   content: {
+                    ...petTitle,
                     titleText: name,
-                    titleSize: 'normal',
                     subText: petType.name,
-                    subSize: 'tiny',
-                    cssClasses: 'pb-2'
                   }
                 },
-                { type: 'section', content: `Birthday: ${parseDateString(birthday, '-')}` },
                 {
                   type: 'section',
-                  content: `Adopted: ${parseBooleanToString(
-                    isAdopted,
-                    `Yes, ${parseDateString(adoptionDate, '-')}`,
-                    'No'
-                  )}`
+                  content: `Birthday: ${parsedBirthday}`
                 },
-                { type: 'section', content: `Gender: ${capitalizeWord(gender)}` },
-                { type: 'section', content: `Hair: ${parseArrayToString(hairColors, 'name')}` },
                 {
                   type: 'section',
-                  content: `Has Heterochromia: ${parseBooleanToString(
-                    hasHeterochromia,
-                    'Yes',
-                    'No'
-                  )}`
+                  content: `Adopted: ${parsedAdoptionDate}`
                 },
-                { type: 'section', content: `Eyes: ${parseArrayToString(eyeColors, 'name')}` }
+                {
+                  type: 'section',
+                  content: `Gender: ${capitalizeWord(gender)}`
+                },
+                {
+                  type: 'section',
+                  content: `Hair: ${parsedHairColors}`
+                },
+                {
+                  type: 'section',
+                  content: `Has Heterochromia: ${parsedHeterochromia}`
+                },
+                {
+                  type: 'section',
+                  content: `Eyes: ${parsedEyeColors}`
+                }
               ].filter(items => items),
               cardFooter: [
                 {
                   label: 'Update',
                   onClick: () => navigate(`${APP_ROUTES.UPDATE_PET}/${id}`)
                 }
-                // { label: 'Remove', onClick: () => navigate(APP_ROUTES.ADD_PET) }
               ],
               childWidth: 3
             }
           }
-        ) || []
+        ) ?? []
       ),
     [data, navigate]
   )
 
-  return <CardsListTemplate {...{ isFetching: loading, cardsListTitle, cardListData: petsInfo }} />
+  return (
+    <CardsListTemplate {...{
+      cardsListData: petsInfo,
+      cardsListTitle,
+      searchInput,
+      noDataText: noPetsText,
+      isFetching: loading,
+    }} />)
 }
 
 export default ListMyPets

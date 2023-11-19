@@ -39,7 +39,7 @@ export default ButtonGroup
 
 ButtonGroup.propTypes = {
   ...elementPropTypes,
-  /** `Required` `Attribute` Array of button that will be shown together without any gap */
+  /** `Attribute` `Required` Array of button that will be shown together without any gap */
   buttons: PropTypes.arrayOf(PropTypes.shape(BasicButton.propTypes)).isRequired,
   /** `Styling` Will center the group in the screen (on in another container) */
   isCentered: PropTypes.bool

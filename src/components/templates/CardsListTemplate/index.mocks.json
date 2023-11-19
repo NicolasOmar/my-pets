@@ -12,7 +12,7 @@
         }
       }
     },
-    "cardListData": {
+    "cardsListData": {
       "table": {
         "type": {
           "summary": "Card[]"

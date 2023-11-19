@@ -50,6 +50,6 @@ DiffColors.args = {
   dataList: renderList(i => ({
     text: `${i % 2 ? 'success' : 'danger'}-test-${++i}`,
     color: i % 2 ? 'danger' : 'success',
-    size: 'big'
+    size: 'large'
   }))
 }

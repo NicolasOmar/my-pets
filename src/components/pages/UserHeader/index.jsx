@@ -12,8 +12,11 @@ import NavBar from '../../organisms/NavBar'
 import ROUTES from '../../../constants/routes.json'
 // FUNCTIONS
 import { clearAllStorage } from '../../../functions/local-storage'
+// MOCKS
+import config from './config.json'
 
 const { APP_ROUTES } = ROUTES
+const { brandIcon } = config
 
 const UserHeader = ({ name }) => {
   let navigate = useNavigate()
@@ -46,6 +49,10 @@ const UserHeader = ({ name }) => {
   // }
 
   const dropdownConfig = {
+    icon: {
+      ...brandIcon,
+      onClick: () => navigate(APP_ROUTES.HOME)
+    },
     end: [
       // {
       //   type: 'item',

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 // TYPES
-import { complexPropTypes } from '../../../types/commonTypes'
+import { complexPropTypes, clickeablePropTypes } from '../../../types/commonTypes'
 // CONSTANTS
 import BULMA_STYLES from '../../../constants/bulma-styles.json'
 // FUNCTIONS
@@ -129,6 +129,7 @@ export default BasicSelect
 
 BasicSelect.propTypes = {
   ...complexPropTypes,
+  ...clickeablePropTypes,
   /** `Attribute` `Required`. Used to populate several select's properties */
   control: PropTypes.string.isRequired,
   /** `Attribute` Marks the select as required */
@@ -160,8 +161,6 @@ BasicSelect.propTypes = {
   /** `Styling` Add a spinner animation to select's content */
   isLoading: PropTypes.bool,
   // FUNCTIONS
-  /** `Function` Sends a click signal to its parent component when user clicks on the select */
-  onClick: PropTypes.func,
   /** `Function` Sends event and control information to its parent component when user press a new key */
   onInputChange: PropTypes.func,
   /** `Function` Sends control information to its parent component when user changes its focus to other form input */

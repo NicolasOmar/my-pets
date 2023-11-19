@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 // COMPONENTS
 import NavBarItem from '../../atoms/NavBarItem'
 import NavBarDropdown from '../../molecules/NavBarDropdown'
+import Icon from '../../atoms/Icon'
 
 const NavBar = ({ icon = null, start = null, end = null, styles = {} }) => {
   const sectionMapper = {
@@ -13,7 +14,9 @@ const NavBar = ({ icon = null, start = null, end = null, styles = {} }) => {
   const renderBrand = icon =>
     icon && (
       <section data-testid="navbar-brand" className="navbar-brand">
-        <NavBarItem key="navbar-brand">{icon}</NavBarItem>
+        <NavBarItem key="navbar-brand">
+          <Icon {...icon} />
+        </NavBarItem>
       </section>
     )
 
@@ -42,7 +45,7 @@ export default NavBar
 
 NavBar.propTypes = {
   /** `Attribute` Sets a custom Icon at NavBar's start */
-  icon: PropTypes.element,
+  icon: PropTypes.shape(Icon.propTypes),
   /** `Attribute` Sets a list/array of dropdown objects to be shown at NavBar's start */
   start: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.element),

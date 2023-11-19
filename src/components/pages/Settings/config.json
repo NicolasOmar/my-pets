@@ -1,9 +1,11 @@
 {
   "updateUserConfig": {
     "header": {
-      "titleText": "Update user information",
-      "titleSize": "big",
-      "isCentered": true
+      "title": {
+        "titleText": "Update user information",
+        "titleSize": "big",
+        "isCentered": true
+      }
     },
     "inputs": {
       "name": {

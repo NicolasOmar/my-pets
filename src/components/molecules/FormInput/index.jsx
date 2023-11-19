@@ -82,7 +82,7 @@ FormInput.propTypes = {
   inputLabel: PropTypes.string,
   /** `Attribute` Adds a spinner on the input */
   isLoading: PropTypes.bool,
-  /** `Required` `Attribute` Configuration for the input, functions included */
+  /** `Attribute` `Required` Configuration for the input, functions included */
   inputConfig: PropTypes.oneOfType([
     PropTypes.shape(BasicInput.propTypes),
     PropTypes.shape(RadioCheckGroup.propTypes),

@@ -18,6 +18,11 @@ export const containerPropTypes = {
   containerStyle: PropTypes.object
 }
 
+export const clickeablePropTypes = {
+  /** `Function` Sends a click signal to its parent component when user clicks on the select */
+  onClick: PropTypes.func
+}
+
 export const complexPropTypes = {
   ...elementPropTypes,
   ...containerPropTypes

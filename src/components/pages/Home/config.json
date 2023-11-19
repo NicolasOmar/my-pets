@@ -22,6 +22,6 @@
     "subSize": "small",
     "isCentered": true,
     "childWidth": 12,
-    "styles": { "margin": "20px 0px" }
+    "containerStyle": { "margin": "20px 0px" }
   }
 }

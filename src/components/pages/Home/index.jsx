@@ -10,12 +10,14 @@ import ProgressBar from '../../atoms/ProgressBar'
 import { getLoggedUser } from '../../../functions/local-storage'
 // MOCKS
 import config from './config.json'
+// FUNCTIONS
+import { parseSingularPluralStrings } from '../../../functions/parsers'
 
 const { cardListTitle, petPopulationWidget } = config
 
 const Home = () => {
   const user = getLoggedUser()
-  const [cardListData, setCardListData] = useState([
+  const [cardsListData, setCardsListData] = useState([
     {
       ...petPopulationWidget,
       cardContent: [
@@ -37,7 +39,15 @@ const Home = () => {
   useEffect(() => {
     if (data) {
       const [all, ...pets] = data.getMyPetsPopulation
-      setCardListData([
+      const petQuantityText = parseSingularPluralStrings({
+        quantity: all.quantity,
+        zeroString: 'no pets yet',
+        singularString: 'pet',
+        pluralAddition: 's',
+        startString: 'You have'
+      })
+      
+      setCardsListData([
         {
           ...petPopulationWidget,
           cardContent: [
@@ -45,9 +55,8 @@ const Home = () => {
               ...petPopulationWidget.cardContent[0],
               content: {
                 ...petPopulationWidget.cardContent[0].content,
-                titleText: `${
-                  all.quantity === 0 ? `No pets yet` : `You have ${all.quantity} pets`
-                }`
+                titleText: petQuantityText,
+                isCentered: true
               }
             },
             {
@@ -74,7 +83,7 @@ const Home = () => {
     titleText: `HELLO ${user?.name?.toUpperCase()}`
   }
 
-  return <CardsListTemplate {...{ cardsListTitle, cardListData }} />
+  return <CardsListTemplate {...{ cardsListTitle, cardsListData }} />
 }
 
 export default Home

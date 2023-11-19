@@ -1,8 +1,10 @@
 {
   "header": {
-    "titleText": "Add new Pet",
-    "titleSize": "big",
-    "isCentered": true
+    "title": {
+      "titleText": "Add new Pet",
+      "titleSize": "big",
+      "isCentered": true
+    }
   },
   "inputs": {
     "name": {

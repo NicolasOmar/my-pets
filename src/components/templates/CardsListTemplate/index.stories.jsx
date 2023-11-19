@@ -8,7 +8,8 @@ const cardTestMocks = cardMocks.testing
 const renderCards = number =>
   Array(number)
     .fill(null)
-    .map(() => ({
+    .map((_, i) => ({
+      key: `story-card-${i}`,
       cardImage: cardTestMocks.testBaseImage,
       cardContent: [
         {
@@ -24,7 +25,7 @@ export default {
   component: CardsListTemplate,
   argTypes: storybook,
   args: {
-    cardListData: renderCards(1)
+    cardsListData: renderCards(1)
   }
 }
 
@@ -32,16 +33,16 @@ const Template = args => <CardsListTemplate {...args} />
 
 export const DisplayOneCard = Template.bind({})
 DisplayOneCard.storyName = 'Display 1 card'
-DisplayOneCard.args = { cardListData: renderCards(1) }
+DisplayOneCard.args = { cardsListData: renderCards(1) }
 
 export const DisplayFourCards = Template.bind({})
 DisplayFourCards.storyName = 'Display 4 cards'
-DisplayFourCards.args = { cardListData: renderCards(4) }
+DisplayFourCards.args = { cardsListData: renderCards(4) }
 
 export const DisplaySixCards = Template.bind({})
 DisplaySixCards.storyName = 'Display 6 cards'
-DisplaySixCards.args = { cardListData: renderCards(6) }
+DisplaySixCards.args = { cardsListData: renderCards(6) }
 
 export const DisplayTwelveCards = Template.bind({})
 DisplayTwelveCards.storyName = 'Display 12 cards'
-DisplayTwelveCards.args = { cardListData: renderCards(12) }
+DisplayTwelveCards.args = { cardsListData: renderCards(12) }

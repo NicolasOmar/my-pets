@@ -28,8 +28,16 @@ const Notification = ({
   const notificationTestId = testId ?? `test-notification-${colors[color]}`
 
   return (
-    <div data-testid={notificationTestId} className={notificationClasses} style={style ?? undefined}>
-      <button data-testid={`${notificationTestId}-delete`} className="delete" onClick={onDeleteClick ?? undefined} />
+    <div
+      data-testid={notificationTestId}
+      className={notificationClasses}
+      style={style ?? undefined}
+    >
+      <button
+        data-testid={`${notificationTestId}-delete`}
+        className="delete"
+        onClick={onDeleteClick ?? undefined}
+      />
       {text}
     </div>
   )

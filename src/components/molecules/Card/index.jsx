@@ -75,7 +75,7 @@ Card.propTypes = {
   cardHeader: PropTypes.oneOfType([PropTypes.element, PropTypes.elementType, PropTypes.array]),
   /** `Attribute` Sets the image section where will be shown */
   cardImage: PropTypes.shape(Image.propTypes),
-  /** `Required` `Attribute` Sets the content section where any type of component or text will be shown */
+  /** `Attribute` `Required` Sets the content section where any type of component or text will be shown */
   cardContent: PropTypes.oneOfType([PropTypes.element, PropTypes.elementType, PropTypes.array])
     .isRequired,
   /** `Attribute` Sets the footer section where a list of links will be shown */

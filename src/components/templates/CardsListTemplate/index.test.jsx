@@ -14,6 +14,7 @@ describe('[CardsListTemplate]', () => {
     Array(number)
       .fill(null)
       .map((_, i) => ({
+        key: `test-list-card-item-${i}`,
         cardHeader: [{ content: `Test title card ${i}` }],
         cardImage: cardTestMocks.testBaseImage,
         cardContent: [
@@ -23,7 +24,6 @@ describe('[CardsListTemplate]', () => {
               titleText: `Test card ${i}`
             }
           },
-
           {
             type: 'icon',
             content: {
@@ -45,7 +45,7 @@ describe('[CardsListTemplate]', () => {
       }))
 
   const renderCardListCases = (items, otherProps = {}) => {
-    const templateConfig = { ...otherProps, cardListData: renderCards(items) }
+    const templateConfig = { ...otherProps, cardsListData: renderCards(items) }
     const testIds = [
       'test-card-header',
       'test-card-content',
@@ -68,7 +68,7 @@ describe('[CardsListTemplate]', () => {
   })
 
   test('Should render the component with isFetching', () => {
-    render(<CardsListTemplate {...{ cardListData: renderCards(5), isFetching: true }} />)
+    render(<CardsListTemplate {...{ cardsListData: renderCards(5), isFetching: true }} />)
     expect(screen.getByTestId('test-loading-progress-bar')).toBeInTheDocument()
   })
 
