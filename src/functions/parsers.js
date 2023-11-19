@@ -103,8 +103,8 @@ export const searchIdsFromNames = (ids = [], stringList = null) =>
   Array.isArray(ids)
     ? ids.map(({ id }) => (stringList ? stringList.find(_string => _string.id === id).name : id))
     : stringList
-    ? stringList.find(_string => _string.id === ids.id).name
-    : ids.id
+      ? stringList.find(_string => _string.id === ids.id).name
+      : ids.id
 
 export const searchNamesFromIds = (ids = null, list = [], searchMultiple = false) => {
   return searchMultiple
@@ -162,5 +162,5 @@ export const parseSingularPluralStrings = ({
       break
   }
 
-  return `${startString} ${partialText} ${endString}`
+  return `${startString} ${partialText} ${endString}`.trim()
 }

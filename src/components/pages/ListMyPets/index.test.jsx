@@ -20,19 +20,12 @@ vi.mock('react-router-dom', async originalPackage => {
     useNavigate: () => mockUseNavigate
   }
 })
-const baseRequest = [
-  {
-    request: {
-      query: GET_MY_PETS_QUERY
-    }
-  },
-  {
-    result: null
-  }
-]
+const baseRequest = {
+  query: GET_MY_PETS_QUERY
+}
 
 describe('[ListMyPets]', () => {
-  const { pageTitle, loadingBarTestId, valuesToAppear } = testing
+  const { pageTitle, loadingBarTestId, positiveResponse, valuesToAppear } = testing
 
   test('Should render the page with the loading component', async () => {
     render(
@@ -50,8 +43,8 @@ describe('[ListMyPets]', () => {
   test('Should render the page with the loaded pet', async () => {
     const positiveMock = [
       {
-        request: baseRequest[0].request,
-        result: testing.positiveResponse
+        request: baseRequest,
+        result: positiveResponse
       }
     ]
 

@@ -66,7 +66,9 @@ const Icon = ({
         title={alt ?? undefined}
         onClick={onClick ?? undefined}
       ></i>
-        {iconText ? <span onClick={onClick ?? undefined}>{iconText}</span> : null}
+        {iconText ? (
+          <span aria-hidden="true" onClick={onClick ?? undefined}>{iconText}</span>
+        ) : null}
     </span>
   )
 }

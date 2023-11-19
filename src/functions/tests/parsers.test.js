@@ -12,7 +12,8 @@ import {
   searchIdsFromNames,
   parseDateString,
   buildArgTypes,
-  parseListToStoryOptions
+  parseListToStoryOptions,
+  parseSingularPluralStrings
 } from '../parsers'
 // MOCKS
 import mocks from '../mocks/parsers.mocks.json'
@@ -161,6 +162,13 @@ describe('[Funtions.parsers]', () => {
     test('Should return the expected cases', () => {
       const { cases, results } = mocks.parseListToStoryOptions
       cases.forEach((_case, i) => expect(parseListToStoryOptions(..._case)).toEqual(results[i]))
+    })
+  })
+
+  describe('[parseSingularPluralStrings]', () => {
+    test('Should return the expected cases', () => {
+      const { cases, results } = mocks.parseSingularPluralStrings
+      cases.forEach((_case, i) => expect(parseSingularPluralStrings(_case)).toEqual(results[i]))
     })
   })
 })
