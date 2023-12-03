@@ -26,8 +26,6 @@ const AddEvent = () => {
       associatedPets: [params.petId]
     }
 
-    console.warn(eventInfo)
-
     await createEvent({
       variables: { eventInfo }
     })
