@@ -1,10 +1,11 @@
 {
   "name": "my-pets",
   "version": "0.2.8",
+  "description": "A react-based web application for daily activity log of family pets",
   "author": "Nicolás Omar González Passerino",
   "license": "MIT",
   "private": false,
-  "homepage": "https://github.com/NicolasOmar/my-pets#readme",
+  "homepage": "https://my-pets-prod.netlify.app",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/NicolasOmar/my-pets.git"

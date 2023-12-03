@@ -105,6 +105,10 @@ const ListMyPets = () => {
                 {
                   label: 'Update',
                   onClick: () => navigate(`${APP_ROUTES.UPDATE_PET}/${id}`)
+                },
+                {
+                  label: 'Add Event',
+                  onClick: () => navigate(`${APP_ROUTES.ADD_EVENT}/${id}`)
                 }
               ],
               childWidth: 3
