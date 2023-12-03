@@ -1,0 +1,16 @@
+{
+  "testing": {
+    "positiveResponse": {
+      "data": {
+        "createEvent": {
+          "description": "Testing Description",
+          "date": "2023-12-10"
+        }
+      }
+    },
+    "valuesToAppear": [
+      "Testing Description",
+      "2023-12-10"
+    ]
+  }
+}
