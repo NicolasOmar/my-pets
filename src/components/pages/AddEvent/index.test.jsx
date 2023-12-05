@@ -1,8 +1,9 @@
 import React from 'react'
-import { describe, test, expect, vi } from 'vitest'
+import { describe, test, expect } from 'vitest'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MockedProvider } from '@apollo/client/testing'
+import { MemoryRouter, Route, Routes } from 'react-router-dom'
 // APP_ROUTES
 // GRAPHQL
 import { CREATE_EVENT } from '../../../graphql/mutations'
@@ -13,30 +14,39 @@ import AddEvent from '.'
 import { inputs, addEventButton } from './config.json'
 import { testing } from './index.mocks.json'
 
-const mockUseNavigate = vi.fn()
-const mockUseParams = vi.fn()
-
-vi.mock('react-router-dom', async originalPackage => {
-  const _originalPackage = await originalPackage
-  return {
-    ..._originalPackage,
-    useNavigate: () => mockUseNavigate,
-    useParams: () => mockUseParams
-  }
-})
-
 const baseRequest = {
-  query: CREATE_EVENT
+  query: CREATE_EVENT,
+  variables: testing.mutationVariables
 }
 
+const renderWithRouter = ({ initialRoute = '/', routePath = '/', mockedElement }) => (
+  <MemoryRouter initialEntries={['Test page', initialRoute]}>
+    <Routes>
+      <Route path={routePath} element={mockedElement} />
+    </Routes>
+  </MemoryRouter>
+)
+
 describe('[AddEvent]', () => {
-  const { positiveResponse, valuesToAppear } = testing
+  const { positiveResponse, valuesToAppear, initialRoute } = testing
+  const positiveMock = [
+    {
+      request: baseRequest,
+      result: positiveResponse
+    }
+  ]
 
   test('Should render the page with its inputs', () => {
     render(
-      <MockedProvider mocks={[]} addTypename={false}>
-        <AddEvent />
-      </MockedProvider>
+      renderWithRouter({
+        initialRoute: initialRoute,
+        routePath: '/add-event/:petId',
+        mockedElement: (
+          <MockedProvider mocks={positiveMock} addTypename={false}>
+            <AddEvent />
+          </MockedProvider>
+        )
+      })
     )
 
     Object.keys(inputs).forEach(key => {
@@ -45,18 +55,17 @@ describe('[AddEvent]', () => {
     })
   })
 
-  test.skip('Should render the page, change form inputs data and submit it', async () => {
-    const positiveMock = [
-      {
-        request: baseRequest,
-        result: positiveResponse
-      }
-    ]
-
+  test('Should render the page, change form inputs data and submit it', async () => {
     render(
-      <MockedProvider mocks={positiveMock} addTypename={false}>
-        <AddEvent />
-      </MockedProvider>
+      renderWithRouter({
+        initialRoute: initialRoute,
+        routePath: '/add-event/:petId',
+        mockedElement: (
+          <MockedProvider mocks={positiveMock} addTypename={false}>
+            <AddEvent />
+          </MockedProvider>
+        )
+      })
     )
 
     Object.keys(inputs).forEach(async (key, keyIndex) => {
@@ -73,5 +82,9 @@ describe('[AddEvent]', () => {
 
     const submitButton = screen.getByText(addEventButton.label)
     await userEvent.click(submitButton)
+
+    Object.keys(inputs).forEach(key => {
+      expect(() => screen.getByTestId(`test-${inputs[key].control}-${inputs[key].type}`)).toThrow()
+    })
   })
 })

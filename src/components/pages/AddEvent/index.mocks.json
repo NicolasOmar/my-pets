@@ -1,5 +1,12 @@
 {
   "testing": {
+    "mutationVariables": {
+      "eventInfo": {
+        "description": "Testing Description",
+        "date": "2023-12-10",
+        "associatedPets": ["6535d3e47163ef3793a17674"]
+      }
+    },
     "positiveResponse": {
       "data": {
         "createEvent": {
@@ -11,6 +18,7 @@
     "valuesToAppear": [
       "Testing Description",
       "2023-12-10"
-    ]
+    ],
+    "initialRoute": "/add-event/6535d3e47163ef3793a17674"
   }
 }
