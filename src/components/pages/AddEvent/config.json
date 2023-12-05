@@ -1,0 +1,35 @@
+{
+  "header": {
+    "title": {
+      "titleText": "Add a new event",
+      "isCentered": true
+    }
+  },
+  "inputs": {
+    "description": {
+      "label": "Description",
+      "type": "text",
+      "control": "description",
+      "isVisible": true,
+      "isRequired": true,
+      "maxLength": 200
+    },
+    "date": {
+      "label": "Date",
+      "type": "date",
+      "control": "date",
+      "isVisible": true,
+      "isRequired": true
+    }
+  },
+  "addEventButton": {
+    "type": "submit",
+    "color": "success",
+    "label": "confirm"
+  },
+  "goBackButton": {
+    "type": "button",
+    "color": "danger",
+    "label": "Cancel"
+  }
+}

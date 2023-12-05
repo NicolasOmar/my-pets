@@ -56,3 +56,12 @@ export const UPDATE_PET = gql`
     updatePet(petInfo: $petInfo)
   }
 `
+
+export const CREATE_EVENT = gql`
+  mutation ($eventInfo: CreateEventInput!) {
+    createEvent(eventInfo: $eventInfo) {
+      description
+      date
+    }
+  }
+`

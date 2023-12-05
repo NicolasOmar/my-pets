@@ -16,15 +16,11 @@
             "adoptionDate": null,
             "gender": "femenine",
             "hairColors": [
-              {
-                "name": "White"
-              }
+              { "name": "White" }
             ],
             "hasHeterochromia": false,
             "eyeColors": [
-              {
-                "name": "Beige"
-              }
+              { "name": "Beige" }
             ],
             "passedAway": false
           }
