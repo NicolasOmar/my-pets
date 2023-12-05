@@ -12,10 +12,15 @@ export default defineConfig({
     include: ['src/**/*.test.{jsx,js}'],
     setupFiles: ['./tests/setup.js'],
     coverage: {
-      branches: 80,
-      lines: 80,
-      functions: 80,
-      statements: 80
+      // provider: 'istanbul',
+      include: ['src/components/**/*', 'src/functions/**/*'],
+      exclude: ['src/**/*.stories.jsx'],
+      thresholds: {
+        branches: 85,
+        lines: 85,
+        functions: 85,
+        statements: 85
+      }
     }
   }
 })
