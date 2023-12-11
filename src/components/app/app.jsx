@@ -12,6 +12,7 @@ import AddPet from '../pages/AddPet'
 import ListMyPets from '../pages/ListMyPets'
 import SettingsPage from '../pages/Settings'
 import AddEvent from '../pages/AddEvent'
+import SeeEvents from '../pages/SeeEvents'
 // CONSTANTS
 import ROUTES from '../../constants/routes.json'
 
@@ -33,6 +34,7 @@ const App = () => {
         <Route exact path={APP_ROUTES.LIST_MY_PETS} element={<ListMyPets />} />
         <Route exact path={APP_ROUTES.SETTINGS} element={<SettingsPage />} />
         <Route exact path={`${APP_ROUTES.ADD_EVENT}/:petId`} element={<AddEvent />} />
+        <Route exact path={`${APP_ROUTES.SEE_EVENTS}/:petId`} element={<SeeEvents />} />
         <Route exact path={APP_ROUTES.BASE} element={<Navigate replace to={APP_ROUTES.LOGIN} />} />
         <Route
           exact

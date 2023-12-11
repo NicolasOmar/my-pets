@@ -16,10 +16,10 @@ export default defineConfig({
       include: ['src/components/**/*', 'src/functions/**/*'],
       exclude: ['src/**/*.stories.jsx'],
       thresholds: {
-        branches: 75,
-        lines: 75,
-        functions: 75,
-        statements: 75
+        branches: 80,
+        lines: 80,
+        functions: 80,
+        statements: 80
       }
     }
   }

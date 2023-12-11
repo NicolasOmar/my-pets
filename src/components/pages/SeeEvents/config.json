@@ -1,0 +1,17 @@
+{
+  "header": {
+    "content": [
+      "Position",
+      "Team",
+      "Played",
+      "Won",
+      "Drawn",
+      "Lost",
+      "Goals for",
+      "Goals against",
+      "Goal difference",
+      "Points",
+      "Qualification or relegation"
+    ]
+  }
+}
