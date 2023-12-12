@@ -8,6 +8,7 @@
     "UPDATE_PET": "/update-pet",
     "LIST_MY_PETS": "/my-pets",
     "SETTINGS": "/settings",
-    "ADD_EVENT": "/add-event"
+    "ADD_EVENT": "/add-event",
+    "SEE_EVENTS": "/see-events"
   }
 }

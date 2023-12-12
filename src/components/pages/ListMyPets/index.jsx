@@ -109,6 +109,10 @@ const ListMyPets = () => {
                 {
                   label: 'Add Event',
                   onClick: () => navigate(`${APP_ROUTES.ADD_EVENT}/${id}`)
+                },
+                {
+                  label: 'See Events',
+                  onClick: () => navigate(`${APP_ROUTES.SEE_EVENTS}/${id}`)
                 }
               ],
               childWidth: 3
