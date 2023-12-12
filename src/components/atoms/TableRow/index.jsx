@@ -15,12 +15,18 @@ const TableRow = ({
   sectionType,
   content
 }) => (
-  <tr>{renderRowContent(sectionType, content)}</tr>
+  <tr>
+    {
+      Array.isArray(content)
+        ? content.map(contentItem => renderRowContent(sectionType, contentItem))
+        : renderRowContent(sectionType, content)
+    }
+  </tr>
 )
 
 export default TableRow
 
 TableRow.propTypes = {
   sectionType: PropTypes.oneOf(['head', 'body', 'foot']).isRequired,
-  content: PropTypes.element
+  content: PropTypes.oneOfType([PropTypes.element, PropTypes.array, PropTypes.elementType, PropTypes.string])
 }
