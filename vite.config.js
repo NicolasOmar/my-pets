@@ -15,7 +15,9 @@ export default defineConfig({
       branches: 80,
       lines: 80,
       functions: 80,
-      statements: 80
+      statements: 80,
+      include: ['src/**/*.{jsx,js}'],
+      exclude: ['src/**/*.stories.jsx']
     }
   }
 })
