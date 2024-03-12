@@ -54,8 +54,8 @@ const RadioCheckGroup = ({
               value: isRadioType
                 ? item.control === value
                 : Array.isArray(value)
-                ? options.find(({ control }) => item.control === control)
-                : value,
+                  ? options.find(({ control }) => item.control === control)
+                  : value,
               type,
               name,
               onInputChange: (value, control) => onOptionChange(value, control),

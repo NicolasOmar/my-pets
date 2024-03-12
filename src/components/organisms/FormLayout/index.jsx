@@ -82,7 +82,7 @@ const FormLayout = ({
       !disableConfirmButton && onFormSubmit(sendObjValues({ ...formControls }))
     }
   }
-  
+
   return (
     <form key="form-base" data-testid="test-form-base" className={formClasses} onSubmit={onSubmit}>
       {Object.keys(formControls).map((prop, i) => {

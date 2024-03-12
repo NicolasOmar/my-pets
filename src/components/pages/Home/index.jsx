@@ -46,7 +46,7 @@ const Home = () => {
         pluralAddition: 's',
         startString: 'You have'
       })
-      
+
       setCardsListData([
         {
           ...petPopulationWidget,
