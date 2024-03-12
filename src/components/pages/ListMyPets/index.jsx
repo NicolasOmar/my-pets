@@ -23,17 +23,16 @@ const { APP_ROUTES } = ROUTES
 
 const ListMyPets = () => {
   let navigate = useNavigate()
-  const { loading, data, refetch } = useQuery(
-    GET_MY_PETS_QUERY, {
-      fetchPolicy: 'network-only'
-    })
+  const { loading, data, refetch } = useQuery(GET_MY_PETS_QUERY, {
+    fetchPolicy: 'network-only'
+  })
   const [petsInfo, setPetsInfo] = useState([])
-  const searchInputCallback = (event) => refetch({ search: event.target.value }) 
+  const searchInputCallback = event => refetch({ search: event.target.value })
   const searchInput = {
     ...petSearchInput,
     onInputChange: debouncer(searchInputCallback, 500)
   }
-  
+
   useEffect(
     () =>
       setPetsInfo(
@@ -55,13 +54,12 @@ const ListMyPets = () => {
             i
           ) => {
             const parsedBirthday = parseDateString(birthday, '-')
-            const parsedAdoptionDate = parseBooleanToString(
-              isAdopted, [`Yes, ${parseDateString(adoptionDate, '-')}`, 'No']
-            )
+            const parsedAdoptionDate = parseBooleanToString(isAdopted, [
+              `Yes, ${parseDateString(adoptionDate, '-')}`,
+              'No'
+            ])
             const parsedHairColors = parseArrayToString(hairColors, 'name')
-            const parsedHeterochromia = parseBooleanToString(
-              hasHeterochromia, ['Yes', 'No']
-            )
+            const parsedHeterochromia = parseBooleanToString(hasHeterochromia, ['Yes', 'No'])
             const parsedEyeColors = parseArrayToString(eyeColors, 'name')
 
             return {
@@ -73,7 +71,7 @@ const ListMyPets = () => {
                   content: {
                     ...petTitle,
                     titleText: name,
-                    subText: petType.name,
+                    subText: petType.name
                   }
                 },
                 {
@@ -120,13 +118,16 @@ const ListMyPets = () => {
   )
 
   return (
-    <CardsListTemplate {...{
-      cardsListData: petsInfo,
-      cardsListTitle,
-      searchInput,
-      noDataText: noPetsText,
-      isFetching: loading,
-    }} />)
+    <CardsListTemplate
+      {...{
+        cardsListData: petsInfo,
+        cardsListTitle,
+        searchInput,
+        noDataText: noPetsText,
+        isFetching: loading
+      }}
+    />
+  )
 }
 
 export default ListMyPets

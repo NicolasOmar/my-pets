@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useMutation } from '@apollo/client'
 import { CREATE_EVENT } from '../../../graphql/mutations'
 // COMPONENTS
-import FormTemplate from "../../templates/FormTemplate"
+import FormTemplate from '../../templates/FormTemplate'
 // FORM CONFIG
 import CONFIG from './config.json'
 // CONSTANTS
@@ -20,7 +20,7 @@ const AddEvent = () => {
   let navigate = useNavigate()
   const [createEvent, { loading, error }] = useMutation(CREATE_EVENT)
 
-  const handleSubmitNewEvent = async (formData) => {
+  const handleSubmitNewEvent = async formData => {
     const eventInfo = {
       ...parseFormDataToObj(formData),
       associatedPets: [params.petId]

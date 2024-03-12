@@ -13,8 +13,8 @@ const parseImgClasses = (fixedRatio, ratio) =>
   Number.isInteger(fixedRatio)
     ? `image is-${fixedRatio}x${fixedRatio}`
     : imageRatios[ratio]
-    ? `image ${imageRatios[ratio]}`
-    : 'image'
+      ? `image ${imageRatios[ratio]}`
+      : 'image'
 
 const Image = ({
   testId = null,

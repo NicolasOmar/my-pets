@@ -33,7 +33,7 @@ const renderCardSection = (cardSection, mapFn) =>
         .map((_sectionContent, _sectionIndex) => mapFn(_sectionContent, _sectionIndex))
     : cardSection
 
-const renderCardsGroup = cardsListData => (
+const renderCardsGroup = cardsListData =>
   cardsListData?.map(
     ({ key, cardHeader, cardImage, cardContent, cardFooter, childWidth = 3 }, cardIndex) => {
       const cardConfig = {
@@ -57,7 +57,6 @@ const renderCardsGroup = cardsListData => (
       return <Card key={key} {...cardConfig} />
     }
   ) ?? [null]
-)
 
 const CardsListTemplate = ({
   cardsListData,
@@ -70,7 +69,9 @@ const CardsListTemplate = ({
   isFetching = false,
   centerList = true
 }) => {
-  const searchInputConfig = searchInput ? { ...searchInput, value: searchInput.value ?? null } : null
+  const searchInputConfig = searchInput
+    ? { ...searchInput, value: searchInput.value ?? null }
+    : null
   const noDataConfig = {
     ...noDataText,
     childWidth: 12,
@@ -79,39 +80,37 @@ const CardsListTemplate = ({
   const parseCardsList = () =>
     isFetching
       ? [<ProgressBar key={`card-progress-bar`} isInfiniteLoading={true} />]
-      : cardsListData.length > 0 ? renderCardsGroup(cardsListData) : [<TitleHeader {...noDataConfig} />]
+      : cardsListData.length > 0
+        ? renderCardsGroup(cardsListData)
+        : [<TitleHeader {...noDataConfig} />]
 
   return (
     <>
-      {
-        cardsListTitle ? (
-          <Column
-            {...{
-              _key: 'test-card-list-header',
-              testId: 'test-card-list-header',
-              width: 12,
-              children: [<TitleHeader key="cards-title" {...cardsListTitle} />]
-            }}
-          />
-        ) : null
-      }
-      {
-        searchInputConfig ? (
-          <Column
-            {...{
-              _key: 'test-card-list-search',
-              testId: 'test-card-list-search',
-              width: 3,
-              isCentered: true,
-              style: {
-                margin: '0 auto'
-              },
-              cssClasses: 'pb-4',
-              children: [<BasicInput {...searchInputConfig} />]
-            }}
-          />
-        ) : null
-      }
+      {cardsListTitle ? (
+        <Column
+          {...{
+            _key: 'test-card-list-header',
+            testId: 'test-card-list-header',
+            width: 12,
+            children: [<TitleHeader key="cards-title" {...cardsListTitle} />]
+          }}
+        />
+      ) : null}
+      {searchInputConfig ? (
+        <Column
+          {...{
+            _key: 'test-card-list-search',
+            testId: 'test-card-list-search',
+            width: 3,
+            isCentered: true,
+            style: {
+              margin: '0 auto'
+            },
+            cssClasses: 'pb-4',
+            children: [<BasicInput {...searchInputConfig} />]
+          }}
+        />
+      ) : null}
       <GridLayout
         {...{
           centerGrid: centerList,

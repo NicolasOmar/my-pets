@@ -48,8 +48,8 @@ const BasicInput = ({
       placeholder={placeHolder}
       required={isRequired}
       disabled={isDisabled}
-      onChange={evt => onInputChange ? onInputChange(evt, control) : undefined}
-      onBlur={() => onBlurChange ? onBlurChange(control) : undefined}
+      onChange={evt => (onInputChange ? onInputChange(evt, control) : undefined)}
+      onBlur={() => (onBlurChange ? onBlurChange(control) : undefined)}
       name={control.toLowerCase().replace(' ', '-')}
       minLength={minLength}
       maxLength={maxLength}

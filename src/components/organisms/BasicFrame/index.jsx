@@ -14,7 +14,9 @@ const BasicFrame = ({ header = null, width = 8, centerGrid = false, children = [
     header ? (
       <>
         {header.icon ? <Icon key="header-icon" {...header.icon} /> : null}
-        {header.title ? <TitleHeader key="header-title-header" {...{ ...header.title, style: headerStyles }} /> : null}
+        {header.title ? (
+          <TitleHeader key="header-title-header" {...{ ...header.title, style: headerStyles }} />
+        ) : null}
       </>
     ) : null
 
