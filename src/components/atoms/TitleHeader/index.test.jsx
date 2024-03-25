@@ -1,6 +1,7 @@
 import React from 'react'
 import { describe, test, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
+import '@testing-library/jest-dom'
 // COMPONENT
 import TitleHeader from '.'
 // MOCKS

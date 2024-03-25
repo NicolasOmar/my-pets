@@ -1,6 +1,7 @@
 import React from 'react'
 import { describe, test, expect, vi } from 'vitest'
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
+import '@testing-library/jest-dom'
 // COMPONENTS
 import BasicSelect from '.'
 // MOCKS
