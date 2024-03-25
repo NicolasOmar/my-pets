@@ -18,7 +18,7 @@
     "start": "vite",
     "start:prod": "npm run build:app && npm run preview",
     "test": "vitest",
-    "test:ci": "npm run test -- --coverage",
+    "test:ci": "npm run test -- --coverage --pool=forks",
     "build:app": "vite build",
     "build:storybook": "storybook build",
     "preview": "vite preview",
