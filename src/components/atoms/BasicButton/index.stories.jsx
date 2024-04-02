@@ -53,39 +53,33 @@ export const Minimal = Template.bind({})
 Minimal.storyName = 'Minimal config'
 
 export const Colored = Template.bind({})
-Colored.storyName = 'Colored'
 Colored.args = testing.colored
 
 export const Loading = Template.bind({})
-Loading.storyName = 'Loading'
 Loading.args = {
   ...Colored.args,
   ...testing.loading
 }
 
 export const Outlined = Template.bind({})
-Outlined.storyName = 'Outlined'
 Outlined.args = {
   ...Colored.args,
   ...testing.outlined
 }
 
 export const Inverted = Template.bind({})
-Inverted.storyName = 'Inverted'
 Inverted.args = {
   ...Colored.args,
   ...testing.inverted
 }
 
 export const Disabled = Template.bind({})
-Disabled.storyName = 'Disabled'
 Disabled.args = {
   ...Colored.args,
   ...testing.disabled
 }
 
 export const Large = Template.bind({})
-Large.storyName = 'Large'
 Large.args = {
   ...Colored.args,
   ...testing.large

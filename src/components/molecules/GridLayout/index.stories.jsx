@@ -48,21 +48,18 @@ WithSeveralComponent.args = {
 }
 
 export const Centered = Template.bind({})
-Centered.storyName = 'Centered'
 Centered.args = {
   ...WithSeveralComponent.args,
   centerGrid: true
 }
 
 export const MinimalWidth = Template.bind({})
-MinimalWidth.storyName = 'Minimun Width'
 MinimalWidth.args = {
   ...Centered.args,
   width: 1
 }
 
 export const MaximunWidth = Template.bind({})
-MaximunWidth.storyName = 'Maximun Width'
 MaximunWidth.args = {
   ...Centered.args,
   width: 12

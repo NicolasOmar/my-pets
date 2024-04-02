@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 // GRAPHQL CLIENT
 import { useLazyQuery } from '@apollo/client'
 import { GET_MY_PETS_POPULATION_QUERY } from '../../../graphql/queries'

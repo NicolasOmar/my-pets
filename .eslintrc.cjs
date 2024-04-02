@@ -23,9 +23,11 @@ module.exports = {
       version: '18.2'
     }
   },
-  plugins: ['react-refresh'],
+  plugins: ['react-refresh', 'react'],
   rules: {
-    'react-refresh/only-export-components': 'warn'
+    'react-refresh/only-export-components': 'off',
+    "react/jsx-uses-vars": "error",
+    "react/jsx-uses-react": "error"
   },
   ignorePatterns: ['*.test.js', '*.test.jsx']
 };

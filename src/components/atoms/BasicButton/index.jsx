@@ -1,3 +1,4 @@
+import React from 'react'
 import PropTypes from 'prop-types'
 // TYPES
 import { elementPropTypes, clickeablePropTypes } from '../../../types/commonTypes'

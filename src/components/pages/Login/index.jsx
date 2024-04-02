@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 // GRAPHQL CLIENT
 import { useMutation } from '@apollo/client'
@@ -26,7 +26,7 @@ const Login = () => {
   useEffect(() => {
     userData && navigate(APP_ROUTES.HOME)
     return () => {}
-  }, [navigate])
+  }, [navigate, userData])
 
   useEffect(() => {
     if (data) {
@@ -34,7 +34,7 @@ const Login = () => {
       setUserData(data.loginUser)
       navigate(APP_ROUTES.HOME)
     }
-  }, [data, navigate])
+  }, [data, setUserData, navigate])
 
   const onSubmitLogin = async formData => {
     await login({

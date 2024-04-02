@@ -53,32 +53,25 @@ export const Minimal = Template.bind({})
 Minimal.storyName = 'Minimal config'
 
 export const Password = Template.bind({})
-Password.storyName = 'Password'
 Password.args = testing.password
 
 export const Colored = Template.bind({})
-Colored.storyName = 'Colored'
 Colored.args = testing.colored
 
 export const Large = Template.bind({})
-Large.storyName = 'Large'
 Large.args = testing.large
 
 export const Rounded = Template.bind({})
-Rounded.storyName = 'Rounded'
 Rounded.args = {
   ...Large.args,
   ...testing.rounded
 }
 
 export const WithPlaceholder = Template.bind({})
-WithPlaceholder.storyName = 'With Placeholder'
 WithPlaceholder.args = testing.placeholderOnly
 
 export const ValueAndPlaceholder = Template.bind({})
-ValueAndPlaceholder.storyName = 'Value & Placeholder'
 ValueAndPlaceholder.args = testing.valueAndPlaceholder
 
 export const Disabled = Template.bind({})
-Disabled.storyName = 'Disabled'
 Disabled.args = testing.disabled

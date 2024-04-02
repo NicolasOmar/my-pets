@@ -1,3 +1,4 @@
+import React from 'react'
 import PropTypes from 'prop-types'
 // TYPES
 import { elementPropTypes } from '../../../types/commonTypes'

@@ -27,11 +27,9 @@ export const Minimal = Template.bind({})
 Minimal.storyName = 'Minimal config'
 
 export const Loading = Template.bind({})
-Loading.storyName = 'Loading'
 Loading.args = testing.loading
 
 export const Invalid = Template.bind({})
-Invalid.storyName = 'Invalid'
 Invalid.args = {
   inputConfig: {
     ...testing.minimalConfig.inputConfig,
