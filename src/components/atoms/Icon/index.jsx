@@ -1,4 +1,4 @@
-import React from 'react'
+
 import PropTypes from 'prop-types'
 // TYPES
 import { complexPropTypes, clickeablePropTypes } from '../../../types/commonTypes'

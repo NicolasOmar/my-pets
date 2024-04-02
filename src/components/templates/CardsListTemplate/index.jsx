@@ -1,4 +1,3 @@
-import React from 'react'
 import PropTypes from 'prop-types'
 // COMPONENTS
 import Card from '../../molecules/Card'

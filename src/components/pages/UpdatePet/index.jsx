@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 // GRAPHQL CLIENT
 import { useLazyQuery, useMutation, useQuery } from '@apollo/client'
