@@ -44,25 +44,21 @@ export const Minimal = Template.bind({})
 Minimal.storyName = 'Minimal config'
 
 export const Colored = Template.bind({})
-Colored.storyName = 'Colored'
 Colored.args = testing.colored
 
 export const Large = Template.bind({})
-Large.storyName = 'Large'
 Large.args = {
   ...Colored.args,
   ...testing.large
 }
 
 export const Rounded = Template.bind({})
-Rounded.storyName = 'Rounded'
 Rounded.args = {
   ...Large.args,
   ...testing.rounded
 }
 
 export const WithDelete = Template.bind({})
-WithDelete.storyName = 'With delete'
 WithDelete.args = {
   ...Rounded.args,
   ...testing.withDeleteBtn

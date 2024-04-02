@@ -82,7 +82,7 @@ const CardsListTemplate = ({
       ? [<ProgressBar key={`card-progress-bar`} isInfiniteLoading={true} />]
       : cardsListData.length > 0
         ? renderCardsGroup(cardsListData)
-        : [<TitleHeader {...noDataConfig} />]
+        : [<TitleHeader key={`card-title-header`} {...noDataConfig} />]
 
   return (
     <>
@@ -107,7 +107,7 @@ const CardsListTemplate = ({
               margin: '0 auto'
             },
             cssClasses: 'pb-4',
-            children: [<BasicInput {...searchInputConfig} />]
+            children: [<BasicInput key={`card-basic-input`} {...searchInputConfig} />]
           }}
         />
       ) : null}
