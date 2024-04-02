@@ -1,4 +1,3 @@
-
 import PropTypes from 'prop-types'
 // STYLES
 import './index.scss'

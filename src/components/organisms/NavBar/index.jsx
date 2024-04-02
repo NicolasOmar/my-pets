@@ -1,4 +1,3 @@
-
 import PropTypes from 'prop-types'
 // COMPONENTS
 import NavBarItem from '../../atoms/NavBarItem'

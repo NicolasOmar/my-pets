@@ -1,4 +1,3 @@
-
 import PropTypes from 'prop-types'
 // COMPONENTS
 import TitleHeader from '../../atoms/TitleHeader'
