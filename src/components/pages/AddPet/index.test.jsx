@@ -2,13 +2,14 @@ import React from 'react'
 import { describe, test, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
+import '@testing-library/jest-dom'
 // APP_ROUTES
 // GRAPHQL
 // CONTEXT
 // COMPONENTS
 import AddPet from '.'
 // MOCKS
-import { inputs } from './config.json'
+// import { inputs } from './config.json'
 
 const mockUseNavigate = vi.fn()
 

@@ -23,9 +23,9 @@ WithStartAndEnd.args = {
   ...testing.endConfig
 }
 
-export const withDropdownConfigAtEnd = Template.bind({})
-withDropdownConfigAtEnd.storyName = 'With items at start and a dropdown'
-withDropdownConfigAtEnd.args = {
+export const WithDropdownConfigAtEnd = Template.bind({})
+WithDropdownConfigAtEnd.storyName = 'With items at start and a dropdown'
+WithDropdownConfigAtEnd.args = {
   ...testing.startConfig,
   ...testing.withDropdownConfig
 }

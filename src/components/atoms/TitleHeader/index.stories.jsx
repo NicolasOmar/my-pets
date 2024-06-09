@@ -51,15 +51,12 @@ MainAndSub.args = {
 }
 
 export const BigSize = Template.bind({})
-BigSize.storyName = 'Big Size'
 BigSize.args = testing.bigSize
 
 export const SmallSize = Template.bind({})
-SmallSize.storyName = 'Small Size'
 SmallSize.args = testing.smallSize
 
 export const Centered = Template.bind({})
-Centered.storyName = 'Centered'
 Centered.args = {
   ...testing.smallSize,
   isCentered: true

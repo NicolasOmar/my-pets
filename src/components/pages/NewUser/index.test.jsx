@@ -2,6 +2,7 @@ import React from 'react'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
+import '@testing-library/jest-dom'
 // APP_ROUTES
 import ROUTES from '../../../constants/routes.json'
 // GRAPHQL

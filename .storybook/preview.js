@@ -3,7 +3,6 @@ import './styles.css'
 
 const preview = {
   parameters: {
-    actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -11,7 +10,9 @@ const preview = {
       },
       expanded: true
     }
-  }
+  },
+
+  tags: ['autodocs', 'autodocs', "autodocs", 'autodocs']
 }
 
 export default preview

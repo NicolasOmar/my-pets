@@ -1,6 +1,7 @@
 import React from 'react'
 import { describe, expect, test, vi } from 'vitest'
 import { fireEvent, render, screen } from '@testing-library/react'
+import '@testing-library/jest-dom'
 // COMPONENTS
 import Notification from '.'
 // MOCKS

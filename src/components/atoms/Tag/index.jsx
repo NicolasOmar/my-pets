@@ -30,25 +30,23 @@ const Tag = ({
   const tagTestId = testId ?? `test-tag-${size}-${color}`
   const deleteTestId = `test-tag-delete-${size}-${color}`
 
-  return (
-    text ? (
-      <span
-        data-testid={tagTestId}
-        className={tagClasses}
-        style={style ?? undefined}
-        onClick={onTextClick}
-      >
-        {text}
-        {hasDeleteBtn ? (
-          <button
-            data-testid={deleteTestId}
-            className={`delete ${size}`}
-            onClick={onDeleteClick}
-          ></button>
-        ) : null}
-      </span>
-    ) : null
-  )
+  return text ? (
+    <span
+      data-testid={tagTestId}
+      className={tagClasses}
+      style={style ?? undefined}
+      onClick={onTextClick}
+    >
+      {text}
+      {hasDeleteBtn ? (
+        <button
+          data-testid={deleteTestId}
+          className={`delete ${size}`}
+          onClick={onDeleteClick}
+        ></button>
+      ) : null}
+    </span>
+  ) : null
 }
 
 export default Tag

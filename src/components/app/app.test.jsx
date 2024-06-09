@@ -1,5 +1,6 @@
 import React from 'react'
 import { describe, test, expect } from 'vitest'
+import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
 // APP_ROUTES
