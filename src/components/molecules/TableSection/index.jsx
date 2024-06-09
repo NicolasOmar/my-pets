@@ -1,11 +1,10 @@
-import React from "react"
+import React from 'react'
 import PropTypes from 'prop-types'
 // COMPONENTS
-import TableRow from "../../atoms/TableRow"
+import TableRow from '../../atoms/TableRow'
 
-const renderRows = (sectionType, rows) => (
+const renderRows = (sectionType, rows) =>
   rows.map(rowConfig => <TableRow {...{ sectionType, content: rowConfig }} />)
-)
 
 const renderSection = (sectionType, content) => {
   switch (sectionType) {
@@ -18,12 +17,7 @@ const renderSection = (sectionType, content) => {
   }
 }
 
-const TableSection = ({
-  type,
-  rowsContent = []
-}) => (
-  renderSection(type, rowsContent)
-)
+const TableSection = ({ type, rowsContent = [] }) => renderSection(type, rowsContent)
 
 export default TableSection
 

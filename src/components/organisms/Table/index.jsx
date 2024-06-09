@@ -1,13 +1,9 @@
-import React from "react"
+import React from 'react'
 import PropTypes from 'prop-types'
 // COMPONENTS
-import TableSection from "../../molecules/TableSection"
+import TableSection from '../../molecules/TableSection'
 
-const Table = ({
-  headConfig = null,
-  bodyConfig = null,
-  footConfig = null
-}) => {
+const Table = ({ headConfig = null, bodyConfig = null, footConfig = null }) => {
   return (
     <table className="table">
       {headConfig ? <TableSection type="head" rowsContent={headConfig.rowsContent} /> : null}
