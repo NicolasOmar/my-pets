@@ -1,8 +1,8 @@
 import { useQuery } from '@apollo/client'
-import { GET_MY_PET_EVENTS } from '../../../graphql/queries'
+import { GET_MY_PET_EVENTS } from '@graphql/queries'
 import { useParams } from 'react-router-dom'
-import Table from '../../organisms/Table'
 import { useEffect, useState } from 'react'
+import { Table } from 'reactive-bulma'
 
 const parseBodyData = _data => Object.values(_data)
 
@@ -18,26 +18,21 @@ const SeeEvents = () => {
   })
 
   useEffect(() => {
-    if (data?.getMyPetEvents && header.length === 0) {
-      const [firstEvent, ...otherEvents] = data?.getMyPetEvents
+    if (data?.getEvents) {
+      const [firstEvent, ...otherEvents] = data?.getEvents
       const parsedHeader = Object.keys(firstEvent)
       const parsedBodyData = [firstEvent, ...otherEvents].map(eventData => parseBodyData(eventData))
-
       setHeader(parsedHeader)
       setBody(parsedBodyData)
     }
   }, [data])
 
-  return data ? (
+  return data && header.length > 0 && body.length > 0 ? (
     <Table
-      headConfig={{
-        type: 'head',
-        rowsContent: [header]
-      }}
-      bodyConfig={{
-        type: 'body',
-        rowsContent: body
-      }}
+      head={header.map(item => ({ content: item }))}
+      body={body.map(_body => ({
+        listOfCells: _body.map(_item => ({ content: _item }))
+      }))}
     />
   ) : null
 }

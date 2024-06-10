@@ -79,7 +79,7 @@ export const GET_MY_PETS_POPULATION_QUERY = gql`
 
 export const GET_MY_PET_EVENTS = gql`
   query ($petId: ID!) {
-    getMyPetEvents(petId: $petId) {
+    getEvents(petId: $petId) {
       date
       description
     }

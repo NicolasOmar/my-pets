@@ -16,5 +16,15 @@ export default defineConfig({
       include: ['src/**/*.{jsx,js}'],
       exclude: ['src/**/*.stories.jsx']
     }
+  },
+  resolve: {
+    alias: {
+      '@components': '/src/components',
+      '@constants': '/src/constants',
+      '@context': '/src/context',
+      '@functions': '/src/functions',
+      '@graphql': '/src/graphql',
+      '@types': '/src/types'
+    }
   }
 })
