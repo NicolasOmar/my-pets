@@ -1,0 +1,21 @@
+.see-events {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: center;
+
+    & > :first-child {
+      margin-right: 15px;
+    }
+  }
+
+  &__no-data-label {
+    margin-top: 150px;
+  }
+}
