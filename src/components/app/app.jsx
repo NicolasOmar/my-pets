@@ -25,51 +25,87 @@ const App = () => {
     <BrowserRouter>
       {userData ? <UserHeader name={userData.name} /> : null}
       <Routes>
-        <Route exact path={APP_ROUTES.HOME} element={
-          <Suspense fallback='...'>
-            <LazyHome />
-          </Suspense>
-        } />
-        <Route exact path={APP_ROUTES.LOGIN} element={
-          <Suspense fallback='...'>
-            <LazyLogin />
-          </Suspense>
-        } />
-        <Route exact path={APP_ROUTES.NEW_USER} element={
-          <Suspense fallback='...'>
-            <LazyNewUser />
-          </Suspense>
-        } />
-        <Route exact path={`${APP_ROUTES.UPDATE_PET}/:petId`} element={
-          <Suspense fallback='...'>
-            <LazyUpdatePet />
-          </Suspense>
-        } />
-        <Route exact path={APP_ROUTES.ADD_PET} element={
-          <Suspense fallback='...'>
-            <LazyAddPet />
-          </Suspense>
-        } />
-        <Route exact path={APP_ROUTES.LIST_MY_PETS} element={
-          <Suspense fallback='...'>
-            <LazyListMyPets />
-          </Suspense>
-        } />
-        <Route exact path={APP_ROUTES.SETTINGS} element={
-          <Suspense fallback='...'>
-            <LazySettingsPage />
-          </Suspense>
-        } />
-        <Route exact path={`${APP_ROUTES.ADD_EVENT}/:petId`} element={
-          <Suspense fallback='...'>
-            <LazyAddEvent />
-          </Suspense>
-        } />
-        <Route exact path={`${APP_ROUTES.SEE_EVENTS}/:petId`} element={
-          <Suspense fallback='...'>
-            <LazySeeEvents />
-          </Suspense>
-        } />
+        <Route
+          exact
+          path={APP_ROUTES.HOME}
+          element={
+            <Suspense fallback="...">
+              <LazyHome />
+            </Suspense>
+          }
+        />
+        <Route
+          exact
+          path={APP_ROUTES.LOGIN}
+          element={
+            <Suspense fallback="...">
+              <LazyLogin />
+            </Suspense>
+          }
+        />
+        <Route
+          exact
+          path={APP_ROUTES.NEW_USER}
+          element={
+            <Suspense fallback="...">
+              <LazyNewUser />
+            </Suspense>
+          }
+        />
+        <Route
+          exact
+          path={`${APP_ROUTES.UPDATE_PET}/:petId`}
+          element={
+            <Suspense fallback="...">
+              <LazyUpdatePet />
+            </Suspense>
+          }
+        />
+        <Route
+          exact
+          path={APP_ROUTES.ADD_PET}
+          element={
+            <Suspense fallback="...">
+              <LazyAddPet />
+            </Suspense>
+          }
+        />
+        <Route
+          exact
+          path={APP_ROUTES.LIST_MY_PETS}
+          element={
+            <Suspense fallback="...">
+              <LazyListMyPets />
+            </Suspense>
+          }
+        />
+        <Route
+          exact
+          path={APP_ROUTES.SETTINGS}
+          element={
+            <Suspense fallback="...">
+              <LazySettingsPage />
+            </Suspense>
+          }
+        />
+        <Route
+          exact
+          path={`${APP_ROUTES.ADD_EVENT}/:petId`}
+          element={
+            <Suspense fallback="...">
+              <LazyAddEvent />
+            </Suspense>
+          }
+        />
+        <Route
+          exact
+          path={`${APP_ROUTES.SEE_EVENTS}/:petId`}
+          element={
+            <Suspense fallback="...">
+              <LazySeeEvents />
+            </Suspense>
+          }
+        />
         <Route exact path={APP_ROUTES.BASE} element={<Navigate replace to={APP_ROUTES.LOGIN} />} />
         <Route
           exact

@@ -36,7 +36,7 @@
     "update": "npm run update:deps && npm run update:doctor && npm run update:storybook",
     "update:deps": "ncu -i --format group",
     "update:storybook": "npx storybook@latest upgrade && npm run build:storybook",
-    "update:doctor": "npm run prettier && npm run build:app && npm run build:storybook && npm run lint && npm run test:ci"
+    "update:doctor": "npm run prettier && npm run lint && npm run build:app && npm run build:storybook && npm run test:ci"
   },
   "dependencies": {
     "@apollo/client": "^3.10.4",
