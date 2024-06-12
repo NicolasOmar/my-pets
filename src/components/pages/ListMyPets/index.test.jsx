@@ -5,7 +5,7 @@ import { MockedProvider } from '@apollo/client/testing'
 import '@testing-library/jest-dom'
 // APP_ROUTES
 // GRAPHQL
-import { GET_MY_PETS_QUERY } from '../../../graphql/queries'
+import { GET_MY_PETS_QUERY } from '@graphql/queries'
 // CONTEXT
 // COMPONENTS
 import ListMyPets from '.'

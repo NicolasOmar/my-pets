@@ -1,5 +1,7 @@
+import React from 'react'
 import { Button, ProgressBar, Table, Title } from 'reactive-bulma'
 import './index.scss'
+import DEFAULT_TEXT from '@constants/text'
 
 const GridTemplate = ({
   title = null,
@@ -7,7 +9,7 @@ const GridTemplate = ({
   isLoading = false,
   headers = null,
   body = null,
-  noDataTitle = null
+  noDataTitle = DEFAULT_TEXT.NO_DATA
 }) => {
   return (
     <section className="grid-template__container">
@@ -26,7 +28,7 @@ const GridTemplate = ({
               listOfCells: _body.map(_item => ({ content: _item }))
             }))}
           />
-        ) : noDataTitle ? (
+        ) : (
           <Title
             main={{
               text: noDataTitle,
@@ -34,7 +36,7 @@ const GridTemplate = ({
               cssClasses: 'grid-template__no-data-label'
             }}
           />
-        ) : null}
+        )}
       </>
     </section>
   )
