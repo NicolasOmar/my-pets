@@ -1,7 +1,7 @@
 import React from 'react'
 import { describe, test, expect } from 'vitest'
 import '@testing-library/jest-dom'
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
 // APP_ROUTES
 // GRAPHQL
@@ -22,8 +22,10 @@ describe('[App]', () => {
           </MockedProvider>
         </UserContext.Provider>
       )
-      const element = screen.getByText(/Welcome to My Pets/i)
-      expect(element).toBeInTheDocument()
+      waitFor(() => {
+        const element = screen.getByText(/Welcome to My Pets/i)
+        expect(element).toBeInTheDocument()
+      })
     })
   })
 })
