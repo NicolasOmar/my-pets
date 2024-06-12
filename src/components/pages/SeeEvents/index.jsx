@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/client'
 import { GET_MY_PET_EVENTS } from '@graphql/queries'
 import GridTemplate from '@components/templates/GridTemplate'
 import ROUTES from '@constants/routes'
+import config from './config.json'
 
 const parseBodyData = _data => Object.values(_data)
 
@@ -31,15 +32,15 @@ const SeeEvents = () => {
 
   return (
     <GridTemplate
-      title={'My Pet events'}
+      title={config.title}
       goBackButton={{
-        text: 'Go Back',
+        text: config.goBackButton,
         onClick: () => navigate(ROUTES.APP_ROUTES.LIST_MY_PETS)
       }}
       isLoading={loading}
       headers={header}
       body={body}
-      noDataTitle={'Sorry, but there are no loaded events'}
+      noDataTitle={config.noDataTitle}
     />
   )
 }

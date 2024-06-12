@@ -1,12 +1,19 @@
 import React from 'react'
 import { describe, test, expect, vi } from 'vitest'
 import { render, screen, waitFor } from '@testing-library/react'
+import '@testing-library/jest-dom'
+// GRAPHQL
 import { MockedProvider } from '@apollo/client/testing'
+import { GET_MY_PET_EVENTS } from '@graphql/queries'
 // COMPONENTS
 import SeeEvents from '.'
 // MOCKS
 import { testing } from './mocks.json'
+import { title, noDataTitle } from './config.json'
 
+const baseRequest = {
+  query: GET_MY_PET_EVENTS
+}
 const mockUseNavigate = vi.fn()
 
 vi.mock('react-router-dom', async originalPackage => {
@@ -19,17 +26,42 @@ vi.mock('react-router-dom', async originalPackage => {
 })
 
 describe('[SeeEvents]', () => {
-  const { pageTitle } = testing
+  const { positiveResponse } = testing
 
-  test('Should render the page with the loading component', () => {
+  test('Should render the page with the loading component', async () => {
     render(
       <MockedProvider mocks={[]} addTypename={false}>
         <SeeEvents />
       </MockedProvider>
     )
 
-    waitFor(() => {
-      expect(screen.getByText(pageTitle)).toBeInTheDocument()
+    await waitFor(() => {
+      expect(screen.getByText(title)).toBeInTheDocument()
+      expect(screen.getByText(noDataTitle)).toBeInTheDocument()
+    })
+  })
+
+  test('Should render the page with loaded events', async () => {
+    const positiveMock = [
+      {
+        request: baseRequest,
+        result: positiveResponse
+      }
+    ]
+
+    render(
+      <MockedProvider mocks={positiveMock} addTypename={false}>
+        <SeeEvents />
+      </MockedProvider>
+    )
+
+    await waitFor(() => {
+      positiveResponse.data.getMyPetEvents.forEach(
+        ({ description, date }) => {
+          expect(screen.getByText(description)).toBeInTheDocument()
+          expect(screen.getByText(date)).toBeInTheDocument()
+        }
+      )
     })
   })
 })

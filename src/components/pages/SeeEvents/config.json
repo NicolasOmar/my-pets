@@ -1,17 +1,5 @@
 {
-  "header": {
-    "content": [
-      "Position",
-      "Team",
-      "Played",
-      "Won",
-      "Drawn",
-      "Lost",
-      "Goals for",
-      "Goals against",
-      "Goal difference",
-      "Points",
-      "Qualification or relegation"
-    ]
-  }
+  "title": "My Pet Events",
+  "goBackButton": "Go Back",
+  "noDataTitle": "Sorry, but there are no loaded events"
 }

@@ -1,17 +1,18 @@
 import React from 'react'
 import { describe, test, expect, vi } from 'vitest'
 import { render, screen, waitFor } from '@testing-library/react'
-import { MockedProvider } from '@apollo/client/testing'
 import '@testing-library/jest-dom'
-// APP_ROUTES
 // GRAPHQL
+import { MockedProvider } from '@apollo/client/testing'
 import { GET_MY_PETS_QUERY } from '@graphql/queries'
-// CONTEXT
 // COMPONENTS
 import ListMyPets from '.'
 // MOCKS
 import { testing } from './index.mocks.json'
 
+const baseRequest = {
+  query: GET_MY_PETS_QUERY
+}
 const mockUseNavigate = vi.fn()
 
 vi.mock('react-router-dom', async originalPackage => {
@@ -21,9 +22,6 @@ vi.mock('react-router-dom', async originalPackage => {
     useNavigate: () => mockUseNavigate
   }
 })
-const baseRequest = {
-  query: GET_MY_PETS_QUERY
-}
 
 describe('[ListMyPets]', () => {
   const { pageTitle, loadingBarTestId, positiveResponse, valuesToAppear } = testing
