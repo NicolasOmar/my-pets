@@ -56,12 +56,10 @@ describe('[SeeEvents]', () => {
     )
 
     await waitFor(() => {
-      positiveResponse.data.getMyPetEvents.forEach(
-        ({ description, date }) => {
-          expect(screen.getByText(description)).toBeInTheDocument()
-          expect(screen.getByText(date)).toBeInTheDocument()
-        }
-      )
+      positiveResponse.data.getMyPetEvents.forEach(({ description, date }) => {
+        expect(screen.getByText(description)).toBeInTheDocument()
+        expect(screen.getByText(date)).toBeInTheDocument()
+      })
     })
   })
 })
