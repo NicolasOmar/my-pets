@@ -14,7 +14,18 @@ export default defineConfig({
       functions: 80,
       statements: 80,
       include: ['src/**/*.{jsx,js}'],
-      exclude: ['src/**/*.stories.jsx']
+      exclude: ['src/**/*.stories.jsx'],
+      reporter: ['html', 'lcov']
+    }
+  },
+  resolve: {
+    alias: {
+      '@components': '/src/components',
+      '@constants': '/src/constants',
+      '@context': '/src/context',
+      '@functions': '/src/functions',
+      '@graphql': '/src/graphql',
+      '@types': '/src/types'
     }
   }
 })

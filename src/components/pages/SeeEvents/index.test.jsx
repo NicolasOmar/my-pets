@@ -4,14 +4,15 @@ import { render, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
 // GRAPHQL
 import { MockedProvider } from '@apollo/client/testing'
-import { GET_MY_PETS_QUERY } from '@graphql/queries'
+import { GET_MY_PET_EVENTS } from '@graphql/queries'
 // COMPONENTS
-import ListMyPets from '.'
+import SeeEvents from '.'
 // MOCKS
-import { testing } from './index.mocks.json'
+import { testing } from './mocks.json'
+import { title, noDataTitle } from './config.json'
 
 const baseRequest = {
-  query: GET_MY_PETS_QUERY
+  query: GET_MY_PET_EVENTS
 }
 const mockUseNavigate = vi.fn()
 
@@ -19,27 +20,28 @@ vi.mock('react-router-dom', async originalPackage => {
   const _originalPackage = await originalPackage
   return {
     ..._originalPackage,
+    useParams: () => mockUseNavigate,
     useNavigate: () => mockUseNavigate
   }
 })
 
-describe('[ListMyPets]', () => {
-  const { pageTitle, loadingBarTestId, positiveResponse, valuesToAppear } = testing
+describe('[SeeEvents]', () => {
+  const { positiveResponse } = testing
 
   test('Should render the page with the loading component', async () => {
     render(
       <MockedProvider mocks={[]} addTypename={false}>
-        <ListMyPets />
+        <SeeEvents />
       </MockedProvider>
     )
 
     await waitFor(() => {
-      expect(screen.getByText(pageTitle)).toBeInTheDocument()
-      expect(screen.getByTestId(loadingBarTestId)).toBeInTheDocument()
+      expect(screen.getByText(title)).toBeInTheDocument()
+      expect(screen.getByText(noDataTitle)).toBeInTheDocument()
     })
   })
 
-  test('Should render the page with the loaded pet', async () => {
+  test('Should render the page with loaded events', async () => {
     const positiveMock = [
       {
         request: baseRequest,
@@ -49,12 +51,15 @@ describe('[ListMyPets]', () => {
 
     render(
       <MockedProvider mocks={positiveMock} addTypename={false}>
-        <ListMyPets />
+        <SeeEvents />
       </MockedProvider>
     )
 
     await waitFor(() => {
-      valuesToAppear.forEach(mockValue => expect(screen.getByText(mockValue)).toBeInTheDocument())
+      positiveResponse.data.getMyPetEvents.forEach(({ description, date }) => {
+        expect(screen.getByText(description)).toBeInTheDocument()
+        expect(screen.getByText(date)).toBeInTheDocument()
+      })
     })
   })
 })

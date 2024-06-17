@@ -1,0 +1,19 @@
+{
+  "testing": {
+    "petId": 1,
+    "positiveResponse": {
+      "data": {
+        "getMyPetEvents": [
+          {
+            "description": "First Test",
+            "date": "2024-06-10"
+          },
+          {
+            "description": "Second Test",
+            "date": "2024-06-11"
+          }
+        ]
+      }
+    }
+  }
+}
