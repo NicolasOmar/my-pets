@@ -14,7 +14,8 @@ export default defineConfig({
       functions: 80,
       statements: 80,
       include: ['src/**/*.{jsx,js}'],
-      exclude: ['src/**/*.stories.jsx']
+      exclude: ['src/**/*.stories.jsx'],
+      reporter: ['html', 'lcov']
     }
   },
   resolve: {
