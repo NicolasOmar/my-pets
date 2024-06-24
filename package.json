@@ -69,7 +69,7 @@
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react-swc": "^3.7.0",
     "@vitest/coverage-v8": "^1.6.0",
-    "bulma": "^0.9.4",
+    "bulma": "^1.0.1",
     "eslint": "^9.5.0",
     "eslint-plugin-react": "^7.34.3",
     "eslint-plugin-react-hooks": "^4.6.2",
