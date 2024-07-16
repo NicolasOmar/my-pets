@@ -19,8 +19,8 @@ const Icon = ({
   size = 30,
   onClick = null
 }) => {
-  const iconTestId = testId ?? isCustom ? `test-custom-icon-img` : `test-icon-mdi-${iconLabel}`
-  const iconContainerTestId = containerTestId ?? isCustom ? `test-custom-icon` : `test-icon`
+  const iconTestId = (testId ?? isCustom) ? `test-custom-icon-img` : `test-icon-mdi-${iconLabel}`
+  const iconContainerTestId = (containerTestId ?? isCustom) ? `test-custom-icon` : `test-icon`
   const iconContainerClasses = parseFieldConfigToClasses({
     fieldName: 'icon',
     otherClasses: [containerCssClasses]
