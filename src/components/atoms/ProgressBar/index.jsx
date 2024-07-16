@@ -20,7 +20,7 @@ const ProgressBar = ({
   size = parseObjKeys(sizes)[1]
 }) => {
   const progressTestId =
-    testId ?? isInfiniteLoading ? 'test-loading-progress-bar' : 'test-progress-bar'
+    (testId ?? isInfiniteLoading) ? 'test-loading-progress-bar' : 'test-progress-bar'
   const progressClasses = parseFieldConfigToClasses({
     fieldName: 'progress',
     otherClasses: [colors[color], sizes[size], cssClasses]

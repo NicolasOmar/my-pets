@@ -113,7 +113,7 @@ export const searchNamesFromIds = (ids = null, list = [], searchMultiple = false
           ?.map(propName => list?.find(({ name }) => propName === name)?.id)
           .filter(_item => _item)
       : null
-    : list?.find(({ name }) => ids === name)?.id ?? null
+    : (list?.find(({ name }) => ids === name)?.id ?? null)
 }
 
 export const capitalizeWord = word =>
