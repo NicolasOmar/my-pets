@@ -24,10 +24,10 @@ jobs:
     - name: 4/6 | Run unit tests suite
       run: npm run test:ci
     - name: 5/6 | Run Codecov Uploader
-      uses: codecov/codecov-action@v4
+      uses: codecov/codecov-action@v5
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        file: ./coverage/coverage-final.json
+        files: ./coverage/coverage-final.json
         flags: unittests
         fail_ci_if_error: true
         verbose: true
