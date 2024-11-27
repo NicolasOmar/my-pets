@@ -84,7 +84,7 @@
     "prop-types": "^15.8.1",
     "sass": "^1.81.0",
     "storybook": "^8.4.4",
-    "vite": "^5.4.11",
+    "vite": "^6.0.0",
     "vitest": "^2.1.5"
   },
   "lint-staged": {
