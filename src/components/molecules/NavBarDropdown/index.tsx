@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 // TYPES
-import { ComplexElementProps } from '../../../interfaces/commonTypes'
+import { ComplexElementProps } from '../../../interfaces/components'
 // OTHER COMPONENTS
 import NavBarItem from '../../atoms/NavBarItem'
 

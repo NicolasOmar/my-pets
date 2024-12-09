@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 // TYPES
-import { ElementProps } from '../../../interfaces/commonTypes'
+import { ElementProps } from '../../../interfaces/components'
 // COMPONENTS
 import BasicRadioCheck from '../../atoms/BasicRadioCheck'
 // CONSTANTS

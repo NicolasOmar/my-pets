@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 // STYLES
 import './index.scss'
 // TYPES
-import { ElementProps } from '../../../interfaces/commonTypes'
+import { ElementProps } from '../../../interfaces/components'
 import { parseFieldConfigToClasses, parseObjKeys } from '../../../functions/parsers'
 // CONSTANTS
 import BULMA_STYLES from '../../../constants/bulma-styles'

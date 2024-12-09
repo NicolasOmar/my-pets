@@ -1,6 +1,6 @@
 import React from 'react'
 // TYPES
-import { ElementProps } from '@interfaces/commonTypes'
+import { ElementProps } from '@interfaces/components'
 // OTHER COMPONENTES
 import { Tag } from 'reactive-bulma'
 import { TagProps } from 'reactive-bulma/dist/interfaces/atomProps'

@@ -1,3 +1,8 @@
+import { ButtonGroupProps } from "reactive-bulma/dist/interfaces/moleculeProps"
+import { FormFieldProps } from "reactive-bulma/dist/interfaces/organismProps"
+
+export type ChildrenType = string | React.ReactElement | React.ReactElement[]
+
 export interface ElementProps {
   /** `Attribute` ID used to locate the element in unit test suites (like Jest) */
   testId?: string,
@@ -16,9 +21,21 @@ export interface ContainerProps {
   containerStyle: object
 }
 
+export interface ComplexElementProps extends ElementProps, ContainerProps { }
+
 export interface ClickeableProps {
   /** `Function` Sends a click signal to its parent component when user clicks on the select */
   onClick: () => void
 }
 
-export interface ComplexElementProps extends ElementProps, ContainerProps {}
+export interface InputProps {
+  [name: string]: FormFieldProps
+}
+
+export interface FormLayoutProps {
+  inputs: InputProps
+  isLoading: boolean
+  errors?: string
+  buttons: ButtonGroupProps
+  onSubmit: (data: any) => void
+}

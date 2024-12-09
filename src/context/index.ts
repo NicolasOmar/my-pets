@@ -1,6 +1,4 @@
-import { createContext, Dispatch } from 'react'
+import { UserContextProps } from '@interfaces/context'
+import { createContext } from 'react'
 
-export const UserContext = createContext<{
-  userData: { name: string } | null,
-  setUserData: Dispatch<any>
-} | null>(null)
+export const UserContext = createContext<UserContextProps | null>(null)

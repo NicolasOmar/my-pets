@@ -7,15 +7,15 @@ import { LOGOUT } from '../../../graphql/mutations'
 // CONTEXT
 import { UserContext } from '../../../context'
 // COMPONENTS
-import NavBar from '../../organisms/NavBar'
 // CONSTANTS
-import ROUTES from '../../../constants/routes'
+import { APP_ROUTES } from '@constants/routes'
 // FUNCTIONS
 import { clearAllStorage } from '../../../functions/local-storage'
 // MOCKS
 import config from './config.json'
+import { NavBar } from 'reactive-bulma'
+import { NavBarProps } from 'reactive-bulma/dist/interfaces/organismProps'
 
-const { APP_ROUTES } = ROUTES
 const { brandIcon } = config
 
 const UserHeader = ({ name }) => {
@@ -48,11 +48,11 @@ const UserHeader = ({ name }) => {
   //   setStorage('isDarkMode', !isDarkModeApp)
   // }
 
-  const dropdownConfig = {
-    icon: {
-      ...brandIcon,
-      onClick: () => navigate(APP_ROUTES.HOME)
-    },
+  const dropdownConfig: NavBarProps = {
+    // icon: {
+    //   ...brandIcon,
+    //   onClick: () => navigate(APP_ROUTES.HOME)
+    // },
     end: [
       // {
       //   type: 'item',

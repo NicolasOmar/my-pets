@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 // TYPES
-import { ElementProps } from '../../../interfaces/commonTypes'
+import { ElementProps } from '../../../interfaces/components'
 // OTHER COMPONENTS
 import Column from '../../atoms/Column'
 // CONSTANTS
