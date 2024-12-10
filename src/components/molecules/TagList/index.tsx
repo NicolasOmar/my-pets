@@ -9,7 +9,12 @@ interface TagListProps extends ElementProps {
   dataList: TagProps[]
 }
 
-const TagList: React.FC<TagListProps> = ({ testId = null, cssClasses = null, style = null, dataList }) => {
+const TagList: React.FC<TagListProps> = ({
+  testId = null,
+  cssClasses = null,
+  style = null,
+  dataList
+}) => {
   const tagListTestId = testId ?? 'test-tag-list-item'
   const tagListClasses = cssClasses ?? 'tags'
 

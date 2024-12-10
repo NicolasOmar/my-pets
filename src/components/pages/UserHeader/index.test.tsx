@@ -8,7 +8,7 @@ import ROUTES from '../../../constants/routes'
 // GRAPHQL
 import { LOGOUT } from '../../../graphql/mutations'
 // CONTEXT
-import { UserContext } from '../../../context'
+import { UserContext } from '../../../context/userContext'
 // COMPONENTS
 import UserHeader from '.'
 // MOCKS

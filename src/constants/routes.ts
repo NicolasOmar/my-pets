@@ -9,4 +9,4 @@ export enum APP_ROUTES {
   SETTINGS = '/settings',
   ADD_EVENT = '/add-event',
   SEE_EVENTS = '/see-events'
-  }
+}

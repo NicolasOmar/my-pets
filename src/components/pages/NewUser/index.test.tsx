@@ -7,7 +7,7 @@ import '@testing-library/jest-dom'
 import ROUTES from '../../../constants/routes'
 // GRAPHQL
 // CONTEXT
-import { UserContext } from '../../../context'
+import { UserContext } from '../../../context/userContext'
 // COMPONENTS
 import NewUser from '.'
 // MOCKS

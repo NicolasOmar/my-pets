@@ -5,7 +5,7 @@ import { MockedProvider } from '@apollo/client/testing'
 // APP_ROUTES
 // GRAPHQL
 // CONTEXT
-import { UserContext } from '../../context'
+import { UserContext } from '../../context/userContext'
 // COMPONENTS
 import App from './app'
 

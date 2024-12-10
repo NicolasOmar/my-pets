@@ -1,7 +1,7 @@
 import { Suspense, lazy, useContext } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 // CONTEXT
-import { UserContext } from '@context/index'
+import { UserContext } from '@context/userContext'
 // COMPONENTS
 import UserHeader from '../pages/UserHeader'
 // CONSTANTS
@@ -10,7 +10,7 @@ import { APP_ROUTES } from '@constants/routes'
 const App = () => {
   const userContext = useContext(UserContext)
   const LazyHome = lazy(() => import('../pages/Home'))
-  const LazyLogin = lazy(() => import('../pages/Login'))
+  const LazyLogin = lazy(() => import('../pages/LoginForm'))
   // const LazyNewUser = lazy(() => import('../pages/NewUser'))
   // const LazyUpdatePet = lazy(() => import('../pages/UpdatePet'))
   // const LazyAddPet = lazy(() => import('../pages/AddPet'))

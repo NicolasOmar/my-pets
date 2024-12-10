@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useMutation } from '@apollo/client'
 import { UPDATE_USER, UPDATE_PASS } from '../../../graphql/mutations'
 // CONTEXT
-import { UserContext } from '../../../context'
+import { UserContext } from '../../../context/userContext'
 // COMPONENTS
 import FormTemplate from '../../templates/FormTemplate'
 import Divider from '../../atoms/Divider'

@@ -1,4 +1,4 @@
 export interface QuantityEntity {
-  name: string,
+  name: string
   quantity: number
 }

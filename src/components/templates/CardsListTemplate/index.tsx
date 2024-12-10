@@ -8,15 +8,15 @@ import { ChildrenType } from 'reactive-bulma/dist/types/domTypes'
 
 interface CardListTemplateProps {
   /**`Attribute` `Required` List of `Card` configuration objects that will be displayed */
-  cardsListData: CardProps[],
+  cardsListData: CardProps[]
   /** `Attribute` Header configuration object to show a `TitleHeader` above the rest of the components that will compose the template */
-  cardsListTitle?: TitleProps,
+  cardsListTitle?: TitleProps
   /** `Attribute` Sets a `BasicInput` config object to make custom search when the user is writing */
-  searchInput?: InputProps,
+  searchInput?: InputProps
   /** `Attribute` Text configuration object to show a `TitleHeader` that will be shown in case there is no data */
-  noDataText?: TitleProps,
+  noDataText?: TitleProps
   /** `Styling` Adds a spinner on the form and disable the screen (to avoid additional user behavior with the cards) */
-  isFetching?: boolean,
+  isFetching?: boolean
   /** `Styling` Will center the list of cards according the screen or a father container */
   centerList?: boolean
 }
@@ -28,18 +28,15 @@ enum SectionType {
 }
 
 interface RenderCardSectionProps {
-  type: SectionType,
-  key: string,
-  classes: string,
+  type: SectionType
+  key: string
+  classes: string
   content: any
 }
 
 interface RenderCardSectionProps {
   cardSection: ChildrenType | ChildrenType[]
-  mapFn: (
-    _sectionContent: ChildrenType | ChildrenType[],
-    _sectionIndex: number
-  ) => void
+  mapFn: (_sectionContent: ChildrenType | ChildrenType[], _sectionIndex: number) => void
 }
 
 // const renderCardSectionContent: (props: RenderCardSectionProps) => React.ReactElement = ({ type, key, classes = null, content }) => {
@@ -60,9 +57,9 @@ interface RenderCardSectionProps {
 // }
 
 const renderCardsGroup: (cardListData: CardProps[]) => React.ReactElement[] = cardsListData =>
-  cardsListData?.map(
-    (cardData, cardIndex) => <Card key={`card-${cardIndex}`} {...cardData} />
-  ) ?? [null]
+  cardsListData?.map((cardData, cardIndex) => <Card key={`card-${cardIndex}`} {...cardData} />) ?? [
+    null
+  ]
 
 const CardsListTemplate: React.FC<CardListTemplateProps> = ({
   cardsListData,
@@ -75,9 +72,7 @@ const CardsListTemplate: React.FC<CardListTemplateProps> = ({
   isFetching = false,
   centerList = true
 }) => {
-  const searchInputConfig = searchInput
-    ? { ...searchInput, value: searchInput.text ?? null }
-    : null
+  const searchInputConfig = searchInput ? { ...searchInput, value: searchInput.text ?? null } : null
   const noDataConfig = {
     ...noDataText,
     childWidth: 12,

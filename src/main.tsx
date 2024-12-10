@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client'
 import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 // CONTEXT
-import { UserContext } from './context'
+import { UserContext } from './context/userContext'
 // COMPONENTS
 import App from './components/app/app'
 // FUNCTIONS

@@ -27,9 +27,7 @@ const NavBarDropdown = ({
         {label}
       </section>
       <section data-testid={`${dropdownTestId}-options`} className="navbar-dropdown is-right">
-        {options?.map((option, i) => (
-          <NavBarItem key={`navbar-dropdown-item-${i}`} {...option} />
-        ))}
+        {options?.map((option, i) => <NavBarItem key={`navbar-dropdown-item-${i}`} {...option} />)}
       </section>
     </section>
   )

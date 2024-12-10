@@ -1,6 +1,6 @@
-import { Dispatch } from "react";
+import { Dispatch } from 'react'
 
 export interface UserContextProps {
-  userData: { name: string } | null,
+  userData: { name: string } | null
   setUserData: Dispatch<any>
 }

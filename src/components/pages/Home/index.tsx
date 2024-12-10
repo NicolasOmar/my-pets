@@ -55,7 +55,7 @@ const Home = () => {
             {
               ...petPopulationWidget.cardContent[0],
               content: {
-                ...petPopulationWidget?.cardContent[0]?.content ?? {},
+                ...(petPopulationWidget?.cardContent[0]?.content ?? {}),
                 titleText: petQuantityText
               }
             },

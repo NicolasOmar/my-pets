@@ -21,4 +21,3 @@ export enum selectorType {
   select = 'select',
   multiple = 'multiple'
 }
-

@@ -5,7 +5,7 @@ import { string } from 'prop-types'
 import { useMutation } from '@apollo/client'
 import { LOGOUT } from '../../../graphql/mutations'
 // CONTEXT
-import { UserContext } from '../../../context'
+import { UserContext } from '../../../context/userContext'
 // COMPONENTS
 // CONSTANTS
 import { APP_ROUTES } from '@constants/routes'
