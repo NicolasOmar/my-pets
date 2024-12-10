@@ -11,7 +11,7 @@ const App = () => {
   const userContext = useContext(UserContext)
   const LazyHome = lazy(() => import('../pages/Home'))
   const LazyLogin = lazy(() => import('../pages/LoginForm'))
-  // const LazyNewUser = lazy(() => import('../pages/NewUser'))
+  const LazyNewUser = lazy(() => import('../pages/NewUser'))
   // const LazyUpdatePet = lazy(() => import('../pages/UpdatePet'))
   // const LazyAddPet = lazy(() => import('../pages/AddPet'))
   // const LazyListMyPets = lazy(() => import('../pages/ListMyPets'))
@@ -39,7 +39,7 @@ const App = () => {
             </Suspense>
           }
         />
-        {/* <Route
+        <Route
           path={APP_ROUTES.NEW_USER}
           element={
             <Suspense fallback="...">
@@ -47,7 +47,7 @@ const App = () => {
             </Suspense>
           }
         />
-        <Route
+        {/* <Route
           path={`${APP_ROUTES.UPDATE_PET}/:petId`}
           element={
             <Suspense fallback="...">

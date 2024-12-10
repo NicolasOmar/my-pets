@@ -1,15 +1,14 @@
 // CORE
 import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useFormik } from 'formik'
 // GRAPHQL
 import { useMutation } from '@apollo/client'
 import { LOGIN } from '@graphql/mutations'
 // CONTEXT
 import { UserContext } from '@context/userContext'
 // COMPONENTS
-import { ButtonGroup, FormField, Message, ProgressBar, Title } from 'reactive-bulma'
-// FORM CONFIG
-import { useFormik } from 'formik'
+import { Box, ButtonGroup, Column, FormField, Message, Title } from 'reactive-bulma'
 // CONSTANTS
 import { APP_ROUTES } from '@constants/routes'
 // INTERFACES
@@ -61,6 +60,7 @@ const LoginForm = () => {
           type: 'email',
           name: 'email',
           value: loginFormik.values.email,
+          isDisabled: isLoadingLogin,
           onChange: loginFormik.handleChange
         }
       }
@@ -72,6 +72,7 @@ const LoginForm = () => {
           type: 'password',
           name: 'password',
           value: loginFormik.values.password,
+          isDisabled: isLoadingLogin,
           onChange: loginFormik.handleChange
         }
       }
@@ -83,12 +84,14 @@ const LoginForm = () => {
       {
         type: 'submit',
         color: 'is-success',
-        text: 'Log in'
+        text: 'Log in',
+        isDisabled: isLoadingLogin
       },
       {
         type: 'button',
         color: 'is-danger',
         text: 'You can Sign up',
+        isDisabled: isLoadingLogin,
         onClick: () => navigate(APP_ROUTES.NEW_USER)
       }
     ]
@@ -108,11 +111,10 @@ const LoginForm = () => {
   }, [data, userContext, navigate])
 
   return (
-    <>
-      <Title {...loginFormHeader} />
-      {isLoadingLogin ? (
-        <ProgressBar color="is-info" isLoading={true} />
-      ) : (
+    <Column size="is-8" offset="is-offset-2">
+      <Box>
+        <Title {...loginFormHeader} />
+
         <form onSubmit={loginFormik.handleSubmit}>
           <FormField {...loginFormInputs.email} />
           <FormField {...loginFormInputs.password} />
@@ -121,8 +123,8 @@ const LoginForm = () => {
             <Message headerText={'Login errors'} bodyText={loginErrors.message} color="is-danger" />
           ) : null}
         </form>
-      )}
-    </>
+      </Box>
+    </Column>
   )
 }
 
