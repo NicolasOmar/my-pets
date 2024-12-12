@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useLazyQuery } from '@apollo/client'
 import { GET_MY_PETS_POPULATION_QUERY } from '@graphql/queries'
 // COMPONENTS
-import { ProgressBar } from 'reactive-bulma'
+import { ColumnGroup, ProgressBar } from 'reactive-bulma'
 import CardsListTemplate from '@templates/CardsListTemplate'
 import TagList from '@molecules/TagList'
 // FUNCTIONS
@@ -83,7 +83,32 @@ const Home = () => {
     titleText: `HELLO ${user?.name?.toUpperCase()}`
   }
 
-  return <CardsListTemplate {...{ cardsListTitle, cardsListData }} />
+  return (
+    <ColumnGroup
+      isMobileLayout
+      isHorizontallyCentered
+      isVerticallyCentered
+      isMultiline
+      listOfColumns={[
+        {
+          size: 'is-3',
+          children: 'TEST'
+        },
+        {
+          size: 'is-3',
+          children: 'TEST'
+        },
+        {
+          size: 'is-3',
+          children: 'TEST'
+        },
+        {
+          size: 'is-3',
+          children: 'TEST'
+        }
+      ]}
+    />
+  )
 }
 
 export default Home

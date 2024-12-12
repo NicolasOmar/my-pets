@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 // GRAPHQL
 import { useMutation } from '@apollo/client'
-import { LOGIN } from '@graphql/mutations'
+import { LOGIN_USER } from '@graphql/mutations'
 // CONTEXT
 import { UserContext } from '@context/userContext'
 // COMPONENTS
@@ -13,6 +13,7 @@ import { Box, ButtonGroup, Column, FormField, Message, Title } from 'reactive-bu
 import { APP_ROUTES } from '@constants/routes'
 // INTERFACES
 import { InputProps } from '@interfaces/components'
+import { UserLoginPayload, UserLoginResponse } from '@interfaces/graphql'
 import { TitleProps } from 'reactive-bulma/dist/interfaces/atomProps'
 import { ButtonGroupProps } from 'reactive-bulma/dist/interfaces/moleculeProps'
 // FUNCTIONS
@@ -22,7 +23,10 @@ import { setLoggedUser } from '@functions/local-storage'
 const LoginForm = () => {
   let navigate = useNavigate()
   const userContext = useContext(UserContext)
-  const [login, { loading: isLoadingLogin, error: loginErrors, data }] = useMutation(LOGIN)
+  const [login, { loading: isLoadingLogin, error: loginErrors, data }] = useMutation<
+    UserLoginResponse,
+    UserLoginPayload
+  >(LOGIN_USER)
 
   const loginFormik = useFormik({
     initialValues: {
@@ -30,13 +34,16 @@ const LoginForm = () => {
       password: ''
     },
     onSubmit: async formData => {
-      console.warn(formData)
-      await login({
+      const loginResponse = await login({
         variables: {
-          ...formData,
-          password: encryptPass(formData.password)
+          payload: {
+            email: formData.email,
+            password: encryptPass(formData.password)
+          }
         }
       })
+      console.warn(loginResponse.data?.loginUser)
+      navigate(APP_ROUTES.HOME)
     },
     enableReinitialize: true
   })

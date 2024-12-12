@@ -13,6 +13,7 @@ import { Box, ButtonGroup, Column, FormField, Message, Title } from 'reactive-bu
 import { APP_ROUTES } from '@constants/routes'
 // INTERFACES
 import { InputProps } from '@interfaces/components'
+import { UserCreateResponse, UserCreatePayload } from '@interfaces/graphql'
 import { TitleProps } from 'reactive-bulma/dist/interfaces/atomProps'
 import { ButtonGroupProps } from 'reactive-bulma/dist/interfaces/moleculeProps'
 // FUNCTIONS
@@ -21,7 +22,10 @@ import { setLoggedUser } from '@functions/local-storage'
 
 const NewUser = () => {
   let navigate = useNavigate()
-  const [createUser, { loading: isLoadingUser, error: userErrors }] = useMutation(CREATE_USER)
+  const [createUser, { loading: isLoadingUser, error: userErrors }] = useMutation<
+    UserCreateResponse,
+    UserCreatePayload
+  >(CREATE_USER)
   const userContext = useContext(UserContext)
 
   const userFormik = useFormik({
@@ -34,22 +38,26 @@ const NewUser = () => {
       repeatPass: ''
     },
     onSubmit: async formData => {
-      const newUser = {
-        ...formData,
-        repeatPass: undefined,
-        password: encryptPass(formData.password)
-      }
-
       try {
-        const response = await createUser({ variables: { newUser } })
+        const response = await createUser({
+          variables: {
+            payload: {
+              name: formData.name,
+              lastName: formData.lastName,
+              userName: formData.userName,
+              email: formData.email,
+              password: encryptPass(formData.password)
+            }
+          }
+        })
+        console.warn(response.data?.createUser)
         setLoggedUser(response.data?.createUser)
         userContext?.setUserData(response.data?.createUser)
         navigate(APP_ROUTES.HOME)
       } catch (e) {
         console.error(e)
       }
-    },
-    enableReinitialize: true
+    }
   })
 
   const userFormHeader: TitleProps = {

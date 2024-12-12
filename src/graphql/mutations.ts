@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client'
 
-export const LOGIN = gql`
-  mutation ($email: String!, $password: String!) {
-    loginUser(email: $email, password: $password) {
+export const LOGIN_USER = gql`
+  mutation ($payload: UserLoginPayload!) {
+    loginUser(payload: $payload) {
       name
       lastName
       email
@@ -12,8 +12,8 @@ export const LOGIN = gql`
 `
 
 export const CREATE_USER = gql`
-  mutation ($newUser: UserInput!) {
-    createUser(newUser: $newUser) {
+  mutation ($payload: UserCreatePayload!) {
+    createUser(payload: $payload) {
       name
       lastName
       email
@@ -23,8 +23,8 @@ export const CREATE_USER = gql`
 `
 
 export const UPDATE_USER = gql`
-  mutation ($name: String!, $lastName: String!) {
-    updateUser(name: $name, lastName: $lastName) {
+  mutation ($payload: UserUpdatePayload!) {
+    updateUser(payload: $payload) {
       name
       lastName
     }
@@ -32,16 +32,8 @@ export const UPDATE_USER = gql`
 `
 
 export const UPDATE_PASS = gql`
-  mutation ($oldPass: String!, $newPass: String!) {
-    updatePass(oldPass: $oldPass, newPass: $newPass)
-  }
-`
-
-export const CREATE_PET = gql`
-  mutation ($petInfo: PetInput!) {
-    createPet(petInfo: $petInfo) {
-      name
-    }
+  mutation ($payload: UserPassChangePayload!) {
+    updatePass(payload: $payload)
   }
 `
 
@@ -51,15 +43,23 @@ export const LOGOUT = gql`
   }
 `
 
+export const CREATE_PET = gql`
+  mutation ($payload: PetCreatePayload!) {
+    createPet(payload: $payload) {
+      name
+    }
+  }
+`
+
 export const UPDATE_PET = gql`
-  mutation ($petInfo: PetInput!) {
-    updatePet(petInfo: $petInfo)
+  mutation ($id: String!, $payload: PetCreatePayload!) {
+    updatePet(id: $id, payload: $payload)
   }
 `
 
 export const CREATE_EVENT = gql`
-  mutation ($eventInfo: CreateEventInput!) {
-    createEvent(eventInfo: $eventInfo) {
+  mutation ($payload: EventCreatePayload!) {
+    createEvent(payload: $payload) {
       description
       date
     }
