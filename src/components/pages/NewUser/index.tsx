@@ -50,10 +50,12 @@ const NewUser = () => {
             }
           }
         })
-        console.warn(response.data?.createUser)
-        setLoggedUser(response.data?.createUser)
-        userContext?.setUserData(response.data?.createUser)
-        navigate(APP_ROUTES.HOME)
+
+        if (response.data?.createUser) {
+          setLoggedUser(response.data?.createUser)
+          userContext?.setUserData({ name: response.data?.createUser.name })
+          navigate(APP_ROUTES.HOME)
+        }
       } catch (e) {
         console.error(e)
       }

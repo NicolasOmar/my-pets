@@ -7,6 +7,8 @@ import { setContext } from '@apollo/client/link/context'
 import { UserContext } from './context/userContext'
 // COMPONENTS
 import App from './components/app/app'
+// INTERFACES
+import { LoggedUserData } from '@interfaces/context'
 // FUNCTIONS
 import { getLoggedUser } from './functions/local-storage'
 
@@ -33,7 +35,7 @@ const apolloClient = new ApolloClient({
 })
 
 const AppWrapper = () => {
-  const [userData, setUserData] = useState(getLoggedUser())
+  const [userData, setUserData] = useState<LoggedUserData | null>(getLoggedUser())
 
   return (
     <UserContext.Provider value={{ userData, setUserData }}>

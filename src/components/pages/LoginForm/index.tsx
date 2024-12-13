@@ -43,6 +43,9 @@ const LoginForm = () => {
         }
       })
       console.warn(loginResponse.data?.loginUser)
+      const userFullName = loginResponse.data?.loginUser.loggedUser ?
+        `${loginResponse.data?.loginUser.loggedUser.name} ${loginResponse.data?.loginUser.loggedUser.lastName}` : null
+      userFullName && userContext?.setUserData({ name: userFullName })
       navigate(APP_ROUTES.HOME)
     },
     enableReinitialize: true
