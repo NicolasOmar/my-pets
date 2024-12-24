@@ -1,7 +1,6 @@
 // CORE
 import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useFormik } from 'formik'
 // GRAPHQL
 import { useMutation } from '@apollo/client'
 import { LOGIN_USER } from '@graphql/mutations'
@@ -9,16 +8,21 @@ import { LOGIN_USER } from '@graphql/mutations'
 import { UserContext } from '@context/userContext'
 // COMPONENTS
 import { Box, ButtonGroup, Column, FormField, Message, Title } from 'reactive-bulma'
+// HOOKS
+import useFormikShape from './form'
 // CONSTANTS
 import { APP_ROUTES } from '@constants/routes'
 // INTERFACES
-import { InputProps } from '@interfaces/components'
 import { UserLoginPayload, UserLoginResponse } from '@interfaces/graphql'
 import { TitleProps } from 'reactive-bulma/dist/interfaces/atomProps'
 import { ButtonGroupProps } from 'reactive-bulma/dist/interfaces/moleculeProps'
 // FUNCTIONS
 import { encryptPass } from '@functions/encrypt'
-import { setLoggedUser } from '@functions/local-storage'
+
+interface LoginFormData {
+  email: string
+  password: string
+}
 
 const LoginForm = () => {
   let navigate = useNavigate()
@@ -28,28 +32,18 @@ const LoginForm = () => {
     UserLoginPayload
   >(LOGIN_USER)
 
-  const loginFormik = useFormik({
-    initialValues: {
-      email: '',
-      password: ''
-    },
-    onSubmit: async formData => {
-      const loginResponse = await login({
-        variables: {
-          payload: {
-            email: formData.email,
-            password: encryptPass(formData.password)
-          }
+  const handleFormLoginSubmit = async (formData: LoginFormData) => {
+    await login({
+      variables: {
+        payload: {
+          email: formData.email,
+          password: encryptPass(formData.password)
         }
-      })
-      console.warn(loginResponse.data?.loginUser)
-      const userFullName = loginResponse.data?.loginUser.loggedUser ?
-        `${loginResponse.data?.loginUser.loggedUser.name} ${loginResponse.data?.loginUser.loggedUser.lastName}` : null
-      userFullName && userContext?.setUserData({ name: userFullName })
-      navigate(APP_ROUTES.HOME)
-    },
-    enableReinitialize: true
-  })
+      }
+    })
+  }
+
+  const { loginFormik, formConfig } = useFormikShape(isLoadingLogin, handleFormLoginSubmit)
 
   const loginFormHeader: TitleProps = {
     main: {
@@ -59,33 +53,6 @@ const LoginForm = () => {
     secondary: {
       text: 'Log in',
       type: 'subtitle'
-    }
-  }
-
-  const loginFormInputs: InputProps = {
-    email: {
-      labelText: 'Email',
-      inputControlConfig: {
-        inputConfig: {
-          type: 'email',
-          name: 'email',
-          value: loginFormik.values.email,
-          isDisabled: isLoadingLogin,
-          onChange: loginFormik.handleChange
-        }
-      }
-    },
-    password: {
-      labelText: 'Password',
-      inputControlConfig: {
-        inputConfig: {
-          type: 'password',
-          name: 'password',
-          value: loginFormik.values.password,
-          isDisabled: isLoadingLogin,
-          onChange: loginFormik.handleChange
-        }
-      }
     }
   }
 
@@ -108,17 +75,19 @@ const LoginForm = () => {
   }
 
   useEffect(() => {
+    if (data) {
+      const userFullName = data.loginUser.loggedUser
+        ? `${data.loginUser.loggedUser.name} ${data.loginUser.loggedUser.lastName}`
+        : null
+      userFullName && userContext?.setUserData({ name: userFullName })
+      navigate(APP_ROUTES.HOME)
+    }
+  }, [data])
+
+  useEffect(() => {
     userContext?.userData && navigate(APP_ROUTES.HOME)
     return () => {}
   }, [navigate, userContext])
-
-  useEffect(() => {
-    if (data) {
-      setLoggedUser(data.loginUser)
-      userContext?.setUserData(data.loginUser)
-      navigate(APP_ROUTES.HOME)
-    }
-  }, [data, userContext, navigate])
 
   return (
     <Column size="is-8" offset="is-offset-2">
@@ -126,8 +95,8 @@ const LoginForm = () => {
         <Title {...loginFormHeader} />
 
         <form onSubmit={loginFormik.handleSubmit}>
-          <FormField {...loginFormInputs.email} />
-          <FormField {...loginFormInputs.password} />
+          <FormField {...formConfig.email} />
+          <FormField {...formConfig.password} />
           {loginFormButtons ? <ButtonGroup {...loginFormButtons} /> : null}
           {loginErrors ? (
             <Message headerText={'Login errors'} bodyText={loginErrors.message} color="is-danger" />

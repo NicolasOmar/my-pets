@@ -2,11 +2,6 @@ interface Token {
   token: string
 }
 
-interface Entity {
-  id: string
-  _id: string
-}
-
 export interface UserObject {
   name: string
   lastName: string

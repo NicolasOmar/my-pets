@@ -58,7 +58,7 @@ const UserHeader: React.FC<HeaderUserProps> = ({ name }) => {
     }
   }
 
-  return <NavBar {...dropdownConfig}/>
+  return <NavBar {...dropdownConfig} />
 }
 
 export default UserHeader

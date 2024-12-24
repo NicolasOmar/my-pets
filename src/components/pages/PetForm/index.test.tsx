@@ -7,7 +7,7 @@ import '@testing-library/jest-dom'
 // GRAPHQL
 // CONTEXT
 // COMPONENTS
-import AddPet from '.'
+import PetForm from '.'
 // MOCKS
 // import { inputs } from './config.json'
 
@@ -21,11 +21,11 @@ vi.mock('react-router-dom', async originalPackage => {
   }
 })
 
-describe('[AddPet]', () => {
+describe('[PetForm]', () => {
   test('Should render the page with its inputs', () => {
     render(
       <MockedProvider mocks={[]} addTypename={false}>
-        <AddPet />
+        <PetForm />
       </MockedProvider>
     )
 

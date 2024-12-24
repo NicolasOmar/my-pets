@@ -9,7 +9,7 @@ import ROUTES from '../../../constants/routes'
 // CONTEXT
 import { UserContext } from '../../../context/userContext'
 // COMPONENTS
-import NewUser from '.'
+import UserForm from '.'
 // MOCKS
 import { inputs, goToLoginButton } from './config.json'
 
@@ -23,14 +23,14 @@ vi.mock('react-router-dom', async originalPackage => {
   }
 })
 
-describe('[NewUser]', () => {
+describe('[UserForm]', () => {
   const providerMock = { setUserData: vi.fn() }
 
   beforeEach(() => {
     render(
       <UserContext.Provider value={providerMock}>
         <MockedProvider mocks={[]} addTypename={false}>
-          <NewUser />
+          <UserForm />
         </MockedProvider>
       </UserContext.Provider>
     )

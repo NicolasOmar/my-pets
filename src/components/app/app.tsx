@@ -11,9 +11,9 @@ const App = () => {
   const userContext = useContext(UserContext)
   const LazyHome = lazy(() => import('../pages/Home'))
   const LazyLogin = lazy(() => import('../pages/LoginForm'))
-  const LazyNewUser = lazy(() => import('../pages/NewUser'))
+  const LazyNewUser = lazy(() => import('../pages/UserForm'))
+  const LazyPetForm = lazy(() => import('../pages/PetForm'))
   // const LazyUpdatePet = lazy(() => import('../pages/UpdatePet'))
-  // const LazyAddPet = lazy(() => import('../pages/AddPet'))
   // const LazyListMyPets = lazy(() => import('../pages/ListMyPets'))
   // const LazySettingsPage = lazy(() => import('../pages/Settings'))
   // const LazyAddEvent = lazy(() => import('../pages/AddEvent'))
@@ -47,19 +47,19 @@ const App = () => {
             </Suspense>
           }
         />
+        <Route
+          path={APP_ROUTES.ADD_PET}
+          element={
+            <Suspense fallback="...">
+              <LazyPetForm />
+            </Suspense>
+          }
+        />
         {/* <Route
           path={`${APP_ROUTES.UPDATE_PET}/:petId`}
           element={
             <Suspense fallback="...">
               <LazyUpdatePet />
-            </Suspense>
-          }
-        />
-        <Route
-          path={APP_ROUTES.ADD_PET}
-          element={
-            <Suspense fallback="...">
-              <LazyAddPet />
             </Suspense>
           }
         />

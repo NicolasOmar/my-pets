@@ -12,15 +12,16 @@ import { Box, ButtonGroup, Column, FormField, Message, Title } from 'reactive-bu
 // CONSTANTS
 import { APP_ROUTES } from '@constants/routes'
 // INTERFACES
-import { InputProps } from '@interfaces/components'
+import { CustomFormInputProps } from '@interfaces/components'
 import { UserCreateResponse, UserCreatePayload } from '@interfaces/graphql'
 import { TitleProps } from 'reactive-bulma/dist/interfaces/atomProps'
-import { ButtonGroupProps } from 'reactive-bulma/dist/interfaces/moleculeProps'
+import { ButtonGroupProps, FormFieldType } from 'reactive-bulma/dist/interfaces/moleculeProps'
+import { FormFieldProps } from 'reactive-bulma/dist/interfaces/organismProps'
 // FUNCTIONS
 import { encryptPass } from '@functions/encrypt'
 import { setLoggedUser } from '@functions/local-storage'
 
-const NewUser = () => {
+const UserForm = () => {
   let navigate = useNavigate()
   const [createUser, { loading: isLoadingUser, error: userErrors }] = useMutation<
     UserCreateResponse,
@@ -69,70 +70,94 @@ const NewUser = () => {
     }
   }
 
-  const userFormInputs: InputProps = {
+  const userFormInputs: CustomFormInputProps<FormFieldProps> = {
     name: {
-      labelText: 'Name',
-      inputControlConfig: {
-        inputConfig: {
-          type: 'text',
-          name: 'name',
-          isDisabled: isLoadingUser,
-          onChange: userFormik.handleChange
+      config: {
+        labelText: 'Name',
+        type: FormFieldType.INPUT,
+        input: {
+          inputConfig: {
+            type: 'text',
+            name: 'name',
+            value: userFormik.values.name,
+            isDisabled: isLoadingUser,
+            onChange: userFormik.handleChange
+          }
         }
       }
     },
     lastName: {
-      labelText: 'Last Name',
-      inputControlConfig: {
-        inputConfig: {
-          type: 'text',
-          name: 'lastName',
-          isDisabled: isLoadingUser,
-          onChange: userFormik.handleChange
+      config: {
+        labelText: 'Last Name',
+        type: FormFieldType.INPUT,
+        input: {
+          inputConfig: {
+            type: 'text',
+            name: 'lastName',
+            value: userFormik.values.lastName,
+            isDisabled: isLoadingUser,
+            onChange: userFormik.handleChange
+          }
         }
       }
     },
     userName: {
-      labelText: 'User Name',
-      inputControlConfig: {
-        inputConfig: {
-          type: 'text',
-          name: 'userName',
-          isDisabled: isLoadingUser,
-          onChange: userFormik.handleChange
+      config: {
+        labelText: 'User Name',
+        type: FormFieldType.INPUT,
+        input: {
+          inputConfig: {
+            type: 'text',
+            name: 'userName',
+            value: userFormik.values.userName,
+            isDisabled: isLoadingUser,
+            onChange: userFormik.handleChange
+          }
         }
       }
     },
     email: {
-      labelText: 'Email',
-      inputControlConfig: {
-        inputConfig: {
-          type: 'email',
-          name: 'email',
-          isDisabled: isLoadingUser,
-          onChange: userFormik.handleChange
+      config: {
+        labelText: 'Email',
+        type: FormFieldType.INPUT,
+        input: {
+          inputConfig: {
+            type: 'email',
+            name: 'email',
+            value: userFormik.values.email,
+            isDisabled: isLoadingUser,
+            onChange: userFormik.handleChange
+          }
         }
       }
     },
     password: {
-      labelText: 'Password',
-      inputControlConfig: {
-        inputConfig: {
-          type: 'password',
-          name: 'password',
-          isDisabled: isLoadingUser,
-          onChange: userFormik.handleChange
+      config: {
+        labelText: 'Password',
+        type: FormFieldType.INPUT,
+        input: {
+          inputConfig: {
+            type: 'password',
+            name: 'password',
+            value: userFormik.values.password,
+            isDisabled: isLoadingUser,
+            onChange: userFormik.handleChange
+          }
         }
       }
     },
     repeatPass: {
-      labelText: 'Repeat Password',
-      inputControlConfig: {
-        inputConfig: {
-          type: 'password',
-          name: 'repeatPass',
-          isDisabled: isLoadingUser,
-          onChange: userFormik.handleChange
+      config: {
+        labelText: 'Repeat Password',
+        type: FormFieldType.INPUT,
+        input: {
+          inputConfig: {
+            type: 'password',
+            name: 'repeatPass',
+            value: userFormik.values.repeatPass,
+            isDisabled: isLoadingUser,
+            onChange: userFormik.handleChange
+          }
         }
       }
     }
@@ -187,9 +212,14 @@ const NewUser = () => {
           <FormField {...userFormInputs.password} />
           <FormField {...userFormInputs.repeatPass} />
 
-          {userFormButtons ? <ButtonGroup {...userFormButtons} /> : null}
+          <ButtonGroup {...userFormButtons} />
+
           {userErrors ? (
-            <Message headerText={'User errors'} bodyText={userErrors.message} color="is-danger" />
+            <Message
+              headerText={'User creation errors'}
+              bodyText={userErrors.message}
+              color="is-danger"
+            />
           ) : null}
         </form>
       </Box>
@@ -197,4 +227,4 @@ const NewUser = () => {
   )
 }
 
-export default NewUser
+export default UserForm

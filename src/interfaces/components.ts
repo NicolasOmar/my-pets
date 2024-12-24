@@ -1,4 +1,4 @@
-import { FormikConfig } from 'formik'
+import { SelectProps } from 'reactive-bulma/dist/interfaces/atomProps'
 import { ButtonGroupProps } from 'reactive-bulma/dist/interfaces/moleculeProps'
 import { FormFieldProps } from 'reactive-bulma/dist/interfaces/organismProps'
 
@@ -29,8 +29,8 @@ export interface ClickeableProps {
   onClick: () => void
 }
 
-export interface InputProps {
-  [name: string]: FormFieldProps
+export interface CustomFormInputProps<Props> {
+  [name: string]: Props
 }
 
 export interface FormLayoutProps {
