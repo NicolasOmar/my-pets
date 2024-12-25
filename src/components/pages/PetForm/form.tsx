@@ -6,7 +6,7 @@ import { FormFieldProps } from 'reactive-bulma/dist/interfaces/organismProps'
 import { CustomFormInputProps } from '@interfaces/components'
 import { PetFormikProps } from '@interfaces/forms'
 // CONSTANTS
-import { PET_FORM_LABELS } from '@constants/pets'
+import { PET_FORM_LABELS } from '@constants/forms'
 
 const usePetFormik = ({ formIsWorking, petTypes, colors }: PetFormikProps) => {
   const petFormik = useFormik({

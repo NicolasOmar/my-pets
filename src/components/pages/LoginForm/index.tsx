@@ -1,7 +1,7 @@
 // CORE
 import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-// GRAPHQL
+// API
 import { useMutation } from '@apollo/client'
 import { LOGIN_USER } from '@graphql/mutations'
 // CONTEXT
@@ -10,14 +10,14 @@ import { UserContext } from '@context/userContext'
 import { Box, ButtonGroup, Column, FormField, Message, Title } from 'reactive-bulma'
 // HOOKS
 import useLoginFormik from './form'
-// CONSTANTS
-import { APP_ROUTES } from '@constants/routes'
-import { LOGIN_FORM_LABELS } from '@constants/users'
 // INTERFACES
 import { UserLoginPayload, UserLoginResponse } from '@interfaces/graphql'
 import { LoginFormData } from '@interfaces/forms'
 import { TitleProps } from 'reactive-bulma/dist/interfaces/atomProps'
 import { ButtonGroupProps } from 'reactive-bulma/dist/interfaces/moleculeProps'
+// CONSTANTS
+import { APP_ROUTES } from '@constants/routes'
+import { LOGIN_FORM_LABELS } from '@constants/forms'
 // FUNCTIONS
 import { encryptPass } from '@functions/encrypt'
 

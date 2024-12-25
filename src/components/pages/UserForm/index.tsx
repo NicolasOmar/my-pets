@@ -1,25 +1,23 @@
 // CORE
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useFormik } from 'formik'
-// GRAPHQL CLIENT
+// API
 import { useMutation } from '@apollo/client'
 import { CREATE_USER } from '@graphql/mutations'
 // CONTEXT
 import { UserContext } from '@context/userContext'
 // COMPONENTS
 import { Box, ButtonGroup, Column, FormField, Message, Title } from 'reactive-bulma'
-// CONSTANTS
-import { APP_ROUTES } from '@constants/routes'
+// HOOKS
+import useUserFormik from './form'
 // INTERFACES
-import { CustomFormInputProps } from '@interfaces/components'
 import { UserCreateResponse, UserCreatePayload } from '@interfaces/graphql'
 import { TitleProps } from 'reactive-bulma/dist/interfaces/atomProps'
-import { ButtonGroupProps, FormFieldType } from 'reactive-bulma/dist/interfaces/moleculeProps'
-import { FormFieldProps } from 'reactive-bulma/dist/interfaces/organismProps'
+import { ButtonGroupProps } from 'reactive-bulma/dist/interfaces/moleculeProps'
+// CONSTANTS
+import { APP_ROUTES } from '@constants/routes'
+import { USER_FORM_LABELS } from '@constants/forms'
 // FUNCTIONS
-import { encryptPass } from '@functions/encrypt'
-import { setLoggedUser } from '@functions/local-storage'
 
 const UserForm = () => {
   let navigate = useNavigate()
@@ -28,153 +26,27 @@ const UserForm = () => {
     UserCreatePayload
   >(CREATE_USER)
   const userContext = useContext(UserContext)
-
-  const userFormik = useFormik({
-    initialValues: {
-      name: '',
-      lastName: '',
-      userName: '',
-      email: '',
-      password: '',
-      repeatPass: ''
-    },
-    onSubmit: async formData => {
-      try {
-        const response = await createUser({
-          variables: {
-            payload: {
-              name: formData.name,
-              lastName: formData.lastName,
-              userName: formData.userName,
-              email: formData.email,
-              password: encryptPass(formData.password)
-            }
-          }
-        })
-
-        if (response.data?.createUser) {
-          setLoggedUser(response.data?.createUser)
-          userContext?.setUserData({ name: response.data?.createUser.name })
-          navigate(APP_ROUTES.HOME)
-        }
-      } catch (e) {
-        console.error(e)
-      }
-    }
-  })
+  const { userFormik, userFormInputs } = useUserFormik(isLoadingUser)
 
   const userFormHeader: TitleProps = {
     main: {
-      text: 'Sign up',
+      text: USER_FORM_LABELS.TITLE,
       type: 'title'
-    }
-  }
-
-  const userFormInputs: CustomFormInputProps<FormFieldProps> = {
-    name: {
-      config: {
-        labelText: 'Name',
-        type: FormFieldType.INPUT,
-        input: {
-          inputConfig: {
-            type: 'text',
-            name: 'name',
-            value: userFormik.values.name,
-            isDisabled: isLoadingUser,
-            onChange: userFormik.handleChange
-          }
-        }
-      }
-    },
-    lastName: {
-      config: {
-        labelText: 'Last Name',
-        type: FormFieldType.INPUT,
-        input: {
-          inputConfig: {
-            type: 'text',
-            name: 'lastName',
-            value: userFormik.values.lastName,
-            isDisabled: isLoadingUser,
-            onChange: userFormik.handleChange
-          }
-        }
-      }
-    },
-    userName: {
-      config: {
-        labelText: 'User Name',
-        type: FormFieldType.INPUT,
-        input: {
-          inputConfig: {
-            type: 'text',
-            name: 'userName',
-            value: userFormik.values.userName,
-            isDisabled: isLoadingUser,
-            onChange: userFormik.handleChange
-          }
-        }
-      }
-    },
-    email: {
-      config: {
-        labelText: 'Email',
-        type: FormFieldType.INPUT,
-        input: {
-          inputConfig: {
-            type: 'email',
-            name: 'email',
-            value: userFormik.values.email,
-            isDisabled: isLoadingUser,
-            onChange: userFormik.handleChange
-          }
-        }
-      }
-    },
-    password: {
-      config: {
-        labelText: 'Password',
-        type: FormFieldType.INPUT,
-        input: {
-          inputConfig: {
-            type: 'password',
-            name: 'password',
-            value: userFormik.values.password,
-            isDisabled: isLoadingUser,
-            onChange: userFormik.handleChange
-          }
-        }
-      }
-    },
-    repeatPass: {
-      config: {
-        labelText: 'Repeat Password',
-        type: FormFieldType.INPUT,
-        input: {
-          inputConfig: {
-            type: 'password',
-            name: 'repeatPass',
-            value: userFormik.values.repeatPass,
-            isDisabled: isLoadingUser,
-            onChange: userFormik.handleChange
-          }
-        }
-      }
     }
   }
 
   const userFormButtons: ButtonGroupProps = {
     buttonList: [
       {
+        text: USER_FORM_LABELS.SUBMIT_BTN,
         type: 'submit',
         color: 'is-success',
-        text: 'Sign up',
         isDisabled: isLoadingUser
       },
       {
+        text: USER_FORM_LABELS.LOG_IN_BTN,
         type: 'button',
         color: 'is-danger',
-        text: 'You can log in with your account',
         isDisabled: isLoadingUser,
         onClick: () => navigate(APP_ROUTES.LOGIN)
       }
@@ -216,7 +88,7 @@ const UserForm = () => {
 
           {userErrors ? (
             <Message
-              headerText={'User creation errors'}
+              headerText={USER_FORM_LABELS.ERROR_MSG}
               bodyText={userErrors.message}
               color="is-danger"
             />

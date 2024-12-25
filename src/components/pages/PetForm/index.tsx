@@ -1,23 +1,19 @@
 import { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useFormik } from 'formik'
-// GRAPHQL CLIENT
+// API
 import { useMutation, useQuery } from '@apollo/client'
 import { GET_COLORS_QUERY, GET_PET_TYPES_QUERY } from '@graphql/queries'
 import { CREATE_PET } from '@graphql/mutations'
 // COMPONENTS
 import { Box, ButtonGroup, Column, FormField, Message, Title } from 'reactive-bulma'
-// FORM CONFIG
-// FUNCTIONS
+// HOOKS
+import usePetFormik from './form'
 // INTERFACES
 import { TitleProps } from 'reactive-bulma/dist/interfaces/atomProps'
 import { ButtonGroupProps } from 'reactive-bulma/dist/interfaces/moleculeProps'
 // CONSTANTS
-// import ROUTES from '@constants/routes'
-import { PET_FORM_LABELS } from '@constants/pets'
-import usePetFormik from './form'
-
-// const { header, inputs, dividers, addPetButton, goToHomeButton } = CONFIG
+import { PET_FORM_LABELS } from '@constants/forms'
+// FUNCTIONS
 
 const PetForm = () => {
   let navigate = useNavigate()

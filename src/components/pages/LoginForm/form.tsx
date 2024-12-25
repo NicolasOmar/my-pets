@@ -5,7 +5,7 @@ import { FormFieldType } from 'reactive-bulma/dist/interfaces/moleculeProps'
 import { FormFieldProps } from 'reactive-bulma/dist/interfaces/organismProps'
 import { CustomFormInputProps } from '@interfaces/components'
 // CONSTANTS
-import { LOGIN_FORM_LABELS } from '@constants/users'
+import { LOGIN_FORM_LABELS } from '@constants/forms'
 
 const useLoginFormik = (
   formIsWorking: boolean,
