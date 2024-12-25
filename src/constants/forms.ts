@@ -5,7 +5,7 @@ export enum LOGIN_FORM_LABELS {
   PASSWORD = 'Password',
   SUBMIT_BTN = 'Log in',
   SIGN_UP_BTN = 'You can Sign up',
-  ERROR_MSG = 'Login errors'
+  ERROR_TITLE = 'Login errors'
 }
 
 export enum USER_FORM_LABELS {
@@ -18,7 +18,7 @@ export enum USER_FORM_LABELS {
   REPEAT_PASS = 'Repeat password',
   SUBMIT_BTN = 'Confirm',
   LOG_IN_BTN = 'You can log in with your account',
-  ERROR_MSG = 'User creation errors'
+  ERROR_TITLE = 'User creation errors'
 }
 
 export enum PET_FORM_LABELS {

@@ -16,12 +16,16 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@components': '/src/components',
+      '@molecules': '/src/components/molecules',
+      '@organisms': '/src/components/organisms',
+      '@templates': '/src/components/templates',
+      '@pages': '/src/components/pages',
       '@constants': '/src/constants',
       '@context': '/src/context',
       '@functions': '/src/functions',
       '@graphql': '/src/graphql',
-      '@types': '/src/types'
+      '@interfaces': '/src/interfaces',
+      '@hooks': '/src/hooks',
     }
   }
 })

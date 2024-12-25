@@ -12,12 +12,15 @@ import { Box, ButtonGroup, Column, FormField, Message, Title } from 'reactive-bu
 import useUserFormik from './form'
 // INTERFACES
 import { UserCreateResponse, UserCreatePayload } from '@interfaces/graphql'
+import { UserFormData } from '@interfaces/forms'
 import { TitleProps } from 'reactive-bulma/dist/interfaces/atomProps'
 import { ButtonGroupProps } from 'reactive-bulma/dist/interfaces/moleculeProps'
 // CONSTANTS
 import { APP_ROUTES } from '@constants/routes'
 import { USER_FORM_LABELS } from '@constants/forms'
 // FUNCTIONS
+import { encryptPass } from '@functions/encrypt'
+import { setLoggedUser } from '@functions/local-storage'
 
 const UserForm = () => {
   let navigate = useNavigate()
@@ -26,7 +29,28 @@ const UserForm = () => {
     UserCreatePayload
   >(CREATE_USER)
   const userContext = useContext(UserContext)
-  const { userFormik, userFormInputs } = useUserFormik(isLoadingUser)
+
+  const handleSubmit = async (formData: UserFormData) => {
+    const userResponse = await createUser({
+      variables: {
+        payload: {
+          name: formData.name,
+          lastName: formData.lastName,
+          userName: formData.userName,
+          email: formData.email,
+          password: encryptPass(formData.password)
+        }
+      }
+    })
+
+    if (userResponse.data?.createUser) {
+      setLoggedUser(userResponse.data?.createUser)
+      userContext?.setUserData({ name: userResponse.data?.createUser.name })
+      navigate(APP_ROUTES.HOME)
+    }
+  }
+
+  const { userFormik, userFormInputs } = useUserFormik(isLoadingUser, handleSubmit)
 
   const userFormHeader: TitleProps = {
     main: {
@@ -88,7 +112,7 @@ const UserForm = () => {
 
           {userErrors ? (
             <Message
-              headerText={USER_FORM_LABELS.ERROR_MSG}
+              headerText={USER_FORM_LABELS.ERROR_TITLE}
               bodyText={userErrors.message}
               color="is-danger"
             />

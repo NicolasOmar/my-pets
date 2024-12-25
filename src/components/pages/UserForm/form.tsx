@@ -6,8 +6,12 @@ import { FormFieldProps } from 'reactive-bulma/dist/interfaces/organismProps'
 import { CustomFormInputProps } from '@interfaces/components'
 // CONSTANTS
 import { USER_FORM_LABELS } from '@constants/forms'
+import { UserFormData } from '@interfaces/forms'
 
-const useUserFormik = (formIsWorking: boolean) => {
+const useUserFormik = (
+  formIsWorking: boolean,
+  handleSubmit: (userFormData: UserFormData) => void
+) => {
   const userFormik = useFormik({
     initialValues: {
       name: '',
@@ -17,7 +21,7 @@ const useUserFormik = (formIsWorking: boolean) => {
       password: '',
       repeatPass: ''
     },
-    onSubmit: formData => console.warn(formData)
+    onSubmit: handleSubmit
   })
 
   const userFormInputs: CustomFormInputProps<FormFieldProps> = {

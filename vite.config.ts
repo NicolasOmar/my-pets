@@ -12,9 +12,10 @@ export default defineConfig({
       '@pages':  '/src/components/pages',
       '@constants':  '/src/constants',
       '@context':  '/src/context',
+      '@functions':  '/src/functions',
       '@graphql':  '/src/graphql',
       '@interfaces':  '/src/interfaces',
-      '@functions':  '/src/functions'
+      '@hooks':  '/src/hooks',
     }
   }
 })

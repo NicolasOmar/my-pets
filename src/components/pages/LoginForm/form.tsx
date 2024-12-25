@@ -4,12 +4,13 @@ import { useFormik } from 'formik'
 import { FormFieldType } from 'reactive-bulma/dist/interfaces/moleculeProps'
 import { FormFieldProps } from 'reactive-bulma/dist/interfaces/organismProps'
 import { CustomFormInputProps } from '@interfaces/components'
+import { LoginFormData } from '@interfaces/forms'
 // CONSTANTS
 import { LOGIN_FORM_LABELS } from '@constants/forms'
 
 const useLoginFormik = (
   formIsWorking: boolean,
-  handleSubmit: (data: { email: string; password: string }) => void
+  handleSubmit: (loginFormData: LoginFormData) => void
 ) => {
   const loginFormik = useFormik({
     initialValues: {
