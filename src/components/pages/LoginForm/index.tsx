@@ -9,20 +9,17 @@ import { UserContext } from '@context/userContext'
 // COMPONENTS
 import { Box, ButtonGroup, Column, FormField, Message, Title } from 'reactive-bulma'
 // HOOKS
-import useFormikShape from './form'
+import useLoginFormik from './form'
 // CONSTANTS
 import { APP_ROUTES } from '@constants/routes'
+import { LOGIN_FORM_LABELS } from '@constants/users'
 // INTERFACES
 import { UserLoginPayload, UserLoginResponse } from '@interfaces/graphql'
+import { LoginFormData } from '@interfaces/forms'
 import { TitleProps } from 'reactive-bulma/dist/interfaces/atomProps'
 import { ButtonGroupProps } from 'reactive-bulma/dist/interfaces/moleculeProps'
 // FUNCTIONS
 import { encryptPass } from '@functions/encrypt'
-
-interface LoginFormData {
-  email: string
-  password: string
-}
 
 const LoginForm = () => {
   let navigate = useNavigate()
@@ -32,7 +29,7 @@ const LoginForm = () => {
     UserLoginPayload
   >(LOGIN_USER)
 
-  const handleFormLoginSubmit = async (formData: LoginFormData) => {
+  const handleSubmit = async (formData: LoginFormData) => {
     await login({
       variables: {
         payload: {
@@ -43,15 +40,15 @@ const LoginForm = () => {
     })
   }
 
-  const { loginFormik, formConfig } = useFormikShape(isLoadingLogin, handleFormLoginSubmit)
+  const { loginFormik, formConfig } = useLoginFormik(isLoadingLogin, handleSubmit)
 
   const loginFormHeader: TitleProps = {
     main: {
-      text: 'Welcome to My Pets',
+      text: LOGIN_FORM_LABELS.TITLE,
       type: 'title'
     },
     secondary: {
-      text: 'Log in',
+      text: LOGIN_FORM_LABELS.SUBTITLE,
       type: 'subtitle'
     }
   }
@@ -59,15 +56,15 @@ const LoginForm = () => {
   const loginFormButtons: ButtonGroupProps = {
     buttonList: [
       {
+        text: LOGIN_FORM_LABELS.SUBMIT_BTN,
         type: 'submit',
         color: 'is-success',
-        text: 'Log in',
         isDisabled: isLoadingLogin
       },
       {
+        text: LOGIN_FORM_LABELS.SIGN_UP_BTN,
         type: 'button',
         color: 'is-danger',
-        text: 'You can Sign up',
         isDisabled: isLoadingLogin,
         onClick: () => navigate(APP_ROUTES.NEW_USER)
       }
@@ -97,9 +94,15 @@ const LoginForm = () => {
         <form onSubmit={loginFormik.handleSubmit}>
           <FormField {...formConfig.email} />
           <FormField {...formConfig.password} />
-          {loginFormButtons ? <ButtonGroup {...loginFormButtons} /> : null}
+
+          <ButtonGroup {...loginFormButtons} />
+
           {loginErrors ? (
-            <Message headerText={'Login errors'} bodyText={loginErrors.message} color="is-danger" />
+            <Message
+              headerText={LOGIN_FORM_LABELS.ERROR_MSG}
+              bodyText={loginErrors.message}
+              color="is-danger"
+            />
           ) : null}
         </form>
       </Box>

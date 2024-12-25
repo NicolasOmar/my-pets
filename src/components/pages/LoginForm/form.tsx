@@ -1,9 +1,13 @@
-import { CustomFormInputProps } from '@interfaces/components'
+// CORE
 import { useFormik } from 'formik'
+// INTERFACES
 import { FormFieldType } from 'reactive-bulma/dist/interfaces/moleculeProps'
 import { FormFieldProps } from 'reactive-bulma/dist/interfaces/organismProps'
+// CONSTANTS
+import { CustomFormInputProps } from '@interfaces/components'
+import { LOGIN_FORM_LABELS } from '@constants/users'
 
-const useFormikShape = (
+const useLoginFormik = (
   formIsWorking: boolean,
   handleSubmit: (data: { email: string; password: string }) => void
 ) => {
@@ -12,17 +16,14 @@ const useFormikShape = (
       email: '',
       password: ''
     },
-    onSubmit: async formData => {
-      console.warn(formData)
-      handleSubmit(formData)
-    },
+    onSubmit: handleSubmit,
     enableReinitialize: true
   })
 
   const formConfig: CustomFormInputProps<FormFieldProps> = {
     email: {
       config: {
-        labelText: 'Email',
+        labelText: LOGIN_FORM_LABELS.EMAIL,
         type: FormFieldType.INPUT,
         input: {
           inputConfig: {
@@ -37,7 +38,7 @@ const useFormikShape = (
     },
     password: {
       config: {
-        labelText: 'Password',
+        labelText: LOGIN_FORM_LABELS.PASSWORD,
         type: FormFieldType.INPUT,
         input: {
           inputConfig: {
@@ -58,4 +59,4 @@ const useFormikShape = (
   }
 }
 
-export default useFormikShape
+export default useLoginFormik
