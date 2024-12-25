@@ -6,17 +6,16 @@ import { useMutation, useQuery } from '@apollo/client'
 import { GET_COLORS_QUERY, GET_PET_TYPES_QUERY } from '@graphql/queries'
 import { CREATE_PET } from '@graphql/mutations'
 // COMPONENTS
-import { Box, ButtonGroup, Column, FormField, Message, Select, Title } from 'reactive-bulma'
+import { Box, ButtonGroup, Column, FormField, Message, Title } from 'reactive-bulma'
 // FORM CONFIG
-import CONFIG from './config.json'
 // FUNCTIONS
 // INTERFACES
-import { InputProps } from '@interfaces/components'
 import { TitleProps } from 'reactive-bulma/dist/interfaces/atomProps'
 import { ButtonGroupProps } from 'reactive-bulma/dist/interfaces/moleculeProps'
-import { FormFieldProps, FormFieldType } from 'reactive-bulma/dist/interfaces/organismProps'
 // CONSTANTS
 // import ROUTES from '@constants/routes'
+import { PET_FORM_LABELS } from '@constants/pets'
+import usePetFormik from './form'
 
 // const { header, inputs, dividers, addPetButton, goToHomeButton } = CONFIG
 
@@ -91,229 +90,33 @@ const PetForm = () => {
 
   const petFormHeader: TitleProps = {
     main: {
-      text: 'Add a new pet',
+      text: PET_FORM_LABELS.TITLE,
       type: 'title'
     }
   }
 
-  const petFormik = useFormik({
-    initialValues: {
-      name: '',
-      petType: '',
-      birthday: '',
-      isAdopted: '',
-      adoptionDate: '',
-      height: '',
-      length: '',
-      weight: '',
-      gender: '',
-      hairColors: '',
-      eyeColors: '',
-      hasHeterochromia: '',
-      passedAway: ''
-    },
-    onSubmit: petFormData => console.warn(petFormData)
-  })
-
-  const isLoading = useMemo(
+  const formIsWorking = useMemo(
     () => loadingCreate || loadingPetTypes || loadingColors,
     [loadingCreate, loadingPetTypes, loadingColors]
   )
 
-  const petFormInputs: InputProps<FormFieldProps> = {
-    name: {
-      labelText: 'name',
-      inputControlConfig: {
-        type: FormFieldType.INPUT,
-        config: {
-          inputConfig: {
-            type: 'text',
-            name: 'name',
-            isDisabled: isLoading,
-            value: petFormik.values.name,
-            onChange: petFormik.handleChange
-          }
-        }
-      }
-    },
-    petType: {
-      labelText: 'Pet Type',
-      inputControlConfig: {
-        type: FormFieldType.SELECT,
-        config: {
-          name: 'petType',
-          options: petTypes?.getPetTypes ?? []
-        }
-      }
-    },
-    birthday: {
-      labelText: 'birthday',
-      inputControlConfig: {
-        type: FormFieldType.INPUT,
-        config: {
-          inputConfig: {
-            type: 'text',
-            name: 'birthday',
-            isDisabled: isLoading,
-            value: petFormik.values.birthday,
-            onChange: petFormik.handleChange
-          }
-        }
-      }
-    },
-    isAdopted: {
-      labelText: 'isAdopted',
-      inputControlConfig: {
-        type: FormFieldType.INPUT,
-        config: {
-          inputConfig: {
-            type: 'text',
-            name: 'isAdopted',
-            isDisabled: isLoading,
-            value: petFormik.values.isAdopted,
-            onChange: petFormik.handleChange
-          }
-        }
-      }
-    },
-    adoptionDate: {
-      labelText: 'adoptionDate',
-      inputControlConfig: {
-        type: FormFieldType.INPUT,
-        config: {
-          inputConfig: {
-            type: 'text',
-            name: 'adoptionDate',
-            isDisabled: isLoading,
-            value: petFormik.values.adoptionDate,
-            onChange: petFormik.handleChange
-          }
-        }
-      }
-    },
-    height: {
-      labelText: 'height',
-      inputControlConfig: {
-        type: FormFieldType.INPUT,
-        config: {
-          inputConfig: {
-            type: 'text',
-            name: 'height',
-            isDisabled: isLoading,
-            value: petFormik.values.height,
-            onChange: petFormik.handleChange
-          }
-        }
-      }
-    },
-    length: {
-      labelText: 'length',
-      inputControlConfig: {
-        type: FormFieldType.INPUT,
-        config: {
-          inputConfig: {
-            type: 'text',
-            name: 'length',
-            isDisabled: isLoading,
-            value: petFormik.values.length,
-            onChange: petFormik.handleChange
-          }
-        }
-      }
-    },
-    weight: {
-      labelText: 'weight',
-      inputControlConfig: {
-        type: FormFieldType.INPUT,
-        config: {
-          inputConfig: {
-            type: 'text',
-            name: 'weight',
-            isDisabled: isLoading,
-            value: petFormik.values.weight,
-            onChange: petFormik.handleChange
-          }
-        }
-      }
-    },
-    gender: {
-      labelText: 'gender',
-      inputControlConfig: {
-        type: FormFieldType.INPUT,
-        config: {
-          inputConfig: {
-            type: 'text',
-            name: 'gender',
-            isDisabled: isLoading,
-            value: petFormik.values.gender,
-            onChange: petFormik.handleChange
-          }
-        }
-      }
-    },
-    hairColors: {
-      labelText: 'HairColors',
-      inputControlConfig: {
-        type: FormFieldType.SELECT,
-        config: {
-          name: 'hairColors',
-          options: colors?.getColors ?? []
-        }
-      }
-    },
-    eyeColors: {
-      labelText: 'Eye Colors',
-      inputControlConfig: {
-        type: FormFieldType.SELECT,
-        config: {
-          name: 'eyeColors',
-          options: colors?.getColors ?? []
-        }
-      }
-    },
-    hasHeterochromia: {
-      labelText: 'hasHeterochromia',
-      inputControlConfig: {
-        type: FormFieldType.INPUT,
-        config: {
-          inputConfig: {
-            type: 'text',
-            name: 'hasHeterochromia',
-            isDisabled: isLoading,
-            value: petFormik.values.hasHeterochromia,
-            onChange: petFormik.handleChange
-          }
-        }
-      }
-    },
-    passedAway: {
-      labelText: 'passedAway',
-      inputControlConfig: {
-        type: FormFieldType.INPUT,
-        config: {
-          inputConfig: {
-            type: 'text',
-            name: 'passedAway',
-            isDisabled: isLoading,
-            value: petFormik.values.passedAway,
-            onChange: petFormik.handleChange
-          }
-        }
-      }
-    }
-  }
+  const { petFormik, petFormInputs } = usePetFormik({
+    formIsWorking,
+    petTypes: petTypes?.getPetTypes ?? undefined,
+    colors: colors?.getColors ?? undefined
+  })
 
   const petFormButtons: ButtonGroupProps = {
     buttonList: [
       {
+        text: PET_FORM_LABELS.SUBMIT_BTN,
         type: 'submit',
-        color: 'is-success',
-        text: 'Confirm'
+        color: 'is-success'
       },
       {
+        text: PET_FORM_LABELS.CANCEL_BTN,
         type: 'button',
-        color: 'is-danger',
-        text: 'Cancel'
+        color: 'is-danger'
       }
     ]
   }
@@ -342,7 +145,7 @@ const PetForm = () => {
 
           {petCreateErrors ? (
             <Message
-              headerText={'Pet creation errors'}
+              headerText={PET_FORM_LABELS.ERROR_TITLE}
               bodyText={petCreateErrors.message}
               color="is-danger"
             />

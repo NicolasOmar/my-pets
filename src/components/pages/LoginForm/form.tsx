@@ -3,8 +3,8 @@ import { useFormik } from 'formik'
 // INTERFACES
 import { FormFieldType } from 'reactive-bulma/dist/interfaces/moleculeProps'
 import { FormFieldProps } from 'reactive-bulma/dist/interfaces/organismProps'
-// CONSTANTS
 import { CustomFormInputProps } from '@interfaces/components'
+// CONSTANTS
 import { LOGIN_FORM_LABELS } from '@constants/users'
 
 const useLoginFormik = (
