@@ -1,31 +1,32 @@
 // CORE
 import { useFormik } from 'formik'
 // INTERFACES
+import { SelectProps } from 'reactive-bulma/dist/interfaces/atomProps'
 import { FormFieldType } from 'reactive-bulma/dist/interfaces/moleculeProps'
 import { FormFieldProps } from 'reactive-bulma/dist/interfaces/organismProps'
 import { CustomFormInputProps } from '@interfaces/components'
-import { PetFormikProps } from '@interfaces/forms'
+import { PetFormData, PetFormikProps } from '@interfaces/forms'
 // CONSTANTS
 import { PET_FORM_LABELS } from '@constants/forms'
 
-const usePetFormik = ({ formIsWorking, petTypes, colors }: PetFormikProps) => {
-  const petFormik = useFormik({
+const usePetFormik = ({ formIsWorking, petTypes, colors, handleSubmit }: PetFormikProps) => {
+  const petFormik = useFormik<PetFormData>({
     initialValues: {
       name: '',
       petType: '',
       birthday: '',
-      isAdopted: '',
+      isAdopted: false,
       adoptionDate: '',
-      height: '',
-      length: '',
-      weight: '',
-      gender: '',
+      height: 0,
+      length: 0,
+      weight: 0,
+      gender: false,
       hairColors: '',
       eyeColors: '',
-      hasHeterochromia: '',
-      passedAway: ''
+      hasHeterochromia: false,
+      passedAway: false
     },
-    onSubmit: petFormData => console.warn(petFormData)
+    onSubmit: handleSubmit
   })
 
   const petFormInputs: CustomFormInputProps<FormFieldProps> = {
@@ -50,7 +51,9 @@ const usePetFormik = ({ formIsWorking, petTypes, colors }: PetFormikProps) => {
         type: FormFieldType.SELECT,
         input: {
           name: 'petType',
-          options: petTypes ?? []
+          options: [{ id: 0, name: '' }, ...(petTypes ?? [])],
+          selectedValues: petFormik.values.petType,
+          onChange: petFormik.handleChange
         }
       }
     },
@@ -60,7 +63,7 @@ const usePetFormik = ({ formIsWorking, petTypes, colors }: PetFormikProps) => {
         type: FormFieldType.INPUT,
         input: {
           inputConfig: {
-            type: 'text',
+            type: 'date',
             name: 'birthday',
             isDisabled: formIsWorking,
             value: petFormik.values.birthday,
@@ -71,16 +74,13 @@ const usePetFormik = ({ formIsWorking, petTypes, colors }: PetFormikProps) => {
     },
     isAdopted: {
       config: {
-        labelText: PET_FORM_LABELS.IS_ADOPTED,
-        type: FormFieldType.INPUT,
+        type: FormFieldType.CHECKBOX,
         input: {
-          inputConfig: {
-            type: 'text',
-            name: 'isAdopted',
-            isDisabled: formIsWorking,
-            value: petFormik.values.isAdopted,
-            onChange: petFormik.handleChange
-          }
+          label: PET_FORM_LABELS.IS_ADOPTED,
+          name: 'isAdopted',
+          isDisabled: formIsWorking,
+          isChecked: petFormik.values.isAdopted,
+          onChange: petFormik.handleChange
         }
       }
     },
@@ -90,7 +90,7 @@ const usePetFormik = ({ formIsWorking, petTypes, colors }: PetFormikProps) => {
         type: FormFieldType.INPUT,
         input: {
           inputConfig: {
-            type: 'text',
+            type: 'date',
             name: 'adoptionDate',
             isDisabled: formIsWorking,
             value: petFormik.values.adoptionDate,
@@ -105,10 +105,10 @@ const usePetFormik = ({ formIsWorking, petTypes, colors }: PetFormikProps) => {
         type: FormFieldType.INPUT,
         input: {
           inputConfig: {
-            type: 'text',
+            type: 'number',
             name: 'height',
             isDisabled: formIsWorking,
-            value: petFormik.values.height,
+            value: petFormik.values.height.toString(),
             onChange: petFormik.handleChange
           }
         }
@@ -120,10 +120,10 @@ const usePetFormik = ({ formIsWorking, petTypes, colors }: PetFormikProps) => {
         type: FormFieldType.INPUT,
         input: {
           inputConfig: {
-            type: 'text',
+            type: 'number',
             name: 'length',
             isDisabled: formIsWorking,
-            value: petFormik.values.length,
+            value: petFormik.values.length.toString(),
             onChange: petFormik.handleChange
           }
         }
@@ -135,10 +135,10 @@ const usePetFormik = ({ formIsWorking, petTypes, colors }: PetFormikProps) => {
         type: FormFieldType.INPUT,
         input: {
           inputConfig: {
-            type: 'text',
+            type: 'number',
             name: 'weight',
             isDisabled: formIsWorking,
-            value: petFormik.values.weight,
+            value: petFormik.values.weight.toString(),
             onChange: petFormik.handleChange
           }
         }
@@ -146,16 +146,13 @@ const usePetFormik = ({ formIsWorking, petTypes, colors }: PetFormikProps) => {
     },
     gender: {
       config: {
-        labelText: PET_FORM_LABELS.GENDER,
-        type: FormFieldType.INPUT,
+        type: FormFieldType.CHECKBOX,
         input: {
-          inputConfig: {
-            type: 'text',
-            name: 'gender',
-            isDisabled: formIsWorking,
-            value: petFormik.values.gender,
-            onChange: petFormik.handleChange
-          }
+          label: PET_FORM_LABELS.GENDER,
+          name: 'gender',
+          isDisabled: formIsWorking,
+          isChecked: petFormik.values.gender,
+          onChange: petFormik.handleChange
         }
       }
     },
@@ -165,8 +162,11 @@ const usePetFormik = ({ formIsWorking, petTypes, colors }: PetFormikProps) => {
         type: FormFieldType.SELECT,
         input: {
           name: 'hairColors',
-          options: colors ?? []
-        }
+          isDisabled: formIsWorking,
+          options: [{ id: 0, name: '' }, ...(colors ?? [])],
+          selectedValues: petFormik.values.hairColors,
+          onChange: petFormik.handleChange
+        } as SelectProps
       }
     },
     eyeColors: {
@@ -175,37 +175,34 @@ const usePetFormik = ({ formIsWorking, petTypes, colors }: PetFormikProps) => {
         type: FormFieldType.SELECT,
         input: {
           name: 'eyeColors',
-          options: colors ?? []
+          isDisabled: formIsWorking,
+          options: [{ id: 0, name: '' }, ...(colors ?? [])],
+          selectedValues: petFormik.values.eyeColors,
+          onChange: petFormik.handleChange
         }
       }
     },
     hasHeterochromia: {
       config: {
-        labelText: PET_FORM_LABELS.HAS_HETEROCHROMIA,
-        type: FormFieldType.INPUT,
+        type: FormFieldType.CHECKBOX,
         input: {
-          inputConfig: {
-            type: 'text',
-            name: 'hasHeterochromia',
-            isDisabled: formIsWorking,
-            value: petFormik.values.hasHeterochromia,
-            onChange: petFormik.handleChange
-          }
+          label: PET_FORM_LABELS.HAS_HETEROCHROMIA,
+          name: 'hasHeterochromia',
+          isDisabled: formIsWorking,
+          isChecked: petFormik.values.hasHeterochromia,
+          onChange: petFormik.handleChange
         }
       }
     },
     passedAway: {
       config: {
-        labelText: PET_FORM_LABELS.PASSED_AWAY,
-        type: FormFieldType.INPUT,
+        type: FormFieldType.CHECKBOX,
         input: {
-          inputConfig: {
-            type: 'text',
-            name: 'passedAway',
-            isDisabled: formIsWorking,
-            value: petFormik.values.passedAway,
-            onChange: petFormik.handleChange
-          }
+          label: PET_FORM_LABELS.PASSED_AWAY,
+          name: 'passedAway',
+          isDisabled: formIsWorking,
+          isChecked: petFormik.values.passedAway,
+          onChange: petFormik.handleChange
         }
       }
     }

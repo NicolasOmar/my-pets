@@ -77,8 +77,8 @@ export const parseDropdownOptions = ({
       }))
     : []
 
-export const parseNumber = number =>
-  !!number && validator.isNumeric(String(number)) ? +number : null
+export const parseNumber = (number: number, defaultNullValue: number | null = 0) =>
+  !isNaN(number) ? number : defaultNullValue
 
 export const parseBooleanToString = (boolean, [trueString, falseString]) =>
   boolean ? trueString : falseString
@@ -163,4 +163,20 @@ export const parseSingularPluralStrings = ({
   }
 
   return `${startString} ${partialText} ${endString}`.trim()
+}
+
+export const parseToLuxonDate = (stringDate: string) => DateTime.fromISO(stringDate).toFormat('F')
+
+interface NullifyValueProps<ValueType> {
+  value: ValueType
+  nullableValue?: ValueType
+  valueToShow?: ValueType
+}
+
+export const nullifyValue: <ValueType>(props: NullifyValueProps<ValueType>) => ValueType | null = ({
+  value,
+  nullableValue,
+  valueToShow
+}) => {
+  return value === nullableValue ? null : (valueToShow ?? value)
 }

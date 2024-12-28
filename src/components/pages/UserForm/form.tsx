@@ -4,15 +4,15 @@ import { useFormik } from 'formik'
 import { FormFieldType } from 'reactive-bulma/dist/interfaces/moleculeProps'
 import { FormFieldProps } from 'reactive-bulma/dist/interfaces/organismProps'
 import { CustomFormInputProps } from '@interfaces/components'
+import { UserFormData } from '@interfaces/forms'
 // CONSTANTS
 import { USER_FORM_LABELS } from '@constants/forms'
-import { UserFormData } from '@interfaces/forms'
 
 const useUserFormik = (
   formIsWorking: boolean,
   handleSubmit: (userFormData: UserFormData) => void
 ) => {
-  const userFormik = useFormik({
+  const userFormik = useFormik<UserFormData>({
     initialValues: {
       name: '',
       lastName: '',

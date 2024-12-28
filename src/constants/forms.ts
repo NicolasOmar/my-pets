@@ -25,7 +25,7 @@ export enum PET_FORM_LABELS {
   TITLE = 'Add a new pet',
   NAME = 'Name',
   PET_TYPE = 'Kind of pet',
-  BIRTHDAY = 'Birthdat',
+  BIRTHDAY = 'Birthday',
   IS_ADOPTED = 'Is adopted?',
   ADOPTION_DATE = 'Adoption date',
   HEIGHT = 'Height',

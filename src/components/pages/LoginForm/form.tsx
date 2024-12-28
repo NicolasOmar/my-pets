@@ -12,7 +12,7 @@ const useLoginFormik = (
   formIsWorking: boolean,
   handleSubmit: (loginFormData: LoginFormData) => void
 ) => {
-  const loginFormik = useFormik({
+  const loginFormik = useFormik<LoginFormData>({
     initialValues: {
       email: '',
       password: ''

@@ -11,44 +11,32 @@ import usePetFormik from './form'
 // INTERFACES
 import { TitleProps } from 'reactive-bulma/dist/interfaces/atomProps'
 import { ButtonGroupProps } from 'reactive-bulma/dist/interfaces/moleculeProps'
+import {
+  ColorsResponse,
+  PetCreatePayload,
+  PetCreateResponse,
+  PetTypesResponse
+} from '@interfaces/graphql'
+import { PetFormData } from '@interfaces/forms'
 // CONSTANTS
 import { PET_FORM_LABELS } from '@constants/forms'
+import { APP_ROUTES } from '@constants/routes'
 // FUNCTIONS
+import { nullifyValue, parseToLuxonDate } from '@functions/parsers'
 
 const PetForm = () => {
   let navigate = useNavigate()
-  const { loading: loadingPetTypes, data: petTypes } = useQuery(GET_PET_TYPES_QUERY)
+  const { loading: loadingPetTypes, data: petTypes } =
+    useQuery<PetTypesResponse>(GET_PET_TYPES_QUERY)
   const {
     loading: loadingColors,
     data: colors,
     error: petCreateErrors
-  } = useQuery(GET_COLORS_QUERY)
-  const [createPet, { loading: loadingCreate, error: errorCreate }] = useMutation(CREATE_PET)
-
-  // const onSubmitNewPet = async formData => {
-  //   const petObj = parseFormDataToObj(formData)
-
-  //   const petInfo = {
-  //     ...petObj,
-  //     birthday: parseDate(petObj?.birthday),
-  //     isAdopted: !!petObj.isAdopted,
-  //     adoptionDate: parseDate(petObj?.adoptionDate),
-  //     height: parseNumber(petObj.height),
-  //     length: parseNumber(petObj.length),
-  //     weight: parseNumber(petObj.weight),
-  //     petType: searchNamesFromIds(petObj?.petType, petTypes?.getPetTypes),
-  //     hairColors: searchNamesFromIds(petObj?.hairColors, colors?.getColors, true),
-  //     hasHeterochromia: !!petObj.hasHeterochromia,
-  //     eyeColors: searchNamesFromIds(petObj?.eyeColors, colors?.getColors, true),
-  //     passedAway: false
-  //   }
-
-  //   await createPet({
-  //     variables: { petInfo }
-  //   })
-
-  //   navigate(APP_ROUTES.LIST_MY_PETS)
-  // }
+  } = useQuery<ColorsResponse>(GET_COLORS_QUERY)
+  const [createPet, { loading: loadingCreate, error: errorCreate }] = useMutation<
+    PetCreateResponse,
+    PetCreatePayload
+  >(CREATE_PET)
 
   // const onInputBlurChange = formData => {
   //   const { isAdopted, adoptionDate, birthday, hasHeterochromia, eyeColors } = formData
@@ -96,10 +84,60 @@ const PetForm = () => {
     [loadingCreate, loadingPetTypes, loadingColors]
   )
 
+  const handleSubmit = async (formData: PetFormData) => {
+    console.warn(formData)
+    const birthday = nullifyValue({
+      value: formData.birthday,
+      nullableValue: '',
+      valueToShow: parseToLuxonDate(formData.birthday)
+    })
+    const adoptionDate = nullifyValue({
+      value: formData.adoptionDate,
+      nullableValue: '',
+      valueToShow: parseToLuxonDate(formData.adoptionDate)
+    })
+
+    const petResponse = await createPet({
+      variables: {
+        payload: {
+          name: formData.name,
+          birthday,
+          isAdopted: formData.isAdopted,
+          adoptionDate,
+          height: formData.height,
+          length: formData.length,
+          weight: formData.weight,
+          gender: formData.gender,
+          petType:
+            (petTypes?.getPetTypes ?? [])
+              .find(_type => formData.petType === _type.id)
+              ?.id.toString() ?? '',
+          hairColors: [
+            (colors?.getColors ?? [])
+              .find(_color => formData.hairColors === _color.id)
+              ?.id.toString() ?? ''
+          ],
+          hasHeterochromia: !!formData.hasHeterochromia,
+          eyeColors: [
+            (colors?.getColors ?? [])
+              .find(_color => formData.eyeColors === _color.id)
+              ?.id.toString() ?? ''
+          ],
+          passedAway: false
+        }
+      }
+    })
+
+    if (petResponse) {
+      navigate(APP_ROUTES.LIST_MY_PETS)
+    }
+  }
+
   const { petFormik, petFormInputs } = usePetFormik({
     formIsWorking,
     petTypes: petTypes?.getPetTypes ?? undefined,
-    colors: colors?.getColors ?? undefined
+    colors: colors?.getColors ?? undefined,
+    handleSubmit
   })
 
   const petFormButtons: ButtonGroupProps = {
