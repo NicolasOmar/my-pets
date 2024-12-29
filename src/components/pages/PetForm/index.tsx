@@ -173,7 +173,8 @@ const PetForm = () => {
       {
         text: PET_FORM_LABELS.CANCEL_BTN,
         type: 'button',
-        color: 'is-danger'
+        color: 'is-danger',
+        onClick: () => navigate(APP_ROUTES.PET_LIST)
       }
     ]
   }
@@ -193,7 +194,7 @@ const PetForm = () => {
         <FormField {...petFormInputs.hairColors} />
         <FormField {...petFormInputs.eyeColors} />
         <FormField {...petFormInputs.hasHeterochromia} />
-        <FormField {...petFormInputs.passedAway} />
+        {petId ? <FormField {...petFormInputs.passedAway} /> : null}
       </>
     ),
     [petFormInputs]

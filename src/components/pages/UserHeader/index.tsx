@@ -14,6 +14,7 @@ import { clearAllStorage } from '../../../functions/local-storage'
 import config from './config.json'
 import { NavBar } from 'reactive-bulma'
 import { NavBarProps } from 'reactive-bulma/dist/interfaces/organismProps'
+import { USER_HEADER_LABELS } from '@constants/layout'
 
 const { brandIcon } = config
 
@@ -42,15 +43,37 @@ const UserHeader: React.FC<HeaderUserProps> = ({ name }) => {
     //   ...brandIcon,
     //   onClick: () => navigate(APP_ROUTES.HOME)
     // },
+    // brandConfig: {
+    //   ...brandIcon,
+    //   // onClick: () => navigate(APP_ROUTES.HOME)
+    // },
     itemsAtEnd: {
       itemList: [
         {
           text: name.toUpperCase(),
           items: [
-            { children: <p onClick={() => navigate(APP_ROUTES.PET_FORM)}>{'Add Pet'}</p> },
-            { children: <p onClick={() => navigate(APP_ROUTES.PET_LIST)}>{'See My Pets'}</p> },
-            { children: <p onClick={() => navigate(APP_ROUTES.SETTINGS)}>{'Settings'}</p> },
-            { children: <p onClick={onLogout}>{'Logout'}</p> }
+            {
+              children: (
+                <p
+                  onClick={() => navigate(APP_ROUTES.PET_FORM)}
+                >{`${USER_HEADER_LABELS.ADD_PET}`}</p>
+              )
+            },
+            {
+              children: (
+                <p
+                  onClick={() => navigate(APP_ROUTES.PET_LIST)}
+                >{`${USER_HEADER_LABELS.SEE_MY_PETS}`}</p>
+              )
+            },
+            {
+              children: (
+                <p
+                  onClick={() => navigate(APP_ROUTES.SETTINGS)}
+                >{`${USER_HEADER_LABELS.SETTINGS}`}</p>
+              )
+            },
+            { children: <p onClick={onLogout}>{`${USER_HEADER_LABELS.LOGOUT}`}</p> }
           ],
           isHoverable: true
         }

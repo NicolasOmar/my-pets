@@ -7,6 +7,7 @@ import { CustomFormInputProps } from '@interfaces/components'
 import { LoginFormData } from '@interfaces/forms'
 // CONSTANTS
 import { LOGIN_FORM_LABELS } from '@constants/forms'
+// FUNCTIONS
 
 const useLoginFormik = (
   formIsWorking: boolean,

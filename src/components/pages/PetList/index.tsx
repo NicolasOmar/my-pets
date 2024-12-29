@@ -9,10 +9,13 @@ import { GET_MY_PETS_QUERY } from '@graphql/queries'
 import { Card, Column, ColumnGroup, Icon, Input, ProgressBar, Title } from 'reactive-bulma'
 // HOOKS
 // INTERFACES
-import { MyPetsResponse } from '@interfaces/graphql'
+import { InputProps } from 'reactive-bulma/dist/interfaces/atomProps'
 import { InputType } from 'reactive-bulma/dist/types/domTypes'
+import { MyPetsResponse } from '@interfaces/graphql'
 // CONSTANTS
 import { APP_ROUTES } from '@constants/routes'
+import { COMMON_LABELS } from '@constants/common'
+import { PET_LIST_LABELS } from '@constants/lists'
 // FUNCTIONS
 import {
   parseBooleanToString,
@@ -20,22 +23,18 @@ import {
   parseStringToLuxonDate
 } from '@functions/parsers'
 import { debouncer } from '@functions/methods'
-import { InputProps } from 'reactive-bulma/dist/interfaces/atomProps'
 
 const PetList = () => {
   let navigate = useNavigate()
-
-  const cardsListTitle = 'My list of Pets'
-  const noPetsText = 'Sorry, there are no pets with the name/s you are searching for'
-
   const { loading, data, refetch } = useQuery<MyPetsResponse>(GET_MY_PETS_QUERY, {
     fetchPolicy: 'network-only'
   })
+
   const searchInputCallback = (event: React.ChangeEvent<HTMLInputElement>) =>
     refetch({ search: event.target.value })
   const searchInput = {
     type: 'text' as InputType,
-    placeholder: 'Search your pet by its name',
+    placeholder: PET_LIST_LABELS.SEARCH_BY,
     style: { marginBottom: '1rem' },
     onChange: debouncer(searchInputCallback, 500)
   }
@@ -44,7 +43,10 @@ const PetList = () => {
     return data
       ? data.getMyPets.map((petData, _petDataId) => {
           const parsedBirthday = petData.birthday ? parseStringToLuxonDate(+petData.birthday) : '-'
-          const parsedGender = parseBooleanToString(petData.gender, ['Masculine', 'Feminine'])
+          const parsedGender = parseBooleanToString(petData.gender, [
+            COMMON_LABELS.MASCULILNE,
+            COMMON_LABELS.FEMENINE
+          ])
           const parsedAdoptionDate = petData.adoptionDate
             ? parseStringToLuxonDate(+petData.adoptionDate)
             : '-'
@@ -65,12 +67,12 @@ const PetList = () => {
                   <>{petData.passedAway ? <Icon iconLabel="ghost" /> : null}</>,
                   <p>{petData.name}</p>,
                   <p>{petData.petType.name}</p>,
-                  <p>{`Birthday: ${parsedBirthday}`}</p>,
-                  <p>{`Adopted: ${parsedAdoptionDate}`}</p>,
-                  <p>{`Gender: ${parsedGender}`}</p>,
-                  <p>{`Hair: ${parsedHairColors}`}</p>,
-                  <p>{`Has Heterochromia: ${parsedHeterochromia}`}</p>,
-                  <p>{`Eyes: ${parsedEyeColors}`}</p>
+                  <p>{`${PET_LIST_LABELS.BIRTHDAY}: ${parsedBirthday}`}</p>,
+                  <p>{`${PET_LIST_LABELS.ADOPTED}: ${parsedAdoptionDate}`}</p>,
+                  <p>{`${PET_LIST_LABELS.GENDER}: ${parsedGender}`}</p>,
+                  <p>{`${PET_LIST_LABELS.HAIR}: ${parsedHairColors}`}</p>,
+                  <p>{`${PET_LIST_LABELS.HAS_HETEROCHROMIA}: ${parsedHeterochromia}`}</p>,
+                  <p>{`${PET_LIST_LABELS.EYES}: ${parsedEyeColors}`}</p>
                 ]}
                 footerLinks={[
                   {
@@ -99,12 +101,12 @@ const PetList = () => {
         <ProgressBar isLoading />
       ) : data ? (
         <>
-          <Title main={{ text: cardsListTitle, type: 'title' }} />
+          <Title main={{ text: PET_LIST_LABELS.TITLE, type: 'title' }} />
           <Input {...(searchInput as InputProps)} />
           <ColumnGroup listOfColumns={memoizedPetCardList} />
         </>
       ) : (
-        <Title main={{ text: noPetsText, type: 'title' }} />
+        <Title main={{ text: PET_LIST_LABELS.NO_PETS, type: 'title' }} />
       )}
     </Column>
   )

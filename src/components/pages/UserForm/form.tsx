@@ -7,6 +7,7 @@ import { CustomFormInputProps } from '@interfaces/components'
 import { UserFormData } from '@interfaces/forms'
 // CONSTANTS
 import { USER_FORM_LABELS } from '@constants/forms'
+// FUNCTIONS
 
 const useUserFormik = (
   formIsWorking: boolean,

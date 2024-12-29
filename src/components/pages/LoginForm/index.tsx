@@ -20,6 +20,7 @@ import { APP_ROUTES } from '@constants/routes'
 import { LOGIN_FORM_LABELS } from '@constants/forms'
 // FUNCTIONS
 import { encryptPass } from '@functions/encrypt'
+import { setLoggedUser } from '@functions/local-storage'
 
 const LoginForm = () => {
   let navigate = useNavigate()
@@ -74,7 +75,13 @@ const LoginForm = () => {
   useEffect(() => {
     if (loginData) {
       const userFullName = `${loginData.loginUser.loggedUser.name} ${loginData.loginUser.loggedUser.lastName}`
-      userFullName && userContext?.setUserData({ name: userFullName })
+
+      userContext?.setUserData({ name: userFullName })
+      setLoggedUser({
+        ...loginData.loginUser.loggedUser,
+        token: loginData.loginUser.token
+      })
+
       navigate(APP_ROUTES.HOME)
     }
   }, [loginData])
