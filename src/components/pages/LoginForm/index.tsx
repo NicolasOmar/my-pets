@@ -22,7 +22,7 @@ import { LOGIN_FORM_LABELS } from '@constants/forms'
 import { encryptPass } from '@functions/encrypt'
 import { setLoggedUser } from '@functions/local-storage'
 
-const LoginForm = () => {
+const LoginForm: React.FC = () => {
   let navigate = useNavigate()
   const userContext = useContext(UserContext)
   const [login, { loading: isWorkingOnLogin, data: loginData, error: loginErrors }] = useMutation<

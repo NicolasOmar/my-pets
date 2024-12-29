@@ -24,7 +24,7 @@ import {
 } from '@functions/parsers'
 import { debouncer } from '@functions/methods'
 
-const PetList = () => {
+const PetList: React.FC = () => {
   let navigate = useNavigate()
   const { loading, data, refetch } = useQuery<MyPetsResponse>(GET_MY_PETS_QUERY, {
     fetchPolicy: 'network-only'

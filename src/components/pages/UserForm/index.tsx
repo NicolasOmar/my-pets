@@ -22,7 +22,7 @@ import { USER_FORM_LABELS } from '@constants/forms'
 import { encryptPass } from '@functions/encrypt'
 import { setLoggedUser } from '@functions/local-storage'
 
-const UserForm = () => {
+const UserForm: React.FC = () => {
   let navigate = useNavigate()
   const [createUser, { loading: isLoadingUser, error: userErrors }] = useMutation<
     UserCreateResponse,

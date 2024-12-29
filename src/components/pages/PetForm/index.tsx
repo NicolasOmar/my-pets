@@ -26,7 +26,7 @@ import { APP_ROUTES } from '@constants/routes'
 // FUNCTIONS
 import { getDataFromArrays, nullifyValue, parseToLuxonDate } from '@functions/parsers'
 
-const PetForm = () => {
+const PetForm: React.FC = () => {
   const { petId = null } = useParams()
   let navigate = useNavigate()
   const {

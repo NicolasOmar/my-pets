@@ -31,6 +31,17 @@ export interface PetFormData {
   passedAway: boolean
 }
 
+export interface UserUpdateFormData {
+  name: string
+  lastName: string
+}
+
+export interface PassUpdateFormData {
+  oldPass: string
+  newPass: string
+  repeatPass: string
+}
+
 // FORMIK CONFIGURATIONS
 export interface PetFormikProps {
   formIsWorking: boolean

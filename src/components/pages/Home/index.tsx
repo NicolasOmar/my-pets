@@ -16,7 +16,7 @@ import { ColumnGroup } from 'reactive-bulma'
 
 // const { cardListTitle, petPopulationWidget } = config
 
-const Home = () => {
+const Home: React.FC = () => {
   // const user = getLoggedUser()
   // const [cardsListData, setCardsListData] = useState([
   //   {
