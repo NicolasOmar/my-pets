@@ -1,6 +1,7 @@
-import validator from 'validator'
 import { DateTime } from 'luxon'
 import tagClasses from '../constants/tag-classes.json'
+import { DATE_FOR_DISPLAY } from '@constants/formats'
+import { Entity } from '@interfaces/graphql'
 
 const setInputClass = (condition, setClass) => (condition ? setClass : null)
 
@@ -171,10 +172,15 @@ export const parseSingularPluralStrings = ({
   return `${startString} ${partialText} ${endString}`.trim()
 }
 
+// MIGRATED FUNCTIONS
+
 export const parseToLuxonDate = (stringDate: string) => DateTime.fromISO(stringDate).toFormat('F')
 
-export const parseStringToLuxonDate = (date: number, nullValue = null, format = 'dd/LL/yyyy') =>
-  date ? DateTime.fromMillis(+date).toUTC().toFormat(format) : nullValue
+export const parseStringToLuxonDate = (
+  date?: number | string | null,
+  nullValue: string | number | null = null,
+  format = DATE_FOR_DISPLAY
+) => (date ? DateTime.fromMillis(+date).toUTC().toFormat(format) : nullValue)
 
 export const parseBooleanToString = (
   value: boolean,
@@ -193,4 +199,21 @@ export const nullifyValue: <ValueType>(props: NullifyValueProps<ValueType>) => V
   valueToShow
 }) => {
   return value === nullableValue ? null : (valueToShow ?? value)
+}
+
+export const getDataFromArrays = (
+  formDataList: string[],
+  dataList: Entity[],
+  propToSearchBy: keyof Entity,
+  propToReturn: keyof Entity
+): string[] => {
+  let dataToReturn: string[] = []
+  for (const item of formDataList) {
+    console.warn('TEST', item)
+    const foundItem = dataList.find(dataItem => dataItem[propToSearchBy] === item)
+    if (foundItem) {
+      dataToReturn = [...dataToReturn, foundItem[propToReturn].toString()]
+    }
+  }
+  return dataToReturn
 }

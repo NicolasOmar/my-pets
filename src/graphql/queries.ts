@@ -43,8 +43,8 @@ export const GET_MY_PETS_QUERY = gql`
 `
 
 export const GET_PET_QUERY = gql`
-  query ($id: ID!) {
-    getPet(id: $id) {
+  query ($petId: ID!) {
+    getPet(petId: $petId) {
       name
       petType {
         id

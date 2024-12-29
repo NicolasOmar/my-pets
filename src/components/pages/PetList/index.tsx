@@ -1,24 +1,26 @@
+// CORE
 import React, { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
-// GRAPHQL CLIENT
+// API
 import { useQuery } from '@apollo/client'
 import { GET_MY_PETS_QUERY } from '@graphql/queries'
+// CONTEXT
 // COMPONENTS
-// PAGE CONFIG
+import { Card, Column, ColumnGroup, Icon, Input, ProgressBar, Title } from 'reactive-bulma'
+// HOOKS
+// INTERFACES
+import { MyPetsResponse } from '@interfaces/graphql'
+import { InputType } from 'reactive-bulma/dist/types/domTypes'
 // CONSTANTS
 import { APP_ROUTES } from '@constants/routes'
 // FUNCTIONS
 import {
   parseBooleanToString,
-  parseDateString,
   parseArrayToString,
-  capitalizeWord,
   parseStringToLuxonDate
 } from '@functions/parsers'
 import { debouncer } from '@functions/methods'
-import { MyPetsResponse } from '@interfaces/graphql'
-import { Card, Column, ColumnGroup, Icon, Input, ProgressBar, Title } from 'reactive-bulma'
-import { InputType } from 'reactive-bulma/dist/types/domTypes'
+import { InputProps } from 'reactive-bulma/dist/interfaces/atomProps'
 
 const PetList = () => {
   let navigate = useNavigate()
@@ -41,19 +43,20 @@ const PetList = () => {
   const memoizedPetCardList = useMemo(() => {
     return data
       ? data.getMyPets.map((petData, _petDataId) => {
-          const parsedRawList = parseArrayToString({
+          const parsedBirthday = petData.birthday ? parseStringToLuxonDate(+petData.birthday) : '-'
+          const parsedGender = parseBooleanToString(petData.gender, ['Masculine', 'Feminine'])
+          const parsedAdoptionDate = petData.adoptionDate
+            ? parseStringToLuxonDate(+petData.adoptionDate)
+            : '-'
+          const parsedHairColors = parseArrayToString({
             rawList: petData.hairColors,
             prop: 'name'
           })
+          const parsedHeterochromia = parseBooleanToString(petData.hasHeterochromia)
           const parsedEyeColors = parseArrayToString({
             rawList: petData.eyeColors,
             prop: 'name'
           })
-          const parsedBirthday = petData.birthday ? parseStringToLuxonDate(+petData.birthday) : '-'
-          const parsedAdoptionDate = petData.adoptionDate
-            ? parseStringToLuxonDate(+petData.adoptionDate)
-            : '-'
-          const parsedHeterochromia = parseBooleanToString(petData.hasHeterochromia)
 
           return {
             children: (
@@ -64,8 +67,8 @@ const PetList = () => {
                   <p>{petData.petType.name}</p>,
                   <p>{`Birthday: ${parsedBirthday}`}</p>,
                   <p>{`Adopted: ${parsedAdoptionDate}`}</p>,
-                  <p>{`Gender: ${petData.gender}`}</p>,
-                  <p>{`Hair: ${parsedRawList}`}</p>,
+                  <p>{`Gender: ${parsedGender}`}</p>,
+                  <p>{`Hair: ${parsedHairColors}`}</p>,
                   <p>{`Has Heterochromia: ${parsedHeterochromia}`}</p>,
                   <p>{`Eyes: ${parsedEyeColors}`}</p>
                 ]}
@@ -97,7 +100,7 @@ const PetList = () => {
       ) : data ? (
         <>
           <Title main={{ text: cardsListTitle, type: 'title' }} />
-          <Input {...searchInput} />
+          <Input {...(searchInput as InputProps)} />
           <ColumnGroup listOfColumns={memoizedPetCardList} />
         </>
       ) : (

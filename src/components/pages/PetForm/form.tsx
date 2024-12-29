@@ -8,24 +8,38 @@ import { CustomFormInputProps } from '@interfaces/components'
 import { PetFormData, PetFormikProps } from '@interfaces/forms'
 // CONSTANTS
 import { PET_FORM_LABELS } from '@constants/forms'
+import { DATE_FOR_DATEPICKER } from '@constants/formats'
+// FUNCTIONS
+import { parseStringToLuxonDate } from '@functions/parsers'
 
-const usePetFormik = ({ formIsWorking, petTypes, colors, handleSubmit }: PetFormikProps) => {
+const usePetFormik = ({
+  formIsWorking,
+  petTypes,
+  colors,
+  petData,
+  handleSubmit
+}: PetFormikProps) => {
   const petFormik = useFormik<PetFormData>({
     initialValues: {
-      name: '',
-      petType: '',
-      birthday: '',
-      isAdopted: false,
-      adoptionDate: '',
-      height: 0,
-      length: 0,
-      weight: 0,
-      gender: false,
-      hairColors: '',
-      eyeColors: '',
-      hasHeterochromia: false,
-      passedAway: false
+      name: petData?.name ?? '',
+      petType: petData?.petType.id ?? '',
+      birthday: parseStringToLuxonDate(petData?.birthday, '', DATE_FOR_DATEPICKER) as string,
+      isAdopted: petData?.isAdopted ?? false,
+      adoptionDate: parseStringToLuxonDate(
+        petData?.adoptionDate,
+        '',
+        DATE_FOR_DATEPICKER
+      ) as string,
+      height: petData?.height ?? 0,
+      length: petData?.length ?? 0,
+      weight: petData?.weight ?? 0,
+      gender: petData?.gender ?? false,
+      hairColors: petData?.hairColors.map(({ id }) => id) ?? [''],
+      eyeColors: petData?.eyeColors[0].id ?? '',
+      hasHeterochromia: petData?.hasHeterochromia ?? false,
+      passedAway: petData?.passedAway ?? false
     },
+    enableReinitialize: true,
     onSubmit: handleSubmit
   })
 

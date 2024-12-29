@@ -43,6 +43,21 @@ interface PetObject {
 }
 
 // PAYLOADS
+interface NameOnlyObject {
+  name: string
+}
+
+interface IdOnlyObject {
+  id: string
+}
+
+interface MyPetsResponseUnit
+  extends Omit<PetObject, 'petType' | 'hairColors' | 'eyeColors' | 'user'> {
+  petType: NameOnlyObject
+  hairColors: NameOnlyObject[]
+  eyeColors: NameOnlyObject[]
+}
+
 export interface UserLoginPayload {
   payload: Pick<UserObject, 'email' | 'password'>
 }
@@ -53,6 +68,10 @@ export interface UserCreatePayload {
 
 export interface PetCreatePayload {
   payload: Omit<PetObject, 'id' | 'user'>
+}
+
+export interface PetUpdateResponse extends PetCreatePayload {
+  id: string
 }
 
 // RESPONSES
@@ -78,16 +97,17 @@ export interface PetCreateResponse {
   createPet: PetObject
 }
 
-interface NameOnlyObject {
-  name: string
-}
-
-interface PetResponse extends Omit<PetObject, 'petType' | 'hairColors' | 'eyeColors' | 'user'> {
-  petType: NameOnlyObject
-  hairColors: NameOnlyObject[]
-  eyeColors: NameOnlyObject[]
-}
-
 export interface MyPetsResponse {
-  getMyPets: PetResponse[]
+  getMyPets: MyPetsResponseUnit[]
+}
+
+export interface GetPetResponseUnit
+  extends Omit<PetObject, 'petType' | 'hairColors' | 'eyeColors' | 'user'> {
+  petType: IdOnlyObject
+  hairColors: IdOnlyObject[]
+  eyeColors: IdOnlyObject[]
+}
+
+export interface GetPetResponse {
+  getPet: GetPetResponseUnit
 }

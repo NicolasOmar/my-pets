@@ -1,4 +1,4 @@
-import { Entity } from './graphql'
+import { Entity, GetPetResponseUnit } from './graphql'
 
 // FORM DATA
 export interface LoginFormData {
@@ -25,7 +25,7 @@ export interface PetFormData {
   length: number
   weight: number
   gender: boolean
-  hairColors: string
+  hairColors: string[]
   eyeColors: string
   hasHeterochromia: boolean
   passedAway: boolean
@@ -36,5 +36,6 @@ export interface PetFormikProps {
   formIsWorking: boolean
   petTypes?: Entity[]
   colors?: Entity[]
+  petData?: GetPetResponseUnit
   handleSubmit: (petFormData: PetFormData) => void
 }
