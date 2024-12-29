@@ -74,11 +74,20 @@ export interface ColorsResponse {
   getColors: Entity[]
 }
 
-export interface QuantityEntity {
-  name: string
-  quantity: number
-}
-
 export interface PetCreateResponse {
   createPet: PetObject
+}
+
+interface NameOnlyObject {
+  name: string
+}
+
+interface PetResponse extends Omit<PetObject, 'petType' | 'hairColors' | 'eyeColors' | 'user'> {
+  petType: NameOnlyObject
+  hairColors: NameOnlyObject[]
+  eyeColors: NameOnlyObject[]
+}
+
+export interface MyPetsResponse {
+  getMyPets: PetResponse[]
 }

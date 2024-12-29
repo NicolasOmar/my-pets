@@ -47,8 +47,8 @@ const UserHeader: React.FC<HeaderUserProps> = ({ name }) => {
         {
           text: name.toUpperCase(),
           items: [
-            { children: <p onClick={() => navigate(APP_ROUTES.ADD_PET)}>{'Add Pet'}</p> },
-            { children: <p onClick={() => navigate(APP_ROUTES.LIST_MY_PETS)}>{'See My Pets'}</p> },
+            { children: <p onClick={() => navigate(APP_ROUTES.PET_FORM)}>{'Add Pet'}</p> },
+            { children: <p onClick={() => navigate(APP_ROUTES.PET_LIST)}>{'See My Pets'}</p> },
             { children: <p onClick={() => navigate(APP_ROUTES.SETTINGS)}>{'Settings'}</p> },
             { children: <p onClick={onLogout}>{'Logout'}</p> }
           ],

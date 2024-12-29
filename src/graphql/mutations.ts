@@ -53,7 +53,7 @@ export const CREATE_PET = gql`
   }
 `
 
-export const UPDATE_PET = gql`
+export const PET_FORM = gql`
   mutation ($id: String!, $payload: PetCreatePayload!) {
     updatePet(id: $id, payload: $payload)
   }

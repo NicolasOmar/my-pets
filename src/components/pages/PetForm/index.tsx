@@ -26,12 +26,15 @@ import { nullifyValue, parseToLuxonDate } from '@functions/parsers'
 
 const PetForm = () => {
   let navigate = useNavigate()
-  const { loading: loadingPetTypes, data: petTypes } =
-    useQuery<PetTypesResponse>(GET_PET_TYPES_QUERY)
+  const {
+    loading: loadingPetTypes,
+    data: petTypes,
+    error: petTypeErrors
+  } = useQuery<PetTypesResponse>(GET_PET_TYPES_QUERY)
   const {
     loading: loadingColors,
     data: colors,
-    error: petCreateErrors
+    error: colorErrors
   } = useQuery<ColorsResponse>(GET_COLORS_QUERY)
   const [createPet, { loading: loadingCreate, error: errorCreate }] = useMutation<
     PetCreateResponse,
@@ -61,13 +64,6 @@ const PetForm = () => {
   //       isVisible: isAdoptedSelected,
   //       isRequired: isAdoptedSelected,
   //       isValid: hasCorrectDates
-  //     },
-  //     eyeColors: {
-  //       ...eyeColors,
-  //       isMultiple: hasDiffEyes,
-  //       optionsShown: hasDiffEyes ? 3 : 1,
-  //       firstNullOption: !hasDiffEyes,
-  //       value: eyeColors.isMultiple !== hasDiffEyes ? null : eyeColors.value
   //     }
   //   }
   // }
@@ -84,8 +80,12 @@ const PetForm = () => {
     [loadingCreate, loadingPetTypes, loadingColors]
   )
 
+  const formErrors = useMemo(
+    () => petTypeErrors || colorErrors || errorCreate,
+    [petTypeErrors, colorErrors, errorCreate]
+  )
+
   const handleSubmit = async (formData: PetFormData) => {
-    console.warn(formData)
     const birthday = nullifyValue({
       value: formData.birthday,
       nullableValue: '',
@@ -129,7 +129,7 @@ const PetForm = () => {
     })
 
     if (petResponse) {
-      navigate(APP_ROUTES.LIST_MY_PETS)
+      navigate(APP_ROUTES.PET_LIST)
     }
   }
 
@@ -177,10 +177,10 @@ const PetForm = () => {
 
           <ButtonGroup {...petFormButtons} />
 
-          {petCreateErrors ? (
+          {formErrors ? (
             <Message
               headerText={PET_FORM_LABELS.ERROR_TITLE}
-              bodyText={petCreateErrors.message}
+              bodyText={formErrors.message}
               color="is-danger"
             />
           ) : null}

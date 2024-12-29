@@ -30,7 +30,7 @@ const AddEvent = () => {
       variables: { eventInfo }
     })
 
-    navigate(APP_ROUTES.LIST_MY_PETS)
+    navigate(APP_ROUTES.PET_LIST)
   }
 
   return (
@@ -43,7 +43,7 @@ const AddEvent = () => {
         addEventButton,
         {
           ...goBackButton,
-          onClick: () => navigate(APP_ROUTES.LIST_MY_PETS)
+          onClick: () => navigate(APP_ROUTES.PET_LIST)
         }
       ]}
       onFormSubmit={handleSubmitNewEvent}

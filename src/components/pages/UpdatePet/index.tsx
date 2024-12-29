@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 // GRAPHQL CLIENT
 import { useLazyQuery, useMutation, useQuery } from '@apollo/client'
 import { GET_COLORS_QUERY, GET_PET_QUERY, GET_PET_TYPES_QUERY } from '../../../graphql/queries'
-import { UPDATE_PET } from '../../../graphql/mutations'
+import { PET_FORM } from '../../../graphql/mutations'
 // COMPONENTS
 import FormTemplate from '../../templates/FormTemplate'
 // FORM CONFIG
@@ -32,7 +32,7 @@ const UpdatePet = () => {
   const { loading: isLoadingPetTypes, data: petTypes } = useQuery(GET_PET_TYPES_QUERY)
   const { loading: isLoadingColors, data: colors } = useQuery(GET_COLORS_QUERY)
   const [getPet, { data: petData }] = useLazyQuery(GET_PET_QUERY, { fetchPolicy: 'no-cache' })
-  const [updatePet, { loading: isUpdating, error: errorUpdate }] = useMutation(UPDATE_PET)
+  const [updatePet, { loading: isUpdating, error: errorUpdate }] = useMutation(PET_FORM)
 
   useEffect(() => params.petId && getPet({ variables: { id: params.petId } }), [params, getPet])
 
@@ -111,7 +111,7 @@ const UpdatePet = () => {
 
     const updateResponse = await updatePet({ variables: { petInfo } })
 
-    updateResponse && navigate(APP_ROUTES.LIST_MY_PETS)
+    updateResponse && navigate(APP_ROUTES.PET_LIST)
   }
 
   const onInputBlurChange = formData => {
@@ -192,7 +192,7 @@ const UpdatePet = () => {
         addPetButton,
         {
           ...goToList,
-          onClick: () => navigate(APP_ROUTES.LIST_MY_PETS)
+          onClick: () => navigate(APP_ROUTES.PET_LIST)
         }
       ]}
       onFormSubmit={formData => onSubmitUpdatePet(formData)}

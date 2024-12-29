@@ -35,7 +35,7 @@ const SeeEvents = () => {
       title={config.title}
       goBackButton={{
         text: config.goBackButton,
-        onClick: () => navigate(ROUTES.APP_ROUTES.LIST_MY_PETS)
+        onClick: () => navigate(ROUTES.APP_ROUTES.PET_LIST)
       }}
       isLoading={loading}
       headers={header}

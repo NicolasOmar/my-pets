@@ -110,7 +110,7 @@ describe('[LoginForm]', () => {
 
     await waitFor(() => {
       expect(mockUseNavigate).toHaveBeenCalled()
-      expect(mockUseNavigate).toHaveBeenCalledWith(ROUTES.APP_ROUTES.NEW_USER)
+      expect(mockUseNavigate).toHaveBeenCalledWith(ROUTES.APP_ROUTES.USER_FORM)
     })
   })
 })

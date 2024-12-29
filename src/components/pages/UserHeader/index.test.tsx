@@ -70,8 +70,8 @@ describe('[UserHeader]', () => {
     // const onLogoutMock = jets.fn()
     const { APP_ROUTES } = ROUTES
     const testRoutes = [
-      APP_ROUTES.ADD_PET,
-      APP_ROUTES.LIST_MY_PETS,
+      APP_ROUTES.PET_FORM,
+      APP_ROUTES.PET_LIST,
       APP_ROUTES.SETTINGS,
       APP_ROUTES.LOGIN
     ]

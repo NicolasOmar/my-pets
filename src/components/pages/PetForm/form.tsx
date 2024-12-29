@@ -163,6 +163,8 @@ const usePetFormik = ({ formIsWorking, petTypes, colors, handleSubmit }: PetForm
         input: {
           name: 'hairColors',
           isDisabled: formIsWorking,
+          isMultiple: true,
+          showOptions: 4,
           options: [{ id: 0, name: '' }, ...(colors ?? [])],
           selectedValues: petFormik.values.hairColors,
           onChange: petFormik.handleChange
@@ -176,6 +178,8 @@ const usePetFormik = ({ formIsWorking, petTypes, colors, handleSubmit }: PetForm
         input: {
           name: 'eyeColors',
           isDisabled: formIsWorking,
+          isMultiple: petFormik.values.hasHeterochromia,
+          showOptions: petFormik.values.hasHeterochromia ? 2 : 1,
           options: [{ id: 0, name: '' }, ...(colors ?? [])],
           selectedValues: petFormik.values.eyeColors,
           onChange: petFormik.handleChange

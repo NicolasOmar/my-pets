@@ -80,17 +80,23 @@ export const parseDropdownOptions = ({
 export const parseNumber = (number: number, defaultNullValue: number | null = 0) =>
   !isNaN(number) ? number : defaultNullValue
 
-export const parseBooleanToString = (boolean, [trueString, falseString]) =>
-  boolean ? trueString : falseString
-
 export const parseDate = date =>
   !!date && validator.isDate(date) ? new Date(!!+date || date) : null
 
 export const parseDateString = (date, nullValue = null, format = 'dd/LL/yyyy') =>
   date ? DateTime.fromMillis(+date).toUTC().toFormat(format) : nullValue
 
-export const parseArrayToString = (rawList, prop, separator = ', ') =>
-  rawList.map(item => item[prop]).join(separator)
+interface ParseArrayToStringProps<T> {
+  rawList: T[]
+  prop: keyof T
+  separator?: string
+}
+
+export const parseArrayToString: <T>(props: ParseArrayToStringProps<T>) => string = ({
+  rawList,
+  prop,
+  separator = ', '
+}) => rawList.map(item => item[prop]).join(separator)
 
 export const parseFormDataToObj = (formData = null) =>
   formData
@@ -166,6 +172,14 @@ export const parseSingularPluralStrings = ({
 }
 
 export const parseToLuxonDate = (stringDate: string) => DateTime.fromISO(stringDate).toFormat('F')
+
+export const parseStringToLuxonDate = (date: number, nullValue = null, format = 'dd/LL/yyyy') =>
+  date ? DateTime.fromMillis(+date).toUTC().toFormat(format) : nullValue
+
+export const parseBooleanToString = (
+  value: boolean,
+  stringValues: [string, string] = ['Yes', 'No']
+) => (value ? stringValues[0] : stringValues[1])
 
 interface NullifyValueProps<ValueType> {
   value: ValueType

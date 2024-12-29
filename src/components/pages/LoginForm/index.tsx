@@ -66,7 +66,7 @@ const LoginForm = () => {
         type: 'button',
         color: 'is-danger',
         isDisabled: isWorkingOnLogin,
-        onClick: () => navigate(APP_ROUTES.NEW_USER)
+        onClick: () => navigate(APP_ROUTES.USER_FORM)
       }
     ]
   }

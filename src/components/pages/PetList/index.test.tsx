@@ -6,7 +6,7 @@ import '@testing-library/jest-dom'
 import { MockedProvider } from '@apollo/client/testing'
 import { GET_MY_PETS_QUERY } from '@graphql/queries'
 // COMPONENTS
-import ListMyPets from '.'
+import PetList from '.'
 // MOCKS
 import { testing } from './index.mocks.json'
 
@@ -23,13 +23,13 @@ vi.mock('react-router-dom', async originalPackage => {
   }
 })
 
-describe('[ListMyPets]', () => {
+describe('[PetList]', () => {
   const { pageTitle, loadingBarTestId, positiveResponse, valuesToAppear } = testing
 
   test('Should render the page with the loading component', async () => {
     render(
       <MockedProvider mocks={[]} addTypename={false}>
-        <ListMyPets />
+        <PetList />
       </MockedProvider>
     )
 
@@ -49,7 +49,7 @@ describe('[ListMyPets]', () => {
 
     render(
       <MockedProvider mocks={positiveMock} addTypename={false}>
-        <ListMyPets />
+        <PetList />
       </MockedProvider>
     )
 

@@ -14,7 +14,7 @@ const App = () => {
   const LazyNewUser = lazy(() => import('../pages/UserForm'))
   const LazyPetForm = lazy(() => import('../pages/PetForm'))
   // const LazyUpdatePet = lazy(() => import('../pages/UpdatePet'))
-  // const LazyListMyPets = lazy(() => import('../pages/ListMyPets'))
+  const LazyListMyPets = lazy(() => import('../pages/PetList'))
   // const LazySettingsPage = lazy(() => import('../pages/Settings'))
   // const LazyAddEvent = lazy(() => import('../pages/AddEvent'))
   // const LazySeeEvents = lazy(() => import('../pages/SeeEvents'))
@@ -40,7 +40,7 @@ const App = () => {
           }
         />
         <Route
-          path={APP_ROUTES.NEW_USER}
+          path={APP_ROUTES.USER_FORM}
           element={
             <Suspense fallback="...">
               <LazyNewUser />
@@ -48,7 +48,7 @@ const App = () => {
           }
         />
         <Route
-          path={APP_ROUTES.ADD_PET}
+          path={APP_ROUTES.PET_FORM}
           element={
             <Suspense fallback="...">
               <LazyPetForm />
@@ -56,21 +56,22 @@ const App = () => {
           }
         />
         {/* <Route
-          path={`${APP_ROUTES.UPDATE_PET}/:petId`}
+          path={`${APP_ROUTES.PET_FORM}/:petId`}
           element={
             <Suspense fallback="...">
               <LazyUpdatePet />
             </Suspense>
           }
-        />
+        /> */}
         <Route
-          path={APP_ROUTES.LIST_MY_PETS}
+          path={APP_ROUTES.PET_LIST}
           element={
             <Suspense fallback="...">
               <LazyListMyPets />
             </Suspense>
           }
         />
+        {/* 
         <Route
           path={APP_ROUTES.SETTINGS}
           element={
@@ -80,7 +81,7 @@ const App = () => {
           }
         />
         <Route
-          path={`${APP_ROUTES.ADD_EVENT}/:petId`}
+          path={`${APP_ROUTES.EVENT_FORM}/:petId`}
           element={
             <Suspense fallback="...">
               <LazyAddEvent />
@@ -88,7 +89,7 @@ const App = () => {
           }
         />
         <Route
-          path={`${APP_ROUTES.SEE_EVENTS}/:petId`}
+          path={`${APP_ROUTES.EVENT_LIST}/:petId`}
           element={
             <Suspense fallback="...">
               <LazySeeEvents />
@@ -96,8 +97,8 @@ const App = () => {
           }
         />
         <Route
-          path={APP_ROUTES.UPDATE_PET}
-          element={<Navigate replace to={APP_ROUTES.LIST_MY_PETS} />}
+          path={APP_ROUTES.PET_FORM}
+          element={<Navigate replace to={APP_ROUTES.PET_LIST} />}
         /> */}
         <Route path={APP_ROUTES.BASE} element={<Navigate replace to={APP_ROUTES.LOGIN} />} />
       </Routes>
