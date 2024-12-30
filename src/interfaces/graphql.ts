@@ -19,6 +19,10 @@ interface UserAndToken {
   token?: string
 }
 
+export type UserWithToken = LoggedUser & {
+  token: string
+}
+
 export interface Entity {
   id: string | number
   name: string

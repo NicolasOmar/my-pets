@@ -1,6 +1,4 @@
-import { SelectProps } from 'reactive-bulma/dist/interfaces/atomProps'
 import { ButtonGroupProps } from 'reactive-bulma/dist/interfaces/moleculeProps'
-import { FormFieldProps } from 'reactive-bulma/dist/interfaces/organismProps'
 
 export type ChildrenType = string | React.ReactElement | React.ReactElement[]
 
