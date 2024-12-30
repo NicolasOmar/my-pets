@@ -1,46 +1,44 @@
-import React, { useState, useEffect, useContext } from 'react'
+// CORE
+import React, { useEffect, useContext, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
-// GRAPHQL CLIENT
+import { useFormik } from 'formik'
+// API
 import { useMutation } from '@apollo/client'
-import { UPDATE_USER, UPDATE_PASS } from '../../../graphql/mutations'
+import { UPDATE_USER, UPDATE_PASS } from '@graphql/mutations'
 // CONTEXT
-import { UserContext } from '../../../context/userContext'
+import { UserContext } from '@context/userContext'
 // COMPONENTS
-import FormTemplate from '../../templates/FormTemplate'
-import Divider from '../../atoms/Divider'
-import Notification from '../../molecules/Notification'
-// FORM CONFIG
-import CONFIG from './config.json'
-// CONSTANTS
-import ROUTES from '../../../constants/routes'
-// FUNCTIONS
-import { getLoggedUser, setLoggedUser } from '../../../functions/local-storage'
-import { parseGraphToObj } from '../../../functions/parsers'
-import { encryptPass } from '../../../functions/encrypt'
-import { Box, ButtonGroup, Column, FormField } from 'reactive-bulma'
-import { CustomFormInputProps } from '@interfaces/components'
+import { Box, ButtonGroup, Column, FormField, Message, Title } from 'reactive-bulma'
+// HOOKS
+// INTERFACES
 import { FormFieldProps } from 'reactive-bulma/dist/interfaces/organismProps'
 import { ButtonGroupProps, FormFieldType } from 'reactive-bulma/dist/interfaces/moleculeProps'
-import { useFormik } from 'formik'
+import { CustomFormInputProps } from '@interfaces/components'
 import { PassUpdateFormData, UserUpdateFormData } from '@interfaces/forms'
-
-const { updateUserConfig, updatePassConfig } = CONFIG
-const { APP_ROUTES } = ROUTES
+import {
+  UserPassUpdateResponse,
+  UserPassUpdatePayload,
+  UserUpdatePayload,
+  UserUpdateResponse
+} from '@interfaces/graphql'
+// CONSTANTS
+import { APP_ROUTES } from '@constants/routes'
+// FUNCTIONS
+import { getLoggedUser, setLoggedUser } from '@functions/local-storage'
+import { parseGraphToObj } from '@functions/parsers'
+import { encryptPass } from '@functions/encrypt'
 
 const SettingsPage: React.FC = () => {
   let navigate = useNavigate()
-  const { setUserData } = useContext(UserContext)
-  const [formObject, setFormObject] = useState(updateUserConfig.inputs)
-  const [updateUser, { data: updateUserData, loading: updateUserLoading, error: updateUserError }] =
-    useMutation(UPDATE_USER)
-  const [updatePass, { loading, error }] = useMutation(UPDATE_PASS)
-  const [showNotification, setShowNotification] = useState(null)
-
-  const buildNotification = text => ({
-    text,
-    color: 'primary',
-    onDeleteClick: () => setShowNotification(null)
-  })
+  const userContext = useContext(UserContext)
+  const [
+    updateUser,
+    { data: updateUserData, loading: isLoadingUserUpdate, error: updateUserError }
+  ] = useMutation<UserUpdateResponse, UserUpdatePayload>(UPDATE_USER)
+  const [updatePass, { loading: isLoadingPassUpdate, error: updatePassError }] = useMutation<
+    UserPassUpdateResponse,
+    UserPassUpdatePayload
+  >(UPDATE_PASS)
 
   useEffect(() => {
     const userInfo = updateUserData
@@ -49,35 +47,21 @@ const SettingsPage: React.FC = () => {
 
     if (updateUserData) {
       setLoggedUser(userInfo)
-      setUserData(userInfo)
+      userContext?.setUserData(userInfo)
     }
-
-    Object.keys(userInfo).forEach(key => formObject[key] && (formObject[key].value = userInfo[key]))
-    setFormObject({ ...formObject })
-    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [updateUserData])
 
-  const onSubmitUserUpdate = async (variables: UserUpdateFormData) => {
-    try {
-      await updateUser({ variables })
-      setShowNotification(buildNotification('User data sucessfully changed'))
-    } catch (e) {
-      console.error(e)
-    }
+  const onSubmitUserUpdate = async (userUpdateFormData: UserUpdateFormData) => {
+    await updateUser({ variables: { payload: userUpdateFormData } })
   }
 
-  const onSubmitPassUpdate = async (formData: PassUpdateFormData) => {
-    const variables = {
-      oldPass: encryptPass(formData.oldPass),
-      newPass: encryptPass(formData.newPass)
+  const onSubmitPassUpdate = async (passUpdateFormData: PassUpdateFormData) => {
+    const parsedPassUpdate = {
+      oldPass: encryptPass(passUpdateFormData.oldPass),
+      newPass: encryptPass(passUpdateFormData.newPass)
     }
 
-    try {
-      await updatePass({ variables })
-      setShowNotification(buildNotification('Password sucessfully changed'))
-    } catch (e) {
-      console.error(e)
-    }
+    await updatePass({ variables: { payload: parsedPassUpdate } })
   }
 
   // const onUpdatePassBlurChange = formData => {
@@ -105,12 +89,17 @@ const SettingsPage: React.FC = () => {
   //   }
   // }
 
+  const isLoading = useMemo(
+    () => isLoadingUserUpdate || isLoadingPassUpdate,
+    [isLoadingUserUpdate, isLoadingPassUpdate]
+  )
+
   const updateUserFormik = useFormik<UserUpdateFormData>({
     initialValues: {
-      name: '',
-      lastName: ''
+      name: getLoggedUser().name ?? '',
+      lastName: getLoggedUser().lastName ?? ''
     },
-    onSubmit: formData => console.warn(formData)
+    onSubmit: onSubmitUserUpdate
   })
 
   const updatePassFormik = useFormik<PassUpdateFormData>({
@@ -119,7 +108,7 @@ const SettingsPage: React.FC = () => {
       newPass: '',
       repeatPass: ''
     },
-    onSubmit: formData => console.warn(formData)
+    onSubmit: onSubmitPassUpdate
   })
 
   const updateUserInputsConfig: CustomFormInputProps<FormFieldProps> = {
@@ -130,7 +119,10 @@ const SettingsPage: React.FC = () => {
         input: {
           inputConfig: {
             type: 'text',
-            name: 'name'
+            name: 'name',
+            isDisabled: isLoading,
+            value: updateUserFormik.values.name,
+            onChange: updateUserFormik.handleChange
           }
         }
       }
@@ -142,7 +134,10 @@ const SettingsPage: React.FC = () => {
         input: {
           inputConfig: {
             type: 'text',
-            name: 'lastName'
+            name: 'lastName',
+            isDisabled: isLoading,
+            value: updateUserFormik.values.lastName,
+            onChange: updateUserFormik.handleChange
           }
         }
       }
@@ -157,7 +152,10 @@ const SettingsPage: React.FC = () => {
         input: {
           inputConfig: {
             type: 'password',
-            name: 'oldPass'
+            name: 'oldPass',
+            isDisabled: isLoading,
+            value: updatePassFormik.values.oldPass,
+            onChange: updatePassFormik.handleChange
           }
         }
       }
@@ -169,7 +167,10 @@ const SettingsPage: React.FC = () => {
         input: {
           inputConfig: {
             type: 'password',
-            name: 'newPass'
+            name: 'newPass',
+            isDisabled: isLoading,
+            value: updatePassFormik.values.newPass,
+            onChange: updatePassFormik.handleChange
           }
         }
       }
@@ -181,7 +182,10 @@ const SettingsPage: React.FC = () => {
         input: {
           inputConfig: {
             type: 'password',
-            name: 'repeatPass'
+            name: 'repeatPass',
+            isDisabled: isLoading,
+            value: updatePassFormik.values.repeatPass,
+            onChange: updatePassFormik.handleChange
           }
         }
       }
@@ -227,23 +231,41 @@ const SettingsPage: React.FC = () => {
   return (
     <Column size="is-8" offset="is-offset-2">
       <Box>
+        <Title main={{ text: 'Update user information', type: 'title' }} />
+
         <form onSubmit={updateUserFormik.handleSubmit}>
           <FormField {...updateUserInputsConfig.name} />
           <FormField {...updateUserInputsConfig.lastName} />
 
           <ButtonGroup {...updateUserButtons} />
+
+          {updateUserError ? (
+            <Message
+              headerText={'updateUserError'}
+              bodyText={updateUserError.message}
+              color="is-danger"
+            />
+          ) : null}
         </form>
       </Box>
 
-      <Divider />
-
       <Box>
+        <Title main={{ text: 'Update password', type: 'title' }} />
+
         <form onSubmit={updatePassFormik.handleSubmit}>
           <FormField {...updatePassInputsConfig.oldPass} />
           <FormField {...updatePassInputsConfig.newPass} />
           <FormField {...updatePassInputsConfig.repeatPass} />
 
           <ButtonGroup {...updatePassButtons} />
+
+          {updatePassError ? (
+            <Message
+              headerText={'updatePassError'}
+              bodyText={updatePassError.message}
+              color="is-danger"
+            />
+          ) : null}
         </form>
       </Box>
     </Column>

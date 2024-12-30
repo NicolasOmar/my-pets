@@ -34,7 +34,7 @@ export const UPDATE_USER = gql`
 `
 
 export const UPDATE_PASS = gql`
-  mutation ($payload: UserPassChangePayload!) {
+  mutation ($payload: UserPassUpdatePayload!) {
     updatePass(payload: $payload)
   }
 `

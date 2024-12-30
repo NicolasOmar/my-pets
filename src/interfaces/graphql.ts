@@ -74,6 +74,20 @@ export interface PetUpdateResponse extends PetCreatePayload {
   id: string
 }
 
+export interface UserUpdatePayload {
+  payload: {
+    name: string
+    lastName: string
+  }
+}
+
+export interface UserPassUpdatePayload {
+  payload: {
+    oldPass: string
+    newPass: string
+  }
+}
+
 // RESPONSES
 export interface UserLoginResponse {
   loginUser: UserAndToken
@@ -110,4 +124,12 @@ export interface GetPetResponseUnit
 
 export interface GetPetResponse {
   getPet: GetPetResponseUnit
+}
+
+export interface UserUpdateResponse {
+  updateUser: UserObject
+}
+
+export interface UserPassUpdateResponse {
+  updatePass: boolean
 }
