@@ -12,11 +12,11 @@ import usePetFormik from './form'
 import { TitleProps } from 'reactive-bulma/dist/interfaces/atomProps'
 import { ButtonGroupProps } from 'reactive-bulma/dist/interfaces/moleculeProps'
 import {
-  ColorsResponse,
-  GetPetResponse,
+  ColorListResponse,
+  PetGetResponse,
   PetCreatePayload,
   PetCreateResponse,
-  PetTypesResponse,
+  PetTypeListResponse,
   PetUpdateResponse
 } from '@interfaces/graphql'
 import { PetFormData } from '@interfaces/forms'
@@ -34,14 +34,14 @@ const PetForm: React.FC = () => {
     loading: loadingPetTypes,
     data: petTypes,
     error: errorPetTypes
-  } = useQuery<PetTypesResponse>(GET_PET_TYPES_QUERY)
+  } = useQuery<PetTypeListResponse>(GET_PET_TYPES_QUERY)
   const {
     loading: loadingColors,
     data: colors,
     error: errorColors
-  } = useQuery<ColorsResponse>(GET_COLORS_QUERY, { variables: { petId } })
+  } = useQuery<ColorListResponse>(GET_COLORS_QUERY, { variables: { petId } })
   const [getPet, { loading: loadingPetData, data: petData, error: errorPetData }] =
-    useLazyQuery<GetPetResponse>(GET_PET_QUERY)
+    useLazyQuery<PetGetResponse>(GET_PET_QUERY)
   const [createPet, { loading: loadingCreate, error: errorCreate }] = useMutation<
     PetCreateResponse,
     PetCreatePayload

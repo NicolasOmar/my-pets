@@ -11,7 +11,7 @@ import { Card, Column, ColumnGroup, Icon, Input, ProgressBar, Title } from 'reac
 // INTERFACES
 import { InputProps } from 'reactive-bulma/dist/interfaces/atomProps'
 import { InputType } from 'reactive-bulma/dist/types/domTypes'
-import { MyPetsResponse } from '@interfaces/graphql'
+import { PetListResponse } from '@interfaces/graphql'
 // CONSTANTS
 import { APP_ROUTES } from '@constants/routes'
 import { COMMON_LABELS } from '@constants/common'
@@ -26,7 +26,7 @@ import { debouncer } from '@functions/methods'
 
 const PetList: React.FC = () => {
   let navigate = useNavigate()
-  const { loading, data, refetch } = useQuery<MyPetsResponse>(GET_MY_PETS_QUERY, {
+  const { loading, data, refetch } = useQuery<PetListResponse>(GET_MY_PETS_QUERY, {
     fetchPolicy: 'network-only'
   })
 

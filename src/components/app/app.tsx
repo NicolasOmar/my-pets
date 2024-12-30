@@ -16,7 +16,7 @@ const App = () => {
   const LazyPetList = lazy(() => import('../pages/PetList'))
   const LazySettingsPage = lazy(() => import('../pages/SettingsPage'))
   const LazyEventForm = lazy(() => import('../pages/EventForm'))
-  // const LazySeeEvents = lazy(() => import('../pages/SeeEvents'))
+  const LazyEventList = lazy(() => import('../pages/EventList'))
 
   return (
     <BrowserRouter>
@@ -86,19 +86,15 @@ const App = () => {
             </Suspense>
           }
         />
-        {/* 
         <Route
           path={`${APP_ROUTES.EVENT_LIST}/:petId`}
           element={
             <Suspense fallback="...">
-              <LazySeeEvents />
+              <LazyEventList />
             </Suspense>
           }
         />
-        <Route
-          path={APP_ROUTES.PET_FORM}
-          element={<Navigate replace to={APP_ROUTES.PET_LIST} />}
-        /> */}
+        <Route path={APP_ROUTES.PET_FORM} element={<Navigate replace to={APP_ROUTES.PET_LIST} />} />
         <Route path={APP_ROUTES.BASE} element={<Navigate replace to={APP_ROUTES.LOGIN} />} />
       </Routes>
     </BrowserRouter>

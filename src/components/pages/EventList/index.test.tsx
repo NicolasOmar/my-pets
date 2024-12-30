@@ -6,7 +6,7 @@ import '@testing-library/jest-dom'
 import { MockedProvider } from '@apollo/client/testing'
 import { GET_MY_PET_EVENTS } from '@graphql/queries'
 // COMPONENTS
-import SeeEvents from '.'
+import EventList from '.'
 // MOCKS
 import { testing } from './mocks.json'
 import { title, noDataTitle } from './config.json'
@@ -25,13 +25,13 @@ vi.mock('react-router-dom', async originalPackage => {
   }
 })
 
-describe('[SeeEvents]', () => {
+describe('[EventList]', () => {
   const { positiveResponse } = testing
 
   test('Should render the page with the loading component', async () => {
     render(
       <MockedProvider mocks={[]} addTypename={false}>
-        <SeeEvents />
+        <EventList />
       </MockedProvider>
     )
 
@@ -51,7 +51,7 @@ describe('[SeeEvents]', () => {
 
     render(
       <MockedProvider mocks={positiveMock} addTypename={false}>
-        <SeeEvents />
+        <EventList />
       </MockedProvider>
     )
 

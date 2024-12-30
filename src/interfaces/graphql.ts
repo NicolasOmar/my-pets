@@ -3,7 +3,7 @@ interface Token {
   token: string
 }
 
-interface UserObject {
+interface UserEntity {
   name: string
   lastName: string
   userName: string
@@ -12,7 +12,7 @@ interface UserObject {
   tokens: Token[]
 }
 
-type LoggedUser = Omit<UserObject, 'password' | 'tokens'>
+type LoggedUser = Omit<UserEntity, 'password' | 'tokens'>
 
 interface UserAndToken {
   loggedUser: LoggedUser
@@ -24,7 +24,7 @@ export interface Entity {
   name: string
 }
 
-interface PetObject {
+interface PetEntity {
   id: string
   name: string
   petType: string
@@ -39,7 +39,7 @@ interface PetObject {
   eyeColors: string[]
   hasHeterochromia: boolean
   passedAway: boolean
-  user: UserObject
+  user: UserEntity
 }
 
 export interface EventObject {
@@ -58,23 +58,23 @@ interface IdOnlyObject {
   id: string
 }
 
-interface MyPetsResponseUnit
-  extends Omit<PetObject, 'petType' | 'hairColors' | 'eyeColors' | 'user'> {
+interface PetListItemResponse
+  extends Omit<PetEntity, 'petType' | 'hairColors' | 'eyeColors' | 'user'> {
   petType: NameOnlyObject
   hairColors: NameOnlyObject[]
   eyeColors: NameOnlyObject[]
 }
 
 export interface UserLoginPayload {
-  payload: Pick<UserObject, 'email' | 'password'>
+  payload: Pick<UserEntity, 'email' | 'password'>
 }
 
 export interface UserCreatePayload {
-  payload: Omit<UserObject, 'tokens'>
+  payload: Omit<UserEntity, 'tokens'>
 }
 
 export interface PetCreatePayload {
-  payload: Omit<PetObject, 'id' | 'user'>
+  payload: Omit<PetEntity, 'id' | 'user'>
 }
 
 export interface PetUpdateResponse extends PetCreatePayload {
@@ -110,30 +110,30 @@ export interface UserCreateResponse {
   }
 }
 
-export interface PetTypesResponse {
+export interface PetTypeListResponse {
   getPetTypes: Entity[]
 }
 
-export interface ColorsResponse {
+export interface ColorListResponse {
   getColors: Entity[]
 }
 
 export interface PetCreateResponse {
-  createPet: PetObject
+  createPet: PetEntity
 }
 
-export interface MyPetsResponse {
-  getMyPets: MyPetsResponseUnit[]
+export interface PetListResponse {
+  getMyPets: PetListItemResponse[]
 }
 
 export interface GetPetResponseUnit
-  extends Omit<PetObject, 'petType' | 'hairColors' | 'eyeColors' | 'user'> {
+  extends Omit<PetEntity, 'petType' | 'hairColors' | 'eyeColors' | 'user'> {
   petType: IdOnlyObject
   hairColors: IdOnlyObject[]
   eyeColors: IdOnlyObject[]
 }
 
-export interface GetPetResponse {
+export interface PetGetResponse {
   getPet: GetPetResponseUnit
 }
 
@@ -149,4 +149,8 @@ export interface UserPassUpdateResponse {
 
 export interface EventCreateResponse {
   createEvent: EventObject
+}
+
+export interface EventListResponse {
+  getMyPetEvents: Omit<EventObject, 'id'>[]
 }
