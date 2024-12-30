@@ -9,3 +9,9 @@ export enum PET_LIST_LABELS {
   HAS_HETEROCHROMIA = 'Has Heterochromia',
   EYES = 'Eyes'
 }
+
+export enum EVENT_LIST_LABELS {
+  TITLE = 'My pet events',
+  DATE = 'Date',
+  DESCRIPTION = 'Description'
+}

@@ -3,6 +3,6 @@ export enum COMMON_LABELS {
   FEMENINE = 'Feminine',
   SAVE_CHANGES = 'Save changes',
   CONFIRM = 'Confirm',
-  GO_BACK_HOME = 'Go back to Home',
+  GO_BACK = 'Go back to Home',
   CANCEL = 'Cancel'
 }

@@ -1,55 +1,58 @@
 // CORE
-import React, { useEffect, useState } from 'react'
+import React, { useMemo } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 // API
 import { useQuery } from '@apollo/client'
 import { GET_MY_PET_EVENTS } from '@graphql/queries'
 // CONTEXT
 // COMPONENTS
-import { Column, ProgressBar, Title } from 'reactive-bulma'
-import { EventListResponse } from '@interfaces/graphql'
+import { Button, Card, Column, ColumnGroup, ProgressBar, Title } from 'reactive-bulma'
 // HOOKS
 // INTERFACES
+import { EventListResponse } from '@interfaces/graphql'
 // CONSTANTS
-// import { APP_ROUTES } from '@constants/routes'
+import { APP_ROUTES } from '@constants/routes'
+import { EVENT_LIST_LABELS } from '@constants/lists'
+import { COMMON_LABELS } from '@constants/common'
 // FUNCTIONS
+import { parseStringToLuxonDate } from '@functions/parsers'
 
 const EventList: React.FC = () => {
-  const params = useParams()
-  // const navigate = useNavigate()
-  const [body, setBody] = useState<string[] | null>(null)
+  const { petId = '' } = useParams()
+  const navigate = useNavigate()
   const { data, loading } = useQuery<EventListResponse>(GET_MY_PET_EVENTS, {
     fetchPolicy: 'network-only',
-    variables: {
-      petId: params.petId
-    }
+    variables: { petId }
   })
 
-  useEffect(() => {
-    if (data?.getMyPetEvents && data?.getMyPetEvents.length > 0) {
-      setBody(data?.getMyPetEvents.map(({ description }) => description))
-    }
+  const memoizedEventCardList = useMemo(() => {
+    return data
+      ? data.getMyPetEvents.map((eventData, _eventDataId) => {
+          const parsedEventDate = eventData.date ? parseStringToLuxonDate(+eventData.date) : '-'
+
+          return {
+            children: (
+              <Card
+                content={[
+                  <p>{`${EVENT_LIST_LABELS.DATE}: ${parsedEventDate}`}</p>,
+                  <p>{`${EVENT_LIST_LABELS.DESCRIPTION}: ${eventData.description}`}</p>
+                ]}
+              />
+            )
+          }
+        })
+      : []
   }, [data])
 
   return (
-    // <GridTemplate
-    //   title={config.title}
-    //   goBackButton={{
-    //     text: 'Go Back',
-    //     onClick: () => navigate(APP_ROUTES.PET_LIST)
-    //   }}
-    //   isLoading={loading}
-    //   headers={header}
-    //   body={body}
-    //   noDataTitle={'Sorry, but there are no loaded events'}
-    // />
     <Column size="is-12">
       {loading ? (
         <ProgressBar isLoading />
       ) : (
         <>
-          <Title main={{ text: 'My Pet Events', type: 'title' }} />
-          <>{body}</>
+          <Button text={COMMON_LABELS.GO_BACK} onClick={() => navigate(APP_ROUTES.PET_LIST)} />
+          <Title main={{ text: EVENT_LIST_LABELS.TITLE, type: 'title' }} />
+          <ColumnGroup listOfColumns={memoizedEventCardList} />
         </>
       )}
     </Column>

@@ -113,7 +113,7 @@ const SettingsPage: React.FC = () => {
         color: 'is-success'
       },
       {
-        text: COMMON_LABELS.GO_BACK_HOME,
+        text: COMMON_LABELS.GO_BACK,
         type: 'button',
         color: 'is-danger',
         isDisabled: false,
@@ -131,7 +131,7 @@ const SettingsPage: React.FC = () => {
         isDisabled: false
       },
       {
-        text: COMMON_LABELS.GO_BACK_HOME,
+        text: COMMON_LABELS.GO_BACK,
         type: 'button',
         color: 'is-danger',
         isDisabled: false,
