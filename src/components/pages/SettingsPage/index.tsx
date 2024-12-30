@@ -26,7 +26,6 @@ import { COMMON_LABELS } from '@constants/common'
 import { PASS_UPDATE_FORM_LABELS, USER_UPDATE_FORM_LABELS } from '@constants/forms'
 // FUNCTIONS
 import { getLoggedUser, setLoggedUser } from '@functions/local-storage'
-import { parseGraphToObj } from '@functions/parsers'
 import { encryptPass } from '@functions/encrypt'
 
 const SettingsPage: React.FC = () => {
@@ -42,13 +41,12 @@ const SettingsPage: React.FC = () => {
   >(UPDATE_PASS)
 
   useEffect(() => {
-    const userInfo = updateUserData
-      ? parseGraphToObj(updateUserData.updateUser, getLoggedUser())
-      : getLoggedUser()
+    if (updateUserData?.updateUser) {
+      const { name, lastName } = updateUserData.updateUser
+      const loggedUser = getLoggedUser()
 
-    if (updateUserData) {
-      setLoggedUser(userInfo)
-      userContext?.setUserData(userInfo)
+      setLoggedUser({ ...loggedUser, name, lastName })
+      userContext?.setUserData({ name: `${name} ${lastName}` })
     }
   }, [updateUserData])
 

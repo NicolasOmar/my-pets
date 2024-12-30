@@ -127,7 +127,9 @@ export interface GetPetResponse {
 }
 
 export interface UserUpdateResponse {
-  updateUser: UserObject
+  updateUser: LoggedUser & {
+    token: string
+  }
 }
 
 export interface UserPassUpdateResponse {
