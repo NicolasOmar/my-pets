@@ -11,12 +11,12 @@ import { APP_ROUTES } from '@constants/routes'
 // FUNCTIONS
 import { clearAllStorage } from '../../../functions/local-storage'
 // MOCKS
-import config from './config.json'
+// import config from './config.json'
 import { NavBar } from 'reactive-bulma'
 import { NavBarProps } from 'reactive-bulma/dist/interfaces/organismProps'
 import { USER_HEADER_LABELS } from '@constants/layout'
 
-const { brandIcon } = config
+// const { brandIcon } = config
 
 interface HeaderUserProps {
   name: string

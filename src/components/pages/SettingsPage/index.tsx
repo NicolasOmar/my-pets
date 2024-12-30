@@ -94,7 +94,7 @@ const SettingsPage: React.FC = () => {
   )
 
   const { updateUserFormik, updateUserInputsConfig } = useUserUpdateFormik(
-    getLoggedUser(),
+    getLoggedUser() as UserUpdateFormData,
     isLoading,
     onSubmitUserUpdate
   )
