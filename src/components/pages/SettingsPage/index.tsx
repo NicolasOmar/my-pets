@@ -1,7 +1,6 @@
 // CORE
 import React, { useEffect, useContext, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useFormik } from 'formik'
 // API
 import { useMutation } from '@apollo/client'
 import { UPDATE_USER, UPDATE_PASS } from '@graphql/mutations'
@@ -10,10 +9,10 @@ import { UserContext } from '@context/userContext'
 // COMPONENTS
 import { Box, ButtonGroup, Column, FormField, Message, Title } from 'reactive-bulma'
 // HOOKS
+import useUserUpdateFormik from './userForm'
+import usePassUpdateFormik from './passForm'
 // INTERFACES
-import { FormFieldProps } from 'reactive-bulma/dist/interfaces/organismProps'
-import { ButtonGroupProps, FormFieldType } from 'reactive-bulma/dist/interfaces/moleculeProps'
-import { CustomFormInputProps } from '@interfaces/components'
+import { ButtonGroupProps } from 'reactive-bulma/dist/interfaces/moleculeProps'
 import { PassUpdateFormData, UserUpdateFormData } from '@interfaces/forms'
 import {
   UserPassUpdateResponse,
@@ -94,103 +93,16 @@ const SettingsPage: React.FC = () => {
     [isLoadingUserUpdate, isLoadingPassUpdate]
   )
 
-  const updateUserFormik = useFormik<UserUpdateFormData>({
-    initialValues: {
-      name: getLoggedUser().name ?? '',
-      lastName: getLoggedUser().lastName ?? ''
-    },
-    onSubmit: onSubmitUserUpdate
-  })
+  const { updateUserFormik, updateUserInputsConfig } = useUserUpdateFormik(
+    getLoggedUser(),
+    isLoading,
+    onSubmitUserUpdate
+  )
 
-  const updatePassFormik = useFormik<PassUpdateFormData>({
-    initialValues: {
-      oldPass: '',
-      newPass: '',
-      repeatPass: ''
-    },
-    onSubmit: onSubmitPassUpdate
-  })
-
-  const updateUserInputsConfig: CustomFormInputProps<FormFieldProps> = {
-    name: {
-      config: {
-        labelText: 'Name',
-        type: FormFieldType.INPUT,
-        input: {
-          inputConfig: {
-            type: 'text',
-            name: 'name',
-            isDisabled: isLoading,
-            value: updateUserFormik.values.name,
-            onChange: updateUserFormik.handleChange
-          }
-        }
-      }
-    },
-    lastName: {
-      config: {
-        labelText: 'Last Name',
-        type: FormFieldType.INPUT,
-        input: {
-          inputConfig: {
-            type: 'text',
-            name: 'lastName',
-            isDisabled: isLoading,
-            value: updateUserFormik.values.lastName,
-            onChange: updateUserFormik.handleChange
-          }
-        }
-      }
-    }
-  }
-
-  const updatePassInputsConfig: CustomFormInputProps<FormFieldProps> = {
-    oldPass: {
-      config: {
-        labelText: 'Old Password',
-        type: FormFieldType.INPUT,
-        input: {
-          inputConfig: {
-            type: 'password',
-            name: 'oldPass',
-            isDisabled: isLoading,
-            value: updatePassFormik.values.oldPass,
-            onChange: updatePassFormik.handleChange
-          }
-        }
-      }
-    },
-    newPass: {
-      config: {
-        labelText: 'New Password',
-        type: FormFieldType.INPUT,
-        input: {
-          inputConfig: {
-            type: 'password',
-            name: 'newPass',
-            isDisabled: isLoading,
-            value: updatePassFormik.values.newPass,
-            onChange: updatePassFormik.handleChange
-          }
-        }
-      }
-    },
-    repeatPass: {
-      config: {
-        labelText: 'Repeat Password',
-        type: FormFieldType.INPUT,
-        input: {
-          inputConfig: {
-            type: 'password',
-            name: 'repeatPass',
-            isDisabled: isLoading,
-            value: updatePassFormik.values.repeatPass,
-            onChange: updatePassFormik.handleChange
-          }
-        }
-      }
-    }
-  }
+  const { updatePassFormik, updatePassInputsConfig } = usePassUpdateFormik(
+    isLoading,
+    onSubmitPassUpdate
+  )
 
   const updateUserButtons: ButtonGroupProps = {
     buttonList: [
