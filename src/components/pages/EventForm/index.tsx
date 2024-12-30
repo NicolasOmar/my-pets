@@ -18,9 +18,10 @@ import { APP_ROUTES } from '@constants/routes'
 import { EVENT_FORM_LABELS } from '@constants/forms'
 import { COMMON_LABELS } from '@constants/common'
 // FUNCTIONS
+import { parseToLuxonDate } from '@functions/parsers'
 
 const EventForm: React.FC = () => {
-  const params = useParams()
+  const { petId = '' } = useParams()
   let navigate = useNavigate()
   const [createEvent, { loading: isLoadingEventCreate, error: eventErrors }] = useMutation<
     EventCreateResponse,
@@ -32,7 +33,8 @@ const EventForm: React.FC = () => {
       variables: {
         payload: {
           ...formData,
-          associatedPets: [params.petId as string]
+          date: parseToLuxonDate(formData.date),
+          associatedPets: [petId]
         }
       }
     })
