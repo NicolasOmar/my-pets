@@ -6,6 +6,7 @@ import { FormFieldProps } from 'reactive-bulma/dist/interfaces/organismProps'
 import { CustomFormInputProps } from '@interfaces/components'
 import { PassUpdateFormData } from '@interfaces/forms'
 // CONSTANTS
+import { PASS_UPDATE_FORM_LABELS } from '@constants/forms'
 // FUNCTIONS
 
 const usePassUpdateFormik = (
@@ -24,7 +25,7 @@ const usePassUpdateFormik = (
   const updatePassInputsConfig: CustomFormInputProps<FormFieldProps> = {
     oldPass: {
       config: {
-        labelText: 'Old Password',
+        labelText: PASS_UPDATE_FORM_LABELS.OLD_PASS,
         type: FormFieldType.INPUT,
         input: {
           inputConfig: {
@@ -39,7 +40,7 @@ const usePassUpdateFormik = (
     },
     newPass: {
       config: {
-        labelText: 'New Password',
+        labelText: PASS_UPDATE_FORM_LABELS.NEW_PASS,
         type: FormFieldType.INPUT,
         input: {
           inputConfig: {
@@ -54,7 +55,7 @@ const usePassUpdateFormik = (
     },
     repeatPass: {
       config: {
-        labelText: 'Repeat Password',
+        labelText: PASS_UPDATE_FORM_LABELS.REPEAT_PASS,
         type: FormFieldType.INPUT,
         input: {
           inputConfig: {

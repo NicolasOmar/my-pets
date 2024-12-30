@@ -40,3 +40,18 @@ export enum PET_FORM_LABELS {
   CANCEL_BTN = 'Cancel',
   ERROR_TITLE = 'Pet creation errors'
 }
+
+export enum USER_UPDATE_FORM_LABELS {
+  TITLE = 'Update user information',
+  NAME = 'Name',
+  LAST_NAME = 'Last Name',
+  ERROR_TITLE = 'User update errors'
+}
+
+export enum PASS_UPDATE_FORM_LABELS {
+  TITLE = 'Update password',
+  OLD_PASS = 'Old Password',
+  NEW_PASS = 'New Password',
+  REPEAT_PASS = 'Repeat Password',
+  ERROR_TITLE = 'Password update errors'
+}

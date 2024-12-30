@@ -22,6 +22,8 @@ import {
 } from '@interfaces/graphql'
 // CONSTANTS
 import { APP_ROUTES } from '@constants/routes'
+import { COMMON_LABELS } from '@constants/common'
+import { PASS_UPDATE_FORM_LABELS, USER_UPDATE_FORM_LABELS } from '@constants/forms'
 // FUNCTIONS
 import { getLoggedUser, setLoggedUser } from '@functions/local-storage'
 import { parseGraphToObj } from '@functions/parsers'
@@ -107,13 +109,13 @@ const SettingsPage: React.FC = () => {
   const updateUserButtons: ButtonGroupProps = {
     buttonList: [
       {
-        text: 'Save changes',
+        text: COMMON_LABELS.SAVE_CHANGES,
         type: 'submit',
         isDisabled: false,
         color: 'is-success'
       },
       {
-        text: 'Go back to Home',
+        text: COMMON_LABELS.GO_BACK_HOME,
         type: 'button',
         color: 'is-danger',
         isDisabled: false,
@@ -125,13 +127,13 @@ const SettingsPage: React.FC = () => {
   const updatePassButtons: ButtonGroupProps = {
     buttonList: [
       {
-        text: 'Save changes',
+        text: COMMON_LABELS.SAVE_CHANGES,
         type: 'submit',
         color: 'is-success',
         isDisabled: false
       },
       {
-        text: 'Go back to Home',
+        text: COMMON_LABELS.GO_BACK_HOME,
         type: 'button',
         color: 'is-danger',
         isDisabled: false,
@@ -143,7 +145,7 @@ const SettingsPage: React.FC = () => {
   return (
     <Column size="is-8" offset="is-offset-2">
       <Box>
-        <Title main={{ text: 'Update user information', type: 'title' }} />
+        <Title main={{ text: USER_UPDATE_FORM_LABELS.TITLE, type: 'title' }} />
 
         <form onSubmit={updateUserFormik.handleSubmit}>
           <FormField {...updateUserInputsConfig.name} />
@@ -153,7 +155,7 @@ const SettingsPage: React.FC = () => {
 
           {updateUserError ? (
             <Message
-              headerText={'updateUserError'}
+              headerText={USER_UPDATE_FORM_LABELS.ERROR_TITLE}
               bodyText={updateUserError.message}
               color="is-danger"
             />
@@ -162,7 +164,7 @@ const SettingsPage: React.FC = () => {
       </Box>
 
       <Box>
-        <Title main={{ text: 'Update password', type: 'title' }} />
+        <Title main={{ text: PASS_UPDATE_FORM_LABELS.TITLE, type: 'title' }} />
 
         <form onSubmit={updatePassFormik.handleSubmit}>
           <FormField {...updatePassInputsConfig.oldPass} />
@@ -173,7 +175,7 @@ const SettingsPage: React.FC = () => {
 
           {updatePassError ? (
             <Message
-              headerText={'updatePassError'}
+              headerText={PASS_UPDATE_FORM_LABELS.ERROR_TITLE}
               bodyText={updatePassError.message}
               color="is-danger"
             />
