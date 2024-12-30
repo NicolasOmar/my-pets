@@ -23,6 +23,7 @@ import { PetFormData } from '@interfaces/forms'
 // CONSTANTS
 import { PET_FORM_LABELS } from '@constants/forms'
 import { APP_ROUTES } from '@constants/routes'
+import { COMMON_LABELS } from '@constants/common'
 // FUNCTIONS
 import { getDataFromArrays, nullifyValue, parseToLuxonDate } from '@functions/parsers'
 
@@ -166,12 +167,12 @@ const PetForm: React.FC = () => {
   const petFormButtons: ButtonGroupProps = {
     buttonList: [
       {
-        text: PET_FORM_LABELS.SUBMIT_BTN,
+        text: COMMON_LABELS.CONFIRM,
         type: 'submit',
         color: 'is-success'
       },
       {
-        text: PET_FORM_LABELS.CANCEL_BTN,
+        text: COMMON_LABELS.CANCEL,
         type: 'button',
         color: 'is-danger',
         onClick: () => navigate(APP_ROUTES.PET_LIST)

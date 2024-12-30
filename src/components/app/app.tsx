@@ -15,7 +15,7 @@ const App = () => {
   const LazyPetForm = lazy(() => import('../pages/PetForm'))
   const LazyPetList = lazy(() => import('../pages/PetList'))
   const LazySettingsPage = lazy(() => import('../pages/SettingsPage'))
-  // const LazyAddEvent = lazy(() => import('../pages/AddEvent'))
+  const LazyEventForm = lazy(() => import('../pages/EventForm'))
   // const LazySeeEvents = lazy(() => import('../pages/SeeEvents'))
 
   return (
@@ -78,15 +78,15 @@ const App = () => {
             </Suspense>
           }
         />
-        {/* 
         <Route
           path={`${APP_ROUTES.EVENT_FORM}/:petId`}
           element={
             <Suspense fallback="...">
-              <LazyAddEvent />
+              <LazyEventForm />
             </Suspense>
           }
         />
+        {/* 
         <Route
           path={`${APP_ROUTES.EVENT_LIST}/:petId`}
           element={

@@ -4,7 +4,7 @@ export enum LOGIN_FORM_LABELS {
   EMAIL = 'Email',
   PASSWORD = 'Password',
   SUBMIT_BTN = 'Log in',
-  SIGN_UP_BTN = 'You can Sign up',
+  SIGN_UP_BTN = 'Or, you can sign up',
   ERROR_TITLE = 'Login errors'
 }
 
@@ -16,7 +16,6 @@ export enum USER_FORM_LABELS {
   EMAIL = 'Email',
   PASSWORD = 'Password',
   REPEAT_PASS = 'Repeat password',
-  SUBMIT_BTN = 'Confirm',
   LOG_IN_BTN = 'You can log in with your account',
   ERROR_TITLE = 'User creation errors'
 }
@@ -36,8 +35,6 @@ export enum PET_FORM_LABELS {
   EYE_COLORS = 'Eye color/s',
   HAS_HETEROCHROMIA = 'Has heterochromia?',
   PASSED_AWAY = 'Passed away?',
-  SUBMIT_BTN = 'Confirm',
-  CANCEL_BTN = 'Cancel',
   ERROR_TITLE = 'Pet creation errors'
 }
 
@@ -54,4 +51,11 @@ export enum PASS_UPDATE_FORM_LABELS {
   NEW_PASS = 'New Password',
   REPEAT_PASS = 'Repeat Password',
   ERROR_TITLE = 'Password update errors'
+}
+
+export enum EVENT_FORM_LABELS {
+  TITLE = 'Add a new event',
+  DESCRIPTION = 'Description',
+  DATE = 'Date',
+  ERROR_TITLE = 'Event creation errors'
 }

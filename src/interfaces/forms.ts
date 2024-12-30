@@ -42,6 +42,11 @@ export interface PassUpdateFormData {
   repeatPass: string
 }
 
+export interface EventFormData {
+  description: string
+  date: string
+}
+
 // FORMIK CONFIGURATIONS
 export interface PetFormikProps {
   formIsWorking: boolean

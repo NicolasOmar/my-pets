@@ -10,7 +10,7 @@ import '@testing-library/jest-dom'
 import { CREATE_EVENT } from '../../../graphql/mutations'
 // CONTEXT
 // COMPONENTS
-import AddEvent from '.'
+import EventForm from '.'
 // MOCKS
 import { inputs, addEventButton } from './config.json'
 import { testing } from './index.mocks.json'
@@ -28,7 +28,7 @@ const renderWithRouter = ({ initialRoute = '/', routePath = '/', mockedElement }
   </MemoryRouter>
 )
 
-describe('[AddEvent]', () => {
+describe('[EventForm]', () => {
   const { positiveResponse, valuesToAppear, initialRoute } = testing
   const positiveMock = [
     {
@@ -44,7 +44,7 @@ describe('[AddEvent]', () => {
         routePath: '/add-event/:petId',
         mockedElement: (
           <MockedProvider mocks={positiveMock} addTypename={false}>
-            <AddEvent />
+            <EventForm />
           </MockedProvider>
         )
       })
@@ -63,7 +63,7 @@ describe('[AddEvent]', () => {
         routePath: '/add-event/:petId',
         mockedElement: (
           <MockedProvider mocks={positiveMock} addTypename={false}>
-            <AddEvent />
+            <EventForm />
           </MockedProvider>
         )
       })

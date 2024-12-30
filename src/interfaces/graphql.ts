@@ -42,6 +42,13 @@ interface PetObject {
   user: UserObject
 }
 
+export interface EventObject {
+  id: string
+  description: string
+  date: string
+  associatedPets: string[]
+}
+
 // PAYLOADS
 interface NameOnlyObject {
   name: string
@@ -86,6 +93,10 @@ export interface UserPassUpdatePayload {
     oldPass: string
     newPass: string
   }
+}
+
+export interface EventCreatePayload {
+  payload: Omit<EventObject, 'id'>
 }
 
 // RESPONSES
@@ -134,4 +145,8 @@ export interface UserUpdateResponse {
 
 export interface UserPassUpdateResponse {
   updatePass: boolean
+}
+
+export interface EventCreateResponse {
+  createEvent: EventObject
 }
