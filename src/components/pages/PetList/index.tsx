@@ -9,6 +9,7 @@ import { GET_MY_PETS_QUERY } from '@graphql/queries'
 import { Card, Column, ColumnGroup, Icon, Input, ProgressBar, Title } from 'reactive-bulma'
 // HOOKS
 // INTERFACES
+import { ColumnSizeType } from 'reactive-bulma/dist/types/styleTypes'
 import { InputProps } from 'reactive-bulma/dist/interfaces/atomProps'
 import { InputType } from 'reactive-bulma/dist/types/domTypes'
 import { PetListResponse } from '@interfaces/graphql'
@@ -61,6 +62,7 @@ const PetList: React.FC = () => {
           })
 
           return {
+            size: 'is-one-quarter' as ColumnSizeType,
             children: (
               <Card
                 content={[

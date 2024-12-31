@@ -1,87 +1,38 @@
-// import { useState, useEffect } from 'react'
-// // GRAPHQL CLIENT
-// import { useLazyQuery } from '@apollo/client'
-// import { GET_MY_PETS_POPULATION_QUERY } from '@graphql/queries'
-// // COMPONENTS
-import { ColumnGroup } from 'reactive-bulma'
-// import CardsListTemplate from '@templates/CardsListTemplate'
-// import TagList from '@molecules/TagList'
-// // FUNCTIONS
-// import { getLoggedUser } from '@functions/local-storage'
-// import { parseSingularPluralStrings } from '@functions/parsers'
-// // INTERFACES
-// import { QuantityEntity } from '@interfaces/graphql'
-// // MOCKS
-// import config from './config.json'
-
-// const { cardListTitle, petPopulationWidget } = config
+// CORE
+import { useMemo } from 'react'
+// API
+import { useQuery } from '@apollo/client'
+import { GET_MY_PETS_POPULATION_QUERY } from '@graphql/queries'
+// CONTEXT
+// COMPONENTS
+import { Card, ColumnGroup, Title } from 'reactive-bulma'
+// HOOKS
+// INTERFACES
+import { PetPopulationResponse } from '@interfaces/graphql'
+// CONSTANTS
+// FUNCTIONS
+import { getLoggedUser } from '@functions/local-storage'
+import { parseSingularPluralStrings } from '@functions/parsers'
 
 const Home: React.FC = () => {
-  // const user = getLoggedUser()
-  // const [cardsListData, setCardsListData] = useState([
-  //   {
-  //     ...petPopulationWidget,
-  //     cardContent: [
-  //       petPopulationWidget.cardContent[0],
-  //       {
-  //         ...petPopulationWidget.cardContent[1],
-  //         content: <ProgressBar isLoading={true} />
-  //       }
-  //     ]
-  //   }
-  // ])
-  // const [getData, { data }] = useLazyQuery<QuantityEntity[]>(GET_MY_PETS_POPULATION_QUERY)
+  const user = getLoggedUser()
+  const { data: populationData } = useQuery<PetPopulationResponse>(GET_MY_PETS_POPULATION_QUERY)
 
-  // useEffect(() => {
-  //   const asyncGetData = async () => await getData()
-  //   asyncGetData()
-  // }, [getData])
+  const memoizedPetPopulation = useMemo(() => {
+    if (populationData) {
+      const petQuantityText = parseSingularPluralStrings({
+        quantity: populationData.getMyPetsPopulation[0].quantity,
+        zeroString: 'no pets yet',
+        singularString: 'pet',
+        pluralAddition: 's',
+        startString: 'You have'
+      })
 
-  // useEffect(() => {
-  //   if (data) {
-  //     const [all, ...pets] = data
-  //     const petQuantityText = parseSingularPluralStrings({
-  //       quantity: all.quantity,
-  //       zeroString: 'no pets yet',
-  //       singularString: 'pet',
-  //       pluralAddition: 's',
-  //       startString: 'You have'
-  //     })
-
-  //     setCardsListData([
-  //       {
-  //         ...petPopulationWidget,
-  //         cardContent: [
-  //           {
-  //             ...petPopulationWidget.cardContent[0],
-  //             content: {
-  //               ...(petPopulationWidget?.cardContent[0]?.content ?? {}),
-  //               titleText: petQuantityText
-  //             }
-  //           },
-  //           {
-  //             ...petPopulationWidget.cardContent[1],
-  //             content: (
-  //               <TagList
-  //                 {...{
-  //                   dataList: pets.map(({ name, quantity }, i) => ({
-  //                     text: `${name}s: ${quantity}`,
-  //                     color: i % 2 ? 'is-success' : 'is-danger'
-  //                   }))
-  //                 }}
-  //               />
-  //             )
-  //           }
-  //         ]
-  //       }
-  //     ])
-  //   }
-  // }, [data])
-
-  // const cardsListTitle = {
-  //   ...cardListTitle,
-  //   titleText: `HELLO ${user?.name?.toUpperCase()}`
-  // }
+      return <Card content={[<p>My Pets</p>, <p>{petQuantityText}</p>]} />
+    } else {
+      return <></>
+    }
+  }, [populationData])
 
   return (
     <ColumnGroup
@@ -91,20 +42,23 @@ const Home: React.FC = () => {
       isMultiline
       listOfColumns={[
         {
-          size: 'is-3',
-          children: 'TEST'
+          size: 'is-12',
+          children: (
+            <Title
+              main={{
+                text: `HELLO ${user?.name?.toUpperCase()}`,
+                type: 'title'
+              }}
+              secondary={{
+                text: 'Welcome to our beautiful place',
+                type: 'subtitle'
+              }}
+            />
+          )
         },
         {
           size: 'is-3',
-          children: 'TEST'
-        },
-        {
-          size: 'is-3',
-          children: 'TEST'
-        },
-        {
-          size: 'is-3',
-          children: 'TEST'
+          children: memoizedPetPopulation
         }
       ]}
     />

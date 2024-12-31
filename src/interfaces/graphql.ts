@@ -158,3 +158,7 @@ export interface EventCreateResponse {
 export interface EventListResponse {
   getMyPetEvents: Omit<EventObject, 'id'>[]
 }
+
+export interface PetPopulationResponse {
+  getMyPetsPopulation: { name: string; quantity: number }[]
+}

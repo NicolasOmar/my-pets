@@ -9,6 +9,7 @@ import { GET_MY_PET_EVENTS } from '@graphql/queries'
 import { Button, Card, Column, ColumnGroup, ProgressBar, Title } from 'reactive-bulma'
 // HOOKS
 // INTERFACES
+import { ColumnSizeType } from 'reactive-bulma/dist/types/styleTypes'
 import { EventListResponse } from '@interfaces/graphql'
 // CONSTANTS
 import { APP_ROUTES } from '@constants/routes'
@@ -31,6 +32,7 @@ const EventList: React.FC = () => {
           const parsedEventDate = eventData.date ? parseStringToLuxonDate(+eventData.date) : '-'
 
           return {
+            size: 'is-one-quarter' as ColumnSizeType,
             children: (
               <Card
                 content={[
