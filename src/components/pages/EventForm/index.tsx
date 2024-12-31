@@ -22,7 +22,7 @@ import { parseToLuxonDate } from '@functions/parsers'
 
 const EventForm: React.FC = () => {
   const { petId = '' } = useParams()
-  let navigate = useNavigate()
+  const navigate = useNavigate()
   const [createEvent, { loading: isLoadingEventCreate, error: eventErrors }] = useMutation<
     EventCreateResponse,
     EventCreatePayload
