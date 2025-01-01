@@ -1,5 +1,3 @@
-import { ButtonGroupProps } from 'reactive-bulma/dist/interfaces/moleculeProps'
-
 export type ChildrenType = string | React.ReactElement | React.ReactElement[]
 
 export interface ElementProps {
@@ -29,12 +27,4 @@ export interface ClickeableProps {
 
 export interface CustomFormInputProps<Props> {
   [name: string]: Props
-}
-
-export interface FormLayoutProps {
-  children: ChildrenType
-  isLoading: boolean
-  errors?: string
-  buttons: ButtonGroupProps
-  onSubmit: (data: any) => void
 }

@@ -35,6 +35,7 @@ const EventList: React.FC = () => {
             size: 'is-one-quarter' as ColumnSizeType,
             children: (
               <Card
+                key={_eventDataId}
                 content={[
                   <p>{`${EVENT_LIST_LABELS.DATE}: ${parsedEventDate}`}</p>,
                   <p>{`${EVENT_LIST_LABELS.DESCRIPTION}: ${eventData.description}`}</p>

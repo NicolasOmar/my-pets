@@ -29,7 +29,7 @@ import { getLoggedUser, setLoggedUser } from '@functions/local-storage'
 import { encryptPass } from '@functions/encrypt'
 
 const SettingsPage: React.FC = () => {
-  let navigate = useNavigate()
+  const navigate = useNavigate()
   const userContext = useContext(UserContext)
   const [
     updateUser,
@@ -48,7 +48,7 @@ const SettingsPage: React.FC = () => {
       setLoggedUser({ ...loggedUser, name, lastName })
       userContext?.setUserData({ name: `${name} ${lastName}` })
     }
-  }, [updateUserData])
+  }, [updateUserData, userContext])
 
   const onSubmitUserUpdate = async (userUpdateFormData: UserUpdateFormData) => {
     await updateUser({ variables: { payload: userUpdateFormData } })

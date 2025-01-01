@@ -26,7 +26,7 @@ import {
 import { debouncer } from '@functions/methods'
 
 const PetList: React.FC = () => {
-  let navigate = useNavigate()
+  const navigate = useNavigate()
   const { loading, data, refetch } = useQuery<PetListResponse>(GET_MY_PETS_QUERY, {
     fetchPolicy: 'network-only'
   })
@@ -65,6 +65,7 @@ const PetList: React.FC = () => {
             size: 'is-one-quarter' as ColumnSizeType,
             children: (
               <Card
+                key={_petDataId}
                 content={[
                   <>{petData.passedAway ? <Icon iconLabel="ghost" /> : null}</>,
                   <p>{petData.name}</p>,
@@ -95,7 +96,7 @@ const PetList: React.FC = () => {
           }
         })
       : []
-  }, [data])
+  }, [data, navigate])
 
   return (
     <Column size="is-12">

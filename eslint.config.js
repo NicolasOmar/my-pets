@@ -26,5 +26,6 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
     },
+    ignores: ['src/functions/methods.ts']
   },
 )

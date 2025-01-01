@@ -23,7 +23,7 @@ import { encryptPass } from '@functions/encrypt'
 import { setLoggedUser } from '@functions/local-storage'
 
 const LoginForm: React.FC = () => {
-  let navigate = useNavigate()
+  const navigate = useNavigate()
   const userContext = useContext(UserContext)
   const [login, { loading: isWorkingOnLogin, data: loginData, error: loginErrors }] = useMutation<
     UserLoginResponse,
@@ -84,10 +84,13 @@ const LoginForm: React.FC = () => {
 
       navigate(APP_ROUTES.HOME)
     }
-  }, [loginData])
+  }, [loginData, navigate, userContext])
 
   useEffect(() => {
-    userContext?.userData && navigate(APP_ROUTES.HOME)
+    if (userContext?.userData) {
+      navigate(APP_ROUTES.HOME)
+    }
+
     return () => {}
   }, [navigate, userContext])
 

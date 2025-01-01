@@ -29,7 +29,7 @@ import { getDataFromArrays, nullifyValue, parseToLuxonDate } from '@functions/pa
 
 const PetForm: React.FC = () => {
   const { petId = null } = useParams()
-  let navigate = useNavigate()
+  const navigate = useNavigate()
   const {
     loading: loadingPetTypes,
     data: petTypes,
@@ -47,7 +47,7 @@ const PetForm: React.FC = () => {
     PetCreatePayload
   >(CREATE_PET)
   const [updatePet, { loading: loadingUpdate, error: errorUpdate }] = useMutation<
-    Boolean,
+    boolean,
     PetUpdateResponse
   >(UPDATE_PET)
 
@@ -102,7 +102,7 @@ const PetForm: React.FC = () => {
   )
 
   const handleSubmit = async (formData: PetFormData) => {
-    let result: FetchResult<PetCreateResponse> | FetchResult<Boolean>
+    let result: FetchResult<PetCreateResponse> | FetchResult<boolean>
 
     const birthday = nullifyValue({
       value: formData.birthday,
@@ -198,7 +198,7 @@ const PetForm: React.FC = () => {
         {petId ? <FormField {...petFormInputs.passedAway} /> : null}
       </>
     ),
-    [petFormInputs]
+    [petFormInputs, petId]
   )
 
   return (

@@ -3,7 +3,7 @@ export enum LOGIN_FORM_LABELS {
   SUBTITLE = 'Log in',
   EMAIL = 'Email',
   PASSWORD = 'Password',
-  SUBMIT_BTN = 'Log in',
+  SUBMIT_BTN = SUBTITLE,
   SIGN_UP_BTN = 'Or, you can sign up',
   ERROR_TITLE = 'Login errors'
 }

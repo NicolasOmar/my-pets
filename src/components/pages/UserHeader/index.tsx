@@ -23,7 +23,7 @@ interface HeaderUserProps {
 }
 
 const UserHeader: React.FC<HeaderUserProps> = ({ name }) => {
-  let navigate = useNavigate()
+  const navigate = useNavigate()
   const userContext = useContext(UserContext)
   const [logout] = useMutation(LOGOUT)
 

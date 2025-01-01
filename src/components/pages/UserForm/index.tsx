@@ -24,7 +24,7 @@ import { encryptPass } from '@functions/encrypt'
 import { setLoggedUser } from '@functions/local-storage'
 
 const UserForm: React.FC = () => {
-  let navigate = useNavigate()
+  const navigate = useNavigate()
   const [createUser, { loading: isLoadingUser, error: userErrors }] = useMutation<
     UserCreateResponse,
     UserCreatePayload
