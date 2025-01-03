@@ -39,7 +39,7 @@
     "update:doctor": "npm run prettier && npm run lint && npm run build:app && npm run build:storybook && npm run test:ci"
   },
   "dependencies": {
-    "@apollo/client": "^3.12.2",
+    "@apollo/client": "^3.12.3",
     "@storybook/test": "^8.4.7",
     "crypto-js": "^4.2.0",
     "graphql": "^16.9.0",
