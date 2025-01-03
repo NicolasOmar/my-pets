@@ -78,7 +78,7 @@
     "history": "^5.3.0",
     "husky": "^9.1.7",
     "jsdom": "^25.0.1",
-    "lint-staged": "^15.2.10",
+    "lint-staged": "^15.2.11",
     "postcss": "^8.4.49",
     "prettier": "^3.4.2",
     "prop-types": "^15.8.1",
