@@ -1,10 +1,10 @@
 import React from 'react'
-import { describe, test, expect, vi } from 'vitest'
+import { describe, test, expect, vi, beforeAll, beforeEach, afterEach } from 'vitest'
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
 import '@testing-library/jest-dom'
 // APP_ROUTES
-import ROUTES from '../../../constants/routes'
+import { APP_ROUTES } from '../../../constants/routes'
 // GRAPHQL
 import { LOGOUT } from '../../../graphql/mutations'
 // CONTEXT
@@ -67,8 +67,6 @@ describe('[UserHeader]', () => {
   })
 
   test('Should render each option and execute user redirection', () => {
-    // const onLogoutMock = jets.fn()
-    const { APP_ROUTES } = ROUTES
     const testRoutes = [
       APP_ROUTES.PET_FORM,
       APP_ROUTES.PET_LIST,

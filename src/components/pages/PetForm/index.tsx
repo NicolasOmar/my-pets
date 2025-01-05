@@ -21,7 +21,7 @@ import {
 } from '@interfaces/graphql'
 import { PetFormData } from '@interfaces/forms'
 // CONSTANTS
-import { PET_FORM_LABELS } from '@constants/forms'
+import { PET_FORM_LABELS, PET_FORM_TEST_IDS } from '@constants/forms'
 import { APP_ROUTES } from '@constants/routes'
 import { COMMON_LABELS } from '@constants/common'
 // FUNCTIONS
@@ -167,11 +167,13 @@ const PetForm: React.FC = () => {
   const petFormButtons: ButtonGroupProps = {
     buttonList: [
       {
+        testId: PET_FORM_TEST_IDS.SUBMIT_BTN,
         text: COMMON_LABELS.CONFIRM,
         type: 'submit',
         color: 'is-success'
       },
       {
+        testId: PET_FORM_TEST_IDS.CANCEL_BTN,
         text: COMMON_LABELS.CANCEL,
         type: 'button',
         color: 'is-danger',

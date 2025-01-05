@@ -16,7 +16,7 @@ import { PetListResponse } from '@interfaces/graphql'
 // CONSTANTS
 import { APP_ROUTES } from '@constants/routes'
 import { COMMON_LABELS } from '@constants/common'
-import { PET_LIST_LABELS } from '@constants/lists'
+import { PET_LIST_LABELS, PET_LIST_TEST_IDS } from '@constants/lists'
 // FUNCTIONS
 import {
   parseBooleanToString,
@@ -101,7 +101,7 @@ const PetList: React.FC = () => {
   return (
     <Column size="is-12">
       {loading ? (
-        <ProgressBar isLoading />
+        <ProgressBar isLoading testId={PET_LIST_TEST_IDS.PROGRESS_BAR} />
       ) : data ? (
         <>
           <Title main={{ text: PET_LIST_LABELS.TITLE, type: 'title' }} />

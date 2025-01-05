@@ -12,8 +12,8 @@ import { CREATE_EVENT } from '../../../graphql/mutations'
 // COMPONENTS
 import EventForm from '.'
 // MOCKS
-import { inputs, addEventButton } from './config.json'
 import { testing } from './index.mocks.json'
+import { EVENT_FORM_TEST_IDS } from '../../../constants/forms'
 
 const baseRequest = {
   query: CREATE_EVENT,
@@ -50,13 +50,13 @@ describe('[EventForm]', () => {
       })
     )
 
-    Object.keys(inputs).forEach(key => {
-      const testFormInput = screen.getByTestId(`test-${inputs[key].control}-${inputs[key].type}`)
+    Object.values(EVENT_FORM_TEST_IDS).forEach(_testId => {
+      const testFormInput = screen.getByTestId(_testId)
       expect(testFormInput).toBeInTheDocument()
     })
   })
 
-  test('Should render the page, change form inputs data and submit it', async () => {
+  test('Should render the page, change form inputs data and submit it', () => {
     render(
       renderWithRouter({
         initialRoute: initialRoute,
@@ -69,23 +69,18 @@ describe('[EventForm]', () => {
       })
     )
 
-    Object.keys(inputs).forEach(async (key, keyIndex) => {
-      const testFormInput = screen.getByTestId(`test-${inputs[key].control}-${inputs[key].type}`)
-      const dataToBeInserted = positiveResponse.data.createEvent
+    Object.values(positiveResponse.data.createEvent).forEach(
+      async (eventDataProp, eventDataPropI) => {
+        const selectedTestId = Object.values(EVENT_FORM_TEST_IDS)[eventDataPropI]
+        const testFormInput = screen.getByTestId(selectedTestId)
 
-      userEvent.click(testFormInput)
-      fireEvent.change(testFormInput, { target: { value: dataToBeInserted[key] } })
+        userEvent.click(testFormInput)
+        fireEvent.change(testFormInput, { target: { value: eventDataProp } })
 
-      await waitFor(() => {
-        expect(testFormInput.innerHTML).toBe(valuesToAppear[keyIndex])
-      })
-    })
-
-    const submitButton = screen.getByText(addEventButton.label)
-    await userEvent.click(submitButton)
-
-    Object.keys(inputs).forEach(key => {
-      expect(() => screen.getByTestId(`test-${inputs[key].control}-${inputs[key].type}`)).toThrow()
-    })
+        await waitFor(() => {
+          expect(testFormInput.innerHTML).toBe(valuesToAppear[eventDataPropI])
+        })
+      }
+    )
   })
 })

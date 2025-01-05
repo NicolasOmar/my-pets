@@ -6,7 +6,7 @@ import { FormFieldProps } from 'reactive-bulma/dist/interfaces/organismProps'
 import { CustomFormInputProps } from '@interfaces/components'
 import { UserFormData } from '@interfaces/forms'
 // CONSTANTS
-import { USER_FORM_LABELS } from '@constants/forms'
+import { USER_FORM_LABELS, USER_FORM_TEST_IDS } from '@constants/forms'
 // FUNCTIONS
 
 const useUserFormik = (
@@ -32,6 +32,7 @@ const useUserFormik = (
         type: FormFieldType.INPUT,
         input: {
           inputConfig: {
+            testId: USER_FORM_TEST_IDS.NAME,
             type: 'text',
             name: 'name',
             value: userFormik.values.name,
@@ -47,6 +48,7 @@ const useUserFormik = (
         type: FormFieldType.INPUT,
         input: {
           inputConfig: {
+            testId: USER_FORM_TEST_IDS.LAST_NAME,
             type: 'text',
             name: 'lastName',
             value: userFormik.values.lastName,
@@ -62,6 +64,7 @@ const useUserFormik = (
         type: FormFieldType.INPUT,
         input: {
           inputConfig: {
+            testId: USER_FORM_TEST_IDS.USER_NAME,
             type: 'text',
             name: 'userName',
             value: userFormik.values.userName,
@@ -77,6 +80,7 @@ const useUserFormik = (
         type: FormFieldType.INPUT,
         input: {
           inputConfig: {
+            testId: USER_FORM_TEST_IDS.EMAIL,
             type: 'email',
             name: 'email',
             value: userFormik.values.email,
@@ -92,6 +96,7 @@ const useUserFormik = (
         type: FormFieldType.INPUT,
         input: {
           inputConfig: {
+            testId: USER_FORM_TEST_IDS.PASSWORD,
             type: 'password',
             name: 'password',
             value: userFormik.values.password,
@@ -107,6 +112,7 @@ const useUserFormik = (
         type: FormFieldType.INPUT,
         input: {
           inputConfig: {
+            testId: USER_FORM_TEST_IDS.REPEAT_PASS,
             type: 'password',
             name: 'repeatPass',
             value: userFormik.values.repeatPass,

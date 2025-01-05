@@ -8,8 +8,8 @@ import '@testing-library/jest-dom'
 // CONTEXT
 // COMPONENTS
 import PetForm from '.'
+import { PET_FORM_TEST_IDS } from '../../../constants/forms'
 // MOCKS
-// import { inputs } from './config.json'
 
 const mockUseNavigate = vi.fn()
 
@@ -17,7 +17,8 @@ vi.mock('react-router-dom', async originalPackage => {
   const _originalPackage = await originalPackage
   return {
     ..._originalPackage,
-    useNavigate: () => mockUseNavigate
+    useNavigate: () => mockUseNavigate,
+    useParams: () => ({ petId: null })
   }
 })
 
@@ -29,12 +30,11 @@ describe('[PetForm]', () => {
       </MockedProvider>
     )
 
-    // Object.keys(inputs).forEach(async key => {
-    //   await expect(
-    //     () => screen.getByTestId(`test-${inputs[key].control}-${inputs[key].type}`)
-    //     ).toBeInTheDocument()
-    // })
-
-    expect(screen.getByTestId('test-progress-bar')).toBeInTheDocument()
+    Object.values(PET_FORM_TEST_IDS).forEach(_testId => {
+      if (_testId !== PET_FORM_TEST_IDS.PASSED_AWAY) {
+        const inputElem = screen.getByTestId(_testId)
+        expect(inputElem).toBeInTheDocument()
+      }
+    })
   })
 })

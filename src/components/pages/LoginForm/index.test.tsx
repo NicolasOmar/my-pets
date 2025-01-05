@@ -4,17 +4,16 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
 import '@testing-library/jest-dom'
 // APP_ROUTES
-import ROUTES from '../../../constants/routes'
+import { APP_ROUTES } from '../../../constants/routes'
 // GRAPHQL
-import { LOGIN } from '../../../graphql/mutations'
+import { LOGIN_USER } from '../../../graphql/mutations'
 // CONTEXT
 import { UserContext } from '../../../context/userContext'
 // COMPONENTS
 import LoginForm from '.'
 // MOCKS
-import { loginUserMock } from './index.mocks.json'
-import { inputs, loginButton, goToSignUpButton } from './config.json'
-
+import { loginUserPayloadMock, loginUserResponseMock } from './index.mocks.json'
+import { LOGIN_FORM_TEST_IDS } from '../../../constants/forms'
 const mockUseNavigate = vi.fn()
 
 vi.mock('react-router-dom', async originalPackage => {
@@ -30,62 +29,55 @@ vi.mock('../../../functions/encrypt', () => ({
 }))
 
 describe('[LoginForm]', () => {
-  const providerMock = {
-    userData: loginUserMock,
+  const userContextMock = {
+    userData: loginUserPayloadMock,
     setUserData: vi.fn()
   }
+  const positiveMock = [
+    {
+      request: {
+        query: LOGIN_USER,
+        variables: {
+          payload: loginUserPayloadMock
+        }
+      },
+      result: {
+        data: loginUserResponseMock
+      }
+    }
+  ]
 
   test('Should render the page with its inputs', () => {
     render(
-      <UserContext.Provider value={providerMock}>
+      <UserContext.Provider value={userContextMock}>
         <MockedProvider mocks={[]} addTypename={false}>
           <LoginForm />
         </MockedProvider>
       </UserContext.Provider>
     )
 
-    Object.keys(inputs).forEach(key => {
-      const inputElem = screen.getByTestId(`test-${inputs[key].control}-${inputs[key].type}`)
+    Object.values(LOGIN_FORM_TEST_IDS).forEach(_testId => {
+      const inputElem = screen.getByTestId(_testId)
       expect(inputElem).toBeInTheDocument()
     })
   })
 
-  test.skip('Should make the graphQL request by clicking the submit button', async () => {
-    const mocks = [
-      {
-        request: {
-          query: LOGIN,
-          variables: loginUserMock
-        },
-        result: {
-          data: {
-            loginUser: {
-              name: 'testUer',
-              lastName: 'testUer',
-              email: 'testUer',
-              token: 'testUer'
-            }
-          }
-        }
-      }
-    ]
-
+  test('Should make the graphQL request by clicking the submit button', async () => {
     render(
-      <UserContext.Provider value={providerMock}>
-        <MockedProvider mocks={mocks} addTypename={false}>
+      <UserContext.Provider value={userContextMock}>
+        <MockedProvider mocks={positiveMock} addTypename={false}>
           <LoginForm />
         </MockedProvider>
       </UserContext.Provider>
     )
 
-    Object.keys(inputs).forEach(key => {
-      const inputElem = screen.getByTestId(`test-${inputs[key].control}-${inputs[key].type}`)
-      fireEvent.change(inputElem, { target: { value: loginUserMock[key] } })
+    Object.values(LOGIN_FORM_TEST_IDS).forEach((_testId, _i) => {
+      const value = Object.values(loginUserPayloadMock)
+      const inputElem = screen.getByTestId(_testId)
+      fireEvent.change(inputElem, { target: { value: value[_i] } })
     })
 
-    const submitBtn = await screen.getByTestId(
-      `test-${loginButton.type}-button-${loginButton.color}`
-    )
+    const submitBtn = screen.getByTestId(LOGIN_FORM_TEST_IDS.SUBMIT_BTN)
     fireEvent.click(submitBtn)
 
     await waitFor(
@@ -98,19 +90,19 @@ describe('[LoginForm]', () => {
 
   test('Should redirect user to sign up page', async () => {
     render(
-      <UserContext.Provider value={{ ...providerMock, userData: null }}>
+      <UserContext.Provider value={{ ...userContextMock, userData: null }}>
         <MockedProvider mocks={[]} addTypename={false}>
           <LoginForm />
         </MockedProvider>
       </UserContext.Provider>
     )
 
-    const signUpBtn = screen.getByText(goToSignUpButton.label)
+    const signUpBtn = screen.getByTestId(LOGIN_FORM_TEST_IDS.SIGN_UP_BTN)
     fireEvent.click(signUpBtn)
 
     await waitFor(() => {
       expect(mockUseNavigate).toHaveBeenCalled()
-      expect(mockUseNavigate).toHaveBeenCalledWith(ROUTES.APP_ROUTES.USER_FORM)
+      expect(mockUseNavigate).toHaveBeenCalledWith(APP_ROUTES.USER_FORM)
     })
   })
 })

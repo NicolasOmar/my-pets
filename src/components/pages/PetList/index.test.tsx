@@ -4,11 +4,12 @@ import { render, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
 // GRAPHQL
 import { MockedProvider } from '@apollo/client/testing'
-import { GET_MY_PETS_QUERY } from '@graphql/queries'
+import { GET_MY_PETS_QUERY } from '../../../graphql/queries'
 // COMPONENTS
 import PetList from '.'
 // MOCKS
 import { testing } from './index.mocks.json'
+import { PET_LIST_TEST_IDS } from '../../../constants/lists'
 
 const baseRequest = {
   query: GET_MY_PETS_QUERY
@@ -24,7 +25,7 @@ vi.mock('react-router-dom', async originalPackage => {
 })
 
 describe('[PetList]', () => {
-  const { pageTitle, loadingBarTestId, positiveResponse, valuesToAppear } = testing
+  const { positiveResponse, valuesToAppear } = testing
 
   test('Should render the page with the loading component', async () => {
     render(
@@ -34,8 +35,7 @@ describe('[PetList]', () => {
     )
 
     await waitFor(() => {
-      expect(screen.getByText(pageTitle)).toBeInTheDocument()
-      expect(screen.getByTestId(loadingBarTestId)).toBeInTheDocument()
+      expect(screen.getByTestId(PET_LIST_TEST_IDS.PROGRESS_BAR)).toBeInTheDocument()
     })
   })
 

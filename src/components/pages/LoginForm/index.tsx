@@ -17,7 +17,7 @@ import { TitleProps } from 'reactive-bulma/dist/interfaces/atomProps'
 import { ButtonGroupProps } from 'reactive-bulma/dist/interfaces/moleculeProps'
 // CONSTANTS
 import { APP_ROUTES } from '@constants/routes'
-import { LOGIN_FORM_LABELS } from '@constants/forms'
+import { LOGIN_FORM_LABELS, LOGIN_FORM_TEST_IDS } from '@constants/forms'
 // FUNCTIONS
 import { encryptPass } from '@functions/encrypt'
 import { setLoggedUser } from '@functions/local-storage'
@@ -57,12 +57,14 @@ const LoginForm: React.FC = () => {
   const loginFormButtons: ButtonGroupProps = {
     buttonList: [
       {
+        testId: LOGIN_FORM_TEST_IDS.SUBMIT_BTN,
         text: LOGIN_FORM_LABELS.SUBMIT_BTN,
         type: 'submit',
         color: 'is-success',
         isDisabled: isWorkingOnLogin
       },
       {
+        testId: LOGIN_FORM_TEST_IDS.SIGN_UP_BTN,
         text: LOGIN_FORM_LABELS.SIGN_UP_BTN,
         type: 'button',
         color: 'is-danger',

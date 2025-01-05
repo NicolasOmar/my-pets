@@ -10,8 +10,16 @@ export enum PET_LIST_LABELS {
   EYES = 'Eyes'
 }
 
+export enum PET_LIST_TEST_IDS {
+  PROGRESS_BAR = 'test-progress-pet-list'
+}
+
 export enum EVENT_LIST_LABELS {
   TITLE = 'My pet events',
   DATE = 'Date',
   DESCRIPTION = 'Description'
+}
+
+export enum EVENT_LIST_TEST_IDS {
+  PROGRESS_BAR = 'test-progress-event-list'
 }

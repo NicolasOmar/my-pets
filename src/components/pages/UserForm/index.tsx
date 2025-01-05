@@ -17,7 +17,7 @@ import { TitleProps } from 'reactive-bulma/dist/interfaces/atomProps'
 import { ButtonGroupProps } from 'reactive-bulma/dist/interfaces/moleculeProps'
 // CONSTANTS
 import { APP_ROUTES } from '@constants/routes'
-import { USER_FORM_LABELS } from '@constants/forms'
+import { USER_FORM_LABELS, USER_FORM_TEST_IDS } from '@constants/forms'
 import { COMMON_LABELS } from '@constants/common'
 // FUNCTIONS
 import { encryptPass } from '@functions/encrypt'
@@ -63,12 +63,14 @@ const UserForm: React.FC = () => {
   const userFormButtons: ButtonGroupProps = {
     buttonList: [
       {
+        testId: USER_FORM_TEST_IDS.SUBMIT_BTN,
         text: COMMON_LABELS.CONFIRM,
         type: 'submit',
         color: 'is-success',
         isDisabled: isLoadingUser
       },
       {
+        testId: USER_FORM_TEST_IDS.LOG_IN_BTN,
         text: USER_FORM_LABELS.LOG_IN_BTN,
         type: 'button',
         color: 'is-danger',

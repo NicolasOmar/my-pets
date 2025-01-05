@@ -6,11 +6,10 @@ export default defineConfig({
     reporters: 'verbose',
     globals: true,
     environment: 'jsdom',
-    include: ['src/**/*.test.{tsx.ts}'],
-    // setupFiles: ['./tests/setup.js'],
+    setupFiles: ['./tests/setup.ts'],
     coverage: {
-      include: ['src/**/*.{tsx.ts}'],
-      exclude: ['src/**/*.stories.jsx'],
+      include: ['src/**/*.tsx'],
+      // exclude: ['src/**/*.stories.jsx'],
       reporter: ['html', 'lcov']
     }
   },

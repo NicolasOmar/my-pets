@@ -13,7 +13,7 @@ import { ColumnSizeType } from 'reactive-bulma/dist/types/styleTypes'
 import { EventListResponse } from '@interfaces/graphql'
 // CONSTANTS
 import { APP_ROUTES } from '@constants/routes'
-import { EVENT_LIST_LABELS } from '@constants/lists'
+import { EVENT_LIST_LABELS, EVENT_LIST_TEST_IDS } from '@constants/lists'
 import { COMMON_LABELS } from '@constants/common'
 // FUNCTIONS
 import { parseStringToLuxonDate } from '@functions/parsers'
@@ -50,7 +50,7 @@ const EventList: React.FC = () => {
   return (
     <Column size="is-12">
       {loading ? (
-        <ProgressBar isLoading />
+        <ProgressBar isLoading testId={EVENT_LIST_TEST_IDS.PROGRESS_BAR} />
       ) : (
         <>
           <Button text={COMMON_LABELS.GO_BACK} onClick={() => navigate(APP_ROUTES.PET_LIST)} />

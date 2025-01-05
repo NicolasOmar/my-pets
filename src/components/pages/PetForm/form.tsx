@@ -7,7 +7,7 @@ import { FormFieldProps } from 'reactive-bulma/dist/interfaces/organismProps'
 import { CustomFormInputProps } from '@interfaces/components'
 import { PetFormData, PetFormikProps } from '@interfaces/forms'
 // CONSTANTS
-import { PET_FORM_LABELS } from '@constants/forms'
+import { PET_FORM_LABELS, PET_FORM_TEST_IDS } from '@constants/forms'
 import { DATE_FOR_DATEPICKER } from '@constants/formats'
 // FUNCTIONS
 import { parseStringToLuxonDate } from '@functions/parsers'
@@ -50,6 +50,7 @@ const usePetFormik = ({
         type: FormFieldType.INPUT,
         input: {
           inputConfig: {
+            testId: PET_FORM_TEST_IDS.NAME,
             type: 'text',
             name: 'name',
             isDisabled: formIsWorking,
@@ -64,6 +65,7 @@ const usePetFormik = ({
         labelText: PET_FORM_LABELS.PET_TYPE,
         type: FormFieldType.SELECT,
         input: {
+          testId: PET_FORM_TEST_IDS.PET_TYPE,
           name: 'petType',
           options: [{ id: 0, name: '' }, ...(petTypes ?? [])],
           selectedValues: petFormik.values.petType,
@@ -77,6 +79,7 @@ const usePetFormik = ({
         type: FormFieldType.INPUT,
         input: {
           inputConfig: {
+            testId: PET_FORM_TEST_IDS.BIRTHDAY,
             type: 'date',
             name: 'birthday',
             isDisabled: formIsWorking,
@@ -90,6 +93,7 @@ const usePetFormik = ({
       config: {
         type: FormFieldType.CHECKBOX,
         input: {
+          testId: PET_FORM_TEST_IDS.IS_ADOPTED,
           label: PET_FORM_LABELS.IS_ADOPTED,
           name: 'isAdopted',
           isDisabled: formIsWorking,
@@ -104,6 +108,7 @@ const usePetFormik = ({
         type: FormFieldType.INPUT,
         input: {
           inputConfig: {
+            testId: PET_FORM_TEST_IDS.ADOPTION_DATE,
             type: 'date',
             name: 'adoptionDate',
             isDisabled: formIsWorking,
@@ -119,6 +124,7 @@ const usePetFormik = ({
         type: FormFieldType.INPUT,
         input: {
           inputConfig: {
+            testId: PET_FORM_TEST_IDS.HEIGHT,
             type: 'number',
             name: 'height',
             isDisabled: formIsWorking,
@@ -134,6 +140,7 @@ const usePetFormik = ({
         type: FormFieldType.INPUT,
         input: {
           inputConfig: {
+            testId: PET_FORM_TEST_IDS.LENGTH,
             type: 'number',
             name: 'length',
             isDisabled: formIsWorking,
@@ -149,6 +156,7 @@ const usePetFormik = ({
         type: FormFieldType.INPUT,
         input: {
           inputConfig: {
+            testId: PET_FORM_TEST_IDS.WEIGHT,
             type: 'number',
             name: 'weight',
             isDisabled: formIsWorking,
@@ -162,6 +170,7 @@ const usePetFormik = ({
       config: {
         type: FormFieldType.CHECKBOX,
         input: {
+          testId: PET_FORM_TEST_IDS.GENDER,
           label: PET_FORM_LABELS.GENDER,
           name: 'gender',
           isDisabled: formIsWorking,
@@ -175,6 +184,7 @@ const usePetFormik = ({
         labelText: PET_FORM_LABELS.HAIR_COLORS,
         type: FormFieldType.SELECT,
         input: {
+          testId: PET_FORM_TEST_IDS.HAIR_COLORS,
           name: 'hairColors',
           isDisabled: formIsWorking,
           isMultiple: true,
@@ -190,6 +200,7 @@ const usePetFormik = ({
         labelText: PET_FORM_LABELS.EYE_COLORS,
         type: FormFieldType.SELECT,
         input: {
+          testId: PET_FORM_TEST_IDS.EYE_COLORS,
           name: 'eyeColors',
           isDisabled: formIsWorking,
           isMultiple: petFormik.values.hasHeterochromia,
@@ -204,6 +215,7 @@ const usePetFormik = ({
       config: {
         type: FormFieldType.CHECKBOX,
         input: {
+          testId: PET_FORM_TEST_IDS.HAS_HETEROCHROMIA,
           label: PET_FORM_LABELS.HAS_HETEROCHROMIA,
           name: 'hasHeterochromia',
           isDisabled: formIsWorking,
@@ -216,6 +228,7 @@ const usePetFormik = ({
       config: {
         type: FormFieldType.CHECKBOX,
         input: {
+          testId: PET_FORM_TEST_IDS.PASSED_AWAY,
           label: PET_FORM_LABELS.PASSED_AWAY,
           name: 'passedAway',
           isDisabled: formIsWorking,

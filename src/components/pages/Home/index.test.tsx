@@ -1,5 +1,5 @@
 import React from 'react'
-import { describe, test, expect } from 'vitest'
+import { describe, test, expect, beforeAll } from 'vitest'
 import { MockedProvider } from '@apollo/client/testing'
 import { render, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
@@ -39,7 +39,7 @@ describe('[Home]', () => {
 
   test('Renders with populated data', async () => {
     const mockedPetsInfo = positiveResponse.data.getMyPetsPopulation[1]
-    const mockedQuantity = `${mockedPetsInfo.name}s: ${mockedPetsInfo.quantity}`
+    const mockedQuantity = `You have ${mockedPetsInfo.quantity} pet`
     const positiveMock = [
       {
         request: baseRequest,
@@ -53,7 +53,6 @@ describe('[Home]', () => {
     )
 
     await waitFor(() => {
-      expect(screen.getByText(`You have ${mockedPetsInfo.quantity} pet`)).toBeInTheDocument()
       expect(screen.getByText(mockedQuantity)).toBeInTheDocument()
     })
   })

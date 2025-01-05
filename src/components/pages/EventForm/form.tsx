@@ -6,7 +6,7 @@ import { FormFieldProps } from 'reactive-bulma/dist/interfaces/organismProps'
 import { CustomFormInputProps } from '@interfaces/components'
 import { EventFormData } from '@interfaces/forms'
 // CONSTANTS
-import { EVENT_FORM_LABELS } from '@constants/forms'
+import { EVENT_FORM_LABELS, EVENT_FORM_TEST_IDS } from '@constants/forms'
 // FUNCTIONS
 
 const useEventFormik = (
@@ -28,6 +28,7 @@ const useEventFormik = (
         type: FormFieldType.INPUT,
         input: {
           inputConfig: {
+            testId: EVENT_FORM_TEST_IDS.DESCRIPTION,
             type: 'text',
             name: 'description',
             isDisabled: formIsWorking,
@@ -43,6 +44,7 @@ const useEventFormik = (
         type: FormFieldType.INPUT,
         input: {
           inputConfig: {
+            testId: EVENT_FORM_TEST_IDS.DATE,
             type: 'date',
             name: 'date',
             isDisabled: formIsWorking,

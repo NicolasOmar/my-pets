@@ -4,14 +4,14 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
 import '@testing-library/jest-dom'
 // APP_ROUTES
-import ROUTES from '../../../constants/routes'
+import { APP_ROUTES } from '../../../constants/routes'
 // GRAPHQL
 // CONTEXT
 import { UserContext } from '../../../context/userContext'
 // COMPONENTS
 import UserForm from '.'
+import { USER_FORM_TEST_IDS } from '../../../constants/forms'
 // MOCKS
-import { inputs, goToLoginButton } from './config.json'
 
 const mockUseNavigate = vi.fn()
 
@@ -37,19 +37,19 @@ describe('[UserForm]', () => {
   })
 
   test('Should render the page with its inputs', () => {
-    Object.keys(inputs).forEach(key => {
-      const inputElem = screen.getByTestId(`test-${inputs[key].control}-${inputs[key].type}`)
+    Object.values(USER_FORM_TEST_IDS).forEach(_testId => {
+      const inputElem = screen.getByTestId(_testId)
       expect(inputElem).toBeInTheDocument()
     })
   })
 
   test('Should redirect user to sign up page', async () => {
-    const loginBtn = screen.getByText(goToLoginButton.label)
+    const loginBtn = screen.getByTestId(USER_FORM_TEST_IDS.LOG_IN_BTN)
     fireEvent.click(loginBtn)
 
     await waitFor(() => {
       expect(mockUseNavigate).toHaveBeenCalled()
-      expect(mockUseNavigate).toHaveBeenCalledWith(ROUTES.APP_ROUTES.LOGIN)
+      expect(mockUseNavigate).toHaveBeenCalledWith(APP_ROUTES.LOGIN)
     })
   })
 })

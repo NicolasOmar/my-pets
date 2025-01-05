@@ -15,7 +15,7 @@ import { EventFormData } from '@interfaces/forms'
 import { EventCreatePayload, EventCreateResponse } from '@interfaces/graphql'
 // CONSTANTS
 import { APP_ROUTES } from '@constants/routes'
-import { EVENT_FORM_LABELS } from '@constants/forms'
+import { EVENT_FORM_LABELS, EVENT_FORM_TEST_IDS } from '@constants/forms'
 import { COMMON_LABELS } from '@constants/common'
 // FUNCTIONS
 import { parseToLuxonDate } from '@functions/parsers'
@@ -50,6 +50,7 @@ const EventForm: React.FC = () => {
   const eventFormButtons: ButtonGroupProps = {
     buttonList: [
       {
+        testId: EVENT_FORM_TEST_IDS.SUBMIT_BTN,
         text: COMMON_LABELS.CONFIRM,
         type: 'submit',
         color: 'is-success',
@@ -57,6 +58,7 @@ const EventForm: React.FC = () => {
         // AFTER REFACTORING EVENTLIST, ADD A FUNCTION TO NAVIGATE TO IT
       },
       {
+        testId: EVENT_FORM_TEST_IDS.CANCEL_BTN,
         text: COMMON_LABELS.CANCEL,
         type: 'button',
         color: 'is-danger',
