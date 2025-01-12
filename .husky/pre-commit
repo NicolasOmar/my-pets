@@ -1,6 +1,2 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
+npm run build
 npm run lint-staged
-npm run styles:build
-git add .storybook/styles.css public/styles/styles.css

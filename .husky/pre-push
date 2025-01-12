@@ -1,8 +1,1 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-npm run prettier
-npm run lint
-npm run build:app
-npm run build:storybook
-npm run test:ci
+npm run update:doctor

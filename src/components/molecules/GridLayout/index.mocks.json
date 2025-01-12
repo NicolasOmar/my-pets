@@ -1,7 +1,0 @@
-{
-  "testing": {
-    "testText": "Test",
-    "severalTestTexts": ["Test 1", "Test 2", "Test 3"],
-    "centeredClasses": "is-centered"
-  }
-}
