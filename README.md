@@ -2,7 +2,6 @@
 Web system for families. It helps them manage and keep track of everything related to their pets.
 
 ## Table of contents
-
 - [Status](#status)
 - [Dependencies](#dependencies)
 - [What do I need?](#what-do-i-need)
@@ -41,32 +40,36 @@ Web system for families. It helps them manage and keep track of everything relat
 
 ## Dependencies
 ![react dependency][badge-dependency-react]
-![prop-types dependency][badge-dependency-prop-types]
+![typescript dependency][badge-dependency-typescript]
 ![vite dependency][badge-dependency-vite]
 ![vitest dependency][badge-dependency-vitest]
 ![graphql dependency][badge-dependency-graphql]
 ![apollo dependency][badge-dependency-apollo]
 ![react-router-dom dependency][badge-dependency-react-router-dom]
+![formik dependency][badge-dependency-formik]
+![luxon dependency][badge-dependency-luxon]
 ![validator dependency][badge-dependency-validator]
-![bulma dependency][badge-dependency-bulma]
-![storybook dependency][badge-dependency-storybook]
 ![react testing library dependency][badge-dependency-react-testing-library]
 ![eslint dependency][badge-dependency-eslint]
 ![prettier dependency][badge-dependency-prettier]
+![lint-staged dependency][badge-dependency-lint-staged]
+![husky dependency][badge-dependency-husky]
 
 [badge-dependency-react]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/react/main?logo=react
-[badge-dependency-prop-types]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/prop-types/main?logo=prop-types
+[badge-dependency-typescript]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/typescript/main?logo=typescript
 [badge-dependency-vite]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/vite/main?logo=vite
 [badge-dependency-vitest]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/vitest/main?logo=vitest
 [badge-dependency-graphql]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/graphql/main?logo=graphql
 [badge-dependency-apollo]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/@apollo/client/main?logo=apollographql
 [badge-dependency-react-router-dom]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/react-router-dom/main?logo=reactrouter
+[badge-dependency-formik]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/formik/main?logo=formik
+[badge-dependency-luxon]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/luxon/main?logo=luxon
 [badge-dependency-validator]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/validator/main
-[badge-dependency-bulma]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/bulma/main?logo=bulma
-[badge-dependency-storybook]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/storybook/main?logo=storybook
 [badge-dependency-react-testing-library]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/@testing-library/react/main?logo=testinglibrary
 [badge-dependency-eslint]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/eslint/main?logo=eslint
 [badge-dependency-prettier]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/prettier/main?logo=prettier
+[badge-dependency-lint-staged]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/lint-staged/main?logo=lint-staged
+[badge-dependency-husky]: https://img.shields.io/github/package-json/dependency-version/nicolasomar/my-pets/dev/husky/main?logo=husky
 
 ## What do I need?
 Before cloning this repo, I recommend installing the following software:
