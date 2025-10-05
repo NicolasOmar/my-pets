@@ -17,8 +17,6 @@ jobs:
         fetch-depth: 0
     - name: 2/6 | Setup Node environment
       uses: actions/setup-node@v5
-      with:
-        node-version: 18.x
     - name: 3/6 | Install depedencies
       run: npm ci
     - name: 4/6 | Run unit tests suite
