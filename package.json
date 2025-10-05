@@ -18,7 +18,7 @@
     "start": "vite",
     "start:prod": "npm run build && npm run preview",
     "test": "vitest",
-    "test:ci": "npm run test -- --coverage --pool=forks",
+    "test:ci": "npm run test -- --coverage",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "setup": "npm ci && husky",
