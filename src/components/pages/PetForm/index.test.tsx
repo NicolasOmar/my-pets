@@ -1,7 +1,7 @@
 import React from 'react'
 import { describe, test, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import { MockedProvider } from '@apollo/client/testing'
+import { MockedProvider } from '@apollo/client/testing/react'
 import '@testing-library/jest-dom'
 // APP_ROUTES
 // GRAPHQL
@@ -25,7 +25,7 @@ vi.mock('react-router-dom', async originalPackage => {
 describe('[PetForm]', () => {
   test('Should render the page with its inputs', () => {
     render(
-      <MockedProvider mocks={[]} addTypename={false}>
+      <MockedProvider mocks={[]}>
         <PetForm />
       </MockedProvider>
     )

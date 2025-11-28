@@ -1,7 +1,8 @@
 import { useEffect, useMemo } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 // API
-import { FetchResult, useLazyQuery, useMutation, useQuery } from '@apollo/client'
+import { ApolloClient } from '@apollo/client'
+import { useLazyQuery, useMutation, useQuery } from '@apollo/client/react'
 import { GET_COLORS_QUERY, GET_PET_QUERY, GET_PET_TYPES_QUERY } from '@graphql/queries'
 import { CREATE_PET, UPDATE_PET } from '@graphql/mutations'
 // COMPONENTS
@@ -102,7 +103,7 @@ const PetForm: React.FC = () => {
   )
 
   const handleSubmit = async (formData: PetFormData) => {
-    let result: FetchResult<PetCreateResponse> | FetchResult<boolean>
+    let result: ApolloClient.MutateResult<PetCreateResponse> | ApolloClient.MutateResult<boolean>
 
     const birthday = nullifyValue({
       value: formData.birthday,

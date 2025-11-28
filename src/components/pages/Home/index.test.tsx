@@ -1,6 +1,6 @@
 import React from 'react'
 import { describe, test, expect, beforeAll } from 'vitest'
-import { MockedProvider } from '@apollo/client/testing'
+import { MockedProvider } from '@apollo/client/testing/react'
 import { render, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
 // APP_ROUTES
@@ -27,7 +27,7 @@ describe('[Home]', () => {
 
   test('Renders with a dummy logged User', async () => {
     render(
-      <MockedProvider mocks={[]} addTypename={false}>
+      <MockedProvider mocks={[]}>
         <Home />
       </MockedProvider>
     )
@@ -47,7 +47,7 @@ describe('[Home]', () => {
       }
     ]
     render(
-      <MockedProvider mocks={positiveMock} addTypename={false}>
+      <MockedProvider mocks={positiveMock}>
         <Home />
       </MockedProvider>
     )

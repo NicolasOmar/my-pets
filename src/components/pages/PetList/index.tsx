@@ -2,7 +2,7 @@
 import React, { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 // API
-import { useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client/react'
 import { GET_MY_PETS_QUERY } from '@graphql/queries'
 // CONTEXT
 // COMPONENTS

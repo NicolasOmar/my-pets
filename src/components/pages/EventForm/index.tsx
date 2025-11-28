@@ -2,7 +2,7 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 // API
-import { useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client/react'
 import { CREATE_EVENT } from '@graphql/mutations'
 // CONTEXT
 // COMPONENTS

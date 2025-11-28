@@ -1,7 +1,7 @@
 // CORE
 import { useMemo } from 'react'
 // API
-import { useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client/react'
 import { GET_MY_PETS_POPULATION_QUERY } from '@graphql/queries'
 // CONTEXT
 // COMPONENTS
