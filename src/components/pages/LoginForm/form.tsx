@@ -24,33 +24,37 @@ const useLoginFormik = (
 
   const formConfig: CustomFormInputProps<FormFieldProps> = {
     email: {
-      config: {
-        labelText: LOGIN_FORM_LABELS.EMAIL,
-        type: FormFieldType.INPUT,
-        input: {
-          inputConfig: {
-            type: 'email',
-            name: 'email',
-            testId: LOGIN_FORM_TEST_IDS.EMAIL,
-            value: loginFormik.values.email,
-            isDisabled: formIsWorking,
-            onChange: loginFormik.handleChange
+      inputsConfig: {
+        mainInput: {
+          type: FormFieldType.INPUT,
+          config: {
+            labelText: LOGIN_FORM_LABELS.EMAIL,
+            inputConfig: {
+              type: 'email',
+              name: 'email',
+              testId: LOGIN_FORM_TEST_IDS.EMAIL,
+              value: loginFormik.values.email,
+              isDisabled: formIsWorking,
+              onChange: loginFormik.handleChange
+            }
           }
         }
       }
     },
     password: {
-      config: {
-        labelText: LOGIN_FORM_LABELS.PASSWORD,
-        type: FormFieldType.INPUT,
-        input: {
-          inputConfig: {
-            type: 'password',
-            name: 'password',
-            testId: LOGIN_FORM_TEST_IDS.PASSWORD,
-            value: loginFormik.values.password,
-            isDisabled: formIsWorking,
-            onChange: loginFormik.handleChange
+      inputsConfig: {
+        mainInput: {
+          type: FormFieldType.INPUT,
+          config: {
+            labelText: LOGIN_FORM_LABELS.PASSWORD,
+            inputConfig: {
+              type: 'password',
+              name: 'password',
+              testId: LOGIN_FORM_TEST_IDS.PASSWORD,
+              value: loginFormik.values.password,
+              isDisabled: formIsWorking,
+              onChange: loginFormik.handleChange
+            }
           }
         }
       }

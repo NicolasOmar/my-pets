@@ -66,14 +66,14 @@ const UserForm: React.FC = () => {
         testId: USER_FORM_TEST_IDS.SUBMIT_BTN,
         text: COMMON_LABELS.CONFIRM,
         type: 'submit',
-        color: 'is-success',
+        color: 'success',
         isDisabled: isLoadingUser
       },
       {
         testId: USER_FORM_TEST_IDS.LOG_IN_BTN,
         text: USER_FORM_LABELS.LOG_IN_BTN,
         type: 'button',
-        color: 'is-danger',
+        color: 'danger',
         isDisabled: isLoadingUser,
         onClick: () => navigate(APP_ROUTES.LOGIN)
       }
@@ -99,7 +99,7 @@ const UserForm: React.FC = () => {
   // }
 
   return (
-    <Column size="is-8" offset="is-offset-2">
+    <Column size="8" offset="2">
       <Box>
         <Title {...userFormHeader} />
 
@@ -117,7 +117,7 @@ const UserForm: React.FC = () => {
             <Message
               headerText={USER_FORM_LABELS.ERROR_TITLE}
               bodyText={userErrors.message}
-              color="is-danger"
+              color="danger"
             />
           ) : null}
         </form>

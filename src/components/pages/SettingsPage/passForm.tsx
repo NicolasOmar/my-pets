@@ -24,46 +24,52 @@ const usePassUpdateFormik = (
 
   const updatePassInputsConfig: CustomFormInputProps<FormFieldProps> = {
     oldPass: {
-      config: {
-        labelText: PASS_UPDATE_FORM_LABELS.OLD_PASS,
-        type: FormFieldType.INPUT,
-        input: {
-          inputConfig: {
-            type: 'password',
-            name: 'oldPass',
-            isDisabled: formIsWorking,
-            value: updatePassFormik.values.oldPass,
-            onChange: updatePassFormik.handleChange
+      inputsConfig: {
+        mainInput: {
+          type: FormFieldType.INPUT,
+          config: {
+            labelText: PASS_UPDATE_FORM_LABELS.OLD_PASS,
+            inputConfig: {
+              type: 'password',
+              name: 'oldPass',
+              isDisabled: formIsWorking,
+              value: updatePassFormik.values.oldPass,
+              onChange: updatePassFormik.handleChange
+            }
           }
         }
       }
     },
     newPass: {
-      config: {
-        labelText: PASS_UPDATE_FORM_LABELS.NEW_PASS,
-        type: FormFieldType.INPUT,
-        input: {
-          inputConfig: {
-            type: 'password',
-            name: 'newPass',
-            isDisabled: formIsWorking,
-            value: updatePassFormik.values.newPass,
-            onChange: updatePassFormik.handleChange
+      inputsConfig: {
+        mainInput: {
+          type: FormFieldType.INPUT,
+          config: {
+            labelText: PASS_UPDATE_FORM_LABELS.OLD_PASS,
+            inputConfig: {
+              type: 'password',
+              name: 'oldPass',
+              isDisabled: formIsWorking,
+              value: updatePassFormik.values.oldPass,
+              onChange: updatePassFormik.handleChange
+            }
           }
         }
       }
     },
     repeatPass: {
-      config: {
-        labelText: PASS_UPDATE_FORM_LABELS.REPEAT_PASS,
-        type: FormFieldType.INPUT,
-        input: {
-          inputConfig: {
-            type: 'password',
-            name: 'repeatPass',
-            isDisabled: formIsWorking,
-            value: updatePassFormik.values.repeatPass,
-            onChange: updatePassFormik.handleChange
+      inputsConfig: {
+        mainInput: {
+          type: FormFieldType.INPUT,
+          config: {
+            labelText: PASS_UPDATE_FORM_LABELS.OLD_PASS,
+            inputConfig: {
+              type: 'password',
+              name: 'oldPass',
+              isDisabled: formIsWorking,
+              value: updatePassFormik.values.oldPass,
+              onChange: updatePassFormik.handleChange
+            }
           }
         }
       }

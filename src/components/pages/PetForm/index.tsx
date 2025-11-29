@@ -171,13 +171,13 @@ const PetForm: React.FC = () => {
         testId: PET_FORM_TEST_IDS.SUBMIT_BTN,
         text: COMMON_LABELS.CONFIRM,
         type: 'submit',
-        color: 'is-success'
+        color: 'success'
       },
       {
         testId: PET_FORM_TEST_IDS.CANCEL_BTN,
         text: COMMON_LABELS.CANCEL,
         type: 'button',
-        color: 'is-danger',
+        color: 'danger',
         onClick: () => navigate(APP_ROUTES.PET_LIST)
       }
     ]
@@ -205,7 +205,7 @@ const PetForm: React.FC = () => {
   )
 
   return (
-    <Column size="is-8" offset="is-offset-2">
+    <Column size="8" offset="2">
       <Box>
         <Title {...petFormHeader} />
 
@@ -218,7 +218,7 @@ const PetForm: React.FC = () => {
             <Message
               headerText={PET_FORM_LABELS.ERROR_TITLE}
               bodyText={formErrors.message}
-              color="is-danger"
+              color="danger"
             />
           ) : null}
         </form>

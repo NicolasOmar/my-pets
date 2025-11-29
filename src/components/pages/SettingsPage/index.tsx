@@ -110,12 +110,12 @@ const SettingsPage: React.FC = () => {
         text: COMMON_LABELS.SAVE_CHANGES,
         type: 'submit',
         isDisabled: false,
-        color: 'is-success'
+        color: 'success'
       },
       {
         text: COMMON_LABELS.GO_BACK,
         type: 'button',
-        color: 'is-danger',
+        color: 'danger',
         isDisabled: false,
         onClick: () => navigate(APP_ROUTES.LOGIN)
       }
@@ -127,13 +127,13 @@ const SettingsPage: React.FC = () => {
       {
         text: COMMON_LABELS.SAVE_CHANGES,
         type: 'submit',
-        color: 'is-success',
+        color: 'success',
         isDisabled: false
       },
       {
         text: COMMON_LABELS.GO_BACK,
         type: 'button',
-        color: 'is-danger',
+        color: 'danger',
         isDisabled: false,
         onClick: () => navigate(APP_ROUTES.LOGIN)
       }
@@ -141,7 +141,7 @@ const SettingsPage: React.FC = () => {
   }
 
   return (
-    <Column size="is-8" offset="is-offset-2">
+    <Column size="8" offset="2">
       <Box>
         <Title main={{ text: USER_UPDATE_FORM_LABELS.TITLE, type: 'title' }} />
 
@@ -155,7 +155,7 @@ const SettingsPage: React.FC = () => {
             <Message
               headerText={USER_UPDATE_FORM_LABELS.ERROR_TITLE}
               bodyText={updateUserError.message}
-              color="is-danger"
+              color="danger"
             />
           ) : null}
         </form>
@@ -175,7 +175,7 @@ const SettingsPage: React.FC = () => {
             <Message
               headerText={PASS_UPDATE_FORM_LABELS.ERROR_TITLE}
               bodyText={updatePassError.message}
-              color="is-danger"
+              color="danger"
             />
           ) : null}
         </form>

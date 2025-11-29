@@ -42,7 +42,7 @@ const Home: React.FC = () => {
       isMultiline
       listOfColumns={[
         {
-          size: 'is-12',
+          size: '12',
           children: (
             <Title
               main={{
@@ -57,7 +57,7 @@ const Home: React.FC = () => {
           )
         },
         {
-          size: 'is-3',
+          size: '3',
           children: memoizedPetPopulation
         }
       ]}

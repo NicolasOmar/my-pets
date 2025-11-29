@@ -53,7 +53,7 @@ const EventForm: React.FC = () => {
         testId: EVENT_FORM_TEST_IDS.SUBMIT_BTN,
         text: COMMON_LABELS.CONFIRM,
         type: 'submit',
-        color: 'is-success',
+        color: 'success',
         isDisabled: false
         // AFTER REFACTORING EVENTLIST, ADD A FUNCTION TO NAVIGATE TO IT
       },
@@ -61,7 +61,7 @@ const EventForm: React.FC = () => {
         testId: EVENT_FORM_TEST_IDS.CANCEL_BTN,
         text: COMMON_LABELS.CANCEL,
         type: 'button',
-        color: 'is-danger',
+        color: 'danger',
         isDisabled: false,
         onClick: () => navigate(APP_ROUTES.PET_LIST)
       }
@@ -69,7 +69,7 @@ const EventForm: React.FC = () => {
   }
 
   return (
-    <Column size="is-8" offset="is-offset-2">
+    <Column size="8" offset="2">
       <Box>
         <Title main={{ text: EVENT_FORM_LABELS.TITLE, type: 'title' }} />
 
@@ -83,7 +83,7 @@ const EventForm: React.FC = () => {
             <Message
               headerText={EVENT_FORM_LABELS.ERROR_TITLE}
               bodyText={eventErrors.message}
-              color="is-danger"
+              color="danger"
             />
           ) : null}
         </form>

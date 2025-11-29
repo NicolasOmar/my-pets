@@ -32,7 +32,7 @@ const EventList: React.FC = () => {
           const parsedEventDate = eventData.date ? parseStringToLuxonDate(+eventData.date) : '-'
 
           return {
-            size: 'is-one-quarter' as ColumnSizeType,
+            size: 'one-quarter' as ColumnSizeType,
             children: (
               <Card
                 key={_eventDataId}
@@ -48,7 +48,7 @@ const EventList: React.FC = () => {
   }, [data])
 
   return (
-    <Column size="is-12">
+    <Column size="12">
       {loading ? (
         <ProgressBar isLoading testId={EVENT_LIST_TEST_IDS.PROGRESS_BAR} />
       ) : (

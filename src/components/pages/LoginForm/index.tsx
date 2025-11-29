@@ -60,14 +60,14 @@ const LoginForm: React.FC = () => {
         testId: LOGIN_FORM_TEST_IDS.SUBMIT_BTN,
         text: LOGIN_FORM_LABELS.SUBMIT_BTN,
         type: 'submit',
-        color: 'is-success',
+        color: 'success',
         isDisabled: isWorkingOnLogin
       },
       {
         testId: LOGIN_FORM_TEST_IDS.SIGN_UP_BTN,
         text: LOGIN_FORM_LABELS.SIGN_UP_BTN,
         type: 'button',
-        color: 'is-danger',
+        color: 'danger',
         isDisabled: isWorkingOnLogin,
         onClick: () => navigate(APP_ROUTES.USER_FORM)
       }
@@ -97,7 +97,7 @@ const LoginForm: React.FC = () => {
   }, [navigate, userContext])
 
   return (
-    <Column size="is-8" offset="is-offset-2">
+    <Column size="8" offset="2">
       <Box>
         <Title {...loginFormHeader} />
 
@@ -111,7 +111,7 @@ const LoginForm: React.FC = () => {
             <Message
               headerText={LOGIN_FORM_LABELS.ERROR_TITLE}
               bodyText={loginErrors.message}
-              color="is-danger"
+              color="danger"
             />
           ) : null}
         </form>
