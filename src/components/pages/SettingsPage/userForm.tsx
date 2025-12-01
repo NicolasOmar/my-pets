@@ -45,12 +45,12 @@ const useUserUpdateFormik = (
         mainInput: {
           type: FormFieldType.INPUT,
           config: {
-            labelText: USER_UPDATE_FORM_LABELS.NAME,
+            labelText: USER_UPDATE_FORM_LABELS.LAST_NAME,
             inputConfig: {
               type: 'text',
-              name: 'name',
+              name: 'lastName',
               isDisabled: formIsWorking,
-              value: updateUserFormik.values.name,
+              value: updateUserFormik.values.lastName,
               onChange: updateUserFormik.handleChange
             }
           }

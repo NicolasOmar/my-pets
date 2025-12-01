@@ -17,6 +17,7 @@ const encryptParser: (
   cryptSecret: string,
   isEncrypting?: boolean
 ) => string = (method, pass, cryptSecret, isEncrypting = true) => {
+  console.warn(method, pass, cryptSecret, isEncrypting)
   switch (method) {
     case CryptoMethods.AES:
       return isEncrypting
@@ -55,8 +56,8 @@ const encryptParser: (
 
 export const encryptPass = (pass: string | null) => {
   return encryptParser(
-    process.env.CRYPT_METH as CryptoMethods,
+    import.meta.env.VITE_CRYPT_METH as CryptoMethods,
     pass ?? '',
-    process.env.CRYPT_SECRET as string
+    import.meta.env.VITE_CRYPT_SECRET as string
   )
 }
