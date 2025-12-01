@@ -45,12 +45,12 @@ const usePassUpdateFormik = (
         mainInput: {
           type: FormFieldType.INPUT,
           config: {
-            labelText: PASS_UPDATE_FORM_LABELS.OLD_PASS,
+            labelText: PASS_UPDATE_FORM_LABELS.NEW_PASS,
             inputConfig: {
               type: 'password',
-              name: 'oldPass',
+              name: 'newPass',
               isDisabled: formIsWorking,
-              value: updatePassFormik.values.oldPass,
+              value: updatePassFormik.values.newPass,
               onChange: updatePassFormik.handleChange
             }
           }
@@ -62,12 +62,12 @@ const usePassUpdateFormik = (
         mainInput: {
           type: FormFieldType.INPUT,
           config: {
-            labelText: PASS_UPDATE_FORM_LABELS.OLD_PASS,
+            labelText: PASS_UPDATE_FORM_LABELS.REPEAT_PASS,
             inputConfig: {
               type: 'password',
-              name: 'oldPass',
+              name: 'repeatPass',
               isDisabled: formIsWorking,
-              value: updatePassFormik.values.oldPass,
+              value: updatePassFormik.values.repeatPass,
               onChange: updatePassFormik.handleChange
             }
           }
