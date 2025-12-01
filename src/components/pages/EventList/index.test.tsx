@@ -3,7 +3,7 @@ import { describe, test, expect, vi } from 'vitest'
 import { render, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
 // GRAPHQL
-import { MockedProvider } from '@apollo/client/testing'
+import { MockedProvider } from '@apollo/client/testing/react'
 import { GET_MY_PET_EVENTS } from '../../../graphql/queries'
 // COMPONENTS
 import EventList from '.'
@@ -33,7 +33,7 @@ describe.skip('[EventList]', () => {
 
   test('Should render the page with the loading component', async () => {
     render(
-      <MockedProvider mocks={[]} addTypename={false}>
+      <MockedProvider mocks={[]}>
         <EventList />
       </MockedProvider>
     )
@@ -52,7 +52,7 @@ describe.skip('[EventList]', () => {
     ]
 
     render(
-      <MockedProvider mocks={positiveMock} addTypename={false}>
+      <MockedProvider mocks={positiveMock}>
         <EventList />
       </MockedProvider>
     )

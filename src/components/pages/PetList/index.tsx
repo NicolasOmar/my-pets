@@ -2,7 +2,7 @@
 import React, { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 // API
-import { useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client/react'
 import { GET_MY_PETS_QUERY } from '@graphql/queries'
 // CONTEXT
 // COMPONENTS
@@ -62,7 +62,7 @@ const PetList: React.FC = () => {
           })
 
           return {
-            size: 'is-one-quarter' as ColumnSizeType,
+            size: 'one-quarter' as ColumnSizeType,
             children: (
               <Card
                 key={_petDataId}
@@ -99,7 +99,7 @@ const PetList: React.FC = () => {
   }, [data, navigate])
 
   return (
-    <Column size="is-12">
+    <Column size="12">
       {loading ? (
         <ProgressBar isLoading testId={PET_LIST_TEST_IDS.PROGRESS_BAR} />
       ) : data ? (

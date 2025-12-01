@@ -24,31 +24,35 @@ const useUserUpdateFormik = (
 
   const updateUserInputsConfig: CustomFormInputProps<FormFieldProps> = {
     name: {
-      config: {
-        labelText: USER_UPDATE_FORM_LABELS.NAME,
-        type: FormFieldType.INPUT,
-        input: {
-          inputConfig: {
-            type: 'text',
-            name: 'name',
-            isDisabled: formIsWorking,
-            value: updateUserFormik.values.name,
-            onChange: updateUserFormik.handleChange
+      inputsConfig: {
+        mainInput: {
+          type: FormFieldType.INPUT,
+          config: {
+            labelText: USER_UPDATE_FORM_LABELS.NAME,
+            inputConfig: {
+              type: 'text',
+              name: 'name',
+              isDisabled: formIsWorking,
+              value: updateUserFormik.values.name,
+              onChange: updateUserFormik.handleChange
+            }
           }
         }
       }
     },
     lastName: {
-      config: {
-        labelText: USER_UPDATE_FORM_LABELS.LAST_NAME,
-        type: FormFieldType.INPUT,
-        input: {
-          inputConfig: {
-            type: 'text',
-            name: 'lastName',
-            isDisabled: formIsWorking,
-            value: updateUserFormik.values.lastName,
-            onChange: updateUserFormik.handleChange
+      inputsConfig: {
+        mainInput: {
+          type: FormFieldType.INPUT,
+          config: {
+            labelText: USER_UPDATE_FORM_LABELS.NAME,
+            inputConfig: {
+              type: 'text',
+              name: 'name',
+              isDisabled: formIsWorking,
+              value: updateUserFormik.values.name,
+              onChange: updateUserFormik.handleChange
+            }
           }
         }
       }

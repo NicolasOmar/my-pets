@@ -2,7 +2,7 @@ import React from 'react'
 import { describe, test, expect } from 'vitest'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { MockedProvider } from '@apollo/client/testing'
+import { MockedProvider } from '@apollo/client/testing/react'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import '@testing-library/jest-dom'
 // APP_ROUTES
@@ -43,7 +43,7 @@ describe('[EventForm]', () => {
         initialRoute: initialRoute,
         routePath: '/add-event/:petId',
         mockedElement: (
-          <MockedProvider mocks={positiveMock} addTypename={false}>
+          <MockedProvider mocks={positiveMock}>
             <EventForm />
           </MockedProvider>
         )
@@ -62,7 +62,7 @@ describe('[EventForm]', () => {
         initialRoute: initialRoute,
         routePath: '/add-event/:petId',
         mockedElement: (
-          <MockedProvider mocks={positiveMock} addTypename={false}>
+          <MockedProvider mocks={positiveMock}>
             <EventForm />
           </MockedProvider>
         )

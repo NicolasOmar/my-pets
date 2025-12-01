@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 // GRAPHQL CLIENT
-import { useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client/react'
 import { LOGOUT } from '../../../graphql/mutations'
 // CONTEXT
 import { UserContext } from '../../../context/userContext'

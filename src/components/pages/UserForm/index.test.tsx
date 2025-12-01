@@ -1,7 +1,7 @@
 import React from 'react'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
-import { MockedProvider } from '@apollo/client/testing'
+import { MockedProvider } from '@apollo/client/testing/react'
 import '@testing-library/jest-dom'
 // APP_ROUTES
 import { APP_ROUTES } from '../../../constants/routes'
@@ -29,7 +29,7 @@ describe('[UserForm]', () => {
   beforeEach(() => {
     render(
       <UserContext.Provider value={providerMock}>
-        <MockedProvider mocks={[]} addTypename={false}>
+        <MockedProvider mocks={[]}>
           <UserForm />
         </MockedProvider>
       </UserContext.Provider>

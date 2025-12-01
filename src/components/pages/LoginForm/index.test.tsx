@@ -1,7 +1,7 @@
 import React from 'react'
 import { describe, test, expect, vi } from 'vitest'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
-import { MockedProvider } from '@apollo/client/testing'
+import { MockedProvider } from '@apollo/client/testing/react'
 import '@testing-library/jest-dom'
 // APP_ROUTES
 import { APP_ROUTES } from '../../../constants/routes'
@@ -50,7 +50,7 @@ describe('[LoginForm]', () => {
   test('Should render the page with its inputs', () => {
     render(
       <UserContext.Provider value={userContextMock}>
-        <MockedProvider mocks={[]} addTypename={false}>
+        <MockedProvider mocks={[]}>
           <LoginForm />
         </MockedProvider>
       </UserContext.Provider>
@@ -65,7 +65,7 @@ describe('[LoginForm]', () => {
   test('Should make the graphQL request by clicking the submit button', async () => {
     render(
       <UserContext.Provider value={userContextMock}>
-        <MockedProvider mocks={positiveMock} addTypename={false}>
+        <MockedProvider mocks={positiveMock}>
           <LoginForm />
         </MockedProvider>
       </UserContext.Provider>
@@ -91,7 +91,7 @@ describe('[LoginForm]', () => {
   test('Should redirect user to sign up page', async () => {
     render(
       <UserContext.Provider value={{ ...userContextMock, userData: null }}>
-        <MockedProvider mocks={[]} addTypename={false}>
+        <MockedProvider mocks={[]}>
           <LoginForm />
         </MockedProvider>
       </UserContext.Provider>

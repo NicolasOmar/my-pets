@@ -1,7 +1,8 @@
 import { useEffect, useMemo } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 // API
-import { FetchResult, useLazyQuery, useMutation, useQuery } from '@apollo/client'
+import { ApolloClient } from '@apollo/client'
+import { useLazyQuery, useMutation, useQuery } from '@apollo/client/react'
 import { GET_COLORS_QUERY, GET_PET_QUERY, GET_PET_TYPES_QUERY } from '@graphql/queries'
 import { CREATE_PET, UPDATE_PET } from '@graphql/mutations'
 // COMPONENTS
@@ -102,7 +103,7 @@ const PetForm: React.FC = () => {
   )
 
   const handleSubmit = async (formData: PetFormData) => {
-    let result: FetchResult<PetCreateResponse> | FetchResult<boolean>
+    let result: ApolloClient.MutateResult<PetCreateResponse> | ApolloClient.MutateResult<boolean>
 
     const birthday = nullifyValue({
       value: formData.birthday,
@@ -170,13 +171,13 @@ const PetForm: React.FC = () => {
         testId: PET_FORM_TEST_IDS.SUBMIT_BTN,
         text: COMMON_LABELS.CONFIRM,
         type: 'submit',
-        color: 'is-success'
+        color: 'success'
       },
       {
         testId: PET_FORM_TEST_IDS.CANCEL_BTN,
         text: COMMON_LABELS.CANCEL,
         type: 'button',
-        color: 'is-danger',
+        color: 'danger',
         onClick: () => navigate(APP_ROUTES.PET_LIST)
       }
     ]
@@ -204,7 +205,7 @@ const PetForm: React.FC = () => {
   )
 
   return (
-    <Column size="is-8" offset="is-offset-2">
+    <Column size="8" offset="2">
       <Box>
         <Title {...petFormHeader} />
 
@@ -217,7 +218,7 @@ const PetForm: React.FC = () => {
             <Message
               headerText={PET_FORM_LABELS.ERROR_TITLE}
               bodyText={formErrors.message}
-              color="is-danger"
+              color="danger"
             />
           ) : null}
         </form>

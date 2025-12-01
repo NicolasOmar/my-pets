@@ -62,8 +62,10 @@ interface IdOnlyObject {
   id: string
 }
 
-interface PetListItemResponse
-  extends Omit<PetEntity, 'petType' | 'hairColors' | 'eyeColors' | 'user'> {
+interface PetListItemResponse extends Omit<
+  PetEntity,
+  'petType' | 'hairColors' | 'eyeColors' | 'user'
+> {
   petType: NameOnlyObject
   hairColors: NameOnlyObject[]
   eyeColors: NameOnlyObject[]
@@ -130,8 +132,10 @@ export interface PetListResponse {
   getMyPets: PetListItemResponse[]
 }
 
-export interface GetPetResponseUnit
-  extends Omit<PetEntity, 'petType' | 'hairColors' | 'eyeColors' | 'user'> {
+export interface GetPetResponseUnit extends Omit<
+  PetEntity,
+  'petType' | 'hairColors' | 'eyeColors' | 'user'
+> {
   petType: IdOnlyObject
   hairColors: IdOnlyObject[]
   eyeColors: IdOnlyObject[]

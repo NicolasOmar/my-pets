@@ -1,7 +1,7 @@
 import React from 'react'
 import { describe, test, expect, vi, beforeAll, beforeEach, afterEach } from 'vitest'
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
-import { MockedProvider } from '@apollo/client/testing'
+import { MockedProvider } from '@apollo/client/testing/react'
 import '@testing-library/jest-dom'
 // APP_ROUTES
 import { APP_ROUTES } from '../../../constants/routes'
@@ -52,7 +52,7 @@ describe('[UserHeader]', () => {
   beforeEach(() => {
     render(
       <UserContext.Provider value={providerMock}>
-        <MockedProvider mocks={_logoutMock} addTypename={false}>
+        <MockedProvider mocks={_logoutMock}>
           <UserHeader name={testConfig.name} />
         </MockedProvider>
       </UserContext.Provider>
