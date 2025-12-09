@@ -65,8 +65,8 @@ const usePetFormik = ({
       inputsConfig: {
         mainInput: {
           type: FormFieldType.SELECT,
+          fieldLabel: PET_FORM_LABELS.PET_TYPE,
           config: {
-            labelText: PET_FORM_LABELS.PET_TYPE,
             testId: PET_FORM_TEST_IDS.PET_TYPE,
             name: 'petType',
             options: [{ id: 0, name: '' }, ...(petTypes ?? [])],
@@ -80,8 +80,8 @@ const usePetFormik = ({
       inputsConfig: {
         mainInput: {
           type: FormFieldType.INPUT,
+          fieldLabel: PET_FORM_LABELS.BIRTHDAY,
           config: {
-            labelText: PET_FORM_LABELS.BIRTHDAY,
             inputConfig: {
               testId: PET_FORM_TEST_IDS.BIRTHDAY,
               type: 'date',
@@ -98,9 +98,9 @@ const usePetFormik = ({
       inputsConfig: {
         mainInput: {
           type: FormFieldType.CHECKBOX,
+          fieldLabel: PET_FORM_LABELS.IS_ADOPTED,
           config: {
             testId: PET_FORM_TEST_IDS.IS_ADOPTED,
-            label: PET_FORM_LABELS.IS_ADOPTED,
             name: 'isAdopted',
             isDisabled: formIsWorking,
             isChecked: petFormik.values.isAdopted,
@@ -185,9 +185,9 @@ const usePetFormik = ({
       inputsConfig: {
         mainInput: {
           type: FormFieldType.CHECKBOX,
+          fieldLabel: PET_FORM_LABELS.GENDER,
           config: {
             testId: PET_FORM_TEST_IDS.GENDER,
-            label: PET_FORM_LABELS.GENDER,
             name: 'gender',
             isDisabled: formIsWorking,
             isChecked: petFormik.values.gender,
@@ -200,8 +200,8 @@ const usePetFormik = ({
       inputsConfig: {
         mainInput: {
           type: FormFieldType.SELECT,
+          fieldLabel: PET_FORM_LABELS.HAIR_COLORS,
           config: {
-            labelText: PET_FORM_LABELS.HAIR_COLORS,
             testId: PET_FORM_TEST_IDS.HAIR_COLORS,
             name: 'hairColors',
             isDisabled: formIsWorking,
@@ -218,8 +218,8 @@ const usePetFormik = ({
       inputsConfig: {
         mainInput: {
           type: FormFieldType.SELECT,
+          fieldLabel: PET_FORM_LABELS.EYE_COLORS,
           config: {
-            labelText: PET_FORM_LABELS.EYE_COLORS,
             testId: PET_FORM_TEST_IDS.EYE_COLORS,
             name: 'eyeColors',
             isDisabled: formIsWorking,
@@ -236,9 +236,9 @@ const usePetFormik = ({
       inputsConfig: {
         mainInput: {
           type: FormFieldType.CHECKBOX,
+          fieldLabel: PET_FORM_LABELS.HAS_HETEROCHROMIA,
           config: {
             testId: PET_FORM_TEST_IDS.HAS_HETEROCHROMIA,
-            label: PET_FORM_LABELS.HAS_HETEROCHROMIA,
             name: 'hasHeterochromia',
             isDisabled: formIsWorking,
             isChecked: petFormik.values.hasHeterochromia,
@@ -251,9 +251,9 @@ const usePetFormik = ({
       inputsConfig: {
         mainInput: {
           type: FormFieldType.CHECKBOX,
+          fieldLabel: PET_FORM_LABELS.PASSED_AWAY,
           config: {
             testId: PET_FORM_TEST_IDS.PASSED_AWAY,
-            label: PET_FORM_LABELS.PASSED_AWAY,
             name: 'passedAway',
             isDisabled: formIsWorking,
             isChecked: petFormik.values.passedAway,
