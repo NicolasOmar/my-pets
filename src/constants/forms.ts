@@ -1,12 +1,12 @@
 // LOGIN FORM
 export enum LOGIN_FORM_LABELS {
-  TITLE = 'Welcome to My Pets',
-  SUBTITLE = 'Log in',
-  EMAIL = 'Email',
+  TITLE = 'Hello! Welcome to your MyPets account',
+  SUBTITLE = "Let's sign you in.",
+  EMAIL = 'E-mail',
   PASSWORD = 'Password',
-  SUBMIT_BTN = SUBTITLE,
-  SIGN_UP_BTN = 'Or, you can sign up',
-  ERROR_TITLE = 'Login errors'
+  SUBMIT_BTN = 'Sign in now',
+  SIGN_UP_BTN = "Don't have an account? Register here",
+  ERROR_TITLE = 'Login error!'
 }
 
 export enum LOGIN_FORM_TEST_IDS {
@@ -19,14 +19,15 @@ export enum LOGIN_FORM_TEST_IDS {
 // USER FORM
 export enum USER_FORM_LABELS {
   TITLE = 'Sign up',
-  NAME = 'Name',
+  NAME = 'First Name',
   LAST_NAME = 'Last Name',
   USER_NAME = 'Username',
-  EMAIL = 'Email',
+  EMAIL = 'E-mail',
   PASSWORD = 'Password',
-  REPEAT_PASS = 'Repeat password',
+  SUBMIT_BTN = 'Sign up now',
+  REPEAT_PASS = 'Repeat/Confirm password',
   LOG_IN_BTN = 'You can log in with your account',
-  ERROR_TITLE = 'User creation errors'
+  ERROR_TITLE = 'User creation error!'
 }
 
 export enum USER_FORM_TEST_IDS {
@@ -38,6 +39,12 @@ export enum USER_FORM_TEST_IDS {
   REPEAT_PASS = 'test-repeat-password-user-form',
   SUBMIT_BTN = 'test-submit-login-form',
   LOG_IN_BTN = 'test-login-login-form'
+}
+
+export enum HOME_PAGE_LABELS {
+  USER_GREETING_START = 'Hey, ',
+  USER_GREETING_END = '. Nice to see you here!',
+  WELCOME_MESSAGE = 'Welcome to our beautiful place'
 }
 
 // PET FORM
@@ -89,7 +96,7 @@ export enum PASS_UPDATE_FORM_LABELS {
   OLD_PASS = 'Old Password',
   NEW_PASS = 'New Password',
   REPEAT_PASS = 'Repeat Password',
-  ERROR_TITLE = 'Password update errors'
+  ERROR_TITLE = 'Password error!'
 }
 
 export enum EVENT_FORM_LABELS {
