@@ -33,13 +33,13 @@ describe('[Home]', () => {
     )
 
     await waitFor(() => {
-      expect(screen.getByText(`HELLO ${nameMock.toUpperCase()}`)).toBeInTheDocument()
+      expect(screen.getByText(`Hey, ${nameMock}. Nice to see you here!`)).toBeInTheDocument()
     })
   })
 
   test('Renders with populated data', async () => {
     const mockedPetsInfo = positiveResponse.data.getMyPetsPopulation[1]
-    const mockedQuantity = `You have ${mockedPetsInfo.quantity} pet`
+    const mockedQuantity = `${mockedPetsInfo.quantity} pet registered`
     const positiveMock = [
       {
         request: baseRequest,
