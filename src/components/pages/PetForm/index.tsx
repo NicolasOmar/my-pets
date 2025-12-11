@@ -169,7 +169,7 @@ const PetForm: React.FC = () => {
     buttonList: [
       {
         testId: PET_FORM_TEST_IDS.SUBMIT_BTN,
-        text: COMMON_LABELS.CONFIRM,
+        text: COMMON_LABELS.ADD,
         type: 'submit',
         color: 'success'
       },

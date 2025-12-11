@@ -1,12 +1,12 @@
 // LOGIN FORM
 export enum LOGIN_FORM_LABELS {
-  TITLE = 'Welcome to My Pets',
-  SUBTITLE = 'Log in',
-  EMAIL = 'Email',
-  PASSWORD = 'Password',
-  SUBMIT_BTN = SUBTITLE,
-  SIGN_UP_BTN = 'Or, you can sign up',
-  ERROR_TITLE = 'Login errors'
+  TITLE = 'Hello! Welcome to your MyPets account',
+  SUBTITLE = "Let's sign you in.",
+  EMAIL = 'E-mail:',
+  PASSWORD = 'Password:',
+  SUBMIT_BTN = 'Sign in now',
+  SIGN_UP_BTN = "Don't have an account? Register here",
+  ERROR_TITLE = 'Login error!'
 }
 
 export enum LOGIN_FORM_TEST_IDS {
@@ -19,14 +19,15 @@ export enum LOGIN_FORM_TEST_IDS {
 // USER FORM
 export enum USER_FORM_LABELS {
   TITLE = 'Sign up',
-  NAME = 'Name',
-  LAST_NAME = 'Last Name',
-  USER_NAME = 'Username',
-  EMAIL = 'Email',
-  PASSWORD = 'Password',
-  REPEAT_PASS = 'Repeat password',
+  NAME = 'First name:',
+  LAST_NAME = 'Last name:',
+  USER_NAME = 'Username:',
+  EMAIL = 'E-mail:',
+  PASSWORD = 'Password:',
+  REPEAT_PASS = 'Repeat/Confirm password:',
+  SUBMIT_BTN = 'Sign up now',
   LOG_IN_BTN = 'You can log in with your account',
-  ERROR_TITLE = 'User creation errors'
+  ERROR_TITLE = 'User creation error!'
 }
 
 export enum USER_FORM_TEST_IDS {
@@ -40,23 +41,29 @@ export enum USER_FORM_TEST_IDS {
   LOG_IN_BTN = 'test-login-login-form'
 }
 
+export enum HOME_PAGE_LABELS {
+  USER_GREETING_START = 'Hey, ',
+  USER_GREETING_END = '. Nice to see you here!',
+  WELCOME_MESSAGE = 'Welcome to our beautiful place'
+}
+
 // PET FORM
 export enum PET_FORM_LABELS {
   TITLE = 'Add a new pet',
-  NAME = 'Name',
-  PET_TYPE = 'Kind of pet',
-  BIRTHDAY = 'Birthday',
-  IS_ADOPTED = 'Is adopted?',
-  ADOPTION_DATE = 'Adoption date',
-  HEIGHT = 'Height',
-  LENGTH = 'Length',
-  WEIGHT = 'Weight',
-  GENDER = 'Gender',
-  HAIR_COLORS = 'Hair color/s',
-  EYE_COLORS = 'Eye color/s',
-  HAS_HETEROCHROMIA = 'Has heterochromia?',
-  PASSED_AWAY = 'Passed away?',
-  ERROR_TITLE = 'Pet creation errors'
+  NAME = 'Name:',
+  PET_TYPE = 'Kind of pet:',
+  BIRTHDAY = 'Born date:',
+  IS_ADOPTED = 'Is adopted?:',
+  ADOPTION_DATE = 'Adoption date:',
+  HEIGHT = 'Height:',
+  LENGTH = 'Length:',
+  WEIGHT = 'Weight:',
+  GENDER = 'Gender:',
+  HAIR_COLORS = 'Fur color/s:',
+  EYE_COLORS = 'Eye color/s:',
+  HAS_HETEROCHROMIA = 'Heterochromia:',
+  PASSED_AWAY = 'Passed away?:',
+  ERROR_TITLE = 'Pet creation error!'
 }
 
 export enum PET_FORM_TEST_IDS {
@@ -79,24 +86,24 @@ export enum PET_FORM_TEST_IDS {
 
 export enum USER_UPDATE_FORM_LABELS {
   TITLE = 'Update user information',
-  NAME = 'Name',
-  LAST_NAME = 'Last Name',
-  ERROR_TITLE = 'User update errors'
+  NAME = 'First name:',
+  LAST_NAME = 'Last name:',
+  ERROR_TITLE = 'User update error!'
 }
 
 export enum PASS_UPDATE_FORM_LABELS {
   TITLE = 'Update password',
-  OLD_PASS = 'Old Password',
-  NEW_PASS = 'New Password',
-  REPEAT_PASS = 'Repeat Password',
-  ERROR_TITLE = 'Password update errors'
+  OLD_PASS = 'Old Password:',
+  NEW_PASS = 'New Password:',
+  REPEAT_PASS = 'Repeat Password:',
+  ERROR_TITLE = 'Password error!'
 }
 
 export enum EVENT_FORM_LABELS {
   TITLE = 'Add a new event',
-  DESCRIPTION = 'Description',
-  DATE = 'Date',
-  ERROR_TITLE = 'Event creation errors'
+  DESCRIPTION = 'Description:',
+  DATE = 'Date:',
+  ERROR_TITLE = 'Event creation error!'
 }
 
 export enum EVENT_FORM_TEST_IDS {

@@ -10,6 +10,7 @@ import { Card, ColumnGroup, Title } from 'reactive-bulma'
 // INTERFACES
 import { PetPopulationResponse } from '@interfaces/graphql'
 // CONSTANTS
+import { HOME_PAGE_LABELS } from '@constants/forms'
 // FUNCTIONS
 import { getLoggedUser } from '@functions/local-storage'
 import { parseSingularPluralStrings } from '@functions/parsers'
@@ -25,7 +26,8 @@ const Home: React.FC = () => {
         zeroString: 'no pets yet',
         singularString: 'pet',
         pluralAddition: 's',
-        startString: 'You have'
+        // startString: 'You have',
+        endString: 'registered'
       })
 
       return <Card content={[<p>My Pets</p>, <p>{petQuantityText}</p>]} />
@@ -46,11 +48,11 @@ const Home: React.FC = () => {
           children: (
             <Title
               main={{
-                text: `HELLO ${user?.name?.toUpperCase()}`,
+                text: `${HOME_PAGE_LABELS.USER_GREETING_START} ${user?.name ?? '-'}${HOME_PAGE_LABELS.USER_GREETING_END}`,
                 type: 'title'
               }}
               secondary={{
-                text: 'Welcome to our beautiful place',
+                text: HOME_PAGE_LABELS.WELCOME_MESSAGE,
                 type: 'subtitle'
               }}
             />
