@@ -1,5 +1,5 @@
 export enum PET_LIST_LABELS {
-  TITLE = 'My list of Pets',
+  TITLE = 'Pets',
   SEARCH_BY = 'Search your pet by its name',
   NO_PETS = 'Sorry, there are no pets with the name/s you are searching for',
   BIRTHDAY = 'Birthday',

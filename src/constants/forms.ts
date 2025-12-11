@@ -50,20 +50,20 @@ export enum HOME_PAGE_LABELS {
 // PET FORM
 export enum PET_FORM_LABELS {
   TITLE = 'Add a new pet',
-  NAME = 'Name',
-  PET_TYPE = 'Kind of pet',
-  BIRTHDAY = 'Birthday',
-  IS_ADOPTED = 'Is adopted?',
-  ADOPTION_DATE = 'Adoption date',
-  HEIGHT = 'Height',
-  LENGTH = 'Length',
-  WEIGHT = 'Weight',
-  GENDER = 'Gender',
-  HAIR_COLORS = 'Hair color/s',
-  EYE_COLORS = 'Eye color/s',
-  HAS_HETEROCHROMIA = 'Has heterochromia?',
-  PASSED_AWAY = 'Passed away?',
-  ERROR_TITLE = 'Pet creation errors'
+  NAME = 'Name:',
+  PET_TYPE = 'Kind of pet:',
+  BIRTHDAY = 'Born date:',
+  IS_ADOPTED = 'Is adopted?:',
+  ADOPTION_DATE = 'Adoption date:',
+  HEIGHT = 'Height:',
+  LENGTH = 'Length:',
+  WEIGHT = 'Weight:',
+  GENDER = 'Gender:',
+  HAIR_COLORS = 'Fur color/s:',
+  EYE_COLORS = 'Eye color/s:',
+  HAS_HETEROCHROMIA = 'Heterochromia:',
+  PASSED_AWAY = 'Passed away?:',
+  ERROR_TITLE = 'Pet creation error!'
 }
 
 export enum PET_FORM_TEST_IDS {
@@ -86,9 +86,9 @@ export enum PET_FORM_TEST_IDS {
 
 export enum USER_UPDATE_FORM_LABELS {
   TITLE = 'Update user information',
-  NAME = 'Name',
-  LAST_NAME = 'Last Name',
-  ERROR_TITLE = 'User update errors'
+  NAME = 'First name',
+  LAST_NAME = 'Last name',
+  ERROR_TITLE = 'User update error!'
 }
 
 export enum PASS_UPDATE_FORM_LABELS {

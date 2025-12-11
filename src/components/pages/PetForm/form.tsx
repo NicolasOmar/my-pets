@@ -48,7 +48,7 @@ const usePetFormik = ({
         mainInput: {
           type: FormFieldType.INPUT,
           config: {
-            labelText: PET_FORM_LABELS.TITLE,
+            labelText: PET_FORM_LABELS.NAME,
             inputConfig: {
               testId: PET_FORM_TEST_IDS.NAME,
               type: 'text',
@@ -80,8 +80,8 @@ const usePetFormik = ({
       inputsConfig: {
         mainInput: {
           type: FormFieldType.INPUT,
-          fieldLabel: PET_FORM_LABELS.BIRTHDAY,
           config: {
+            labelText: PET_FORM_LABELS.BIRTHDAY,
             inputConfig: {
               testId: PET_FORM_TEST_IDS.BIRTHDAY,
               type: 'date',
