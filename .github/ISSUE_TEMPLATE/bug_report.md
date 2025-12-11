@@ -11,13 +11,13 @@ assignees: 'nicolasomar'
 A clear and concise description of what the bug is.
 
 ### User Information
-User data used for the bug (do not provide the pass unless you are part of `testing team`)
+User data used for the bug (do not provide the pass unless you are part of the `testing team`)
 
 ### Steps to Reproduce
  - HereGoesTheFirstStep
 
 ### Actual Result
-A clear and concise description of what is happening on this scenario.
+A clear and concise description of what is happening in this scenario.
 
 ### Expected Result
 A clear and concise description of what you expected to happen.
@@ -26,7 +26,7 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 ### Environment (please complete the following information):
- - Device: [e.g. Desktop]
+ - Device: [e.g., Desktop]
  - OS: [e.g. Windows 10]
  - Browser [e.g. chrome, safari]
  - Browser version [e.g. 22]
