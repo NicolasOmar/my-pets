@@ -2,8 +2,8 @@
 export enum LOGIN_FORM_LABELS {
   TITLE = 'Hello! Welcome to your MyPets account',
   SUBTITLE = "Let's sign you in.",
-  EMAIL = 'E-mail',
-  PASSWORD = 'Password',
+  EMAIL = 'E-mail:',
+  PASSWORD = 'Password:',
   SUBMIT_BTN = 'Sign in now',
   SIGN_UP_BTN = "Don't have an account? Register here",
   ERROR_TITLE = 'Login error!'
@@ -19,13 +19,13 @@ export enum LOGIN_FORM_TEST_IDS {
 // USER FORM
 export enum USER_FORM_LABELS {
   TITLE = 'Sign up',
-  NAME = 'First Name',
-  LAST_NAME = 'Last Name',
-  USER_NAME = 'Username',
-  EMAIL = 'E-mail',
-  PASSWORD = 'Password',
+  NAME = 'First name:',
+  LAST_NAME = 'Last name:',
+  USER_NAME = 'Username:',
+  EMAIL = 'E-mail:',
+  PASSWORD = 'Password:',
+  REPEAT_PASS = 'Repeat/Confirm password:',
   SUBMIT_BTN = 'Sign up now',
-  REPEAT_PASS = 'Repeat/Confirm password',
   LOG_IN_BTN = 'You can log in with your account',
   ERROR_TITLE = 'User creation error!'
 }
@@ -86,24 +86,24 @@ export enum PET_FORM_TEST_IDS {
 
 export enum USER_UPDATE_FORM_LABELS {
   TITLE = 'Update user information',
-  NAME = 'First name',
-  LAST_NAME = 'Last name',
+  NAME = 'First name:',
+  LAST_NAME = 'Last name:',
   ERROR_TITLE = 'User update error!'
 }
 
 export enum PASS_UPDATE_FORM_LABELS {
   TITLE = 'Update password',
-  OLD_PASS = 'Old Password',
-  NEW_PASS = 'New Password',
-  REPEAT_PASS = 'Repeat Password',
+  OLD_PASS = 'Old Password:',
+  NEW_PASS = 'New Password:',
+  REPEAT_PASS = 'Repeat Password:',
   ERROR_TITLE = 'Password error!'
 }
 
 export enum EVENT_FORM_LABELS {
   TITLE = 'Add a new event',
-  DESCRIPTION = 'Description',
-  DATE = 'Date',
-  ERROR_TITLE = 'Event creation errors'
+  DESCRIPTION = 'Description:',
+  DATE = 'Date:',
+  ERROR_TITLE = 'Event creation error!'
 }
 
 export enum EVENT_FORM_TEST_IDS {
