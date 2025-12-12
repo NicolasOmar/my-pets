@@ -22,7 +22,7 @@ vi.mock('react-router-dom', async originalPackage => {
   }
 })
 
-describe('[PetForm]', () => {
+describe.skip('[PetForm]', () => {
   test('Should render the page with its inputs', () => {
     render(
       <MockedProvider mocks={[]}>

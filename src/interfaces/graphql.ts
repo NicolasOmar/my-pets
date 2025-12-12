@@ -35,8 +35,6 @@ interface PetEntity {
   birthday: string | null
   isAdopted: boolean
   adoptionDate: string | null
-  height: number | null
-  length: number | null
   weight: number | null
   gender: boolean
   hairColors: string[]

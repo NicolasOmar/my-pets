@@ -5,5 +5,7 @@ export enum COMMON_LABELS {
   CONFIRM = 'Confirm',
   ADD = 'Add',
   GO_BACK = 'Go back to Home',
-  CANCEL = 'Cancel'
+  CANCEL = 'Cancel',
+  YES = 'Yes',
+  NO = 'No'
 }

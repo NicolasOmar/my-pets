@@ -121,10 +121,8 @@ const PetForm: React.FC = () => {
       birthday,
       isAdopted: formData.isAdopted,
       adoptionDate,
-      height: formData.height,
-      length: formData.length,
       weight: formData.weight,
-      gender: formData.gender,
+      gender: formData.gender === 'male',
       petType:
         (petTypes?.getPetTypes ?? []).find(_type => formData.petType === _type.id)?.id.toString() ??
         '',
@@ -191,8 +189,6 @@ const PetForm: React.FC = () => {
         <FormField {...petFormInputs.birthday} />
         <FormField {...petFormInputs.isAdopted} />
         <FormField {...petFormInputs.adoptionDate} />
-        <FormField {...petFormInputs.height} />
-        <FormField {...petFormInputs.length} />
         <FormField {...petFormInputs.weight} />
         <FormField {...petFormInputs.gender} />
         <FormField {...petFormInputs.hairColors} />
