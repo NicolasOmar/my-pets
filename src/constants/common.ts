@@ -1,6 +1,6 @@
 export enum COMMON_LABELS {
-  MASCULILNE = 'Masculine',
-  FEMENINE = 'Feminine',
+  MASCULINE = 'Male',
+  FEMENINE = 'Female',
   SAVE_CHANGES = 'Save changes',
   CONFIRM = 'Confirm',
   ADD = 'Add',

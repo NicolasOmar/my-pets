@@ -13,8 +13,8 @@ import { parseStringToLuxonDate } from '@functions/parsers'
 import { COMMON_LABELS } from '@constants/common'
 
 const genderOptions = [
-  { label: 'Male', value: 'male' },
-  { label: 'Female', value: 'female' }
+  { label: COMMON_LABELS.MASCULINE, value: COMMON_LABELS.MASCULINE.toLowerCase() },
+  { label: COMMON_LABELS.FEMENINE, value: COMMON_LABELS.FEMENINE.toLowerCase() }
 ]
 
 const usePetFormik = ({
@@ -36,7 +36,12 @@ const usePetFormik = ({
         DATE_FOR_DATEPICKER
       ) as string,
       weight: petData?.weight ?? 0,
-      gender: petData?.gender !== undefined ? (petData.gender ? 'male' : 'female') : '',
+      gender:
+        petData?.gender !== undefined
+          ? petData.gender
+            ? COMMON_LABELS.MASCULINE.toLowerCase()
+            : COMMON_LABELS.FEMENINE.toLowerCase()
+          : '',
       hairColors: petData?.hairColors.map(({ id }) => id) ?? [''],
       eyeColors: petData?.eyeColors[0].id ?? '',
       hasHeterochromia: petData?.hasHeterochromia ?? false,
@@ -79,7 +84,7 @@ const usePetFormik = ({
                   value: _type.id
                 }))
               : [],
-            selectedValues: petFormik.values.petType
+            onChange: petFormik.handleChange
           }
         }
       }
@@ -166,8 +171,8 @@ const usePetFormik = ({
             options: genderOptions.map(option => ({
               ...option,
               isChecked: petFormik.values.gender === option.value
-            }))
-            // onChange: petFormik.handleChange
+            })),
+            onChange: petFormik.handleChange
           }
         }
       }

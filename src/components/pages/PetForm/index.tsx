@@ -122,7 +122,7 @@ const PetForm: React.FC = () => {
       isAdopted: formData.isAdopted,
       adoptionDate,
       weight: formData.weight,
-      gender: formData.gender === 'male',
+      gender: formData.gender === COMMON_LABELS.MASCULINE.toLowerCase(),
       petType:
         (petTypes?.getPetTypes ?? []).find(_type => formData.petType === _type.id)?.id.toString() ??
         '',
