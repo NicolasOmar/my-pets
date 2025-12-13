@@ -220,6 +220,7 @@ const usePetFormik = ({
           fieldLabel: PET_FORM_LABELS.HAS_HETEROCHROMIA,
           config: {
             testId: PET_FORM_TEST_IDS.HAS_HETEROCHROMIA,
+            label: petFormik.values.hasHeterochromia ? COMMON_LABELS.YES : COMMON_LABELS.NO,
             name: 'hasHeterochromia',
             isDisabled: formIsWorking,
             isChecked: petFormik.values.hasHeterochromia,
@@ -235,6 +236,7 @@ const usePetFormik = ({
           fieldLabel: PET_FORM_LABELS.PASSED_AWAY,
           config: {
             testId: PET_FORM_TEST_IDS.PASSED_AWAY,
+            label: petFormik.values.passedAway ? COMMON_LABELS.YES : COMMON_LABELS.NO,
             name: 'passedAway',
             isDisabled: formIsWorking,
             isChecked: petFormik.values.passedAway,

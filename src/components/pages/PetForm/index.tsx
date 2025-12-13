@@ -26,7 +26,7 @@ import { PET_FORM_LABELS, PET_FORM_TEST_IDS } from '@constants/forms'
 import { APP_ROUTES } from '@constants/routes'
 import { COMMON_LABELS } from '@constants/common'
 // FUNCTIONS
-import { getDataFromArrays, nullifyValue, parseToLuxonDate } from '@functions/parsers'
+import { parsePetFormData } from './parsers'
 
 const PetForm: React.FC = () => {
   const { petId = null } = useParams()
@@ -42,7 +42,7 @@ const PetForm: React.FC = () => {
     error: errorColors
   } = useQuery<ColorListResponse>(GET_COLORS_QUERY, { variables: { petId } })
   const [getPet, { loading: loadingPetData, data: petData, error: errorPetData }] =
-    useLazyQuery<PetGetResponse>(GET_PET_QUERY)
+    useLazyQuery<PetGetResponse>(GET_PET_QUERY, { fetchPolicy: 'network-only' })
   const [createPet, { loading: loadingCreate, error: errorCreate }] = useMutation<
     PetCreateResponse,
     PetCreatePayload
@@ -104,36 +104,7 @@ const PetForm: React.FC = () => {
 
   const handleSubmit = async (formData: PetFormData) => {
     let result: ApolloClient.MutateResult<PetCreateResponse> | ApolloClient.MutateResult<boolean>
-
-    const birthday = nullifyValue({
-      value: formData.birthday,
-      nullableValue: '',
-      valueToShow: parseToLuxonDate(formData.birthday)
-    })
-    const adoptionDate = nullifyValue({
-      value: formData.adoptionDate,
-      nullableValue: '',
-      valueToShow: parseToLuxonDate(formData.adoptionDate)
-    })
-
-    const petPayload = {
-      name: formData.name,
-      birthday,
-      isAdopted: formData.isAdopted,
-      adoptionDate,
-      weight: formData.weight,
-      gender: formData.gender === COMMON_LABELS.MASCULINE.toLowerCase(),
-      petType:
-        (petTypes?.getPetTypes ?? []).find(_type => formData.petType === _type.id)?.id.toString() ??
-        '',
-      hairColors: getDataFromArrays(formData.hairColors, colors?.getColors ?? [], 'id', 'id'),
-      hasHeterochromia: !!formData.hasHeterochromia,
-      eyeColors: [
-        (colors?.getColors ?? []).find(_color => formData.eyeColors === _color.id)?.id.toString() ??
-          ''
-      ],
-      passedAway: formData.passedAway
-    }
+    const petPayload = parsePetFormData(formData, petTypes, colors)
 
     if (petId) {
       result = await updatePet({
@@ -167,7 +138,7 @@ const PetForm: React.FC = () => {
     buttonList: [
       {
         testId: PET_FORM_TEST_IDS.SUBMIT_BTN,
-        text: COMMON_LABELS.ADD,
+        text: petId ? COMMON_LABELS.CONFIRM : COMMON_LABELS.ADD,
         type: 'submit',
         color: 'success'
       },
