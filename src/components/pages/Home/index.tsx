@@ -1,6 +1,6 @@
 // CORE
 import { useMemo } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 // API
 import { useQuery } from '@apollo/client/react'
 import { GET_MY_PETS_POPULATION_QUERY } from '@graphql/queries'
@@ -19,6 +19,7 @@ import { parseSingularPluralStrings } from '@functions/parsers'
 
 const Home: React.FC = () => {
   const user = getLoggedUser()
+  const navigate = useNavigate()
   const { data: populationData } = useQuery<PetPopulationResponse>(GET_MY_PETS_POPULATION_QUERY)
 
   const memoizedPetPopulation = useMemo(() => {
@@ -35,14 +36,14 @@ const Home: React.FC = () => {
         <Card
           content={[
             <p>{HOME_PAGE_LABELS.MY_PETS_CARD_TITLE}</p>,
-            <p>{<Link to={APP_ROUTES.PET_LIST}>{petQuantityText}</Link>}</p>
+            <a onClick={() => navigate(APP_ROUTES.PET_LIST)}>{petQuantityText}</a>
           ]}
         />
       )
     } else {
       return <></>
     }
-  }, [populationData])
+  }, [populationData, navigate])
   const memoizedGreeting = useMemo(
     () =>
       user
