@@ -217,10 +217,10 @@ const usePetFormik = ({
       inputsConfig: {
         mainInput: {
           type: FormFieldType.CHECKBOX,
-          fieldLabel: PET_FORM_LABELS.HAS_HETEROCHROMIA,
+          fieldLabel: PET_FORM_LABELS.TRAITS,
           config: {
             testId: PET_FORM_TEST_IDS.HAS_HETEROCHROMIA,
-            label: petFormik.values.hasHeterochromia ? COMMON_LABELS.YES : COMMON_LABELS.NO,
+            label: PET_FORM_LABELS.HAS_HETEROCHROMIA,
             name: 'hasHeterochromia',
             isDisabled: formIsWorking,
             isChecked: petFormik.values.hasHeterochromia,
