@@ -49,7 +49,6 @@ export const getDataFromArrays = (
 ): string[] => {
   let dataToReturn: string[] = []
   for (const item of formDataList) {
-    console.warn('TEST', item)
     const foundItem = dataList.find(dataItem => dataItem[propToSearchBy] === item)
     if (foundItem) {
       dataToReturn = [...dataToReturn, foundItem[propToReturn].toString()]

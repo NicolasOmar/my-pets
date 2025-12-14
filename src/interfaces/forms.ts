@@ -21,10 +21,8 @@ export interface PetFormData {
   birthday: string
   isAdopted: boolean
   adoptionDate: string
-  height: number
-  length: number
   weight: number
-  gender: boolean
+  gender: string
   hairColors: string[]
   eyeColors: string
   hasHeterochromia: boolean

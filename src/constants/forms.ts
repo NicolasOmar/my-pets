@@ -44,38 +44,33 @@ export enum USER_FORM_TEST_IDS {
 export enum HOME_PAGE_LABELS {
   USER_GREETING_START = 'Hey, ',
   USER_GREETING_END = '. Nice to see you here!',
-  WELCOME_MESSAGE = 'Welcome to our beautiful place'
+  WELCOME_MESSAGE = 'Welcome to our beautiful place',
+  MY_PETS_CARD_TITLE = 'My Pets'
 }
 
 // PET FORM
 export enum PET_FORM_LABELS {
   TITLE = 'Add a new pet',
   NAME = 'Name:',
-  PET_TYPE = 'Kind of pet:',
   BIRTHDAY = 'Born date:',
   IS_ADOPTED = 'Is adopted?:',
   ADOPTION_DATE = 'Adoption date:',
-  HEIGHT = 'Height:',
-  LENGTH = 'Length:',
-  WEIGHT = 'Weight:',
+  WEIGHT = 'Weight (in grams):',
   GENDER = 'Gender:',
   HAIR_COLORS = 'Fur color/s:',
   EYE_COLORS = 'Eye color/s:',
-  HAS_HETEROCHROMIA = 'Heterochromia:',
+  TRAITS = 'Special traits:',
+  HAS_HETEROCHROMIA = 'Has heterochromia',
   PASSED_AWAY = 'Passed away?:',
   ERROR_TITLE = 'Pet creation error!'
 }
 
 export enum PET_FORM_TEST_IDS {
   NAME = 'test-name-pet-form',
-  PET_TYPE = 'test-petType-pet-form',
   BIRTHDAY = 'test-birthday-pet-form',
   IS_ADOPTED = 'test-isAdopted-pet-form',
   ADOPTION_DATE = 'test-adoptionDate-pet-form',
-  HEIGHT = 'test-height-pet-form',
-  LENGTH = 'test-length-pet-form',
   WEIGHT = 'test-weight-pet-form',
-  GENDER = 'test-gender-pet-form',
   HAIR_COLORS = 'test-hairColors-pet-form',
   EYE_COLORS = 'test-eyeColors-pet-form',
   HAS_HETEROCHROMIA = 'test-hasHeterochromia-pet-form',

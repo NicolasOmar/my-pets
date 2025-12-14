@@ -52,8 +52,6 @@ export const GET_PET_QUERY = gql`
       birthday
       isAdopted
       adoptionDate
-      height
-      length
       weight
       gender
       hairColors {

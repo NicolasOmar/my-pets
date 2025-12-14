@@ -17,7 +17,6 @@ const encryptParser: (
   cryptSecret: string,
   isEncrypting?: boolean
 ) => string = (method, pass, cryptSecret, isEncrypting = true) => {
-  console.warn(method, pass, cryptSecret, isEncrypting)
   switch (method) {
     case CryptoMethods.AES:
       return isEncrypting

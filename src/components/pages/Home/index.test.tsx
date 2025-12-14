@@ -1,5 +1,5 @@
 import React from 'react'
-import { describe, test, expect, beforeAll } from 'vitest'
+import { describe, test, expect, beforeAll, vi } from 'vitest'
 import { MockedProvider } from '@apollo/client/testing/react'
 import { render, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
@@ -17,6 +17,15 @@ import { testing } from './index.mocks.json'
 const baseRequest = {
   query: GET_MY_PETS_POPULATION_QUERY
 }
+const mockUseNavigate = vi.fn()
+
+vi.mock('react-router-dom', async originalPackage => {
+  const _originalPackage = await originalPackage
+  return {
+    ..._originalPackage,
+    useNavigate: () => mockUseNavigate
+  }
+})
 
 describe('[Home]', () => {
   const { nameMock, positiveResponse } = testing

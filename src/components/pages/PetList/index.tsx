@@ -45,7 +45,7 @@ const PetList: React.FC = () => {
       ? data.getMyPets.map((petData, _petDataId) => {
           const parsedBirthday = petData.birthday ? parseStringToLuxonDate(+petData.birthday) : '-'
           const parsedGender = parseBooleanToString(petData.gender, [
-            COMMON_LABELS.MASCULILNE,
+            COMMON_LABELS.MASCULINE,
             COMMON_LABELS.FEMENINE
           ])
           const parsedAdoptionDate = petData.adoptionDate
@@ -60,23 +60,27 @@ const PetList: React.FC = () => {
             rawList: petData.eyeColors,
             prop: 'name'
           })
+          let petCardContent = [
+            <p>{petData.name}</p>,
+            <p>{petData.petType.name}</p>,
+            <p>{`${PET_LIST_LABELS.BIRTHDAY}: ${parsedBirthday}`}</p>,
+            <p>{`${PET_LIST_LABELS.ADOPTED}: ${parsedAdoptionDate}`}</p>,
+            <p>{`${PET_LIST_LABELS.GENDER}: ${parsedGender}`}</p>,
+            <p>{`${PET_LIST_LABELS.HAIR}: ${parsedHairColors}`}</p>,
+            <p>{`${PET_LIST_LABELS.HAS_HETEROCHROMIA}: ${parsedHeterochromia}`}</p>,
+            <p>{`${PET_LIST_LABELS.EYES}: ${parsedEyeColors}`}</p>
+          ]
+
+          if (petData.passedAway) {
+            petCardContent = [<Icon iconLabel="ghost" />, ...petCardContent]
+          }
 
           return {
             size: 'one-quarter' as ColumnSizeType,
             children: (
               <Card
                 key={_petDataId}
-                content={[
-                  <>{petData.passedAway ? <Icon iconLabel="ghost" /> : null}</>,
-                  <p>{petData.name}</p>,
-                  <p>{petData.petType.name}</p>,
-                  <p>{`${PET_LIST_LABELS.BIRTHDAY}: ${parsedBirthday}`}</p>,
-                  <p>{`${PET_LIST_LABELS.ADOPTED}: ${parsedAdoptionDate}`}</p>,
-                  <p>{`${PET_LIST_LABELS.GENDER}: ${parsedGender}`}</p>,
-                  <p>{`${PET_LIST_LABELS.HAIR}: ${parsedHairColors}`}</p>,
-                  <p>{`${PET_LIST_LABELS.HAS_HETEROCHROMIA}: ${parsedHeterochromia}`}</p>,
-                  <p>{`${PET_LIST_LABELS.EYES}: ${parsedEyeColors}`}</p>
-                ]}
+                content={petCardContent}
                 footerLinks={[
                   {
                     text: 'Update',

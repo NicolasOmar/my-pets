@@ -1,5 +1,6 @@
 // CORE
 import { useMemo } from 'react'
+import { useNavigate } from 'react-router-dom'
 // API
 import { useQuery } from '@apollo/client/react'
 import { GET_MY_PETS_POPULATION_QUERY } from '@graphql/queries'
@@ -11,12 +12,14 @@ import { Card, ColumnGroup, Title } from 'reactive-bulma'
 import { PetPopulationResponse } from '@interfaces/graphql'
 // CONSTANTS
 import { HOME_PAGE_LABELS } from '@constants/forms'
+import { APP_ROUTES } from '@constants/routes'
 // FUNCTIONS
 import { getLoggedUser } from '@functions/local-storage'
 import { parseSingularPluralStrings } from '@functions/parsers'
 
 const Home: React.FC = () => {
   const user = getLoggedUser()
+  const navigate = useNavigate()
   const { data: populationData } = useQuery<PetPopulationResponse>(GET_MY_PETS_POPULATION_QUERY)
 
   const memoizedPetPopulation = useMemo(() => {
@@ -26,15 +29,28 @@ const Home: React.FC = () => {
         zeroString: 'no pets yet',
         singularString: 'pet',
         pluralAddition: 's',
-        // startString: 'You have',
         endString: 'registered'
       })
 
-      return <Card content={[<p>My Pets</p>, <p>{petQuantityText}</p>]} />
+      return (
+        <Card
+          content={[
+            <p>{HOME_PAGE_LABELS.MY_PETS_CARD_TITLE}</p>,
+            <a onClick={() => navigate(APP_ROUTES.PET_LIST)}>{petQuantityText}</a>
+          ]}
+        />
+      )
     } else {
       return <></>
     }
-  }, [populationData])
+  }, [populationData, navigate])
+  const memoizedGreeting = useMemo(
+    () =>
+      user
+        ? `${HOME_PAGE_LABELS.USER_GREETING_START} ${user.name ?? '-'}${HOME_PAGE_LABELS.USER_GREETING_END}`
+        : 'Greetings!',
+    [user]
+  )
 
   return (
     <ColumnGroup
@@ -44,11 +60,11 @@ const Home: React.FC = () => {
       isMultiline
       listOfColumns={[
         {
-          size: '12',
+          size: '11',
           children: (
             <Title
               main={{
-                text: `${HOME_PAGE_LABELS.USER_GREETING_START} ${user?.name ?? '-'}${HOME_PAGE_LABELS.USER_GREETING_END}`,
+                text: memoizedGreeting,
                 type: 'title'
               }}
               secondary={{

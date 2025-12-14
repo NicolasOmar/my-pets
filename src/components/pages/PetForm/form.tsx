@@ -10,6 +10,12 @@ import { PET_FORM_LABELS, PET_FORM_TEST_IDS } from '@constants/forms'
 import { DATE_FOR_DATEPICKER } from '@constants/formats'
 // FUNCTIONS
 import { parseStringToLuxonDate } from '@functions/parsers'
+import { COMMON_LABELS } from '@constants/common'
+
+const genderOptions = [
+  { label: COMMON_LABELS.MASCULINE, value: COMMON_LABELS.MASCULINE.toLowerCase() },
+  { label: COMMON_LABELS.FEMENINE, value: COMMON_LABELS.FEMENINE.toLowerCase() }
+]
 
 const usePetFormik = ({
   formIsWorking,
@@ -29,10 +35,13 @@ const usePetFormik = ({
         '',
         DATE_FOR_DATEPICKER
       ) as string,
-      height: petData?.height ?? 0,
-      length: petData?.length ?? 0,
       weight: petData?.weight ?? 0,
-      gender: petData?.gender ?? false,
+      gender:
+        petData?.gender !== undefined
+          ? petData.gender
+            ? COMMON_LABELS.MASCULINE.toLowerCase()
+            : COMMON_LABELS.FEMENINE.toLowerCase()
+          : '',
       hairColors: petData?.hairColors.map(({ id }) => id) ?? [''],
       eyeColors: petData?.eyeColors[0].id ?? '',
       hasHeterochromia: petData?.hasHeterochromia ?? false,
@@ -64,13 +73,17 @@ const usePetFormik = ({
     petType: {
       inputsConfig: {
         mainInput: {
-          type: FormFieldType.SELECT,
-          fieldLabel: PET_FORM_LABELS.PET_TYPE,
+          type: FormFieldType.RADIOBUTTON,
           config: {
-            testId: PET_FORM_TEST_IDS.PET_TYPE,
+            // testId: PET_FORM_TEST_IDS.PET_TYPE,
             name: 'petType',
-            options: [{ id: 0, name: '' }, ...(petTypes ?? [])],
-            selectedValues: petFormik.values.petType,
+            options: petTypes
+              ? petTypes.map(_type => ({
+                  label: _type.name,
+                  isChecked: petFormik.values.petType === _type.id,
+                  value: _type.id
+                }))
+              : [],
             onChange: petFormik.handleChange
           }
         }
@@ -101,6 +114,7 @@ const usePetFormik = ({
           fieldLabel: PET_FORM_LABELS.IS_ADOPTED,
           config: {
             testId: PET_FORM_TEST_IDS.IS_ADOPTED,
+            label: petFormik.values.isAdopted ? COMMON_LABELS.YES : COMMON_LABELS.NO,
             name: 'isAdopted',
             isDisabled: formIsWorking,
             isChecked: petFormik.values.isAdopted,
@@ -121,42 +135,6 @@ const usePetFormik = ({
               name: 'adoptionDate',
               isDisabled: formIsWorking,
               value: petFormik.values.adoptionDate,
-              onChange: petFormik.handleChange
-            }
-          }
-        }
-      }
-    },
-    height: {
-      inputsConfig: {
-        mainInput: {
-          type: FormFieldType.INPUT,
-          config: {
-            labelText: PET_FORM_LABELS.HEIGHT,
-            inputConfig: {
-              testId: PET_FORM_TEST_IDS.HEIGHT,
-              type: 'number',
-              name: 'height',
-              isDisabled: formIsWorking,
-              value: petFormik.values.height.toString(),
-              onChange: petFormik.handleChange
-            }
-          }
-        }
-      }
-    },
-    length: {
-      inputsConfig: {
-        mainInput: {
-          type: FormFieldType.INPUT,
-          config: {
-            labelText: PET_FORM_LABELS.LENGTH,
-            inputConfig: {
-              testId: PET_FORM_TEST_IDS.LENGTH,
-              type: 'number',
-              name: 'length',
-              isDisabled: formIsWorking,
-              value: petFormik.values.length.toString(),
               onChange: petFormik.handleChange
             }
           }
@@ -184,13 +162,16 @@ const usePetFormik = ({
     gender: {
       inputsConfig: {
         mainInput: {
-          type: FormFieldType.CHECKBOX,
+          type: FormFieldType.RADIOBUTTON,
           fieldLabel: PET_FORM_LABELS.GENDER,
           config: {
-            testId: PET_FORM_TEST_IDS.GENDER,
+            // testId: PET_FORM_TEST_IDS.GENDER,
             name: 'gender',
             isDisabled: formIsWorking,
-            isChecked: petFormik.values.gender,
+            options: genderOptions.map(option => ({
+              ...option,
+              isChecked: petFormik.values.gender === option.value
+            })),
             onChange: petFormik.handleChange
           }
         }
@@ -236,9 +217,10 @@ const usePetFormik = ({
       inputsConfig: {
         mainInput: {
           type: FormFieldType.CHECKBOX,
-          fieldLabel: PET_FORM_LABELS.HAS_HETEROCHROMIA,
+          fieldLabel: PET_FORM_LABELS.TRAITS,
           config: {
             testId: PET_FORM_TEST_IDS.HAS_HETEROCHROMIA,
+            label: PET_FORM_LABELS.HAS_HETEROCHROMIA,
             name: 'hasHeterochromia',
             isDisabled: formIsWorking,
             isChecked: petFormik.values.hasHeterochromia,
@@ -254,6 +236,7 @@ const usePetFormik = ({
           fieldLabel: PET_FORM_LABELS.PASSED_AWAY,
           config: {
             testId: PET_FORM_TEST_IDS.PASSED_AWAY,
+            label: petFormik.values.passedAway ? COMMON_LABELS.YES : COMMON_LABELS.NO,
             name: 'passedAway',
             isDisabled: formIsWorking,
             isChecked: petFormik.values.passedAway,
