@@ -75,7 +75,7 @@ const usePetFormik = ({
         mainInput: {
           type: FormFieldType.RADIOBUTTON,
           config: {
-            testId: PET_FORM_TEST_IDS.PET_TYPE,
+            // testId: PET_FORM_TEST_IDS.PET_TYPE,
             name: 'petType',
             options: petTypes
               ? petTypes.map(_type => ({
@@ -165,7 +165,7 @@ const usePetFormik = ({
           type: FormFieldType.RADIOBUTTON,
           fieldLabel: PET_FORM_LABELS.GENDER,
           config: {
-            testId: PET_FORM_TEST_IDS.GENDER,
+            // testId: PET_FORM_TEST_IDS.GENDER,
             name: 'gender',
             isDisabled: formIsWorking,
             options: genderOptions.map(option => ({
