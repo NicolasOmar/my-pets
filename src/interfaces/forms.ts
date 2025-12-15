@@ -19,7 +19,7 @@ export interface PetFormData {
   name: string
   petType: string
   birthday: string
-  isAdopted: boolean
+  isAdopted: string
   adoptionDate: string
   weight: number
   gender: string

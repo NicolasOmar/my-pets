@@ -17,6 +17,11 @@ const genderOptions = [
   { label: COMMON_LABELS.FEMENINE, value: COMMON_LABELS.FEMENINE.toLowerCase() }
 ]
 
+const yesNoOptions = [
+  { label: COMMON_LABELS.YES, value: 'true' },
+  { label: COMMON_LABELS.NO, value: 'false' }
+]
+
 const usePetFormik = ({
   formIsWorking,
   petTypes,
@@ -29,7 +34,7 @@ const usePetFormik = ({
       name: petData?.name ?? '',
       petType: petData?.petType.id ?? '',
       birthday: parseStringToLuxonDate(petData?.birthday, '', DATE_FOR_DATEPICKER) as string,
-      isAdopted: petData?.isAdopted ?? false,
+      isAdopted: petData?.isAdopted?.toString() ?? 'false',
       adoptionDate: parseStringToLuxonDate(
         petData?.adoptionDate,
         '',
@@ -77,6 +82,7 @@ const usePetFormik = ({
           config: {
             // testId: PET_FORM_TEST_IDS.PET_TYPE,
             name: 'petType',
+            isDisabled: formIsWorking,
             options: petTypes
               ? petTypes.map(_type => ({
                   label: _type.name,
@@ -110,14 +116,17 @@ const usePetFormik = ({
     isAdopted: {
       inputsConfig: {
         mainInput: {
-          type: FormFieldType.CHECKBOX,
+          type: FormFieldType.RADIOBUTTON,
           fieldLabel: PET_FORM_LABELS.IS_ADOPTED,
           config: {
             testId: PET_FORM_TEST_IDS.IS_ADOPTED,
-            label: petFormik.values.isAdopted ? COMMON_LABELS.YES : COMMON_LABELS.NO,
             name: 'isAdopted',
+            options: yesNoOptions.map(({ label, value }) => ({
+              label,
+              isChecked: petFormik.values.isAdopted === value,
+              value: value
+            })),
             isDisabled: formIsWorking,
-            isChecked: petFormik.values.isAdopted,
             onChange: petFormik.handleChange
           }
         }

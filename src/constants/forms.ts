@@ -53,7 +53,7 @@ export enum PET_FORM_LABELS {
   TITLE = 'Add a new pet',
   NAME = 'Name:',
   BIRTHDAY = 'Born date:',
-  IS_ADOPTED = 'Is adopted?:',
+  IS_ADOPTED = 'Is it adopted?:',
   ADOPTION_DATE = 'Adoption date:',
   WEIGHT = 'Weight (in grams):',
   GENDER = 'Gender:',
