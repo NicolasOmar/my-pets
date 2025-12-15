@@ -1,10 +1,9 @@
 ---
 name: Base Issue
 about: A base issue formatted to handle general requests
-title: Base Issue
-labels: feature
-assignees: NicolasOmar
-
+title: ''
+labels: 'feature'
+assignees: 'nicolasomar'
 ---
 
 ### Objective 
@@ -13,7 +12,7 @@ Put your objective here in a short sentence.
 ---
 
 ### Description 
-Put here a description of your request as long as you see necessary.
+Include a description of your request here as long as you see fit.
 
 ---
 
