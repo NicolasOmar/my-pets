@@ -60,6 +60,8 @@ interface IdOnlyObject {
   id: string
 }
 
+export interface IdNameObject extends IdOnlyObject, NameOnlyObject {}
+
 interface PetListItemResponse extends Omit<
   PetEntity,
   'petType' | 'hairColors' | 'eyeColors' | 'user'
@@ -128,6 +130,10 @@ export interface PetCreateResponse {
 
 export interface PetListResponse {
   getMyPets: PetListItemResponse[]
+}
+
+export interface PetNamesResponse {
+  getMyPets: IdNameObject[]
 }
 
 export interface GetPetResponseUnit extends Omit<

@@ -62,6 +62,13 @@ const UserHeader: React.FC<HeaderUserProps> = ({ name }) => {
             {
               children: (
                 <p
+                  onClick={() => navigate(APP_ROUTES.EVENT_FORM)}
+                >{`${USER_HEADER_LABELS.ADD_EVENT}`}</p>
+              )
+            },
+            {
+              children: (
+                <p
                   onClick={() => navigate(APP_ROUTES.PET_LIST)}
                 >{`${USER_HEADER_LABELS.SEE_MY_PETS}`}</p>
               )

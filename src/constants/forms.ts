@@ -96,12 +96,14 @@ export enum PASS_UPDATE_FORM_LABELS {
 
 export enum EVENT_FORM_LABELS {
   TITLE = 'Add a new event',
+  PET = 'Select pet:',
   DESCRIPTION = 'Description:',
   DATE = 'Date:',
   ERROR_TITLE = 'Event creation error!'
 }
 
 export enum EVENT_FORM_TEST_IDS {
+  PET = 'test-pet-event-form',
   DESCRIPTION = 'test-description-event-form',
   DATE = 'test-date-event-form',
   SUBMIT_BTN = 'test-confirm-pet-form',
