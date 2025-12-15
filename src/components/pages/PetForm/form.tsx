@@ -80,7 +80,7 @@ const usePetFormik = ({
         mainInput: {
           type: FormFieldType.RADIOBUTTON,
           config: {
-            // testId: PET_FORM_TEST_IDS.PET_TYPE,
+            containerTestId: PET_FORM_TEST_IDS.PET_TYPE,
             name: 'petType',
             isDisabled: formIsWorking,
             options: petTypes
@@ -119,7 +119,7 @@ const usePetFormik = ({
           type: FormFieldType.RADIOBUTTON,
           fieldLabel: PET_FORM_LABELS.IS_ADOPTED,
           config: {
-            testId: PET_FORM_TEST_IDS.IS_ADOPTED,
+            containerTestId: PET_FORM_TEST_IDS.IS_ADOPTED,
             name: 'isAdopted',
             options: yesNoOptions.map(({ label, value }) => ({
               label,

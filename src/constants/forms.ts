@@ -67,6 +67,7 @@ export enum PET_FORM_LABELS {
 
 export enum PET_FORM_TEST_IDS {
   NAME = 'test-name-pet-form',
+  PET_TYPE = 'test-petType-pet-form',
   BIRTHDAY = 'test-birthday-pet-form',
   IS_ADOPTED = 'test-isAdopted-pet-form',
   ADOPTION_DATE = 'test-adoptionDate-pet-form',
