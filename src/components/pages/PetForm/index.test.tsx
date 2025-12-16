@@ -5,6 +5,7 @@ import { MockedProvider } from '@apollo/client/testing/react'
 import '@testing-library/jest-dom'
 // APP_ROUTES
 // GRAPHQL
+import { GET_PET_TYPES_QUERY, GET_COLORS_QUERY } from '../../../graphql/queries'
 // CONTEXT
 // COMPONENTS
 import PetForm from '.'
@@ -23,9 +24,19 @@ vi.mock('react-router-dom', async originalPackage => {
 })
 
 describe('[PetForm]', () => {
+  const apolloMocks = [
+    {
+      request: { query: GET_PET_TYPES_QUERY, variables: {} },
+      result: { data: { getPetTypes: [] } }
+    },
+    {
+      request: { query: GET_COLORS_QUERY, variables: { petId: null } },
+      result: { data: { getColors: [] } }
+    }
+  ]
   test('Should render the page with its inputs', () => {
     render(
-      <MockedProvider mocks={[]}>
+      <MockedProvider mocks={apolloMocks}>
         <PetForm />
       </MockedProvider>
     )

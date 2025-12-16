@@ -35,8 +35,14 @@ describe('[Home]', () => {
   })
 
   test('Renders with a dummy logged User', async () => {
+    const baseMock = [
+      {
+        request: baseRequest,
+        result: positiveResponse
+      }
+    ]
     render(
-      <MockedProvider mocks={[]}>
+      <MockedProvider mocks={baseMock}>
         <Home />
       </MockedProvider>
     )

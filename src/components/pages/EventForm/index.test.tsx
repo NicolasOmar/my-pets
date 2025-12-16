@@ -14,10 +14,15 @@ import EventForm from '.'
 // MOCKS
 import { testing } from './index.mocks.json'
 import { EVENT_FORM_TEST_IDS } from '../../../constants/forms'
+import { GET_MY_PETS_NAMES_QUERY } from '../../../graphql/queries'
 
 const baseRequest = {
   query: CREATE_EVENT,
   variables: testing.mutationVariables
+}
+const getPetsNamesRequest = {
+  query: GET_MY_PETS_NAMES_QUERY,
+  variables: { search: '' }
 }
 
 interface RenderWithRouterProps {
@@ -31,7 +36,7 @@ const renderWithRouter = ({
   routePath = '/',
   mockedElement
 }: RenderWithRouterProps) => (
-  <MemoryRouter initialEntries={['Test page', initialRoute]}>
+  <MemoryRouter initialEntries={[initialRoute]}>
     <Routes>
       <Route path={routePath} element={mockedElement} />
     </Routes>
@@ -44,6 +49,10 @@ describe('[EventForm]', () => {
     {
       request: baseRequest,
       result: positiveResponse
+    },
+    {
+      request: getPetsNamesRequest,
+      result: { data: { myPetsNames: [] } }
     }
   ]
 
