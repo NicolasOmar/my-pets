@@ -8,6 +8,16 @@ interface ParseArrayToStringProps<T> {
   separator?: string
 }
 
+interface ParseSingularPluralStringsProps {
+  quantity?: number
+  zeroString?: string
+  singularString?: string
+  pluralString?: string
+  pluralAddition?: string
+  startString?: string
+  endString?: string
+}
+
 export const parseArrayToString: <T>(props: ParseArrayToStringProps<T>) => string = ({
   rawList,
   prop,
@@ -58,7 +68,6 @@ export const getDataFromArrays = (
 }
 
 // FUNCTIONS TO BE USED
-
 export const capitalizeWord = (word: string) =>
   word ? `${word.charAt(0).toUpperCase()}${word.slice(1).toLowerCase()}` : ''
 
@@ -66,11 +75,11 @@ export const parseSingularPluralStrings = ({
   quantity = 0,
   zeroString = 'no data',
   singularString = 'singular',
-  pluralString = null,
+  pluralString,
   pluralAddition = 's',
   startString = '',
   endString = ''
-}) => {
+}: ParseSingularPluralStringsProps) => {
   let partialText = ''
   const pluralAlternative = pluralString ?? `${singularString}${pluralAddition}`
 

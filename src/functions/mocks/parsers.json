@@ -1,0 +1,36 @@
+{
+  "parseArrayToString": [
+    { "name": "Alice", "age": 30 },
+    { "name": "Bob", "age": 25 }
+  ],
+  "parseBooleanToString": {
+    "inputs": [
+      [true],
+      [false],
+      [true, ["Y", "N"]],
+      [false, ["Y", "N"]]
+    ],
+    "outputs": ["Yes", "No", "Y", "N"]
+  },
+  "nullifyValue": {
+    "inputs": [
+      { "value": 0, "nullableValue": 0 },
+      { "value": "none", "nullableValue": "none", "valueToShow": "N/A" },
+      { "value": 5, "nullableValue": 0}
+    ],
+    "outputs": [null, null, 5]
+  },
+  "capitalizeWord": {
+    "inputs": ["hello", "HELLO", "h", ""],
+    "outputs": ["Hello", "Hello", "H", ""]
+  },
+  "parseSingularPluralStrings": {
+    "inputs": [
+      { "quantity": 0, "zeroString": "none", "singularString": "cat" },
+      { "quantity": 1, "singularString": "cat" },
+      { "quantity": 2, "singularString": "cat" },
+      { "quantity": 3, "singularString": "goose", "pluralString": "geese" }
+    ],
+    "outputs": ["none", "1 cat", "2 cats", "3 geese"]
+  }
+}
