@@ -20,7 +20,17 @@ const baseRequest = {
   variables: testing.mutationVariables
 }
 
-const renderWithRouter = ({ initialRoute = '/', routePath = '/', mockedElement }) => (
+interface RenderWithRouterProps {
+  initialRoute?: string
+  routePath?: string
+  mockedElement: React.ReactNode
+}
+
+const renderWithRouter = ({
+  initialRoute = '/',
+  routePath = '/',
+  mockedElement
+}: RenderWithRouterProps) => (
   <MemoryRouter initialEntries={['Test page', initialRoute]}>
     <Routes>
       <Route path={routePath} element={mockedElement} />

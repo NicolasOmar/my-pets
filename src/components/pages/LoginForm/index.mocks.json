@@ -1,14 +1,18 @@
 {
   "loginUserPayloadMock": {
     "email": "test@test.com",
-    "password": "testPass"
+    "password": "encryptedPass"
   },
   "loginUserResponseMock": {
     "loginUser": {
-      "name": "testUer",
-      "lastName": "testUer",
-      "email": "testUer",
-      "token": "testUer"
+      "loggedUser": {
+        "name": "testUer",
+        "lastName": "testUer",
+        "email": "testUer",
+        "__typename": "User"
+      },
+      "token": "testUer",
+      "__typename": "LoginUserResponse"
     }
   }
 }

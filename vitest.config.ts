@@ -9,7 +9,6 @@ export default defineConfig({
     setupFiles: ['./tests/setup.ts'],
     coverage: {
       include: ['src/**/*.tsx'],
-      // exclude: ['src/**/*.stories.jsx'],
       reporter: ['html', 'lcov']
     }
   },

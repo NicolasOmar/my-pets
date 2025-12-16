@@ -28,8 +28,17 @@ describe('[PetList]', () => {
   const { positiveResponse, valuesToAppear } = testing
 
   test('Should render the page with the loading component', async () => {
+    const loadingMock = [
+      {
+        request: {
+          ...baseRequest,
+          variables: {}
+        },
+        result: { data: { getMyPets: [] } }
+      }
+    ]
     render(
-      <MockedProvider mocks={[]}>
+      <MockedProvider mocks={loadingMock}>
         <PetList />
       </MockedProvider>
     )
