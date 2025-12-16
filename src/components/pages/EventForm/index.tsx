@@ -41,14 +41,13 @@ const EventForm: React.FC = () => {
     await createEvent({
       variables: {
         payload: {
-          ...formData,
+          description: formData.description,
           date: parseToLuxonDate(formData.date),
           associatedPets: [formData.pet]
         }
-      }
+      },
+      onCompleted: () => navigate(APP_ROUTES.PET_LIST)
     })
-
-    navigate(APP_ROUTES.PET_LIST)
   }
 
   const { eventFormik, eventFormInputsConfig } = useEventFormik({

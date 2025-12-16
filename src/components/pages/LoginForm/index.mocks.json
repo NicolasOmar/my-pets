@@ -8,11 +8,9 @@
       "loggedUser": {
         "name": "testUer",
         "lastName": "testUer",
-        "email": "testUer",
-        "__typename": "User"
+        "email": "testUer"
       },
-      "token": "testUer",
-      "__typename": "LoginUserResponse"
+      "token": "testUer"
     }
   }
 }

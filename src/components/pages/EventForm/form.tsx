@@ -19,7 +19,6 @@ const useEventFormik = ({ petId, petList, formIsWorking, handleSubmit }: EventFo
     enableReinitialize: true,
     onSubmit: handleSubmit
   })
-
   const eventFormInputsConfig: CustomFormInputProps<FormFieldProps> = {
     pet: {
       inputsConfig: {

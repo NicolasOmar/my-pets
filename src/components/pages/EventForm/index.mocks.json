@@ -1,24 +1,34 @@
 {
-  "testing": {
-    "mutationVariables": {
-      "eventInfo": {
+  "valuesToAppear": [
+    "6535d3e47163ef3793a17674",
+    "Testing Description",
+    "2023-12-10"
+  ],
+  "createEventPayloadMock": {
+    "payload": {
+      "associatedPets": [
+        "6535d3e47163ef3793a17674"
+      ],
+      "description": "Testing Description",
+      "date": "2023-12-10"
+    }
+  },
+  "createEventResponseMock": {
+    "data": {
+      "createEvent": {
         "description": "Testing Description",
-        "date": "2023-12-10",
-        "associatedPets": ["6535d3e47163ef3793a17674"]
+        "date": "2023-12-10"
       }
-    },
-    "positiveResponse": {
-      "data": {
-        "createEvent": {
-          "description": "Testing Description",
-          "date": "2023-12-10"
+    }
+  },
+  "getMyPetsResponseMock": {
+    "data": {
+      "getMyPets": [
+        {
+          "id": "6535d3e47163ef3793a17674",
+          "name": "Buddy"
         }
-      }
-    },
-    "valuesToAppear": [
-      "Testing Description",
-      "2023-12-10"
-    ],
-    "initialRoute": "/add-event/6535d3e47163ef3793a17674"
+      ]
+    }
   }
 }

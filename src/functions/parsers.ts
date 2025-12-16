@@ -24,7 +24,8 @@ export const parseArrayToString: <T>(props: ParseArrayToStringProps<T>) => strin
   separator = ', '
 }) => rawList.map(item => item[prop]).join(separator)
 
-export const parseToLuxonDate = (stringDate: string) => DateTime.fromISO(stringDate).toFormat('F')
+export const parseToLuxonDate = (stringDate: string) =>
+  DateTime.fromISO(stringDate).toFormat('yyyy-MM-dd')
 
 export const parseStringToLuxonDate = (
   date?: number | string | null,

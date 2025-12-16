@@ -11,9 +11,11 @@ import { LOGIN_USER } from '../../../graphql/mutations'
 import { UserContext } from '../../../context/userContext'
 // COMPONENTS
 import LoginForm from '.'
+// CONSTANTS
+import { LOGIN_FORM_TEST_IDS } from '../../../constants/forms'
 // MOCKS
 import { loginUserPayloadMock, loginUserResponseMock } from './index.mocks.json'
-import { LOGIN_FORM_TEST_IDS } from '../../../constants/forms'
+
 const mockUseNavigate = vi.fn()
 
 vi.mock('react-router-dom', async originalPackage => {
