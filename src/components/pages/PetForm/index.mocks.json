@@ -1,0 +1,66 @@
+{
+  "getColorsResponseMock": {
+    "data": {
+      "getColors": [
+        {
+          "id": "6535d3e47163ef3793a17670",
+          "name": "Black"
+        },
+        {
+          "id": "6535d3e47163ef3793a17671",
+          "name": "White"
+        }
+      ]
+    }
+  },
+  "getPetTypesResponseMock": {
+    "data": {
+      "getPetTypes": [
+        {
+          "id": "6535d3e47163ef3793a17672",
+          "name": "Dog"
+        },
+        {
+          "id": "6535d3e47163ef3793a17673",
+          "name": "Cat"
+        }
+      ]
+    }
+  },
+  "getPetPayloadMock": {
+    "id": "6535d3e47163ef3793a17674"
+  },
+  "getPetResponseMock": {
+    "data": {
+      "getPet": {
+        "id": "6535d3e47163ef3793a17674",
+        "name": "Buddy",
+        "petType": "6535d3e47163ef3793a17672",
+        "birthday": "2023-12-09",
+        "isAdopted": false,
+        "adoptionDate": "",
+        "weight": 20.5,
+        "gender": true,
+        "hairColors": ["6535d3e47163ef3793a17670"],
+        "eyeColors": ["6535d3e47163ef3793a17670"],
+        "hasHeterochromia": false,
+        "passedAway": false
+      }
+    }
+  },
+  "updatePetPayloadMock": {
+    "payload": {
+      "name": "Buddy updated",
+      "petType": "6535d3e47163ef3793a17673",
+      "birthday": "2023-12-10",
+      "isAdopted": false,
+      "adoptionDate": "",
+      "weight": 20.5,
+      "gender": true,
+      "hairColors": ["6535d3e47163ef3793a17670"],
+      "eyeColors": ["6535d3e47163ef3793a17670"],
+      "hasHeterochromia": false,
+      "passedAway": false
+    }
+  }
+}
