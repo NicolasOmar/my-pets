@@ -47,8 +47,8 @@ const Home: React.FC = () => {
   const memoizedGreeting = useMemo(
     () =>
       user
-        ? `${HOME_PAGE_LABELS.USER_GREETING_START} ${user.name ?? '-'}${HOME_PAGE_LABELS.USER_GREETING_END}`
-        : 'Greetings!',
+        ? `${HOME_PAGE_LABELS.USER_GREETING_START}${user.name ?? '-'}${HOME_PAGE_LABELS.USER_GREETING_END}`
+        : HOME_PAGE_LABELS.NO_USER_GREETINGS,
     [user]
   )
 

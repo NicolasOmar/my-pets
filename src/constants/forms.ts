@@ -43,6 +43,7 @@ export enum USER_FORM_TEST_IDS {
 
 export enum HOME_PAGE_LABELS {
   USER_GREETING_START = 'Hey, ',
+  NO_USER_GREETINGS = 'Greetings!',
   USER_GREETING_END = '. Nice to see you here!',
   WELCOME_MESSAGE = 'Welcome to our beautiful place',
   MY_PETS_CARD_TITLE = 'My Pets'

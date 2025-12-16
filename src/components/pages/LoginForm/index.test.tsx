@@ -80,12 +80,9 @@ describe('[LoginForm]', () => {
     const submitBtn = screen.getByTestId(LOGIN_FORM_TEST_IDS.SUBMIT_BTN)
     fireEvent.click(submitBtn)
 
-    await waitFor(
-      () => {
-        expect(mockUseNavigate).toHaveBeenCalled()
-      },
-      { timeout: 2500 }
-    )
+    await waitFor(() => {
+      expect(mockUseNavigate).toHaveBeenCalled()
+    })
   })
 
   test('Should redirect user to sign up page', async () => {
