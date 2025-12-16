@@ -64,7 +64,7 @@ describe('[LoginForm]', () => {
     })
   })
 
-  test('Should make the graphQL request by clicking the submit button', async () => {
+  test('Should make the graphQL request by filling the form and clicking the submit button', async () => {
     render(
       <UserContext.Provider value={userContextMock}>
         <MockedProvider mocks={positiveMock}>
