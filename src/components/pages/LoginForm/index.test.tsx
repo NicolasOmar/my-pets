@@ -14,7 +14,7 @@ import LoginForm from '.'
 // CONSTANTS
 import { LOGIN_FORM_TEST_IDS } from '../../../constants/forms'
 // MOCKS
-import { loginUserPayloadMock, loginUserResponseMock } from './index.mocks.json'
+import { loginUserPayloadMock, loginUserResponseMock } from './mocks.json'
 
 const mockUseNavigate = vi.fn()
 

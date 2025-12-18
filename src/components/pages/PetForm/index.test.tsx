@@ -19,7 +19,7 @@ import {
   getColorsResponseMock,
   getPetTypesResponseMock
   // updatePetPayloadMock
-} from './index.mocks.json'
+} from './mocks.json'
 
 const mockUseNavigate = vi.fn()
 

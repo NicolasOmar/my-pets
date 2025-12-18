@@ -10,7 +10,7 @@ import PetList from '.'
 // CONSTANTS
 import { PET_LIST_TEST_IDS } from '../../../constants/lists'
 // MOCKS
-import { getMyPetsResponseMock, petCardMock } from './index.mocks.json'
+import { getMyPetsResponseMock, petCardMock } from './mocks.json'
 
 const baseRequest = {
   query: GET_MY_PETS_QUERY

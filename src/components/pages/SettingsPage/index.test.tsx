@@ -7,7 +7,7 @@ import { UserContext } from '../../../context/userContext'
 // COMPONENTS
 import SettingsPage from '.'
 // MOCKS
-import { userDataMock, getLoggedUserMock } from './index.mocks.json'
+import { userDataMock, getLoggedUserMock } from './mocks.json'
 
 const mockUseNavigate = vi.fn()
 

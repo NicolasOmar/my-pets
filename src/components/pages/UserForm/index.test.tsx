@@ -6,18 +6,14 @@ import '@testing-library/jest-dom'
 // APP_ROUTES
 import { APP_ROUTES } from '../../../constants/routes'
 // GRAPHQL
+import { CREATE_USER } from '../../../graphql/mutations'
 // CONTEXT
 import { UserContext } from '../../../context/userContext'
 // COMPONENTS
 import UserForm from '.'
 import { USER_FORM_TEST_IDS } from '../../../constants/forms'
 // MOCKS
-import {
-  userFormValuesMock,
-  userCreatePayloadMock,
-  userCreateResponseMock
-} from './index.mocks.json'
-import { CREATE_USER } from '../../../graphql/mutations'
+import { userFormValuesMock, userCreatePayloadMock, userCreateResponseMock } from './mocks.json'
 
 const mockUseNavigate = vi.fn()
 

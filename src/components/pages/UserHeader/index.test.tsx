@@ -12,7 +12,7 @@ import { UserContext } from '../../../context/userContext'
 // COMPONENTS
 import UserHeader from '.'
 // MOCKS
-import { testConfig, logoutResponseMock } from './index.mocks.json'
+import { testConfig, logoutResponseMock } from './mocks.json'
 
 const _logoutMock = [
   {

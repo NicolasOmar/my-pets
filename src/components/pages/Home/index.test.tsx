@@ -15,7 +15,7 @@ import { APP_ROUTES } from '../../../constants/routes'
 // FUNCTIONS
 import { clearAllStorage, setLoggedUser } from '../../../functions/local-storage'
 // MOCKS
-import { loggedUserNameMock, getMyPetsPopulationResponseMock } from './index.mocks.json'
+import { loggedUserNameMock, getMyPetsPopulationResponseMock } from './mocks.json'
 
 const baseMock = [
   {

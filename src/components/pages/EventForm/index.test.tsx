@@ -15,11 +15,11 @@ import { EVENT_FORM_TEST_IDS } from '../../../constants/forms'
 import { APP_ROUTES } from '../../../constants/routes'
 // MOCKS
 import {
-  eventFormValuesMock,
   createEventPayloadMock,
   createEventResponseMock,
-  getMyPetsResponseMock
-} from './index.mocks.json'
+  getMyPetsResponseMock,
+  eventFormValuesMock
+} from './mocks.json'
 
 const mockUseNavigate = vi.fn()
 
