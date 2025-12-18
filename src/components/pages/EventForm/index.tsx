@@ -100,7 +100,6 @@ const EventForm: React.FC = () => {
         text: COMMON_LABELS.CANCEL,
         type: 'button',
         color: 'danger',
-        isDisabled: isFormLoading,
         onClick: () =>
           navigate(
             petId

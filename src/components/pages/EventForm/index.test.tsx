@@ -67,7 +67,7 @@ describe('[EventForm]', () => {
     })
   })
 
-  test.skip('Should render the page and go to event list if the form is cancelled', async () => {
+  test('Should render the page and go to event list if the form is cancelled', async () => {
     let cancelBtn: HTMLElement
 
     await waitFor(() => (cancelBtn = screen.getByTestId(EVENT_FORM_TEST_IDS.CANCEL_BTN)))
