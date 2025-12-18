@@ -9,8 +9,8 @@ import { APP_ROUTES } from '@constants/routes'
 
 const App = () => {
   const userContext = useContext(UserContext)
-  const LazyHome = lazy(() => import('../pages/Home'))
-  const LazyLogin = lazy(() => import('../pages/LoginForm'))
+  const LazyHomePage = lazy(() => import('../pages/HomePage'))
+  const LazyLoginForm = lazy(() => import('../pages/LoginForm'))
   const LazyUserForm = lazy(() => import('../pages/UserForm'))
   const LazyPetForm = lazy(() => import('../pages/PetForm'))
   const LazyPetList = lazy(() => import('../pages/PetList'))
@@ -27,7 +27,7 @@ const App = () => {
           path={APP_ROUTES.HOME}
           element={
             <Suspense fallback="...">
-              <LazyHome />
+              <LazyHomePage />
             </Suspense>
           }
         />
@@ -36,7 +36,7 @@ const App = () => {
           path={APP_ROUTES.LOGIN}
           element={
             <Suspense fallback="...">
-              <LazyLogin />
+              <LazyLoginForm />
             </Suspense>
           }
         />
