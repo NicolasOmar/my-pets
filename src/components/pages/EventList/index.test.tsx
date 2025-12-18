@@ -1,39 +1,49 @@
 import React from 'react'
 import { describe, test, expect, vi } from 'vitest'
-import { render, screen, waitFor } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
 // GRAPHQL
 import { MockedProvider } from '@apollo/client/testing/react'
 import { GET_MY_PET_EVENTS } from '../../../graphql/queries'
 // COMPONENTS
 import EventList from '.'
-// MOCKS
-import { testing } from './mocks.json'
+// CONSTANTS
 import { EVENT_LIST_TEST_IDS } from '../../../constants/lists'
+// MOCKS
+import { getPetResponseMock, datesToDisplay } from './mocks.json'
+import { APP_ROUTES } from '../../../constants/routes'
 
 const baseRequest = {
   query: GET_MY_PET_EVENTS,
-  variables: {
-    petId: testing.petId.toString()
-  }
+  variables: { petId: '' }
 }
+const loadingEventsMock = [
+  {
+    request: baseRequest,
+    result: { data: { getMyPetEvents: [] } }
+  }
+]
+const positiveMock = [
+  {
+    request: baseRequest,
+    result: getPetResponseMock
+  }
+]
 const mockUseNavigate = vi.fn()
 
 vi.mock('react-router-dom', async originalPackage => {
   const _originalPackage = await originalPackage
   return {
     ..._originalPackage,
-    useParams: () => mockUseNavigate,
-    useNavigate: () => ({ petId: '676f72bb01701ca0bf911446' })
+    useNavigate: () => mockUseNavigate,
+    useParams: () => ({ petId: '' })
   }
 })
 
-describe.skip('[EventList]', () => {
-  const { positiveResponse } = testing
-
+describe('[EventList]', () => {
   test('Should render the page with the loading component', async () => {
     render(
-      <MockedProvider mocks={[]}>
+      <MockedProvider mocks={loadingEventsMock}>
         <EventList />
       </MockedProvider>
     )
@@ -43,14 +53,7 @@ describe.skip('[EventList]', () => {
     })
   })
 
-  test('Should render the page with loaded events', async () => {
-    const positiveMock = [
-      {
-        request: baseRequest,
-        result: positiveResponse
-      }
-    ]
-
+  test('Should render the page with loaded events and go back to event list once the go back button is clicked', async () => {
     render(
       <MockedProvider mocks={positiveMock}>
         <EventList />
@@ -58,10 +61,19 @@ describe.skip('[EventList]', () => {
     )
 
     await waitFor(() => {
-      positiveResponse.data.getMyPetEvents.forEach(({ description, date }) => {
-        expect(screen.getByText(description)).toBeInTheDocument()
-        expect(screen.getByText(date)).toBeInTheDocument()
+      getPetResponseMock.data.getMyPetEvents.forEach(({ description }, mockIndex) => {
+        expect(screen.getByText(`Date: ${datesToDisplay[mockIndex]}`)).toBeInTheDocument()
+        expect(screen.getByText(`Description: ${description}`)).toBeInTheDocument()
       })
+    })
+
+    const goBackButton = screen.getByTestId(EVENT_LIST_TEST_IDS.GO_BACK_BTN)
+    expect(goBackButton).toBeInTheDocument()
+
+    fireEvent.click(goBackButton)
+
+    await waitFor(() => {
+      expect(mockUseNavigate).toHaveBeenCalledWith(APP_ROUTES.PET_LIST)
     })
   })
 })

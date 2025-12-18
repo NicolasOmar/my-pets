@@ -6,7 +6,7 @@ import { FormFieldProps } from 'reactive-bulma/dist/interfaces/organismProps'
 import { CustomFormInputProps } from '@interfaces/components'
 import { UserUpdateFormData } from '@interfaces/forms'
 // CONSTANTS
-import { USER_UPDATE_FORM_LABELS } from '@constants/forms'
+import { USER_UPDATE_FORM_LABELS, USER_UPDATE_FORM_TEST_IDS } from '@constants/forms'
 // FUNCTIONS
 
 const useUserUpdateFormik = (
@@ -30,6 +30,7 @@ const useUserUpdateFormik = (
           config: {
             labelText: USER_UPDATE_FORM_LABELS.NAME,
             inputConfig: {
+              testId: USER_UPDATE_FORM_TEST_IDS.NAME,
               type: 'text',
               name: 'name',
               isDisabled: formIsWorking,
@@ -47,6 +48,7 @@ const useUserUpdateFormik = (
           config: {
             labelText: USER_UPDATE_FORM_LABELS.LAST_NAME,
             inputConfig: {
+              testId: USER_UPDATE_FORM_TEST_IDS.LAST_NAME,
               type: 'text',
               name: 'lastName',
               isDisabled: formIsWorking,

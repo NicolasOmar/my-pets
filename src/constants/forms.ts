@@ -43,6 +43,7 @@ export enum USER_FORM_TEST_IDS {
 
 export enum HOME_PAGE_LABELS {
   USER_GREETING_START = 'Hey, ',
+  NO_USER_GREETINGS = 'Greetings!',
   USER_GREETING_END = '. Nice to see you here!',
   WELCOME_MESSAGE = 'Welcome to our beautiful place',
   MY_PETS_CARD_TITLE = 'My Pets'
@@ -53,7 +54,7 @@ export enum PET_FORM_LABELS {
   TITLE = 'Add a new pet',
   NAME = 'Name:',
   BIRTHDAY = 'Born date:',
-  IS_ADOPTED = 'Is adopted?:',
+  IS_ADOPTED = 'Is it adopted?:',
   ADOPTION_DATE = 'Adoption date:',
   WEIGHT = 'Weight (in grams):',
   GENDER = 'Gender:',
@@ -67,6 +68,7 @@ export enum PET_FORM_LABELS {
 
 export enum PET_FORM_TEST_IDS {
   NAME = 'test-name-pet-form',
+  PET_TYPE = 'test-petType-pet-form',
   BIRTHDAY = 'test-birthday-pet-form',
   IS_ADOPTED = 'test-isAdopted-pet-form',
   ADOPTION_DATE = 'test-adoptionDate-pet-form',
@@ -86,6 +88,13 @@ export enum USER_UPDATE_FORM_LABELS {
   ERROR_TITLE = 'User update error!'
 }
 
+export enum USER_UPDATE_FORM_TEST_IDS {
+  NAME = 'test-name-user-update-form',
+  LAST_NAME = 'test-last-name-user-update-form',
+  SUBMIT_BTN = 'test-submit-user-update-form',
+  GO_BACK_BTN = 'test-go-back-user-update-form'
+}
+
 export enum PASS_UPDATE_FORM_LABELS {
   TITLE = 'Update password',
   OLD_PASS = 'Old Password:',
@@ -94,14 +103,24 @@ export enum PASS_UPDATE_FORM_LABELS {
   ERROR_TITLE = 'Password error!'
 }
 
+export enum PASS_UPDATE_FORM_TEST_IDS {
+  OLD_PASS = 'test-old-password-pass-update-form',
+  NEW_PASS = 'test-new-password-pass-update-form',
+  REPEAT_PASS = 'test-repeat-password-pass-update-form',
+  SUBMIT_BTN = 'test-submit-pass-update-form',
+  GO_BACK_BTN = 'test-go-back-pass-update-form'
+}
+
 export enum EVENT_FORM_LABELS {
   TITLE = 'Add a new event',
+  PET = 'Select pet:',
   DESCRIPTION = 'Description:',
   DATE = 'Date:',
   ERROR_TITLE = 'Event creation error!'
 }
 
 export enum EVENT_FORM_TEST_IDS {
+  PET = 'test-pet-event-form',
   DESCRIPTION = 'test-description-event-form',
   DATE = 'test-date-event-form',
   SUBMIT_BTN = 'test-confirm-pet-form',

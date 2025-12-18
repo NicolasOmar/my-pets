@@ -1,0 +1,32 @@
+{
+  "userFormValuesMock": {
+    "name": "test",
+    "lastName": "last test",
+    "userName": "testuser",
+    "email": "testuser@example.com",
+    "password": "encryptedPass",
+    "repeatPass": "encryptedPass"
+  },
+  "userCreatePayloadMock": {
+    "payload": {
+      "name": "test",
+      "lastName": "last test",
+      "userName": "testuser",
+      "email": "testuser@example.com",
+      "password": "encryptedPass"
+    }
+  },
+  "userCreateResponseMock": {
+    "data": {
+      "createUser": {
+        "id": "1",
+        "name": "test",
+        "lastName": "last test",
+        "userName": "testuser",
+        "email": "testuser@example.com",
+        "password": "encryptedPass",
+        "token": "abcd1234"
+      }
+    }
+  }
+}

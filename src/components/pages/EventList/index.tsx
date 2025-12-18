@@ -53,7 +53,11 @@ const EventList: React.FC = () => {
         <ProgressBar isLoading testId={EVENT_LIST_TEST_IDS.PROGRESS_BAR} />
       ) : (
         <>
-          <Button text={COMMON_LABELS.GO_BACK} onClick={() => navigate(APP_ROUTES.PET_LIST)} />
+          <Button
+            testId={EVENT_LIST_TEST_IDS.GO_BACK_BTN}
+            text={COMMON_LABELS.GO_BACK}
+            onClick={() => navigate(APP_ROUTES.PET_LIST)}
+          />
           <Title main={{ text: EVENT_LIST_LABELS.TITLE, type: 'title' }} />
           <ColumnGroup listOfColumns={memoizedEventCardList} />
         </>

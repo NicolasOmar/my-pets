@@ -1,0 +1,11 @@
+{
+  "testConfig": {
+    "name": "User Name",
+    "options": ["Add Pet",  "Add Event", "See My Pets", "Settings", "Logout"]
+  },
+  "logoutResponseMock": {
+    "data": {
+      "logout": true
+    }
+  }
+}

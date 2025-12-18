@@ -1,4 +1,4 @@
-import { Entity, GetPetResponseUnit } from './graphql'
+import { Entity, GetPetResponseUnit, IdNameObject } from './graphql'
 
 // FORM DATA
 export interface LoginFormData {
@@ -19,7 +19,7 @@ export interface PetFormData {
   name: string
   petType: string
   birthday: string
-  isAdopted: boolean
+  isAdopted: string
   adoptionDate: string
   weight: number
   gender: string
@@ -41,6 +41,7 @@ export interface PassUpdateFormData {
 }
 
 export interface EventFormData {
+  pet: string
   description: string
   date: string
 }
@@ -52,4 +53,11 @@ export interface PetFormikProps {
   colors?: Entity[]
   petData?: GetPetResponseUnit
   handleSubmit: (petFormData: PetFormData) => void
+}
+
+export interface EventFormikProps {
+  petId: string
+  petList: IdNameObject[]
+  formIsWorking: boolean
+  handleSubmit: (eventFormData: EventFormData) => void
 }

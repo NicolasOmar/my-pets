@@ -6,12 +6,14 @@ import '@testing-library/jest-dom'
 // APP_ROUTES
 import { APP_ROUTES } from '../../../constants/routes'
 // GRAPHQL
+import { CREATE_USER } from '../../../graphql/mutations'
 // CONTEXT
 import { UserContext } from '../../../context/userContext'
 // COMPONENTS
 import UserForm from '.'
 import { USER_FORM_TEST_IDS } from '../../../constants/forms'
 // MOCKS
+import { userFormValuesMock, userCreatePayloadMock, userCreateResponseMock } from './mocks.json'
 
 const mockUseNavigate = vi.fn()
 
@@ -23,13 +25,27 @@ vi.mock('react-router-dom', async originalPackage => {
   }
 })
 
-describe('[UserForm]', () => {
-  const providerMock = { setUserData: vi.fn() }
+vi.mock('../../../functions/encrypt', () => ({
+  encryptPass: () => 'encryptedPass'
+}))
 
+const graphqlMock = [
+  {
+    request: {
+      query: CREATE_USER,
+      variables: userCreatePayloadMock
+    },
+    result: userCreateResponseMock
+  }
+]
+
+describe('[UserForm]', () => {
   beforeEach(() => {
+    const userProviderMock = { setUserData: vi.fn() }
+
     render(
-      <UserContext.Provider value={providerMock}>
-        <MockedProvider mocks={[]}>
+      <UserContext.Provider value={userProviderMock}>
+        <MockedProvider mocks={graphqlMock}>
           <UserForm />
         </MockedProvider>
       </UserContext.Provider>
@@ -50,6 +66,22 @@ describe('[UserForm]', () => {
     await waitFor(() => {
       expect(mockUseNavigate).toHaveBeenCalled()
       expect(mockUseNavigate).toHaveBeenCalledWith(APP_ROUTES.LOGIN)
+    })
+  })
+
+  test('Should make the graphQL request by filling the form and clicking the submit button', async () => {
+    Object.values(userFormValuesMock).forEach((userFormValue, _i) => {
+      const userFormTestId = Object.values(USER_FORM_TEST_IDS)
+      const inputElem = screen.getByTestId(userFormTestId[_i])
+      fireEvent.change(inputElem, { target: { value: userFormValue } })
+    })
+
+    const submitBtn = screen.getByTestId(USER_FORM_TEST_IDS.SUBMIT_BTN)
+    fireEvent.click(submitBtn)
+
+    await waitFor(() => {
+      expect(mockUseNavigate).toHaveBeenCalled()
+      expect(mockUseNavigate).toHaveBeenCalledWith(APP_ROUTES.HOME)
     })
   })
 })

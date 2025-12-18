@@ -12,8 +12,15 @@ import { UserContext } from '../../../context/userContext'
 // COMPONENTS
 import UserHeader from '.'
 // MOCKS
-import { testConfig, logoutMock } from './index.mocks.json'
+import { testConfig, logoutResponseMock } from './mocks.json'
 
+const _logoutMock = [
+  {
+    request: { query: LOGOUT },
+    result: logoutResponseMock
+  }
+]
+const userProviderMock = { setUserData: vi.fn() }
 const mockUseNavigate = vi.fn()
 
 vi.mock('react-router-dom', async originalPackage => {
@@ -25,17 +32,6 @@ vi.mock('react-router-dom', async originalPackage => {
 })
 
 describe('[UserHeader]', () => {
-  const _logoutMock = [
-    {
-      ...logoutMock,
-      request: {
-        ...logoutMock.request,
-        query: LOGOUT
-      }
-    }
-  ]
-  const providerMock = { setUserData: vi.fn() }
-
   beforeAll(() => {
     window.matchMedia = query => ({
       matches: false,
@@ -51,7 +47,7 @@ describe('[UserHeader]', () => {
 
   beforeEach(() => {
     render(
-      <UserContext.Provider value={providerMock}>
+      <UserContext.Provider value={userProviderMock}>
         <MockedProvider mocks={_logoutMock}>
           <UserHeader name={testConfig.name} />
         </MockedProvider>
@@ -69,6 +65,7 @@ describe('[UserHeader]', () => {
   test('Should render each option and execute user redirection', () => {
     const testRoutes = [
       APP_ROUTES.PET_FORM,
+      APP_ROUTES.EVENT_FORM,
       APP_ROUTES.PET_LIST,
       APP_ROUTES.SETTINGS,
       APP_ROUTES.LOGIN

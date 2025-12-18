@@ -1,8 +1,8 @@
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 // API
 import { ApolloClient } from '@apollo/client'
-import { useLazyQuery, useMutation, useQuery } from '@apollo/client/react'
+import { useMutation, useQuery } from '@apollo/client/react'
 import { GET_COLORS_QUERY, GET_PET_QUERY, GET_PET_TYPES_QUERY } from '@graphql/queries'
 import { CREATE_PET, UPDATE_PET } from '@graphql/mutations'
 // COMPONENTS
@@ -40,9 +40,16 @@ const PetForm: React.FC = () => {
     loading: loadingColors,
     data: colors,
     error: errorColors
-  } = useQuery<ColorListResponse>(GET_COLORS_QUERY, { variables: { petId } })
-  const [getPet, { loading: loadingPetData, data: petData, error: errorPetData }] =
-    useLazyQuery<PetGetResponse>(GET_PET_QUERY, { fetchPolicy: 'network-only' })
+  } = useQuery<ColorListResponse>(GET_COLORS_QUERY)
+  const {
+    loading: loadingPetData,
+    data: petData,
+    error: errorPetData
+  } = useQuery<PetGetResponse>(GET_PET_QUERY, {
+    skip: petId === null || petTypes === undefined || colors === undefined,
+    fetchPolicy: 'network-only',
+    variables: { petId }
+  })
   const [createPet, { loading: loadingCreate, error: errorCreate }] = useMutation<
     PetCreateResponse,
     PetCreatePayload
@@ -51,12 +58,6 @@ const PetForm: React.FC = () => {
     boolean,
     PetUpdateResponse
   >(UPDATE_PET)
-
-  useEffect(() => {
-    if (petId !== null && petTypes && colors && petData === undefined) {
-      getPet({ variables: { petId } })
-    }
-  }, [petId, petTypes, colors, petData, getPet])
 
   // const onInputBlurChange = formData => {
   //   const { isAdopted, adoptionDate, birthday, hasHeterochromia, eyeColors } = formData
@@ -103,7 +104,7 @@ const PetForm: React.FC = () => {
   )
 
   const handleSubmit = async (formData: PetFormData) => {
-    let result: ApolloClient.MutateResult<PetCreateResponse> | ApolloClient.MutateResult<boolean>
+    let result: ApolloClient.MutateResult<PetCreateResponse | boolean>
     const petPayload = parsePetFormData(formData, petTypes, colors)
 
     if (petId) {

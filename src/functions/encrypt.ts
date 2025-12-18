@@ -1,6 +1,6 @@
 import cryptoJs from 'crypto-js'
 
-enum CryptoMethods {
+export enum CryptoMethods {
   AES = 'AES',
   DES = 'DES',
   TripleDES = 'TripleDES',
@@ -11,12 +11,16 @@ enum CryptoMethods {
   Blowfish = 'Blowfish'
 }
 
-const encryptParser: (
-  method: CryptoMethods,
-  pass: string,
-  cryptSecret: string,
+interface EncryptParserProps {
+  method: CryptoMethods
+  pass: string | null
+  cryptSecret: string
   isEncrypting?: boolean
-) => string = (method, pass, cryptSecret, isEncrypting = true) => {
+}
+
+const encryptParser = ({ method, pass, cryptSecret, isEncrypting = true }: EncryptParserProps) => {
+  if (pass === null) return ''
+
   switch (method) {
     case CryptoMethods.AES:
       return isEncrypting
@@ -53,10 +57,14 @@ const encryptParser: (
   }
 }
 
-export const encryptPass = (pass: string | null) => {
-  return encryptParser(
-    import.meta.env.VITE_CRYPT_METH as CryptoMethods,
-    pass ?? '',
-    import.meta.env.VITE_CRYPT_SECRET as string
-  )
-}
+export const encryptPass = (
+  pass: string | null,
+  isEncrypting = true,
+  method: CryptoMethods = import.meta.env.VITE_CRYPT_METH as CryptoMethods
+) =>
+  encryptParser({
+    method,
+    pass,
+    cryptSecret: import.meta.env.VITE_CRYPT_SECRET as string,
+    isEncrypting
+  })

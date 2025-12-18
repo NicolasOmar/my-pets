@@ -1,0 +1,20 @@
+{
+  "loginUserPayloadMock": {
+    "payload": {
+      "email": "testUer",
+      "password": "testUer"
+    }
+  },
+  "loginUserResponseMock": {
+    "data": {
+      "loginUser": {
+        "loggedUser": {
+          "name": "testUer",
+          "lastName": "testUer",
+          "email": "testUer"
+        },
+        "token": "testUer"
+      }
+    }
+  }
+}

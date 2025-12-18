@@ -8,13 +8,24 @@ interface ParseArrayToStringProps<T> {
   separator?: string
 }
 
+interface ParseSingularPluralStringsProps {
+  quantity?: number
+  zeroString?: string
+  singularString?: string
+  pluralString?: string
+  pluralAddition?: string
+  startString?: string
+  endString?: string
+}
+
 export const parseArrayToString: <T>(props: ParseArrayToStringProps<T>) => string = ({
   rawList,
   prop,
   separator = ', '
 }) => rawList.map(item => item[prop]).join(separator)
 
-export const parseToLuxonDate = (stringDate: string) => DateTime.fromISO(stringDate).toFormat('F')
+export const parseToLuxonDate = (stringDate: string) =>
+  DateTime.fromISO(stringDate).toFormat('yyyy-MM-dd')
 
 export const parseStringToLuxonDate = (
   date?: number | string | null,
@@ -58,7 +69,6 @@ export const getDataFromArrays = (
 }
 
 // FUNCTIONS TO BE USED
-
 export const capitalizeWord = (word: string) =>
   word ? `${word.charAt(0).toUpperCase()}${word.slice(1).toLowerCase()}` : ''
 
@@ -66,11 +76,11 @@ export const parseSingularPluralStrings = ({
   quantity = 0,
   zeroString = 'no data',
   singularString = 'singular',
-  pluralString = null,
+  pluralString,
   pluralAddition = 's',
   startString = '',
   endString = ''
-}) => {
+}: ParseSingularPluralStringsProps) => {
   let partialText = ''
   const pluralAlternative = pluralString ?? `${singularString}${pluralAddition}`
 

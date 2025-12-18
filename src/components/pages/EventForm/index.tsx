@@ -1,9 +1,10 @@
 // CORE
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { useMutation, useQuery } from '@apollo/client/react'
 // API
-import { useMutation } from '@apollo/client/react'
 import { CREATE_EVENT } from '@graphql/mutations'
+import { GET_MY_PETS_NAMES_QUERY } from '@graphql/queries'
 // CONTEXT
 // COMPONENTS
 import { Box, ButtonGroup, Column, FormField, Message, Title } from 'reactive-bulma'
@@ -12,7 +13,7 @@ import useEventFormik from './form'
 // INTERFACES
 import { ButtonGroupProps } from 'reactive-bulma/dist/interfaces/moleculeProps'
 import { EventFormData } from '@interfaces/forms'
-import { EventCreatePayload, EventCreateResponse } from '@interfaces/graphql'
+import { EventCreatePayload, EventCreateResponse, PetNamesResponse } from '@interfaces/graphql'
 // CONSTANTS
 import { APP_ROUTES } from '@constants/routes'
 import { EVENT_FORM_LABELS, EVENT_FORM_TEST_IDS } from '@constants/forms'
@@ -23,29 +24,38 @@ import { parseToLuxonDate } from '@functions/parsers'
 const EventForm: React.FC = () => {
   const { petId = '' } = useParams()
   const navigate = useNavigate()
+  const { data, loading: isLoadingPets } = useQuery<PetNamesResponse>(GET_MY_PETS_NAMES_QUERY, {
+    variables: { search: '' },
+    fetchPolicy: 'network-only'
+  })
   const [createEvent, { loading: isLoadingEventCreate, error: eventErrors }] = useMutation<
     EventCreateResponse,
     EventCreatePayload
   >(CREATE_EVENT)
+  const isFormLoading = useMemo(
+    () => isLoadingPets || isLoadingEventCreate,
+    [isLoadingPets, isLoadingEventCreate]
+  )
 
   const handleSubmitNewEvent = async (formData: EventFormData) => {
     await createEvent({
       variables: {
         payload: {
-          ...formData,
+          description: formData.description,
           date: parseToLuxonDate(formData.date),
-          associatedPets: [petId]
+          associatedPets: [formData.pet]
         }
-      }
+      },
+      onCompleted: () => navigate(APP_ROUTES.PET_LIST)
     })
-
-    navigate(APP_ROUTES.PET_LIST)
   }
 
-  const { eventFormik, eventFormInputsConfig } = useEventFormik(
-    isLoadingEventCreate,
-    handleSubmitNewEvent
-  )
+  const { eventFormik, eventFormInputsConfig } = useEventFormik({
+    petId,
+    petList: data?.getMyPets || [],
+    formIsWorking: isFormLoading,
+    handleSubmit: handleSubmitNewEvent
+  })
 
   const eventFormButtons: ButtonGroupProps = {
     buttonList: [
@@ -55,7 +65,6 @@ const EventForm: React.FC = () => {
         type: 'submit',
         color: 'success',
         isDisabled: false
-        // AFTER REFACTORING EVENTLIST, ADD A FUNCTION TO NAVIGATE TO IT
       },
       {
         testId: EVENT_FORM_TEST_IDS.CANCEL_BTN,
@@ -74,6 +83,7 @@ const EventForm: React.FC = () => {
         <Title main={{ text: EVENT_FORM_LABELS.TITLE, type: 'title' }} />
 
         <form onSubmit={eventFormik.handleSubmit}>
+          <FormField {...eventFormInputsConfig.pet} />
           <FormField {...eventFormInputsConfig.description} />
           <FormField {...eventFormInputsConfig.date} />
 

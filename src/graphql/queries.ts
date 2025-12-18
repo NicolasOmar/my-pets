@@ -42,6 +42,15 @@ export const GET_MY_PETS_QUERY = gql`
   }
 `
 
+export const GET_MY_PETS_NAMES_QUERY = gql`
+  query ($search: String) {
+    getMyPets(search: $search) {
+      id
+      name
+    }
+  }
+`
+
 export const GET_PET_QUERY = gql`
   query ($petId: ID!) {
     getPet(petId: $petId) {

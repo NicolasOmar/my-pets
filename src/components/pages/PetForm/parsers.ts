@@ -25,7 +25,7 @@ export const parsePetFormData = (
   return {
     name: formData.name,
     birthday,
-    isAdopted: formData.isAdopted,
+    isAdopted: formData.isAdopted === 'true',
     adoptionDate,
     weight: formData.weight,
     gender: formData.gender === COMMON_LABELS.MASCULINE.toLowerCase(),

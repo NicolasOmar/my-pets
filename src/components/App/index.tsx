@@ -79,6 +79,14 @@ const App = () => {
           }
         />
         <Route
+          path={`${APP_ROUTES.EVENT_FORM}`}
+          element={
+            <Suspense fallback="...">
+              <LazyEventForm />
+            </Suspense>
+          }
+        />
+        <Route
           path={`${APP_ROUTES.EVENT_FORM}/:petId`}
           element={
             <Suspense fallback="...">

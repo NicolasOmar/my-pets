@@ -8,9 +8,9 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./tests/setup.ts'],
     coverage: {
-      include: ['src/**/*.tsx'],
-      // exclude: ['src/**/*.stories.jsx'],
-      reporter: ['html', 'lcov']
+      include: ['src/**/*.tsx', 'src/functions/**/*.ts'],
+      reporter: ['html', 'lcov'],
+      reportsDirectory: './coverage'
     }
   },
   resolve: {

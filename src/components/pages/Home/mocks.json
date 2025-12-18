@@ -1,0 +1,17 @@
+{
+  "loggedUserNameMock": "TestUser",
+  "getMyPetsPopulationResponseMock": {
+    "data": {
+      "getMyPetsPopulation": [
+        {
+          "name": "All",
+          "quantity": 1
+        },
+        {
+          "name": "First",
+          "quantity": 1
+        }
+      ]
+    }
+  }
+}

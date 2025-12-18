@@ -48,8 +48,10 @@ const PetList: React.FC = () => {
             COMMON_LABELS.MASCULINE,
             COMMON_LABELS.FEMENINE
           ])
-          const parsedAdoptionDate = petData.adoptionDate
-            ? parseStringToLuxonDate(+petData.adoptionDate)
+          const parsedAdoptionDate = petData.isAdopted
+            ? petData.adoptionDate
+              ? parseStringToLuxonDate(+petData.adoptionDate)
+              : '-'
             : '-'
           const parsedHairColors = parseArrayToString({
             rawList: petData.hairColors,

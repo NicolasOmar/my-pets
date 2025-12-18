@@ -1,19 +1,23 @@
 {
   "testing": {
-    "petId": 1,
-    "positiveResponse": {
-      "data": {
-        "getMyPetEvents": [
-          {
-            "description": "First Test",
-            "date": "2024-06-10"
-          },
-          {
-            "description": "Second Test",
-            "date": "2024-06-11"
-          }
-        ]
-      }
+    "petId": 1
+  },
+  "getPetResponseMock": {
+    "data": {
+      "getMyPetEvents": [
+        {
+          "description": "First Test",
+          "date": "1717977600000"
+        },
+        {
+          "description": "Second Test",
+          "date": "1766059200000"
+        }
+      ]
     }
-  }
+  },
+  "datesToDisplay": [
+    "10/06/2024",
+    "18/12/2025"
+  ]
 }

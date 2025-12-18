@@ -39,7 +39,7 @@
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-router-dom": "^7.10.1",
-    "reactive-bulma": "^5.0.5",
+    "reactive-bulma": "^5.0.6",
     "validator": "^13.15.23",
     "web-vitals": "^5.1.0"
   },

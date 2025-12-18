@@ -21,5 +21,6 @@ export enum EVENT_LIST_LABELS {
 }
 
 export enum EVENT_LIST_TEST_IDS {
-  PROGRESS_BAR = 'test-progress-event-list'
+  PROGRESS_BAR = 'test-progress-event-list',
+  GO_BACK_BTN = 'test-event-listbtn-go-back'
 }
