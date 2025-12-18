@@ -32,20 +32,16 @@ vi.mock('../../../functions/encrypt', () => ({
 
 describe('[LoginForm]', () => {
   const userContextMock = {
-    userData: loginUserPayloadMock,
+    userData: loginUserPayloadMock.payload,
     setUserData: vi.fn()
   }
-  const positiveMock = [
+  const graphqlMock = [
     {
       request: {
         query: LOGIN_USER,
-        variables: {
-          payload: loginUserPayloadMock
-        }
+        variables: loginUserPayloadMock
       },
-      result: {
-        data: loginUserResponseMock
-      }
+      result: loginUserResponseMock
     }
   ]
 
@@ -64,29 +60,6 @@ describe('[LoginForm]', () => {
     })
   })
 
-  test('Should make the graphQL request by filling the form and clicking the submit button', async () => {
-    render(
-      <UserContext.Provider value={userContextMock}>
-        <MockedProvider mocks={positiveMock}>
-          <LoginForm />
-        </MockedProvider>
-      </UserContext.Provider>
-    )
-
-    Object.values(LOGIN_FORM_TEST_IDS).forEach((_testId, _i) => {
-      const value = Object.values(loginUserPayloadMock)
-      const inputElem = screen.getByTestId(_testId)
-      fireEvent.change(inputElem, { target: { value: value[_i] } })
-    })
-
-    const submitBtn = screen.getByTestId(LOGIN_FORM_TEST_IDS.SUBMIT_BTN)
-    fireEvent.click(submitBtn)
-
-    await waitFor(() => {
-      expect(mockUseNavigate).toHaveBeenCalled()
-    })
-  })
-
   test('Should redirect user to sign up page', async () => {
     render(
       <UserContext.Provider value={{ ...userContextMock, userData: null }}>
@@ -102,6 +75,29 @@ describe('[LoginForm]', () => {
     await waitFor(() => {
       expect(mockUseNavigate).toHaveBeenCalled()
       expect(mockUseNavigate).toHaveBeenCalledWith(APP_ROUTES.USER_FORM)
+    })
+  })
+
+  test('Should make the graphQL request by filling the form and clicking the submit button', async () => {
+    render(
+      <UserContext.Provider value={userContextMock}>
+        <MockedProvider mocks={graphqlMock}>
+          <LoginForm />
+        </MockedProvider>
+      </UserContext.Provider>
+    )
+
+    Object.values(loginUserPayloadMock.payload).forEach((loginFormValue, _i) => {
+      const loginFormTestId = Object.values(LOGIN_FORM_TEST_IDS)
+      const inputElem = screen.getByTestId(loginFormTestId[_i])
+      fireEvent.change(inputElem, { target: { value: loginFormValue } })
+    })
+
+    const submitBtn = screen.getByTestId(LOGIN_FORM_TEST_IDS.SUBMIT_BTN)
+    fireEvent.click(submitBtn)
+
+    await waitFor(() => {
+      expect(mockUseNavigate).toHaveBeenCalled()
     })
   })
 })

@@ -5,7 +5,7 @@ import { MockedProvider } from '@apollo/client/testing/react'
 import '@testing-library/jest-dom'
 // APP_ROUTES
 // GRAPHQL
-import { GET_PET_TYPES_QUERY, GET_COLORS_QUERY, GET_PET_QUERY } from '../../../graphql/queries'
+import { GET_PET_TYPES_QUERY, GET_COLORS_QUERY } from '../../../graphql/queries'
 // CONTEXT
 // COMPONENTS
 import PetForm from '.'
@@ -14,8 +14,8 @@ import { PET_FORM_TEST_IDS } from '../../../constants/forms'
 import { APP_ROUTES } from '../../../constants/routes'
 // MOCKS
 import {
-  getPetPayloadMock,
-  getPetResponseMock,
+  // getPetPayloadMock,
+  // getPetResponseMock,
   getColorsResponseMock,
   getPetTypesResponseMock
   // updatePetPayloadMock
@@ -32,13 +32,13 @@ vi.mock('react-router-dom', async originalPackage => {
   }
 })
 
-const getPetMock = [
-  {
-    request: { query: GET_PET_QUERY, variables: getPetPayloadMock },
-    result: getPetResponseMock
-  }
-]
-const additionalMocks = [
+// const getPetGraphqlMock = [
+//   {
+//     request: { query: GET_PET_QUERY, variables: getPetPayloadMock },
+//     result: getPetResponseMock
+//   }
+// ]
+const additionalGrapqlMocks = [
   {
     request: { query: GET_PET_TYPES_QUERY },
     result: getPetTypesResponseMock
@@ -52,7 +52,7 @@ const additionalMocks = [
 describe('[PetForm]', () => {
   test('Should render the page with its inputs', () => {
     render(
-      <MockedProvider mocks={additionalMocks}>
+      <MockedProvider mocks={additionalGrapqlMocks}>
         <PetForm />
       </MockedProvider>
     )
@@ -67,7 +67,7 @@ describe('[PetForm]', () => {
 
   test('Should render the page with its inputs and go to pet list if the form is cancelled', async () => {
     render(
-      <MockedProvider mocks={[...additionalMocks, ...getPetMock]}>
+      <MockedProvider mocks={additionalGrapqlMocks}>
         <PetForm />
       </MockedProvider>
     )
@@ -81,9 +81,12 @@ describe('[PetForm]', () => {
     })
   })
 
+  // TODO: Add test case for pet update once the form is ready to handle it
+  // TODO: Add test case for pet creation once the form is ready to handle it
+
   // test.only('Should make the graphQL request by filling the form and clicking the submit button', async () => {
   //   render(
-  //     <MockedProvider mocks={[...additionalMocks, ...getPetMock]}>
+  //     <MockedProvider mocks={[...additionalGrapqlMocks, ...getPetGraphqlMock]}>
   //       <PetForm />
   //     </MockedProvider>
   //   )

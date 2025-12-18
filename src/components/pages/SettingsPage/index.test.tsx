@@ -7,7 +7,7 @@ import { UserContext } from '../../../context/userContext'
 // COMPONENTS
 import SettingsPage from '.'
 // MOCKS
-import { loginUserPayloadMock, getLoggedUser } from './index.mocks.json'
+import { userDataMock, getLoggedUserMock } from './index.mocks.json'
 
 const mockUseNavigate = vi.fn()
 
@@ -19,15 +19,14 @@ vi.mock('react-router-dom', async originalPackage => {
   }
 })
 
-// Mocking getLoggedUser to return valid user data
 vi.mock('../../../functions/local-storage', () => ({
   ...vi.importActual('../../../functions/local-storage'),
-  getLoggedUser: () => getLoggedUser
+  getLoggedUser: () => getLoggedUserMock
 }))
 
 describe('[SettingsPage]', () => {
   const userContextMock = {
-    userData: loginUserPayloadMock,
+    userData: userDataMock,
     setUserData: vi.fn()
   }
 

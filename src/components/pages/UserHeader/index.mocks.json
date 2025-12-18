@@ -1,16 +1,11 @@
 {
   "testConfig": {
     "name": "User Name",
-    "options": ["Add Pet", "See My Pets", "Settings", "Logout"]
+    "options": ["Add Pet",  "Add Event", "See My Pets", "Settings", "Logout"]
   },
-  "logoutMock": {
-    "request": {
-      "query": "LOGOUT"
-    },
-    "result": {
-      "data": {
-        "logout": true
-      }
+  "logoutResponseMock": {
+    "data": {
+      "logout": true
     }
   }
 }

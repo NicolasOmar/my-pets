@@ -7,13 +7,29 @@ import { MockedProvider } from '@apollo/client/testing/react'
 import { GET_MY_PETS_QUERY } from '../../../graphql/queries'
 // COMPONENTS
 import PetList from '.'
-// MOCKS
-import { testing } from './index.mocks.json'
+// CONSTANTS
 import { PET_LIST_TEST_IDS } from '../../../constants/lists'
+// MOCKS
+import { getMyPetsResponseMock, petCardMock } from './index.mocks.json'
 
 const baseRequest = {
   query: GET_MY_PETS_QUERY
 }
+const loadingMock = [
+  {
+    request: {
+      ...baseRequest,
+      variables: {}
+    },
+    result: { data: { getMyPets: [] } }
+  }
+]
+const positiveMock = [
+  {
+    request: baseRequest,
+    result: getMyPetsResponseMock
+  }
+]
 const mockUseNavigate = vi.fn()
 
 vi.mock('react-router-dom', async originalPackage => {
@@ -25,18 +41,7 @@ vi.mock('react-router-dom', async originalPackage => {
 })
 
 describe('[PetList]', () => {
-  const { positiveResponse, valuesToAppear } = testing
-
   test('Should render the page with the loading component', async () => {
-    const loadingMock = [
-      {
-        request: {
-          ...baseRequest,
-          variables: {}
-        },
-        result: { data: { getMyPets: [] } }
-      }
-    ]
     render(
       <MockedProvider mocks={loadingMock}>
         <PetList />
@@ -48,14 +53,7 @@ describe('[PetList]', () => {
     })
   })
 
-  test('Should render the page with the loaded pet', async () => {
-    const positiveMock = [
-      {
-        request: baseRequest,
-        result: positiveResponse
-      }
-    ]
-
+  test('Should render the page with the loaded pet card', async () => {
     render(
       <MockedProvider mocks={positiveMock}>
         <PetList />
@@ -63,7 +61,7 @@ describe('[PetList]', () => {
     )
 
     await waitFor(() => {
-      valuesToAppear.forEach(mockValue => expect(screen.getByText(mockValue)).toBeInTheDocument())
+      petCardMock.forEach(mockValue => expect(screen.getByText(mockValue)).toBeInTheDocument())
     })
   })
 })

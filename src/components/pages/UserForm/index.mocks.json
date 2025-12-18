@@ -1,5 +1,5 @@
 {
-  "formValueMocks": {
+  "userFormValuesMock": {
     "name": "test",
     "lastName": "last test",
     "userName": "testuser",

@@ -15,21 +15,20 @@ import { EVENT_FORM_TEST_IDS } from '../../../constants/forms'
 import { APP_ROUTES } from '../../../constants/routes'
 // MOCKS
 import {
-  valuesToAppear,
+  eventFormValuesMock,
   createEventPayloadMock,
   createEventResponseMock,
   getMyPetsResponseMock
 } from './index.mocks.json'
 
 const mockUseNavigate = vi.fn()
-const mockUseParams = vi.fn()
 
 vi.mock('react-router-dom', async originalPackage => {
   const _originalPackage = await originalPackage
   return {
     ..._originalPackage,
     useNavigate: () => mockUseNavigate,
-    useParams: () => mockUseParams
+    useParams: () => vi.fn()
   }
 })
 
@@ -90,11 +89,11 @@ describe('[EventForm]', () => {
     )
 
     await waitFor(async () => {
-      for (const [eventDataPropI, eventDataProp] of Object.entries(valuesToAppear)) {
-        const selectedTestId = Object.values(EVENT_FORM_TEST_IDS)[+eventDataPropI]
+      for (const [eventFormValueI, eventFormValue] of Object.entries(eventFormValuesMock)) {
+        const selectedTestId = Object.values(EVENT_FORM_TEST_IDS)[+eventFormValueI]
         const testFormInput = screen.getByTestId(selectedTestId) as HTMLInputElement
 
-        const valueToSet = eventDataPropI === 'date' ? valuesToAppear[2] : eventDataProp
+        const valueToSet = eventFormValueI === 'date' ? eventFormValuesMock[2] : eventFormValue
         fireEvent.change(testFormInput, { target: { value: valueToSet } })
 
         expect(testFormInput.value).toBe(valueToSet)
@@ -109,4 +108,6 @@ describe('[EventForm]', () => {
       expect(mockUseNavigate).toHaveBeenCalledWith(APP_ROUTES.PET_LIST)
     })
   })
+
+  // TODO: Add a test case for event creation with a provided petId once the form is ready to handle it
 })

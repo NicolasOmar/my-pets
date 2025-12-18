@@ -1,40 +1,42 @@
 {
-  "testing": {
-    "positiveResponse": {
-      "data": {
-        "getMyPets": [
-          {
-            "id": "65506e02c01dc2ef6b75bd00",
-            "name": "Flora",
-            "petType": {
-              "name": "Cat"
-            },
-            "birthday": null,
-            "isAdopted": true,
-            "adoptionDate": null,
-            "gender": false,
-            "hairColors": [
-              { "name": "White" }
-            ],
-            "hasHeterochromia": false,
-            "eyeColors": [
-              { "name": "Beige" }
-            ],
-            "passedAway": false
-          }
-        ]
-      }
-    },
-    "valuesToAppear": [
-      "Flora",
-      "Cat",
-      "Birthday: -",
-      "Adopted: -",
-      "Gender: Female",
-      "Hair: White",
-      "Has Heterochromia: No",
-      "Eyes: Beige"
-    ]
-  }
+  "getMyPetsResponseMock": {
+    "data": {
+      "getMyPets": [
+        {
+          "id": "65506e02c01dc2ef6b75bd00",
+          "name": "Flora",
+          "petType": {
+            "name": "Cat"
+          },
+          "birthday": null,
+          "isAdopted": true,
+          "adoptionDate": null,
+          "gender": false,
+          "hairColors": [
+            {
+              "name": "White"
+            }
+          ],
+          "hasHeterochromia": false,
+          "eyeColors": [
+            {
+              "name": "Beige"
+            }
+          ],
+          "passedAway": false
+        }
+      ]
+    }
+  },
+  "petCardMock": [
+    "Flora",
+    "Cat",
+    "Birthday: -",
+    "Adopted: -",
+    "Gender: Female",
+    "Hair: White",
+    "Has Heterochromia: No",
+    "Eyes: Beige"
+  ]
 }
 

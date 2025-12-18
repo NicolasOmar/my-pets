@@ -1,5 +1,5 @@
 import React from 'react'
-import { describe, test, expect, afterEach, beforeEach, vi } from 'vitest'
+import { describe, test, expect, beforeEach, vi } from 'vitest'
 import { MockedProvider } from '@apollo/client/testing/react'
 import { cleanup, render, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
@@ -11,15 +11,18 @@ import { GET_MY_PETS_POPULATION_QUERY } from '../../../graphql/queries'
 import Home from '.'
 // CONSTANTS
 import { HOME_PAGE_LABELS } from '../../../constants/forms'
+import { APP_ROUTES } from '../../../constants/routes'
 // FUNCTIONS
 import { clearAllStorage, setLoggedUser } from '../../../functions/local-storage'
 // MOCKS
-import { testing } from './index.mocks.json'
-import { APP_ROUTES } from '../../../constants/routes'
+import { loggedUserNameMock, getMyPetsPopulationResponseMock } from './index.mocks.json'
 
-const baseRequest = {
-  query: GET_MY_PETS_POPULATION_QUERY
-}
+const baseMock = [
+  {
+    request: { query: GET_MY_PETS_POPULATION_QUERY },
+    result: getMyPetsPopulationResponseMock
+  }
+]
 const mockUseNavigate = vi.fn()
 
 vi.mock('react-router-dom', async originalPackage => {
@@ -31,25 +34,14 @@ vi.mock('react-router-dom', async originalPackage => {
 })
 
 describe('[Home]', () => {
-  const { nameMock, positiveResponse } = testing
-  const baseMock = [
-    {
-      request: baseRequest,
-      result: positiveResponse
-    }
-  ]
-
   beforeEach(() => {
-    setLoggedUser({ name: nameMock })
+    clearAllStorage()
+    setLoggedUser({ name: loggedUserNameMock })
     cleanup()
   })
 
-  afterEach(() => {
-    clearAllStorage()
-  })
-
   test('Renders with a dummy logged User', async () => {
-    const userGreeting = `${HOME_PAGE_LABELS.USER_GREETING_START}${nameMock}${HOME_PAGE_LABELS.USER_GREETING_END}`
+    const userGreeting = `${HOME_PAGE_LABELS.USER_GREETING_START}${loggedUserNameMock}${HOME_PAGE_LABELS.USER_GREETING_END}`
 
     render(
       <MockedProvider mocks={baseMock}>
@@ -77,16 +69,11 @@ describe('[Home]', () => {
   })
 
   test('Renders with populated data and navigates on pet link click', async () => {
-    const mockedPetsInfo = positiveResponse.data.getMyPetsPopulation[1]
+    const mockedPetsInfo = getMyPetsPopulationResponseMock.data.getMyPetsPopulation[1]
     const mockedQuantity = `${mockedPetsInfo.quantity} pet registered`
-    const positiveMock = [
-      {
-        request: baseRequest,
-        result: positiveResponse
-      }
-    ]
+
     render(
-      <MockedProvider mocks={positiveMock}>
+      <MockedProvider mocks={baseMock}>
         <Home />
       </MockedProvider>
     )

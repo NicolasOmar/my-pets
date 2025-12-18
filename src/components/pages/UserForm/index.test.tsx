@@ -12,7 +12,11 @@ import { UserContext } from '../../../context/userContext'
 import UserForm from '.'
 import { USER_FORM_TEST_IDS } from '../../../constants/forms'
 // MOCKS
-import { formValueMocks, userCreatePayloadMock, userCreateResponseMock } from './index.mocks.json'
+import {
+  userFormValuesMock,
+  userCreatePayloadMock,
+  userCreateResponseMock
+} from './index.mocks.json'
 import { CREATE_USER } from '../../../graphql/mutations'
 
 const mockUseNavigate = vi.fn()
@@ -29,7 +33,7 @@ vi.mock('../../../functions/encrypt', () => ({
   encryptPass: () => 'encryptedPass'
 }))
 
-const positiveMock = [
+const graphqlMock = [
   {
     request: {
       query: CREATE_USER,
@@ -41,11 +45,11 @@ const positiveMock = [
 
 describe('[UserForm]', () => {
   beforeEach(() => {
-    const providerMock = { setUserData: vi.fn() }
+    const userProviderMock = { setUserData: vi.fn() }
 
     render(
-      <UserContext.Provider value={providerMock}>
-        <MockedProvider mocks={positiveMock}>
+      <UserContext.Provider value={userProviderMock}>
+        <MockedProvider mocks={graphqlMock}>
           <UserForm />
         </MockedProvider>
       </UserContext.Provider>
@@ -70,10 +74,10 @@ describe('[UserForm]', () => {
   })
 
   test('Should make the graphQL request by filling the form and clicking the submit button', async () => {
-    Object.values(USER_FORM_TEST_IDS).forEach((_testId, _i) => {
-      const formValue = Object.values(formValueMocks)
-      const inputElem = screen.getByTestId(_testId)
-      fireEvent.change(inputElem, { target: { value: formValue[_i] } })
+    Object.values(userFormValuesMock).forEach((userFormValue, _i) => {
+      const userFormTestId = Object.values(USER_FORM_TEST_IDS)
+      const inputElem = screen.getByTestId(userFormTestId[_i])
+      fireEvent.change(inputElem, { target: { value: userFormValue } })
     })
 
     const submitBtn = screen.getByTestId(USER_FORM_TEST_IDS.SUBMIT_BTN)

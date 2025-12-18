@@ -65,7 +65,6 @@ const EventForm: React.FC = () => {
         type: 'submit',
         color: 'success',
         isDisabled: false
-        // AFTER REFACTORING EVENTLIST, ADD A FUNCTION TO NAVIGATE TO IT
       },
       {
         testId: EVENT_FORM_TEST_IDS.CANCEL_BTN,
