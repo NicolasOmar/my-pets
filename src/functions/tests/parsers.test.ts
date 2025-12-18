@@ -4,7 +4,9 @@ import {
   parseBooleanToString,
   nullifyValue,
   capitalizeWord,
-  parseSingularPluralStrings
+  parseSingularPluralStrings,
+  getDataFromArrays,
+  parseStringToLuxonDate
 } from '../parsers'
 import mocks from '../mocks/parsers.json'
 
@@ -55,6 +57,28 @@ describe('[Functions.parsers]', () => {
     mocks.parseSingularPluralStrings.inputs.forEach((testCase, testCaseIndex) => {
       const result = parseSingularPluralStrings(testCase)
       expect(result).toBe(mocks.parseSingularPluralStrings.outputs[testCaseIndex])
+    })
+  })
+
+  test('getDataFromArrays returns correct data', () => {
+    const dataList = [
+      { id: 'item1', value: 'value1' },
+      { id: 'item2', value: 'value2' },
+      { id: 'item3', value: 'value3' }
+    ]
+
+    mocks.getDataFromArrays.inputs.forEach((testCase, testCaseIndex) => {
+      const { formDataList, propToSearchBy, propToReturn } = testCase
+      const result = getDataFromArrays(formDataList, dataList, propToSearchBy, propToReturn)
+      expect(result).toEqual(mocks.getDataFromArrays.outputs[testCaseIndex])
+    })
+  })
+
+  test('parseSingularPluralStrings returns correct string', () => {
+    mocks.parseStringToLuxonDate.inputs.forEach((testCase, testCaseIndex) => {
+      const { input, nullValue, format } = testCase
+      const result = parseStringToLuxonDate(input, nullValue, format)
+      expect(result).toBe(mocks.parseStringToLuxonDate.outputs[testCaseIndex])
     })
   })
 })
