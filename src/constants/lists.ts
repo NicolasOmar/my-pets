@@ -7,7 +7,9 @@ export enum PET_LIST_LABELS {
   GENDER = 'Gender',
   HAIR = 'Hair',
   HAS_HETEROCHROMIA = 'Has Heterochromia',
-  EYES = 'Eyes'
+  EYES = 'Eyes',
+  ADD_PET_EVENT = 'Add Event',
+  SEE_PET_EVENTS = 'See Events'
 }
 
 export enum PET_LIST_TEST_IDS {

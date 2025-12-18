@@ -85,15 +85,15 @@ const PetList: React.FC = () => {
                 content={petCardContent}
                 footerLinks={[
                   {
-                    text: 'Update',
+                    text: COMMON_LABELS.UPDATE,
                     onClick: () => navigate(`${APP_ROUTES.PET_FORM}/${petData.id}`)
                   },
                   {
-                    text: 'Add Event',
+                    text: PET_LIST_LABELS.ADD_PET_EVENT,
                     onClick: () => navigate(`${APP_ROUTES.EVENT_FORM}/${petData.id}`)
                   },
                   {
-                    text: 'See Events',
+                    text: PET_LIST_LABELS.SEE_PET_EVENTS,
                     onClick: () => navigate(`${APP_ROUTES.EVENT_LIST}/${petData.id}`)
                   }
                 ]}

@@ -6,10 +6,12 @@
     "data": {
       "getMyPetEvents": [
         {
+          "id": "1",
           "description": "First Test",
           "date": "1717977600000"
         },
         {
+          "id": "2",
           "description": "Second Test",
           "date": "1766059200000"
         }

@@ -105,6 +105,10 @@ export interface EventCreatePayload {
   payload: Omit<EventObject, 'id'>
 }
 
+export interface EventUpdatePayload extends EventCreatePayload {
+  id: string
+}
+
 // RESPONSES
 export interface UserLoginResponse {
   loginUser: UserAndToken
@@ -164,9 +168,13 @@ export interface EventCreateResponse {
 }
 
 export interface EventListResponse {
-  getMyPetEvents: Omit<EventObject, 'id'>[]
+  getMyPetEvents: EventObject[]
 }
 
 export interface PetPopulationResponse {
   getMyPetsPopulation: { name: string; quantity: number }[]
+}
+
+export interface GetEventResponse {
+  getEvent: Pick<EventObject, 'description' | 'date'>
 }

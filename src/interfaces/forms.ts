@@ -58,6 +58,8 @@ export interface PetFormikProps {
 export interface EventFormikProps {
   petId: string
   petList: IdNameObject[]
+  eventData: { description: string; date: string } | null
   formIsWorking: boolean
+  formIsEditing: boolean
   handleSubmit: (eventFormData: EventFormData) => void
 }

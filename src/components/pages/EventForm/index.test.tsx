@@ -1,7 +1,7 @@
 import React from 'react'
-import { describe, test, expect, vi } from 'vitest'
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { describe, test, expect, vi, beforeEach } from 'vitest'
 import '@testing-library/jest-dom'
 // APP_ROUTES
 // GRAPHQL
@@ -28,7 +28,7 @@ vi.mock('react-router-dom', async originalPackage => {
   return {
     ..._originalPackage,
     useNavigate: () => mockUseNavigate,
-    useParams: () => vi.fn()
+    useParams: () => ({ petId: null, eventId: null })
   }
 })
 
@@ -52,13 +52,15 @@ const positiveMocks = [
 ]
 
 describe('[EventForm]', () => {
-  test('Should render the page with its inputs', () => {
+  beforeEach(() =>
     render(
       <MockedProvider mocks={positiveMocks}>
         <EventForm />
       </MockedProvider>
     )
+  )
 
+  test('Should render the page with its inputs', () => {
     Object.values(EVENT_FORM_TEST_IDS).forEach(_testId => {
       const testFormInput = screen.getByTestId(_testId)
       expect(testFormInput).toBeInTheDocument()
@@ -66,14 +68,10 @@ describe('[EventForm]', () => {
   })
 
   test('Should render the page and go to event list if the form is cancelled', async () => {
-    render(
-      <MockedProvider mocks={positiveMocks}>
-        <EventForm />
-      </MockedProvider>
-    )
+    let cancelBtn: HTMLElement
 
-    const cancelBtn = screen.getByTestId(EVENT_FORM_TEST_IDS.CANCEL_BTN)
-    fireEvent.click(cancelBtn)
+    await waitFor(() => (cancelBtn = screen.getByTestId(EVENT_FORM_TEST_IDS.CANCEL_BTN)))
+    fireEvent.click(cancelBtn!)
 
     await waitFor(() => {
       expect(mockUseNavigate).toHaveBeenCalled()
@@ -82,12 +80,6 @@ describe('[EventForm]', () => {
   })
 
   test('Should render the page, change form inputs data and submit it', async () => {
-    render(
-      <MockedProvider mocks={positiveMocks}>
-        <EventForm />
-      </MockedProvider>
-    )
-
     await waitFor(async () => {
       for (const [eventFormValueI, eventFormValue] of Object.entries(eventFormValuesMock)) {
         const selectedTestId = Object.values(EVENT_FORM_TEST_IDS)[+eventFormValueI]
@@ -105,9 +97,9 @@ describe('[EventForm]', () => {
 
     await waitFor(() => {
       expect(mockUseNavigate).toHaveBeenCalled()
-      expect(mockUseNavigate).toHaveBeenCalledWith(APP_ROUTES.PET_LIST)
+      expect(mockUseNavigate).toHaveBeenCalledWith(
+        `${APP_ROUTES.EVENT_LIST}/${createEventPayloadMock.payload.associatedPets[0]}`
+      )
     })
   })
-
-  // TODO: Add a test case for event creation with a provided petId once the form is ready to handle it
 })

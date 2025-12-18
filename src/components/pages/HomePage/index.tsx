@@ -17,7 +17,7 @@ import { APP_ROUTES } from '@constants/routes'
 import { getLoggedUser } from '@functions/local-storage'
 import { parseSingularPluralStrings } from '@functions/parsers'
 
-const Home: React.FC = () => {
+const HomePage: React.FC = () => {
   const user = getLoggedUser()
   const navigate = useNavigate()
   const { data: populationData } = useQuery<PetPopulationResponse>(GET_MY_PETS_POPULATION_QUERY)
@@ -83,4 +83,4 @@ const Home: React.FC = () => {
   )
 }
 
-export default Home
+export default HomePage

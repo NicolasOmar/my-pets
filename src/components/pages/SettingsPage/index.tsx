@@ -7,7 +7,8 @@ import { UPDATE_USER, UPDATE_PASS } from '@graphql/mutations'
 // CONTEXT
 import { UserContext } from '@context/userContext'
 // COMPONENTS
-import { Box, ButtonGroup, Column, FormField, Message, Title } from 'reactive-bulma'
+import { Box, ButtonGroup, Column, FormField, Title } from 'reactive-bulma'
+import ErrorMessage from '@templates/ErrorMessage'
 // HOOKS
 import useUserUpdateFormik from './userForm'
 import usePassUpdateFormik from './passForm'
@@ -160,13 +161,10 @@ const SettingsPage: React.FC = () => {
 
           <ButtonGroup {...updateUserButtons} />
 
-          {updateUserError ? (
-            <Message
-              headerText={USER_UPDATE_FORM_LABELS.ERROR_TITLE}
-              bodyText={updateUserError.message}
-              color="danger"
-            />
-          ) : null}
+          <ErrorMessage
+            title={USER_UPDATE_FORM_LABELS.ERROR_TITLE}
+            message={updateUserError?.message ?? null}
+          />
         </form>
       </Box>
 
@@ -180,13 +178,10 @@ const SettingsPage: React.FC = () => {
 
           <ButtonGroup {...updatePassButtons} />
 
-          {updatePassError ? (
-            <Message
-              headerText={PASS_UPDATE_FORM_LABELS.ERROR_TITLE}
-              bodyText={updatePassError.message}
-              color="danger"
-            />
-          ) : null}
+          <ErrorMessage
+            title={PASS_UPDATE_FORM_LABELS.ERROR_TITLE}
+            message={updatePassError?.message ?? null}
+          />
         </form>
       </Box>
     </Column>

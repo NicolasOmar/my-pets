@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { DATE_FOR_DISPLAY } from '@constants/formats'
+import { DATE_FOR_DATEPICKER, DATE_FOR_DISPLAY } from '@constants/formats'
 import { Entity } from '@interfaces/graphql'
 
 interface ParseArrayToStringProps<T> {
@@ -24,8 +24,8 @@ export const parseArrayToString: <T>(props: ParseArrayToStringProps<T>) => strin
   separator = ', '
 }) => rawList.map(item => item[prop]).join(separator)
 
-export const parseToLuxonDate = (stringDate: string) =>
-  DateTime.fromISO(stringDate).toFormat('yyyy-MM-dd')
+export const parseToLuxonDate = (stringDate: string, format = DATE_FOR_DATEPICKER) =>
+  DateTime.fromISO(stringDate).toFormat(format)
 
 export const parseStringToLuxonDate = (
   date?: number | string | null,

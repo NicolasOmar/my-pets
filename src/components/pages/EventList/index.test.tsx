@@ -9,6 +9,7 @@ import { GET_MY_PET_EVENTS } from '../../../graphql/queries'
 import EventList from '.'
 // CONSTANTS
 import { EVENT_LIST_TEST_IDS } from '../../../constants/lists'
+import { COMMON_LABELS } from '../../../constants/common'
 // MOCKS
 import { getPetResponseMock, datesToDisplay } from './mocks.json'
 import { APP_ROUTES } from '../../../constants/routes'
@@ -74,6 +75,25 @@ describe('[EventList]', () => {
 
     await waitFor(() => {
       expect(mockUseNavigate).toHaveBeenCalledWith(APP_ROUTES.PET_LIST)
+    })
+  })
+
+  test('Should render the page with loaded events and go event edition once the edit button is clicked', async () => {
+    let editButton: HTMLElement
+    render(
+      <MockedProvider mocks={positiveMock}>
+        <EventList />
+      </MockedProvider>
+    )
+
+    await waitFor(() => (editButton = screen.getAllByText(COMMON_LABELS.UPDATE)[0]))
+
+    fireEvent.click(editButton!)
+
+    await waitFor(() => {
+      expect(mockUseNavigate).toHaveBeenCalledWith(
+        `${APP_ROUTES.EVENT_FORM}//${getPetResponseMock.data.getMyPetEvents[0].id}`
+      )
     })
   })
 })

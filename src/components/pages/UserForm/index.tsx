@@ -7,7 +7,8 @@ import { CREATE_USER } from '@graphql/mutations'
 // CONTEXT
 import { UserContext } from '@context/userContext'
 // COMPONENTS
-import { Box, ButtonGroup, Column, FormField, Message, Title } from 'reactive-bulma'
+import { Box, ButtonGroup, Column, FormField, Title } from 'reactive-bulma'
+import ErrorMessage from '@templates/ErrorMessage'
 // HOOKS
 import useUserFormik from './form'
 // INTERFACES
@@ -112,13 +113,10 @@ const UserForm: React.FC = () => {
 
           <ButtonGroup {...userFormButtons} />
 
-          {userErrors ? (
-            <Message
-              headerText={USER_FORM_LABELS.ERROR_TITLE}
-              bodyText={userErrors.message}
-              color="danger"
-            />
-          ) : null}
+          <ErrorMessage
+            title={USER_FORM_LABELS.ERROR_TITLE}
+            message={userErrors?.message ?? null}
+          />
         </form>
       </Box>
     </Column>
