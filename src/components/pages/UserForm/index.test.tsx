@@ -12,6 +12,8 @@ import { UserContext } from '../../../context/userContext'
 import UserForm from '.'
 import { USER_FORM_TEST_IDS } from '../../../constants/forms'
 // MOCKS
+import { formValueMocks, userCreatePayloadMock, userCreateResponseMock } from './index.mocks.json'
+import { CREATE_USER } from '../../../graphql/mutations'
 
 const mockUseNavigate = vi.fn()
 
@@ -23,13 +25,27 @@ vi.mock('react-router-dom', async originalPackage => {
   }
 })
 
-describe('[UserForm]', () => {
-  const providerMock = { setUserData: vi.fn() }
+vi.mock('../../../functions/encrypt', () => ({
+  encryptPass: () => 'encryptedPass'
+}))
 
+const positiveMock = [
+  {
+    request: {
+      query: CREATE_USER,
+      variables: userCreatePayloadMock
+    },
+    result: userCreateResponseMock
+  }
+]
+
+describe('[UserForm]', () => {
   beforeEach(() => {
+    const providerMock = { setUserData: vi.fn() }
+
     render(
       <UserContext.Provider value={providerMock}>
-        <MockedProvider mocks={[]}>
+        <MockedProvider mocks={positiveMock}>
           <UserForm />
         </MockedProvider>
       </UserContext.Provider>
@@ -50,6 +66,22 @@ describe('[UserForm]', () => {
     await waitFor(() => {
       expect(mockUseNavigate).toHaveBeenCalled()
       expect(mockUseNavigate).toHaveBeenCalledWith(APP_ROUTES.LOGIN)
+    })
+  })
+
+  test('Should make the graphQL request by filling the form and clicking the submit button', async () => {
+    Object.values(USER_FORM_TEST_IDS).forEach((_testId, _i) => {
+      const formValue = Object.values(formValueMocks)
+      const inputElem = screen.getByTestId(_testId)
+      fireEvent.change(inputElem, { target: { value: formValue[_i] } })
+    })
+
+    const submitBtn = screen.getByTestId(USER_FORM_TEST_IDS.SUBMIT_BTN)
+    fireEvent.click(submitBtn)
+
+    await waitFor(() => {
+      expect(mockUseNavigate).toHaveBeenCalled()
+      expect(mockUseNavigate).toHaveBeenCalledWith(APP_ROUTES.HOME)
     })
   })
 })
