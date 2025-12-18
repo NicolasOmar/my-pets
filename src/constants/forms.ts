@@ -88,12 +88,27 @@ export enum USER_UPDATE_FORM_LABELS {
   ERROR_TITLE = 'User update error!'
 }
 
+export enum USER_UPDATE_FORM_TEST_IDS {
+  NAME = 'test-name-user-update-form',
+  LAST_NAME = 'test-last-name-user-update-form',
+  SUBMIT_BTN = 'test-submit-user-update-form',
+  GO_BACK_BTN = 'test-go-back-user-update-form'
+}
+
 export enum PASS_UPDATE_FORM_LABELS {
   TITLE = 'Update password',
   OLD_PASS = 'Old Password:',
   NEW_PASS = 'New Password:',
   REPEAT_PASS = 'Repeat Password:',
   ERROR_TITLE = 'Password error!'
+}
+
+export enum PASS_UPDATE_FORM_TEST_IDS {
+  OLD_PASS = 'test-old-password-pass-update-form',
+  NEW_PASS = 'test-new-password-pass-update-form',
+  REPEAT_PASS = 'test-repeat-password-pass-update-form',
+  SUBMIT_BTN = 'test-submit-pass-update-form',
+  GO_BACK_BTN = 'test-go-back-pass-update-form'
 }
 
 export enum EVENT_FORM_LABELS {

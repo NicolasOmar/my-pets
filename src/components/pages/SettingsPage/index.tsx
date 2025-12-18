@@ -23,7 +23,12 @@ import {
 // CONSTANTS
 import { APP_ROUTES } from '@constants/routes'
 import { COMMON_LABELS } from '@constants/common'
-import { PASS_UPDATE_FORM_LABELS, USER_UPDATE_FORM_LABELS } from '@constants/forms'
+import {
+  PASS_UPDATE_FORM_LABELS,
+  PASS_UPDATE_FORM_TEST_IDS,
+  USER_UPDATE_FORM_LABELS,
+  USER_UPDATE_FORM_TEST_IDS
+} from '@constants/forms'
 // FUNCTIONS
 import { getLoggedUser, setLoggedUser } from '@functions/local-storage'
 import { encryptPass } from '@functions/encrypt'
@@ -107,17 +112,19 @@ const SettingsPage: React.FC = () => {
   const updateUserButtons: ButtonGroupProps = {
     buttonList: [
       {
+        testId: USER_UPDATE_FORM_TEST_IDS.SUBMIT_BTN,
         text: COMMON_LABELS.SAVE_CHANGES,
         type: 'submit',
         isDisabled: false,
         color: 'success'
       },
       {
+        testId: USER_UPDATE_FORM_TEST_IDS.GO_BACK_BTN,
         text: COMMON_LABELS.GO_BACK,
         type: 'button',
         color: 'danger',
         isDisabled: false,
-        onClick: () => navigate(APP_ROUTES.LOGIN)
+        onClick: () => navigate(APP_ROUTES.HOME)
       }
     ]
   }
@@ -125,17 +132,19 @@ const SettingsPage: React.FC = () => {
   const updatePassButtons: ButtonGroupProps = {
     buttonList: [
       {
+        testId: PASS_UPDATE_FORM_TEST_IDS.SUBMIT_BTN,
         text: COMMON_LABELS.SAVE_CHANGES,
         type: 'submit',
         color: 'success',
         isDisabled: false
       },
       {
+        testId: PASS_UPDATE_FORM_TEST_IDS.GO_BACK_BTN,
         text: COMMON_LABELS.GO_BACK,
         type: 'button',
         color: 'danger',
         isDisabled: false,
-        onClick: () => navigate(APP_ROUTES.LOGIN)
+        onClick: () => navigate(APP_ROUTES.HOME)
       }
     ]
   }
