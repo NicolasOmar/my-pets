@@ -7,7 +7,8 @@ import { LOGIN_USER } from '@graphql/mutations'
 // CONTEXT
 import { UserContext } from '@context/userContext'
 // COMPONENTS
-import { Box, ButtonGroup, Column, FormField, Message, Title } from 'reactive-bulma'
+import { Box, ButtonGroup, Column, FormField, Title } from 'reactive-bulma'
+import ErrorMessage from '@templates/ErrorMessage'
 // HOOKS
 import useLoginFormik from './form'
 // INTERFACES
@@ -107,13 +108,10 @@ const LoginForm: React.FC = () => {
 
           <ButtonGroup {...loginFormButtons} />
 
-          {loginErrors ? (
-            <Message
-              headerText={LOGIN_FORM_LABELS.ERROR_TITLE}
-              bodyText={loginErrors.message}
-              color="danger"
-            />
-          ) : null}
+          <ErrorMessage
+            title={LOGIN_FORM_LABELS.ERROR_TITLE}
+            message={loginErrors?.message ?? null}
+          />
         </form>
       </Box>
     </Column>

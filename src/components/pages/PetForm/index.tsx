@@ -6,7 +6,8 @@ import { useMutation, useQuery } from '@apollo/client/react'
 import { GET_COLORS_QUERY, GET_PET_QUERY, GET_PET_TYPES_QUERY } from '@graphql/queries'
 import { CREATE_PET, UPDATE_PET } from '@graphql/mutations'
 // COMPONENTS
-import { Box, ButtonGroup, Column, FormField, Message, Title } from 'reactive-bulma'
+import { Box, ButtonGroup, Column, FormField, Title } from 'reactive-bulma'
+import ErrorMessage from '@templates/ErrorMessage'
 // HOOKS
 import usePetFormik from './form'
 // INTERFACES
@@ -182,13 +183,7 @@ const PetForm: React.FC = () => {
 
           <ButtonGroup {...petFormButtons} />
 
-          {formErrors ? (
-            <Message
-              headerText={PET_FORM_LABELS.ERROR_TITLE}
-              bodyText={formErrors.message}
-              color="danger"
-            />
-          ) : null}
+          <ErrorMessage title={PET_FORM_LABELS.ERROR_TITLE} message={formErrors?.message ?? null} />
         </form>
       </Box>
     </Column>

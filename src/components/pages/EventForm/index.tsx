@@ -7,7 +7,8 @@ import { CREATE_EVENT } from '@graphql/mutations'
 import { GET_EVENT, GET_MY_PETS_NAMES_QUERY } from '@graphql/queries'
 // CONTEXT
 // COMPONENTS
-import { Box, ButtonGroup, Column, FormField, Message, Title } from 'reactive-bulma'
+import { Box, ButtonGroup, Column, FormField, Title } from 'reactive-bulma'
+import ErrorMessage from '@templates/ErrorMessage'
 // HOOKS
 import useEventFormik from './form'
 // INTERFACES
@@ -35,7 +36,7 @@ const EventForm: React.FC = () => {
   })
   const { data: eventData, loading: isLoadingEvent } = useQuery<GetEventResponse>(GET_EVENT, {
     variables: { eventId },
-    skip: !eventId
+    skip: !eventId && !data?.getMyPets
   })
   const [createEvent, { loading: isLoadingEventCreate, error: eventErrors }] = useMutation<
     EventCreateResponse,
@@ -83,7 +84,7 @@ const EventForm: React.FC = () => {
         type: 'button',
         color: 'danger',
         isDisabled: false,
-        onClick: () => navigate(APP_ROUTES.PET_LIST)
+        onClick: () => navigate(eventId ? `${APP_ROUTES.EVENT_LIST}/${petId}` : APP_ROUTES.PET_LIST)
       }
     ]
   }
@@ -100,13 +101,10 @@ const EventForm: React.FC = () => {
 
           <ButtonGroup {...eventFormButtons} />
 
-          {eventErrors ? (
-            <Message
-              headerText={EVENT_FORM_LABELS.ERROR_TITLE}
-              bodyText={eventErrors.message}
-              color="danger"
-            />
-          ) : null}
+          <ErrorMessage
+            title={EVENT_FORM_LABELS.ERROR_TITLE}
+            message={eventErrors?.message ?? null}
+          />
         </form>
       </Box>
     </Column>
