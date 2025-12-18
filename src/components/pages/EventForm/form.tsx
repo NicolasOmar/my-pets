@@ -7,14 +7,26 @@ import { CustomFormInputProps } from '@interfaces/components'
 import { EventFormData, EventFormikProps } from '@interfaces/forms'
 // CONSTANTS
 import { EVENT_FORM_LABELS, EVENT_FORM_TEST_IDS } from '@constants/forms'
+import { DATE_FOR_DATEPICKER } from '@constants/formats'
 // FUNCTIONS
+import { parseStringToLuxonDate } from '@functions/parsers'
 
-const useEventFormik = ({ petId, petList, formIsWorking, handleSubmit }: EventFormikProps) => {
+const useEventFormik = ({
+  petId,
+  petList,
+  eventData,
+  formIsWorking,
+  formIsEditing,
+  handleSubmit
+}: EventFormikProps) => {
+  const parsedDate = eventData?.date
+    ? (parseStringToLuxonDate(eventData.date, '', DATE_FOR_DATEPICKER) as string)
+    : ''
   const eventFormik = useFormik<EventFormData>({
     initialValues: {
       pet: petId,
-      description: '',
-      date: ''
+      description: eventData?.description || '',
+      date: parsedDate
     },
     enableReinitialize: true,
     onSubmit: handleSubmit
@@ -28,7 +40,7 @@ const useEventFormik = ({ petId, petList, formIsWorking, handleSubmit }: EventFo
           config: {
             testId: EVENT_FORM_TEST_IDS.PET,
             name: 'pet',
-            isDisabled: formIsWorking,
+            isDisabled: formIsWorking || formIsEditing,
             value: eventFormik.values.pet,
             selectedValues: eventFormik.values.pet,
             options: [{ id: 0, name: '' }, ...petList],

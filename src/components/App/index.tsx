@@ -22,6 +22,7 @@ const App = () => {
     <BrowserRouter>
       {userContext?.userData ? <UserHeader name={userContext.userData.name} /> : null}
       <Routes>
+        {/* HOME PAGE */}
         <Route
           path={APP_ROUTES.HOME}
           element={
@@ -30,6 +31,7 @@ const App = () => {
             </Suspense>
           }
         />
+        {/* LOGIN PAGE/FORM */}
         <Route
           path={APP_ROUTES.LOGIN}
           element={
@@ -38,6 +40,7 @@ const App = () => {
             </Suspense>
           }
         />
+        {/* USER CREATION PAGE/FORM */}
         <Route
           path={APP_ROUTES.USER_FORM}
           element={
@@ -46,6 +49,7 @@ const App = () => {
             </Suspense>
           }
         />
+        {/* PET CREATION PAGE/FORM */}
         <Route
           path={APP_ROUTES.PET_FORM}
           element={
@@ -54,6 +58,7 @@ const App = () => {
             </Suspense>
           }
         />
+        {/* PET UPDATE PAGE/FORM */}
         <Route
           path={`${APP_ROUTES.PET_FORM}/:petId`}
           element={
@@ -62,6 +67,7 @@ const App = () => {
             </Suspense>
           }
         />
+        {/* PET LIST PAGE */}
         <Route
           path={APP_ROUTES.PET_LIST}
           element={
@@ -70,6 +76,7 @@ const App = () => {
             </Suspense>
           }
         />
+        {/* SETTINGS PAGE */}
         <Route
           path={APP_ROUTES.SETTINGS}
           element={
@@ -78,6 +85,7 @@ const App = () => {
             </Suspense>
           }
         />
+        {/* EVENT CREATION PAGE/FORM WITHOUT PET ID */}
         <Route
           path={`${APP_ROUTES.EVENT_FORM}`}
           element={
@@ -86,6 +94,16 @@ const App = () => {
             </Suspense>
           }
         />
+        {/* EVENT LIST PAGE */}
+        <Route
+          path={`${APP_ROUTES.EVENT_LIST}/:petId`}
+          element={
+            <Suspense fallback="...">
+              <LazyEventList />
+            </Suspense>
+          }
+        />
+        {/* EVENT CREATION PAGE/FORM WITH PET ID */}
         <Route
           path={`${APP_ROUTES.EVENT_FORM}/:petId`}
           element={
@@ -94,11 +112,12 @@ const App = () => {
             </Suspense>
           }
         />
+        {/* EVENT UPDATE PAGE/FORM */}
         <Route
-          path={`${APP_ROUTES.EVENT_LIST}/:petId`}
+          path={`${APP_ROUTES.EVENT_FORM}/:petId/:eventId`}
           element={
             <Suspense fallback="...">
-              <LazyEventList />
+              <LazyEventForm />
             </Suspense>
           }
         />

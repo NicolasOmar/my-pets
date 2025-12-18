@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useMutation, useQuery } from '@apollo/client/react'
 // API
 import { CREATE_EVENT } from '@graphql/mutations'
-import { GET_MY_PETS_NAMES_QUERY } from '@graphql/queries'
+import { GET_EVENT, GET_MY_PETS_NAMES_QUERY } from '@graphql/queries'
 // CONTEXT
 // COMPONENTS
 import { Box, ButtonGroup, Column, FormField, Message, Title } from 'reactive-bulma'
@@ -13,7 +13,12 @@ import useEventFormik from './form'
 // INTERFACES
 import { ButtonGroupProps } from 'reactive-bulma/dist/interfaces/moleculeProps'
 import { EventFormData } from '@interfaces/forms'
-import { EventCreatePayload, EventCreateResponse, PetNamesResponse } from '@interfaces/graphql'
+import {
+  EventCreatePayload,
+  EventCreateResponse,
+  GetEventResponse,
+  PetNamesResponse
+} from '@interfaces/graphql'
 // CONSTANTS
 import { APP_ROUTES } from '@constants/routes'
 import { EVENT_FORM_LABELS, EVENT_FORM_TEST_IDS } from '@constants/forms'
@@ -22,19 +27,23 @@ import { COMMON_LABELS } from '@constants/common'
 import { parseToLuxonDate } from '@functions/parsers'
 
 const EventForm: React.FC = () => {
-  const { petId = '' } = useParams()
+  const { petId = '', eventId = null } = useParams()
   const navigate = useNavigate()
   const { data, loading: isLoadingPets } = useQuery<PetNamesResponse>(GET_MY_PETS_NAMES_QUERY, {
     variables: { search: '' },
     fetchPolicy: 'network-only'
+  })
+  const { data: eventData, loading: isLoadingEvent } = useQuery<GetEventResponse>(GET_EVENT, {
+    variables: { eventId },
+    skip: !eventId
   })
   const [createEvent, { loading: isLoadingEventCreate, error: eventErrors }] = useMutation<
     EventCreateResponse,
     EventCreatePayload
   >(CREATE_EVENT)
   const isFormLoading = useMemo(
-    () => isLoadingPets || isLoadingEventCreate,
-    [isLoadingPets, isLoadingEventCreate]
+    () => isLoadingPets || isLoadingEventCreate || isLoadingEvent,
+    [isLoadingPets, isLoadingEventCreate, isLoadingEvent]
   )
 
   const handleSubmitNewEvent = async (formData: EventFormData) => {
@@ -53,7 +62,9 @@ const EventForm: React.FC = () => {
   const { eventFormik, eventFormInputsConfig } = useEventFormik({
     petId,
     petList: data?.getMyPets || [],
+    eventData: eventData?.getEvent ?? null,
     formIsWorking: isFormLoading,
+    formIsEditing: eventId !== null,
     handleSubmit: handleSubmitNewEvent
   })
 

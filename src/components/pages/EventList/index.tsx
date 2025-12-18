@@ -35,17 +35,23 @@ const EventList: React.FC = () => {
             size: 'one-quarter' as ColumnSizeType,
             children: (
               <Card
-                key={_eventDataId}
+                key={`event-card-${_eventDataId}`}
                 content={[
                   <p>{`${EVENT_LIST_LABELS.DATE}: ${parsedEventDate}`}</p>,
                   <p>{`${EVENT_LIST_LABELS.DESCRIPTION}: ${eventData.description}`}</p>
+                ]}
+                footerLinks={[
+                  {
+                    text: COMMON_LABELS.UPDATE,
+                    onClick: () => navigate(`${APP_ROUTES.EVENT_FORM}/${petId}/${eventData.id}`)
+                  }
                 ]}
               />
             )
           }
         })
       : []
-  }, [data])
+  }, [petId, data, navigate])
 
   return (
     <Column size="12">

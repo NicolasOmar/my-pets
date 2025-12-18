@@ -87,6 +87,16 @@ export const GET_MY_PETS_POPULATION_QUERY = gql`
 export const GET_MY_PET_EVENTS = gql`
   query ($petId: ID!) {
     getMyPetEvents(petId: $petId) {
+      id
+      date
+      description
+    }
+  }
+`
+
+export const GET_EVENT = gql`
+  query ($eventId: ID!) {
+    getEvent(eventId: $eventId) {
       date
       description
     }

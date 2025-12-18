@@ -6,6 +6,6 @@ export enum APP_ROUTES {
   PET_LIST = '/pet/list',
   PET_FORM = '/pet',
   SETTINGS = '/settings',
-  EVENT_LIST = '/see-events',
-  EVENT_FORM = '/add-event'
+  EVENT_LIST = '/event/list',
+  EVENT_FORM = '/event'
 }
