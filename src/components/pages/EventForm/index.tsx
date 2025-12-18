@@ -29,15 +29,18 @@ import { COMMON_LABELS } from '@constants/common'
 import { parseToLuxonDate } from '@functions/parsers'
 
 const EventForm: React.FC = () => {
-  const { petId = '', eventId = null } = useParams()
+  const { petId = null, eventId = null } = useParams()
   const navigate = useNavigate()
-  const { data, loading: isLoadingPets } = useQuery<PetNamesResponse>(GET_MY_PETS_NAMES_QUERY, {
-    variables: { search: '' },
-    fetchPolicy: 'network-only'
-  })
+  const { data: petListData, loading: isLoadingPets } = useQuery<PetNamesResponse>(
+    GET_MY_PETS_NAMES_QUERY,
+    {
+      variables: { search: '' },
+      fetchPolicy: 'network-only'
+    }
+  )
   const { data: eventData, loading: isLoadingEvent } = useQuery<GetEventResponse>(GET_EVENT, {
     variables: { eventId: eventId ?? '' },
-    skip: !eventId && !data?.getMyPets,
+    skip: !eventId || isLoadingPets,
     fetchPolicy: 'network-only'
   })
   const [createEvent, { loading: isLoadingEventCreate, error: eventErrors }] = useMutation<
@@ -59,23 +62,24 @@ const EventForm: React.FC = () => {
       date: parseToLuxonDate(formData.date),
       associatedPets: [formData.pet]
     }
+    const navigationPath = `${APP_ROUTES.EVENT_LIST}/${petId ?? formData.pet}`
 
     if (eventId) {
       await updateEvent({
         variables: { id: eventId, payload },
-        onCompleted: () => navigate(`${APP_ROUTES.EVENT_LIST}/${petId}`)
+        onCompleted: () => navigate(navigationPath)
       })
     } else {
       await createEvent({
         variables: { payload },
-        onCompleted: () => navigate(`${APP_ROUTES.EVENT_LIST}/${petId}`)
+        onCompleted: () => navigate(navigationPath)
       })
     }
   }
 
   const { eventFormik, eventFormInputsConfig } = useEventFormik({
-    petId,
-    petList: data?.getMyPets || [],
+    petId: petId ?? '',
+    petList: petListData?.getMyPets ?? [],
     eventData: eventData?.getEvent ?? null,
     formIsWorking: isFormLoading,
     formIsEditing: eventId !== null,
@@ -97,7 +101,12 @@ const EventForm: React.FC = () => {
         type: 'button',
         color: 'danger',
         isDisabled: isFormLoading,
-        onClick: () => navigate(eventId ? `${APP_ROUTES.EVENT_LIST}/${petId}` : APP_ROUTES.PET_LIST)
+        onClick: () =>
+          navigate(
+            petId
+              ? `${APP_ROUTES.EVENT_LIST}/${petId ?? eventFormik.values.pet}`
+              : APP_ROUTES.PET_LIST
+          )
       }
     ]
   }
