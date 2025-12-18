@@ -105,6 +105,10 @@ export interface EventCreatePayload {
   payload: Omit<EventObject, 'id'>
 }
 
+export interface EventUpdatePayload extends EventCreatePayload {
+  id: string
+}
+
 // RESPONSES
 export interface UserLoginResponse {
   loginUser: UserAndToken

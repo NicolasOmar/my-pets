@@ -67,3 +67,9 @@ export const CREATE_EVENT = gql`
     }
   }
 `
+
+export const UPDATE_EVENT = gql`
+  mutation ($id: String!, $payload: EventUpdatePayload!) {
+    updateEvent(id: $id, payload: $payload)
+  }
+`

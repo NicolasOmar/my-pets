@@ -3,7 +3,7 @@ import React, { useMemo } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useMutation, useQuery } from '@apollo/client/react'
 // API
-import { CREATE_EVENT } from '@graphql/mutations'
+import { CREATE_EVENT, UPDATE_EVENT } from '@graphql/mutations'
 import { GET_EVENT, GET_MY_PETS_NAMES_QUERY } from '@graphql/queries'
 // CONTEXT
 // COMPONENTS
@@ -17,6 +17,7 @@ import { EventFormData } from '@interfaces/forms'
 import {
   EventCreatePayload,
   EventCreateResponse,
+  EventUpdatePayload,
   GetEventResponse,
   PetNamesResponse
 } from '@interfaces/graphql'
@@ -35,29 +36,41 @@ const EventForm: React.FC = () => {
     fetchPolicy: 'network-only'
   })
   const { data: eventData, loading: isLoadingEvent } = useQuery<GetEventResponse>(GET_EVENT, {
-    variables: { eventId },
-    skip: !eventId && !data?.getMyPets
+    variables: { eventId: eventId ?? '' },
+    skip: !eventId && !data?.getMyPets,
+    fetchPolicy: 'network-only'
   })
   const [createEvent, { loading: isLoadingEventCreate, error: eventErrors }] = useMutation<
     EventCreateResponse,
     EventCreatePayload
   >(CREATE_EVENT)
+  const [updateEvent, { loading: isLoadingEventUpdate, error: eventUpdateErrors }] = useMutation<
+    boolean,
+    EventUpdatePayload
+  >(UPDATE_EVENT)
   const isFormLoading = useMemo(
-    () => isLoadingPets || isLoadingEventCreate || isLoadingEvent,
-    [isLoadingPets, isLoadingEventCreate, isLoadingEvent]
+    () => isLoadingPets || isLoadingEventCreate || isLoadingEventUpdate || isLoadingEvent,
+    [isLoadingPets, isLoadingEventCreate, isLoadingEventUpdate, isLoadingEvent]
   )
 
   const handleSubmitNewEvent = async (formData: EventFormData) => {
-    await createEvent({
-      variables: {
-        payload: {
-          description: formData.description,
-          date: parseToLuxonDate(formData.date),
-          associatedPets: [formData.pet]
-        }
-      },
-      onCompleted: () => navigate(APP_ROUTES.PET_LIST)
-    })
+    const payload = {
+      description: formData.description,
+      date: parseToLuxonDate(formData.date),
+      associatedPets: [formData.pet]
+    }
+
+    if (eventId) {
+      await updateEvent({
+        variables: { id: eventId, payload },
+        onCompleted: () => navigate(`${APP_ROUTES.EVENT_LIST}/${petId}`)
+      })
+    } else {
+      await createEvent({
+        variables: { payload },
+        onCompleted: () => navigate(`${APP_ROUTES.EVENT_LIST}/${petId}`)
+      })
+    }
   }
 
   const { eventFormik, eventFormInputsConfig } = useEventFormik({
@@ -73,17 +86,17 @@ const EventForm: React.FC = () => {
     buttonList: [
       {
         testId: EVENT_FORM_TEST_IDS.SUBMIT_BTN,
-        text: COMMON_LABELS.CONFIRM,
+        text: eventId ? COMMON_LABELS.CONFIRM : COMMON_LABELS.ADD,
         type: 'submit',
         color: 'success',
-        isDisabled: false
+        isDisabled: isFormLoading
       },
       {
         testId: EVENT_FORM_TEST_IDS.CANCEL_BTN,
         text: COMMON_LABELS.CANCEL,
         type: 'button',
         color: 'danger',
-        isDisabled: false,
+        isDisabled: isFormLoading,
         onClick: () => navigate(eventId ? `${APP_ROUTES.EVENT_LIST}/${petId}` : APP_ROUTES.PET_LIST)
       }
     ]
@@ -103,7 +116,7 @@ const EventForm: React.FC = () => {
 
           <ErrorMessage
             title={EVENT_FORM_LABELS.ERROR_TITLE}
-            message={eventErrors?.message ?? null}
+            message={eventErrors?.message ?? eventUpdateErrors?.message ?? null}
           />
         </form>
       </Box>
