@@ -68,8 +68,10 @@ describe('[EventForm]', () => {
   })
 
   test.skip('Should render the page and go to event list if the form is cancelled', async () => {
-    const cancelBtn = screen.getByTestId(EVENT_FORM_TEST_IDS.CANCEL_BTN)
-    fireEvent.click(cancelBtn)
+    let cancelBtn: HTMLElement
+
+    await waitFor(() => (cancelBtn = screen.getByTestId(EVENT_FORM_TEST_IDS.CANCEL_BTN)))
+    fireEvent.click(cancelBtn!)
 
     await waitFor(() => {
       expect(mockUseNavigate).toHaveBeenCalled()
