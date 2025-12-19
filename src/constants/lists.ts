@@ -13,7 +13,8 @@ export enum PET_LIST_LABELS {
 }
 
 export enum PET_LIST_TEST_IDS {
-  PROGRESS_BAR = 'test-progress-pet-list'
+  PROGRESS_BAR = 'test-progress-pet-list',
+  PASSED_AWAY_ICON = 'test-icon-passed-away'
 }
 
 export enum EVENT_LIST_LABELS {

@@ -1,5 +1,5 @@
 {
-  "getMyPetsResponseMock": {
+  "getMyFirstPetResponseMock": {
     "data": {
       "getMyPets": [
         {
@@ -12,23 +12,36 @@
           "isAdopted": true,
           "adoptionDate": null,
           "gender": false,
-          "hairColors": [
-            {
-              "name": "White"
-            }
-          ],
+          "hairColors": [{ "name": "White" }],
           "hasHeterochromia": false,
-          "eyeColors": [
-            {
-              "name": "Beige"
-            }
-          ],
+          "eyeColors": [{ "name": "Beige" }],
           "passedAway": false
         }
       ]
     }
   },
-  "petCardMock": [
+  "getMySecondPetResponseMock": {
+    "data": {
+      "getMyPets": [
+        {
+          "id": "65506e02c01dc2ef6b75bd00",
+          "name": "Fauno",
+          "petType": {
+            "name": "Dog"
+          },
+          "birthday": "1717977600000",
+          "isAdopted": true,
+          "adoptionDate": "1766059200000",
+          "gender": true,
+          "hairColors": [{ "name": "White" }],
+          "hasHeterochromia": true,
+          "eyeColors": [{ "name": "Beige" }, { "name": "Blue" }],
+          "passedAway": true
+        }
+      ]
+    }
+  },
+  "firstPetCardMock": [
     "Flora",
     "Cat",
     "Birthday: -",
@@ -37,6 +50,16 @@
     "Hair: White",
     "Has Heterochromia: No",
     "Eyes: Beige"
+  ],
+  "secondPetCardMock": [
+    "Fauno",
+    "Dog",
+    "Birthday: 10/06/2024",
+    "Adopted: 18/12/2025",
+    "Gender: Male",
+    "Hair: White",
+    "Has Heterochromia: Yes",
+    "Eyes: Beige, Blue"
   ]
 }
 

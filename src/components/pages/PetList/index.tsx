@@ -74,7 +74,13 @@ const PetList: React.FC = () => {
           ]
 
           if (petData.passedAway) {
-            petCardContent = [<Icon iconLabel="ghost" />, ...petCardContent]
+            petCardContent = [
+              <Icon
+                testId={`${PET_LIST_TEST_IDS.PASSED_AWAY_ICON}-${petData.id}`}
+                iconLabel="ghost"
+              />,
+              ...petCardContent
+            ]
           }
 
           return {
