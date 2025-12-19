@@ -6,12 +6,12 @@ import { useQuery } from '@apollo/client/react'
 import { GET_MY_PETS_QUERY } from '@graphql/queries'
 // CONTEXT
 // COMPONENTS
-import { Card, Column, ColumnGroup, Icon, Input, ProgressBar, Title } from 'reactive-bulma'
+import { Card, Column, ColumnGroup, Icon, ProgressBar, Title } from 'reactive-bulma'
 // HOOKS
 // INTERFACES
 import { ColumnSizeType } from 'reactive-bulma/dist/types/styleTypes'
-import { InputProps } from 'reactive-bulma/dist/interfaces/atomProps'
-import { InputType } from 'reactive-bulma/dist/types/domTypes'
+import { TitleProps } from 'reactive-bulma/dist/interfaces/atomProps'
+// import { InputType } from 'reactive-bulma/dist/types/domTypes'
 import { PetListResponse } from '@interfaces/graphql'
 // CONSTANTS
 import { APP_ROUTES } from '@constants/routes'
@@ -23,22 +23,22 @@ import {
   parseArrayToString,
   parseStringToLuxonDate
 } from '@functions/parsers'
-import { debouncer } from '@functions/methods'
+// import { debouncer } from '@functions/methods'
 
 const PetList: React.FC = () => {
   const navigate = useNavigate()
-  const { loading, data, refetch } = useQuery<PetListResponse>(GET_MY_PETS_QUERY, {
+  const { loading, data } = useQuery<PetListResponse>(GET_MY_PETS_QUERY, {
     fetchPolicy: 'network-only'
   })
 
-  const searchInputCallback = (event: React.ChangeEvent<HTMLInputElement>) =>
-    refetch({ search: event.target.value })
-  const searchInput = {
-    type: 'text' as InputType,
-    placeholder: PET_LIST_LABELS.SEARCH_BY,
-    style: { marginBottom: '1rem' },
-    onChange: debouncer(searchInputCallback, 500)
-  }
+  // const searchInputCallback = (event: React.ChangeEvent<HTMLInputElement>) =>
+  //   refetch({ search: event.target.value })
+  // const searchInput = useMemo(() => ({
+  //   type: 'text' as InputType,
+  //   placeholder: PET_LIST_LABELS.SEARCH_BY,
+  //   style: { marginBottom: '1rem' },
+  //   onChange: debouncer(searchInputCallback, 500)
+  // }), [searchInputCallback])
 
   const memoizedPetCardList = useMemo(() => {
     return data
@@ -74,7 +74,13 @@ const PetList: React.FC = () => {
           ]
 
           if (petData.passedAway) {
-            petCardContent = [<Icon iconLabel="ghost" />, ...petCardContent]
+            petCardContent = [
+              <Icon
+                testId={`${PET_LIST_TEST_IDS.PASSED_AWAY_ICON}-${petData.id}`}
+                iconLabel="ghost"
+              />,
+              ...petCardContent
+            ]
           }
 
           return {
@@ -104,19 +110,33 @@ const PetList: React.FC = () => {
       : []
   }, [data, navigate])
 
+  const memorizedLoadingPets = useMemo(() => {
+    const titleConfigurationObj = {
+      main: { text: PET_LIST_LABELS.TITLE, type: 'title' },
+      secondary:
+        data?.getMyPets.length === 0
+          ? { text: PET_LIST_LABELS.NO_PETS, type: 'subtitle' }
+          : undefined
+    } as TitleProps
+
+    return (
+      <>
+        <Title {...titleConfigurationObj} />
+        {loading ? (
+          <ProgressBar isLoading testId={PET_LIST_TEST_IDS.PROGRESS_BAR} />
+        ) : (
+          <>
+            {/* <Input {...(searchInput as InputProps)} /> */}
+            <ColumnGroup listOfColumns={memoizedPetCardList} />
+          </>
+        )}
+      </>
+    )
+  }, [loading, data, memoizedPetCardList])
+
   return (
-    <Column size="12">
-      {loading ? (
-        <ProgressBar isLoading testId={PET_LIST_TEST_IDS.PROGRESS_BAR} />
-      ) : data ? (
-        <>
-          <Title main={{ text: PET_LIST_LABELS.TITLE, type: 'title' }} />
-          <Input {...(searchInput as InputProps)} />
-          <ColumnGroup listOfColumns={memoizedPetCardList} />
-        </>
-      ) : (
-        <Title main={{ text: PET_LIST_LABELS.NO_PETS, type: 'title' }} />
-      )}
+    <Column size="10" offset="1">
+      {memorizedLoadingPets}
     </Column>
   )
 }

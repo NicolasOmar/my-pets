@@ -6,6 +6,13 @@ import { UserContext } from '@context/userContext'
 import UserHeader from '../pages/UserHeader'
 // CONSTANTS
 import { APP_ROUTES } from '@constants/routes'
+import { Column, ProgressBar } from 'reactive-bulma'
+
+const ProgressStructure = () => (
+  <Column size="10" offset="1">
+    <ProgressBar isLoading />
+  </Column>
+)
 
 const App = () => {
   const userContext = useContext(UserContext)
@@ -26,7 +33,7 @@ const App = () => {
         <Route
           path={APP_ROUTES.HOME}
           element={
-            <Suspense fallback="...">
+            <Suspense fallback={<ProgressStructure />}>
               <LazyHomePage />
             </Suspense>
           }
@@ -35,7 +42,7 @@ const App = () => {
         <Route
           path={APP_ROUTES.LOGIN}
           element={
-            <Suspense fallback="...">
+            <Suspense fallback={<ProgressStructure />}>
               <LazyLoginForm />
             </Suspense>
           }
@@ -44,7 +51,7 @@ const App = () => {
         <Route
           path={APP_ROUTES.USER_FORM}
           element={
-            <Suspense fallback="...">
+            <Suspense fallback={<ProgressStructure />}>
               <LazyUserForm />
             </Suspense>
           }
@@ -53,7 +60,7 @@ const App = () => {
         <Route
           path={APP_ROUTES.PET_FORM}
           element={
-            <Suspense fallback="...">
+            <Suspense fallback={<ProgressStructure />}>
               <LazyPetForm />
             </Suspense>
           }
@@ -62,7 +69,7 @@ const App = () => {
         <Route
           path={`${APP_ROUTES.PET_FORM}/:petId`}
           element={
-            <Suspense fallback="...">
+            <Suspense fallback={<ProgressStructure />}>
               <LazyPetForm />
             </Suspense>
           }
@@ -71,7 +78,7 @@ const App = () => {
         <Route
           path={APP_ROUTES.PET_LIST}
           element={
-            <Suspense fallback="...">
+            <Suspense fallback={<ProgressStructure />}>
               <LazyPetList />
             </Suspense>
           }
@@ -80,7 +87,7 @@ const App = () => {
         <Route
           path={APP_ROUTES.SETTINGS}
           element={
-            <Suspense fallback="...">
+            <Suspense fallback={<ProgressStructure />}>
               <LazySettingsPage />
             </Suspense>
           }
@@ -89,7 +96,7 @@ const App = () => {
         <Route
           path={`${APP_ROUTES.EVENT_FORM}`}
           element={
-            <Suspense fallback="...">
+            <Suspense fallback={<ProgressStructure />}>
               <LazyEventForm />
             </Suspense>
           }
@@ -98,7 +105,7 @@ const App = () => {
         <Route
           path={`${APP_ROUTES.EVENT_LIST}/:petId`}
           element={
-            <Suspense fallback="...">
+            <Suspense fallback={<ProgressStructure />}>
               <LazyEventList />
             </Suspense>
           }
@@ -107,7 +114,7 @@ const App = () => {
         <Route
           path={`${APP_ROUTES.EVENT_FORM}/:petId`}
           element={
-            <Suspense fallback="...">
+            <Suspense fallback={<ProgressStructure />}>
               <LazyEventForm />
             </Suspense>
           }
@@ -116,7 +123,7 @@ const App = () => {
         <Route
           path={`${APP_ROUTES.EVENT_FORM}/:petId/:eventId`}
           element={
-            <Suspense fallback="...">
+            <Suspense fallback={<ProgressStructure />}>
               <LazyEventForm />
             </Suspense>
           }

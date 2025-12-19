@@ -5,26 +5,45 @@ import '@testing-library/jest-dom'
 // GRAPHQL
 import { MockedProvider } from '@apollo/client/testing/react'
 import { GET_MY_PET_EVENTS } from '../../../graphql/queries'
+import { DELETE_EVENT } from '../../../graphql/mutations'
 // COMPONENTS
 import EventList from '.'
 // CONSTANTS
 import { EVENT_LIST_TEST_IDS } from '../../../constants/lists'
 import { COMMON_LABELS } from '../../../constants/common'
-// MOCKS
-import { getPetResponseMock, datesToDisplay } from './mocks.json'
 import { APP_ROUTES } from '../../../constants/routes'
+// MOCKS
+import {
+  getPetResponseMock,
+  datesToDisplay,
+  deleteEventPayloadMock,
+  deleteEventResponseMock
+} from './mocks.json'
 
 const baseRequest = {
   query: GET_MY_PET_EVENTS,
   variables: { petId: '' }
 }
-const loadingEventsMock = [
+const loadingNoEventsMock = [
   {
     request: baseRequest,
     result: { data: { getMyPetEvents: [] } }
   }
 ]
-const positiveMock = [
+const loadingTwoEventsMock = [
+  {
+    request: baseRequest,
+    result: getPetResponseMock
+  }
+]
+const deleteEventMock = [
+  {
+    request: {
+      query: DELETE_EVENT,
+      variables: deleteEventPayloadMock
+    },
+    result: deleteEventResponseMock
+  },
   {
     request: baseRequest,
     result: getPetResponseMock
@@ -44,7 +63,7 @@ vi.mock('react-router-dom', async originalPackage => {
 describe('[EventList]', () => {
   test('Should render the page with the loading component', async () => {
     render(
-      <MockedProvider mocks={loadingEventsMock}>
+      <MockedProvider mocks={loadingNoEventsMock}>
         <EventList />
       </MockedProvider>
     )
@@ -56,7 +75,7 @@ describe('[EventList]', () => {
 
   test('Should render the page with loaded events and go back to event list once the go back button is clicked', async () => {
     render(
-      <MockedProvider mocks={positiveMock}>
+      <MockedProvider mocks={loadingTwoEventsMock}>
         <EventList />
       </MockedProvider>
     )
@@ -81,7 +100,7 @@ describe('[EventList]', () => {
   test('Should render the page with loaded events and go event edition once the edit button is clicked', async () => {
     let editButton: HTMLElement
     render(
-      <MockedProvider mocks={positiveMock}>
+      <MockedProvider mocks={loadingTwoEventsMock}>
         <EventList />
       </MockedProvider>
     )
@@ -94,6 +113,22 @@ describe('[EventList]', () => {
       expect(mockUseNavigate).toHaveBeenCalledWith(
         `${APP_ROUTES.EVENT_FORM}//${getPetResponseMock.data.getMyPetEvents[0].id}`
       )
+    })
+  })
+  test('Should render the page with loaded events and delete one once the delete button is clicked', async () => {
+    let deleteButton: HTMLElement
+    render(
+      <MockedProvider mocks={[...loadingTwoEventsMock, ...deleteEventMock]}>
+        <EventList />
+      </MockedProvider>
+    )
+
+    await waitFor(() => (deleteButton = screen.getAllByText(COMMON_LABELS.DELETE)[0]))
+
+    fireEvent.click(deleteButton!)
+
+    await waitFor(() => {
+      expect(screen.getByTestId(EVENT_LIST_TEST_IDS.PROGRESS_BAR)).toBeInTheDocument()
     })
   })
 })

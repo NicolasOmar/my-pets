@@ -21,5 +21,13 @@
   "datesToDisplay": [
     "10/06/2024",
     "18/12/2025"
-  ]
+  ],
+  "deleteEventPayloadMock": {
+    "id": "1"
+  },
+  "deleteEventResponseMock": {
+    "data": {
+      "deleteEvent": true
+    }
+  }
 }
