@@ -73,3 +73,9 @@ export const UPDATE_EVENT = gql`
     updateEvent(id: $id, payload: $payload)
   }
 `
+
+export const DELETE_EVENT = gql`
+  mutation ($id: String!) {
+    deleteEvent(id: $id)
+  }
+`
