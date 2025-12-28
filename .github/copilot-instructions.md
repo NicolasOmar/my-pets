@@ -3,11 +3,11 @@
 Welcome to the MyPets frontend codebase! This document provides essential guidelines for AI coding agents to be productive and aligned with the project's architecture, workflows, and conventions.
 
 ## Project Overview
-- **Frameworks and Tools**: This project uses React, TypeScript, and Vite for development. Testing is done with Vitest.
+- **Frameworks and Tools**: This project uses React, TypeScript, and Vite for development. Testing is done with Vitest and React Testing Library.
 - **Architecture**: The codebase is organized into `components`, `pages`, `templates`, and `functions`. Each directory has a clear purpose:
   - `components`: Reusable UI components.
   - `pages`: Page-level components that define routes.
-  - `templates`: Common UI patterns.
+  - `templates`: Common UI patterns.z
   - `functions`: Utility functions and business logic.
 - **Data Flow**: The app uses GraphQL for data fetching. Queries and mutations are defined in `src/graphql`.
 - **State Management**: Context API is used for managing global state (e.g., `userContext.ts`).
@@ -21,7 +21,7 @@ Welcome to the MyPets frontend codebase! This document provides essential guidel
 ### Testing
 - Tests are written using Vitest. To run all tests:
   ```bash
-  
+  npm test
   ```
 - To run specific tests for `App` and `AppWrapper` components, use the predefined task:
   ```bash

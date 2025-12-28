@@ -26,8 +26,7 @@
     "prettier": "prettier src/**/*.{ts,tsx} --check",
     "prettier:fix": "prettier src/**/*.{ts,tsx} --write",
     "lint-staged": "lint-staged -v",
-    "update": "npm run update:deps && npm run update:doctor",
-    "update:deps": "ncu -i --format group",
+    "update": "ncu -i --format group --doctor --doctorTest 'npm run update:doctor'",
     "update:doctor": "npm run prettier && npm run lint && npm run build && npm run test"
   },
   "dependencies": {
@@ -39,7 +38,7 @@
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-router-dom": "^7.11.0",
-    "reactive-bulma": "^5.0.7",
+    "reactive-bulma": "^5.1.1",
     "validator": "^13.15.26",
     "web-vitals": "^5.1.0"
   },
@@ -66,12 +65,12 @@
     "globals": "^16.5.0",
     "history": "^5.3.0",
     "husky": "^9.1.7",
-    "jsdom": "^27.3.0",
+    "jsdom": "^27.4.0",
     "lint-staged": "^16.2.7",
     "npm-check-updates": "^19.2.0",
     "prettier": "^3.7.4",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.50.0",
+    "typescript-eslint": "^8.50.1",
     "vite": "^7.3.0",
     "vitest": "^4.0.16"
   },
