@@ -1,7 +1,7 @@
 {
   "name": "my-pets",
   "version": "0.2.12",
-  "description": "A react-based web application for daily activity log of family pets",
+  "description": "A web application designed for families to organize, track, and manage all aspects of their pets' lives—such as medical records, appointments, reminders, and milestones—in one convenient place",
   "author": "Nicolás Omar González Passerino",
   "license": "MIT",
   "private": false,
@@ -30,7 +30,7 @@
     "update:doctor": "npm run prettier && npm run lint && npm run build && npm run test"
   },
   "dependencies": {
-    "@apollo/client": "^4.0.11",
+    "@apollo/client": "^4.1.0",
     "crypto-js": "^4.2.0",
     "formik": "^2.4.9",
     "graphql": "^16.12.0",
@@ -38,7 +38,7 @@
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-router-dom": "^7.12.0",
-    "reactive-bulma": "^5.1.3",
+    "reactive-bulma": "^5.1.4",
     "validator": "^13.15.26",
     "web-vitals": "^5.1.0"
   },
@@ -48,15 +48,15 @@
     "@eslint/js": "^9.39.2",
     "@mdi/font": "^7.4.47",
     "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.1",
+    "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
     "@types/crypto-js": "^4.2.2",
     "@types/luxon": "^3.7.1",
-    "@types/node": "^25.0.6",
+    "@types/node": "^25.0.9",
     "@types/react": "^19.2.8",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react-swc": "^4.2.2",
-    "@vitest/coverage-v8": "^4.0.16",
+    "@vitest/coverage-v8": "^4.0.17",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react": "^7.37.5",
@@ -68,11 +68,11 @@
     "jsdom": "^27.4.0",
     "lint-staged": "^16.2.7",
     "npm-check-updates": "^19.3.1",
-    "prettier": "^3.7.4",
+    "prettier": "^3.8.0",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.52.0",
+    "typescript-eslint": "^8.53.1",
     "vite": "^7.3.1",
-    "vitest": "^4.0.16"
+    "vitest": "^4.0.17"
   },
   "lint-staged": {
     "src/**/*.(ts|tsx)": [
