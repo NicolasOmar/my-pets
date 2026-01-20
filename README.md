@@ -1,9 +1,10 @@
 # My Pets
-Web system for families. It helps them manage and keep track of everything related to their pets.
+A web application designed for families to organize, track, and manage all aspects of their pets’ lives—such as medical records, appointments, reminders, and milestones—in one convenient place.
 
 ## Table of contents
+- [Purpose](#purpose)
 - [Status](#status)
-- [Dependencies](#dependencies)
+- [Project Stack](#project-stack)
 - [What do I need?](#what-do-i-need)
 - [Setup](#setup)
 - [How to run it](#how-to-run-it)
@@ -11,6 +12,11 @@ Web system for families. It helps them manage and keep track of everything relat
 - [Branches and Environments](#branches-and-environments)
 - [Find out more](#find-out-more)
 - [License](#license)
+
+## Purpose
+In 2020, after welcoming our first pet, my wife and I searched for a tool to help us manage events and changes related to our pets—both current and future. After exploring several options, we realized none fully met our needs, so we decided to create our own solution. That’s how MyPets was born.
+
+Over nearly six years, the project has gone through multiple technology changes and periods of slow progress due to shifting priorities and other commitments. In 2026, the goal is to release a stable, user-friendly version that any family with pets can use—not just us.
 
 ## Status
 ![Project version][badge-repo-version]
@@ -38,7 +44,7 @@ Web system for families. It helps them manage and keep track of everything relat
 [badge-github-commits]: https://img.shields.io/github/commit-activity/m/nicolasomar/my-pets?logo=github
 [badge-github-last-commit]: https://img.shields.io/github/last-commit/nicolasomar/my-pets?logo=github
 
-## Dependencies
+## Project Stack
 ![react dependency][badge-dependency-react]
 ![typescript dependency][badge-dependency-typescript]
 ![vite dependency][badge-dependency-vite]
