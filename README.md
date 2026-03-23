@@ -16,7 +16,11 @@ A web application designed for families to organize, track, and manage all aspec
 ## Purpose
 In 2020, after welcoming our first pet, my wife and I searched for a tool to help us manage events and changes related to our pets—both current and future. After exploring several options, we realized none fully met our needs, so we decided to create our own solution. That’s how MyPets was born.
 
-Over nearly six years, the project has gone through multiple technology changes and periods of slow progress due to shifting priorities and other commitments. In 2026, the goal is to release a stable, user-friendly version that any family with pets can use—not just us.
+<!-- Over nearly six years, the project has gone through multiple technology changes and periods of slow progress due to shifting priorities and other commitments. In 2026, the goal is to release a stable, user-friendly version that any family with pets can use—not just us. -->
+
+Since 23/03/2026, I have archived the project for an indeterminate time because I need to refocus my time on other priorities related to my current assignments and career path, which will take a big part of my time.
+
+I will keep you posted on any updates, which will be forthcoming shortly.
 
 ## Status
 ![Project version][badge-repo-version]
